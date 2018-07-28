@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!-- footer content -->
 <footer>
-	<div class="pull-right">BPLOS - SYSTEM INSIDER PREVIEW</div>
+	<div class="pull-right">BPLS - SYSTEM INSIDER PREVIEW</div>
 	<div class="clearfix"></div>
 </footer>
 <!-- /footer content -->

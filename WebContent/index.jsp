@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="ISO-8859-1">
 
-    <title>BPLO | Home </title>
+    <title>BPLS | Home </title>
 
     <!-- Bootstrap -->
     <link href="build/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,10 @@
     <link href="build/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="build/css/nprogress.css" rel="stylesheet">
-
+<!-- bootstrap-progressbar -->
+    <link href="build/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -33,19 +36,9 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Analytics Here</h3>
+                <h3>Home Page</h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div class="clearfix"></div>
@@ -79,7 +72,34 @@
     <script src="build/js/fastclick.js"></script>
     <!-- NProgress -->
     <script src="build/js/nprogress.js"></script>
-    
+    <!-- Chart.js -->
+    <script src="build/Chart.js/dist/Chart.min.js"></script>
+    <!-- jQuery Sparklines -->
+    <script src="build/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- morris.js -->
+    <script src="build/raphael/raphael.min.js"></script>
+    <script src="build/morris.js/morris.min.js"></script>
+    <!-- gauge.js -->
+    <script src="build/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- Skycons -->
+    <script src="build/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="build/Flot/jquery.flot.js"></script>
+    <script src="build/Flot/jquery.flot.pie.js"></script>
+    <script src="build/Flot/jquery.flot.time.js"></script>
+    <script src="build/Flot/jquery.flot.stack.js"></script>
+    <script src="build/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="build/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="build/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="build/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="build/DateJS/build/date.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="build/moment/min/moment.min.js"></script>
+    <script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
   </body>
