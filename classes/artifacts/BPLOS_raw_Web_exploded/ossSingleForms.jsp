@@ -73,7 +73,7 @@
 									business. Click buttons within the action column to modify
 									existing records.</p>
 								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target=".bs-example-modal-lg">
+									data-toggle="modal" data-target=".ossSingleFormModal">
 									<i class="fa fa-plus"></i> Add New
 								</button>
 								<table id="datatable-buttons"
@@ -122,7 +122,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="modal fade bs-example-modal-lg" tabindex="-1"
+					<%--OSS form--%>
+					<div class="modal fade ossSingleFormModal" tabindex="-1"
 						role="dialog" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
