@@ -135,7 +135,7 @@
 									<h4 class="modal-title" id="myModalLabel">Add New</h4>
 								</div>
 								<div class="modal-body">
-									<h4>Fill the necessary fields</h4>
+									
 									<form class="form-horizontal form-label-left input_mask">
 
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">

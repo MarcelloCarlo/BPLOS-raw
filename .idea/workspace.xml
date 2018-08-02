@@ -9,6 +9,7 @@
     <list default="true" id="3774e935-aeac-4083-a08c-8b95c4b52c0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/ossSingleForms.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/ossSingleForms.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/classes/com/bplos/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/classes/com/bplos/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/ossSingleForms.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/ossSingleForms.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -23,14 +24,15 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="5" />
+          <entry key="project.open.time.100" value="1" />
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.32" value="1" />
-          <entry key="project.open.time.49" value="1" />
+          <entry key="project.open.time.49" value="2" />
           <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.75" value="1" />
           <entry key="project.open.time.76" value="1" />
           <entry key="project.open.time.84" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -49,15 +51,17 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="13" />
-          <entry key="jsp" value="150" />
+          <entry key="jsp" value="255" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="13" />
-          <entry key="JSP" value="150" />
+          <entry key="JSP" value="255" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
     </session>
   </component>
   <component name="FileEditorManager">
@@ -70,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/ossSingleForms.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="165" column="44" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
+            <state relative-caret-position="68">
+              <caret line="136" column="56" lean-forward="true" selection-start-line="136" selection-start-column="56" selection-end-line="136" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -214,7 +218,7 @@
     <property name="SearchEverywhereHistoryKey" value="wrap&#9;ACTION&#9;EditorGutterToggleGlobalSoftWraps" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532994262868" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533188545503" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -234,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.ossSingleForms.jsp">
+  <component name="RunManager" selected="Tomcat Server.ossSingleForms.jsp (1)">
     <configuration name="Meow" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.32" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8090/" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
@@ -312,6 +316,45 @@
         </option>
       </method>
     </configuration>
+    <configuration name="ossSingleForms.jsp (1)" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 8.5.32" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8070/ossSingleForms.jsp" />
+      <deployment>
+        <artifact name="BPLOS-raw:Web exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="ossSingleForms_jsp_(1)_BPLOS-raw" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="BPLOS-raw:Web exploded" />
+        </option>
+      </method>
+    </configuration>
     <configuration name="ossSingleForms.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 8.5.32" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8070/ossSingleForms.jsp" />
       <deployment>
@@ -354,9 +397,11 @@
     <list>
       <item itemvalue="Tomcat Server.Meow" />
       <item itemvalue="Tomcat Server.ossSingleForms.jsp" />
+      <item itemvalue="Tomcat Server.ossSingleForms.jsp (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Tomcat Server.ossSingleForms.jsp (1)" />
         <item itemvalue="Tomcat Server.ossSingleForms.jsp" />
       </list>
     </recent_temporary>
@@ -378,14 +423,16 @@
       <workItem from="1532942422452" duration="2586000" />
       <workItem from="1532985661986" duration="5687000" />
       <workItem from="1532995087989" duration="299000" />
+      <workItem from="1533034784602" duration="1821000" />
+      <workItem from="1533185520878" duration="1194000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19081000" />
+    <option name="totallyTimeSpent" value="22096000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="706" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.4949495" />
@@ -398,7 +445,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29545453" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2937063" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -457,8 +504,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/ossSingleForms.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="165" column="44" selection-start-line="165" selection-start-column="44" selection-end-line="165" selection-end-column="44" />
+        <state relative-caret-position="68">
+          <caret line="136" column="56" lean-forward="true" selection-start-line="136" selection-start-column="56" selection-end-line="136" selection-end-column="56" />
         </state>
       </provider>
     </entry>
