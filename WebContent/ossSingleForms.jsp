@@ -135,10 +135,11 @@
 									<h4 class="modal-title" id="myModalLabel">Add New</h4>
 								</div>
 								<div class="modal-body">
-									
+
 									<form class="form-horizontal form-label-left input_mask">
 
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">Default Input</label>
 											<input type="text" class="form-control" id="inputSuccess2" placeholder="Business Name/Trade Name">
 
 										</div>

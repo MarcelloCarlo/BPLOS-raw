@@ -9,7 +9,6 @@
     <list default="true" id="3774e935-aeac-4083-a08c-8b95c4b52c0b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/ossSingleForms.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/ossSingleForms.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/classes/com/bplos/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/classes/com/bplos/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/ossSingleForms.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/ossSingleForms.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -51,13 +50,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="java" value="13" />
-          <entry key="jsp" value="255" />
+          <entry key="jsp" value="257" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="13" />
-          <entry key="JSP" value="255" />
+          <entry key="JSP" value="257" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.mvc.usages" />
@@ -74,8 +73,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/ossSingleForms.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="136" column="56" lean-forward="true" selection-start-line="136" selection-start-column="56" selection-end-line="136" selection-end-column="56" />
+            <state relative-caret-position="51">
+              <caret line="132" column="73" lean-forward="true" selection-start-line="132" selection-start-column="73" selection-end-line="132" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -218,7 +217,7 @@
     <property name="SearchEverywhereHistoryKey" value="wrap&#9;ACTION&#9;EditorGutterToggleGlobalSoftWraps" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533188545503" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533195315961" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -424,16 +423,15 @@
       <workItem from="1532985661986" duration="5687000" />
       <workItem from="1532995087989" duration="299000" />
       <workItem from="1533034784602" duration="1821000" />
-      <workItem from="1533185520878" duration="1194000" />
+      <workItem from="1533185520878" duration="3181000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22096000" />
+    <option name="totallyTimeSpent" value="24083000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.4949495" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -445,7 +443,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2937063" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29354838" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -504,8 +502,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/ossSingleForms.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="136" column="56" lean-forward="true" selection-start-line="136" selection-start-column="56" selection-end-line="136" selection-end-column="56" />
+        <state relative-caret-position="51">
+          <caret line="132" column="73" lean-forward="true" selection-start-line="132" selection-start-column="73" selection-end-line="132" selection-end-column="73" />
         </state>
       </provider>
     </entry>

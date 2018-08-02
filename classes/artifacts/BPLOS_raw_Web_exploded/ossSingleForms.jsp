@@ -135,14 +135,11 @@
 									<h4 class="modal-title" id="myModalLabel">Add New</h4>
 								</div>
 								<div class="modal-body">
-									<h4>THE CHIEF
-										BUSINESS PERMITS & LICENSE OFFICE</h4>
-									<h4>BUSINESS PERMITS & LICENSE OFFICE</h4>
-									<h4>OFFICE OF THE MAYOR</h4>
-									<h4>QUEZON CITY</h4>
+
 									<form class="form-horizontal form-label-left input_mask">
 
 										<div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">Default Input</label>
 											<input type="text" class="form-control" id="inputSuccess2" placeholder="Business Name/Trade Name">
 
 										</div>
