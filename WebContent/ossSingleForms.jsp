@@ -53,7 +53,7 @@
         <jsp:include page="/navBars.jsp"></jsp:include>
         <!-- page content -->
         <div class="right_col" role="main">
-            <div class="">
+            <form class="">
                 <div class="page-title">
                     <div class="title_left">
                         <h3>Single Proprietorship</h3>
@@ -129,10 +129,12 @@
                     </div>
                 </div>
                 <%--OSS form--%>
+                <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate=""
+                      data-parsley-validate="" method="POST">
                 <div class="modal fade ossSingleFormModal" tabindex="-1"
                      role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
+                    <div class="modal-dialog modal-lg ">
+                        <div class="modal-content" style="width: 100% !important" role="document">
 
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">
@@ -140,37 +142,17 @@
                                 </button>
                                 <h4 class="modal-title" id="myModalLabel">Add New</h4>
                             </div>
-                            <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate=""
-                                  data-parsley-validate="">
+
                                 <div class="modal-body col-md-12 col-sm-12 col-xs-12">
                                    <div class="x_content">
                                        <div class="row">
-                                           <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                               <input type="text" placeholder=".col-md-12" class="form-control">
-                                           </div>
 
                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                               <input type="text" placeholder=".col-md-6" class="form-control">
+                                               <label class="control-label col-md-3 col-sm-3 col-xs-12">Business Name/Trade Name*</label>
+                                               <input type="text" class="form-control">
                                            </div>
-
-                                           <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                               <input type="text" placeholder=".col-md-6" class="form-control">
-                                           </div>
-
-
-                                           <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                               <input type="text" placeholder=".col-md-4" class="form-control">
-                                           </div>
-
-                                           <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                               <input type="text" placeholder=".col-md-4" class="form-control">
-                                           </div>
-
-                                           <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                               <input type="text" placeholder=".col-md-4" class="form-control">
-                                           </div>
-
-
+                                           <br>
+                                           <label class="control-label col-md-3 col-sm-3">Taxpayer's Name*</label>
                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                <input type="text" placeholder=".col-md-3" class="form-control">
                                            </div>
@@ -271,10 +253,11 @@
                                         changes
                                     </button>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>
+            </form>
             </div>
         </div>
         <!-- /page content -->
