@@ -269,25 +269,39 @@
                                         </div>
                                         <br> <br>
                                         <div class="col-xs-12 col-sm-12">
-                                            <div class="form-inline row">
+                                            <div class="form-inline">
                                                 <div class="form-group">
                                                     <label for="txtBussDTIRegNo">DTI
                                                         (Business Name) Registration Number
                                                         <span
                                                                 class="required">*</span></label>
                                                     <input type="text" id="txtBussDTIRegNo"
-                                                           class="form-control col-md-7 col-xs-12"
+                                                           class="form-control"
                                                            placeholder=" " required="required">
                                                 </div>
-                                                <div class="form-group form-inline row">
-                                                    <label for="dateBussDTIReg" class="control-label col-md-5">Date <span
+                                                <div class="form-group">
+                                                    <label for="dateXS" class="control-label">Date <span
                                                             class="required">*</span></label>
                                                     <div class="input-group date" id="dateBussDTIReg">
-                                                        <input type="text" class="form-control col-md-3" required="required">
+                                                        <input type="text" class="form-control" id="dateXS" required="required">
                                                         <span class="input-group-addon"><span
                                                                 class="glyphicon glyphicon-calendar"></span></span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <label for="txtPropIdxNo">Telephone Number <span
+                                                        class="required">*</span></label>
+                                                <input type="text" id="txtBussTelNo" class="form-control"
+                                                       placeholder=" " required="required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="txtLotBlckNo">Fax Number <span
+                                                        class="required">*</span></label>
+                                                <input type="text" id="txtBussFaxNo" class="form-control"
+                                                       placeholder=" " required="required">
                                             </div>
                                         </div>
                                     </div>
