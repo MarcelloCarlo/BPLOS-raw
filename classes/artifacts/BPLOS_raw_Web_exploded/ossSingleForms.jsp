@@ -283,14 +283,15 @@
                                                     <label for="dateXS" class="control-label">Date <span
                                                             class="required">*</span></label>
                                                     <div class="input-group date" id="dateBussDTIReg">
-                                                        <input type="text" class="form-control" id="dateXS" required="required">
+                                                        <input type="text" class="form-control" id="dateXS"
+                                                               required="required">
                                                         <span class="input-group-addon"><span
                                                                 class="glyphicon glyphicon-calendar"></span></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-inline">
+                                        <div class="form-inline col-xs-12">
                                             <div class="form-group">
                                                 <label for="txtPropIdxNo">Telephone Number <span
                                                         class="required">*</span></label>
@@ -302,6 +303,25 @@
                                                         class="required">*</span></label>
                                                 <input type="text" id="txtBussFaxNo" class="form-control"
                                                        placeholder=" " required="required">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="col-xs-12">
+                                            <div class="form-inline">
+                                                <div class="form-group">
+                                                    <label for="txtEmpSSSNo" class="col-md-7">If Employer, Employer's
+                                                        Social Security Number (SSS) <span
+                                                                class="required">*</span></label>
+                                                    <input type="text" id="txtEmpSSSNo"
+                                                           class="form-control col-md-7 col-sm-12"
+                                                           placeholder=" " required="required">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="numBussEmpQTY" class="col-md-4 col-sm-4 col-xs-12">No of Employees <span
+                                                            class="required">*</span></label>
+                                                    <input type="number" id="numBussEmpQTY" class="form-control "
+                                                           placeholder=" " required="required">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
