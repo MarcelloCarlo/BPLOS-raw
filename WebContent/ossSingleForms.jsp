@@ -317,8 +317,9 @@
                                                            placeholder=" " required="required">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="numBussEmpQTY" class="col-md-4 col-sm-4 col-xs-12">No of Employees <span
-                                                            class="required">*</span></label>
+                                                    <label for="numBussEmpQTY" class="col-md-4 col-sm-4 col-xs-12">No of
+                                                        Employees <span
+                                                                class="required">*</span></label>
                                                     <input type="number" id="numBussEmpQTY" class="form-control "
                                                            placeholder=" " required="required">
                                                 </div>

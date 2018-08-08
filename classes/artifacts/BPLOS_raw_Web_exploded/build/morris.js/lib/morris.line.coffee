@@ -6,15 +6,15 @@ class Morris.Line extends Morris.Grid
     super(options)
 
   init: ->
-    # Some instance variables for later
+# Some instance variables for later
     if @options.hideHover isnt 'always'
       @hover = new Morris.Hover(parent: @el)
       @on('hovermove', @onHoverMove)
       @on('hoverout', @onHoverOut)
       @on('gridclick', @onGridClick)
 
-  # Default configuration
-  #
+# Default configuration
+#
   defaults:
     lineWidth: 3
     pointSize: 4
@@ -36,16 +36,16 @@ class Morris.Line extends Morris.Grid
     xLabelMargin: 24
     hideHover: false
 
-  # Do any size-related calculations
-  #
-  # @private
+# Do any size-related calculations
+#
+# @private
   calc: ->
     @calcPoints()
     @generatePaths()
 
-  # calculate series data point coordinates
-  #
-  # @private
+# calculate series data point coordinates
+#
+# @private
   calcPoints: ->
     for row in @data
       row._x = @transX(row.x)
@@ -53,8 +53,8 @@ class Morris.Line extends Morris.Grid
         if y? then @transY(y) else y
       row._ymax = Math.min [@bottom].concat(y for y in row._y when y?)...
 
-  # hit test - returns the index of the row at the given x-coordinate
-  #
+# hit test - returns the index of the row at the given x-coordinate
+#
   hitTest: (x) ->
     return null if @data.length == 0
     # TODO better search algo
@@ -99,13 +99,13 @@ class Morris.Line extends Morris.Grid
   # @private
   hoverContentForRow: (index) ->
     row = @data[index]
-    content = "<div class='morris-hover-row-label'>#{row.label}</div>"
+    content = "<div class='morris-hover-row-label'>#{row.label}</div > "
     for y, j in row.y
       content += """
-        <div class='morris-hover-point' style='color: #{@colorFor(row, j, 'label')}'>
-          #{@options.labels[j]}:
-          #{@yLabelFormat(y)}
-        </div>
+      <div class='morris-hover-point' style='color: #{@colorFor(row, j, ' label')}'>
+        #{@options.labels[j]}:
+        #{@yLabelFormat(y)}
+      </div>
       """
     if typeof @options.hoverCallback is 'function'
       content = @options.hoverCallback(index, @options, content, row.src)
