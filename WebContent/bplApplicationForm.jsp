@@ -17,26 +17,7 @@
     <meta charset="ISO-8859-1">
 
     <title>Application Form | Business Permit</title>
-    <!-- Bootstrap -->
-    <link href="build/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="build/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="build/css/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-wysiwyg -->
-    <link href="build/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-    <!-- Select2 -->
-    <link href="build/select2/dist/css/select2.min.css" rel="stylesheet">
-    <!-- Switchery -->
-    <link href="build/switchery/dist/switchery.min.css" rel="stylesheet">
-    <!-- starrr -->
-    <link href="build/starrr/dist/starrr.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- bootstrap-datetimepicker -->
-    <link href="build/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+
 </head>
 
 <body class="nav-md">
@@ -261,53 +242,6 @@
     <jsp:include page="/footer.jsp"></jsp:include>
 </div>
 </div>
-
-<!-- jQuery -->
-<script src="build/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="build/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="build/js/fastclick.js"></script>
-<!-- NProgress -->
-<script src="build/js/nprogress.js"></script>
-<script src="build/iCheck/icheck.min.js"></script>
-<!-- NProgress -->
-<script src="build/nprogress/nprogress.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="build/iCheck/icheck.min.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="build/moment/min/moment.min.js"></script>
-<script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap-datetimepicker -->
-<script src="build/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<!-- bootstrap-wysiwyg -->
-<script src="build/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-<script src="build/jquery.hotkeys/jquery.hotkeys.js"></script>
-<script src="build/google-code-prettify/src/prettify.js"></script>
-<!-- jQuery Tags Input -->
-<script src="build/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<!-- Switchery -->
-<script src="build/switchery/dist/switchery.min.js"></script>
-<!-- Select2 -->
-<script src="build/select2/dist/js/select2.full.min.js"></script>
-<!-- Parsley -->
-<script src="build/parsleyjs/dist/parsley.min.js"></script>
-<!-- Autosize -->
-<script src="build/autosize/dist/autosize.min.js"></script>
-<!-- jQuery autocomplete -->
-<script src="build/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-<!-- starrr -->
-<script src="build/starrr/dist/starrr.js"></script>
-<!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
-<!-- Initialize datetimepicker -->
-<script>
-    $('#dateBussDTIReg').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-</script>
 </body>
 </html>
 

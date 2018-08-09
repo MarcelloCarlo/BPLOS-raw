@@ -7,25 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3774e935-aeac-4083-a08c-8b95c4b52c0b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/bplos/FileUploadHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/BPLOS_raw_Web_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/BPLOS_raw_Web_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BPLOS-raw.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BPLOS-raw.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/res.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/res.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/uploadd.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/uploadd.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/build/Chart.js/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/build/bootstrap-datetimepicker/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/build/jqvmap/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-fileupload-1.3.3-test-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-fileupload-1.3.3-tests.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-io-2.6-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-io-2.6-test-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/commons-io-2.6-tests.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bplos/uploadX.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/bplApplicationForm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/bplApplicationForm.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,7 +36,7 @@
           <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.62" value="1" />
           <entry key="project.open.time.63" value="1" />
-          <entry key="project.open.time.66" value="1" />
+          <entry key="project.open.time.66" value="2" />
           <entry key="project.open.time.68" value="1" />
           <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.75" value="1" />
@@ -62,7 +45,7 @@
           <entry key="project.open.time.87" value="1" />
           <entry key="project.open.time.96" value="1" />
           <entry key="project.open.time.97" value="1" />
-          <entry key="project.opened" value="27" />
+          <entry key="project.opened" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -70,7 +53,7 @@
           <entry key="classpath" value="1" />
           <entry key="gitignore" value="3" />
           <entry key="java" value="5" />
-          <entry key="jsp" value="12" />
+          <entry key="jsp" value="13" />
           <entry key="xml" value="3" />
         </counts>
       </usages-collector>
@@ -78,7 +61,7 @@
         <counts>
           <entry key="Eclipse" value="1" />
           <entry key="JAVA" value="5" />
-          <entry key="JSP" value="12" />
+          <entry key="JSP" value="13" />
           <entry key="PLAIN_TEXT" value="3" />
           <entry key="XML" value="3" />
         </counts>
@@ -109,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebContent/uploadd.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+            <state relative-caret-position="187">
+              <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -142,14 +125,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/bplos/FileUploadHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+            <state relative-caret-position="17">
+              <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/bplApplicationForm.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -224,6 +216,7 @@
         <option value="$PROJECT_DIR$/WebContent/res.jsp" />
         <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/com/bplos/FileUploadHandler.java" />
+        <option value="$PROJECT_DIR$/WebContent/bplApplicationForm.jsp" />
       </list>
     </option>
   </component>
@@ -287,19 +280,14 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="BPLOS-raw" type="b2602c69:ProjectViewProjectNode" />
               <item name="BPLOS-raw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BPLOS-raw" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BPLOS-raw" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BPLOS-raw" type="b2602c69:ProjectViewProjectNode" />
@@ -320,14 +308,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="wrap&#9;ACTION&#9;EditorGutterToggleGlobalSoftWraps" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533788768853" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533821170022" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -354,7 +342,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Tomcat Server.uploadd.jsp">
+  <component name="RunManager" selected="Tomcat Server.bplApplicationForm.jsp">
     <configuration name="Meow" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.32" ALTERNATIVE_JRE_ENABLED="false">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -431,6 +419,45 @@
         </option>
       </method>
     </configuration>
+    <configuration name="bplApplicationForm.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 8.5.32" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8070/bplApplicationForm.jsp" />
+      <deployment>
+        <artifact name="BPLOS-raw:Web exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="bplApplicationForm_jsp_BPLOS-raw_2" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="BPLOS-raw:Web exploded" />
+        </option>
+      </method>
+    </configuration>
     <configuration name="uploadd.jsp" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 8.5.32" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8070/uploadd.jsp" />
       <deployment>
@@ -473,9 +500,11 @@
     <list>
       <item itemvalue="Tomcat Server.Meow" />
       <item itemvalue="Tomcat Server.uploadd.jsp" />
+      <item itemvalue="Tomcat Server.bplApplicationForm.jsp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Tomcat Server.bplApplicationForm.jsp" />
         <item itemvalue="Tomcat Server.uploadd.jsp" />
       </list>
     </recent_temporary>
@@ -516,18 +545,19 @@
       <workItem from="1533742343518" duration="677000" />
       <workItem from="1533747371995" duration="597000" />
       <workItem from="1533773798444" duration="6844000" />
-      <workItem from="1533784336305" duration="4357000" />
+      <workItem from="1533784336305" duration="4956000" />
+      <workItem from="1533819928165" duration="1572000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108697000" />
+    <option name="totallyTimeSpent" value="110868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25728154" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26132685" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -537,14 +567,14 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32867134" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.81796116" visible="true" weight="0.30756843" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8171521" visible="true" weight="0.30756843" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6093064" weight="0.4397163" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32867134" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.18203883" side_tool="true" visible="true" weight="0.30756843" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.1828479" side_tool="true" visible="true" weight="0.30756843" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49919093" weight="0.32850242" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
@@ -599,22 +629,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/bplApplicationForm.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="117" column="44" selection-start-line="117" selection-start-column="44" selection-end-line="117" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/ActionUpload.jsp" />
     <entry file="file://$PROJECT_DIR$/WebContent/Action.jsp" />
     <entry file="file://$PROJECT_DIR$/src/com/bplos/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/commons-io-2.6-sources.jar!/org/apache/commons/io/IOUtils.java" />
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/uploadd.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
         </state>
       </provider>
     </entry>
@@ -663,30 +694,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/lib/commons-io-2.6-sources.jar!/org/apache/commons/io/IOUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-242">
-          <caret line="98" column="13" selection-start-line="98" selection-start-column="13" selection-end-line="98" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/uploadd.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="58" lean-forward="true" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/bplos/FileUploadHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" column="62" lean-forward="true" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
+        <state relative-caret-position="17">
+          <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/bplApplicationForm.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
