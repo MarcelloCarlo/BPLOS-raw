@@ -24,4 +24,23 @@
         <servlet-name>uploadX</servlet-name>
         <url-pattern>/uploadX</url-pattern>
     </servlet-mapping>-->
+    <servlet>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <servlet-class>com.bplos.FileUploadHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileUploadHandler</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -14,11 +14,9 @@
 </head>
 <body>
 File: <br />
-<form action="uploadX" method="POST"
-      enctype="multipart/form-data">
-    <input type="file" name="guru_file" size="50" />
-    <br />
-    <input type="submit" value="Upload" />
+<form action="upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <input type="submit" value="upload" />
 </form>
 </body>
 </html>

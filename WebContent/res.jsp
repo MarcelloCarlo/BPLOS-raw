@@ -14,8 +14,8 @@
     <title>Guru Result</title>
 </head>
 <body>
-<% String msg = (String)request.getAttribute("message");
-    out.println(msg);
-%>
+<div id="result">
+    <h3>${requestScope["message"]}</h3>
+</div>
 </body>
 </html>
