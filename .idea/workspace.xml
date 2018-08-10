@@ -6,7 +6,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3774e935-aeac-4083-a08c-8b95c4b52c0b" name="Default Changelist" comment="" />
+    <list default="true" id="3774e935-aeac-4083-a08c-8b95c4b52c0b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/build/bootstrap-datetimepicker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/build/bootstrap-datetimepicker/package.json" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +53,7 @@
           <entry key="classpath" value="1" />
           <entry key="gitignore" value="3" />
           <entry key="java" value="5" />
-          <entry key="json" value="2" />
+          <entry key="json" value="4" />
           <entry key="jsp" value="13" />
           <entry key="md" value="2" />
           <entry key="xml" value="3" />
@@ -60,7 +63,7 @@
         <counts>
           <entry key="Eclipse" value="1" />
           <entry key="JAVA" value="5" />
-          <entry key="JSON" value="2" />
+          <entry key="JSON" value="4" />
           <entry key="JSP" value="13" />
           <entry key="Markdown" value="2" />
           <entry key="PLAIN_TEXT" value="3" />
@@ -72,6 +75,7 @@
         <counts>
           <entry key="gitignore" value="6" />
           <entry key="java" value="254" />
+          <entry key="json" value="4" />
           <entry key="jsp" value="2596" />
           <entry key="xml" value="74" />
         </counts>
@@ -79,6 +83,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="254" />
+          <entry key="JSON" value="4" />
           <entry key="JSP" value="2596" />
           <entry key="PLAIN_TEXT" value="6" />
           <entry key="XML" value="74" />
@@ -138,13 +143,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/build/jquery/bower.json">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebContent/build/bootstrap-datetimepicker/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebContent/build/jquery/.bower.json">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/build/Chart.js/package.json">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
@@ -219,6 +228,7 @@
         <option value="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/com/bplos/FileUploadHandler.java" />
         <option value="$PROJECT_DIR$/WebContent/bplApplicationForm.jsp" />
+        <option value="$PROJECT_DIR$/WebContent/build/bootstrap-datetimepicker/package.json" />
       </list>
     </option>
   </component>
@@ -261,6 +271,7 @@
       <path value="$PROJECT_DIR$/WebContent/build/ion.rangeSlider/package.json" />
       <path value="$PROJECT_DIR$/WebContent/build/jquery-knob/package.json" />
       <path value="$PROJECT_DIR$/WebContent/build/jquery.easy-pie-chart/package.json" />
+      <path value="$PROJECT_DIR$/WebContent/build/jquery/package.json" />
       <path value="$PROJECT_DIR$/WebContent/build/jqvmap/package.json" />
       <path value="$PROJECT_DIR$/WebContent/build/jszip/package.json" />
       <path value="$PROJECT_DIR$/WebContent/build/morris.js/package.json" />
@@ -310,7 +321,7 @@
               <item name="BPLOS-raw" type="462c0819:PsiDirectoryNode" />
               <item name="WebContent" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
-              <item name="jquery" type="462c0819:PsiDirectoryNode" />
+              <item name="bootstrap-datetimepicker" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BPLOS-raw" type="b2602c69:ProjectViewProjectNode" />
@@ -332,7 +343,7 @@
     <property name="SearchEverywhereHistoryKey" value="wrap&#9;ACTION&#9;EditorGutterToggleGlobalSoftWraps" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533863046455" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533863742072" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -564,12 +575,12 @@
       <workItem from="1533773798444" duration="6844000" />
       <workItem from="1533784336305" duration="4956000" />
       <workItem from="1533819928165" duration="4061000" />
-      <workItem from="1533855944863" duration="5580000" />
+      <workItem from="1533855944863" duration="6412000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118937000" />
+    <option name="totallyTimeSpent" value="119769000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="754" extended-state="6" />
@@ -740,6 +751,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/build/jquery/bower.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/build/jquery/.bower.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/bplApplicationForm.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -747,11 +764,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/build/jquery/bower.json">
+    <entry file="file://$PROJECT_DIR$/WebContent/build/Chart.js/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/build/jquery/.bower.json">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/WebContent/build/bootstrap-datetimepicker/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
