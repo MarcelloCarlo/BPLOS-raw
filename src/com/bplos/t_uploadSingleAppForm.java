@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class FileUploadHandler extends HttpServlet {
+public class t_uploadSingleAppForm extends HttpServlet {
     private final String UPLOAD_DIRECTORY = "C:/Users/John Carlo Villar/Desktop/";
 
     @Override

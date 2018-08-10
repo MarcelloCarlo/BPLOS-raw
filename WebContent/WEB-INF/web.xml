@@ -26,7 +26,7 @@
     </servlet-mapping>-->
     <servlet>
         <servlet-name>FileUploadHandler</servlet-name>
-        <servlet-class>com.bplos.FileUploadHandler</servlet-class>
+        <servlet-class>com.bplos.t_uploadSingleAppForm</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FileUploadHandler</servlet-name>
