@@ -17,12 +17,42 @@
     <meta charset="ISO-8859-1">
 
     <title>Application Form | Business Permit</title>
-    <link href="build/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="build/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="build/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="build/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="build/nprogress/nprogress.css" rel="stylesheet">
-
+    <link href="build/css/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="build/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="build/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="build/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="build/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="build/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="build/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="build/datatables.net-bs/css/dataTables.bootstrap.min.css"
+          rel="stylesheet">
+    <link
+            href="build/datatables.net-buttons-bs/css/buttons.bootstrap.min.css"
+            rel="stylesheet">
+    <link
+            href="buid/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css"
+            rel="stylesheet">
+    <link
+            href="build/datatables.net-responsive-bs/css/responsive.bootstrap.min.css"
+            rel="stylesheet">
+    <link
+            href="build/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
+            rel="stylesheet">
+    <link src="build/sweetalert2/dist/sweetalert2.min.css"></link>
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -184,7 +214,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-inline col-xs-12">
+                            <div class="form-inline col-md-12">
                                 <div class="form-group">
                                     <label for="txtPropIdxNo">Telephone Number <span
                                             class="required">*</span></label>
@@ -226,13 +256,13 @@
                                 </div>
                                 <div class="form-group col-xs-12">
                                     <div class="col-md-3">
-                                        <input type="text" id="txtBussFlrNo"
+                                        <input type="text" id=""
                                                placeholder="Last Name"
                                                required="required"
                                                class="form-control col-md-3 col-sm-3 col-xs-12">
                                     </div>
                                     <div class="col-md-2">
-                                        <input type="text" id="txtBussStrtNo" placeholder="First Name"
+                                        <input type="text" id="" placeholder="First Name"
                                                required="required"
                                                class="form-control col-md-2 col-sm-3 col-xs-12">
                                     </div>
@@ -275,16 +305,116 @@
                                                required="required"
                                                class="form-control col-md-3 col-sm-3 col-xs-12">
                                     </div>
+
+
                                 </div>
+
+                            </div>
+                            <div class="form-group col-md-10">
+                                <div class="col-md-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="flat" checked="checked"> Using A Signboard
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="col-md-4">
+                                        <label for="numBussEmpQTY" class="control-label">No of
+                                            Area of Singboard <span
+                                                    class="required">*</span></label></div>
+                                    <div class="col-md-3"><input type="text" id="numBussEmpQTY"
+                                                                 class="form-control "
+                                                                 placeholder=" " required="required"></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label>If You Have Other Existing Businesss Permits
+                                        <span class="required">*</span></label>
+                                </div>
+                                <div class="form-group col-xs-12">
+                                    <table id="example" class="display" >
+                                        <thead>
+                                        <tr>
+                                            <th>Existing Kind of Business</th>
+                                            <th>Business Permit No.</th>
+                                            <th>Business Permit Location</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group col-xs-12">
+                                    <table id="example" class="display" >
+                                        <thead>
+                                        <tr>
+                                            <th>Kind or Nature of Business/Activity Applied<br><small>Please state nature of business in accordance with QC Business Activity Classification Standard</small></th>
+                                            <th>Unit<br><small>No./Qty</small></th>
+                                            <th>Area<br><small>Sq. Mts.</small></th>
+                                            <th>Capitalization<br><small>Subscribed or Paid-Up</small></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <label>TOTAL: Php </label>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default"
-                                data-dismiss="modal">Close
-                        </button>
-                        <button type="submit" class="btn btn-primary">Save
-                            changes
+                    <div class="center col-md-7">
+                        <button type="submit" class="btn btn-primary">APPLY
                         </button>
                     </div>
 
@@ -297,20 +427,102 @@
     </div>
 </div>
 <!-- jQuery -->
-<script src="build/jquery/dist/jquery.min.js"></script>
+<script src="build/js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="build/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="build/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="build/fastclick/lib/fastclick.js"></script>
+<script src="build/js/fastclick.js"></script>
+<!-- NProgress -->
+<script src="build/js/nprogress.js"></script>
+<script src="build/iCheck/icheck.min.js"></script>
 <!-- NProgress -->
 <script src="build/nprogress/nprogress.js"></script>
-
+<!-- bootstrap-progressbar -->
+<script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="build/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="build/moment/min/moment.min.js"></script>
+<script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-datetimepicker -->
+<script src="build/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="build/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="build/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="build/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="build/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="build/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="build/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="build/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="build/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="build/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="build/starrr/dist/starrr.js"></script>
+<!-- Datatables -->
+<script src="build/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="build/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="build/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script
+        src="build/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="build/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="build/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="build/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script
+        src="build/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script
+        src="build/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script
+        src="build/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script
+        src="build/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script
+        src="build/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="build/jszip/dist/jszip.min.js"></script>
+<script src="build/pdfmake/build/pdfmake.min.js"></script>
+<script src="build/pdfmake/build/vfs_fonts.js"></script>
+<script src="build/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="build/js/custom.min.js"></script>
 <!-- Initialize datetimepicker -->
 <script>
     $('#dateBussDTIReg').datetimepicker({
         format: 'DD.MM.YYYY'
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        var table = $('#example').DataTable();
+
+        $('button').click(function () {
+            var data = table.$('input, select').serialize();
+            swal.mixin({
+                confirmButtonText: 'Next &rarr;',
+                showCancelButton: true,
+                progressSteps: ['1', '2']
+            }).queue([
+                {
+                    title: 'Terms & Conditions',
+                    text: 'Chaining swal2 modals is easy'
+                },
+                'Confirm?',
+            ]).then((result) => {
+                if (result.value) {
+                swal({
+                    title: 'All done!',
+                    html:
+                        'Your Reference Number: <pre><code>',
+                    confirmButtonText: 'Lovely!'
+                })
+            }
+        })
+            return false;
+        });
     });
 </script>
 </body>
