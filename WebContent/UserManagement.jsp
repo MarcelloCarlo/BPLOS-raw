@@ -1,5 +1,3 @@
-<%@page import="java.sql.*"%>
-<%@page import="configuration.dbConnection" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -54,33 +52,33 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                    <form method="post" action="insertt.jsp" class="form-horizontal form-label-left">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Username <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Username <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="username" name="U_USERNAME" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="text" name="username" id="username" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Password <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" id="password" name="U_PASSWORD" required="required" class="form-control col-md-7 col-xs-12">
+                          <input type="password" name="password" id="password" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="user-type" class="control-label col-md-3 col-sm-3 col-xs-12">User Type </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">User Type </label>
                         <div class="col-sm-9 col-xs-12 col-md-6">
-                          <select class="form-control" name="U_TYPE">
+                          <select class="form-control" name="type" id="type">
                             <option>Staff</option>
                             <option>Admin</option>
                           </select>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="divisions" class="control-label col-md-3 col-sm-3 col-xs-12">Divisions </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Divisions </label>
                         <div class="col-md-6 col-sm-9 col-xs-12">
                           <select class="form-control">
                             <option value="Administrative">Administrative</option>
@@ -97,7 +95,7 @@
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
+                          <button type="submit" class="btn btn-success" value="submit">Submit</button>
                         </div>
                       </div>
 
@@ -116,7 +114,7 @@
 
 <!-- jQuery -->
 <script src="build/js/jquery.min.js"></script>
-<!-- Bootstrap -->
+<!-- Bootstrap -->  
 <script src="build/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="build/js/fastclick.js"></script>
