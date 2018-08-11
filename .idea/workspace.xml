@@ -7,9 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3774e935-aeac-4083-a08c-8b95c4b52c0b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/bplos/FileUploadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/bplos/t_uploadSingleAppForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/bplNewSingleApplicationForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/bplNewSingleApplicationForm.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -135,7 +133,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="-170">
               <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
             </state>
           </provider>
@@ -363,7 +361,7 @@
     <property name="SearchEverywhereHistoryKey" value="servlet&#9;ACTION&#9;GenerateServletAction&#10;wrap&#9;ACTION&#9;EditorGutterToggleGlobalSoftWraps" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533935882516" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1533947805384" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -653,12 +651,12 @@
       <workItem from="1533819928165" duration="4061000" />
       <workItem from="1533855944863" duration="16447000" />
       <workItem from="1533890861878" duration="1252000" />
-      <workItem from="1533930054022" duration="1683000" />
+      <workItem from="1533930054022" duration="2279000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132739000" />
+    <option name="totallyTimeSpent" value="133335000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="754" extended-state="6" />
@@ -836,7 +834,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
+        <state relative-caret-position="-170">
           <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
