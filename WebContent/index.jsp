@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="ISO-8859-1">
 
-    <title>BPLS | Home </title>
+    <title>QCPAEIS | Home </title>
 
     <!-- Bootstrap -->
     <link href="build/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                BPLOS INSIDER PREVIEW
+                                QCPAEIS INSIDER PREVIEW
                             </div>
                         </div>
                     </div>

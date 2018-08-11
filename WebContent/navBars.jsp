@@ -3,8 +3,8 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.jsp" class="site_title"><i
-                    class="fa fa-building-o"></i> <span>BPLS</span></a>
+            <a href="index.jsp" class="site_title">
+                <i class="fa fa-building-o"></i> <span>QCPAEIS</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -32,16 +32,14 @@
                     <li><a><i class="fa fa-bolt"></i> One Stop Shop <span
                             class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="ossSingleForms.jsp">Single Proprietorship</a></li>
-                            <li><a href="index2.html">Partnership/Corporation</a></li>
+                            <li><a href="ossSingleForms.jsp"> Single Proprietorship</a></li>
+                            <li><a href="index2.html"> Partnership/Corporation</a></li>
                         </ul>
                     </li>
-                    <li><a href="bplEvaluation.jsp"><i class="fa fa-clock-o"></i>
-                        Evaluation</a></li>
-                    <li><a><i class="fa fa-search"></i> Investigation <span
-                            class="fa fa-chevron-down"></span></a></li>
-                    <li><a><i class="fa fa-upload"></i> Releasing <span
-                            class="fa fa-chevron-down"></span></a></li>
+                    <li><a href="bplEvaluation.jsp"><i class="fa fa-clock-o"></i> Evaluation</a></li>
+                    <li><a><i class="fa fa-search"></i> Investigation <span class="fa fa-chevron-down"></span></a></li>
+                    <li><a><i class="fa fa-upload"></i> Releasing <span class="fa fa-chevron-down"></span></a></li>
+                    <li><a href="UserManagement.jsp"><i class="fa fa-users"></i> User Management</a></li>
                 </ul>
             </div>
 

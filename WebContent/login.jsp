@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="ISO-8859-1">
-    <title>QCLGUS | Login</title>
+    <title>QCPAEIS | Login</title>
 
     <!-- Bootstrap -->
     <link href="build/css/bootstrap.min.css"
@@ -38,7 +38,7 @@
         <div class="animate form login_form">
             <section class="login_content">
                 <form action="index.jsp" method="post">
-                    <h1>QCLGUS Login</h1>
+                    <h1>QCPAEIS Login</h1>
                     <div>
                         <input type="text" class="form-control" name="usrname" placeholder="Username" required=""/>
                     </div>
@@ -54,8 +54,8 @@
                     <div class="separator">
 
                         <div>
-                            <h1> QCLGUS System</h1>
-                            <p>©2018 QCLGUS</p>
+                            <h1> QCPAEIS</h1>
+                            <p>©2018 QCPAEIS</p>
                         </div>
                     </div>
                 </form>
