@@ -37,7 +37,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="index.jsp" method="post">
+                <form action="LoginController" method="post">
                     <h1>QCPAEIS Login</h1>
                     <div>
                         <input type="text" class="form-control" name="usrname" placeholder="Username" required=""/>
