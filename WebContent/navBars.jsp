@@ -39,7 +39,7 @@
                     <li><a href="bplEvaluation.jsp"><i class="fa fa-clock-o"></i> Evaluation</a></li>
                     <li><a><i class="fa fa-search"></i> Investigation <span class="fa fa-chevron-down"></span></a></li>
                     <li><a><i class="fa fa-upload"></i> Releasing <span class="fa fa-chevron-down"></span></a></li>
-                    <li><a href="UserManagement.jsp"><i class="fa fa-users"></i> User Management</a></li>
+                    <li><a href="DivSAUserManagement.jsp"><i class="fa fa-users"></i> User Management</a></li>
                 </ul>
             </div>
 

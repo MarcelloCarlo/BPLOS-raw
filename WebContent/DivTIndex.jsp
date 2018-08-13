@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="ISO-8859-1">
 
-    <title>QCPAEIS | Home </title>
+    <title>QCPAEIS | Treasury </title>
 
     <!-- Bootstrap -->
     <link href="build/css/bootstrap.min.css" rel="stylesheet">
@@ -29,30 +29,58 @@
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-        <jsp:include page="DivSAComponent.jsp"/>
+        <jsp:include page="DivTComponent.jsp"/>
 
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Home Page</h3>
+                        <h3>Inspection</h3>
                     </div>
 
                 </div>
 
                 <div class="clearfix"></div>
 
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Analytics Here</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                QCPAEIS INSIDER PREVIEW
-                            </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Approved Application</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <p class="text-muted font-13 m-b-30">
+                                This tables shows all evaluated applications
+                            </p>
+
+                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Business</th>
+                                    <th>Ownership Type</th>
+                                    <th>Application Type</th>
+                                    <th>Date</th>
+                                    <th>Remarks</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td>Alyana Apo</td>
+                                    <td>Sleep-all-you-can</td>
+                                    <td>Single</td>
+                                    <td>New Application</td>
+                                    <td>8/13/2018</td>
+                                    <td>I want you!</td>
+                                    <td><button>Remarks</button></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
                         </div>
                     </div>
                 </div>
@@ -100,6 +128,22 @@
 <!-- bootstrap-daterangepicker -->
 <script src="build/moment/min/moment.min.js"></script>
 <script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- Datatables -->
+<script src="build/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="build/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="build/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="build/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="build/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="build/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="build/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="build/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="build/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="build/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="build/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="build/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="build/jszip/dist/jszip.min.js"></script>
+<script src="build/pdfmake/build/pdfmake.min.js"></script>
+<script src="build/pdfmake/build/vfs_fonts.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="build/js/custom.min.js"></script>
 </body>

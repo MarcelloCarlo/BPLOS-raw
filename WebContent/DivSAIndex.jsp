@@ -29,7 +29,7 @@
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-        <jsp:include page="DivSAComponent.jsp"/>
+        <jsp:include page="/navBars.jsp"/>
 
         <!-- page content -->
         <div class="right_col" role="main">
