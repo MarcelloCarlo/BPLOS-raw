@@ -8,7 +8,7 @@
         <description></description>
         <display-name>LoginController</display-name>
         <servlet-name>LoginController</servlet-name>
-        <servlet-class>com.bplos.LoginController</servlet-class>
+        <servlet-class>com.qcapaeis.LoginController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -18,19 +18,19 @@
     <servlet>
         <display-name>uploadX</display-name>
         <servlet-name>uploadX</servlet-name>
-        <servlet-class>com.bplos.uploadX</servlet-class>
+        <servlet-class>com.qcapaeiseis.uploadX</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>uploadX</servlet-name>
         <url-pattern>/uploadX</url-pattern>
     </servlet-mapping>-->
     <servlet>
-        <servlet-name>FileUploadHandler</servlet-name>
-        <servlet-class>com.bplos.t_uploadSingleAppForm</servlet-class>
+        <servlet-name>SingleBussinessApplicationNewForm</servlet-name>
+        <servlet-class>com.qcapaeis.t_uploadSingleAppForm</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FileUploadHandler</servlet-name>
-        <url-pattern>/upload</url-pattern>
+        <servlet-name>SingleBussinessApplicationNewForm</servlet-name>
+        <url-pattern>/singleNewBussUpload</url-pattern>
     </servlet-mapping>
 
 

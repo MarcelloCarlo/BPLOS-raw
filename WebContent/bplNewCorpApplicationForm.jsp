@@ -48,7 +48,7 @@
                     <!-- page content -->
                     <!-- page content -->
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <form class="form-horizontal form-label-left" action="singleNewBussUpload" id="applicationFormSingle" novalidate="" data-parsley-validate="" method="POST">
+                        <form class="form-horizontal form-label-left" action="corpNewBussUpload" id="applicationFormSingle" novalidate="" data-parsley-validate="" method="POST">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h4>Business Permit Application Form For Partnership & Corporation</h4>
@@ -56,7 +56,7 @@
                                 <div class="x_content">
                                     <div class="row">
                                         <div class="form-group col-xs-12">
-                                            <label class="control-label col-md-3" for="txtNCorpBussName">Business Name/Trade Name
+                                            <label class="control-label col-md-3" >Business Name/Trade Name
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-5">
@@ -64,7 +64,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-xs-12">
-                                            <label class="control-label col-md-3" for="txtNCorpTaxPayName">Taxpayer's Name
+                                            <label class="control-label col-md-3">Taxpayer's Name
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-5">
@@ -72,7 +72,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group col-xs-12">
-                                            <label class="control-label col-md-3" for="txtNCorpPresidentName">President
+                                            <label class="control-label col-md-3" >President
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-5">
@@ -106,14 +106,14 @@
                                             <div>
                                                 <div class="form-group col-md-12">
                                                     <div class="col-md-4">
-                                                        <label for="txtNCorpPropIdxNo">Property Index No.
+                                                        <label >Property Index No.
                                                             <span class="required">*</span>
                                                         </label>
                                                         <input type="text" name="txtNCorpPropIdxNo" class="form-control" placeholder=" " required="required">
                                                     </div>
 
                                                     <div class="col-md-4">
-                                                        <label for="txtNCorpLotBlckNo">Lot & Block No.
+                                                        <label >Lot & Block No.
                                                             <span class="required">*</span>
                                                         </label>
                                                         <input type="text" name="txtNCorpLotBlckNo" class="form-control" placeholder=" " required="required">
@@ -126,14 +126,14 @@
 
                                             <div class="form-group col-md-12">
                                                 <div class="col-md-4">
-                                                    <label for="txtNCorpAuthRepName">Authorized Representative
+                                                    <label >Authorized Representative
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="text" name="txtNCorpAuthRepName" class="form-control" placeholder=" " required="required">
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label for="txtNCorpAuthRepPos">Position (Official Capacity)
+                                                    <label >Position (Official Capacity)
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="text" name="txtNCorpAuthRepPos" class="form-control" placeholder=" " required="required">
@@ -166,14 +166,14 @@
                                         <div class="col-xs-12 col-sm-12">
                                             <div class="form-group">
                                                 <div class="col-md-4">
-                                                    <label for="txtNCorpBussSECRegNo">SEC Registration Number
+                                                    <label >SEC Registration Number
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="text" name="txtNCorpBussSECRegNo" class="form-control" placeholder=" " required="required">
                                                 </div>
 
                                                 <div class="col-md-2">
-                                                    <label for="dateXS" class="control-label">Date Issued
+                                                    <label  class="control-label">Date Issued
                                                         <span class="required">*</span>
                                                     </label>
                                                     <div class="input-group date" name="dateXS">
@@ -188,7 +188,7 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group col-md-10">
-                                                <label class="control-label col-md-4" for="txtNCorpTaxPayTINNo">Taxpayer's Identification Number (TIN)
+                                                <label class="control-label col-md-4">Taxpayer's Identification Number (TIN)
                                                     <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6">
@@ -200,13 +200,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <div class="col-md-4">
-                                                    <label for="txtNCorpTelNo">Telephone Number
+                                                    <label>Telephone Number
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="text" name="txtNCorpTelNo" class="form-control" placeholder=" " required="required">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <label for="txtNCorpFaxNo">Fax Number
+                                                    <label>Fax Number
                                                         <span class="required">*</span>
                                                     </label>
                                                     <input type="text" name="txtNCorpFaxNo" class="form-control" placeholder=" " required="required">
@@ -218,14 +218,14 @@
                                                 <div>
                                                     <div class="form-group col-md-12">
                                                         <div class="col-md-4">
-                                                            <label for="txtNCorpEmpSSSNo">If Employer, Employer's Social Security Number (SSS)
+                                                            <label>If Employer, Employer's Social Security Number (SSS)
                                                                 <span class="required">*</span>
                                                             </label>
                                                             <input type="text" name="txtNCorpEmpSSSNo" class="form-control" placeholder=" " required="required">
                                                         </div>
     
                                                         <div class="col-md-3">
-                                                            <label for="numNCorpEmpQTY">No of Employees
+                                                            <label>No of Employees
                                                                 <span class="required">*</span>
                                                             </label>
                                                             <input type="number" name="numNCorpEmpQTY" class="form-control" placeholder=" " required="required">
@@ -243,7 +243,7 @@
                                             </div>
                                             <div class="form-group col-xs-12">
                                                 <div class="col-md-3">
-                                                    <label for="dateXS" class="control-label">Since When
+                                                    <label class="control-label">Since When
                                                         <span class="required">*</span>
                                                     </label>
                                                     <div class="input-group date" name="dateX2">
@@ -270,7 +270,7 @@
                                         <div class="form-group col-md-12">
                                             <div class="col-md-4">
                                                 <label>
-                                                    <input type="checkbox" class="" name="chkSignboard" onclick="document.getElementById('numNCorpBussEstSignbrdArea').disabled=!this.checked;"> Using A Signboard
+                                                    <input type="checkbox" class=""id="chkSignboard" onclick="document.getElementById('numNCorpBussEstSignbrdArea').disabled=!this.checked;"> Using A Signboard
                                                 </label>
                                                 <input type="text" name="numNCorpBussEstSignbrdArea" class="form-control col-md-3" placeholder="Area of Signboard" disabled>
                                             </div>
@@ -495,46 +495,46 @@
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label class="control-label" for="fileNCorpLocSketchEst">Locational Sketch of Business Establishment
+                                                <label class="control-label" >Locational Sketch of Business Establishment
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpLocSketchEst" />
+                                                <input type="file"  name="fileNCorpLocSketchEst" required="required"  />
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label" for="fileNCorpBrgyClear">Orginal Copy of Barangay Clearance
+                                                <label class="control-label">Orginal Copy of Barangay Clearance
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpBrgyClear" />
+                                                <input type="file"  name="fileNCorpBrgyClear" required="required" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label" for="fileNCorpSECreg">SEC Registration File
+                                                <label class="control-label">SEC Registration File
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpSECreg" />
+                                                <input type="file"  name="fileNCorpSECreg" required="required" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label" for="fileNCorpTitleProp">Title To Property / Tax Declaration (If Owned) or Contract of Lease (If Renting)
+                                                <label class="control-label" >Title To Property / Tax Declaration (If Owned) or Contract of Lease (If Renting)
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpTitleProp" />
+                                                <input type="file"  name="fileNCorpTitleProp" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Lessor's Business Permit (If Rented)
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpLessorBussPermit" />
+                                                <input type="file"  name="fileNCorpLessorBussPermit" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Authorization Letter w/ ID (Both Business Owner & Filer)
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpAuthLetterID" />
+                                                <input type="file"  name="fileNCorpAuthLetterID" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Other Required Document/s
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" name="fileNCorpOthers" />
+                                                <input type="file"  name="fileNCorpOthers" required="required" multiple="true" />
                                             </div>
                                         </div>
                                     </div>

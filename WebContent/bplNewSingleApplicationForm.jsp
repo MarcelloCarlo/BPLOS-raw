@@ -48,7 +48,7 @@
                     <!-- page content -->
                     <!-- page content -->
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate="" data-parsley-validate="" enctype="multipart/form-data" method="POST">
+                        <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate="" data-parsley-validate="" enctype="multipart/form-data" method="POST" action="singleNewBussUpload">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h4>Business Permit Application Form For Single Propriertorship</h4>
@@ -60,7 +60,7 @@
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-7">
-                                                <input type="text" id="txtNSingBussName" required="required" class="form-control col-md-7 col-xs-12">
+                                                <input type="text" id="txtNSingBussName" name="txtNSingBussName" required="required" class="form-control col-md-7 col-xs-12">
                                             </div>
                                         </div>
                                         <div class="form-group col-xs-12">
@@ -68,13 +68,13 @@
                                                 <span class="required">*</span>
                                             </label>
                                             <div class="col-md-3">
-                                                <input type="text" id="txtNSingTaxPayLName" placeholder="Last Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" id="txtNSingTaxPayLName" name="txtNSingTaxPayLName" placeholder="Last Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="text" id="txtNSingTaxPayFName" placeholder="First Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" id="txtNSingTaxPayFName" name="txtNSingTaxPayFName" placeholder="First Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                             </div>
                                             <div class="col-md-3">
-                                                <input type="text" id="txtNSingTaxPayMName" placeholder="Middle Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                <input type="text" id="txtNSingTaxPayMName" name="txtNSingTaxPayMName" placeholder="Middle Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                             </div>
                                         </div>
                                         <div class="col-xs-12">
@@ -86,16 +86,16 @@
                                             </div>
                                             <div class="form-group col-xs-12">
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussOwnHsNum" placeholder="House No." required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussOwnHsNum" name="txtNSingBussOwnHsNum" placeholder="House No." required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussOwnStrt" placeholder="Street" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussOwnStrt" name="txtNSingBussOwnStrt" placeholder="Street" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussOwnBrgy" placeholder="Barangay" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussOwnBrgy" name="txtNSingBussOwnBrgy" placeholder="Barangay" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussOwnCity" placeholder="City/Min." required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussOwnCity" name="txtNSingBussOwnCity" placeholder="City/Min." required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                             </div>
 
@@ -110,17 +110,17 @@
                                             </div>
                                             <div class="form-group col-xs-12">
                                                 <div class="col-md-4">
-                                                    <input type="text" id="txtNSingBussFlrNo" placeholder="If within a bldg.., specify stall, room, floor number" required="required"
+                                                    <input type="text" id="txtNSingBussFlrNo" name="txtNSingBussFlrNo" placeholder="If within a bldg.., specify stall, room, floor number" required="required"
                                                         class="form-control col-md-4 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <input type="text" id="txtNSingBussStrtNo" placeholder="Street No." required="required" class="form-control col-md-2 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussStrtNo" name="txtNSingBussStrtNo" placeholder="Street No." required="required" class="form-control col-md-2 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussStrtName" placeholder="Street Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussStrtName" name="txtNSingBussStrtName" placeholder="Street Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussBrgyName" placeholder="Barangay" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussBrgyName" name="txtNSingBussBrgyName" placeholder="Barangay" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                             </div>
                                         </div>
@@ -131,14 +131,14 @@
                                                         <label for="txtNSingPropIdxNo">Property Index No.
                                                             <span class="required">*</span>
                                                         </label>
-                                                        <input type="text" id="txtNSingPropIdxNo" class="form-control" placeholder=" " required="required">
+                                                        <input type="text" id="txtNSingPropIdxNo" name="txtNSingPropIdxNo" class="form-control" placeholder=" " required="required">
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <label for="txtNSingLotBlckNo">Lot & Block No.
                                                             <span class="required">*</span>
                                                         </label>
-                                                        <input type="text" id="txtNSingLotBlckNo" class="form-control" placeholder=" " required="required">
+                                                        <input type="text" id="txtNSingLotBlckNo" name="txtNSingLotBlckNo" class="form-control" placeholder=" " required="required">
                                                     </div>
 
                                                 </div>
@@ -150,7 +150,7 @@
                                                     <span class="required">*</span>
                                                 </label>
                                                 <div class="col-md-6">
-                                                    <input type="text" id="txtNSingTaxPayTINNo" required="required" class="form-control col-md-6 col-xs-12">
+                                                    <input type="text" id="txtNSingTaxPayTINNo" name="txtNSingTaxPayTINNo" required="required" class="form-control col-md-6 col-xs-12">
                                                 </div>
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                                     <label for="txtNSingBussDTIRegNo">DTI (Business Name) Registration Number
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" id="txtNSingBussDTIRegNo" class="form-control" placeholder=" " required="required">
+                                                    <input type="text" id="txtNSingBussDTIRegNo" name="txtNSingBussDTIRegNo" class="form-control" placeholder=" " required="required">
                                                 </div>
 
                                                 <div class="col-md-2">
@@ -168,7 +168,7 @@
                                                         <span class="required">*</span>
                                                     </label>
                                                     <div class="input-group date" id="dateXS">
-                                                        <input type="text" class="form-control" id="dateNSingBussDTIReg" required="required">
+                                                        <input type="text" class="form-control" id="dateNSingBussDTIReg" name="dateNSingBussDTIReg" required="required">
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -183,13 +183,13 @@
                                                     <label for="txtNSingBussTelNo">Telephone Number
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" id="txtNSingBussTelNo" class="form-control" placeholder=" " required="required">
+                                                    <input type="text" id="txtNSingBussTelNo" name="txtNSingBussTelNo" class="form-control" placeholder=" " required="required">
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="txtNSingBussFaxNo">Fax Number
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" id="txtNSingBussFaxNo" class="form-control" placeholder=" " required="required">
+                                                    <input type="text" id="txtNSingBussFaxNo" name="txtNSingBussFaxNo" class="form-control" placeholder=" " required="required">
                                                 </div>
                                             </div>
                                         </div>
@@ -201,37 +201,36 @@
                                                     <label for="txtNSingEmpSSSNo">If Employer, Employer's Social Security Number (SSS)
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" id="txtNSingEmpSSSNo" class="form-control col-md-7 col-sm-12" placeholder=" " required="required">
+                                                    <input type="text" id="txtNSingEmpSSSNo" name="txtNSingEmpSSSNo" class="form-control col-md-7 col-sm-12" placeholder=" " required="required">
                                                 </div>
-
+txtNSingEmpSSSNo
                                                 <div class="col-md-4">
                                                     <label for="numNSingBussEmpQTY">No of Employees
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="number" id="numNSingBussEmpQTY" class="form-control " placeholder=" " required="required">
+                                                    <input type="number" id="numNSingBussEmpQTY" name="numNSingBussEmpQTY" class="form-control " placeholder=" " required="required">
                                                 </div>
 
                                             </div>
 
                                         </div>
                                         <div class="col-xs-12">
-                                            <div class="form-group">
+                                            <div class="form-group">txtNSingEmpSSSNo
                                                 <label>Name & Address of Authorized Representative
-                                                    <span class="required">*</span>
                                                 </label>
                                             </div>
                                             <div class="form-group col-xs-12">
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussRepLName" placeholder="Last Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussRepLName" name="txtNSingBussRepLName" placeholder="Last Name" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <input type="text" id="txtNSingBussRepFName" placeholder="First Name" required="required" class="form-control col-md-2 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussRepFName" name="txtNSingBussRepFName" placeholder="First Name" class="form-control col-md-2 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <input type="text" id="txtNSingBussRepMName" placeholder="Middle Name" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussRepMName" name="txtNSingBussRepMName" placeholder="Middle Name" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" id="txtNSingBussRepAddr" placeholder="Home Address" required="required" class="form-control col-md-4 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussRepAddr" name="txtNSingBussRepAddr" placeholder="Home Address" class="form-control col-md-4 col-sm-3 col-xs-12">
                                                 </div>
                                             </div>
                                         </div>
@@ -247,7 +246,7 @@
                                                         <span class="required">*</span>
                                                     </label>
                                                     <div class="input-group date" id="dateX2">
-                                                        <input type="text" class="form-control" id="dateNSingBussEstRentStart" required="required">
+                                                        <input type="text" class="form-control" id="dateNSingBussEstRentStart" name="dateNSingBussEstRentStart" required="required">
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -257,13 +256,13 @@
                                                     <label class="control-label">Monthly Rental
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="number" id="numNSingBussEstRentMonth" required="required" class="form-control col-md-2 col-sm-3 col-xs-12">
+                                                    <input type="number" id="numNSingBussEstRentMonth" name="numNSingBussEstRentMonth" required="required" class="form-control col-md-2 col-sm-3 col-xs-12">
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label class="control-label">From Whom
                                                         <span class="required">*</span>
                                                     </label>
-                                                    <input type="text" id="txtNSingBussEstRentName" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
+                                                    <input type="text" id="txtNSingBussEstRentName" name="txtNSingBussEstRentName" required="required" class="form-control col-md-3 col-sm-3 col-xs-12">
                                                 </div>
                                             </div>
                                         </div>
@@ -272,14 +271,13 @@
                                                 <label>
                                                     <input type="checkbox" class="" id="chkSignboard" onclick="document.getElementById('numNSingBussEstSignbrdArea').disabled=!this.checked;"> Using A Signboard
                                                 </label>
-                                                <input type="text" id="numNSingBussEstSignbrdArea" class="form-control col-md-3" placeholder="Area of Signboard" disabled>
+                                                <input type="text" id="numNSingBussEstSignbrdArea" name="numNSingBussEstSignbrdArea" class="form-control col-md-3" placeholder="Area of Signboard" disabled>
                                             </div>
 
                                         </div>
                                         <div class="col-xs-12">
                                             <div class="form-group">
                                                 <label>If You Have Other Existing Businesss Permits
-                                                    <span class="required">*</span>
                                                 </label>
                                             </div>
                                             <div class="form-group col-xs-12">
@@ -297,51 +295,51 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBuss">
+                                                                <input type="text" id="txtNSingExBuss" name="txtNSingExBuss">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBussNo">
+                                                                <input type="text" id="txtNSingExBussNo" name="txtNSingExBussNo">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBussLoc">
+                                                                <input type="text" id="txtNSingExBussLoc" name="txtNSingExBussLoc">
                                                             </td>
 
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBuss1">
+                                                                <input type="text" id="txtNSingExBuss1" name="txtNSingExBuss1">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBussNo1">
+                                                                <input type="text" id="txtNSingExBussNo1" name="txtNSingExBussNo1">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBussLoc1">
-                                                            </td>
-
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="txtNSingExBuss2">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="txtNSingExBussNo2">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="txtNSingExBussLoc2">
+                                                                <input type="text" id="txtNSingExBussLoc1" name="txtNSingExBussLoc1">
                                                             </td>
 
 
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBuss3">
+                                                                <input type="text" id="txtNSingExBuss2" name="txtNSingExBuss2">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBussNo3">
+                                                                <input type="text" id="txtNSingExBussNo2" name="txtNSingExBussNo2">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="txtNSingExBussLoc3">
+                                                                <input type="text" id="txtNSingExBussLoc2" name="txtNSingExBussLoc2">
+                                                            </td>
+
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" id="txtNSingExBuss3" name="txtNSingExBuss3">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtNSingExBussNo3" name="txtNSingExBussNo3">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="txtNSingExBussLoc3" name="txtNSingExBussLoc3">
                                                             </td>
                                                         </tr>
 
@@ -355,7 +353,7 @@
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>Kind or Nature of Business/Activity Applied
+                                                            <th>Kind or Nature of Business/Activity Applied <span class="required">*</span>
                                                                 <br>
                                                                 <small>Please state nature of business in accordance with QC Business
                                                                     Activity Classification Standard</small>
@@ -377,114 +375,114 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSBussAct">
+                                                                <input type="text" id="txtNSBussAct" name="txtNSBussAct">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussUnitNo">
+                                                                <input type="text" id="numNSingBussUnitNo" name="numNSingBussUnitNo" >
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts">
+                                                                <input type="text" id="numNSingBussAreaSqmts" name="numNSingBussAreaSqmts">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussCapitalization">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="txtNSBussAct1">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussUnitNo1">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts1">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussCapitalization1">
+                                                                <input type="text" id="numNSingBussCapitalization" name="numNSingBussCapitalization">
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSBussAct2">
+                                                                <input type="text" id="txtNSBussAct1" name="txtNSBussAct1">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussUnitNo2">
+                                                                <input type="text" id="numNSingBussUnitNo1" name="numNSingBussUnitNo1">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts2">
+                                                                <input type="text" id="numNSingBussAreaSqmts1" name="numNSingBussAreaSqmts1">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussCapitalization2">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="txtNSBussAct3">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussUnitNo3">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts3">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussCapitalization3">
+                                                                <input type="text" id="numNSingBussCapitalization1" name="numNSingBussCapitalization1">
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSBussAct4">
+                                                                <input type="text" id="txtNSBussAct2" name="txtNSBussAct2">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussUnitNo4">
+                                                                <input type="text" id="numNSingBussUnitNo2" name="numNSingBussUnitNo2">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts4">
+                                                                <input type="text" id="numNSingBussAreaSqmts2" name="numNSingBussAreaSqmts2">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussCapitalization4">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <input type="text" id="txtNSBussAct5">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussUnitNo5">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts5">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" id="numNSingBussCapitalization5">
+                                                                <input type="text" id="numNSingBussCapitalization2" name="numNSingBussCapitalization2">
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSBussAct6">
+                                                                <input type="text" id="txtNSBussAct3" name="txtNSBussAct3">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussUnitNo6">
+                                                                <input type="text" id="numNSingBussUnitNo3" name="numNSingBussUnitNo3">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts6">
+                                                                <input type="text" id="numNSingBussAreaSqmts3" name="numNSingBussAreaSqmts3">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussCapitalization6">
+                                                                <input type="text" id="numNSingBussCapitalization3" name="numNSingBussCapitalization3">
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <input type="text" id="txtNSBussAct7">
+                                                                <input type="text" id="txtNSBussAct4" name="txtNSBussAct4">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussUnitNo7">
+                                                                <input type="text" id="numNSingBussUnitNo4" name="numNSingBussUnitNo4">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussAreaSqmts7">
+                                                                <input type="text" id="numNSingBussAreaSqmts4" name="numNSingBussAreaSqmts4">
                                                             </td>
                                                             <td>
-                                                                <input type="text" id="numNSingBussCapitalization7">
+                                                                <input type="text" id="numNSingBussCapitalization4" name="numNSingBussCapitalization4">>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" id="txtNSBussAct5" name="txtNSBussAct5">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussUnitNo5" name="numNSingBussUnitNo5">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussAreaSqmts5" name="numNSingBussAreaSqmts5">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussCapitalization5" name="numNSingBussCapitalization5">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" id="txtNSBussAct6" name="txtNSBussAct6">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussUnitNo6" name="numNSingBussUnitNo6">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussAreaSqmts6" name="numNSingBussAreaSqmts6">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussCapitalization6" name="numNSingBussCapitalization6">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" id="txtNSBussAct7" name="txtNSBussAct7">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussUnitNo7" name="numNSingBussUnitNo7">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussAreaSqmts7" name="numNSingBussAreaSqmts7">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" id="numNSingBussCapitalization7" name="numNSingBussCapitalization7">
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -498,43 +496,43 @@
                                                 <label  class="control-label" for="fileNSingLocSketchEst">Locational Sketch of Business Establishment
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNSingLocSketchEst" />
+                                                <input type="file" name="fileNSingLocSketchEst" id="fileNSingLocSketchEst" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="fileNSingBrgyClear">Orginal Copy of Barangay Clearance
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNSingBrgyClear" />
+                                                <input type="file" name="fileNSingBrgyClear" id="fileNSingBrgyClear" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="fileNSingDTIreg">DTI Registration File
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNSingDTIreg" />
+                                                <input type="file" name="fileNSingDTIreg" id="fileNSingDTIreg" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label" for="fileNSingTitleProp">Title To Property / Tax Declaration (If Owned) or Contract of Lease (If Renting)
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNSingTitleProp" />
+                                                <input type="file" name="fileNSingTitleProp" id="fileNSingTitleProp" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Lessor's Business Permit (If Rented)
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNSingLessorBussPermit" />
+                                                <input type="file" name="fileNSingLessorBussPermit" id="fileNSingLessorBussPermit" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Authorization Letter w/ ID (Both Business Owner & Filer)
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNSingAuthLetterID" />
+                                                <input type="file" name="fileNSingAuthLetterID" id="fileNSingAuthLetterID" required="required" />
                                             </div>
                                             <div class="form-group">
                                                 <label>Other Required Document/s
                                                     <span class="required">*</span>
                                                 </label>
-                                                <input type="file" name="file" id="fileNsingOthers" />
+                                                <input type="file" name="fileNSingOthers" id="fileNSingOthers" required="required" multiple="true"/>
                                             </div>
                                         </div>
                                     </div>
@@ -619,6 +617,16 @@
                 });
             </script>
             <script>
+            $(function () {
+  $('#applicationFormSingle').parsley().on('field:validated', function() {
+    var ok = $('.parsley-error').length === 0;
+    $('.bs-callout-info').toggleClass('hidden', !ok);
+    $('.bs-callout-warning').toggleClass('hidden', ok);
+  })
+  .on('form:submit', function() {
+    return false; // Don't submit form for this demo
+  });
+});
                 $(document).ready(function () {
                     $('none').click(function () {
                         swal.mixin({

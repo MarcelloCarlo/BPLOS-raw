@@ -1,4 +1,4 @@
-package com.bplos;
+package com.qcapaeis;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
