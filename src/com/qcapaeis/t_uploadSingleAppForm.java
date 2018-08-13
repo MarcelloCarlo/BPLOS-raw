@@ -107,7 +107,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
         Part fileNSingAuthLetterID = request.getPart("fileNSingAuthLetterID");
         //Hmmm
         //Part fileNsingOthers = request.getPart("fileNsingOthers");
-        List <Part> fileNSingOthers = request.getParts().stream().filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
+        List<Part> fileNSingOthers = request.getParts().stream().filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
 
         //process only if its multipart content
         if (ServletFileUpload.isMultipartContent(request)) {
