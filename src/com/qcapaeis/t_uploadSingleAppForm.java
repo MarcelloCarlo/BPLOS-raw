@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +26,8 @@ public class t_uploadSingleAppForm extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //Form Inputs First. F.Y.I., I will declare at least 82+ variables in here, Goodluck for me KJDKJKJKS!
+        // Form Inputs First. F.Y.I., I will declare at least 82+ variables in here,
+        // Goodluck for me KJDKJKJKS!
         String txtNSingBussName = request.getParameter("txtNSingBussName");
         String txtNSingTaxPayLName = request.getParameter("txtNSingTaxPayLName");
         String txtNSingTaxPayFName = request.getParameter("txtNSingTaxPayFName");
@@ -105,11 +108,25 @@ public class t_uploadSingleAppForm extends HttpServlet {
         Part fileNSingTitleProp = request.getPart("fileNSingTitleProp");
         Part fileNSingLessorBussPermit = request.getPart("fileNSingLessorBussPermit");
         Part fileNSingAuthLetterID = request.getPart("fileNSingAuthLetterID");
-        //Hmmm
-        //Part fileNsingOthers = request.getPart("fileNsingOthers");
-        List<Part> fileNSingOthers = request.getParts().stream().filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
+        // Hmmm
+        // Part fileNsingOthers = request.getPart("fileNsingOthers");
+        List<Part> fileNSingOthers = request.getParts().stream()
+                .filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
 
-        //process only if its multipart content
+        Connection connection = null;
+        PreparedStatement pStmt = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            int updateQuery = 0;
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // process only if its multipart content
         if (ServletFileUpload.isMultipartContent(request)) {
             try {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
@@ -122,15 +139,14 @@ public class t_uploadSingleAppForm extends HttpServlet {
                     }
                 }
 
-                //File uploaded successfully
+                // File uploaded successfully
                 request.setAttribute("message", "File Uploaded Successfully");
             } catch (Exception ex) {
                 request.setAttribute("message", "File Upload Failed due to " + ex);
             }
 
         } else {
-            request.setAttribute("message",
-                    "Sorry this Servlet only handles file upload request");
+            request.setAttribute("message", "Sorry this Servlet only handles file upload request");
         }
 
         request.getRequestDispatcher("/res.jsp").forward(request, response);
