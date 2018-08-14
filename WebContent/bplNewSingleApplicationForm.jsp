@@ -168,7 +168,7 @@
                                                         <span class="required">*</span>
                                                     </label>
                                                     <div class="input-group date" id="dateXS">
-                                                        <input type="text" class="form-control" id="dateNSingBussDTIReg" name="dateNSingBussDTIReg" required="required">
+                                                        <input type="text" class="form-control" id="dateNSingBussDTIReg" name="dateNSingBussDTIReg" required="required" data-inputmask="'mask': '99/99/9999'">
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -203,7 +203,6 @@
                                                     </label>
                                                     <input type="text" id="txtNSingEmpSSSNo" name="txtNSingEmpSSSNo" class="form-control col-md-7 col-sm-12" placeholder=" " required="required">
                                                 </div>
-txtNSingEmpSSSNo
                                                 <div class="col-md-4">
                                                     <label for="numNSingBussEmpQTY">No of Employees
                                                         <span class="required">*</span>
@@ -215,7 +214,7 @@ txtNSingEmpSSSNo
 
                                         </div>
                                         <div class="col-xs-12">
-                                            <div class="form-group">txtNSingEmpSSSNo
+                                            <div class="form-group">
                                                 <label>Name & Address of Authorized Representative
                                                 </label>
                                             </div>
@@ -246,7 +245,7 @@ txtNSingEmpSSSNo
                                                         <span class="required">*</span>
                                                     </label>
                                                     <div class="input-group date" id="dateX2">
-                                                        <input type="text" class="form-control" id="dateNSingBussEstRentStart" name="dateNSingBussEstRentStart" required="required">
+                                                        <input type="text" class="form-control" id="dateNSingBussEstRentStart" name="dateNSingBussEstRentStart" required="required" data-inputmask="'mask': '99/99/9999'">
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -548,7 +547,7 @@ txtNSingEmpSSSNo
                     </div>
                     <!-- /page content -->
 
-                    <jsp:include page="/footer.jsp"></jsp:include>
+                    <jsp:include page="footer.jsp"></jsp:include>
                 </div>
             </div>
             <!-- jQuery -->
