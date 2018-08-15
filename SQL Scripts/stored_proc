@@ -1,6 +1,6 @@
  
 DELIMITER //
-CREATE PROCEDURE lgu_bp_application
+CREATE PROCEDURE lgu_application
 
 (
 
@@ -188,7 +188,7 @@ insert into `lgu_r_bp_application` (
     `AP_REFERENCE_NO`,
     `AP_DATE`,
     `AP_TYPE`,
-    `BU_ID`
+    `BU_ID`)
 
 values (
     'ap_ref_no',
