@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,46 +56,58 @@ public class t_uploadSingleAppForm extends HttpServlet {
         String numNSingBussEstRentMonth = request.getParameter("numNSingBussEstRentMonth");
         String txtNSingBussEstRentName = request.getParameter("txtNSingBussEstRentName");
         String numNSingBussEstSignbrdArea = request.getParameter("numNSingBussEstSignbrdArea");
+
         String txtNSingExBuss = request.getParameter("txtNSingExBuss");
         String txtNSingExBussNo = request.getParameter("txtNSingExBussNo");
         String txtNSingExBussLoc = request.getParameter("txtNSingExBussLoc");
+
         String txtNSingExBuss1 = request.getParameter("txtNSingExBuss1");
         String txtNSingExBussNo1 = request.getParameter("txtNSingExBussNo1");
         String txtNSingExBussLoc1 = request.getParameter("txtNSingExBussLoc1");
+
         String txtNSingExBuss2 = request.getParameter("txtNSingExBuss2");
         String txtNSingExBussNo2 = request.getParameter("txtNSingExBussNo2");
         String txtNSingExBussLoc2 = request.getParameter("txtNSingExBussLoc2");
+
         String txtNSingExBuss3 = request.getParameter("txtNSingExBuss3");
         String txtNSingExBussNo3 = request.getParameter("txtNSingExBussNo3");
         String txtNSingExBussLoc3 = request.getParameter("txtNSingExBussLoc3");
+
         String txtNSBussAct = request.getParameter("txtNSBussAct");
         String numNSingBussUnitNo = request.getParameter("numNSingBussUnitNo");
         String numNSingBussAreaSqmts = request.getParameter("numNSingBussAreaSqmts");
         String numNSingBussCapitalization = request.getParameter("numNSingBussCapitalization");
+
         String txtNSBussAct1 = request.getParameter("txtNSBussAct1");
         String numNSingBussUnitNo1 = request.getParameter("numNSingBussUnitNo1");
         String numNSingBussAreaSqmts1 = request.getParameter("numNSingBussAreaSqmts1");
         String numNSingBussCapitalization1 = request.getParameter("numNSingBussCapitalization1");
+
         String txtNSBussAct2 = request.getParameter("txtNSBussAct2");
         String numNSingBussUnitNo2 = request.getParameter("numNSingBussUnitNo2");
         String numNSingBussAreaSqmts2 = request.getParameter("numNSingBussAreaSqmts2");
         String numNSingBussCapitalization2 = request.getParameter("numNSingBussCapitalization2");
+
         String txtNSBussAct3 = request.getParameter("txtNSBussAct3");
         String numNSingBussUnitNo3 = request.getParameter("numNSingBussUnitNo3");
         String numNSingBussAreaSqmts3 = request.getParameter("numNSingBussAreaSqmts3");
         String numNSingBussCapitalization3 = request.getParameter("numNSingBussCapitalization3");
+
         String txtNSBussAct4 = request.getParameter("txtNSBussAct4");
         String numNSingBussUnitNo4 = request.getParameter("numNSingBussUnitNo4");
         String numNSingBussAreaSqmts4 = request.getParameter("numNSingBussAreaSqmts4");
         String numNSingBussCapitalization4 = request.getParameter("numNSingBussCapitalization4");
+
         String txtNSBussAct5 = request.getParameter("txtNSBussAct5");
         String numNSingBussUnitNo5 = request.getParameter("numNSingBussUnitNo5");
         String numNSingBussAreaSqmts5 = request.getParameter("numNSingBussAreaSqmts5");
         String numNSingBussCapitalization5 = request.getParameter("numNSingBussCapitalization5");
+
         String txtNSBussAct6 = request.getParameter("txtNSBussAct6");
         String numNSingBussUnitNo6 = request.getParameter("numNSingBussUnitNo6");
         String numNSingBussAreaSqmts6 = request.getParameter("numNSingBussAreaSqmts6");
         String numNSingBussCapitalization6 = request.getParameter("numNSingBussCapitalization6");
+
         String txtNSBussAct7 = request.getParameter("txtNSBussAct7");
         String numNSingBussUnitNo7 = request.getParameter("numNSingBussUnitNo7");
         String numNSingBussAreaSqmts7 = request.getParameter("numNSingBussAreaSqmts7");
@@ -115,14 +126,45 @@ public class t_uploadSingleAppForm extends HttpServlet {
 
         Connection connection = null;
         PreparedStatement pStmt = null;
+        CallableStatement callProc = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            //Class.forName("com.mysql.jdbc.Driver").newInstance();
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             int updateQuery = 0;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db","root","");
+            callProc = connection.prepareCall("{call }");
+            callProc.setString(1,txtNSingBussName);
+            callProc.setString(2,txtNSingTaxPayLName);
+            callProc.setString(3,txtNSingTaxPayFName);
+            callProc.setString(4,txtNSingTaxPayMName);
+            callProc.setString(5,txtNSingBussOwnHsNum);
+            callProc.setString(6,txtNSingBussOwnStrt);
+            callProc.setString(7,txtNSingBussOwnBrgy);
+            callProc.setString(8,txtNSingBussOwnCity);
+            callProc.setString(9,txtNSingBussFlrNo);
+            callProc.setString(10,txtNSingBussFlrNo);
+            callProc.setString(11,txtNSingBussStrtNo);
+            callProc.setString(12,txtNSingBussStrtName);
+            callProc.setString(13,txtNSingBussBrgyName);
+            callProc.setString(14,txtNSingPropIdxNo);
+            callProc.setString(15,txtNSingLotBlckNo);
+            callProc.setString(16,txtNSingTaxPayTINNo);
+            callProc.setString(17,txtNSingBussDTIRegNo);
+            callProc.setString(18,dateNSingBussDTIReg);
+            callProc.setString(19,txtNSingBussTelNo);
+            callProc.setString(20,txtNSingBussFaxNo);
+            callProc.setString(21,txtNSingEmpSSSNo);
+            callProc.setString(22,numNSingBussEmpQTY);
+            callProc.setString(23,txtNSingBussRepLName);
+            callProc.setString(24,txtNSingBussRepFName );
+            callProc.setString(25,txtNSingBussRepMName);
+            callProc.setString(26,txtNSingBussRepAddr);
+            callProc.setString(27,dateNSingBussEstRentStart);
+            callProc.setString(28,numNSingBussEstRentMonth);
+            callProc.setString(29,txtNSingBussEstRentName);
+            callProc.setString(30,numNSingBussEstSignbrdArea);
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

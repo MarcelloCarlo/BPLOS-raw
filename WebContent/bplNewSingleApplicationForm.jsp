@@ -589,6 +589,8 @@
             <!-- starrr -->
             <script src="build/starrr/dist/starrr.js"></script>
             <script src="build/sweetalert2/dist/sweetalert2.all.min.js"></script>
+            <!-- jquery.inputmask -->
+            <script src="build/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
             <!-- Custom Theme Scripts -->
             <script src="build/js/custom.min.js"></script>
             <!-- Initialize datetimepicker -->
