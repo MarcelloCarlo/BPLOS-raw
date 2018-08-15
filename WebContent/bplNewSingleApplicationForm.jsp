@@ -611,10 +611,10 @@
                                                                                                                                     });
                                                                                                                                 }); */
                 $('#dateXS').datetimepicker({
-                    format: 'DD.MM.YYYY'
+                    format: 'MM.DD.YYYY'
                 });
                 $('#dateX2').datetimepicker({
-                    format: 'DD.MM.YYYY'
+                    format: 'MM.DD.YYYY'
                 });
             </script>
             <script>

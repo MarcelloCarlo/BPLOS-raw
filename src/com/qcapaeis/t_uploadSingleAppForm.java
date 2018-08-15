@@ -13,6 +13,8 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -123,7 +125,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
         // Part fileNsingOthers = request.getPart("fileNsingOthers");
         List<Part> fileNSingOthers = request.getParts().stream()
                 .filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
-
+        SimpleDateFormat defaultDateF = new SimpleDateFormat("MM-dd-yyyy");
         Connection connection = null;
         PreparedStatement pStmt = null;
         CallableStatement callProc = null;
@@ -131,12 +133,17 @@ public class t_uploadSingleAppForm extends HttpServlet {
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             int updateQuery = 0;
+            Date _dateNSingBussDTIReg = (Date) defaultDateF.parse(dateNSingBussDTIReg);
+            Date _dateNSingBussEstRentStart = (Date) defaultDateF.parse(dateNSingBussEstRentStart);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db","root","");
-            callProc = connection.prepareCall("{call }");
-            callProc.setString(1,txtNSingBussName);
-            callProc.setString(2,txtNSingTaxPayLName);
+            callProc = connection.prepareCall("{call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             callProc.setString(3,txtNSingTaxPayFName);
             callProc.setString(4,txtNSingTaxPayMName);
+            callProc.setString(2,txtNSingTaxPayLName);
+            callProc.setString(1,txtNSingBussName);
+
+
+
             callProc.setString(5,txtNSingBussOwnHsNum);
             callProc.setString(6,txtNSingBussOwnStrt);
             callProc.setString(7,txtNSingBussOwnBrgy);
@@ -150,7 +157,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
             callProc.setString(15,txtNSingLotBlckNo);
             callProc.setString(16,txtNSingTaxPayTINNo);
             callProc.setString(17,txtNSingBussDTIRegNo);
-            callProc.setString(18,dateNSingBussDTIReg);
+            callProc.setDate(18,_dateNSingBussDTIReg);
             callProc.setString(19,txtNSingBussTelNo);
             callProc.setString(20,txtNSingBussFaxNo);
             callProc.setString(21,txtNSingEmpSSSNo);
@@ -159,12 +166,14 @@ public class t_uploadSingleAppForm extends HttpServlet {
             callProc.setString(24,txtNSingBussRepFName );
             callProc.setString(25,txtNSingBussRepMName);
             callProc.setString(26,txtNSingBussRepAddr);
-            callProc.setString(27,dateNSingBussEstRentStart);
+            callProc.setDate(27,_dateNSingBussEstRentStart);
             callProc.setString(28,numNSingBussEstRentMonth);
             callProc.setString(29,txtNSingBussEstRentName);
             callProc.setString(30,numNSingBussEstSignbrdArea);
-
+            callProc.execute();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
@@ -178,6 +187,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
                         String name = new File(item.getName()).getName();
                         String currPath = getServletContext().getRealPath("/uploads");
                         item.write(new File(currPath + File.separator + name));
+
                     }
                 }
 
