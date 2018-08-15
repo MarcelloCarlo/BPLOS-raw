@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,7 +80,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
         String numNSingBussUnitNo = request.getParameter("numNSingBussUnitNo");
         String numNSingBussAreaSqmts = request.getParameter("numNSingBussAreaSqmts");
         String numNSingBussCapitalization = request.getParameter("numNSingBussCapitalization");
-
+// May not need at all
         String txtNSBussAct1 = request.getParameter("txtNSBussAct1");
         String numNSingBussUnitNo1 = request.getParameter("numNSingBussUnitNo1");
         String numNSingBussAreaSqmts1 = request.getParameter("numNSingBussAreaSqmts1");
@@ -136,40 +137,40 @@ public class t_uploadSingleAppForm extends HttpServlet {
             Date _dateNSingBussDTIReg = (Date) defaultDateF.parse(dateNSingBussDTIReg);
             Date _dateNSingBussEstRentStart = (Date) defaultDateF.parse(dateNSingBussEstRentStart);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db","root","");
-            callProc = connection.prepareCall("{call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callProc = connection.prepareCall("{call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callProc.setString(1,txtNSingBussName);
+            callProc.setString(2,txtNSingTaxPayLName);
             callProc.setString(3,txtNSingTaxPayFName);
             callProc.setString(4,txtNSingTaxPayMName);
-            callProc.setString(2,txtNSingTaxPayLName);
-            callProc.setString(1,txtNSingBussName);
-
-
-
             callProc.setString(5,txtNSingBussOwnHsNum);
             callProc.setString(6,txtNSingBussOwnStrt);
             callProc.setString(7,txtNSingBussOwnBrgy);
             callProc.setString(8,txtNSingBussOwnCity);
             callProc.setString(9,txtNSingBussFlrNo);
-            callProc.setString(10,txtNSingBussFlrNo);
-            callProc.setString(11,txtNSingBussStrtNo);
-            callProc.setString(12,txtNSingBussStrtName);
-            callProc.setString(13,txtNSingBussBrgyName);
-            callProc.setString(14,txtNSingPropIdxNo);
-            callProc.setString(15,txtNSingLotBlckNo);
-            callProc.setString(16,txtNSingTaxPayTINNo);
-            callProc.setString(17,txtNSingBussDTIRegNo);
-            callProc.setDate(18,_dateNSingBussDTIReg);
-            callProc.setString(19,txtNSingBussTelNo);
-            callProc.setString(20,txtNSingBussFaxNo);
-            callProc.setString(21,txtNSingEmpSSSNo);
-            callProc.setString(22,numNSingBussEmpQTY);
-            callProc.setString(23,txtNSingBussRepLName);
-            callProc.setString(24,txtNSingBussRepFName );
-            callProc.setString(25,txtNSingBussRepMName);
-            callProc.setString(26,txtNSingBussRepAddr);
-            callProc.setDate(27,_dateNSingBussEstRentStart);
-            callProc.setString(28,numNSingBussEstRentMonth);
-            callProc.setString(29,txtNSingBussEstRentName);
-            callProc.setString(30,numNSingBussEstSignbrdArea);
+            callProc.setString(10,txtNSingBussStrtNo);
+            callProc.setString(11,txtNSingBussStrtName);
+            callProc.setString(12,txtNSingBussBrgyName);
+            callProc.setString(12,txtNSingPropIdxNo);
+            callProc.setString(13,txtNSingLotBlckNo);
+            callProc.setString(14,txtNSingTaxPayTINNo);
+            callProc.setString(15,txtNSingBussDTIRegNo);
+            callProc.setDate(16,_dateNSingBussDTIReg);
+            callProc.setString(17,txtNSingBussTelNo);
+            callProc.setString(18,txtNSingBussFaxNo);
+            callProc.setString(19,txtNSingEmpSSSNo);
+            callProc.setInt(20,Integer.parseInt(numNSingBussEmpQTY));
+            callProc.setString(21,txtNSingBussRepLName);
+            callProc.setString(22,txtNSingBussRepFName );
+            callProc.setString(23,txtNSingBussRepMName);
+            callProc.setString(24,txtNSingBussRepAddr);
+            callProc.setDate(25,_dateNSingBussEstRentStart);
+            callProc.setDouble(26,Double.parseDouble(numNSingBussEstRentMonth));
+            callProc.setString(27,txtNSingBussEstRentName);
+            callProc.setDouble(28,Double.parseDouble(numNSingBussEstSignbrdArea));
+            callProc.setString(29,txtNSBussAct);
+            callProc.setInt(30,Integer.parseInt(numNSingBussUnitNo));
+            callProc.setDouble(31,Double.parseDouble(numNSingBussAreaSqmts));
+            callProc.setDouble(32,Double.parseDouble(numNSingBussCapitalization));
             callProc.execute();
         } catch (SQLException e) {
             e.printStackTrace();
