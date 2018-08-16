@@ -199,7 +199,7 @@
                                         <div class="input-group date" id="dateXS">
                                             <input type="text" class="form-control" id="dateNSingBussDTIReg"
                                                    name="dateNSingBussDTIReg" required="required"
-                                                   data-inputmask="'mask': '99/99/9999'">
+                                                   data-inputmask="'mask': '99-99-9999'">
                                             <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -290,7 +290,7 @@
                                         <div class="input-group date" id="dateX2">
                                             <input type="text" class="form-control" id="dateNSingBussEstRentStart"
                                                    name="dateNSingBussEstRentStart"
-                                                   data-inputmask="'mask': '99/99/9999'">
+                                                   data-inputmask="'mask': '99-99-9999'">
                                             <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -678,21 +678,57 @@
                                                                                                                         });
                                                                                                                     }); */
     $('#dateXS').datetimepicker({
-        format: 'MM.DD.YYYY'
+        format: 'DD.MM.YYYY'
     });
     $('#dateX2').datetimepicker({
-        format: 'MM.DD.YYYY'
+        format: 'DD.MM.YYYY'
     });
 </script>
 <script>
     $(function () {
+        var refNo;
         $('#applicationFormSingle').parsley().on('field:validated', function () {
             var ok = $('.parsley-error').length === 0;
             $('.bs-callout-info').toggleClass('hidden', !ok);
             $('.bs-callout-warning').toggleClass('hidden', ok);
+
         })
             .on('form:submit', function () {
-                return false; // Don't submit form for this demo
+                swal.mixin({
+                    confirmButtonText: 'Next &rarr;',
+                    showCancelButton: true,
+                    progressSteps: ['1', '2','3']
+                }).queue([{
+                    title: 'Terms & Conditions',
+                    text: 'I Agree',
+                }, 'Confirm Your Inputs?',{preConfirm: (refNo) => {
+                        return fetch(`/singleNewBussUpload`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(response.statusText)
+                                }
+                                return response.json()
+                            })
+                            .catch(error => {
+                                swal.showValidationError(
+                                    `Request failed: ${error}`
+                                )
+                            })
+                    },}
+
+                ]).then((result) => {
+
+                    if (result.value) {
+
+                        swal({
+                            title: 'All done!',
+                            html: 'Your answers: <pre><code>' +JSON.stringify(result.value.refNo)+ '</code></pre>',
+                            confirmButtonText: 'Done'
+                        })
+                    }
+                })
+                //return false; // Don't submit form for this demo
+
             });
     });
     $(document).ready(function () {
@@ -718,11 +754,11 @@
             return false;
         });
     });
-    $(document).ready( function() {               // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-        $.get("someservlet", function(responseJson) {                 // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+    $(document).ready(function () {               // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+        $.get("someservlet", function (responseJson) {                 // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
             var $select = $("#txtNSBussAct");                           // Locate HTML DOM element with ID "someselect".
             $select.find("option").remove();                          // Find all child elements with tag name "option" and remove them (just to prevent duplicate options when button is pressed again).
-            $.each(responseJson, function(key, value) {               // Iterate over the JSON object.
+            $.each(responseJson, function (key, value) {               // Iterate over the JSON object.
                 $("<option>").val(key).text(value).appendTo($select); // Create HTML <option> element, set its value with currently iterated key and its text content with currently iterated item and finally append it to the <select>.
             });
         });

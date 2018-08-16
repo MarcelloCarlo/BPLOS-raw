@@ -12,10 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -126,52 +129,62 @@ public class t_uploadSingleAppForm extends HttpServlet {
         // Part fileNsingOthers = request.getPart("fileNsingOthers");
         List<Part> fileNSingOthers = request.getParts().stream()
                 .filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
-        SimpleDateFormat defaultDateF = new SimpleDateFormat("MM-dd-yyyy");
+        DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
         Connection connection = null;
         PreparedStatement pStmt = null;
         CallableStatement callProc = null;
+        response.setContentType("text/plain");
+        PrintWriter echo = response.getWriter();
         try {
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             int updateQuery = 0;
-            Date _dateNSingBussDTIReg = (Date) defaultDateF.parse(dateNSingBussDTIReg);
-            Date _dateNSingBussEstRentStart = (Date) defaultDateF.parse(dateNSingBussEstRentStart);
+            Date dtiDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussDTIReg);
+            Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussEstRentStart);
+            java.sql.Date _dateNSingBussDTIReg = new java.sql.Date(dtiDate.getTime());
+            java.sql.Date _dateNSingBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
+            /*java.sql.Date _dateNSingBussDTIReg = (Date) defaultDateF.parse(dateNSingBussDTIReg);
+            java.sql.Date _dateNSingBussEstRentStart = (Date) defaultDateF.parse(dateNSingBussEstRentStart);*/
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db","root","");
-            callProc = connection.prepareCall("{call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            callProc.setString(1,txtNSingBussName);
-            callProc.setString(2,txtNSingTaxPayLName);
-            callProc.setString(3,txtNSingTaxPayFName);
-            callProc.setString(4,txtNSingTaxPayMName);
-            callProc.setString(5,txtNSingBussOwnHsNum);
-            callProc.setString(6,txtNSingBussOwnStrt);
-            callProc.setString(7,txtNSingBussOwnBrgy);
-            callProc.setString(8,txtNSingBussOwnCity);
-            callProc.setString(9,txtNSingBussFlrNo);
-            callProc.setString(10,txtNSingBussStrtNo);
-            callProc.setString(11,txtNSingBussStrtName);
-            callProc.setString(12,txtNSingBussBrgyName);
-            callProc.setString(12,txtNSingPropIdxNo);
-            callProc.setString(13,txtNSingLotBlckNo);
-            callProc.setString(14,txtNSingTaxPayTINNo);
-            callProc.setString(15,txtNSingBussDTIRegNo);
-            callProc.setDate(16,_dateNSingBussDTIReg);
-            callProc.setString(17,txtNSingBussTelNo);
-            callProc.setString(18,txtNSingBussFaxNo);
-            callProc.setString(19,txtNSingEmpSSSNo);
-            callProc.setInt(20,Integer.parseInt(numNSingBussEmpQTY));
-            callProc.setString(21,txtNSingBussRepLName);
-            callProc.setString(22,txtNSingBussRepFName );
-            callProc.setString(23,txtNSingBussRepMName);
-            callProc.setString(24,txtNSingBussRepAddr);
-            callProc.setDate(25,_dateNSingBussEstRentStart);
-            callProc.setDouble(26,Double.parseDouble(numNSingBussEstRentMonth));
-            callProc.setString(27,txtNSingBussEstRentName);
-            callProc.setDouble(28,Double.parseDouble(numNSingBussEstSignbrdArea));
-            callProc.setString(29,txtNSBussAct);
-            callProc.setInt(30,Integer.parseInt(numNSingBussUnitNo));
-            callProc.setDouble(31,Double.parseDouble(numNSingBussAreaSqmts));
-            callProc.setDouble(32,Double.parseDouble(numNSingBussCapitalization));
+            callProc = connection.prepareCall("{? = call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callProc.registerOutParameter(1,java.sql.Types.VARCHAR);
+            callProc.setString(2,txtNSingBussName);
+            callProc.setString(3,txtNSingTaxPayLName);
+            callProc.setString(4,txtNSingTaxPayFName);
+            callProc.setString(5,txtNSingTaxPayMName);
+            callProc.setString(6,txtNSingBussOwnHsNum);
+            callProc.setString(7,txtNSingBussOwnStrt);
+            callProc.setString(8,txtNSingBussOwnBrgy);
+            callProc.setString(9,txtNSingBussOwnCity);
+            callProc.setString(10,txtNSingBussFlrNo);
+            callProc.setString(11,txtNSingBussStrtNo);
+            callProc.setString(12,txtNSingBussStrtName);
+            callProc.setString(13,txtNSingBussBrgyName);
+            callProc.setString(14,txtNSingPropIdxNo);
+            callProc.setString(15,txtNSingLotBlckNo);
+            callProc.setString(16,txtNSingTaxPayTINNo);
+            callProc.setString(17,txtNSingBussDTIRegNo);
+            callProc.setDate(18,_dateNSingBussDTIReg);
+            callProc.setString(19,txtNSingBussTelNo);
+            callProc.setString(20,txtNSingBussFaxNo);
+            callProc.setString(21,txtNSingEmpSSSNo);
+            callProc.setInt(22,Integer.parseInt(numNSingBussEmpQTY));
+            callProc.setString(23,txtNSingBussRepLName);
+            callProc.setString(24,txtNSingBussRepFName );
+            callProc.setString(25,txtNSingBussRepMName);
+            callProc.setString(26,txtNSingBussRepAddr);
+            callProc.setDate(27,_dateNSingBussEstRentStart);
+            callProc.setDouble(28,Double.parseDouble(numNSingBussEstRentMonth));
+            callProc.setString(29,txtNSingBussEstRentName);
+            callProc.setDouble(30,Double.parseDouble(numNSingBussEstSignbrdArea));
+            callProc.setString(31,txtNSBussAct);
+            callProc.setInt(32,Integer.parseInt(numNSingBussUnitNo));
+            callProc.setDouble(33,Double.parseDouble(numNSingBussAreaSqmts));
+            callProc.setDouble(33,Double.parseDouble(numNSingBussCapitalization));
             callProc.execute();
+            String txtApplicationRefNo = callProc.getString(33);
+            echo.write(txtApplicationRefNo);
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -179,7 +192,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
         }
 
         // process only if its multipart content
-        if (ServletFileUpload.isMultipartContent(request)) {
+      /*  if (ServletFileUpload.isMultipartContent(request)) {
             try {
                 List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
@@ -202,7 +215,7 @@ public class t_uploadSingleAppForm extends HttpServlet {
             request.setAttribute("message", "Sorry this Servlet only handles file upload request");
         }
 
-        request.getRequestDispatcher("/res.jsp").forward(request, response);
+        request.getRequestDispatcher("/res.jsp").forward(request, response);*/
 
     }
 
