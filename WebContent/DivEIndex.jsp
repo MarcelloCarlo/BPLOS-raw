@@ -62,6 +62,7 @@
                                     <th>Ownership Type</th>
                                     <th>Application Type</th>
                                     <th>Date</th>
+                                    <th>Action</th>
                                     <th>Barangay Clearance</th>
                                     <th>Locational Clearance</th>
                                     <th>Sanitary/Health Certificate</th>
@@ -81,22 +82,7 @@
                                     <td>New York</td>
                                     <td>27</td>
                                     <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                    <td>Donna Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Alyana Apo</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Action</button></td>
                                     <td>$112,000</td>
                                     <td>Donna Snider</td>
                                     <td>Customer Support</td>
@@ -118,7 +104,150 @@
         </div>
         <!-- /page content -->
 
-        <jsp:include page="/footer.jsp"></jsp:include>
+        <!-- New modal -->
+        <div class="modal fade bs-example-modal-lf" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Check Requirements for New Application</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Business Name/Corporate Name: </label><br>
+                        <label>Business Permit No: </label><br>
+                        <label>Name of Sole Proprietor/Partnership/President: </label><br>
+                        <label>Business Address: </label><br>
+                        <label>District: </label><br>
+                        <label>Authorized Representative: </label><br>
+                        <label>Cellphone No.: </label><br>
+                        <label>Address: </label>
+                        <hr>
+                        <div class="x_content">
+
+                            <div class="">
+                                <ul class="to_do">
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Original Barangay Clearance </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> DTI Registration (for Single Proprietorship </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> SEC Registration with Artices (for Corporation/Partnership </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Title to property of Tax Declaration (if owned) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Contract of Lease and Lessor's Business Permit (if rented) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Authorization Letter & ID (if representative) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Owner's ID </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Renewal modal -->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel2">Check Requirements for Renewal Application</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Business Name/Corporate Name: </label><br>
+                        <label>Business Permit No: </label><br>
+                        <label>Name of Sole Proprietor/Partnership/President: </label><br>
+                        <label>Business Address: </label><br>
+                        <label>District: </label><br>
+                        <label>Authorized Representative: </label><br>
+                        <label>Cellphone No.: </label><br>
+                        <label>Address: </label>
+                        <hr>
+                        <div class="x_content">
+
+                            <div class="">
+                                <ul class="to_do">
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Original Copy of Previous Business Permit, if not applicable Certified xerox copy </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Xerox copy of Tax Bill and Official Receipt (current) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Original Copy of Barangay Clearance (for renewal purpose) </p>
+                                    </li>
+                                    <p> Other Document Requirements required such as: </p>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Locational Clearance (LC) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Fire Safety Inspection Certificate (FSIC) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Sanitary Permit (SP) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> CTAO Certificate </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Certificate of Electrical Inspection (CEI) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> Lessor's Business Permit (if rented) </p>
+                                    </li>
+                                    <li>
+                                        <p>
+                                            <input type="checkbox" class="flat"> PCAB License </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <jsp:include page="footer.jsp"></jsp:include>
     </div>
 </div>
 
