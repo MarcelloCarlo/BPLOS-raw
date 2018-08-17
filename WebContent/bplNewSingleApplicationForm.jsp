@@ -694,41 +694,7 @@
 
         })
             .on('form:submit', function () {
-                swal.mixin({
-                    confirmButtonText: 'Next &rarr;',
-                    showCancelButton: true,
-                    progressSteps: ['1', '2','3']
-                }).queue([{
-                    title: 'Terms & Conditions',
-                    text: 'I Agree',
-                }, 'Confirm Your Inputs?',{preConfirm: (refNo) => {
-                        return fetch(`/singleNewBussUpload`)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(response.statusText)
-                                }
-                                return response.json()
-                            })
-                            .catch(error => {
-                                swal.showValidationError(
-                                    `Request failed: ${error}`
-                                )
-                            })
-                    },}
-
-                ]).then((result) => {
-
-                    if (result.value) {
-
-                        swal({
-                            title: 'All done!',
-                            html: 'Your answers: <pre><code>' +JSON.stringify(result.value.refNo)+ '</code></pre>',
-                            confirmButtonText: 'Done'
-                        })
-                    }
-                })
-                //return false; // Don't submit form for this demo
-
+                swal('Please Wait!')
             });
     });
     $(document).ready(function () {

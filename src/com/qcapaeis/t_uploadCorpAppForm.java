@@ -1,21 +1,64 @@
 package com.qcapaeis;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @MultipartConfig
 public class t_uploadCorpAppForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024;
+    private final String UPLOAD_DIRECTORY = "uploads";
 
     @Override
     protected void doPost(HttpServletRequest reqX, HttpServletResponse respX) throws ServletException, IOException {
+
+        boolean isMultipart = ServletFileUpload.isMultipartContent(reqX);
+
+        if (!isMultipart) {
+            return;
+        }
+        // Create a factory for disk-based file items
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+        // Sets the size threshold beyond which files are written directly to
+        // disk.
+        factory.setSizeThreshold(MAX_MEMORY_SIZE);
+
+        // Sets the directory used to temporarily store files that are larger
+        // than the configured size threshold. We use temporary directory for
+        // java
+        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+        // constructs the folder where uploaded file will be stored
+        String uploadFolder = getServletContext().getRealPath("")
+                + File.separator + UPLOAD_DIRECTORY;
+
+        // Create a new file upload handler
+        ServletFileUpload upload = new ServletFileUpload(factory);
+
+        // Set overall request size constraint
+        upload.setSizeMax(MAX_REQUEST_SIZE);
+
 
         String txtNCorpBussName = reqX.getParameter("txtNCorpBussName");
         String txtNCorpTaxPayName = reqX.getParameter("txtNCorpTaxPayName");
@@ -110,7 +153,82 @@ public class t_uploadCorpAppForm extends HttpServlet {
         List<Part> fileNCorpOthers = reqX.getParts().stream().filter(part -> "fileNCorpOthers".equals(part.getName()))
                 .collect(Collectors.toList());
 
+        DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
+        Connection connection = null;
+        PreparedStatement pStmt = null;
+        CallableStatement callProc = null;
         // Do the insert here if you can
+        try {
+            // Parse the request
+            List items = upload.parseRequest(reqX);
+            Iterator iter = items.iterator();
+            while (iter.hasNext()) {
+                FileItem item = (FileItem) iter.next();
+
+                if (!item.isFormField()) {
+                    String fileName = new File(item.getName()).getName();
+                    String filePath = uploadFolder + File.separator + fileName;
+                    File uploadedFile = new File(filePath);
+                    System.out.println(filePath);
+                    // saves the file to upload directory
+                    item.write(uploadedFile);
+                }
+            }
+            //Class.forName("com.mysql.jdbc.Driver").newInstance();
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            int updateQuery = 0;
+          /*  Date dtiDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussDTIReg);
+            Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussEstRentStart);
+            java.sql.Date _dateNSingBussDTIReg = new java.sql.Date(dtiDate.getTime());
+            java.sql.Date _dateNSingBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());*/
+
+            /*java.sql.Date _dateNSingBussDTIReg = (Date) defaultDateF.parse(dateNSingBussDTIReg);
+            java.sql.Date _dateNSingBussEstRentStart = (Date) defaultDateF.parse(dateNSingBussEstRentStart);*/
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db","root","");
+            callProc = connection.prepareCall("{? = call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            //For Reference Number
+            callProc.registerOutParameter(1,java.sql.Types.VARCHAR);
+            //Inputs for DB
+            callProc.setString(2,txtNCorpBussName);
+            callProc.setString(3,txtNCorpTaxPayName);
+            callProc.setString(4,txtNCorpPresidentName);
+            callProc.setString(5,txtNCorpBussFlrNo);
+            callProc.setString(6,txtNCorpBussStrtNo);
+            callProc.setString(7,txtNCorpBussStrtName);
+            callProc.setString(8,txtNCorpBussBrgyName);
+            callProc.setString(9,txtNCorpLotBlckNo);
+            callProc.setString(10,txtNCorpAuthRepName);
+            callProc.setString(11,txtNCorpAuthRepPos);
+            callProc.setString(12,txtNCorpRepStrtNo);
+            callProc.setString(13,txtNCorpRepStrtName);
+            callProc.setString(14,txtNCorpRepBrgyName);
+            callProc.setString(15,txtNCorpRepCity);
+            callProc.setString(16,txtNCorpBussSECRegNo);
+            callProc.setString(17,dateNCorpBussSECReg);
+            //callProc.setDate(18,txtNCorpTaxPayTINNo);
+            callProc.setString(19,txtNCorpTelNo);
+            callProc.setString(20,txtNCorpFaxNo);
+            callProc.setString(21,txtNCorpEmpSSSNo);
+            callProc.setInt(22,Integer.parseInt(numNCorpEmpQTY));
+            callProc.setString(23,dateNCorpBussEstRentStart);
+            callProc.setString(24,numNCorpBussEstRentMonth);
+            callProc.setString(25,txtNCorpBussEstRentName);
+            callProc.setString(26,numNCorpBussEstSignbrdArea);
+            //callProc.setDate(27,txtNCorpAct);
+            callProc.setDouble(28,Double.parseDouble(numNCorpBussUnitNo));
+            callProc.setString(29,numNCorpBussAreaSqmts);
+            callProc.setDouble(30,Double.parseDouble(numNCorpBussCapitalization));
+            callProc.execute();
+            String txtApplicationRefNo = callProc.getString(33);
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

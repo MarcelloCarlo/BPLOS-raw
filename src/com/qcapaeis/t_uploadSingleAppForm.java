@@ -1,6 +1,7 @@
 package com.qcapaeis;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
@@ -19,17 +20,49 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 @MultipartConfig
 public class t_uploadSingleAppForm extends HttpServlet {
-    private final String UPLOAD_DIRECTORY = "C:/Users/John Carlo Villar/Desktop/";
+    private final String UPLOAD_DIRECTORY = "uploads";
     private static final long serialVersionUID = 1L;
+    private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024;
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+
+        if (!isMultipart) {
+            return;
+        }
+        // Create a factory for disk-based file items
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+        // Sets the size threshold beyond which files are written directly to
+        // disk.
+        factory.setSizeThreshold(MAX_MEMORY_SIZE);
+
+        // Sets the directory used to temporarily store files that are larger
+        // than the configured size threshold. We use temporary directory for
+        // java
+        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+
+        // constructs the folder where uploaded file will be stored
+        String uploadFolder = getServletContext().getRealPath("")
+                + File.separator + UPLOAD_DIRECTORY;
+
+        // Create a new file upload handler
+        ServletFileUpload upload = new ServletFileUpload(factory);
+
+        // Set overall request size constraint
+        upload.setSizeMax(MAX_REQUEST_SIZE);
 
         // Form Inputs First. F.Y.I., I will declare at least 82+ variables in here,
         // Goodluck for me KJDKJKJKS!
@@ -132,10 +165,27 @@ public class t_uploadSingleAppForm extends HttpServlet {
         DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
         Connection connection = null;
         PreparedStatement pStmt = null;
-        CallableStatement callProc = null;
+        com.mysql.jdbc.CallableStatement callProc = null;
         response.setContentType("text/plain");
         PrintWriter echo = response.getWriter();
+
         try {
+
+            // Parse the request
+            List items = upload.parseRequest(request);
+            Iterator iter = items.iterator();
+            while (iter.hasNext()) {
+                FileItem item = (FileItem) iter.next();
+
+                if (!item.isFormField()) {
+                    String fileName = new File(item.getName()).getName();
+                    String filePath = uploadFolder + File.separator + fileName;
+                    File uploadedFile = new File(filePath);
+                    System.out.println(filePath);
+                    // saves the file to upload directory
+                    item.write(uploadedFile);
+                }
+            }
             //Class.forName("com.mysql.jdbc.Driver").newInstance();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             int updateQuery = 0;
@@ -146,48 +196,53 @@ public class t_uploadSingleAppForm extends HttpServlet {
             /*java.sql.Date _dateNSingBussDTIReg = (Date) defaultDateF.parse(dateNSingBussDTIReg);
             java.sql.Date _dateNSingBussEstRentStart = (Date) defaultDateF.parse(dateNSingBussEstRentStart);*/
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db","root","");
-            callProc = connection.prepareCall("{? = call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            callProc.registerOutParameter(1,java.sql.Types.VARCHAR);
-            callProc.setString(2,txtNSingBussName);
-            callProc.setString(3,txtNSingTaxPayLName);
-            callProc.setString(4,txtNSingTaxPayFName);
-            callProc.setString(5,txtNSingTaxPayMName);
-            callProc.setString(6,txtNSingBussOwnHsNum);
-            callProc.setString(7,txtNSingBussOwnStrt);
-            callProc.setString(8,txtNSingBussOwnBrgy);
-            callProc.setString(9,txtNSingBussOwnCity);
-            callProc.setString(10,txtNSingBussFlrNo);
-            callProc.setString(11,txtNSingBussStrtNo);
-            callProc.setString(12,txtNSingBussStrtName);
-            callProc.setString(13,txtNSingBussBrgyName);
-            callProc.setString(14,txtNSingPropIdxNo);
-            callProc.setString(15,txtNSingLotBlckNo);
-            callProc.setString(16,txtNSingTaxPayTINNo);
-            callProc.setString(17,txtNSingBussDTIRegNo);
-            callProc.setDate(18,_dateNSingBussDTIReg);
-            callProc.setString(19,txtNSingBussTelNo);
-            callProc.setString(20,txtNSingBussFaxNo);
-            callProc.setString(21,txtNSingEmpSSSNo);
-            callProc.setInt(22,Integer.parseInt(numNSingBussEmpQTY));
-            callProc.setString(23,txtNSingBussRepLName);
-            callProc.setString(24,txtNSingBussRepFName );
-            callProc.setString(25,txtNSingBussRepMName);
-            callProc.setString(26,txtNSingBussRepAddr);
-            callProc.setDate(27,_dateNSingBussEstRentStart);
-            callProc.setDouble(28,Double.parseDouble(numNSingBussEstRentMonth));
-            callProc.setString(29,txtNSingBussEstRentName);
-            callProc.setDouble(30,Double.parseDouble(numNSingBussEstSignbrdArea));
-            callProc.setString(31,txtNSBussAct);
-            callProc.setInt(32,Integer.parseInt(numNSingBussUnitNo));
-            callProc.setDouble(33,Double.parseDouble(numNSingBussAreaSqmts));
+            callProc = (com.mysql.jdbc.CallableStatement) connection.prepareCall("{ call lgu_application_sp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            //callProc.registerOutParameter(1,java.sql.Types.VARCHAR);
+            callProc.setString(1,txtNSingBussName);
+            callProc.setString(2,txtNSingTaxPayLName);
+            callProc.setString(3,txtNSingTaxPayFName);
+            callProc.setString(4,txtNSingTaxPayMName);
+            callProc.setString(5,txtNSingBussOwnHsNum);
+            callProc.setString(6,txtNSingBussOwnStrt);
+            callProc.setString(7,txtNSingBussOwnBrgy);
+            callProc.setString(8,txtNSingBussOwnCity);
+            callProc.setString(9,txtNSingBussFlrNo);
+            callProc.setString(10,txtNSingBussStrtNo);
+            callProc.setString(11,txtNSingBussStrtName);
+            callProc.setString(12,txtNSingBussBrgyName);
+            callProc.setString(13,txtNSingPropIdxNo);
+            callProc.setString(14,txtNSingLotBlckNo);
+            callProc.setString(15,txtNSingTaxPayTINNo);
+            callProc.setInt(16,Integer.parseInt(txtNSingBussDTIRegNo));
+            callProc.setDate(17,_dateNSingBussDTIReg);
+            callProc.setString(18,txtNSingBussTelNo);
+            callProc.setString(19,txtNSingBussFaxNo);
+            callProc.setString(20,txtNSingEmpSSSNo);
+            callProc.setInt(21,Integer.parseInt(numNSingBussEmpQTY));
+            callProc.setString(22,txtNSingBussRepLName);
+            callProc.setString(23,txtNSingBussRepFName );
+            callProc.setString(24,txtNSingBussRepMName);
+            callProc.setString(25,txtNSingBussRepAddr);
+            callProc.setDate(26,_dateNSingBussEstRentStart);
+            callProc.setDouble(27,Double.parseDouble(numNSingBussEstRentMonth));
+            callProc.setString(28,txtNSingBussEstRentName);
+            callProc.setDouble(29,Double.parseDouble(numNSingBussEstSignbrdArea));
+            //Business nature ID
+            callProc.setInt(30,Integer.parseInt("1"));
+            callProc.setInt(31,Integer.parseInt(numNSingBussUnitNo));
+            callProc.setDouble(32,Double.parseDouble(numNSingBussAreaSqmts));
             callProc.setDouble(33,Double.parseDouble(numNSingBussCapitalization));
             callProc.execute();
-            String txtApplicationRefNo = callProc.getString(33);
-            echo.write(txtApplicationRefNo);
+            //String txtApplicationRefNo = callProc.getString(1);
+            //echo.write(txtApplicationRefNo);
 
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (FileUploadException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
