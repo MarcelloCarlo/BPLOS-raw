@@ -37,7 +37,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="login_content">
-                <form action="LoginController" method="post">
+                <form action="t_login.jsp" method="post">
                     <h1>QCPAEIS Login</h1>
                     <div>
                         <input type="text" class="form-control" name="usrname" placeholder="Username" required=""/>
@@ -55,7 +55,7 @@
 
                         <div>
                             <h1> QCPAEIS</h1>
-                            <p>©2018 QCPAEIS</p>
+                            <p>ï¿½2018 QCPAEIS</p>
                         </div>
                     </div>
                 </form>
