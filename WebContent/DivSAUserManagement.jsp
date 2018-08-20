@@ -52,7 +52,7 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form method="post" action="insertt.jsp" class="form-horizontal form-label-left">
+                    <form method="post" action="DivSAInsert.jsp" class="form-horizontal form-label-left">
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Username <span class="required">*</span>
