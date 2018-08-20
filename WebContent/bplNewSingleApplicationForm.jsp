@@ -49,7 +49,7 @@
         <!-- page content -->
         <div class="col-md-12 col-sm-12 col-xs-12">
             <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate=""
-                  data-parsley-validate="" enctype="multipart/form-data" method="POST" action="singleNewBussUpload">
+                  data-parsley-validate="" enctype="multipart/form-data" method="POST" action="/t_uploadSingleApplForm.jsp">
                 <div class="x_panel">
                     <div class="x_title">
                         <h4>Business Permit Application Form For Single Propriertorship</h4>
@@ -694,41 +694,7 @@
 
         })
             .on('form:submit', function () {
-                swal.mixin({
-                    confirmButtonText: 'Next &rarr;',
-                    showCancelButton: true,
-                    progressSteps: ['1', '2','3']
-                }).queue([{
-                    title: 'Terms & Conditions',
-                    text: 'I Agree',
-                }, 'Confirm Your Inputs?',{preConfirm: (refNo) => {
-                        return fetch(`/singleNewBussUpload`)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error(response.statusText)
-                                }
-                                return response.json()
-                            })
-                            .catch(error => {
-                                swal.showValidationError(
-                                    `Request failed: ${error}`
-                                )
-                            })
-                    },}
-
-                ]).then((result) => {
-
-                    if (result.value) {
-
-                        swal({
-                            title: 'All done!',
-                            html: 'Your answers: <pre><code>' +JSON.stringify(result.value.refNo)+ '</code></pre>',
-                            confirmButtonText: 'Done'
-                        })
-                    }
-                })
-                //return false; // Don't submit form for this demo
-
+                swal('Please Wait!')
             });
     });
     $(document).ready(function () {

@@ -25,17 +25,8 @@
             <url-pattern>/uploadX</url-pattern>
         </servlet-mapping>-->
     <servlet>
-        <servlet-name>SingleBussinessApplicationNewForm</servlet-name>
-        <servlet-class>com.qcapaeis.t_uploadSingleAppForm</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SingleBussinessApplicationNewForm</servlet-name>
-        <url-pattern>/singleNewBussUpload</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>MultiBusinessApplicationNewForm</servlet-name>
-        <servlet-class>com.qcapaeis.t_uploadCorpAppForm</servlet-class>
+        <servlet-class>com.qcapaeis.formTransactions.t_uploadCorpAppForm</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MultiBusinessApplicationNewForm</servlet-name>
