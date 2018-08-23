@@ -203,8 +203,8 @@ CREATE TABLE IF NOT EXISTS `lgu_r_attachments` (
   `AP_ID` int(11) DEFAULT NULL,
   `RT_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`AT_ID`),
-  KEY `lgu_r_attachments_fk_1` (`AP_ID`),
-  KEY `lgu_r_attachments_fk_2` (`RT_ID`)
+  KEY `lgu_r_attachments_fk_bp_application` (`AP_ID`),
+  KEY `lgu_r_attachments_fk_req_type` (`RT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -246,26 +246,6 @@ INSERT INTO `lgu_r_authorize_rep` (`AR_ID`, `AR_FNAME`, `AR_MNAME`, `AR_LNAME`, 
 (2, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
 (3, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
 (4, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(5, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(6, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(7, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(8, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(9, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(10, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(11, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(12, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(13, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(14, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(15, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(16, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(17, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(18, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(19, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(20, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(21, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(22, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(23, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview'),
-(24, 'Malene', 'Garrido', 'Malene', NULL, 'Fairview');
 
 -- --------------------------------------------------------
 
@@ -283,8 +263,8 @@ CREATE TABLE IF NOT EXISTS `lgu_r_bp_application` (
   `BU_ID` int(11) DEFAULT NULL,
   `U_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`AP_ID`),
-  KEY `lgu_r_bp_application_fk_1` (`BU_ID`),
-  KEY `lgu_r_bp_application_fk_2` (`U_ID`)
+  KEY `lgu_r_bp_application_fk_business` (`BU_ID`),
+  KEY `lgu_r_bp_application_fk_user` (`U_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -300,9 +280,9 @@ CREATE TABLE IF NOT EXISTS `lgu_r_bp_application` (
 --
 
 INSERT INTO `lgu_r_bp_application` (`AP_ID`, `AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`, `U_ID`) VALUES
-(1, 'ap_ref_no', '2018-08-17', 'New Applic', 0, NULL),
-(2, 'ap_ref_no', '2018-08-17', 'New Applic', 0, NULL),
-(3, 'ap_ref_no', '2018-08-17', 'New Applic', 0, NULL);
+(1, 'ap_ref_no', '2018-08-17', 'New Application', 0, NULL),
+(2, 'ap_ref_no', '2018-08-17', 'New Application', 0, NULL),
+(3, 'ap_ref_no', '2018-08-17', 'New Application', 0, NULL);
 
 -- --------------------------------------------------------
 
