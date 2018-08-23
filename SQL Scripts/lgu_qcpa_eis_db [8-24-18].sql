@@ -542,7 +542,7 @@ CREATE TABLE IF NOT EXISTS `lgu_r_req_type` (
 --
 -- RELATIONSHIPS FOR TABLE `lgu_r_req_type`:
 --
-
+INSERT INTO `lgu_r_req_type` (`RT_ID`,`RT_NAME`,`RT_DESC`) VALUES (1,'New', 'New Application','Registration of Business'),(2,'Renewal','Renewal of Existing Permit')
 -- --------------------------------------------------------
 
 --
