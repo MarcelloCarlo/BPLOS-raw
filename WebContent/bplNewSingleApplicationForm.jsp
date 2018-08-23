@@ -49,7 +49,7 @@
         <!-- page content -->
         <div class="col-md-12 col-sm-12 col-xs-12">
             <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate=""
-                  data-parsley-validate="" enctype="multipart/form-data" method="POST" action="/t_uploadSingleApplForm.jsp">
+                  data-parsley-validate="" enctype="multipart/form-data" method="POST" action="/applicationFormSingle">
                 <div class="x_panel">
                     <div class="x_title">
                         <h4>Business Permit Application Form For Single Propriertorship</h4>
