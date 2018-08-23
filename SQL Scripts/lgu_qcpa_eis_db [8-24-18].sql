@@ -22,14 +22,15 @@ SET time_zone = "+00:00";
 --
 -- Database: `lgu_qcpa_eis_db`
 --
-CREATE DATABASE IF NOT EXISTS `lgu_qcpa_eis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+DROP DATABASE IF EXISTS `lgu_qcpa_eis_db`;
+CREATE DATABASE `lgu_qcpa_eis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `lgu_qcpa_eis_db`;
 
 DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `lgu_application_sp` (IN `bu_name` VARCHAR(200), IN `tp_lname` VARCHAR(50), IN `tp_fname` VARCHAR(50), IN `tp_mname` VARCHAR(50), IN `tp_hsno` VARCHAR(10), IN `tp_Strt` VARCHAR(90), IN `tp_brgy` VARCHAR(100), IN `tp_city` VARCHAR(100), IN `bu_flr` VARCHAR(10), IN `bu_Strt_no` VARCHAR(50), IN `bu_strt_name` VARCHAR(50), IN `bu_brgy` VARCHAR(50), IN `bu_pin` VARCHAR(35), IN `bu_lot_block` VARCHAR(300), IN `tp_tin` VARCHAR(20), IN `bu_dti_no` INT(11), IN `bu_dti_date` DATE, IN `bu_contact` CHAR(11), IN `bu_faxno` CHAR(11), IN `tp_sssno` VARCHAR(20), IN `bu_emp_no` INT(5), IN `ar_lname` VARCHAR(50), IN `ar_fname` VARCHAR(50), IN `ar_mname` VARCHAR(50), IN `ar_address` VARCHAR(300), IN `rent_start` DATE, IN `rent_permonth` DOUBLE(5,2), IN `rent_lessor` VARCHAR(100), IN `sb_area` DOUBLE(5,2), IN `bn_id` INT(11), IN `bu_unit_no` INT(11), IN `bu_area` DOUBLE(5,2), IN `bu_capitalization` DOUBLE(5,2))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE IF NOT EXISTS `lgu_application_sp` (IN `bu_name` VARCHAR(200), IN `tp_lname` VARCHAR(50), IN `tp_fname` VARCHAR(50), IN `tp_mname` VARCHAR(50), IN `tp_hsno` VARCHAR(10), IN `tp_Strt` VARCHAR(90), IN `tp_brgy` VARCHAR(100), IN `tp_city` VARCHAR(100), IN `bu_flr` VARCHAR(10), IN `bu_Strt_no` VARCHAR(50), IN `bu_strt_name` VARCHAR(50), IN `bu_brgy` VARCHAR(50), IN `bu_pin` VARCHAR(35), IN `bu_lot_block` VARCHAR(300), IN `tp_tin` VARCHAR(20), IN `bu_dti_no` INT(11), IN `bu_dti_date` DATE, IN `bu_contact` CHAR(11), IN `bu_faxno` CHAR(11), IN `tp_sssno` VARCHAR(20), IN `bu_emp_no` INT(5), IN `ar_lname` VARCHAR(50), IN `ar_fname` VARCHAR(50), IN `ar_mname` VARCHAR(50), IN `ar_address` VARCHAR(300), IN `rent_start` DATE, IN `rent_permonth` DOUBLE(5,2), IN `rent_lessor` VARCHAR(100), IN `sb_area` DOUBLE(5,2), IN `bn_id` INT(11), IN `bu_unit_no` INT(11), IN `bu_area` DOUBLE(5,2), IN `bu_capitalization` DOUBLE(5,2))  NO SQL
 BEGIN
     DECLARE
         taxpayer_id INT(11) ; DECLARE business_id INT(11) ; DECLARE isrented_id INT(11) ; DECLARE rep_id INT(11) ; DECLARE tp_address VARCHAR(300) ; DECLARE bu_loc VARCHAR(300) ; DECLARE ap_ref_no VARCHAR(50) ;
@@ -236,17 +237,6 @@ CREATE TABLE IF NOT EXISTS `lgu_r_authorize_rep` (
 --
 -- RELATIONSHIPS FOR TABLE `lgu_r_authorize_rep`:
 --
-
---
--- Dumping data for table `lgu_r_authorize_rep`
---
-
-INSERT INTO `lgu_r_authorize_rep` (`AR_ID`, `AR_FNAME`, `AR_MNAME`, `AR_LNAME`, `AR_POSITION`, `AR_HOME_ADDRESS`) VALUES
-(1, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(2, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(3, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-(4, 'ar_fname', 'ar_mname', 'ar_lname', NULL, 'ar_address'),
-
 -- --------------------------------------------------------
 
 --
@@ -274,16 +264,6 @@ CREATE TABLE IF NOT EXISTS `lgu_r_bp_application` (
 --   `U_ID`
 --       `lgu_r_user` -> `U_ID`
 --
-
---
--- Dumping data for table `lgu_r_bp_application`
---
-
-INSERT INTO `lgu_r_bp_application` (`AP_ID`, `AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`, `U_ID`) VALUES
-(1, 'ap_ref_no', '2018-08-17', 'New Application', 0, NULL),
-(2, 'ap_ref_no', '2018-08-17', 'New Application', 0, NULL),
-(3, 'ap_ref_no', '2018-08-17', 'New Application', 0, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -314,9 +294,9 @@ CREATE TABLE IF NOT EXISTS `lgu_r_business` (
   `TP_ID` int(11) DEFAULT NULL,
   `OT_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`BU_ID`),
-  KEY `lgu_r_business_fk_1` (`BN_ID`),
-  KEY `lgu_r_business_fk_2` (`TP_ID`),
-  KEY `lgu_r_business_fk_4` (`OT_ID`)
+  KEY `lgu_r_business_fk_business_nature` (`BN_ID`),
+  KEY `lgu_r_business_fk_taxpayer` (`TP_ID`),
+  KEY `lgu_r_business_fk_ownership_type` (`OT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
@@ -328,16 +308,6 @@ CREATE TABLE IF NOT EXISTS `lgu_r_business` (
 --   `OT_ID`
 --       `lgu_r_ownership_type` -> `OT_ID`
 --
-
---
--- Dumping data for table `lgu_r_business`
---
-
-INSERT INTO `lgu_r_business` (`BU_ID`, `BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `DTI_REG_NO`, `DTI_DATE`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES
-(7, 'bu_name', '', 'bu_loc', 'bu_pin', 'bu_lot_block', 'bu_faxno', 'bu_contact', '0.000', 0, '0000-00-00', NULL, NULL, 0, 0, 0.00, 0.00, 0, 0, 1),
-(8, 'bu_name', '', 'bu_loc', 'bu_pin', 'bu_lot_block', 'bu_faxno', 'bu_contact', '0.000', 0, '0000-00-00', NULL, NULL, 0, 0, 0.00, 0.00, 0, 0, 1),
-(14, 'bu_name', '', 'bu_loc', 'bu_pin', 'bu_lot_block', 'bu_faxno', 'bu_contact', '0.000', 0, '0000-00-00', NULL, NULL, 0, 0, 0.00, 0.00, 0, 0, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -349,7 +319,7 @@ INSERT INTO `lgu_r_business` (`BU_ID`, `BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`,
 CREATE TABLE IF NOT EXISTS `lgu_r_business_nature` (
   `BN_ID` int(11) NOT NULL AUTO_INCREMENT,
   `BN_NAME` varchar(100) NOT NULL,
-  `BN_CLASSIFICATION` varchar(50) NOT NULL,
+  `BN_CLASSIFICATION` char(1) NOT NULL,
   PRIMARY KEY (`BN_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -362,7 +332,14 @@ CREATE TABLE IF NOT EXISTS `lgu_r_business_nature` (
 --
 
 INSERT INTO `lgu_r_business_nature` (`BN_ID`, `BN_NAME`, `BN_CLASSIFICATION`) VALUES
-(1, 'name', 'low scale');
+(1, 'Accounting Services', 'S'),
+(2, 'Administrative Office', 'S'),
+(3, 'Building Maintenance', 'S'),
+(4, 'Carinderias', 'S'),
+(5, 'Consultancy Firms', 'S'),
+(6, 'Deep Well Drilling Office', 'S'),
+(7, 'Engineering Services', 'S'),
+(8, 'General Building Contractor', 'S');
 
 -- --------------------------------------------------------
 
@@ -381,8 +358,8 @@ CREATE TABLE IF NOT EXISTS `lgu_r_business_permit` (
   `BU_ID` int(11) DEFAULT NULL,
   `AP_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`BP_ID`),
-  KEY `lgu_r_business_permit_fk_1` (`BU_ID`),
-  KEY `lgu_r_business_permit_fk_2` (`AP_ID`)
+  KEY `lgu_r_business_permit_fk_business` (`BU_ID`),
+  KEY `lgu_r_business_permit_fk_bp_application` (`AP_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -404,8 +381,8 @@ CREATE TABLE IF NOT EXISTS `lgu_r_business_permit` (
 CREATE TABLE IF NOT EXISTS `lgu_r_bu_ar` (
   `AR_ID` int(11) DEFAULT NULL,
   `BU_ID` int(11) DEFAULT NULL,
-  KEY `lgu_r_bu_ar_fk_1` (`BU_ID`),
-  KEY `lgu_r_bu_ar_fk_2` (`AR_ID`)
+  KEY `lgu_r_bu_ar_fk_business` (`BU_ID`),
+  KEY `lgu_r_bu_ar_fk_authorize_rep` (`AR_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -415,16 +392,6 @@ CREATE TABLE IF NOT EXISTS `lgu_r_bu_ar` (
 --   `AR_ID`
 --       `lgu_r_authorize_rep` -> `AR_ID`
 --
-
---
--- Dumping data for table `lgu_r_bu_ar`
---
-
-INSERT INTO `lgu_r_bu_ar` (`AR_ID`, `BU_ID`) VALUES
-(0, 0),
-(0, 0),
-(0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -464,9 +431,9 @@ CREATE TABLE IF NOT EXISTS `lgu_r_employee_profile` (
   `EP_ADDRESS` varchar(500) NOT NULL,
   `EP_JOB_DESC` varchar(150) NOT NULL,
   `EP_STATUS` varchar(10) NOT NULL DEFAULT 'Active',
-  `DIV_ID` int(11) NOT NULL,
+  `DIV_ID` int(11) NULL,
   PRIMARY KEY (`EP_ID`),
-  KEY `lgu_r_employee_profile_fk_1` (`DIV_ID`)
+  KEY `lgu_r_employee_profile_fk_division` (`DIV_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -494,28 +461,6 @@ CREATE TABLE IF NOT EXISTS `lgu_r_is_rented` (
 --
 -- RELATIONSHIPS FOR TABLE `lgu_r_is_rented`:
 --
-
---
--- Dumping data for table `lgu_r_is_rented`
---
-
-INSERT INTO `lgu_r_is_rented` (`RENT_ID`, `RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES
-(1, '0000-00-00', 0.00, 'rent_lessor'),
-(2, '0000-00-00', 0.00, 'rent_lessor'),
-(3, '0000-00-00', 0.00, 'rent_lessor'),
-(4, '0000-00-00', 0.00, 'rent_lessor'),
-(5, '0000-00-00', 0.00, 'rent_lessor'),
-(6, '0000-00-00', 0.00, 'rent_lessor'),
-(7, '0000-00-00', 0.00, 'rent_lessor'),
-(8, '0000-00-00', 0.00, 'rent_lessor'),
-(9, '0000-00-00', 0.00, 'rent_lessor'),
-(10, '0000-00-00', 0.00, 'rent_lessor'),
-(11, '0000-00-00', 0.00, 'rent_lessor'),
-(12, '0000-00-00', 0.00, 'rent_lessor'),
-(13, '0000-00-00', 0.00, 'rent_lessor'),
-(14, '0000-00-00', 0.00, 'rent_lessor'),
-(15, '0000-00-00', 0.00, 'rent_lessor'),
-(16, '0000-00-00', 0.00, 'rent_lessor');
 
 -- --------------------------------------------------------
 
@@ -547,8 +492,8 @@ CREATE TABLE IF NOT EXISTS `lgu_r_module` (
 CREATE TABLE IF NOT EXISTS `lgu_r_ot_req` (
   `OT_ID` int(11) DEFAULT NULL,
   `RT_ID` int(11) DEFAULT NULL,
-  KEY `lgu_r_ot_req_fk_1` (`OT_ID`),
-  KEY `lgu_r_ot_req_fk_2` (`RT_ID`)
+  KEY `lgu_r_ot_req_fk_ownership_type` (`OT_ID`),
+  KEY `lgu_r_ot_req_fk_req_type` (`RT_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -577,7 +522,8 @@ CREATE TABLE IF NOT EXISTS `lgu_r_ownership_type` (
 --
 -- RELATIONSHIPS FOR TABLE `lgu_r_ownership_type`:
 --
-
+INSERT INTO `lgu_r_ownership_type` (`OT_ID`,`OT_NAME`,`OT_DESC`)
+VALUES (1, 'Single Propreitorship','Single Owner of the Business'),(2, 'Partnership/Corporation', 'Multiple Owner Business');
 -- --------------------------------------------------------
 
 --
@@ -625,10 +571,10 @@ CREATE TABLE IF NOT EXISTS `lgu_r_role` (
 --
 
 CREATE TABLE IF NOT EXISTS `lgu_r_role_mod` (
-  `MOD_ID` int(11) NOT NULL,
-  `ROLE_ID` int(11) NOT NULL,
-  KEY `lgu_r_role_mod_fk_1` (`MOD_ID`),
-  KEY `lgu_r_role_mod_fk_2` (`ROLE_ID`)
+  `MOD_ID` int(11) NULL,
+  `ROLE_ID` int(11) NULL,
+  KEY `lgu_r_role_mod_fk_module` (`MOD_ID`),
+  KEY `lgu_r_role_mod_fk_role` (`ROLE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -664,28 +610,6 @@ CREATE TABLE IF NOT EXISTS `lgu_r_taxpayer` (
 -- RELATIONSHIPS FOR TABLE `lgu_r_taxpayer`:
 --
 
---
--- Dumping data for table `lgu_r_taxpayer`
---
-
-INSERT INTO `lgu_r_taxpayer` (`TP_ID`, `TP_FNAME`, `TP_MNAME`, `TP_LNAME`, `TP_NATIONALITY`, `TP_HOME_ADDRESS`, `TP_TIN`, `TP_SSS_NO`, `TP_STATUS`) VALUES
-(1, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(2, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(3, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(4, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(5, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(6, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(7, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(8, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(9, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(10, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(11, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(12, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(13, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(14, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(15, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active'),
-(16, 'tp_fname', 'tp_mname', 'tp_lname', 'Filipino', 'tp_address', 'tp_tin', 'tp_sssno', 'Active');
-
 -- --------------------------------------------------------
 
 --
@@ -700,11 +624,11 @@ CREATE TABLE IF NOT EXISTS `lgu_r_user` (
   `U_PASSWORD` varchar(150) NOT NULL,
   `U_TYPE` varchar(30) NOT NULL,
   `U_STATUS` varchar(10) NOT NULL DEFAULT 'Active',
-  `EP_ID` int(11) NOT NULL,
-  `ROLE_ID` int(11) NOT NULL,
+  `EP_ID` int(11) NULL,
+  `ROLE_ID` int(11) NULL,
   PRIMARY KEY (`U_ID`),
-  KEY `lgu_r_user_fk_1` (`EP_ID`),
-  KEY `lgu_r_user_fk_2` (`ROLE_ID`)
+  KEY `lgu_r_user_fk_employee_profile` (`EP_ID`),
+  KEY `lgu_r_user_fk_role` (`ROLE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -723,64 +647,64 @@ CREATE TABLE IF NOT EXISTS `lgu_r_user` (
 -- Constraints for table `lgu_r_attachments`
 --
 ALTER TABLE `lgu_r_attachments`
-  ADD CONSTRAINT `lgu_r_attachments_fk_1` FOREIGN KEY (`AP_ID`) REFERENCES `lgu_r_bp_application` (`AP_ID`),
-  ADD CONSTRAINT `lgu_r_attachments_fk_2` FOREIGN KEY (`RT_ID`) REFERENCES `lgu_r_req_type` (`RT_ID`);
+  ADD CONSTRAINT `lgu_r_attachments_fk_bp_application` FOREIGN KEY (`AP_ID`) REFERENCES `lgu_r_bp_application` (`AP_ID`),
+  ADD CONSTRAINT `lgu_r_attachments_fk_req_type` FOREIGN KEY (`RT_ID`) REFERENCES `lgu_r_req_type` (`RT_ID`);
 
 --
 -- Constraints for table `lgu_r_bp_application`
 --
 ALTER TABLE `lgu_r_bp_application`
-  ADD CONSTRAINT `lgu_r_bp_application_fk_1` FOREIGN KEY (`BU_ID`) REFERENCES `lgu_r_business` (`BU_ID`),
-  ADD CONSTRAINT `lgu_r_bp_application_fk_2` FOREIGN KEY (`U_ID`) REFERENCES `lgu_r_user` (`U_ID`);
+  ADD CONSTRAINT `lgu_r_bp_application_fk_business` FOREIGN KEY (`BU_ID`) REFERENCES `lgu_r_business` (`BU_ID`),
+  ADD CONSTRAINT `lgu_r_bp_application_fk_user` FOREIGN KEY (`U_ID`) REFERENCES `lgu_r_user` (`U_ID`);
 
 --
 -- Constraints for table `lgu_r_business`
 --
 ALTER TABLE `lgu_r_business`
-  ADD CONSTRAINT `lgu_r_business_fk_1` FOREIGN KEY (`BN_ID`) REFERENCES `lgu_r_business_nature` (`BN_ID`),
-  ADD CONSTRAINT `lgu_r_business_fk_2` FOREIGN KEY (`TP_ID`) REFERENCES `lgu_r_taxpayer` (`TP_ID`),
-  ADD CONSTRAINT `lgu_r_business_fk_4` FOREIGN KEY (`OT_ID`) REFERENCES `lgu_r_ownership_type` (`OT_ID`);
+  ADD CONSTRAINT `lgu_r_business_fk_business_nature` FOREIGN KEY (`BN_ID`) REFERENCES `lgu_r_business_nature` (`BN_ID`),
+  ADD CONSTRAINT `lgu_r_business_fk_taxpayer` FOREIGN KEY (`TP_ID`) REFERENCES `lgu_r_taxpayer` (`TP_ID`),
+  ADD CONSTRAINT `lgu_r_business_fk_ownership_type` FOREIGN KEY (`OT_ID`) REFERENCES `lgu_r_ownership_type` (`OT_ID`);
 
 --
 -- Constraints for table `lgu_r_business_permit`
 --
 ALTER TABLE `lgu_r_business_permit`
-  ADD CONSTRAINT `lgu_r_business_permit_fk_1` FOREIGN KEY (`BU_ID`) REFERENCES `lgu_r_business` (`BU_ID`),
-  ADD CONSTRAINT `lgu_r_business_permit_fk_2` FOREIGN KEY (`AP_ID`) REFERENCES `lgu_r_bp_application` (`AP_ID`);
+  ADD CONSTRAINT `lgu_r_business_permit_fk_business` FOREIGN KEY (`BU_ID`) REFERENCES `lgu_r_business` (`BU_ID`),
+  ADD CONSTRAINT `lgu_r_business_permit_fk_bp_application` FOREIGN KEY (`AP_ID`) REFERENCES `lgu_r_bp_application` (`AP_ID`);
 
 --
 -- Constraints for table `lgu_r_bu_ar`
 --
 ALTER TABLE `lgu_r_bu_ar`
-  ADD CONSTRAINT `lgu_r_bu_ar_fk_1` FOREIGN KEY (`BU_ID`) REFERENCES `lgu_r_business` (`BU_ID`),
-  ADD CONSTRAINT `lgu_r_bu_ar_fk_2` FOREIGN KEY (`AR_ID`) REFERENCES `lgu_r_authorize_rep` (`AR_ID`);
+  ADD CONSTRAINT `lgu_r_bu_ar_fk_business` FOREIGN KEY (`BU_ID`) REFERENCES `lgu_r_business` (`BU_ID`),
+  ADD CONSTRAINT `lgu_r_bu_ar_fk_authorize_rep` FOREIGN KEY (`AR_ID`) REFERENCES `lgu_r_authorize_rep` (`AR_ID`);
 
 --
 -- Constraints for table `lgu_r_employee_profile`
 --
 ALTER TABLE `lgu_r_employee_profile`
-  ADD CONSTRAINT `lgu_r_employee_profile_fk_1` FOREIGN KEY (`DIV_ID`) REFERENCES `lgu_r_division` (`DIV_ID`);
+  ADD CONSTRAINT `lgu_r_employee_profile_fk_division` FOREIGN KEY (`DIV_ID`) REFERENCES `lgu_r_division` (`DIV_ID`);
 
 --
 -- Constraints for table `lgu_r_ot_req`
 --
 ALTER TABLE `lgu_r_ot_req`
-  ADD CONSTRAINT `lgu_r_ot_req_fk_1` FOREIGN KEY (`OT_ID`) REFERENCES `lgu_r_ownership_type` (`OT_ID`),
-  ADD CONSTRAINT `lgu_r_ot_req_fk_2` FOREIGN KEY (`RT_ID`) REFERENCES `lgu_r_req_type` (`RT_ID`);
+  ADD CONSTRAINT `lgu_r_ot_req_fk_ownership_type` FOREIGN KEY (`OT_ID`) REFERENCES `lgu_r_ownership_type` (`OT_ID`),
+  ADD CONSTRAINT `lgu_r_ot_req_fk_req_type` FOREIGN KEY (`RT_ID`) REFERENCES `lgu_r_req_type` (`RT_ID`);
 
 --
 -- Constraints for table `lgu_r_role_mod`
 --
 ALTER TABLE `lgu_r_role_mod`
-  ADD CONSTRAINT `lgu_r_role_mod_fk_1` FOREIGN KEY (`MOD_ID`) REFERENCES `lgu_r_module` (`MOD_ID`),
-  ADD CONSTRAINT `lgu_r_role_mod_fk_2` FOREIGN KEY (`ROLE_ID`) REFERENCES `lgu_r_role` (`ROLE_ID`);
+  ADD CONSTRAINT `lgu_r_role_mod_fk_module` FOREIGN KEY (`MOD_ID`) REFERENCES `lgu_r_module` (`MOD_ID`),
+  ADD CONSTRAINT `lgu_r_role_mod_fk_role` FOREIGN KEY (`ROLE_ID`) REFERENCES `lgu_r_role` (`ROLE_ID`);
 
 --
 -- Constraints for table `lgu_r_user`
 --
 ALTER TABLE `lgu_r_user`
-  ADD CONSTRAINT `lgu_r_user_fk_1` FOREIGN KEY (`EP_ID`) REFERENCES `lgu_r_employee_profile` (`EP_ID`),
-  ADD CONSTRAINT `lgu_r_user_fk_2` FOREIGN KEY (`ROLE_ID`) REFERENCES `lgu_r_role` (`ROLE_ID`);
+  ADD CONSTRAINT `lgu_r_user_fk_employee_profile` FOREIGN KEY (`EP_ID`) REFERENCES `lgu_r_employee_profile` (`EP_ID`),
+  ADD CONSTRAINT `lgu_r_user_fk_role` FOREIGN KEY (`ROLE_ID`) REFERENCES `lgu_r_role` (`ROLE_ID`);
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
