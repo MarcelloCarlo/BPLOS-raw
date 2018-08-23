@@ -61,37 +61,27 @@
                                     <th>Business</th>
                                     <th>Ownership Type</th>
                                     <th>Application Type</th>
-                                    <th>Date</th>
+                                    <th>Date Received</th>
                                     <th>Action</th>
-                                    <th>Barangay Clearance</th>
-                                    <th>Locational Clearance</th>
-                                    <th>Sanitary/Health Certificate</th>
-                                    <th>Building Permit</th>
-                                    <th>Pollution Clearance</th>
-                                    <th>Mechanical Permit</th>
-                                    <th>Electrical Inspection</th>
-                                    <th>Police Clearance</th>
-                                    <th>CTAO Clearance Certificate</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr>
-                                    <td>Donna Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Action</button></td>
-                                    <td>$112,000</td>
-                                    <td>Donna Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
+                                    <td>Carlo</td>
+                                    <td>Lugawang Bacla</td>
+                                    <td>Single Proprietorship</td>
+                                    <td>Renew</td>
+                                    <td>07-09-18</td>
+                                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluation-modal-renew">Action</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Malene</td>
+                                    <td>Kepchup Manufacturing</td>
+                                    <td>Partnership/Corporation</td>
+                                    <td>New</td>
+                                    <td>07-18-18</td>
+                                      <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".evaluation-modal-new">Action</button></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -105,12 +95,12 @@
         <!-- /page content -->
 
         <!-- New modal -->
-        <div class="modal fade bs-example-modal-lf" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade evaluation-modal-new" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Check Requirements for New Application</h4>
                     </div>
@@ -170,12 +160,12 @@
         </div>
 
         <!-- Renewal modal -->
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade evaluation-modal-renew" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">x</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel2">Check Requirements for Renewal Application</h4>
                     </div>

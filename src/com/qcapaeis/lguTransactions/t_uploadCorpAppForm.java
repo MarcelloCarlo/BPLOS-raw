@@ -1,4 +1,4 @@
-package com.qcapaeis.formTransactions;
+package com.qcapaeis.lguTransactions;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
