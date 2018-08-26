@@ -3,35 +3,6 @@
          xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="WebApp_ID" version="3.0">
-    <display-name>login</display-name>
-    <servlet>
-        <description></description>
-        <display-name>LoginController</display-name>
-        <servlet-name>LoginController</servlet-name>
-        <servlet-class>com.qcapaeis.LoginController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginController</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
-    </servlet-mapping>
-    <!--<display-name>uploadd</display-name>
-        <servlet>
-            <display-name>uploadX</display-name>
-            <servlet-name>uploadX</servlet-name>
-            <servlet-class>com.qcapaeiseis.uploadX</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>uploadX</servlet-name>
-            <url-pattern>/uploadX</url-pattern>
-        </servlet-mapping>-->
-    <servlet>
-        <servlet-name>MultiBusinessApplicationNewForm</servlet-name>
-        <servlet-class>com.qcapaeis.formTransactions.t_uploadCorpAppForm</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MultiBusinessApplicationNewForm</servlet-name>
-        <url-pattern>/corpNewBussUpload</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

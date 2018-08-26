@@ -662,21 +662,6 @@
 <script src="build/js/custom.min.js"></script>
 <!-- Initialize datetimepicker -->
 <script>
-    /*   $(document).ready(function () {
-                                                                                                                        var numTxtbx = $('#numNSingBussEstSignbrdArea');
-                                                                                                                        //$(numTxtbx).prop('disabled', true);
-                                                                                                                        $(numTxtbx).hide();
-
-                                                                                                                        $('#chkSignboard').change(function () {
-                                                                                                                            if ($(numTxtbx).prop('disabled')) {
-                                                                                                                                $(numTxtbx).prop('disabled', false);
-                                                                                                                            } else $(numTxtbx).prop('disabled', true);
-                                                                                                                        });
-
-                                                                                                                        $(numTxtbx).click(function () {
-                                                                                                                            alert('Enabled!');
-                                                                                                                        });
-                                                                                                                    }); */
     $('#dateXS').datetimepicker({
         format: 'DD.MM.YYYY'
     });
@@ -694,12 +679,7 @@
 
         })
             .on('form:submit', function () {
-                swal('Please Wait!')
-            });
-    });
-    $(document).ready(function () {
-        $('none').click(function () {
-            swal.mixin({
+                swal.mixin({
                 confirmButtonText: 'Next &rarr;',
                 showCancelButton: true,
                 progressSteps: ['1', '2']
@@ -718,16 +698,7 @@
                 }
             })
             return false;
-        });
-    });
-    $(document).ready(function () {               // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-        $.get("someservlet", function (responseJson) {                 // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-            var $select = $("#txtNSBussAct");                           // Locate HTML DOM element with ID "someselect".
-            $select.find("option").remove();                          // Find all child elements with tag name "option" and remove them (just to prevent duplicate options when button is pressed again).
-            $.each(responseJson, function (key, value) {               // Iterate over the JSON object.
-                $("<option>").val(key).text(value).appendTo($select); // Create HTML <option> element, set its value with currently iterated key and its text content with currently iterated item and finally append it to the <select>.
             });
-        });
     });
 </script>
 </body>
