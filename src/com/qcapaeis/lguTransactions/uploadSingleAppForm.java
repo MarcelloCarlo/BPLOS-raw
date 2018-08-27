@@ -231,6 +231,7 @@ public class uploadSingleAppForm extends HttpServlet {
             PreparedStatement authRep2Bus = (PreparedStatement) connection
                     .prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
                             + "VALUES((SELECT MAX(`AR_ID`) FROM `lgu_r_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_r_business`)) ");
+            authRep2Bus.executeLargeUpdate();
             /*
              * callProc = (com.mysql.jdbc.CallableStatement) connection.
              * prepareCall("{ call lgu_application_sp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
