@@ -1,180 +1,223 @@
 <%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
+<!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8" />
+    <title>Color Admin | Page with Top Menu</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
 
-    <title>QCPAEIS | User Management </title>
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+    <link href="assets/css/style.min.css" rel="stylesheet" />
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
 
-    <!-- Bootstrap -->
-    <link href="build/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="build/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="build/css/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="build/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="assets/plugins/pace/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
 </head>
+<body>
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
 
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <jsp:include page="/navBars.jsp"/>
+<jsp:include page="DivSAComponent.jsp"></jsp:include>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                    <div class="title_left">
-                        <h3>User Management</h3>
+<!-- begin #page-container -->
+<div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
+
+    <!-- begin #content -->
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        <ol class="breadcrumb pull-right">
+            <li><a href="javascript:;">System Admin</a></li>
+            <li class="active">User Management</li>
+        </ol>
+        <!-- end breadcrumb -->
+        <!-- begin page-header -->
+        <h1 class="page-header">User Management</h1>
+        <!-- end page-header -->
+
+        <div class="row">
+            <div class="col-md-12">
+            <!-- begin panel -->
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
-
+                    <h4 class="panel-title">Users Table</h4>
                 </div>
-
-                <div class="clearfix"></div>
-
-                <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Input Users</h2>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <br />
-                    <form method="post" action="DivSAUserManagement.jsp" class="form-horizontal form-label-left">
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Username <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="username" id="username" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Password <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="password" name="password" id="password" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">User Type </label>
-                        <div class="col-sm-9 col-xs-12 col-md-6">
-                          <select class="form-control" name="type" id="type">
-                            <option>Staff</option>
-                            <option>Admin</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Divisions </label>
-                        <div class="col-md-6 col-sm-9 col-xs-12">
-                          <select class="form-control">
-                            <option value="Administrative">Administrative</option>
-                            <option value="OSS/Application">OSS/Application</option>
-                            <option value="Evaluation">Evaluation</option>
-                            <option value="Investigation">Investigation</option>
-                            <option value="Inspection">Inspection</option>
-                            <option value="Treasury">Treasury</option>
-                            <option value="Releasxing">Releasing</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success" value="submit">Submit</button>
-                        </div>
-                      </div>
-
-                    </form>
-                  </div>
+                <div class="panel-body">
+                    <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add User</a>
                 </div>
-              </div>
+                <div class="panel-body">
+                    <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>User Type</th>
+                            <th>User Role</th>
+                            <th>User Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
+                                Connection conn = null;
+                                Statement stat = null;
+                                ResultSet res = null;
+                                Class.forName("com.mysql.jdbc.Driver");
+                                conn = DriverManager.getConnection(host,"root","");
+                                stat = conn.createStatement();
+                                String data = "select * from lgu_r_user order by U_ID desc";
+                                res = stat.executeQuery(data);
+                                while (res.next())
+                                {
+                            %>
+                                    <tr>
+                                        <td><%=res.getString("U_USERNAME")%></td>
+                                        <td><%=res.getString("U_TYPE")%></td>
+                                        <td><%=res.getString("U_ROLE")%></td>
+                                        <td><%=res.getString("U_STATUS")%></td>
+                                    </tr>
+                            <%
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <!-- end panel -->
+        </div>
+        </div>
+    </div>
+    <!-- end #content -->
+
+    <!-- #modal-adduser -->
+    <div class="modal fade" id="modal-adduser">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Add User</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="DivSAInsert.jsp" method="POST">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Username</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="username" class="form-control" placeholder="Enter email" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Password</label>
+                                <div class="col-md-8">
+                                    <input type="password" name="password" class="form-control" placeholder="Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">User Type</label>
+                                <div class="col-md-8">
+                                    <select name="type" class="form-control">
+                                        <option>Staff</option>
+                                        <option>Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">User Role</label>
+                                <div class="col-md-8">
+                                    <select name="role" class="form-control">
+                                        <option>Evaluation</option>
+                                        <option>Inspection</option>
+                                        <option>Investigation</option>
+                                        <option>Treasury</option>
+                                        <option>Releasing</option>
+                                        <option>System Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <!-- /page content -->
-
-        <jsp:include page="/footer.jsp"></jsp:include>
     </div>
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
 </div>
+<!-- end page container -->
 
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+<script src="assets/crossbrowserjs/html5shiv.js"></script>
+<script src="assets/crossbrowserjs/respond.min.js"></script>
+<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+<![endif]-->
+<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+<!-- ================== END BASE JS ================== -->
 
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/js/table-manage-responsive.demo.min.js"></script>
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
 
-<!-- jQuery -->
-<script src="build/js/jquery.min.js"></script>
-<!-- Bootstrap -->  
-<script src="build/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="build/js/fastclick.js"></script>
-<!-- NProgress -->
-<script src="build/js/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="build/Chart.js/dist/Chart.min.js"></script>
-<!-- jQuery Sparklines -->
-<script src="build/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- morris.js -->
-<script src="build/raphael/raphael.min.js"></script>
-<script src="build/morris.js/morris.min.js"></script>
-<!-- gauge.js -->
-<script src="build/gauge.js/dist/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- Skycons -->
-<script src="build/skycons/skycons.js"></script>
-<!-- Flot -->
-<script src="build/Flot/jquery.flot.js"></script>
-<script src="build/Flot/jquery.flot.pie.js"></script>
-<script src="build/Flot/jquery.flot.time.js"></script>
-<script src="build/Flot/jquery.flot.stack.js"></script>
-<script src="build/Flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="build/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="build/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="build/flot.curvedlines/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="build/DateJS/build/date.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="build/moment/min/moment.min.js"></script>
-<script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+    $(document).ready(function() {
+        App.init();
+        TableManageResponsive.init();
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>
-
-<%
-    String a = request.getParameter("username");
-    String b = request.getParameter("password");
-    String c = request.getParameter("type");
-    String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
-    Connection conn = null;
-    PreparedStatement stat = null;
-    Class.forName("com.mysql.jdbc.Driver").newInstance();
-    if(a!=null && b!=null && c!=null)
-    {
-        conn = DriverManager.getConnection(host,"root","");
-        String data = "insert into lgu_r_user(U_USERNAME,U_PASSWORD,U_TYPE) values (?,?,?)";
-        stat = conn.prepareStatement(data);
-        stat.setString(1,a);
-        stat.setString(2,b);
-        stat.setString(3,c);
-        stat.executeUpdate();
-        response.sendRedirect("DivSAUserManagement.jsp");
-    }
-%>

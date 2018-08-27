@@ -1,61 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
-<div class="col-md-3 left_col">
-    <div class="left_col scroll-view">
-        <div class="navbar nav_title" style="border: 0;">
-            <a href="DivSAComponent.jsp" class="site_title">
-                <i class="fa fa-building-o"></i> <span>QCPAEIS</span></a>
+<!-- begin #header -->
+<div id="header" class="header navbar navbar-default navbar-fixed-top">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin mobile sidebar expand / collapse button -->
+        <div class="navbar-header">
+            <a href="DivSAComponent.jsp" class="navbar-brand"><span class="navbar-logo"></span> QCPAEIS</a>
+            <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
+        <!-- end mobile sidebar expand / collapse button -->
 
-        <div class="clearfix"></div>
-
-
-        <br/>
-
-        <!-- sidebar menu -->
-        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-            <div class="menu_section">
-                <ul class="nav side-menu">
-                    <li><a><i class="fa fa-gears"></i> System Configurations <span
-                            class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#"> Requirements </a></li>
-                            <li><a href="#"> User Roles </a></li>
-                        </ul>
-                    </li>
-                    <li><a href="DivSAUserManagement.jsp"><i class="fa fa-users"></i> User Management </a></li>
-                </ul>
-            </div>
-
-        </div>
-        <!-- /sidebar menu -->
-
-        <!-- /menu footer buttons -->
-    </div>
-</div>
-
-<!-- top navigation -->
-<div class="top_nav">
-    <div class="nav_menu">
-        <nav>
-            <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-            </div>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="javascript:;"
-                                class="user-profile dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false"> <img src="images/img.jpg" alt="">Ms.
-                    Vanjie <span class=" fa fa-angle-down"></span>
+        <!-- begin header navigation right -->
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown navbar-user">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="assets/img/user-13.jpg" alt="" />
+                    <span class="hidden-xs">Sample User</span> <b class="caret"></b>
                 </a>
-                    <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="javascript:;">Help</a></li>
-                        <li><a href="login.jsp"><i
-                                class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+                <ul class="dropdown-menu animated fadeInLeft">
+                    <li class="arrow"></li>
+                    <li><a href="javascript:;">Log Out</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- end header navigation right -->
     </div>
+    <!-- end container-fluid -->
 </div>
-<!-- /top navigation -->
+<!-- end #header -->
+
+<!-- begin #top-menu -->
+<div id="top-menu" class="top-menu">
+    <!-- begin top-menu nav -->
+    <ul class="nav">
+        <li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>
+        <li><a href="DivSAUserManagement.jsp"><i class="fa fa-calendar"></i> <span>User Management</span></a></li>
+    </ul>
+    <!-- end top-menu nav -->
+</div>
+<!-- end #top-menu -->
