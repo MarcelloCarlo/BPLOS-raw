@@ -32,7 +32,7 @@ CREATE TABLE `lgu_r_user` (
   `U_ID` int(11) NOT NULL,
   `U_EMPLOYID` varchar(30) NULL,
   `U_USERNAME` varchar(30) NOT NULL,
-  `U_PASSWORD` varchar(150) NOT NULL,
+  `U_PASSWORD` blob NOT NULL,
   `U_TYPE` varchar(30) NOT NULL,
   `U_ROLE` varchar(30) NOT NULL,
   `U_STATUS` varchar(10) NOT NULL DEFAULT 'Active'
@@ -41,11 +41,6 @@ CREATE TABLE `lgu_r_user` (
 --
 -- Dumping data for table `lgu_r_user`
 --
-
-INSERT INTO `lgu_r_user` (`U_ID`, `U_USERNAME`, `U_PASSWORD`, `U_TYPE`, `U_ROLE`, `U_STATUS`) VALUES
-(2, 'sdfsd', 'sdfsdf', 'Staff', 'Evaluation', 'Active'),
-(3, 'sdf', 'dfdf', 'Staff', 'Evaluation', 'Active');
-
 --
 -- Indexes for dumped tables
 --

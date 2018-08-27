@@ -38,8 +38,8 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>
-        <li><a href="DivSAUserManagement.jsp"><i class="fa fa-calendar"></i> <span>User Management</span></a></li>
+        <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
+        <li><a href="DivSAUserManagement.jsp"><i class="fa fa-users"></i> <span>User Management</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

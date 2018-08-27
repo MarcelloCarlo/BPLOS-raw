@@ -12,7 +12,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>Color Admin | Page with Top Menu</title>
+    <title>PAEIS | User Management</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -65,10 +65,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
                     </div>
                     <h4 class="panel-title">Users Table</h4>
                 </div>
@@ -131,7 +128,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Username</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="username" class="form-control" placeholder="Enter email" />
+                                    <input type="text" name="username" class="form-control" placeholder="Enter username" />
                                 </div>
                             </div>
                             <div class="form-group">
