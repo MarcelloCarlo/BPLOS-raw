@@ -206,12 +206,12 @@ public class uploadSingleAppForm extends HttpServlet {
                             + txtNSingBussRepAddr + "')");
             authRepinfo.executeUpdate();
             PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement(
-                    "INSERT INTO `lgu_r_is_rented`(RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES('"
+                    "INSERT INTO `lgu_r_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES('"
                             + _dateNSingBussEstRentStart + "','" + Double.parseDouble(numNSingBussEstRentMonth) + "','"
                             + txtNSingBussEstRentName + "')");
             rentInfo.executeUpdate();
             PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement(
-                    "INSERT INTO `lgu_r_taxpayer`(TP_FNAME`, `TP_MNAME`, `TP_LNAME`, `TP_HOME_ADDRESS`, `TP_TIN`,`TP_SSS_NO`) VALUES('"
+                    "INSERT INTO `lgu_r_taxpayer`(`TP_FNAME`, `TP_MNAME`, `TP_LNAME`, `TP_HOME_ADDRESS`, `TP_TIN`,`TP_SSS_NO`) VALUES('"
                             + txtNSingTaxPayFName + "','" + txtNSingTaxPayMName + "','" + txtNSingTaxPayLName + "','"
                             + txtNSingTaxPayTINNo + "','" + txtNSingEmpSSSNo + "')");
             taxPayerInfo.executeUpdate();
