@@ -32,6 +32,9 @@ public class uploadSingleAppForm extends HttpServlet {
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024;
 
+    public uploadSingleAppForm(){
+        super();
+    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -170,21 +173,6 @@ public class uploadSingleAppForm extends HttpServlet {
 
         try {
 
-            // Parse the request
-            List items = upload.parseRequest(request);
-            Iterator iter = items.iterator();
-            while (iter.hasNext()) {
-                FileItem item = (FileItem) iter.next();
-
-                if (!item.isFormField()) {
-                    String fileName = new File(item.getName()).getName();
-                    String filePath = uploadFolder + File.separator + fileName;
-                    File uploadedFile = new File(filePath);
-                    System.out.println(filePath);
-                    // saves the file to upload directory
-                    item.write(uploadedFile);
-                }
-            }
             // Class.forName("com.mysql.jdbc.Driver").newInstance();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
             int updateQuery = 0;
@@ -226,12 +214,21 @@ public class uploadSingleAppForm extends HttpServlet {
                             + Integer.parseInt(numNSingBussEmpQTY) + "','" + Integer.parseInt(numNSingBussUnitNo)
                             + "','" + Double.parseDouble(numNSingBussEstSignbrdArea) + "','"
                             + Double.parseDouble(numNSingBussCapitalization)
-                            + "',1,(SELECT MAX (TP_ID) FROM `lgu_r_taxpayer`),1)");
+                            + "','"+Integer.parseInt(txtNSBussAct)+"',(SELECT MAX (TP_ID) FROM `lgu_r_taxpayer`),1)");
             businessInfo.executeUpdate();
             PreparedStatement authRep2Bus = (PreparedStatement) connection
                     .prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
                             + "VALUES((SELECT MAX(`AR_ID`) FROM `lgu_r_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_r_business`)) ");
             authRep2Bus.executeLargeUpdate();
+            PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_r_business),(SELECT MAX(AR_ID) FROM lgu_r_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_r_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'N',(SELECT MAX(BU_ID)FROM lgu_r_business)) ");
+            refNoInfo.executeUpdate();
+            Statement ss3 = connection.createStatement();
+            ResultSet gg3 = ss3.executeQuery("SELECT MAX(AP_REFERENCE_NO) FROM lgu_r_bp_application");
+            while (gg3 != null)
+            {
+                String _refNo = gg3.getString("AP_REFERENCE_NO");
+                echo.write(_refNo);
+            }
             /*
              * callProc = (com.mysql.jdbc.CallableStatement) connection.
              * prepareCall("{ call lgu_application_sp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
@@ -269,9 +266,7 @@ public class uploadSingleAppForm extends HttpServlet {
             e.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
-        } catch (FileUploadException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrace();
         }
 

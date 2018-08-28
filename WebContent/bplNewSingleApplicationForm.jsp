@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +51,7 @@
         <!-- page content -->
         <div class="col-md-12 col-sm-12 col-xs-12">
             <form class="form-horizontal form-label-left" id="applicationFormSingle" novalidate=""
-                  data-parsley-validate="" enctype="multipart/form-data" method="POST" action="/applicationFormSingle">
+                  data-parsley-validate="" enctype="multipart/form-data">
                 <div class="x_panel">
                     <div class="x_title">
                         <h4>Business Permit Application Form For Single Propriertorship</h4>
@@ -429,7 +431,19 @@
                                             <td>
                                                 <select class="select2_single form-control" id="txtNSBussAct"
                                                         name="txtNSBussAct" tabindex="-1">
-                                                    <option></option>
+                                                    <%
+
+                                                        LGUConnect conX = new LGUConnect();
+                                                        Connection conn3 = conX.getConnection();
+                                                        Statement ss3 = conn3.createStatement();
+                                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `lgu_r_business_nature`");
+                                                        while (gg3.next()){
+                                                    %>
+                                                    <option value="<%out.print(gg3.getInt("BN_ID"));%>"><%out.print(gg3.getString("BN_NAME"));%></option>
+                                                    <%
+
+                                                        }
+                                                    %>
                                                 </select>
                                             </td>
                                             <td>
@@ -671,7 +685,8 @@
 </script>
 <script>
     $(function () {
-        var refNo;
+        var applicationFormSingle = new FormData($('#applicationFormSingle')[0]);
+
         $('#applicationFormSingle').parsley().on('field:validated', function () {
             var ok = $('.parsley-error').length === 0;
             $('.bs-callout-info').toggleClass('hidden', !ok);
@@ -690,11 +705,22 @@
                 'Confirm?',
             ]).then((result) => {
                 if (result.value) {
-                    swal({
-                        title: 'All done!',
-                        html: 'Your Reference Number: <pre><code>',
-                        confirmButtonText: 'Done'
-                    })
+                    $.ajax({
+                        type:'POST',
+                        url:'/uploadSingleAppForm',
+                        processData: false,
+                        contentType: false,
+                        async: false,
+                        cache: false,
+                        data : applicationFormSingle,
+                        success: function(response){
+                            swal({
+                                title: 'Your Reference Number:',
+                                html: ''+response.data,
+                                confirmButtonText: 'Done'
+                            })
+                        }
+                    });
                 }
             })
             return false;
