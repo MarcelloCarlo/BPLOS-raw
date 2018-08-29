@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="DivSAComponent.jsp" class="navbar-brand"><span class="navbar-logo"></span> QCPAEIS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS</a>
             <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -44,3 +44,4 @@
     <!-- end top-menu nav -->
 </div>
 <!-- end #top-menu -->
+

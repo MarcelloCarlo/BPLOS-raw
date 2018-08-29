@@ -78,8 +78,9 @@
                         <tr>
                             <th>Username</th>
                             <th>User Type</th>
-                            <th>User Role</th>
+                            <th>Department</th>
                             <th>User Status</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -101,6 +102,12 @@
                                         <td><%=res.getString("U_TYPE")%></td>
                                         <td><%=res.getString("U_ROLE")%></td>
                                         <td><%=res.getString("U_STATUS")%></td>
+                                        <%--<td>--%>
+                                            <%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
+                                        <%--</td>--%>
+                                        <td>
+                                            <a href="DivSAUpdate.jsp?<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
+                                        </td>
                                     </tr>
                             <%
                                 }
@@ -128,13 +135,13 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Username</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="username" class="form-control" placeholder="Enter username" />
+                                    <input type="text" name="username" class="form-control" placeholder="Enter username" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Password</label>
                                 <div class="col-md-8">
-                                    <input type="password" name="password" class="form-control" placeholder="Password" />
+                                    <input type="password" name="password" class="form-control" placeholder="Password" required/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -147,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">User Role</label>
+                                <label class="col-md-4 control-label">Department</label>
                                 <div class="col-md-8">
                                     <select name="role" class="form-control">
                                         <option>Evaluation</option>
@@ -168,11 +175,15 @@
             </div>
         </div>
     </div>
+
+
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
+
+<jsp:include page="DivSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>

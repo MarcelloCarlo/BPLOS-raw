@@ -1,150 +1,209 @@
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.Connection" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
+<!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="ISO-8859-1">
+    <meta charset="utf-8" />
+    <title>PAEIS | Treasury</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
 
-    <title>QCPAEIS | Treasury </title>
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/animate.min.css" rel="stylesheet" />
+    <link href="assets/css/style.min.css" rel="stylesheet" />
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
 
-    <!-- Bootstrap -->
-    <link href="build/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="build/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="build/css/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="build/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="assets/plugins/pace/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
 </head>
+<body>
+<!-- begin #page-loader -->
+<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+<!-- end #page-loader -->
 
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <jsp:include page="DivTComponent.jsp"/>
+<jsp:include page="DivTComponent.jsp"></jsp:include>
 
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                    <div class="title_left">
-                        <h3>Inspection</h3>
+<!-- begin #page-container -->
+<div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
+
+    <!-- begin #content -->
+    <div id="content" class="content">
+        <!-- begin breadcrumb -->
+        <ol class="breadcrumb pull-right">
+            <li><a href="javascript:;">Treasury</a></li>
+            <li class="active">Payment Processing</li>
+        </ol>
+        <!-- end breadcrumb -->
+        <!-- begin page-header -->
+        <h1 class="page-header">Payment Processing</h1>
+        <!-- end page-header -->
+
+        <div class="row">
+            <div class="col-md-12">
+                <!-- begin panel -->
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+                        </div>
+                        <h4 class="panel-title">Payment Processing Table</h4>
                     </div>
-
+                    <div class="panel-body">
+                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Business Owner</th>
+                                <th>Business Name</th>
+                                <th>Business Type</th>
+                                <th>Remarks</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <%--<%--%>
+                                <%--String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";--%>
+                                <%--Connection conn = null;--%>
+                                <%--Statement stat = null;--%>
+                                <%--ResultSet res = null;--%>
+                                <%--Class.forName("com.mysql.jdbc.Driver");--%>
+                                <%--conn = DriverManager.getConnection(host,"root","");--%>
+                                <%--stat = conn.createStatement();--%>
+                                <%--String data = "select * from lgu_r_user order by U_ID desc";--%>
+                                <%--res = stat.executeQuery(data);--%>
+                                <%--while (res.next())--%>
+                                <%--{--%>
+                            <%--%>--%>
+                            <tr>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>Sample</td>
+                                <td>
+                                    <a href="#modal-processpayment" class="btn btn-success btn-xs" data-toggle="modal">Process Payment</a>
+                                </td>
+                            </tr>
+                            <%--<%--%>
+                                <%--}--%>
+                            <%--%>--%>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                <!-- end panel -->
+            </div>
+        </div>
+    </div>
+    <!-- end #content -->
 
-                <div class="clearfix"></div>
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>Approved Application</h2>
-                            <div class="clearfix"></div>
+    <!-- #modal-processpayment -->
+    <div class="modal fade" id="modal-processpayment">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Process Payment</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" action="#" method="POST">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Business Owner: </label>
+                            <div class="col-md-8">
+                                <input type="text" name=" " class="form-control" placeholder="/Business Owner Name/" />
+                            </div>
                         </div>
-                        <div class="x_content">
-                            <p class="text-muted font-13 m-b-30">
-                                This tables shows all evaluated applications
-                            </p>
-
-                            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Business</th>
-                                    <th>Ownership Type</th>
-                                    <th>Application Type</th>
-                                    <th>Date</th>
-                                    <th>Remarks</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <tr>
-                                    <td>Alyana Apo</td>
-                                    <td>Sleep-all-you-can</td>
-                                    <td>Single</td>
-                                    <td>New Application</td>
-                                    <td>8/13/2018</td>
-                                    <td>I want you!</td>
-                                    <td><button>Remarks</button></td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Business Name: </label>
+                            <div class="col-md-8">
+                                <input type="text" name=" " class="form-control" placeholder="/Business Name/" />
+                            </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Fee: </label>
+                            <div class="col-md-8">
+                                <input type="text" name=" " class="form-control" placeholder="/Fee/" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-sm btn-success">Process</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- /page content -->
-
-        <jsp:include page="/footer.jsp"></jsp:include>
     </div>
-</div>
 
-<!-- jQuery -->
-<script src="build/js/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="build/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="build/js/fastclick.js"></script>
-<!-- NProgress -->
-<script src="build/js/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="build/Chart.js/dist/Chart.min.js"></script>
-<!-- jQuery Sparklines -->
-<script src="build/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- morris.js -->
-<script src="build/raphael/raphael.min.js"></script>
-<script src="build/morris.js/morris.min.js"></script>
-<!-- gauge.js -->
-<script src="build/gauge.js/dist/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- Skycons -->
-<script src="build/skycons/skycons.js"></script>
-<!-- Flot -->
-<script src="build/Flot/jquery.flot.js"></script>
-<script src="build/Flot/jquery.flot.pie.js"></script>
-<script src="build/Flot/jquery.flot.time.js"></script>
-<script src="build/Flot/jquery.flot.stack.js"></script>
-<script src="build/Flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="build/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="build/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="build/flot.curvedlines/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="build/DateJS/build/date.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="build/moment/min/moment.min.js"></script>
-<script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- Datatables -->
-<script src="build/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="build/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="build/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="build/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="build/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="build/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="build/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="build/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="build/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="build/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="build/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="build/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-<script src="build/jszip/dist/jszip.min.js"></script>
-<script src="build/pdfmake/build/pdfmake.min.js"></script>
-<script src="build/pdfmake/build/vfs_fonts.js"></script>
-<!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
+
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
+</div>
+<!-- end page container -->
+
+<jsp:include page="DivTFooter.jsp"></jsp:include>
+
+<!-- ================== BEGIN BASE JS ================== -->
+<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+<script src="assets/crossbrowserjs/html5shiv.js"></script>
+<script src="assets/crossbrowserjs/respond.min.js"></script>
+<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+<![endif]-->
+<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+<!-- ================== END BASE JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/js/table-manage-responsive.demo.min.js"></script>
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+    $(document).ready(function() {
+        App.init();
+        TableManageResponsive.init();
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>
