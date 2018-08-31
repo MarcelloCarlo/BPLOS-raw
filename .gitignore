@@ -4,6 +4,5 @@ classes/
 out/
 production/
 artifacts/
-.project
 \.settings/
 /bin/
