@@ -31,6 +31,7 @@
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
     <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -127,50 +128,156 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Add User</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" action="DivSAInsert.jsp" method="POST">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Username</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="username" class="form-control" placeholder="Enter username" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Password</label>
-                                <div class="col-md-8">
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">User Type</label>
-                                <div class="col-md-8">
-                                    <select name="type" class="form-control">
-                                        <option>Staff</option>
-                                        <option>Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Department</label>
-                                <div class="col-md-8">
-                                    <select name="role" class="form-control">
-                                        <option>Evaluation</option>
-                                        <option>Inspection</option>
-                                        <option>Investigation</option>
-                                        <option>Treasury</option>
-                                        <option>Releasing</option>
-                                        <option>System Admin</option>
-                                    </select>
-                                </div>
-                            </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                    <div class="panel panel-inverse">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Add User</h4>
                         </div>
-                    </form>
+                        <div class="panel-body">
+                            <form action="DivSAInsert.jsp" method="POST">
+                                <div id="wizard">
+                                    <ol>
+                                        <li>
+                                            Identification
+                                        </li>
+                                        <li>
+                                            Contact Information
+                                        </li>
+                                        <li>
+                                            Login Information
+                                        </li>
+                                    </ol>
+                                    <!-- begin wizard step-1 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Identification</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" name="firstname" placeholder="John" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Middle Initial</label>
+                                                        <input type="text" name="middle" placeholder="A" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <input type="text" name="lastname" placeholder="Smith" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-1 -->
+                                    <!-- begin wizard step-2 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Contact Information</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Phone Number</label>
+                                                        <input type="text" name="phone" placeholder="123-456-7890" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email Address</label>
+                                                        <input type="text" name="email" placeholder="someone@example.com" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-2 -->
+                                    <!-- begin wizard step-3 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Login</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="username" placeholder="johnsmithy" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pasword</label>
+                                                        <div class="controls">
+                                                            <input type="password" name="password" placeholder="Your password" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <!-- end col-4 -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>User Type</label>
+                                                        <div class="controls">
+                                                            <select name="type" class="form-control">
+                                                                <option>Staff</option>
+                                                                <option>Admin</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Department</label>
+                                                        <div class="controls">
+                                                            <select name="role" class="form-control">
+                                                                <option>Evaluation</option>
+                                                                <option>Inspection</option>
+                                                                <option>Investigation</option>
+                                                                <option>Treasury</option>
+                                                                <option>Releasing</option>
+                                                                <option>System Admin</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-3 -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -208,6 +315,8 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="assets/js/form-wizards.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
@@ -215,6 +324,7 @@
     $(document).ready(function() {
         App.init();
         TableManageResponsive.init();
+        FormWizard.init();
     });
 </script>
 <script>
