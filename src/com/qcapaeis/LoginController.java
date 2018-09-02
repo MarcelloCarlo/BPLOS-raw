@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class LoginController extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String un = request.getParameter("usrname");
         String pw = request.getParameter("password");
         // Temporary
