@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-collections4-4.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-collections4-4.2-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-fileupload-1.3.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-fileupload-1.3.3-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-fileupload-1.3.3-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-io-2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-io-2.6-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-logging-1.2-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.annotation.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.ejb.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.jms.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.persistence.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.resource.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.servlet.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.servlet.jsp.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.transaction.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/mysql-connector-java-5.1.46.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-10">
 		<attributes>
-			<attribute name="module" value="true"/>
+			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-collections4-4.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-collections4-4.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-fileupload-1.3.3.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-fileupload-1.3.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-fileupload-1.3.3-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-io-2.6-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/commons-logging-1.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.annotation.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.ejb.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.jms.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.persistence.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.resource.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.servlet.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.servlet.jsp.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/javax.transaction.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 9.0/webapps/LGU-QCPAEIS/WebContent/WEB-INF/lib/mysql-connector-java-5.1.46.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

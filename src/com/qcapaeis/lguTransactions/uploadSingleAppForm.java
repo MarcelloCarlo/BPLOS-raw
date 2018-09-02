@@ -1,11 +1,19 @@
 package com.qcapaeis.lguTransactions;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.qcapaeis.dbConnection.LGUConnect;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,15 +22,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.*;
-import java.math.BigDecimal;
-import java.sql.*;
-import java.text.*;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.stream.Collectors;
+
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import com.mysql.jdbc.PreparedStatement;
+import com.qcapaeis.dbConnection.LGUConnect;
 
 @MultipartConfig(maxFileSize = 20971520) // File up to 20MB
 @WebServlet("/uploadSingleAppForm")
@@ -167,7 +172,7 @@ public class uploadSingleAppForm extends HttpServlet {
         Connection connection = null;
         PreparedStatement pStmt = null;
         com.mysql.jdbc.CallableStatement callProc = null;
-        response.setContentType("text/plain");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter echo = response.getWriter();
         LGUConnect conX = new LGUConnect();
 
@@ -223,7 +228,7 @@ public class uploadSingleAppForm extends HttpServlet {
             PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_r_business),(SELECT MAX(AR_ID) FROM lgu_r_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_r_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'N',(SELECT MAX(BU_ID)FROM lgu_r_business)) ");
             refNoInfo.executeUpdate();
             Statement ss3 = connection.createStatement();
-            ResultSet gg3 = ss3.executeQuery("SELECT MAX(AP_REFERENCE_NO) FROM lgu_r_bp_application");
+            ResultSet gg3 = ss3.executeQuery("SELECT MAX(AP_ID) FROM lgu_r_bp_application");
             while (gg3 != null)
             {
                 String _refNo = gg3.getString("AP_REFERENCE_NO");

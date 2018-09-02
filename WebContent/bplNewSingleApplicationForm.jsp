@@ -23,9 +23,9 @@
     <!-- Bootstrap -->
     <link href="assets/plugins/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="assets/plugins/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="assets/plugins/css/nprogress.css" rel="stylesheet">
+    <link href="assets/plugins/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
     <link href="assets/plugins/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
     <!-- Select2 -->
@@ -37,7 +37,7 @@
     <!-- bootstrap-daterangepicker -->
     <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
-    <link href="assets/plugins/bootstrap-datetimepicker/assets/plugins/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="assets/plugins/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
@@ -198,9 +198,9 @@
                                         <label for="dateXS" class="control-label">Date
                                             <span class="required">*</span>
                                         </label>
-                                        <div class="input-group date" id="dateXS">
-                                            <input type="text" class="form-control" id="dateNSingBussDTIReg"
-                                                   name="dateNSingBussDTIReg" required="required"
+                                        <div class="input-group date" id="dateNSingBussDTIReg" name="dateNSingBussDTIReg">
+                                            <input type="text" class="form-control" id="_dateNSingBussDTIReg"
+                                                   name="_dateNSingBussDTIReg" required="required"
                                                    data-inputmask="'mask': '99-99-9999'">
                                             <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -289,9 +289,9 @@
                                         <label for="dateXS" class="control-label">Since When
 
                                         </label>
-                                        <div class="input-group date" id="dateX2">
-                                            <input type="text" class="form-control" id="dateNSingBussEstRentStart"
-                                                   name="dateNSingBussEstRentStart"
+                                        <div class="input-group date" id="dateNSingBussEstRentStart">
+                                            <input type="text" class="form-control" id="_dateNSingBussEstRentStart"
+                                                   name="_dateNSingBussEstRentStart"
                                                    data-inputmask="'mask': '99-99-9999'">
                                             <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -650,7 +650,7 @@
 <script src="assets/plugins/moment/min/moment.min.js"></script>
 <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap-datetimepicker -->
-<script src="assets/plugins/bootstrap-datetimepicker/assets/plugins/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- bootstrap-wysiwyg -->
 <script src="assets/plugins/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
 <script src="assets/plugins/jquery.hotkeys/jquery.hotkeys.js"></script>
@@ -676,10 +676,10 @@
 <script src="assets/plugins/js/custom.min.js"></script>
 <!-- Initialize datetimepicker -->
 <script>
-    $('#dateXS').datetimepicker({
+    $('#dateNSingBussDTIReg').datetimepicker({
         format: 'DD.MM.YYYY'
     });
-    $('#dateX2').datetimepicker({
+    $('#dateNSingBussEstRentStart').datetimepicker({
         format: 'DD.MM.YYYY'
     });
 </script>
@@ -706,17 +706,16 @@
             ]).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        type:'POST',
-                        url:'/uploadSingleAppForm',
-                        processData: false,
-                        contentType: false,
-                        async: false,
-                        cache: false,
-                        data : applicationFormSingle,
+                        type: "POST",
+                        enctype:"multipart/form-data",
+                         url: "uploadSingleAppForm",
+                         data: applicationFormSingle,
+                         processData: false,
+                         contentType: false,
                         success: function(response){
                             swal({
                                 title: 'Your Reference Number:',
-                                html: ''+response.data+'',
+                                html: ''+JSON.stringify(response.value)+'',
                                 confirmButtonText: 'Done'
                             })
                         }
