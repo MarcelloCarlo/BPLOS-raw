@@ -77,6 +77,7 @@
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                         <thead>
                         <tr>
+                            <th>Full Name</th>
                             <th>Username</th>
                             <th>User Type</th>
                             <th>Department</th>
@@ -99,6 +100,7 @@
                                 {
                             %>
                                     <tr>
+                                        <td><%=res.getString("U_FIRSTNAME")%></td>
                                         <td><%=res.getString("U_USERNAME")%></td>
                                         <td><%=res.getString("U_TYPE")%></td>
                                         <td><%=res.getString("U_ROLE")%></td>
@@ -152,98 +154,34 @@
                                             <legend class="pull-left width-full">Identification</legend>
                                             <!-- begin row -->
                                             <div class="row">
-                                                <!-- begin col-4 -->
+
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>First Name</label>
-                                                        <input type="text" name="firstname" placeholder="John" class="form-control" required/>
+                                                        <input type="text" name="firstname" placeholder="First Name" class="form-control" required/>
                                                     </div>
                                                 </div>
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
+
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Middle Initial</label>
-                                                        <input type="text" name="middle" placeholder="A" class="form-control" required/>
+                                                        <label>Middle Name</label>
+                                                        <input type="text" name="middle" placeholder="Middle Name" class="form-control" required/>
                                                     </div>
                                                 </div>
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
+
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Last Name</label>
-                                                        <input type="text" name="lastname" placeholder="Smith" class="form-control" required/>
+                                                        <input type="text" name="lastname" placeholder="Last Name" class="form-control" required/>
                                                     </div>
                                                 </div>
-                                                <!-- end col-4 -->
-                                            </div>
-                                            <!-- end row -->
-                                        </fieldset>
-                                    </div>
-                                    <!-- end wizard step-1 -->
-                                    <!-- begin wizard step-2 -->
-                                    <div>
-                                        <fieldset>
-                                            <legend class="pull-left width-full">Contact Information</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Phone Number</label>
-                                                        <input type="text" name="phone" placeholder="123-456-7890" class="form-control" />
-                                                    </div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                                <!-- begin col-6 -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Email Address</label>
-                                                        <input type="text" name="email" placeholder="someone@example.com" class="form-control" />
-                                                    </div>
-                                                </div>
-                                                <!-- end col-6 -->
-                                            </div>
-                                            <!-- end row -->
-                                        </fieldset>
-                                    </div>
-                                    <!-- end wizard step-2 -->
-                                    <!-- begin wizard step-3 -->
-                                    <div>
-                                        <fieldset>
-                                            <legend class="pull-left width-full">Login</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Username</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="username" placeholder="johnsmithy" class="form-control" required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end col-4 -->
-                                                <!-- begin col-4 -->
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pasword</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password" placeholder="Your password" class="form-control" required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                                <!-- end col-4 -->
-                                            <div class="row">
-                                                <!-- begin col-4 -->
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>User Type</label>
                                                         <div class="controls">
                                                             <select name="type" class="form-control">
                                                                 <option>Staff</option>
-                                                                <option>Admin</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -259,13 +197,77 @@
                                                                 <option>Investigation</option>
                                                                 <option>Treasury</option>
                                                                 <option>Releasing</option>
-                                                                <option>System Admin</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- end col-6 -->
+
                                             </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-1 -->
+                                    <!-- begin wizard step-2 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Contact Information</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Phone Number</label>
+                                                        <input type="text" name="phone" placeholder="123-456-7890" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email Address</label>
+                                                        <input type="text" name="email" placeholder="someone@example.com" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Home Address</label>
+                                                        <input type="text" name="home" placeholder="Current Address" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-2 -->
+                                    <!-- begin wizard step-3 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Login</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="username" placeholder="Your username" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pasword</label>
+                                                        <div class="controls">
+                                                            <input type="password" name="password" placeholder="Your password" class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
                                             <div class="modal-footer">
                                                 <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-sm btn-success">Add</button>
