@@ -15,7 +15,14 @@
 </head>
 <body>
 <div id="result">
-    <h3>${requestScope["message"]}</h3>
+    <h3><%
+    out.println(request.getAttribute("message"));
+%></h3>
+<%
+    out.println(session.getAttribute("message"));
+    session.removeAttribute("message");
+%>
+
 </div>
 </body>
 </html>
