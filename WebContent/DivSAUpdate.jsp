@@ -68,7 +68,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         </div>
                         <h4 class="panel-title">Users Table</h4>
-                        <div class="modal-body">
+                        <div class="panel-body">
                             <%
                                 String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
                                 Connection conn = null;

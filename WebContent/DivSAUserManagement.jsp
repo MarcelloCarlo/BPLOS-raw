@@ -77,6 +77,7 @@
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Full Name</th>
                             <th>Username</th>
                             <th>User Type</th>
@@ -100,6 +101,7 @@
                                 {
                             %>
                                     <tr>
+                                        <td><%=res.getString("U_ID")%></td>
                                         <td><%=res.getString("U_FIRSTNAME")%></td>
                                         <td><%=res.getString("U_USERNAME")%></td>
                                         <td><%=res.getString("U_TYPE")%></td>
