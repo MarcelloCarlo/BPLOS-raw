@@ -186,7 +186,7 @@ public class uploadSingleAppForm extends HttpServlet {
 	        			details.setFileSize(part.getSize() / 1024);
 	        			try {
 	        				fullFilePath = uploadPath + File.separator + fileName;
-	        				part.write(uploadPath + File.separator + fileName);
+	        				part.write(fullFilePath);
 	        				
 	        				details.setUploadStatus("Success");
 	        			} catch (IOException ioObj) {
