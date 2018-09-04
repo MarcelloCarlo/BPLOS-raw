@@ -559,7 +559,27 @@
 
 								</div>
 								<div class="col-md-12">
-									<div class="form-group">
+								<div class="form-group">
+										<label class="control-label" for="fileUnifiedRequirements">Unified File Requirements: (.doc,.docx,.pdf, and must be maximum of 10MB)<span class="required">*</span>
+										</label><br>
+										<label class="control-label">Locational
+											Sketch of Business Establishment
+										</label><br>
+										<label class="control-label">Orginal
+											Copy of Barangay Clearance</label>
+											<label class="control-label">DTI
+											Registration File</label><br>
+											<label class="control-label">Title
+											To Property / Tax Declaration (If Owned) or Contract of Lease
+											(If Renting)</label><br>
+											<label class="control-label">Lessor's Business Permit (If Rented)</label><br>
+											 <label class="control-label">Authorization Letter w/ ID (Both Business Owner
+											& Filer)</label><br>
+											<label class="control-label">Other Required Document/s</label><br> 
+											<input type="file" name="fileUnifiedRequirements"
+											id="fileUnifiedRequirements" required="required" accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"/>
+									</div>
+								<!-- 	<div class="form-group">
 										<label class="control-label" for="fileNSingLocSketchEst">Locational
 											Sketch of Business Establishment <span class="required">*</span>
 										</label> <input type="file" name="fileNSingLocSketchEst"
@@ -601,7 +621,7 @@
 											class="required">*</span>
 										</label> <input type="file" name="fileNSingOthers"
 											id="fileNSingOthers" required="required" multiple="true" />
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>

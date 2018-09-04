@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.swing.text.DefaultEditorKit.InsertBreakAction;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -34,6 +36,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
 import com.mysql.jdbc.PreparedStatement;
+import com.qcapaeis.UploadDetail;
 import com.qcapaeis.dbConnection.LGUConnect;
 
 @MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB 
@@ -53,58 +56,21 @@ public class uploadSingleAppForm extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/***** Get The Absolute Path Of The Web Application *****/
+		String applicationPath = getServletContext().getRealPath(""),
+				uploadPath = applicationPath + File.separator + UPLOAD_DIRECTORY;
+		String fullFilePath = "";
+	
+		File fileUploadDirectory = new File(uploadPath);
+		if (!fileUploadDirectory.exists()) {
+			fileUploadDirectory.mkdirs();
+		}
 
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-
-		if (isMultipart) {
-			// Create a factory for disk-based file items
-			DiskFileItemFactory factory = new DiskFileItemFactory();
-			// Create a new file upload handler
-			ServletFileUpload upload = new ServletFileUpload(factory);
-			 try {
-	                List items = upload.parseRequest(request);
-	                Iterator iterator = items.iterator();
-	                while (iterator.hasNext()) {
-	                    FileItem item = (FileItem) iterator.next();
-
-	                    if (!item.isFormField()) {
-	                        String fileName = item.getName();
-
-	                        String root = getServletContext().getRealPath("/");
-	                        File path = new File(root + "/uploads");
-	                        if (!path.exists()) {
-	                            boolean status = path.mkdirs();
-	                        }
-
-	                        File uploadedFile = new File(path + "/" + fileName);
-	                        System.out.println(uploadedFile.getAbsolutePath());
-	                        item.write(uploadedFile);
-	                    }
-	                }
-		} catch (FileUploadException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		String fileName = "";
+		UploadDetail details = null;
+		List<UploadDetail> fileList = new ArrayList<UploadDetail>();
 		
-
-		// Sets the size threshold beyond which files are written directly to
-		// disk.
-		factory.setSizeThreshold(MAX_MEMORY_SIZE);
-
-		// Sets the directory used to temporarily store files that are larger
-		// than the configured size threshold. We use temporary directory for
-		// java
-		factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-
-		// constructs the folder where uploaded file will be stored
-		String uploadFolder = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
-
-		
-
-		// Set overall request size constraint
-		upload.setSizeMax(MAX_REQUEST_SIZE);
-
+	
 		// Form Inputs First. F.Y.I., I will declare at least 82+ variables in here,
 		// Goodluck for me KJDKJKJKS!
 		String txtNSingBussName = request.getParameter("txtNSingBussName");
@@ -194,10 +160,6 @@ public class uploadSingleAppForm extends HttpServlet {
 		String numNSingBussCapitalization7 = request.getParameter("numNSingBussCapitalization7");
 
 		Part fileNSingLocSketchEst = request.getPart("fileNSingLocSketchEst");
-		InputStream imageInputStream = fileNSingLocSketchEst.getInputStream();
-		   //read imageInputStream
-		fileNSingLocSketchEst.write("somefiepath");
-		   //can also write the photo to local storage
 		Part fileNSingBrgyClear = request.getPart("fileNSingBrgyClear");
 		Part fileNSingDTIreg = request.getPart("fileNSingDTIreg");
 		Part fileNSingTitleProp = request.getPart("fileNSingTitleProp");
@@ -207,6 +169,43 @@ public class uploadSingleAppForm extends HttpServlet {
 		// Part fileNsingOthers = request.getPart("fileNsingOthers");
 		List<Part> fileNSingOthers = request.getParts().stream()
 				.filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
+		
+		List<FileItem> items = null;
+		try {
+			items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+			for (FileItem item : items) {
+	            if (!item.isFormField()) {
+	                // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
+	               //Ignore
+	                // ... (do your job here)
+	            	for (Part part : request.getParts()) {
+	        			
+	        			fileName = extractFileName(part);
+	        			details = new UploadDetail();
+	        			details.setFileName(fileName);
+	        			details.setFileSize(part.getSize() / 1024);
+	        			try {
+	        				fullFilePath = uploadPath + File.separator + fileName;
+	        				part.write(uploadPath + File.separator + fileName);
+	        				
+	        				details.setUploadStatus("Success");
+	        			} catch (IOException ioObj) {
+	        				details.setUploadStatus("Failure : "+ ioObj.getMessage());
+	        			}
+	        			fileList.add(details);
+	        		}
+	            } else {
+	                // Process form file field (input type="file").
+	               
+	                // ... (do your job here)
+	                
+	            }
+	        }
+		} catch (FileUploadException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
 		DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
 		Connection connection = null;
 		PreparedStatement pStmt = null;
@@ -224,35 +223,13 @@ public class uploadSingleAppForm extends HttpServlet {
 		
 		
 		try {
-			/* List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-		        for (FileItem item : items) {
-		            if (item.isFormField()) {
-		                // Process regular form field (input type="text|radio|checkbox|etc", select, etc).
-		               //Ignore
-		                // ... (do your job here)
-		            } else {
-		                // Process form file field (input type="file").
-		                String fieldName = item.getFieldName();
-		                String fileName = FilenameUtils.getName(item.getName());
-		                InputStream fileContent = item.getInputStream();
-		                // ... (do your job here)
-		                
-		            }
-		        }*/
 			
-			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 			int updateQuery = 0;
 			Date dtiDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussDTIReg);
 			Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussEstRentStart);
 			java.sql.Date _dateNSingBussDTIReg = new java.sql.Date(dtiDate.getTime());
 			java.sql.Date _dateNSingBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
-			/*
-			 * java.sql.Date _dateNSingBussDTIReg = (Date)
-			 * defaultDateF.parse(dateNSingBussDTIReg); java.sql.Date
-			 * _dateNSingBussEstRentStart = (Date)
-			 * defaultDateF.parse(dateNSingBussEstRentStart);
-			 */
 
 			PreparedStatement authRepinfo = (PreparedStatement) connection.prepareStatement(
 					"INSERT INTO `lgu_r_authorize_rep`( `AR_FNAME`, `AR_MNAME`, `AR_LNAME`, `AR_HOME_ADDRESS`) VALUES ('"
@@ -287,7 +264,9 @@ public class uploadSingleAppForm extends HttpServlet {
 			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
 					"INSERT INTO `lgu_r_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_r_business),(SELECT MAX(AR_ID) FROM lgu_r_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_r_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_r_business)) ");
 			refNoInfo.executeUpdate();
-
+			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_attachments`(`AT_UNIFIED_FILE`,`AP_ID`) VALUES(?,(SELECT MAX(AP_ID) FROM `lgu_r_bp_application`)");
+			fileUpload.setString(1, fullFilePath);
+			fileUpload.executeUpdate();
 			Statement ss3 = connection.createStatement();
 			ResultSet gg3 = ss3.executeQuery(queery);
 			while (gg3.next()) {
@@ -336,14 +315,6 @@ public class uploadSingleAppForm extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		/*request.setAttribute("message", _refNo);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/res.jsp");
-		dispatcher.forward(request, response);*/
-		
-	/*	HttpSession session = request.getSession(false);
-		//save message in session
-		session.setAttribute("message", _refNo);
-		response.sendRedirect("/res.jsp");*/
 		// process only if its multipart content
 		
 		/*  if (ServletFileUpload.isMultipartContent(request)) { try { List<FileItem>
@@ -368,5 +339,16 @@ public class uploadSingleAppForm extends HttpServlet {
 		 */
 
 	}
+	private String extractFileName(Part part) {
+		String fileName = "", 
+				contentDisposition = part.getHeader("content-disposition");
+		String[] items = contentDisposition.split(";");
+		for (String item : items) {
+			if (item.trim().startsWith("filename")) {
+				fileName = item.substring(item.indexOf("=") + 2, item.length() - 1);
+			}
+		}
+		return fileName;
+	}
 
-}}
+}
