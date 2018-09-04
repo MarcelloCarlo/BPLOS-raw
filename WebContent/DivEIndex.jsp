@@ -372,7 +372,9 @@
 <script type="text/javascript">
     clippy.load('Clippy', function(agent){
         // do anything with the loaded agent
+          agent.animate();
         agent.show();
+      
     });
 </script>
 </body>
