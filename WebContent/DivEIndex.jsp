@@ -30,6 +30,8 @@
 	rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="assets/plugins/css/custom.min.css" rel="stylesheet">
+<!-- clippy -->
+<link href="assets/plugins/smore-inc-clippy.js/build/clippy.css" rel="stylesheet"> 
 </head>
 
 <body class="nav-md">
@@ -362,7 +364,16 @@
 	<script src="assets/plugins/jszip/dist/jszip.min.js"></script>
 	<script src="assets/plugins/pdfmake/build/pdfmake.min.js"></script>
 	<script src="assets/plugins/pdfmake/build/vfs_fonts.js"></script>
+	<!-- clippy -->
+	<script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="assets/plugins/js/custom.min.js"></script>
+	<!-- Init script -->
+<script type="text/javascript">
+    clippy.load('Clippy', function(agent){
+        // do anything with the loaded agent
+        agent.show();
+    });
+</script>
 </body>
 </html>
