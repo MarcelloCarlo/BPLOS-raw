@@ -45,8 +45,8 @@
 <script src="assets/plugins/pace/pace.min.js"></script>
 <!-- ================== END BASE JS ================== -->
 <!-- clippy -->
-<link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
-	rel="stylesheet">
+<!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
+	rel="stylesheet"> -->
 </head>
 
 <body>
@@ -61,72 +61,77 @@
 		<!-- page content -->
 		<div id="content" class="content">
 			<div class="">
-			 <!-- begin breadcrumb -->
-        <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Evaluation</a></li>
-            <li class="active">Application Processing</li>
-        </ol>
-          <!-- begin page-header -->
-        <h1 class="page-header">Application Processing</h1>
-        <!-- end page-header -->
-        
-        <div class="row">
-            <div class="col-md-12">
-                <!-- begin panel -->
-                <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        </div>
-                        <h4 class="panel-title">Application Form Evaluation Table</h4>
-                    </div>
-                    <div class="panel-body">
-                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
-                           <thead>
-									<tr>
-										<th>Name</th>
-										<th>Business Nature</th>
-										<th>Ownership Type</th>
-										<th>Application Type</th>
-										<th>Date Received</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-                       	<tbody>
-									<%
+				<!-- begin breadcrumb -->
+				<ol class="breadcrumb pull-right">
+					<li><a href="javascript:;">Evaluation</a></li>
+					<li class="active">Application Processing</li>
+				</ol>
+				<!-- begin page-header -->
+				<h1 class="page-header">Application Processing</h1>
+				<!-- end page-header -->
 
-                                      LGUConnect conX = new LGUConnect();
+				<div class="row">
+					<div class="col-md-12">
+						<!-- begin panel -->
+						<div class="panel panel-inverse">
+							<div class="panel-heading">
+								<div class="panel-heading-btn">
+									<a href="javascript:;"
+										class="btn btn-xs btn-icon btn-circle btn-success"
+										data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+								</div>
+								<h4 class="panel-title">Application Form Evaluation Table</h4>
+							</div>
+							<div class="panel-body">
+								<table id="data-table"
+									class="table table-striped table-bordered nowrap" width="100%">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Business Nature</th>
+											<th>Ownership Type</th>
+											<th>Application Type</th>
+											<th>Date Received</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+                                      <%LGUConnect conX = new LGUConnect();
                                       Connection conn3 = conX.getConnection();
                                       Statement ss3 = conn3.createStatement();
-                                      ResultSet gg3 = ss3.executeQuery("SELECT BUS.BU_NAME, BN.BN_NAME, OT.OT_NAME, AP.AP_DATE, AP.AP_TYPE  FROM lgu_r_business BUS INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID INNER JOIN lgu_r_ownership_type OT ON OT.OT_ID = BUS.OT_ID INNER JOIN lgu_r_bp_application AP ON AP.BU_ID = BUS.BU_ID");
+                                      ResultSet gg3 = ss3.executeQuery("SELECT BUS.BU_NAME, BN.BN_NAME, OT.OT_NAME, AP.AP_DATE, AP.AP_TYPE  FROM lgu_r_business BUS INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID INNER JOIN lgu_r_ownership_type OT ON OT.OT_ID = BUS.OT_ID INNER JOIN lgu_r_bp_application AP ON AP.BU_ID = BUS.BU_ID ");
                                 while (gg3.next())
                                 {
-                            %>
-									<tr>
-										<td><%=gg3.getString("BUS.BU_NAME")%></td>
-										<td><%=gg3.getString("BN.BN_NAME")%></td>
-										<td><%=gg3.getString("OT.OT_NAME")%></td>
-										<td><%=gg3.getString("AP.AP_TYPE")%></td>
-										<td><%=gg3.getString("AP.AP_DATE")%></td>
-										<%--<td>--%>
-										<%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
-										<%--</td>--%>
-
-										<td><button type="button" class="btn btn-success"
-												data-toggle="modal" data-target=".evaluation-modal-new">Action</button></td>
-
-									</tr>
-									<%
-                                }
-                            %>
-
+                                	String apStatus = gg3.getString("AP.AP_TYPE");
+                                	String modalMode = "";
+                                	String modalClass = "";
+                                	if (apStatus.equals("New")){ modalMode = ".evaluation-modal-new";
+                                								modalClass = "newModal";}
+                                	else if (apStatus.equals("Renew")){ modalMode = ".evaluation-modal-renew";
+                                										modalClass = "renewModal";}
+                                	else {modalMode = ".evaluation-modal-new"; }%>
+										<tr>
+											<td><%=gg3.getString("BUS.BU_NAME")%></td>
+											<td><%=gg3.getString("BN.BN_NAME")%></td>
+											<td><%=gg3.getString("OT.OT_NAME")%></td>
+											<td><%=apStatus%></td>
+											<td><%=gg3.getString("AP.AP_DATE")%></td>
+											<%--<td>--%>
+											<%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
+											<%--</td>--%>
+											<td><button type="button" class="btn btn-success <%=modalClass%>"
+													data-toggle="modal" data-target="<%=modalMode%>">Action</button></td>
+		
+										</tr>
+										<%
+                                }%>
 								</tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- end panel -->
-            </div>
-        </div>
+								</table>
+							</div>
+						</div>
+						<!-- end panel -->
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- /page content -->
@@ -145,10 +150,12 @@
 							for New Application</h4>
 					</div>
 					<div class="modal-body">
-						<label>Business Name/Corporate Name: </label><br> <label>Name
-							of Sole Proprietor/Partnership/President: </label><br> <label>Business
-							Address: </label><br> <label>Tel No.: </label><br> <label>Authorized
-							Representative: </label><br> <label>Address: </label>
+						<h5>Business Name/Corporate Name: 
+                                <input disabled="" id="nBussName" type="text"/>
+                             </h5> <h5>Name
+							of Sole Proprietor/Partnership/President: <input disabled="" id="nBussOwner" type="text"/> </h5> <h5>Business
+							Address: <input disabled="" id="nBussAddr" type="text"/></h5> <h5>Tel No.: <input disabled="" id="nBussConTelno" type="text"/></h5> <h5>Authorized
+							Representative: <input disabled="" id="nBussAuthRepName" type="text"/></h5> <h5>Address:<input disabled="" id="nBussAuthRepAddr" type="text"/> </h5>
 						<hr>
 						<div class="x_content">
 
@@ -345,18 +352,32 @@
     $(document).ready(function() {
         App.init();
         TableManageResponsive.init();
+        
+        $(".newModal").click(function()
+                {
+                    $("#nBussName").val($(this).closest("tbody tr").find("td:eq(0)").html());
+                    $("#editIssueTitle").val($(this).closest("tbody tr").find("td:eq(1)").html());
+                    if ($(this).closest("tbody tr").find("td:eq(2)").text() === "Personal")
+                    {
+                        $("#editCheckA").prop("checked", true).trigger('click');
+                    }
+                    else
+                    {
+                        $("#editCheckI").prop("checked", true).trigger('click');
+                    }
+                });
     });
 </script>
 	<!-- clippy -->
-	<script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script>
+	<!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
 	<!-- Init script -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
     clippy.load('Clippy', function(agent){
         // do anything with the loaded agent
           agent.animate();
         agent.show();
       
     });
-</script>
+</script> -->
 </body>
 </html>
