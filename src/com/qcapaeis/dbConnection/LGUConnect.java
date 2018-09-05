@@ -30,6 +30,7 @@ public class LGUConnect {
 	               password);
 	       return conX;
 	   }
+	   
 	
  /*   public Connection getConnection(){
         try{
