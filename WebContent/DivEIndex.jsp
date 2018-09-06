@@ -131,7 +131,7 @@
                                       <%LGUConnect conX = new LGUConnect();
                                       Connection conn3 = conX.getConnection();
                                       Statement ss3 = conn3.createStatement();
-                                      ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationforms`");
+                                      ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationForms`");
                                 while (gg3.next())
                                 {
                                 	String apStatus = gg3.getString("AP_TYPE");
@@ -149,7 +149,7 @@
 											<td><%=apStatus%></td>
 											<td><%=gg3.getString("AP_DATE")%></td>
 											<td><button type="button" class="btn btn-success <%=modalClass%>"
-													data-toggle="modal" data-target="<%=modalMode%>">Action</button></td>
+													data-toggle="modal" data-target="<%=modalMode%>">Evaluate</button></td>
 											<td class="hide"><%=gg3.getString("BU_PRESIDENT")%></td>
 											<td class="hide"><%=gg3.getString("TAX_PAYERNAME")%></td>
 											<td class="hide"><%=gg3.getString("BU_LOCATION")%></td>
@@ -211,7 +211,7 @@
 						<h4 class="modal-title" id="myModalLabel">Check Requirements
 							for New Application</h4>
 					</div>
-					<form>
+					<form id="newApplForm" name="newApplForm">
 					<div class="modal-body">
 						<h5>Business Name/Corporate Name: 
                                 <input disabled="" id="nBussName" type="text"/>
@@ -228,43 +228,43 @@
 								<ul class="to_do">
 									<li>
 										<p>
-											<input type="checkbox" id="AT_BRGY_CLEARANCE" class="flat"> Original
+											<input type="checkbox" id="AT_BRGY_CLEARANCE" class="flat" value="Pass"> Original
 											Barangay Clearance
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_DTI_REGISTRATION" class="flat"> DTI Registration
+											<input type="checkbox" id="AT_DTI_REGISTRATION" class="flat" value="Pass"> DTI Registration
 											(for Single Proprietorship
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_SEC_REGISTRATION" class="flat"> SEC Registration
+											<input type="checkbox" id="AT_SEC_REGISTRATION" class="flat" value="Pass"> SEC Registration
 											with Artices (for Corporation/Partnership
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_TITLE_TO_PROPERTY" class="flat"> Title to
+											<input type="checkbox" id="AT_TITLE_TO_PROPERTY" class="flat" value="Pass"> Title to
 											property of Tax Declaration (if owned)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_CONTRACT_OF_LEASE" class="flat"> Contract of
+											<input type="checkbox" id="AT_CONTRACT_OF_LEASE" class="flat" value="Pass"> Contract of
 											Lease and Lessor's Business Permit (if rented)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_AUTHORIZATION" class="flat"> Authorization
+											<input type="checkbox" id="AT_AUTHORIZATION" class="flat" value="Pass"> Authorization
 											Letter & ID (Owner and representative(if any))
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_MISC_DOCUMENTS" class="flat"> Other Documents
+											<input type="checkbox" id="AT_MISC_DOCUMENTS" class="flat" value="Pass"> Other Documents
 										</p>
 									</li>
 								</ul>
@@ -274,7 +274,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						<button type="submit" class="btn btn-success">Save
-							changes</button>
+							Changes</button>
 					</div>
 					</form>
 
@@ -309,62 +309,62 @@
 								<ul class="to_do">
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Original Copy of
+											<input type="checkbox" class="flat" value="Pass"> Original Copy of
 											Previous Business Permit, if not applicable Certified xerox
 											copy
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Xerox copy of
+											<input type="checkbox" class="flat" value="Pass"> Xerox copy of
 											Tax Bill and Official Receipt (current)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Original Copy of
+											<input type="checkbox" class="flat" value="Pass"> Original Copy of
 											Barangay Clearance (for renewal purpose)
 										</p>
 									</li>
 									<p>Other Document Requirements required such as:</p>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Locational
+											<input type="checkbox" class="flat" value="Pass"> Locational
 											Clearance (LC)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Fire Safety
+											<input type="checkbox" class="flat" value="Pass"> Fire Safety
 											Inspection Certificate (FSIC)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Sanitary Permit
+											<input type="checkbox" class="flat" value="Pass"> Sanitary Permit
 											(SP)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> CTAO Certificate
+											<input type="checkbox" class="flat" value="Pass"> CTAO Certificate
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Certificate of
+											<input type="checkbox" class="flat" value="Pass"> Certificate of
 											Electrical Inspection (CEI)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Lessor's
+											<input type="checkbox" class="flat" value="Pass"> Lessor's
 											Business Permit (if rented)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> PCAB License
+											<input type="checkbox" class="flat" value="Pass"> PCAB License
 										</p>
 									</li>
 								</ul>
