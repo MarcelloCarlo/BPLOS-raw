@@ -87,22 +87,54 @@
 									class="table table-striped table-bordered nowrap" width="100%">
 									<thead>
 										<tr>
-											<th>Name</th>
+											<th>Business Name</th>
 											<th>Business Nature</th>
 											<th>Ownership Type</th>
 											<th>Application Type</th>
 											<th>Date Received</th>
 											<th>Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
+											<th class="hide">Action</th>
 										</tr>
 									</thead>
 									<tbody>
                                       <%LGUConnect conX = new LGUConnect();
                                       Connection conn3 = conX.getConnection();
                                       Statement ss3 = conn3.createStatement();
-                                      ResultSet gg3 = ss3.executeQuery("SELECT BUS.BU_NAME, BN.BN_NAME, OT.OT_NAME, AP.AP_DATE, AP.AP_TYPE  FROM lgu_r_business BUS INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID INNER JOIN lgu_r_ownership_type OT ON OT.OT_ID = BUS.OT_ID INNER JOIN lgu_r_bp_application AP ON AP.BU_ID = BUS.BU_ID ");
+                                      ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationforms`");
                                 while (gg3.next())
                                 {
-                                	String apStatus = gg3.getString("AP.AP_TYPE");
+                                	String apStatus = gg3.getString("AP_TYPE");
                                 	String modalMode = "";
                                 	String modalClass = "";
                                 	if (apStatus.equals("New")){ modalMode = ".evaluation-modal-new";
@@ -111,16 +143,46 @@
                                 										modalClass = "renewModal";}
                                 	else {modalMode = ".evaluation-modal-new"; }%>
 										<tr>
-											<td><%=gg3.getString("BUS.BU_NAME")%></td>
-											<td><%=gg3.getString("BN.BN_NAME")%></td>
-											<td><%=gg3.getString("OT.OT_NAME")%></td>
+											<td><%=gg3.getString("BU_NAME")%></td>
+											<td><%=gg3.getString("BN_NAME")%></td>
+											<td><%=gg3.getString("OT_NAME")%></td>
 											<td><%=apStatus%></td>
-											<td><%=gg3.getString("AP.AP_DATE")%></td>
-											<%--<td>--%>
-											<%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
-											<%--</td>--%>
+											<td><%=gg3.getString("AP_DATE")%></td>
 											<td><button type="button" class="btn btn-success <%=modalClass%>"
 													data-toggle="modal" data-target="<%=modalMode%>">Action</button></td>
+											<td class="hide"><%=gg3.getString("BU_PRESIDENT")%></td>
+											<td class="hide"><%=gg3.getString("TAX_PAYERNAME")%></td>
+											<td class="hide"><%=gg3.getString("BU_LOCATION")%></td>
+											<td class="hide"><%=gg3.getString("BU_CONTACT")%></td>
+											<td class="hide"><%=gg3.getString("AUTH_REPNAME")%></td>
+											<td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%></td>
+											<td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%></td>
+											<td class="hide" id="AT_ID"><%=gg3.getString("AT_ID")%></td>
+											<td class="hide" id="AP_ID"><%=gg3.getString("AP_ID")%></td>
+											<td class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%></td>
+											<td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%></td>
+											<td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%></td>
+											<td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%></td>
+											<td class="hide"><%=gg3.getString("AT_TAX_DECLARATION")%></td>
+											<td class="hide"><%=gg3.getString("AT_CONTRACT_OF_LEASE")%></td>
+											<td class="hide"><%=gg3.getString("AT_LESSORS_BP")%></td>
+											<td class="hide"><%=gg3.getString("AT_AUTHORIZATION")%></td>
+											<td class="hide"><%=gg3.getString("AT_LOCATIONAL_CLR")%></td>
+											<td class="hide"><%=gg3.getString("AT_SANITARY_HEALTH_CERT")%></td>
+											<td class="hide"><%=gg3.getString("AT_BUILDING_PERMIT")%></td>
+											<td class="hide"><%=gg3.getString("AT_POLLUTION_CLR")%></td>
+											<td class="hide"><%=gg3.getString("AT_MECHANICAL_PERMIT")%></td>
+											<td class="hide"><%=gg3.getString("AT_ELECTRICAL_INSP")%></td>
+											<td class="hide"><%=gg3.getString("AT_POLICE_CLEARANCE")%></td>
+											<td class="hide"><%=gg3.getString("AT_CTAO_CLEARANCE_CERT")%></td>
+											<td class="hide"><%=gg3.getString("AT_FSIC")%></td>
+											<td class="hide"><%=gg3.getString("AT_PREV_BP")%></td>
+											<td class="hide"><%=gg3.getString("AT_TAX_BILL")%></td>
+											<td class="hide"><%=gg3.getString("AT_OFFICIAL_RECEIPT")%></td>
+											<td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%></td>
+											<td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%></td>
+											<td class="hide"><%=gg3.getString("AP_Remarks")%></td>
+											
 		
 										</tr>
 										<%
@@ -149,6 +211,7 @@
 						<h4 class="modal-title" id="myModalLabel">Check Requirements
 							for New Application</h4>
 					</div>
+					<form>
 					<div class="modal-body">
 						<h5>Business Name/Corporate Name: 
                                 <input disabled="" id="nBussName" type="text"/>
@@ -160,46 +223,48 @@
 						<div class="x_content">
 
 							<div class="">
+							<button type="button" class="btn btn-primary" id="fileDownload">DOWNLOAD ATTACHMENT</button> <input disabled="" id="AT_UNIFIED_FILE_NAME" type="text"/>
+								
 								<ul class="to_do">
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Original
+											<input type="checkbox" id="AT_BRGY_CLEARANCE" class="flat"> Original
 											Barangay Clearance
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> DTI Registration
+											<input type="checkbox" id="AT_DTI_REGISTRATION" class="flat"> DTI Registration
 											(for Single Proprietorship
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> SEC Registration
+											<input type="checkbox" id="AT_SEC_REGISTRATION" class="flat"> SEC Registration
 											with Artices (for Corporation/Partnership
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Title to
+											<input type="checkbox" id="AT_TITLE_TO_PROPERTY" class="flat"> Title to
 											property of Tax Declaration (if owned)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Contract of
+											<input type="checkbox" id="AT_CONTRACT_OF_LEASE" class="flat"> Contract of
 											Lease and Lessor's Business Permit (if rented)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Authorization
-											Letter & ID (if representative)
+											<input type="checkbox" id="AT_AUTHORIZATION" class="flat"> Authorization
+											Letter & ID (Owner and representative(if any))
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat"> Owner's ID
+											<input type="checkbox" id="AT_MISC_DOCUMENTS" class="flat"> Other Documents
 										</p>
 									</li>
 								</ul>
@@ -211,6 +276,7 @@
 						<button type="submit" class="btn btn-success">Save
 							changes</button>
 					</div>
+					</form>
 
 				</div>
 			</div>
@@ -348,25 +414,80 @@
 	<script src="assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 
-	<script>
+	<script type="text/javascript">
     $(document).ready(function() {
         App.init();
         TableManageResponsive.init();
-        
-        $(".newModal").click(function()
-                {
-                    $("#nBussName").val($(this).closest("tbody tr").find("td:eq(0)").html());
-                    $("#editIssueTitle").val($(this).closest("tbody tr").find("td:eq(1)").html());
-                    if ($(this).closest("tbody tr").find("td:eq(2)").text() === "Personal")
-                    {
-                        $("#editCheckA").prop("checked", true).trigger('click');
-                    }
-                    else
-                    {
-                        $("#editCheckI").prop("checked", true).trigger('click');
-                    }
-                });
     });
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	 $(".newModal").click(function()
+             {
+                 $("#nBussName").val($(this).closest("tbody tr").find("td:eq(0)").html());  
+                 $("#nBussOwner").val($(this).closest("tbody tr").find("td:eq(6)").html());
+                 $("#nBussAddr").val($(this).closest("tbody tr").find("td:eq(8)").html());
+                 $("#nBussConTelno").val($(this).closest("tbody tr").find("td:eq(9)").html());
+                 $("#nBussAuthRepName").val($(this).closest("tbody tr").find("td:eq(10)").html());
+                 $("#nBussAuthRepAddr").val($(this).closest("tbody tr").find("td:eq(11)").html());
+                 $("#AT_UNIFIED_FILE_NAME").val($(this).closest("tbody tr").find("td:eq(12)").html());
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass")
+                 {
+                     $("#AT_BRGY_CLEARANCE").prop("checked", true);
+                 }
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(16)").text() === "Pass")
+                 {
+                     $("#AT_DTI_REGISTRATION").prop("checked", true);
+                 }
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(17)").text() === "Pass")
+                 {
+                     $("#AT_SEC_REGISTRATION").prop("checked", true);
+                 }
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(18)").text() === "Pass")
+                 {
+                     $("#AT_TITLE_TO_PROPERTY").prop("checked", true);
+                 }
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(20)").text() === "Pass")
+                 {
+                     $("#AT_CONTRACT_OF_LEASE").prop("checked", true);
+                 }
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(22)").text() === "Pass")
+                 {
+                     $("#AT_AUTHORIZATION").prop("checked", true);
+                 }
+                 
+                 if ($(this).closest("tbody tr").find("td:eq(36)").text() === "Pass")
+                 {
+                     $("#AT_MISC_DOCUMENTS").prop("checked", true);
+                 }
+                
+             });
+	 	
+	 $("#fileDownload").click(function (event) {
+		 // event.preventDefault();
+		 var fID =$("#AT_ID").html();
+	  var apID = $("#AP_ID").html();
+	 var link = "?fID="+fID+"&apID="+apID;
+	 window.open("downloadAttachment"+link);
+		}); 
+});
+</script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+
 </script>
 	<!-- clippy -->
 	<!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
