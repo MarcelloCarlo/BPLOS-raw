@@ -199,6 +199,7 @@
 		<!-- /page content -->
 
 		<!-- New modal -->
+		<form id="newApplForm" name="newApplForm">
 		<div class="modal fade evaluation-modal-new" tabindex="-1"
 			role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -211,7 +212,7 @@
 						<h4 class="modal-title" id="myModalLabel">Check Requirements
 							for New Application</h4>
 					</div>
-					<form id="newApplForm" name="newApplForm">
+					
 					<div class="modal-body">
 						<h5>Business Name/Corporate Name: 
                                 <input disabled="" id="nBussName" type="text"/>
@@ -224,7 +225,12 @@
 
 							<div class="">
 							<button type="button" class="btn btn-primary" id="fileDownload">DOWNLOAD ATTACHMENT</button> <input disabled="" id="AT_UNIFIED_FILE_NAME" type="text"/>
-								
+								<div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox">
+                                </span>
+                                <input class="form-control" type="text" placeholder="Checkbox add on">
+                            </div>
 								<ul class="to_do">
 									<li>
 										<p>
@@ -267,7 +273,11 @@
 											<input type="checkbox" id="AT_MISC_DOCUMENTS" class="flat" value="Pass"> Other Documents
 										</p>
 									</li>
-									<li><input id="AP_Remarks" type="text"/></li>
+									<li>
+									<div class="col-md-9">
+                                        <textarea class="form-control" placeholder="Remarks" id="AP_Remarks" rows="3"></textarea>
+                                    </div>
+                                    </li>
 								</ul>
 							</div>
 						</div>
@@ -277,11 +287,12 @@
 						<button type="submit" class="btn btn-success">Save
 							Changes</button>
 					</div>
-					</form>
+					
 
 				</div>
 			</div>
 		</div>
+		</form>
 
 		<!-- Renewal modal -->
 		<div class="modal fade evaluation-modal-renew" tabindex="-1"
@@ -413,6 +424,7 @@
 
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<script src="assets/js/apps.min.js"></script>
+	<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 
 	<script type="text/javascript">
@@ -422,6 +434,9 @@
     });
 </script>
 <script type="text/javascript">
+var fID =$("#AT_ID").html();
+var apID = $("#AP_ID").html();
+
 $(document).ready(function(){
 	 $(".newModal").click(function()
              {
@@ -474,8 +489,6 @@ $(document).ready(function(){
 	 	
 	 $("#fileDownload").click(function (event) {
 		 // event.preventDefault();
-		 var fID =$("#AT_ID").html();
-	  var apID = $("#AP_ID").html();
 	 var link = "?fID="+fID+"&apID="+apID;
 	 window.open("downloadAttachment"+link);
 		}); 
@@ -483,9 +496,12 @@ $(document).ready(function(){
 	 
 });
 
-$(function () {
-	
+</script>
 
+<script type="text/javascript">
+$(document).ready(function () {
+	var fID =$("#AT_ID").html();
+	var apID = $("#AP_ID").html();
     $('#newApplForm').on('form:submit', function () {
             swal.mixin({
             confirmButtonText: 'Next &rarr;',
@@ -495,12 +511,13 @@ $(function () {
             'Confirm Evaluation?',
         ]).then((result) => {
             if (result.value) {
-            	var newApplForm = $('#newApplForm')[0];
-                var datanewApplForm = new FormData(newApplForm);
+            	/* var newApplForm = $('#newApplForm')[0];
+                var datanewApplForm = new FormData(newApplForm); */
                 $.ajax({
                     type: "POST",
+                   // dataType: 'json',
                      url: "uploadSingleAppForm",
-                     data: datanewApplForm,
+                     data: {fID:fID, apID:apID, AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()},
                      processData: false,
                      contentType: false,
                     success: function(response){
@@ -516,17 +533,6 @@ $(function () {
         return false;
         });
 });
-
-</script>
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
 
 </script>
 	<!-- clippy -->

@@ -698,8 +698,6 @@
 </script>
 	<script>
     $(function () {
-    	
-
         $('#applicationFormSingle').parsley().on('field:validated', function () {
             var ok = $('.parsley-error').length === 0;
             $('.bs-callout-info').toggleClass('hidden', !ok);
