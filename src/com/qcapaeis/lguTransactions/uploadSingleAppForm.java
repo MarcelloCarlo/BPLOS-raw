@@ -236,7 +236,7 @@ public class uploadSingleAppForm extends HttpServlet {
 			ResultSet gg3 = ss3.executeQuery(queery);
 			while (gg3.next()) {
 				_refNo = gg3.getString("AP_REFERENCE_NO");
-				echo.write(_refNo);
+				response.getWriter().print(_refNo);	
 				// response.getWriter().write(_refNo);
 			}
 

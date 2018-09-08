@@ -128,28 +128,34 @@
 										</tr>
 									</thead>
 									<tbody>
-                                      <%LGUConnect conX = new LGUConnect();
-                                      Connection conn3 = conX.getConnection();
-                                      Statement ss3 = conn3.createStatement();
-                                      ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationForms`");
-                                while (gg3.next())
-                                {
-                                	String apStatus = gg3.getString("AP_TYPE");
-                                	String modalMode = "";
-                                	String modalClass = "";
-                                	if (apStatus.equals("New")){ modalMode = ".evaluation-modal-new";
-                                								modalClass = "newModal";}
-                                	else if (apStatus.equals("Renew")){ modalMode = ".evaluation-modal-renew";
-                                										modalClass = "renewModal";}
-                                	else {modalMode = ".evaluation-modal-new"; }%>
+										<%
+											LGUConnect conX = new LGUConnect();
+											Connection conn3 = conX.getConnection();
+											Statement ss3 = conn3.createStatement();
+											ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationForms`");
+											while (gg3.next()) {
+												String apStatus = gg3.getString("AP_TYPE");
+												String modalMode = "";
+												String modalClass = "";
+												if (apStatus.equals("New")) {
+													modalMode = ".evaluation-modal-new";
+													modalClass = "newModal";
+												} else if (apStatus.equals("Renew")) {
+													modalMode = ".evaluation-modal-renew";
+													modalClass = "renewModal";
+												} else {
+													modalMode = ".evaluation-modal-new";
+												}
+										%>
 										<tr>
 											<td><%=gg3.getString("BU_NAME")%></td>
 											<td><%=gg3.getString("BN_NAME")%></td>
 											<td><%=gg3.getString("OT_NAME")%></td>
 											<td><%=apStatus%></td>
 											<td><%=gg3.getString("AP_DATE")%></td>
-											<td><button type="button" class="btn btn-success <%=modalClass%>"
-													data-toggle="modal" data-target="<%=modalMode%>">Evaluate</button></td>
+											<td><button type="button"
+													class="btn btn-success <%=modalClass%>" data-toggle="modal"
+													data-target="<%=modalMode%>">Evaluate</button></td>
 											<td class="hide"><%=gg3.getString("BU_PRESIDENT")%></td>
 											<td class="hide"><%=gg3.getString("TAX_PAYERNAME")%></td>
 											<td class="hide"><%=gg3.getString("BU_LOCATION")%></td>
@@ -182,12 +188,13 @@
 											<td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%></td>
 											<td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%></td>
 											<td class="hide"><%=gg3.getString("AP_Remarks")%></td>
-											
-		
+
+
 										</tr>
 										<%
-                                }%>
-								</tbody>
+											}
+										%>
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -199,12 +206,10 @@
 		<!-- /page content -->
 
 		<!-- New modal -->
-		<form id="newApplForm" name="newApplForm">
-		<div class="modal fade evaluation-modal-new" tabindex="-1"
-			role="dialog" aria-hidden="true">
+
+		<div class="modal fade evaluation-modal-new" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
-
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">x</span>
@@ -212,87 +217,122 @@
 						<h4 class="modal-title" id="myModalLabel">Check Requirements
 							for New Application</h4>
 					</div>
-					
 					<div class="modal-body">
-						<h5>Business Name/Corporate Name: 
-                                <input disabled="" id="nBussName" type="text"/>
-                             </h5> <h5>Name
-							of Sole Proprietor/Partnership/President: <input disabled="" id="nBussOwner" type="text"/> </h5> <h5>Business
-							Address: <input disabled="" id="nBussAddr" type="text"/></h5> <h5>Tel No.: <input disabled="" id="nBussConTelno" type="text"/></h5> <h5>Authorized
-							Representative: <input disabled="" id="nBussAuthRepName" type="text"/></h5> <h5>Address:<input disabled="" id="nBussAuthRepAddr" type="text"/> </h5>
-						<hr>
-						<div class="x_content">
-
-							<div class="">
-							<button type="button" class="btn btn-primary" id="fileDownload">DOWNLOAD ATTACHMENT</button> <input disabled="" id="AT_UNIFIED_FILE_NAME" type="text"/>
-								<div class="input-group">
-                                <span class="input-group-addon">
-                                    <input type="checkbox">
-                                </span>
-                                <input class="form-control" type="text" placeholder="Checkbox add on">
-                            </div>
-								<ul class="to_do">
+						<form id="newApplForm" class="form-horizontal" name="newApplForm"
+							enctype="multipart/form-data">
+							<div class="form-group col-md-8">
+								<h5>
+									Business Name/Corporate Name: <input disabled="" id="nBussName"
+										type="text" />
+								</h5>
+								<h5>
+									Name of Sole Proprietor/Partnership/President: <input
+										disabled="" id="nBussOwner" type="text" />
+								</h5>
+								<h5>
+									Business Address: <input disabled="" id="nBussAddr" type="text" />
+								</h5>
+								<h5>
+									Tel No.: <input disabled="" id="nBussConTelno" type="text" />
+								</h5>
+								<h5>
+									Authorized Representative: <input disabled=""
+										id="nBussAuthRepName" type="text" />
+								</h5>
+								<h5>
+									Address:<input disabled="" id="nBussAuthRepAddr" type="text" />
+								</h5>
+							</div>
+							<hr>
+							<div class="col-md-8 row">
+								<div class="col-md-5">
+									<button type="button" class="btn btn-primary form-control"
+										id="fileDownload">DOWNLOAD ATTACHMENT</button>
+								</div>
+								<input disabled="" class="hide" id="_AT_ID" name="_AT_ID" /> <input
+									disabled="" class="hide" id="_AP_ID" name="_AP_ID" />
+								<div class="col-md-3">
+									<input disabled="" id="AT_UNIFIED_FILE_NAME" type="text" />
+								</div>
+							</div>
+							<div class="col-md-12 vertical">
+							<div class="col-md-8">
+							<ul class="to_do">
 									<li>
 										<p>
-											<input type="checkbox" id="AT_BRGY_CLEARANCE" class="flat" value="Pass"> Original
-											Barangay Clearance
+											<input type="checkbox" id="AT_BRGY_CLEARANCE"
+												name="AT_BRGY_CLEARANCE" class="flat" value="Pass">
+											Original Barangay Clearance
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_DTI_REGISTRATION" class="flat" value="Pass"> DTI Registration
-											(for Single Proprietorship
+											<input type="checkbox" id="AT_DTI_REGISTRATION"
+												name="AT_DTI_REGISTRATION" class="flat" value="Pass">
+											DTI Registration (for Single Proprietorship
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_SEC_REGISTRATION" class="flat" value="Pass"> SEC Registration
-											with Artices (for Corporation/Partnership
+											<input type="checkbox" id="AT_SEC_REGISTRATION"
+												name="AT_SEC_REGISTRATION" class="flat" value="Pass">
+											SEC Registration with Artices (for Corporation/Partnership
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_TITLE_TO_PROPERTY" class="flat" value="Pass"> Title to
-											property of Tax Declaration (if owned)
+											<input type="checkbox" id="AT_TITLE_TO_PROPERTY"
+												name="AT_TITLE_TO_PROPERTY" class="flat" value="Pass">
+											Title to property of Tax Declaration (if owned)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_CONTRACT_OF_LEASE" class="flat" value="Pass"> Contract of
-											Lease and Lessor's Business Permit (if rented)
+											<input type="checkbox" id="AT_CONTRACT_OF_LEASE"
+												name="AT_CONTRACT_OF_LEASE" class="flat" value="Pass">
+											Contract of Lease and Lessor's Business Permit (if rented)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_AUTHORIZATION" class="flat" value="Pass"> Authorization
-											Letter & ID (Owner and representative(if any))
+											<input type="checkbox" id="AT_AUTHORIZATION"
+												name="AT_AUTHORIZATION" class="flat" value="Pass">
+											Authorization Letter & ID (Owner and representative(if any))
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" id="AT_MISC_DOCUMENTS" class="flat" value="Pass"> Other Documents
+											<input type="checkbox" id="AT_MISC_DOCUMENTS"
+												name="AT_MISC_DOCUMENTS" class="flat" value="Pass">
+											Other Documents
 										</p>
 									</li>
 									<li>
-									<div class="col-md-9">
-                                        <textarea class="form-control" placeholder="Remarks" id="AP_Remarks" rows="3"></textarea>
-                                    </div>
-                                    </li>
+										<div class="col-md-9">
+											<textarea class="form-control" placeholder="Remarks"
+												id="AP_Remarks" name="AP_Remarks" rows="3"></textarea>
+										</div>
+									</li>
 								</ul>
 							</div>
-						</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+								<button type="submit" id="btnNewAppl" class="btn btn-success">Save
+									Changes</button>
+							</div>
+							</div>
+							
+
+						</form>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-success">Save
-							Changes</button>
-					</div>
-					
 
 				</div>
 			</div>
+
+
 		</div>
-		</form>
+
 
 		<!-- Renewal modal -->
 		<div class="modal fade evaluation-modal-renew" tabindex="-1"
@@ -321,62 +361,64 @@
 								<ul class="to_do">
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Original Copy of
-											Previous Business Permit, if not applicable Certified xerox
-											copy
+											<input type="checkbox" class="flat" value="Pass">
+											Original Copy of Previous Business Permit, if not applicable
+											Certified xerox copy
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Xerox copy of
-											Tax Bill and Official Receipt (current)
+											<input type="checkbox" class="flat" value="Pass">
+											Xerox copy of Tax Bill and Official Receipt (current)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Original Copy of
-											Barangay Clearance (for renewal purpose)
+											<input type="checkbox" class="flat" value="Pass">
+											Original Copy of Barangay Clearance (for renewal purpose)
 										</p>
 									</li>
 									<p>Other Document Requirements required such as:</p>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Locational
-											Clearance (LC)
+											<input type="checkbox" class="flat" value="Pass">
+											Locational Clearance (LC)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Fire Safety
-											Inspection Certificate (FSIC)
+											<input type="checkbox" class="flat" value="Pass">
+											Fire Safety Inspection Certificate (FSIC)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Sanitary Permit
-											(SP)
+											<input type="checkbox" class="flat" value="Pass">
+											Sanitary Permit (SP)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> CTAO Certificate
+											<input type="checkbox" class="flat" value="Pass">
+											CTAO Certificate
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Certificate of
-											Electrical Inspection (CEI)
+											<input type="checkbox" class="flat" value="Pass">
+											Certificate of Electrical Inspection (CEI)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> Lessor's
-											Business Permit (if rented)
+											<input type="checkbox" class="flat" value="Pass">
+											Lessor's Business Permit (if rented)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass"> PCAB License
+											<input type="checkbox" class="flat" value="Pass">
+											PCAB License
 										</p>
 									</li>
 								</ul>
@@ -433,11 +475,43 @@
         TableManageResponsive.init();
     });
 </script>
-<script type="text/javascript">
-var fID =$("#AT_ID").html();
+	<script type="text/javascript">
+var fID = $("#AT_ID").html();
 var apID = $("#AP_ID").html();
 
 $(document).ready(function(){
+	
+	 $('#btnNewAppl').click(function () {
+         swal.mixin({
+         confirmButtonText: 'Next &rarr;',
+         showCancelButton: true,
+         progressSteps: ['1']
+     }).queue([
+         'Confirm Evaluation?',
+     ]).then((result) => {
+         if (result.value) {
+         	var newApplForm = $('.evaluation-modal-new #newApplForm');
+             var datanewApplForm = new FormData(newApplForm);
+             $.ajax({
+                 type: 'POST',
+                 enctype:'multipart/form-data',
+                  url: 'updateNewAppEvaluationForm',
+                  data: datanewApplForm, /* {AT_ID: JSON.stringify(fID), AP_ID: JSON.stringify(apID), AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()}, */
+                  processData: false,
+                  contentType: false,
+                 success: function(){
+                     swal({
+                         	 type: 'success',
+                         	  title: 'DONE!.',
+                         	  
+                     })
+                 }
+             });
+         }
+     })
+     return false;
+     });
+	
 	 $(".newModal").click(function()
              {
                  $("#nBussName").val($(this).closest("tbody tr").find("td:eq(0)").html());  
@@ -447,9 +521,14 @@ $(document).ready(function(){
                  $("#nBussAuthRepName").val($(this).closest("tbody tr").find("td:eq(10)").html());
                  $("#nBussAuthRepAddr").val($(this).closest("tbody tr").find("td:eq(11)").html());
                  $("#AT_UNIFIED_FILE_NAME").val($(this).closest("tbody tr").find("td:eq(12)").html());
-                 $("#AP_Remarks").val($(this).closest("tbody tr").find("td:eq(37)").html());
+                 $("#_AT_ID").val($("#AT_ID").html());
+                 $("#_AP_ID").val($("#AP_ID").html());
                  
                  
+                 if ($(this).closest("tbody tr").find("td:eq(37)").text() === "null")
+                 {
+                	 $("#AP_Remarks").val("Remarks");
+                 }
                  if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass")
                  {
                      $("#AT_BRGY_CLEARANCE").prop("checked", true);
@@ -493,45 +572,6 @@ $(document).ready(function(){
 	 window.open("downloadAttachment"+link);
 		}); 
 	 
-	 
-});
-
-</script>
-
-<script type="text/javascript">
-$(document).ready(function () {
-	var fID =$("#AT_ID").html();
-	var apID = $("#AP_ID").html();
-    $('#newApplForm').on('form:submit', function () {
-            swal.mixin({
-            confirmButtonText: 'Next &rarr;',
-            showCancelButton: true,
-            progressSteps: ['1']
-        }).queue([
-            'Confirm Evaluation?',
-        ]).then((result) => {
-            if (result.value) {
-            	/* var newApplForm = $('#newApplForm')[0];
-                var datanewApplForm = new FormData(newApplForm); */
-                $.ajax({
-                    type: "POST",
-                   // dataType: 'json',
-                     url: "uploadSingleAppForm",
-                     data: {fID:fID, apID:apID, AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()},
-                     processData: false,
-                     contentType: false,
-                    success: function(response){
-                        swal({
-                            	 type: 'success',
-                            	  title: 'DONE!.',
-                            	  
-                        })
-                    }
-                });
-            }
-        })
-        return false;
-        });
 });
 
 </script>

@@ -29,9 +29,11 @@ public class updateNewAppEvaluationForm extends HttpServlet{
 		String AT_CONTRACT_OF_LEASE = resq.getParameter("AT_CONTRACT_OF_LEASE");
 		String AT_AUTHORIZATION = resq.getParameter("AT_AUTHORIZATION");
 		String AT_MISC_DOCUMENTS = resq.getParameter("AT_MISC_DOCUMENTS");
+		System.out.println(AT_MISC_DOCUMENTS);
 		String AP_Remarks = resq.getParameter("AP_Remarks");
-		int attachId = Integer.parseInt(resq.getParameter("AT_ID"));
-		int applId = Integer.parseInt(resq.getParameter("AP_ID"));
+		System.out.println(AP_Remarks);
+		int attachId = Integer.parseInt(resq.getParameter("_AT_ID"));
+		int applId = Integer.parseInt(resq.getParameter("_AP_ID"));
 		LGUConnect conX = new LGUConnect();
 		
 		try {

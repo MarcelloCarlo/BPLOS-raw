@@ -731,6 +731,7 @@
                                 	 type: 'success',
                                 	  title: 'DONE!.',
                                 	  text: 'Please Wait for Your Reference Number',
+                                	  html: JSON.stringify(response)
                                 	  
                             })
                         }
