@@ -157,8 +157,8 @@
 											<td class="hide"><%=gg3.getString("AUTH_REPNAME")%></td>
 											<td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%></td>
 											<td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%></td>
-											<td class="hide" id="AT_ID"><%=gg3.getString("AT_ID")%></td>
-											<td class="hide" id="AP_ID"><%=gg3.getString("AP_ID")%></td>
+											<td class="hide" id="AT_ID" name="AT_ID"><%=gg3.getString("AT_ID")%></td>
+											<td class="hide" id="AP_ID" name="AP_ID"><%=gg3.getString("AP_ID")%></td>
 											<td class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%></td>
 											<td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%></td>
 											<td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%></td>
@@ -267,6 +267,7 @@
 											<input type="checkbox" id="AT_MISC_DOCUMENTS" class="flat" value="Pass"> Other Documents
 										</p>
 									</li>
+									<li><input id="AP_Remarks" type="text"/></li>
 								</ul>
 							</div>
 						</div>
@@ -431,6 +432,8 @@ $(document).ready(function(){
                  $("#nBussAuthRepName").val($(this).closest("tbody tr").find("td:eq(10)").html());
                  $("#nBussAuthRepAddr").val($(this).closest("tbody tr").find("td:eq(11)").html());
                  $("#AT_UNIFIED_FILE_NAME").val($(this).closest("tbody tr").find("td:eq(12)").html());
+                 $("#AP_Remarks").val($(this).closest("tbody tr").find("td:eq(37)").html());
+                 
                  
                  if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass")
                  {
@@ -476,7 +479,44 @@ $(document).ready(function(){
 	 var link = "?fID="+fID+"&apID="+apID;
 	 window.open("downloadAttachment"+link);
 		}); 
+	 
+	 
 });
+
+$(function () {
+	
+
+    $('#newApplForm').on('form:submit', function () {
+            swal.mixin({
+            confirmButtonText: 'Next &rarr;',
+            showCancelButton: true,
+            progressSteps: ['1']
+        }).queue([
+            'Confirm Evaluation?',
+        ]).then((result) => {
+            if (result.value) {
+            	var newApplForm = $('#newApplForm')[0];
+                var datanewApplForm = new FormData(newApplForm);
+                $.ajax({
+                    type: "POST",
+                     url: "uploadSingleAppForm",
+                     data: datanewApplForm,
+                     processData: false,
+                     contentType: false,
+                    success: function(response){
+                        swal({
+                            	 type: 'success',
+                            	  title: 'DONE!.',
+                            	  
+                        })
+                    }
+                });
+            }
+        })
+        return false;
+        });
+});
+
 </script>
 
 <script>
