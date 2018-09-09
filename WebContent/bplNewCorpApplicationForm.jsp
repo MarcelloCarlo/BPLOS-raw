@@ -19,27 +19,27 @@
 
     <title>Application Form | Business Permit</title>
     <!-- Bootstrap -->
-    <link href="build/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/plugins/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="build/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/plugins/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="build/css/nprogress.css" rel="stylesheet">
+    <link href="assets/plugins/css/nprogress.css" rel="stylesheet">
     <!-- bootstrap-wysiwyg -->
-    <link href="build/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <link href="assets/plugins/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
     <!-- Select2 -->
-    <link href="build/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet">
     <!-- Switchery -->
-    <link href="build/switchery/dist/switchery.min.css" rel="stylesheet">
+    <link href="assets/plugins/switchery/dist/switchery.min.css" rel="stylesheet">
     <!-- starrr -->
-    <link href="build/starrr/dist/starrr.css" rel="stylesheet">
+    <link href="assets/plugins/starrr/dist/starrr.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
-    <link href="build/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="build/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="assets/plugins/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="assets/plugins/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -272,8 +272,8 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="input-group date" name="dateX2">
-                                            <input type="text" class="form-control" name="dateNCorpBussEstRentStart"
-                                                   required="required">
+                                            <input type="text" class="form-control date" name="dateNCorpBussEstRentStart" id="dateNCorpBussEstRentStart"
+                                                   required="required"> 
                                             <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -422,7 +422,7 @@
                                                 <input type="text" name="numNCorpBussCapitalization">
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>
                                                 <input type="text" name="txtNCorpAct1">
                                             </td>
@@ -519,21 +519,36 @@
                                             <td>
                                                 <input type="text" name="numNCorpBussCapitalization7">
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         </tbody>
                                     </table>
-                                    <label>TOTAL: Php </label>
+                                   <!--  <label>TOTAL: Php </label> -->
                                 </div>
 
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
+                                <label class="control-label" for="fileUnifiedRequirements">Unified File Requirements: (.doc,.docx,.pdf, and must be maximum of 10MB)<span class="required">*</span>
+										</label><br>
                                     <label class="control-label">Locational Sketch of Business Establishment
-                                        <span class="required">*</span>
-                                    </label>
-                                    <input type="file" name="fileNCorpLocSketchEst" required="required"/>
+                                    </label><br>
+                                    <label class="control-label">Orginal Copy of Barangay Clearance
+                                    </label><br>
+                                     <label class="control-label">SEC Registration File
+                                    </label><br>
+                                    <label class="control-label">Title To Property / Tax Declaration (If Owned) or
+                                        Contract of Lease (If Renting)
+                                    </label><br>
+                                     <label class="control-label">Lessor's Business Permit (If Rented)
+                                    </label><br>
+                                    <label class="control-label">Authorization Letter w/ ID (Both Business Owner & Filer)
+                                    </label><br>
+                                    <label class="control-label">Other Required Document/s
+                                    </label><br>
+                                    <input type="file" name="fileUnifiedRequirements"
+											id="fileUnifiedRequirements" required="required" accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"/>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="control-label">Orginal Copy of Barangay Clearance
                                         <span class="required">*</span>
                                     </label>
@@ -569,7 +584,7 @@
                                         <span class="required">*</span>
                                     </label>
                                     <input type="file" name="fileNCorpOthers" required="required" multiple="true"/>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -588,49 +603,48 @@
     </div>
 </div>
 <!-- jQuery -->
-<script src="build/js/jquery.min.js"></script>
+<script src="assets/plugins/js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="build/js/bootstrap.min.js"></script>
+<script src="assets/plugins/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="build/js/fastclick.js"></script>
+<script src="assets/plugins/js/fastclick.js"></script>
 <!-- NProgress -->
-<script src="build/js/nprogress.js"></script>
-<script src="build/iCheck/icheck.min.js"></script>
+<script src="assets/plugins/js/nprogress.js"></script>
+<script src="assets/plugins/iCheck/icheck.min.js"></script>
 <!-- NProgress -->
-<script src="build/nprogress/nprogress.js"></script>
+<script src="assets/plugins/nprogress/nprogress.js"></script>
 <!-- bootstrap-progressbar -->
-<script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <!-- iCheck -->
-<script src="build/iCheck/icheck.min.js"></script>
+<script src="assets/plugins/iCheck/icheck.min.js"></script>
 <!-- bootstrap-daterangepicker -->
-<script src="build/moment/min/moment.min.js"></script>
-<script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="assets/plugins/moment/min/moment.min.js"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap-datetimepicker -->
-<script src="build/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- bootstrap-wysiwyg -->
-<script src="build/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-<script src="build/jquery.hotkeys/jquery.hotkeys.js"></script>
-<script src="build/google-code-prettify/src/prettify.js"></script>
+<script src="assets/plugins/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="assets/plugins/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="assets/plugins/google-code-prettify/src/prettify.js"></script>
 <!-- jQuery Tags Input -->
-<script src="build/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<script src="assets/plugins/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 <!-- Switchery -->
-<script src="build/switchery/dist/switchery.min.js"></script>
+<script src="assets/plugins/switchery/dist/switchery.min.js"></script>
 <!-- Select2 -->
-<script src="build/select2/dist/js/select2.full.min.js"></script>
+<script src="assets/plugins/select2/dist/js/select2.full.min.js"></script>
 <!-- Parsley -->
-<script src="build/parsleyjs/dist/parsley.min.js"></script>
+<script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <!-- Autosize -->
-<script src="build/autosize/dist/autosize.min.js"></script>
+<script src="assets/plugins/autosize/dist/autosize.min.js"></script>
 <!-- jQuery autocomplete -->
-<script src="build/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<script src="assets/plugins/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
 <!-- starrr -->
-<script src="build/starrr/dist/starrr.js"></script>
-<script src="build/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="assets/plugins/starrr/dist/starrr.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
+<script src="assets/plugins/js/custom.min.js"></script>
 <!-- Initialize datetimepicker -->
-<script>
-    /*   $(document).ready(function () {
+<script> /*  $(document).ready(function () {
                                                                                                                                         var numTxtbx = $('#numNCorpBussEstSignbrdArea');
                                                                                                                                         //$(numTxtbx).prop('disabled', true);
                                                                                                                                         $(numTxtbx).hide();
