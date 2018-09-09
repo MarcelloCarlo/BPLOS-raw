@@ -19,7 +19,9 @@
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src" />
-          <root url="file://$MODULE_DIR$/lib" />
+          <root url="file://$MODULE_DIR$" />
+          <root url="file://$MODULE_DIR$/WebContent" />
+          <root url="file://$MODULE_DIR$/WebContent/WEB-INF/lib" />
         </sourceRoots>
       </configuration>
     </facet>
@@ -31,10 +33,12 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WebContent" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WebContent/WEB-INF/lib" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="jdk" jdkName="10" jdkType="JavaSDK" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 9.0.10" level="application_server_libraries" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
   </component>
 </module>

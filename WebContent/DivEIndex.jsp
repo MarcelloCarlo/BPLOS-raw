@@ -242,6 +242,8 @@
 								<h5>
 									Address:<input disabled="" id="nBussAuthRepAddr" type="text" />
 								</h5>
+								<input disabled="" class="hide" id="_AT_ID" name="_AT_ID" /> <input
+									disabled="" class="hide" id="_AP_ID" name="_AP_ID" />
 							</div>
 							<hr>
 							<div class="col-md-8 row">
@@ -249,8 +251,6 @@
 									<button type="button" class="btn btn-primary form-control"
 										id="fileDownload">DOWNLOAD ATTACHMENT</button>
 								</div>
-								<input disabled="" class="hide" id="_AT_ID" name="_AT_ID" /> <input
-									disabled="" class="hide" id="_AP_ID" name="_AP_ID" />
 								<div class="col-md-3">
 									<input disabled="" id="AT_UNIFIED_FILE_NAME" type="text" />
 								</div>
