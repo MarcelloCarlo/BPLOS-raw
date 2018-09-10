@@ -164,6 +164,7 @@
 											<td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%></td>
 											<td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%></td>
 											<td class="hide" id="AT_ID" name="AT_ID"><%=gg3.getString("AT_ID")%></td>
+											<!-- 13 -->
 											<td class="hide" id="AP_ID" name="AP_ID"><%=gg3.getString("AP_ID")%></td>
 											<td class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%></td>
 											<td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%></td>
@@ -207,20 +208,21 @@
 
 		<!-- New modal -->
 
-		<div class="modal fade evaluation-modal-new" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">x</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">Check Requirements
-							for New Application</h4>
-					</div>
-					<div class="modal-body">
-						<form id="newApplForm" class="form-horizontal" name="newApplForm"
-							enctype="multipart/form-data">
-							<div class="form-group col-md-8">
+		<div class="modal modal-message fade evaluation-modal-new" aria-hidden="true">
+			<div class="modal-dialog">
+				<form id="newApplForm" class="form-horizontal" name="newApplForm"
+					enctype="multipart/form-data">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">x</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Check Requirements
+								for New Application</h4>
+						</div>
+						<div class="modal-body">
+						<div class="row">
+						<div class="col-md-8">
 								<h5>
 									Business Name/Corporate Name: <input disabled="" id="nBussName"
 										type="text" />
@@ -245,7 +247,7 @@
 								<input disabled="" class="hide" id="_AT_ID" name="_AT_ID" /> <input
 									disabled="" class="hide" id="_AP_ID" name="_AP_ID" />
 							</div>
-							<hr>
+	
 							<div class="col-md-8 row">
 								<div class="col-md-5">
 									<button type="button" class="btn btn-primary form-control"
@@ -255,79 +257,70 @@
 									<input disabled="" id="AT_UNIFIED_FILE_NAME" type="text" />
 								</div>
 							</div>
-							<div class="col-md-12 vertical">
-							<div class="col-md-8">
-							<ul class="to_do">
-									<li>
-										<p>
-											<input type="checkbox" id="AT_BRGY_CLEARANCE"
-												name="AT_BRGY_CLEARANCE" class="flat" value="Pass">
-											Original Barangay Clearance
-										</p>
-									</li>
-									<li>
-										<p>
-											<input type="checkbox" id="AT_DTI_REGISTRATION"
-												name="AT_DTI_REGISTRATION" class="flat" value="Pass">
-											DTI Registration (for Single Proprietorship
-										</p>
-									</li>
-									<li>
-										<p>
-											<input type="checkbox" id="AT_SEC_REGISTRATION"
-												name="AT_SEC_REGISTRATION" class="flat" value="Pass">
-											SEC Registration with Artices (for Corporation/Partnership
-										</p>
-									</li>
-									<li>
-										<p>
-											<input type="checkbox" id="AT_TITLE_TO_PROPERTY"
-												name="AT_TITLE_TO_PROPERTY" class="flat" value="Pass">
-											Title to property of Tax Declaration (if owned)
-										</p>
-									</li>
-									<li>
-										<p>
-											<input type="checkbox" id="AT_CONTRACT_OF_LEASE"
-												name="AT_CONTRACT_OF_LEASE" class="flat" value="Pass">
-											Contract of Lease and Lessor's Business Permit (if rented)
-										</p>
-									</li>
-									<li>
-										<p>
-											<input type="checkbox" id="AT_AUTHORIZATION"
-												name="AT_AUTHORIZATION" class="flat" value="Pass">
-											Authorization Letter & ID (Owner and representative(if any))
-										</p>
-									</li>
-									<li>
-										<p>
-											<input type="checkbox" id="AT_MISC_DOCUMENTS"
-												name="AT_MISC_DOCUMENTS" class="flat" value="Pass">
-											Other Documents
-										</p>
-									</li>
-									<li>
-										<div class="col-md-9">
-											<textarea class="form-control" placeholder="Remarks"
-												id="AP_Remarks" name="AP_Remarks" rows="3"></textarea>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-								<button type="submit" id="btnNewAppl" class="btn btn-success">Save
-									Changes</button>
-							</div>
-							</div>
+								<div class="">
+									<ul class="to_do">
+									
+											<p>
+												<input type="checkbox" id="AT_BRGY_CLEARANCE"
+													name="AT_BRGY_CLEARANCE" class="flat" value="Pass">
+												Original Barangay Clearance
+											</p>
+									
+											<p>
+												<input type="checkbox" id="AT_DTI_REGISTRATION"
+													name="AT_DTI_REGISTRATION" class="flat" value="Pass">
+												DTI Registration (for Single Proprietorship
+											</p>
+										
+											<p>
+												<input type="checkbox" id="AT_SEC_REGISTRATION"
+													name="AT_SEC_REGISTRATION" class="flat" value="Pass">
+												SEC Registration with Artices (for Corporation/Partnership
+											</p>
+										
+											<p>
+												<input type="checkbox" id="AT_TITLE_TO_PROPERTY"
+													name="AT_TITLE_TO_PROPERTY" class="flat" value="Pass">
+												Title to property of Tax Declaration (if owned)
+											</p>
+										
+									
+											<p>
+												<input type="checkbox" id="AT_CONTRACT_OF_LEASE"
+													name="AT_CONTRACT_OF_LEASE" class="flat" value="Pass">
+												Contract of Lease and Lessor's Business Permit (if rented)
+											</p>
+									
+											<p>
+												<input type="checkbox" id="AT_AUTHORIZATION"
+													name="AT_AUTHORIZATION" class="flat" value="Pass">
+												Authorization Letter & ID (Owner and representative(if any))
+											</p>
+										
+											<p>
+												<input type="checkbox" id="AT_MISC_DOCUMENTS"
+													name="AT_MISC_DOCUMENTS" class="flat" value="Pass">
+												Other Documents
+											</p>
+									</ul>
+									<div class="col-md-9">
+												<textarea class="form-control" placeholder="Remarks"
+													id="AP_Remarks" name="AP_Remarks" rows="3"></textarea>
+											</div>
+										
+								</div>
+						</div>
 							
 
-						</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+							<button type="submit" id="btnNewAppl" class="btn btn-success">Save
+								Changes</button>
+						</div>
 					</div>
-
-				</div>
+				</form>
 			</div>
 
 
@@ -476,41 +469,8 @@
     });
 </script>
 	<script type="text/javascript">
-var fID = $("#AT_ID").html();
-var apID = $("#AP_ID").html();
 
 $(document).ready(function(){
-	
-	 $('#btnNewAppl').click(function () {
-         swal.mixin({
-         confirmButtonText: 'Next &rarr;',
-         showCancelButton: true,
-         progressSteps: ['1']
-     }).queue([
-         'Confirm Evaluation?',
-     ]).then((result) => {
-         if (result.value) {
-         	var newApplForm = $('.evaluation-modal-new #newApplForm');
-             var datanewApplForm = new FormData(newApplForm);
-             $.ajax({
-                 type: 'POST',
-                 enctype:'multipart/form-data',
-                  url: 'updateNewAppEvaluationForm',
-                  data: datanewApplForm, /* {AT_ID: JSON.stringify(fID), AP_ID: JSON.stringify(apID), AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()}, */
-                  processData: false,
-                  contentType: false,
-                 success: function(){
-                     swal({
-                         	 type: 'success',
-                         	  title: 'DONE!.',
-                         	  
-                     })
-                 }
-             });
-         }
-     })
-     return false;
-     });
 	
 	 $(".newModal").click(function()
              {
@@ -521,13 +481,13 @@ $(document).ready(function(){
                  $("#nBussAuthRepName").val($(this).closest("tbody tr").find("td:eq(10)").html());
                  $("#nBussAuthRepAddr").val($(this).closest("tbody tr").find("td:eq(11)").html());
                  $("#AT_UNIFIED_FILE_NAME").val($(this).closest("tbody tr").find("td:eq(12)").html());
-                 $("#_AT_ID").val($("#AT_ID").html());
-                 $("#_AP_ID").val($("#AP_ID").html());
+                 $("#_AT_ID").val($(this).closest("tbody tr").find("td:eq(13)").html());
+                 $("#_AP_ID").val($(this).closest("tbody tr").find("td:eq(14)").html());
                  
                  
                  if ($(this).closest("tbody tr").find("td:eq(37)").text() === "null")
                  {
-                	 $("#AP_Remarks").val("Remarks");
+                	 $("#AP_Remarks").val("");
                  }
                  if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass")
                  {
@@ -568,9 +528,43 @@ $(document).ready(function(){
 	 	
 	 $("#fileDownload").click(function (event) {
 		 // event.preventDefault();
+		 var fID = $("#_AT_ID").val();
+		 var apID = $("#_AP_ID").val();
 	 var link = "?fID="+fID+"&apID="+apID;
 	 window.open("downloadAttachment"+link);
 		}); 
+	 
+	 
+	 $('#btnNewAppl').click(function () {
+         swal.mixin({
+         confirmButtonText: 'Next &rarr;',
+         showCancelButton: true,
+         progressSteps: ['1']
+     }).queue([
+         'Confirm Evaluation?',
+     ]).then((result) => {
+         if (result.value) {
+         	
+             var datanewApplForm =  new FormData($('#newApplForm')[0]);
+             $.ajax({
+                 type: 'POST',
+                 enctype:'multipart/form-data',
+                  url: 'updateNewAppEvaluationForm',
+                  data: datanewApplForm, /* {AT_ID: JSON.stringify(fID), AP_ID: JSON.stringify(apID), AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()}, */
+                  processData: false,
+                  contentType: false,
+                 success: function(){
+                     swal({
+                         	 type: 'success',
+                         	  title: 'DONE!.',
+                         	  
+                     })
+                 }
+             });
+         }
+     })
+     return false;
+     });
 	 
 });
 
