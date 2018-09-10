@@ -272,7 +272,7 @@ public class uploadSingleAppForm extends HttpServlet {
 			 */
 			// String txtApplicationRefNo = callProc.getString(1);
 			// echo.write(txtApplicationRefNo);*/
-			 request.getRequestDispatcher("/res.jsp").forward(request, response);
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

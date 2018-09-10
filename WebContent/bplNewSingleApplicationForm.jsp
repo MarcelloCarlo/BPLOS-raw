@@ -726,12 +726,10 @@
                          processData: false,
                          contentType: false,
                         success: function(response){
-                        	$('#ajaxGetUserServletResponse').text(response);
                             swal({
                                 	 type: 'success',
-                                	  title: 'DONE!.',
-                                	  text: 'Please Wait for Your Reference Number',
-                                	  html: JSON.stringify(response)
+                                	  title: 'All Done!',
+                                	  html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b>'
                                 	  
                             })
                         }

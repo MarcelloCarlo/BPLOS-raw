@@ -2,14 +2,19 @@ package com.qcapaeis.lguTransactions;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,43 +32,21 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.qcapaeis.dbConnection.LGUConnect;
+
 @MultipartConfig
 @WebServlet("/uploadCorpAppForm")
 public class uploadCorpAppForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 2;
-    private static final int MAX_REQUEST_SIZE = 1024 * 1024;
-    private final String UPLOAD_DIRECTORY = "uploads";
+    
+    public uploadCorpAppForm() {
+		super();// TODO Auto-generated constructor stub
+	} 
 
     @Override
     protected void doPost(HttpServletRequest reqX, HttpServletResponse respX) throws ServletException, IOException {
 
-        boolean isMultipart = ServletFileUpload.isMultipartContent(reqX);
-
-        if (!isMultipart) {
-            return;
-        }
-        // Create a factory for disk-based file items
-        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-        // Sets the size threshold beyond which files are written directly to
-        // disk.
-        factory.setSizeThreshold(MAX_MEMORY_SIZE);
-
-        // Sets the directory used to temporarily store files that are larger
-        // than the configured size threshold. We use temporary directory for
-        // java
-        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-
-        // constructs the folder where uploaded file will be stored
-        String uploadFolder = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
-
-        // Create a new file upload handler
-        ServletFileUpload upload = new ServletFileUpload(factory);
-
-        // Set overall request size constraint
-        upload.setSizeMax(MAX_REQUEST_SIZE);
-
+       
         String txtNCorpBussName = reqX.getParameter("txtNCorpBussName");
         String txtNCorpTaxPayName = reqX.getParameter("txtNCorpTaxPayName");
         String txtNCorpPresidentName = reqX.getParameter("txtNCorpPresidentName");
@@ -71,13 +54,14 @@ public class uploadCorpAppForm extends HttpServlet {
         String txtNCorpBussStrtNo = reqX.getParameter("txtNCorpBussStrtNo");
         String txtNCorpBussStrtName = reqX.getParameter("txtNCorpBussStrtName");
         String txtNCorpBussBrgyName = reqX.getParameter("txtNCorpBussBrgyName");
+        String txtNCorpPropIdxNo =reqX.getParameter("txtNCorpPropIdxNo");
         String txtNCorpLotBlckNo = reqX.getParameter("txtNCorpLotBlckNo");
         String txtNCorpAuthRepName = reqX.getParameter("txtNCorpAuthRepName");
         String txtNCorpAuthRepPos = reqX.getParameter("txtNCorpAuthRepPos");
-        String txtNCorpRepStrtNo = reqX.getParameter("txtNCorpRepStrtNo");
-        String txtNCorpRepStrtName = reqX.getParameter("txtNCorpRepStrtName");
-        String txtNCorpRepBrgyName = reqX.getParameter("txtNCorpRepBrgyName");
-        String txtNCorpRepCity = reqX.getParameter("txtNCorpRepCity");
+        String txtNCorpAuthRepStrtNo = reqX.getParameter("txtNCorpAuthRepStrtNo");
+        String txtNCorpAuthRepStrtName = reqX.getParameter("txtNCorpAuthRepStrtName");
+        String txtNCorpAuthRepBrgyName = reqX.getParameter("txtNCorpAuthRepBrgyName");
+        String txtNCorpAuthRepCity = reqX.getParameter("txtNCorpAuthRepCity");
         String txtNCorpBussSECRegNo = reqX.getParameter("txtNCorpBussSECRegNo");
         String dateNCorpBussSECReg = reqX.getParameter("dateNCorpBussSECReg");
         String txtNCorpTaxPayTINNo = reqX.getParameter("txtNCorpTaxPayTINNo");
@@ -106,7 +90,7 @@ public class uploadCorpAppForm extends HttpServlet {
         String txtNCorpExBussNo3 = reqX.getParameter("txtNCorpExBussNo3");
         String txtNCorpExBussLoc3 = reqX.getParameter("txtNCorpExBussLoc3");
 
-        String txtNCorpAct = reqX.getParameter("txtNCorpAct");
+        String txtNCBussAct = reqX.getParameter("txtNCBussAct");
         String numNCorpBussUnitNo = reqX.getParameter("numNCorpBussUnitNo");
         String numNCorpBussAreaSqmts = reqX.getParameter("numNCorpBussAreaSqmts");
         String numNCorpBussCapitalization = reqX.getParameter("numNCorpBussCapitalization");
@@ -157,91 +141,117 @@ public class uploadCorpAppForm extends HttpServlet {
         List<Part> fileNCorpOthers = reqX.getParts().stream().filter(part -> "fileNCorpOthers".equals(part.getName()))
                 .collect(Collectors.toList());
 
-        DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
-        Connection connection = null;
-        PreparedStatement pStmt = null;
-        CallableStatement callProc = null;
+        InputStream is = null;
+		String fileName = null;
+		   // Part list (multi files).
+        for (Part part : reqX.getParts()) {
+            fileName = extractFileName(part);
+            if (fileName != null && fileName.length() > 0) {
+                // File data
+                is = part.getInputStream();
+                // Write to file
+                //this.writeToDB(conn, fileName, is, description);
+            }
+        }
+		Connection connection = null;
+		com.mysql.jdbc.CallableStatement callProc = null;
+		respX.setContentType("text/html;charset=UTF-8");
+		PrintWriter echo = respX.getWriter();
+		LGUConnect conX = new LGUConnect();
+		String bu_loc = txtNCorpBussFlrNo + " " + txtNCorpBussStrtNo + " " + txtNCorpBussStrtName + " "
+				+ txtNCorpBussBrgyName;
+		String authRep_addr = txtNCorpAuthRepStrtNo + " " + txtNCorpAuthRepStrtName + " " + txtNCorpAuthRepBrgyName + " "
+				+ txtNCorpAuthRepCity;
+	
+		String queery = "SELECT MAX(AP_ID),AP_REFERENCE_NO FROM lgu_r_bp_application";
+		String _refNo = "";
+		
+
         // Do the insert here if you can
         try {
+        	connection = conX.getConnection();
+        	Date secDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNCorpBussSECReg);
+    		Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNCorpBussEstRentStart);
+    		java.sql.Date _dateNCorpBussSECReg = new java.sql.Date(secDate.getTime());
+    		java.sql.Date _dateNCorpBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
             // Parse the request
-            List items = upload.parseRequest(reqX);
-            Iterator iter = items.iterator();
-            while (iter.hasNext()) {
-                FileItem item = (FileItem) iter.next();
-
-                if (!item.isFormField()) {
-                    String fileName = new File(item.getName()).getName();
-                    String filePath = uploadFolder + File.separator + fileName;
-                    File uploadedFile = new File(filePath);
-                    System.out.println(filePath);
-                    // saves the file to upload directory
-                    item.write(uploadedFile);
-                }
-            }
-            // Class.forName("com.mysql.jdbc.Driver").newInstance();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            int updateQuery = 0;
-            /*
-             * Date dtiDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussDTIReg);
-             * Date bussEstStartDate = new
-             * SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussEstRentStart);
-             * java.sql.Date _dateNSingBussDTIReg = new java.sql.Date(dtiDate.getTime());
-             * java.sql.Date _dateNSingBussEstRentStart = new
-             * java.sql.Date(bussEstStartDate.getTime());
-             */
+           PreparedStatement authRepInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_authorize_rep`( `AR_FNAME`, `AR_POSITION`,`AR_HOME_ADDRESS`) VALUES (?,?,?)");
+           authRepInfo.setString(1, txtNCorpAuthRepName);
+           authRepInfo.setString(2, txtNCorpAuthRepPos);
+           authRepInfo.setString(3, authRep_addr);
+           authRepInfo.executeUpdate();
+           PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
+           rentInfo.setDate(1, _dateNCorpBussEstRentStart);
+           rentInfo.setFloat(2, Float.parseFloat(numNCorpBussEstRentMonth));
+           rentInfo.setString(3, txtNCorpBussEstRentName);
+           rentInfo.executeUpdate();
+           PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_taxpayer`(`TP_FNAME`,  `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?)");
+           taxPayerInfo.setString(1, txtNCorpTaxPayName);
+           taxPayerInfo.setString(2, txtNCorpTaxPayTINNo);
+           taxPayerInfo.setString(3, txtNCorpEmpSSSNo);
+           taxPayerInfo.executeUpdate();
+           PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `lgu_r_taxpayer`),2)");
+           businessInfo.setString(1, txtNCorpBussName);
+           businessInfo.setString(2, txtNCorpPresidentName);
+           businessInfo.setString(3, bu_loc);
+           businessInfo.setString(4, txtNCorpPropIdxNo);
+           businessInfo.setString(5, txtNCorpLotBlckNo);
+           businessInfo.setString(6, txtNCorpFaxNo);
+           businessInfo.setString(7, txtNCorpTelNo);
+           businessInfo.setFloat(8, Float.parseFloat(numNCorpBussEstSignbrdArea));
+           businessInfo.setString(9, txtNCorpBussSECRegNo);
+           businessInfo.setDate(10, _dateNCorpBussSECReg);
+           businessInfo.setInt(11, Integer.parseInt(numNCorpEmpQTY));
+           businessInfo.setInt(12, Integer.parseInt(numNCorpBussUnitNo));
+           businessInfo.setFloat(13, Float.parseFloat(numNCorpBussEstSignbrdArea));
+           businessInfo.setFloat(14, Float.parseFloat(numNCorpBussCapitalization));
+           businessInfo.setInt(15, Integer.parseInt(txtNCBussAct));
+           businessInfo.executeUpdate();
+           PreparedStatement authRep2Bus = (PreparedStatement) connection
+					.prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
+							+ "VALUES((SELECT MAX(`AR_ID`) FROM `lgu_r_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_r_business`)) ");
+			authRep2Bus.executeLargeUpdate();
+			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
+					"INSERT INTO `lgu_r_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_r_business),(SELECT MAX(AR_ID) FROM lgu_r_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_r_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_r_business)) ");
+			refNoInfo.executeUpdate();
+			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `lgu_r_bp_application`))");
+			fileUpload.setBlob(1,is);
+			fileUpload.setString(2,fileName);
+			fileUpload.executeUpdate();
+			
+			Statement ss3 = connection.createStatement();
+			ResultSet gg3 = ss3.executeQuery(queery);
+			while (gg3.next()) {
+				_refNo = gg3.getString("AP_REFERENCE_NO");
+				respX.getWriter().print(_refNo);	
+				// response.getWriter().write(_refNo);
+			}
 
-            /*
-             * java.sql.Date _dateNSingBussDTIReg = (Date)
-             * defaultDateF.parse(dateNSingBussDTIReg); java.sql.Date
-             * _dateNSingBussEstRentStart = (Date)
-             * defaultDateF.parse(dateNSingBussEstRentStart);
-             */
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/lgu_qcpa_eis_db", "root", "");
-            callProc = connection.prepareCall(
-                    "{? = call lgu_bp_application(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-            // For Reference Number
-            callProc.registerOutParameter(1, java.sql.Types.VARCHAR);
-            // Inputs for DB
-            callProc.setString(2, txtNCorpBussName);
-            callProc.setString(3, txtNCorpTaxPayName);
-            callProc.setString(4, txtNCorpPresidentName);
-            callProc.setString(5, txtNCorpBussFlrNo);
-            callProc.setString(6, txtNCorpBussStrtNo);
-            callProc.setString(7, txtNCorpBussStrtName);
-            callProc.setString(8, txtNCorpBussBrgyName);
-            callProc.setString(9, txtNCorpLotBlckNo);
-            callProc.setString(10, txtNCorpAuthRepName);
-            callProc.setString(11, txtNCorpAuthRepPos);
-            callProc.setString(12, txtNCorpRepStrtNo);
-            callProc.setString(13, txtNCorpRepStrtName);
-            callProc.setString(14, txtNCorpRepBrgyName);
-            callProc.setString(15, txtNCorpRepCity);
-            callProc.setString(16, txtNCorpBussSECRegNo);
-            callProc.setString(17, dateNCorpBussSECReg);
-            // callProc.setDate(18,txtNCorpTaxPayTINNo);
-            callProc.setString(19, txtNCorpTelNo);
-            callProc.setString(20, txtNCorpFaxNo);
-            callProc.setString(21, txtNCorpEmpSSSNo);
-            callProc.setInt(22, Integer.parseInt(numNCorpEmpQTY));
-            callProc.setString(23, dateNCorpBussEstRentStart);
-            callProc.setString(24, numNCorpBussEstRentMonth);
-            callProc.setString(25, txtNCorpBussEstRentName);
-            callProc.setString(26, numNCorpBussEstSignbrdArea);
-            // callProc.setDate(27,txtNCorpAct);
-            callProc.setDouble(28, Double.parseDouble(numNCorpBussUnitNo));
-            callProc.setString(29, numNCorpBussAreaSqmts);
-            callProc.setDouble(30, Double.parseDouble(numNCorpBussCapitalization));
-            callProc.execute();
-            String txtApplicationRefNo = callProc.getString(33);
-        } catch (FileUploadException e) {
-            e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+
+	private String extractFileName(Part part) {
+		// TODO Auto-generated method stub
+		  String contentDisp = part.getHeader("content-disposition");
+	        String[] items = contentDisp.split(";");
+	        for (String s : items) {
+	            if (s.trim().startsWith("filename")) {
+	                // C:\file1.zip
+	                // C:\Note\file2.zip
+	                String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+	                clientFileName = clientFileName.replace("\\", "/");
+	                int i = clientFileName.lastIndexOf('/');
+	                // file1.zip
+	                // file2.zip
+	                return clientFileName.substring(i + 1);
+	            }
+	        }
+		return null;
+	}
 }
