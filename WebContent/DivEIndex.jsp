@@ -125,6 +125,7 @@
 											<th class="hide">Action</th>
 											<th class="hide">Action</th>
 											<th class="hide">Action</th>
+											<th class="hide">Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -166,6 +167,7 @@
 											<td class="hide" id="AT_ID" name="AT_ID"><%=gg3.getString("AT_ID")%></td>
 											<!-- 13 -->
 											<td class="hide" id="AP_ID" name="AP_ID"><%=gg3.getString("AP_ID")%></td>
+											<!-- 14 -->
 											<td class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%></td>
 											<td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%></td>
 											<td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%></td>
@@ -189,8 +191,7 @@
 											<td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%></td>
 											<td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%></td>
 											<td class="hide"><%=gg3.getString("AP_Remarks")%></td>
-
-
+											<td class="hide"><%=gg3.getString("BN_NAME")%></td>
 										</tr>
 										<%
 											}
@@ -208,114 +209,141 @@
 
 		<!-- New modal -->
 
-		<div class="modal modal-message fade evaluation-modal-new" aria-hidden="true">
+		<div class="modal modal-message fade evaluation-modal-new"
+			aria-hidden="true">
 			<div class="modal-dialog">
 				<form id="newApplForm" class="form-horizontal" name="newApplForm"
 					enctype="multipart/form-data">
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">x</span>
-							</button>
+							<div class="panel-heading-btn">
+								<button type="button" id="closeNewPanelWindow"
+									class="btn btn-xs btn-icon btn-circle btn-danger right"
+									data-dismiss="modal">
+									<i class="fa fa-times"></i>
+								</button>
+							</div>
 							<h4 class="modal-title" id="myModalLabel">Check Requirements
 								for New Application</h4>
 						</div>
 						<div class="modal-body">
-						<div class="row">
-						<div class="col-md-8">
-								<h5>
-									Business Name/Corporate Name: <input disabled="" id="nBussName"
-										type="text" />
-								</h5>
-								<h5>
-									Name of Sole Proprietor/Partnership/President: <input
-										disabled="" id="nBussOwner" type="text" />
-								</h5>
-								<h5>
-									Business Address: <input disabled="" id="nBussAddr" type="text" />
-								</h5>
-								<h5>
-									Tel No.: <input disabled="" id="nBussConTelno" type="text" />
-								</h5>
-								<h5>
-									Authorized Representative: <input disabled=""
-										id="nBussAuthRepName" type="text" />
-								</h5>
-								<h5>
-									Address:<input disabled="" id="nBussAuthRepAddr" type="text" />
-								</h5>
-								<input disabled="" class="hide" id="_AT_ID" name="_AT_ID" /> <input
-									disabled="" class="hide" id="_AP_ID" name="_AP_ID" />
-							</div>
-	
-							<div class="col-md-8 row">
-								<div class="col-md-5">
-									<button type="button" class="btn btn-primary form-control"
-										id="fileDownload">DOWNLOAD ATTACHMENT</button>
-								</div>
-								<div class="col-md-3">
-									<input disabled="" id="AT_UNIFIED_FILE_NAME" type="text" />
-								</div>
-							</div>
-								<div class="">
-									<ul class="to_do">
-									
-											<p>
-												<input type="checkbox" id="AT_BRGY_CLEARANCE"
-													name="AT_BRGY_CLEARANCE" class="flat" value="Pass">
-												Original Barangay Clearance
-											</p>
-									
-											<p>
-												<input type="checkbox" id="AT_DTI_REGISTRATION"
-													name="AT_DTI_REGISTRATION" class="flat" value="Pass">
-												DTI Registration (for Single Proprietorship
-											</p>
-										
-											<p>
-												<input type="checkbox" id="AT_SEC_REGISTRATION"
-													name="AT_SEC_REGISTRATION" class="flat" value="Pass">
-												SEC Registration with Artices (for Corporation/Partnership
-											</p>
-										
-											<p>
-												<input type="checkbox" id="AT_TITLE_TO_PROPERTY"
-													name="AT_TITLE_TO_PROPERTY" class="flat" value="Pass">
-												Title to property of Tax Declaration (if owned)
-											</p>
-										
-									
-											<p>
-												<input type="checkbox" id="AT_CONTRACT_OF_LEASE"
-													name="AT_CONTRACT_OF_LEASE" class="flat" value="Pass">
-												Contract of Lease and Lessor's Business Permit (if rented)
-											</p>
-									
-											<p>
-												<input type="checkbox" id="AT_AUTHORIZATION"
-													name="AT_AUTHORIZATION" class="flat" value="Pass">
-												Authorization Letter & ID (Owner and representative(if any))
-											</p>
-										
-											<p>
-												<input type="checkbox" id="AT_MISC_DOCUMENTS"
-													name="AT_MISC_DOCUMENTS" class="flat" value="Pass">
-												Other Documents
-											</p>
-									</ul>
-									<div class="col-md-9">
-												<textarea class="form-control" placeholder="Remarks"
-													id="AP_Remarks" name="AP_Remarks" rows="3"></textarea>
-											</div>
-										
-								</div>
-						</div>
-							
+							<div class="row">
+								<div class="col-md-12">
+									<input  class="hide" id="_AT_ID" name="_AT_ID" /> <input
+										class="hide" id="_AP_ID" name="_AP_ID" />
+									<div class="col-md-8">
+										<h5>
+											Business Name/Corporate Name:
+											<!-- <input disabled=""
+											id="nBussName" type="text" /> -->
+											<label id="nBussName"></label>
+										</h5>
+										<h5>
+											Name of Sole Proprietor/Partnership/President:
+											<!-- <input
+											disabled="" id="nBussOwner" type="text" /> -->
+											<label id="nBussOwner"></label>
+										</h5>
+										<h5>
+											Business Address:
+											<!-- <input disabled="" id="nBussAddr"
+											type="text" /> -->
+											<label id="nBussAddr"></label>
+										</h5>
+										<h5>
+											Tel No.:
+											<!--  <input disabled="" id="nBussConTelno" type="text" /> -->
+											<label id="nBussConTelno"></label>
+										</h5>
+										<h5>
+											Authorized Representative:
+											<!--  <input disabled=""
+											id="nBussAuthRepName" type="text" /> -->
+											<label id="nBussAuthRepName"></label>
+										</h5>
+										<h5>
+											Address:
+											<!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+											<label id="nBussAuthRepAddr"></label>
+										</h5>
+										<h5>
+											Business Nature:
+											<!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+											<label id="nBussNature"></label>
+										</h5>
+									</div>
+									<div class="col-md-8">
+										<div class="col-md-6">
+											<hr>
+											<label id="AT_UNIFIED_FILE_NAME"></label><br>
+											<button type="button" class="btn btn-primary form-control"
+												id="fileDownload">DOWNLOAD ATTACHMENT</button>
 
+										</div>
+									</div>
+									<div class="">
+										<h5>Requirements Checklist</h5>
+										<div class="">
+											<ul class="to_do">
+
+												<p>
+													<input type="checkbox" id="AT_BRGY_CLEARANCE"
+														name="AT_BRGY_CLEARANCE" class="flat" value="Pass">
+													Original Barangay Clearance
+												</p>
+
+												<p>
+													<input type="checkbox" id="AT_DTI_REGISTRATION"
+														name="AT_DTI_REGISTRATION" class="flat" value="Pass">
+													DTI Registration (for Single Proprietorship
+												</p>
+
+												<p>
+													<input type="checkbox" id="AT_SEC_REGISTRATION"
+														name="AT_SEC_REGISTRATION" class="flat" value="Pass">
+													SEC Registration with Artices (for Corporation/Partnership
+												</p>
+
+												<p>
+													<input type="checkbox" id="AT_TITLE_TO_PROPERTY"
+														name="AT_TITLE_TO_PROPERTY" class="flat" value="Pass">
+													Title to property of Tax Declaration (if owned)
+												</p>
+
+
+												<p>
+													<input type="checkbox" id="AT_CONTRACT_OF_LEASE"
+														name="AT_CONTRACT_OF_LEASE" class="flat" value="Pass">
+													Contract of Lease and Lessor's Business Permit (if rented)
+												</p>
+
+												<p>
+													<input type="checkbox" id="AT_AUTHORIZATION"
+														name="AT_AUTHORIZATION" class="flat" value="Pass">
+													Authorization Letter & ID (Owner and representative(if
+													any))
+												</p>
+
+												<p>
+													<input type="checkbox" id="AT_MISC_DOCUMENTS"
+														name="AT_MISC_DOCUMENTS" class="flat" value="Pass">
+													Other Documents (See Business Natures)
+												</p>
+											</ul>
+										</div>
+										<hr>
+										<div class="col-md-9">
+											<textarea class="form-control" placeholder="Remarks"
+												id="AP_Remarks" name="AP_Remarks" rows="3"></textarea>
+										</div>
+
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
+								data-dismiss="modal" id="btnCloseNewApplModal">Close</button>
 							<button type="submit" id="btnNewAppl" class="btn btn-success">Save
 								Changes</button>
 						</div>
@@ -474,17 +502,20 @@ $(document).ready(function(){
 	
 	 $(".newModal").click(function()
              {
-                 $("#nBussName").val($(this).closest("tbody tr").find("td:eq(0)").html());  
-                 $("#nBussOwner").val($(this).closest("tbody tr").find("td:eq(6)").html());
-                 $("#nBussAddr").val($(this).closest("tbody tr").find("td:eq(8)").html());
-                 $("#nBussConTelno").val($(this).closest("tbody tr").find("td:eq(9)").html());
-                 $("#nBussAuthRepName").val($(this).closest("tbody tr").find("td:eq(10)").html());
-                 $("#nBussAuthRepAddr").val($(this).closest("tbody tr").find("td:eq(11)").html());
-                 $("#AT_UNIFIED_FILE_NAME").val($(this).closest("tbody tr").find("td:eq(12)").html());
+		 		document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();  
+		 		document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
+		 		document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
+		 		document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
+		 		document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
+		 		document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+		 		document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(38)").html();
                  $("#_AT_ID").val($(this).closest("tbody tr").find("td:eq(13)").html());
                  $("#_AP_ID").val($(this).closest("tbody tr").find("td:eq(14)").html());
                  
-                 
+                 if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null")
+                 {
+                	 document.getElementById('nBussOwner').innerHTML = 'None';
+                 }
                  if ($(this).closest("tbody tr").find("td:eq(37)").text() === "null")
                  {
                 	 $("#AP_Remarks").val("");
@@ -525,15 +556,6 @@ $(document).ready(function(){
                  }
                 
              });
-	 	
-	 $("#fileDownload").click(function (event) {
-		 // event.preventDefault();
-		 var fID = $("#_AT_ID").val();
-		 var apID = $("#_AP_ID").val();
-	 var link = "?fID="+fID+"&apID="+apID;
-	 window.open("downloadAttachment"+link);
-		}); 
-	 
 	 
 	 $('#btnNewAppl').click(function () {
          swal.mixin({
@@ -544,27 +566,55 @@ $(document).ready(function(){
          'Confirm Evaluation?',
      ]).then((result) => {
          if (result.value) {
-         	
-             var datanewApplForm =  new FormData($('#newApplForm')[0]);
+             var datanewApplForm =  new FormData($('#newApplForm')[0]); //working method
              $.ajax({
-                 type: 'POST',
-                 enctype:'multipart/form-data',
-                  url: 'updateNewAppEvaluationForm',
+                 type:"POST",
+                  url: "updateNewAppEvaluationForm",
                   data: datanewApplForm, /* {AT_ID: JSON.stringify(fID), AP_ID: JSON.stringify(apID), AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()}, */
                   processData: false,
                   contentType: false,
-                 success: function(){
+                 success: function(resp){
                      swal({
                          	 type: 'success',
                          	  title: 'DONE!.',
+                         	  text: JSON.stringify(resp)
                          	  
                      })
                  }
              });
          }
-     })
+     }) 
      return false;
      });
+	 
+	 	
+	 $("#fileDownload").click(function (event) {
+		 // event.preventDefault();
+		 var fID = $("#_AT_ID").val();
+		 var apID = $("#_AP_ID").val();
+	 var link = "?fID="+fID+"&apID="+apID;
+	 window.open("downloadAttachment"+link);
+		}); 
+	 
+	 $('#btnCloseNewApplModal').click(function() {
+		   $("#AT_BRGY_CLEARANCE").prop("checked", false);
+           $("#AT_DTI_REGISTRATION").prop("checked", false);
+			$("#AT_SEC_REGISTRATION").prop("checked", false);
+			$("#AT_TITLE_TO_PROPERTY").prop("checked", false);
+			$("#AT_CONTRACT_OF_LEASE").prop("checked", false);
+			$("#AT_AUTHORIZATION").prop("checked", false);
+			$("#AT_MISC_DOCUMENTS").prop("checked", false);
+	 });
+	 
+	 $('#closeNewPanelWindow').click(function() {
+		   $("#AT_BRGY_CLEARANCE").prop("checked", false);
+         $("#AT_DTI_REGISTRATION").prop("checked", false);
+			$("#AT_SEC_REGISTRATION").prop("checked", false);
+			$("#AT_TITLE_TO_PROPERTY").prop("checked", false);
+			$("#AT_CONTRACT_OF_LEASE").prop("checked", false);
+			$("#AT_AUTHORIZATION").prop("checked", false);
+			$("#AT_MISC_DOCUMENTS").prop("checked", false);
+	 });
 	 
 });
 

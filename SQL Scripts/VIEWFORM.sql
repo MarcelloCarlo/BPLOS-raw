@@ -4,19 +4,18 @@ CREATE VIEW view_applicationForms AS SELECT
     CONCAT(
         TP.TP_FNAME,
         ' ',
+        COALESCE(TP.TP_MNAME,' '),
         ' ',
-        TP.TP_MNAME,
-        ' ',
-        TP.TP_LNAME
+        COALESCE(TP.TP_LNAME, ' ')
     ) TAX_PAYERNAME,
     BUS.BU_LOCATION,
     BUS.BU_CONTACT,
     CONCAT(
         AR.AR_FNAME,
         ' ',
-        AR.AR_MNAME,
+        COALESCE(AR.AR_MNAME, ' '),
         ' ',
-        AR.AR_LNAME
+        COALESCE(AR.AR_LNAME, ' ')
     ) AUTH_REPNAME,
     AR.AR_HOME_ADDRESS,
     BN.BN_NAME,
