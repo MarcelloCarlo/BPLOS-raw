@@ -58,7 +58,7 @@ public class updateNewAppEvaluationForm extends HttpServlet{
 		resp.getWriter().print(AP_Remarks);	
 	}
 	
-	private String getCheckboxtatus(String chkbox) {
+	public String getCheckboxtatus(String chkbox) {
 		
 		if (chkbox.equals("Pass")) {
 			String chkboxResPass = "Pass";
