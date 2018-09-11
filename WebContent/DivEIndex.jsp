@@ -1,46 +1,74 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page
+	language="java"
+	contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+%>
 <%@ page import="java.sql.*"%>
 <%@ page import="com.qcapaeis.dbConnection.LGUConnect"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta
+	http-equiv="Content-Type"
+	content="text/html; charset=UTF-8"
+>
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta
+	http-equiv="X-UA-Compatible"
+	content="IE=edge"
+>
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1"
+>
 <meta charset="ISO-8859-1">
-
 <title>QCPAEIS | Evaluation</title>
-
-
 <!-- ================== BEGIN BASE CSS STYLE ================== -->
 <link
 	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-	rel="stylesheet">
+	rel="stylesheet"
+>
 <link
 	href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"
-	rel="stylesheet" />
-<link href="assets/plugins/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" />
-<link href="assets/plugins/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" />
-<link href="assets/css/animate.min.css" rel="stylesheet" />
-<link href="assets/css/style.min.css" rel="stylesheet" />
-<link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-<link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	rel="stylesheet"
+/>
+<link
+	href="assets/plugins/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet"
+/>
+<link
+	href="assets/plugins/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet"
+/>
+<link
+	href="assets/css/animate.min.css"
+	rel="stylesheet"
+/>
+<link
+	href="assets/css/style.min.css"
+	rel="stylesheet"
+/>
+<link
+	href="assets/css/style-responsive.min.css"
+	rel="stylesheet"
+/>
+<link
+	href="assets/css/theme/default.css"
+	rel="stylesheet"
+	id="theme"
+/>
 <!-- ================== END BASE CSS STYLE ================== -->
-
 <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
 <link
 	href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css"
-	rel="stylesheet" />
+	rel="stylesheet"
+/>
 <link
 	href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css"
-	rel="stylesheet" />
+	rel="stylesheet"
+/>
 <!-- ================== END PAGE LEVEL STYLE ================== -->
-
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/pace/pace.min.js"></script>
 <!-- ================== END BASE JS ================== -->
@@ -48,18 +76,25 @@
 <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
 	rel="stylesheet"> -->
 </head>
-
 <body>
 	<!-- begin #page-loader -->
-	<div id="page-loader" class="fade in">
+	<div
+		id="page-loader"
+		class="fade in"
+	>
 		<span class="spinner"></span>
 	</div>
 	<!-- end #page-loader -->
 	<jsp:include page="DivEComponent.jsp" />
-	<div id="page-container"
-		class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
+	<div
+		id="page-container"
+		class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"
+	>
 		<!-- page content -->
-		<div id="content" class="content">
+		<div
+			id="content"
+			class="content"
+		>
 			<div class="">
 				<!-- begin breadcrumb -->
 				<ol class="breadcrumb pull-right">
@@ -69,22 +104,26 @@
 				<!-- begin page-header -->
 				<h1 class="page-header">Application Processing</h1>
 				<!-- end page-header -->
-
 				<div class="row">
 					<div class="col-md-12">
 						<!-- begin panel -->
 						<div class="panel panel-inverse">
 							<div class="panel-heading">
 								<div class="panel-heading-btn">
-									<a href="javascript:;"
+									<a
+										href="javascript:;"
 										class="btn btn-xs btn-icon btn-circle btn-success"
-										data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+										data-click="panel-reload"
+									><i class="fa fa-repeat"></i></a>
 								</div>
 								<h4 class="panel-title">Application Form Evaluation Table</h4>
 							</div>
 							<div class="panel-body">
-								<table id="data-table"
-									class="table table-striped table-bordered nowrap" width="100%">
+								<table
+									id="data-table"
+									class="table table-striped table-bordered nowrap"
+									width="100%"
+								>
 									<thead>
 										<tr>
 											<th>Business Name</th>
@@ -154,9 +193,12 @@
 											<td><%=gg3.getString("OT_NAME")%></td>
 											<td><%=apStatus%></td>
 											<td><%=gg3.getString("AP_DATE")%></td>
-											<td><button type="button"
-													class="btn btn-success <%=modalClass%>" data-toggle="modal"
-													data-target="<%=modalMode%>">Evaluate</button></td>
+											<td><button
+													type="button"
+													class="btn btn-success <%=modalClass%>"
+													data-toggle="modal"
+													data-target="<%=modalMode%>"
+												>Evaluate</button></td>
 											<td class="hide"><%=gg3.getString("BU_PRESIDENT")%></td>
 											<td class="hide"><%=gg3.getString("TAX_PAYERNAME")%></td>
 											<td class="hide"><%=gg3.getString("BU_LOCATION")%></td>
@@ -164,9 +206,17 @@
 											<td class="hide"><%=gg3.getString("AUTH_REPNAME")%></td>
 											<td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%></td>
 											<td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%></td>
-											<td class="hide" id="AT_ID" name="AT_ID"><%=gg3.getString("AT_ID")%></td>
+											<td
+												class="hide"
+												id="AT_ID"
+												name="AT_ID"
+											><%=gg3.getString("AT_ID")%></td>
 											<!-- 13 -->
-											<td class="hide" id="AP_ID" name="AP_ID"><%=gg3.getString("AP_ID")%></td>
+											<td
+												class="hide"
+												id="AP_ID"
+												name="AP_ID"
+											><%=gg3.getString("AP_ID")%></td>
 											<!-- 14 -->
 											<td class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%></td>
 											<td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%></td>
@@ -206,31 +256,47 @@
 			</div>
 		</div>
 		<!-- /page content -->
-
 		<!-- New modal -->
-
-		<div class="modal modal-message fade evaluation-modal-new"
-			aria-hidden="true">
+		<div
+			class="modal modal-message fade evaluation-modal-new"
+			aria-hidden="true"
+		>
 			<div class="modal-dialog">
-				<form id="newApplForm" class="form-horizontal" name="newApplForm"
-					enctype="multipart/form-data">
+				<form
+					id="newApplForm"
+					class="form-horizontal"
+					name="newApplForm"
+					enctype="multipart/form-data"
+				>
 					<div class="modal-content">
 						<div class="modal-header">
 							<div class="panel-heading-btn">
-								<button type="button" id="closeNewPanelWindow"
+								<button
+									type="button"
+									id="closeNewPanelWindow"
 									class="btn btn-xs btn-icon btn-circle btn-danger right"
-									data-dismiss="modal">
+									data-dismiss="modal"
+								>
 									<i class="fa fa-times"></i>
 								</button>
 							</div>
-							<h4 class="modal-title" id="myModalLabel">Check Requirements
-								for New Application</h4>
+							<h4
+								class="modal-title"
+								id="myModalLabel"
+							>Check Requirements for New Application</h4>
 						</div>
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12">
-									<input  class="hide" id="_AT_ID" name="_AT_ID" /> <input
-										class="hide" id="_AP_ID" name="_AP_ID" />
+									<input
+										class="hide"
+										id="_AT_ID"
+										name="_AT_ID"
+									/> <input
+										class="hide"
+										id="_AP_ID"
+										name="_AP_ID"
+									/>
 									<div class="col-md-8">
 										<h5>
 											Business Name/Corporate Name:
@@ -276,97 +342,137 @@
 										<div class="col-md-6">
 											<hr>
 											<label id="AT_UNIFIED_FILE_NAME"></label><br>
-											<button type="button" class="btn btn-primary form-control"
-												id="fileDownload">DOWNLOAD ATTACHMENT</button>
-
+											<button
+												type="button"
+												class="btn btn-primary form-control"
+												id="fileDownload"
+											>DOWNLOAD ATTACHMENT</button>
 										</div>
 									</div>
 									<div class="">
 										<h5>Requirements Checklist</h5>
 										<div class="">
 											<ul class="to_do">
-
 												<p>
-													<input type="checkbox" id="AT_BRGY_CLEARANCE"
-														name="AT_BRGY_CLEARANCE" class="flat" value="Pass">
-													Original Barangay Clearance
+													<input
+														type="checkbox"
+														id="AT_BRGY_CLEARANCE"
+														name="AT_BRGY_CLEARANCE"
+														class="flat"
+														value="Pass"
+													> Original Barangay Clearance
 												</p>
-
 												<p>
-													<input type="checkbox" id="AT_DTI_REGISTRATION"
-														name="AT_DTI_REGISTRATION" class="flat" value="Pass">
-													DTI Registration (for Single Proprietorship
+													<input
+														type="checkbox"
+														id="AT_DTI_REGISTRATION"
+														name="AT_DTI_REGISTRATION"
+														class="flat"
+														value="Pass"
+													> DTI Registration (for Single Proprietorship
 												</p>
-
 												<p>
-													<input type="checkbox" id="AT_SEC_REGISTRATION"
-														name="AT_SEC_REGISTRATION" class="flat" value="Pass">
-													SEC Registration with Artices (for Corporation/Partnership
+													<input
+														type="checkbox"
+														id="AT_SEC_REGISTRATION"
+														name="AT_SEC_REGISTRATION"
+														class="flat"
+														value="Pass"
+													> SEC Registration with Artices (for
+													Corporation/Partnership
 												</p>
-
 												<p>
-													<input type="checkbox" id="AT_TITLE_TO_PROPERTY"
-														name="AT_TITLE_TO_PROPERTY" class="flat" value="Pass">
-													Title to property of Tax Declaration (if owned)
+													<input
+														type="checkbox"
+														id="AT_TITLE_TO_PROPERTY"
+														name="AT_TITLE_TO_PROPERTY"
+														class="flat"
+														value="Pass"
+													> Title to property of Tax Declaration (if owned)
 												</p>
-
-
 												<p>
-													<input type="checkbox" id="AT_CONTRACT_OF_LEASE"
-														name="AT_CONTRACT_OF_LEASE" class="flat" value="Pass">
-													Contract of Lease and Lessor's Business Permit (if rented)
+													<input
+														type="checkbox"
+														id="AT_CONTRACT_OF_LEASE"
+														name="AT_CONTRACT_OF_LEASE"
+														class="flat"
+														value="Pass"
+													> Contract of Lease and Lessor's Business Permit (if
+													rented)
 												</p>
-
 												<p>
-													<input type="checkbox" id="AT_AUTHORIZATION"
-														name="AT_AUTHORIZATION" class="flat" value="Pass">
-													Authorization Letter & ID (Owner and representative(if
+													<input
+														type="checkbox"
+														id="AT_AUTHORIZATION"
+														name="AT_AUTHORIZATION"
+														class="flat"
+														value="Pass"
+													> Authorization Letter & ID (Owner and representative(if
 													any))
 												</p>
-
 												<p>
-													<input type="checkbox" id="AT_MISC_DOCUMENTS"
-														name="AT_MISC_DOCUMENTS" class="flat" value="Pass">
-													Other Documents (See Business Natures)
+													<input
+														type="checkbox"
+														id="AT_MISC_DOCUMENTS"
+														name="AT_MISC_DOCUMENTS"
+														class="flat"
+														value="Pass"
+													> Other Documents (See Business Natures)
 												</p>
 											</ul>
 										</div>
 										<hr>
 										<div class="col-md-9">
-											<textarea class="form-control" placeholder="Remarks"
-												id="AP_Remarks" name="AP_Remarks" rows="3"></textarea>
+											<textarea
+												class="form-control"
+												placeholder="Remarks"
+												id="AP_Remarks"
+												name="AP_Remarks"
+												rows="3"
+											></textarea>
 										</div>
-
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal" id="btnCloseNewApplModal">Close</button>
-							<button type="submit" id="btnNewAppl" class="btn btn-success">Save
-								Changes</button>
+							<button
+								type="button"
+								class="btn btn-default"
+								data-dismiss="modal"
+								id="btnCloseNewApplModal"
+							>Close</button>
+							<button
+								type="submit"
+								id="btnNewAppl"
+								class="btn btn-success"
+							>Save Changes</button>
 						</div>
 					</div>
 				</form>
 			</div>
-
-
 		</div>
-
-
 		<!-- Renewal modal -->
-		<div class="modal fade evaluation-modal-renew" tabindex="-1"
-			role="dialog" aria-hidden="true">
+		<div
+			class="modal fade evaluation-modal-renew"
+			tabindex="-1"
+			role="dialog"
+			aria-hidden="true"
+		>
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
-
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+						>
 							<span aria-hidden="true">x</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel2">Check Requirements
-							for Renewal Application</h4>
+						<h4
+							class="modal-title"
+							id="myModalLabel2"
+						>Check Requirements for Renewal Application</h4>
 					</div>
 					<div class="modal-body">
 						<label>Business Name/Corporate Name: </label><br> <label>Business
@@ -377,69 +483,98 @@
 						<label>Address: </label>
 						<hr>
 						<div class="x_content">
-
 							<div class="">
 								<ul class="to_do">
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Original Copy of Previous Business Permit, if not applicable
-											Certified xerox copy
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Original Copy of Previous Business Permit, if not
+											applicable Certified xerox copy
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Xerox copy of Tax Bill and Official Receipt (current)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Xerox copy of Tax Bill and Official Receipt (current)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Original Copy of Barangay Clearance (for renewal purpose)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Original Copy of Barangay Clearance (for renewal purpose)
 										</p>
 									</li>
 									<p>Other Document Requirements required such as:</p>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Locational Clearance (LC)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Locational Clearance (LC)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Fire Safety Inspection Certificate (FSIC)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Fire Safety Inspection Certificate (FSIC)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Sanitary Permit (SP)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Sanitary Permit (SP)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											CTAO Certificate
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> CTAO Certificate
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Certificate of Electrical Inspection (CEI)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Certificate of Electrical Inspection (CEI)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											Lessor's Business Permit (if rented)
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> Lessor's Business Permit (if rented)
 										</p>
 									</li>
 									<li>
 										<p>
-											<input type="checkbox" class="flat" value="Pass">
-											PCAB License
+											<input
+												type="checkbox"
+												class="flat"
+												value="Pass"
+											> PCAB License
 										</p>
 									</li>
 								</ul>
@@ -447,20 +582,21 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-success">Save
-							changes</button>
+						<button
+							type="button"
+							class="btn btn-default"
+							data-dismiss="modal"
+						>Close</button>
+						<button
+							type="submit"
+							class="btn btn-success"
+						>Save changes</button>
 					</div>
-
 				</div>
 			</div>
 		</div>
-
 		<jsp:include page="footer.jsp"></jsp:include>
-
-
 	</div>
-
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 	<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
@@ -474,22 +610,21 @@
 	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 	<!-- ================== END BASE JS ================== -->
-
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 	<script
-		src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+		src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"
+	></script>
 	<script
-		src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+		src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"
+	></script>
 	<script src="assets/js/table-manage-responsive.demo.min.js"></script>
 	<script src="assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
-
 	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 	<script src="assets/js/apps.min.js"></script>
 	<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
-
 	<script type="text/javascript">
     $(document).ready(function() {
         App.init();
@@ -570,9 +705,7 @@ $(document).ready(function(){
              $.ajax({
                  type:"POST",
                   url: "updateNewAppEvaluationForm",
-                  data: datanewApplForm, /* {AT_ID: JSON.stringify(fID), AP_ID: JSON.stringify(apID), AT_BRGY_CLEARANCE: $('#AT_BRGY_CLEARANCE').val(), AT_DTI_REGISTRATION:$('#AT_DTI_REGISTRATION').val(), AT_SEC_REGISTRATION: $('#AT_SEC_REGISTRATION').val(), AT_TITLE_TO_PROPERTY:$('#AT_TITLE_TO_PROPERTY').val(), AT_CONTRACT_OF_LEASE: $('#AT_CONTRACT_OF_LEASE').val(), AT_AUTHORIZATION: $('#AT_AUTHORIZATION').val(), AT_MISC_DOCUMENTS: $('#AT_MISC_DOCUMENTS').val(), AP_Remarks: $('#AP_Remarks').val()}, */
-                  processData: false,
-                  contentType: false,
+                  data: datanewApplForm,
                  success: function(resp){
                      swal({
                          	 type: 'success',

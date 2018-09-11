@@ -3,7 +3,6 @@ package com.qcapaeis.lguTransactions;
 import java.io.IOException;
 import java.sql.Connection;
 
-import javax.print.DocFlavor.STRING;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,15 +13,16 @@ import com.mysql.jdbc.PreparedStatement;
 import com.qcapaeis.dbConnection.LGUConnect;
 
 @WebServlet("/updateNewAppEvaluationForm")
-public class updateNewAppEvaluationForm extends HttpServlet{
+public class updateNewAppEvaluationForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public updateNewAppEvaluationForm() {
 		super();
 	}
 
-	protected void doPost(HttpServletRequest resq, HttpServletResponse resp) throws ServletException,IOException {
-		
+	@Override
+	protected void doPost(HttpServletRequest resq, HttpServletResponse resp) throws ServletException, IOException {
+
 		String _AT_ID = resq.getParameter("_AT_ID");
 		String _AP_ID = resq.getParameter("_AP_ID");
 		String AT_BRGY_CLEARANCE = resq.getParameter("AT_BRGY_CLEARANCE");
@@ -34,12 +34,12 @@ public class updateNewAppEvaluationForm extends HttpServlet{
 		String AT_MISC_DOCUMENTS = resq.getParameter("AT_MISC_DOCUMENTS");
 		String AP_Remarks = resq.getParameter("AP_Remarks");
 
-		
 		LGUConnect conX = new LGUConnect();
-		
+
 		try {
 			Connection connection = conX.getConnection();
-			java.sql.PreparedStatement updateRequirements = (java.sql.PreparedStatement) connection.prepareStatement("UPDATE lgu_r_attachments SET AT_BRGY_CLEARANCE = ?, AT_DTI_REGISTRATION = ?, AT_SEC_REGISTRATION = ?,AT_TITLE_TO_PROPERTY = ?, AT_CONTRACT_OF_LEASE = ?, AT_AUTHORIZATION = ?, AT_MISC_DOCUMENTS = ?, AP_Remarks = ? WHERE AT_ID = ? AND AP_ID = ?; ");
+			PreparedStatement updateRequirements = (PreparedStatement) connection.prepareStatement(
+					"UPDATE lgu_r_attachments SET AT_BRGY_CLEARANCE = ?, AT_DTI_REGISTRATION = ?, AT_SEC_REGISTRATION = ?,AT_TITLE_TO_PROPERTY = ?, AT_CONTRACT_OF_LEASE = ?, AT_AUTHORIZATION = ?, AT_MISC_DOCUMENTS = ?, AP_Remarks = ? WHERE AT_ID = ? AND AP_ID = ?; ");
 			updateRequirements.setString(1, getCheckboxtatus(AT_BRGY_CLEARANCE));
 			updateRequirements.setString(2, getCheckboxtatus(AT_DTI_REGISTRATION));
 			updateRequirements.setString(3, getCheckboxtatus(AT_SEC_REGISTRATION));
@@ -54,20 +54,20 @@ public class updateNewAppEvaluationForm extends HttpServlet{
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		resp.getWriter().print(AP_Remarks);	
+
+		resp.getWriter().print(AP_Remarks);
 	}
-	
+
 	public String getCheckboxtatus(String chkbox) {
-		
+
 		if (chkbox.equals("Pass")) {
 			String chkboxResPass = "Pass";
 			return chkboxResPass;
-		}else if (chkbox.isEmpty() || chkbox.equals("Fail")) {
+		} else if (chkbox.isEmpty() || chkbox.equals("Fail")) {
 			String chkboxResFail = "Fail";
 			return chkboxResFail;
 		}
-		
+
 		return null;
 	}
 }

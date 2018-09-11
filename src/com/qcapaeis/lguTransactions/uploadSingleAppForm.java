@@ -1,7 +1,6 @@
 package com.qcapaeis.lguTransactions;
 
 import java.io.Closeable;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -13,36 +12,24 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import javax.swing.text.DefaultEditorKit.InsertBreakAction;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.commons.io.FilenameUtils;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.qcapaeis.UploadDetail;
 import com.qcapaeis.dbConnection.LGUConnect;
 
-@MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB 
-maxFileSize=1024*1024*50,      	// 50 MB
-maxRequestSize=1024*1024*100)   
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
+		maxFileSize = 1024 * 1024 * 50, // 50 MB
+		maxRequestSize = 1024 * 1024 * 100)
 @WebServlet("/uploadSingleAppForm")
 public class uploadSingleAppForm extends HttpServlet {
 	private final String UPLOAD_DIRECTORY = "uploads";
@@ -57,8 +44,7 @@ public class uploadSingleAppForm extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-	
+
 		// Form Inputs First. F.Y.I., I will declare at least 82+ variables in here,
 		// Goodluck for me KJDKJKJKS!
 		String txtNSingBussName = request.getParameter("txtNSingBussName");
@@ -159,16 +145,16 @@ public class uploadSingleAppForm extends HttpServlet {
 				.filter(part -> "fileNSingOthers".equals(part.getName())).collect(Collectors.toList());
 		InputStream is = null;
 		String fileName = null;
-		   // Part list (multi files).
-        for (Part part : request.getParts()) {
-            fileName = extractFileName(part);
-            if (fileName != null && fileName.length() > 0) {
-                // File data
-                is = part.getInputStream();
-                // Write to file
-                //this.writeToDB(conn, fileName, is, description);
-            }
-        }
+		// Part list (multi files).
+		for (Part part : request.getParts()) {
+			fileName = extractFileName(part);
+			if (fileName != null && fileName.length() > 0) {
+				// File data
+				is = part.getInputStream();
+				// Write to file
+				// this.writeToDB(conn, fileName, is, description);
+			}
+		}
 		DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
 		Connection connection = null;
 		PreparedStatement pStmt = null;
@@ -180,11 +166,10 @@ public class uploadSingleAppForm extends HttpServlet {
 				+ txtNSingBussBrgyName;
 		String tp_addr = txtNSingBussOwnHsNum + " " + txtNSingBussOwnStrt + " " + txtNSingBussOwnBrgy + " "
 				+ txtNSingBussOwnCity;
-	
+
 		String queery = "SELECT MAX(AP_ID),AP_REFERENCE_NO FROM lgu_r_bp_application";
 		String _refNo = "";
-		
-		
+
 		try {
 			connection = conX.getConnection();
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -227,16 +212,17 @@ public class uploadSingleAppForm extends HttpServlet {
 			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
 					"INSERT INTO `lgu_r_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_r_business),(SELECT MAX(AR_ID) FROM lgu_r_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_r_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_r_business)) ");
 			refNoInfo.executeUpdate();
-			
-			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `lgu_r_bp_application`))");
-			fileUpload.setBlob(1,is);
-			fileUpload.setString(2,fileName);
+
+			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement(
+					"INSERT INTO `lgu_r_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `lgu_r_bp_application`))");
+			fileUpload.setBlob(1, is);
+			fileUpload.setString(2, fileName);
 			fileUpload.executeUpdate();
 			Statement ss3 = connection.createStatement();
 			ResultSet gg3 = ss3.executeQuery(queery);
 			while (gg3.next()) {
 				_refNo = gg3.getString("AP_REFERENCE_NO");
-				response.getWriter().print(_refNo);	
+				response.getWriter().print(_refNo);
 				// response.getWriter().write(_refNo);
 			}
 
@@ -272,67 +258,69 @@ public class uploadSingleAppForm extends HttpServlet {
 			 */
 			// String txtApplicationRefNo = callProc.getString(1);
 			// echo.write(txtApplicationRefNo);*/
-		
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-            this.closeQuietly(conX);
-        }
+		} finally {
+			this.closeQuietly(conX);
+		}
 		// process only if its multipart content
-		
-		/*  if (ServletFileUpload.isMultipartContent(request)) { try { List<FileItem>
-		  multiparts = new ServletFileUpload(new
-		  DiskFileItemFactory()).parseRequest(request);
-		 
-		  for (FileItem item : multiparts) { if (!item.isFormField()) { String name =
-		  new File(item.getName()).getName(); String currPath =
-		  getServletContext().getRealPath("/uploads"); item.write(new File(currPath +
-		  File.separator + name));
-		 
-		  } }
-		 
-		  // File uploaded successfully 
-		  request.setAttribute("message","File Uploaded Successfully"); } catch (Exception ex) {
-		  request.setAttribute("message", "File Upload Failed due to " + ex); }
-		 
-		  } else { request.setAttribute("message",
-		  "Sorry this Servlet only handles file upload request"); }
-		 
-		  request.getRequestDispatcher("/res.jsp").forward(request, response);
+
+		/*
+		 * if (ServletFileUpload.isMultipartContent(request)) { try { List<FileItem>
+		 * multiparts = new ServletFileUpload(new
+		 * DiskFileItemFactory()).parseRequest(request);
+		 * 
+		 * for (FileItem item : multiparts) { if (!item.isFormField()) { String name =
+		 * new File(item.getName()).getName(); String currPath =
+		 * getServletContext().getRealPath("/uploads"); item.write(new File(currPath +
+		 * File.separator + name));
+		 * 
+		 * } }
+		 * 
+		 * // File uploaded successfully
+		 * request.setAttribute("message","File Uploaded Successfully"); } catch
+		 * (Exception ex) { request.setAttribute("message", "File Upload Failed due to "
+		 * + ex); }
+		 * 
+		 * } else { request.setAttribute("message",
+		 * "Sorry this Servlet only handles file upload request"); }
+		 * 
+		 * request.getRequestDispatcher("/res.jsp").forward(request, response);
 		 */
 
 	}
+
 	private String extractFileName(Part part) {
-        // form-data; name="file"; filename="C:\file1.zip"
-        // form-data; name="file"; filename="C:\Note\file2.zip"
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                // C:\file1.zip
-                // C:\Note\file2.zip
-                String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
-                clientFileName = clientFileName.replace("\\", "/");
-                int i = clientFileName.lastIndexOf('/');
-                // file1.zip
-                // file2.zip
-                return clientFileName.substring(i + 1);
-            }
-        }
-        return null;
-    }
- 
- 
-	 private void closeQuietly(LGUConnect conX) {
-	        try {
-	            if (conX != null) {
-	                ((Closeable) conX).close();
-	            }
-	        } catch (Exception e) {
-	        }
-	    }
+		// form-data; name="file"; filename="C:\file1.zip"
+		// form-data; name="file"; filename="C:\Note\file2.zip"
+		String contentDisp = part.getHeader("content-disposition");
+		String[] items = contentDisp.split(";");
+		for (String s : items) {
+			if (s.trim().startsWith("filename")) {
+				// C:\file1.zip
+				// C:\Note\file2.zip
+				String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+				clientFileName = clientFileName.replace("\\", "/");
+				int i = clientFileName.lastIndexOf('/');
+				// file1.zip
+				// file2.zip
+				return clientFileName.substring(i + 1);
+			}
+		}
+		return null;
+	}
+
+	private void closeQuietly(LGUConnect conX) {
+		try {
+			if (conX != null) {
+				((Closeable) conX).close();
+			}
+		} catch (Exception e) {
+		}
+	}
 }
