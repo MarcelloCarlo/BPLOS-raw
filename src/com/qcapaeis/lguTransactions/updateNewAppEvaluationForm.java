@@ -1,16 +1,16 @@
 package com.qcapaeis.lguTransactions;
 
-import java.io.IOException;
-import java.sql.Connection;
+import com.mysql.jdbc.PreparedStatement;
+import com.qcapaeis.dbConnection.LGUConnect;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mysql.jdbc.PreparedStatement;
-import com.qcapaeis.dbConnection.LGUConnect;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/updateNewAppEvaluationForm")
 public class updateNewAppEvaluationForm extends HttpServlet {
@@ -21,18 +21,18 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest resq, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String _AT_ID = resq.getParameter("_AT_ID");
-		String _AP_ID = resq.getParameter("_AP_ID");
-		String AT_BRGY_CLEARANCE = resq.getParameter("AT_BRGY_CLEARANCE");
-		String AT_DTI_REGISTRATION = resq.getParameter("AT_DTI_REGISTRATION");
-		String AT_SEC_REGISTRATION = resq.getParameter("AT_SEC_REGISTRATION");
-		String AT_TITLE_TO_PROPERTY = resq.getParameter("AT_TITLE_TO_PROPERTY");
-		String AT_CONTRACT_OF_LEASE = resq.getParameter("AT_CONTRACT_OF_LEASE");
-		String AT_AUTHORIZATION = resq.getParameter("AT_AUTHORIZATION");
-		String AT_MISC_DOCUMENTS = resq.getParameter("AT_MISC_DOCUMENTS");
-		String AP_Remarks = resq.getParameter("AP_Remarks");
+		String _AT_ID = request.getParameter("_AT_ID");
+		String _AP_ID = request.getParameter("_AP_ID");
+		String AT_BRGY_CLEARANCE = request.getParameter("AT_BRGY_CLEARANCE");
+		String AT_DTI_REGISTRATION = request.getParameter("AT_DTI_REGISTRATION");
+		String AT_SEC_REGISTRATION = request.getParameter("AT_SEC_REGISTRATION");
+		String AT_TITLE_TO_PROPERTY = request.getParameter("AT_TITLE_TO_PROPERTY");
+		String AT_CONTRACT_OF_LEASE = request.getParameter("AT_CONTRACT_OF_LEASE");
+		String AT_AUTHORIZATION = request.getParameter("AT_AUTHORIZATION");
+		String AT_MISC_DOCUMENTS = request.getParameter("AT_MISC_DOCUMENTS");
+		String AP_Remarks = request.getParameter("AP_Remarks");
 
 		LGUConnect conX = new LGUConnect();
 
@@ -51,11 +51,13 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 			updateRequirements.setInt(9, Integer.parseInt(_AT_ID));
 			updateRequirements.setInt(10, Integer.parseInt(_AP_ID));
 			updateRequirements.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
-		resp.getWriter().print(AP_Remarks);
+		response.getWriter().print(AP_Remarks);
 	}
 
 	public String getCheckboxtatus(String chkbox) {
