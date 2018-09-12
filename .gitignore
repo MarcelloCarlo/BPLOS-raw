@@ -6,3 +6,5 @@ production/
 artifacts/
 \.settings/
 /bin/
+
+\.classpath
