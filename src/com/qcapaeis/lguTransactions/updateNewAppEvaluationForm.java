@@ -4,14 +4,15 @@ import com.mysql.jdbc.PreparedStatement;
 import com.qcapaeis.dbConnection.LGUConnect;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
+@MultipartConfig
 @WebServlet("/updateNewAppEvaluationForm")
 public class updateNewAppEvaluationForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,16 +24,16 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String _AT_ID = request.getParameter("_AT_ID");
-		String _AP_ID = request.getParameter("_AP_ID");
-		String AT_BRGY_CLEARANCE = request.getParameter("AT_BRGY_CLEARANCE");
-		String AT_DTI_REGISTRATION = request.getParameter("AT_DTI_REGISTRATION");
-		String AT_SEC_REGISTRATION = request.getParameter("AT_SEC_REGISTRATION");
-		String AT_TITLE_TO_PROPERTY = request.getParameter("AT_TITLE_TO_PROPERTY");
-		String AT_CONTRACT_OF_LEASE = request.getParameter("AT_CONTRACT_OF_LEASE");
-		String AT_AUTHORIZATION = request.getParameter("AT_AUTHORIZATION");
-		String AT_MISC_DOCUMENTS = request.getParameter("AT_MISC_DOCUMENTS");
-		String AP_Remarks = request.getParameter("AP_Remarks");
+		int _AT_ID = Integer.parseInt(request.getParameter("_AT_ID"));
+		int _AP_ID = Integer.parseInt(request.getParameter("_AP_ID"));
+		String AT_BRGY_CLEARANCE = String.valueOf(request.getParameter("AT_BRGY_CLEARANCE"));
+		String AT_DTI_REGISTRATION = String.valueOf(request.getParameter("AT_DTI_REGISTRATION"));
+		String AT_SEC_REGISTRATION = String.valueOf(request.getParameter("AT_SEC_REGISTRATION"));
+		String AT_TITLE_TO_PROPERTY = String.valueOf(request.getParameter("AT_TITLE_TO_PROPERTY"));
+		String AT_CONTRACT_OF_LEASE = String.valueOf(request.getParameter("AT_CONTRACT_OF_LEASE"));
+		String AT_AUTHORIZATION = String.valueOf(request.getParameter("AT_AUTHORIZATION"));
+		String AT_MISC_DOCUMENTS = String.valueOf(request.getParameter("AT_MISC_DOCUMENTS"));
+		String AP_Remarks = String.valueOf(request.getParameter("AP_Remarks"));
 
 		LGUConnect conX = new LGUConnect();
 
@@ -47,12 +48,10 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 			updateRequirements.setString(5, getCheckboxtatus(AT_CONTRACT_OF_LEASE));
 			updateRequirements.setString(6, getCheckboxtatus(AT_AUTHORIZATION));
 			updateRequirements.setString(7, getCheckboxtatus(AT_MISC_DOCUMENTS));
-			updateRequirements.setString(8, getCheckboxtatus(AP_Remarks));
-			updateRequirements.setInt(9, Integer.parseInt(_AT_ID));
-			updateRequirements.setInt(10, Integer.parseInt(_AP_ID));
+			updateRequirements.setString(8, AP_Remarks);
+			updateRequirements.setInt(9, _AT_ID);
+			updateRequirements.setInt(10, _AP_ID);
 			updateRequirements.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -60,14 +59,12 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 		response.getWriter().print(AP_Remarks);
 	}
 
-	public String getCheckboxtatus(String chkbox) {
+    private String getCheckboxtatus(String chkbox) {
 
 		if (chkbox.equals("Pass")) {
-			String chkboxResPass = "Pass";
-			return chkboxResPass;
-		} else if (chkbox.isEmpty() || chkbox.equals("Fail")) {
-			String chkboxResFail = "Fail";
-			return chkboxResFail;
+            return "Pass";
+		} else if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
+            return "Fail";
 		}
 
 		return null;
