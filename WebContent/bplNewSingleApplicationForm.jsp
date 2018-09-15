@@ -442,7 +442,6 @@
 																<%out.print(gg3.getString("BN_NAME"));%>
 															</option>
 															<%
-
                                                         }
                                                     %>
 													</select></td>
