@@ -13,17 +13,17 @@
     <title>QCPAEIS | Inspection </title>
 
     <!-- Bootstrap -->
-    <link href="build/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/plugins/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="build/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/plugins/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="build/css/nprogress.css" rel="stylesheet">
+    <link href="assets/plugins/css/nprogress.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
-    <link href="build/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
-    <link href="build/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="assets/plugins/css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -93,58 +93,58 @@
 </div>
 
 <!-- jQuery -->
-<script src="build/js/jquery.min.js"></script>
+<script src="assets/plugins/js/jquery.min.js"></script>
 <!-- Bootstrap -->
-<script src="build/js/bootstrap.min.js"></script>
+<script src="assets/plugins/js/bootstrap.min.js"></script>
 <!-- FastClick -->
-<script src="build/js/fastclick.js"></script>
+<script src="assets/plugins/js/fastclick.js"></script>
 <!-- NProgress -->
-<script src="build/js/nprogress.js"></script>
+<script src="assets/plugins/js/nprogress.js"></script>
 <!-- Chart.js -->
-<script src="build/Chart.js/dist/Chart.min.js"></script>
+<script src="assets/plugins/Chart.js/dist/Chart.min.js"></script>
 <!-- jQuery Sparklines -->
-<script src="build/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="assets/plugins/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
 <!-- morris.js -->
-<script src="build/raphael/raphael.min.js"></script>
-<script src="build/morris.js/morris.min.js"></script>
+<script src="assets/plugins/raphael/raphael.min.js"></script>
+<script src="assets/plugins/morris.js/morris.min.js"></script>
 <!-- gauge.js -->
-<script src="build/gauge.js/dist/gauge.min.js"></script>
+<script src="assets/plugins/gauge.js/dist/gauge.min.js"></script>
 <!-- bootstrap-progressbar -->
-<script src="build/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="assets/plugins/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <!-- Skycons -->
-<script src="build/skycons/skycons.js"></script>
+<script src="assets/plugins/skycons/skycons.js"></script>
 <!-- Flot -->
-<script src="build/Flot/jquery.flot.js"></script>
-<script src="build/Flot/jquery.flot.pie.js"></script>
-<script src="build/Flot/jquery.flot.time.js"></script>
-<script src="build/Flot/jquery.flot.stack.js"></script>
-<script src="build/Flot/jquery.flot.resize.js"></script>
+<script src="assets/plugins/Flot/jquery.flot.js"></script>
+<script src="assets/plugins/Flot/jquery.flot.pie.js"></script>
+<script src="assets/plugins/Flot/jquery.flot.time.js"></script>
+<script src="assets/plugins/Flot/jquery.flot.stack.js"></script>
+<script src="assets/plugins/Flot/jquery.flot.resize.js"></script>
 <!-- Flot plugins -->
-<script src="build/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="build/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="build/flot.curvedlines/curvedLines.js"></script>
+<script src="assets/plugins/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+<script src="assets/plugins/flot-spline/js/jquery.flot.spline.min.js"></script>
+<script src="assets/plugins/flot.curvedlines/curvedLines.js"></script>
 <!-- DateJS -->
-<script src="build/DateJS/build/date.js"></script>
+<script src="assets/plugins/DateJS/build/date.js"></script>
 <!-- bootstrap-daterangepicker -->
-<script src="build/moment/min/moment.min.js"></script>
-<script src="build/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="assets/plugins/moment/min/moment.min.js"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- Datatables -->
-<script src="build/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="build/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<script src="build/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="build/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-<script src="build/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script src="build/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="build/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="build/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-<script src="build/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-<script src="build/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="build/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-<script src="build/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-<script src="build/jszip/dist/jszip.min.js"></script>
-<script src="build/pdfmake/build/pdfmake.min.js"></script>
-<script src="build/pdfmake/build/vfs_fonts.js"></script>
+<script src="assets/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="assets/plugins/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="assets/plugins/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="assets/plugins/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="assets/plugins/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="assets/plugins/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="assets/plugins/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="assets/plugins/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="assets/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="assets/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="assets/plugins/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="assets/plugins/jszip/dist/jszip.min.js"></script>
+<script src="assets/plugins/pdfmake/build/pdfmake.min.js"></script>
+<script src="assets/plugins/pdfmake/build/vfs_fonts.js"></script>
 <!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
+<script src="assets/plugins/js/custom.min.js"></script>
 </body>
 </html>
