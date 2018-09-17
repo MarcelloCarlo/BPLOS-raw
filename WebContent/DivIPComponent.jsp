@@ -39,8 +39,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="DivIPIndex.jsp"><i class="fa fa-exclamation"></i> <span>For Inspection</span></a></li>
-        <li><a href="DivIPInspected.jsp"><i class="fa fa-check"></i> <span>Inspected</span></a></li>
+        <li><a href="DivIPIndex.jspndex.jsp"><i class="fa fa-file-text"></i> <span>Application Inspection</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>
