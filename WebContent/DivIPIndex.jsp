@@ -99,10 +99,10 @@
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
                 <li><a href="javascript:;">Evaluation</a></li>
-                <li class="active">Application Processing</li>
+                <li class="active">Application Inspection</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header">Application Processing</h1>
+            <h1 class="page-header">Application Inspection</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">
@@ -116,7 +116,7 @@
                                         data-click="panel-reload"
                                 ><i class="fa fa-repeat"></i></a>
                             </div>
-                            <h4 class="panel-title">Application Form Evaluation Table</h4>
+                            <h4 class="panel-title">Application Form Inspection Table</h4>
                         </div>
                         <div class="panel-body">
                             <table
@@ -634,8 +634,13 @@
                     </button>
                     <button
                             type="submit"
+                            class="btn btn-primary"
+                    >Rectify
+                    </button>
+                    <button
+                            type="submit"
                             class="btn btn-success"
-                    >Save changes
+                    >Approve
                     </button>
                 </div>
             </div>
