@@ -23,7 +23,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>QCPAEIS | Evaluation</title>
+    <title>QCPAEIS | Inspection</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link
             href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -130,6 +130,7 @@
                                     <th>Business Nature</th>
                                     <th>Ownership Type</th>
                                     <th>Application Type</th>
+                                    <th>Status</th>
                                     <th>Date Received</th>
                                     <th>Action</th>
                                     <th class="hide">Action</th>
@@ -172,15 +173,15 @@
                                     LGUConnect conX = new LGUConnect();
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationForms`");
+                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationFormsIP`");
                                     while (gg3.next()) {
-                                        String apStatus = gg3.getString("AP_TYPE");
+                                        String apType = gg3.getString("AP_TYPE");
                                         String modalMode = "";
                                         String modalClass = "";
-                                        if (apStatus.equals("New")) {
+                                        if (apType.equals("New")) {
                                             modalMode = ".evaluation-modal-new";
                                             modalClass = "newModal";
-                                        } else if (apStatus.equals("Renew")) {
+                                        } else if (apType.equals("Renew")) {
                                             modalMode = ".evaluation-modal-renew";
                                             modalClass = "renewModal";
                                         } else {
@@ -194,9 +195,11 @@
                                     </td>
                                     <td><%=gg3.getString("OT_NAME")%>
                                     </td>
-                                    <td><%=apStatus%>
+                                    <td><%=apType%>
                                     </td>
                                     <td><%=gg3.getString("AP_DATE")%>
+                                    </td>
+                                    <td><%=gg3.getString("AP_STATUS")%>
                                     </td>
                                     <td>
                                         <button

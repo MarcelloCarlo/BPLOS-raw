@@ -172,7 +172,7 @@
                                     LGUConnect conX = new LGUConnect();
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationForms`");
+                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationFormsEV`");
                                     while (gg3.next()) {
                                         String apStatus = gg3.getString("AP_TYPE");
                                         String modalMode = "";
