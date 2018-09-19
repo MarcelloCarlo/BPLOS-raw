@@ -728,7 +728,8 @@
                             swal({
                                 	 type: 'success',
                                 	  title: 'All Done!',
-                                	  html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b>'
+                                	  html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!'
+
                                 	  
                             })
                         }

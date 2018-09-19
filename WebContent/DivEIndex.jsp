@@ -25,10 +25,10 @@
     <meta charset="ISO-8859-1">
     <title>QCPAEIS | Evaluation</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link
-            href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-            rel="stylesheet"
-    >
+    <%-- <link
+             href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+             rel="stylesheet"
+     >--%>
     <link
             href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"
             rel="stylesheet"
@@ -130,6 +130,7 @@
                                     <th>Business Nature</th>
                                     <th>Ownership Type</th>
                                     <th>Application Type</th>
+                                    <th>Status</th>
                                     <th>Date Received</th>
                                     <th>Action</th>
                                     <th class="hide">Action</th>
@@ -172,15 +173,15 @@
                                     LGUConnect conX = new LGUConnect();
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationFormsEV`");
+                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");
                                     while (gg3.next()) {
-                                        String apStatus = gg3.getString("AP_TYPE");
+                                        String apType = gg3.getString("AP_TYPE");
                                         String modalMode = "";
                                         String modalClass = "";
-                                        if (apStatus.equals("New")) {
+                                        if (apType.equals("New")) {
                                             modalMode = ".evaluation-modal-new";
                                             modalClass = "newModal";
-                                        } else if (apStatus.equals("Renew")) {
+                                        } else if (apType.equals("Renew")) {
                                             modalMode = ".evaluation-modal-renew";
                                             modalClass = "renewModal";
                                         } else {
@@ -189,15 +190,17 @@
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
-                                    </td>
+                                    </td><!--0-->
                                     <td><%=gg3.getString("BN_NAME")%>
-                                    </td>
+                                    </td><!--1-->
                                     <td><%=gg3.getString("OT_NAME")%>
-                                    </td>
-                                    <td><%=apStatus%>
+                                    </td><!--2-->
+                                    <td><%=apType%>
+                                    </td><!--3-->
+                                    <td><%=gg3.getString("AP_STATUS")%>
                                     </td>
                                     <td><%=gg3.getString("AP_DATE")%>
-                                    </td>
+                                    </td><!--5-->
                                     <td>
                                         <button
                                                 type="button"
@@ -206,9 +209,9 @@
                                                 data-target="<%=modalMode%>"
                                         >Evaluate
                                         </button>
-                                    </td>
+                                    </td><!--6-->
                                     <td class="hide"><%=gg3.getString("BU_PRESIDENT")%>
-                                    </td>
+                                    </td><!--7-->
                                     <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("BU_LOCATION")%>
@@ -227,19 +230,19 @@
                                             name="AT_ID"
                                     ><%=gg3.getString("AT_ID")%>
                                     </td>
-                                    <!-- 13 -->
+                                    <!-- 14 -->
                                     <td
                                             class="hide"
                                             id="AP_ID"
                                             name="AP_ID"
                                     ><%=gg3.getString("AP_ID")%>
                                     </td>
-                                    <!-- 14 -->
-                                    <td class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%>
+                                    <!-- 15 -->
+                                    <td id="_AT_BRGY_CLEARANCE" class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%>
+                                    </td><!-- 16 -->
+                                    <td id="_AT_DTI_REGISTRATION" class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
                                     </td>
-                                    <td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
+                                    <td id="_AT_SEC_REGISTRATION" class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%>
                                     </td>
@@ -330,13 +333,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="number"
-                                        class="hide"
-                                        id="_AT_ID"
-                                        name="_AT_ID"
+                                       class="hide"
+                                       id="_AT_ID"
+                                       name="_AT_ID"
                                 /> <input type="number"
-                                    class="hide"
-                                    id="_AP_ID"
-                                    name="_AP_ID"
+                                          class="hide"
+                                          id="_AP_ID"
+                                          name="_AP_ID"
                             />
                                 <div class="col-md-8">
                                     <h5>
@@ -487,9 +490,15 @@
                         </button>
                         <button
                                 type="button"
+                                id="btnNewApplRev"
+                                class="btn btn-primary"
+                        >Revise
+                        </button>
+                        <button
+                                type="button"
                                 id="btnNewAppl"
                                 class="btn btn-success"
-                        >Save Changes
+                        >Evaluate
                         </button>
                     </div>
                 </div>
@@ -683,46 +692,48 @@
 
         $(".newModal").click(function () {
             document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(38)").html();
-            $("#_AT_ID").val(Number($(this).closest("tbody tr").find("td:eq(13)").html()));
-            $("#_AP_ID").val(Number($(this).closest("tbody tr").find("td:eq(14)").html()));
+            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
+            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
+            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
+            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+            document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
+            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
+            $("#_AT_ID").val(Number($("#AT_ID").text()));
+            $("#_AP_ID").val(Number($("#AP_ID").text()));
 
-            if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
+            if ($(this).closest("tbody tr").find("td:eq(8)").text() === "null") {
                 document.getElementById('nBussOwner').innerHTML = 'None';
             }
-            if ($(this).closest("tbody tr").find("td:eq(37)").text() === "null") {
+
+            if ($(this).closest("tbody tr").find("td:eq(38)").text() === "null") {
                 $("#AP_Remarks").val("");
-            }
-            if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass") {
-                $("#AT_BRGY_CLEARANCE").prop("checked", true);
             }
 
             if ($(this).closest("tbody tr").find("td:eq(16)").text() === "Pass") {
-                $("#AT_DTI_REGISTRATION").prop("checked", true);
+                $("#AT_BRGY_CLEARANCE").prop("checked", true);
             }
 
             if ($(this).closest("tbody tr").find("td:eq(17)").text() === "Pass") {
-                $("#AT_SEC_REGISTRATION").prop("checked", true);
+                $("#AT_DTI_REGISTRATION").prop("checked", true);
             }
 
             if ($(this).closest("tbody tr").find("td:eq(18)").text() === "Pass") {
+                $("#AT_SEC_REGISTRATION").prop("checked", true);
+            }
+
+            if ($(this).closest("tbody tr").find("td:eq(19)").text() === "Pass") {
                 $("#AT_TITLE_TO_PROPERTY").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(20)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(21)").text() === "Pass") {
                 $("#AT_CONTRACT_OF_LEASE").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(22)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(23)").text() === "Pass") {
                 $("#AT_AUTHORIZATION").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(36)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(37)").text() === "Pass") {
                 $("#AT_MISC_DOCUMENTS").prop("checked", true);
             }
 

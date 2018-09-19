@@ -1,5 +1,7 @@
-CREATE VIEW view_applicationFormsEV AS
-  SELECT BUS.BU_NAME,
+DROP VIEW view_applicationformsev;
+CREATE VIEW view_applicationformsev AS
+  SELECT  AP.AP_REFERENCE_NO,
+          BUS.BU_NAME,
          BUS.BU_PRESIDENT,
          CONCAT(
            TP.TP_FNAME,

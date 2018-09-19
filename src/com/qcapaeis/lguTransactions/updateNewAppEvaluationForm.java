@@ -34,6 +34,7 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 		String AT_AUTHORIZATION = String.valueOf(request.getParameter("AT_AUTHORIZATION"));
 		String AT_MISC_DOCUMENTS = String.valueOf(request.getParameter("AT_MISC_DOCUMENTS"));
 		String AP_Remarks = String.valueOf(request.getParameter("AP_Remarks"));
+		String AP_REFERENCE_NO = String.valueOf(request.getParameter(""));
 
 		LGUConnect conX = new LGUConnect();
 
@@ -52,6 +53,9 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 			updateRequirements.setInt(9, _AT_ID);
 			updateRequirements.setInt(10, _AP_ID);
 			updateRequirements.executeUpdate();
+			PreparedStatement changeDiv = (PreparedStatement) connection.prepareStatement("UPDATE lgu_r_bp_application SET AP_DIV_CODE = 'DIV-INS' WHERE AP_REFERENCE_NO = ?");
+			changeDiv.setString(1, AP_REFERENCE_NO);
+			changeDiv.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

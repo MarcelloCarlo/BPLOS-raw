@@ -58,4 +58,4 @@ CREATE VIEW view_applicationFormsIP AS
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
          INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE
-  WHERE AP.AP_DIV_CODE = 'DIV-INS';
+  WHERE AP.AP_DIV_CODE = 'DIV-INS' AND BN.BN_CLASSIFICATION = 'L';

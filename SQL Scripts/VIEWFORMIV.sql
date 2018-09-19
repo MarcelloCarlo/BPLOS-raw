@@ -1,5 +1,5 @@
-DROP VIEW view_applicationformsIV;
-CREATE VIEW view_applicationFormsIV AS
+DROP VIEW view_applicationformsiv;
+CREATE VIEW view_applicationFormsiv AS
   SELECT BUS.BU_NAME,
          BUS.BU_PRESIDENT,
          CONCAT(
@@ -59,4 +59,4 @@ CREATE VIEW view_applicationFormsIV AS
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
          INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE
-  WHERE AP.AP_DIV_CODE = 'DIV-INV';
+  WHERE AP.AP_DIV_CODE = 'DIV-INV' AND BN.BN_CLASSIFICATION = 'L';
