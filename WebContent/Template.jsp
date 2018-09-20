@@ -48,7 +48,9 @@
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
 
     <!-- begin #content -->
+    <div id="content" class="content">
 
+    </div>
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->

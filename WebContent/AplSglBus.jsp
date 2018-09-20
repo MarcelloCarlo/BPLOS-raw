@@ -12,7 +12,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | </title>
+    <title>PAEIS | Application Form</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -29,8 +29,33 @@
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css" rel="stylesheet" />
+    <link href="assets/plugins/ionRangeSlider/css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="assets/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+    <link href="assets/plugins/password-indicator/css/password-indicator.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-combobox/css/bootstrap-combobox.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="assets/plugins/jquery-tag-it/css/jquery.tagit.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css" rel="stylesheet" />
+    <link href="assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
+    <link href="assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
+    <link href="assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
     <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <!-- ================== END PAGE LEVEL STYLE ================== -->
+
+    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+    <link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -42,13 +67,474 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page=" "></jsp:include>
+<jsp:include page="AplSglBusComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
 
     <!-- begin #content -->
+    <div id="content" class="content">
+        <div class="row">
+            <!-- begin col-12 -->
+            <div class="col-md-12">
+                <!-- begin panel -->
+                <div class="panel panel-inverse panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-heading-btn">
+                        </div>
+                        <h4 class="panel-title">Form Wizards</h4>
+                    </div>
+                    <div class="panel-body">
+                        <form action="/" method="POST">
+                            <div id="wizard">
+                                <ol>
+                                    <li>
+                                        Applicant's Information
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Business' Information
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Additional Information
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Representative Information
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Other Information
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Existing Business Information
+                                        <small></small>
+                                    </li>
+                                </ol>
+                                <!-- begin wizard step-1 -->
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Applicant's Information</legend>
+                                        <!-- begin row -->
 
+                                        <%--Name--%>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Taxpayer's Name*</label>
+                                                    <input type="text" id="txtNSingTaxPayLName"
+                                                           name="txtNSingTaxPayLName" placeholder="Last Name" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingTaxPayFName"
+                                                           name="txtNSingTaxPayFName" placeholder="First Name" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingTaxPayMName"
+                                                           name="txtNSingTaxPayMName" placeholder="Middle Name" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Address--%>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Taxpayer's Address*</label>
+                                                    <input type="text" id="txtNSingBussOwnHsNum"
+                                                           name="txtNSingBussOwnHsNum" placeholder="House No." class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingBussOwnStrt"
+                                                           name="txtNSingBussOwnStrt" placeholder="Street" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingBussOwnBrgy"
+                                                           name="txtNSingBussOwnBrgy" placeholder="Barangay" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingBussOwnCity"
+                                                           name="txtNSingBussOwnCity" placeholder="City" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--TIN--%>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Taxpayer's Identification Number (TIN)*</label>
+                                                    <input type="text" id="txtNSingTaxPayTINNo"
+                                                           name="txtNSingTaxPayTINNo" placeholder="TIN" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end row -->
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-1 -->
+                                <!-- begin wizard step-2 -->
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Business' Information</legend>
+
+                                        <%--Business Name--%>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Business Name/Trade Name*</label>
+                                                    <input type="text" id="txtNSingBussName"
+                                                           name="txtNSingBussName" placeholder="Business Name/Trade Name" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Business Address--%>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Business Location (Indicate exact address)*</label>
+                                                    <input type="text" id="txtNSingBussFlrNo"
+                                                           name="txtNSingBussFlrNo" placeholder="If within a bldg.., specify stall, room, floor number" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingBussStrtNo"
+                                                           name="txtNSingBussStrtNo" placeholder="Street No." class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingBussStrtName"
+                                                           name="txtNSingBussStrtName" placeholder="Street Name" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" id="txtNSingBussBrgyName"
+                                                           name="txtNSingBussBrgyName" placeholder="Barangay" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Property Index + Lot N Block--%>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Property Index No.*</label>
+                                                    <input type="text" id="txtNSingPropIdxNo"
+                                                           name="txtNSingPropIdxNo" placeholder="Property Index No." class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Lot & Block No.*</label>
+                                                    <input type="text" id="txtNSingLotBlckNo"
+                                                           name="txtNSingLotBlckNo" placeholder="Lot & Block No." class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-2 -->
+                                <!-- begin wizard step-3 -->
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Additional Information</legend>
+                                        <!-- begin row -->
+
+                                        <%--First Part--%>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>DTI (Business Name)
+                                                        Registration Number*</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussDTIRegNo"
+                                                               name="txtNSingBussDTIRegNo" placeholder="DTI
+                                                        Registration Number" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Telephone Number*</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussTelNo"
+                                                               name="txtNSingBussTelNo" placeholder="Telephone Number" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Fax Number*</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussFaxNo"
+                                                               name="txtNSingBussFaxNo" placeholder="Fax Number" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Date*</label>
+                                                        <input type="text" class="form-control" id="datepicker-autoClose" name="dateNSingBussDTIReg" required />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Second Part--%>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>If Employer, Employer's Social Security Number (SSS)</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingEmpSSSNo"
+                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>No of Employees*</label>
+                                                    <div class="controls">
+                                                        <input type="number" id="numNSingBussEmpQTY"
+                                                               name="numNSingBussEmpQTY" placeholder="No of Employees" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end row -->
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-3 -->
+                                <!-- begin wizard step-4 -->
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Additional Information</legend>
+
+                                        <%--Representative--%>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Name of Authorized Representative*</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussRepLName"
+                                                               name="txtNSingBussRepLName" placeholder="Last Name" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussRepFName"
+                                                               name="txtNSingBussRepFName" placeholder="First Name" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussRepMName"
+                                                               name="txtNSingBussRepMName" placeholder="Middle Name" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Address--%>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Home Address of Authorized Representative*</label>
+                                                    <input type="text" id="txtNSingBussRepAddr"
+                                                           name="txtNSingBussRepAddr" placeholder="Home Address" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-4 -->
+                                <!-- begin wizard step-5 -->
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Other Information</legend>
+
+                                        <%--If Business Establishment is Rented--%>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>If Business Establishment is Rented</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="form-control" id="datepicker-autoClose"
+                                                               name="dateNSingBussEstRentStart" placeholder="Since when" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="numNSingBussEstRentMonth"
+                                                               name="numNSingBussEstRentMonth" placeholder="Monthly Rental" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingBussEstRentName"
+                                                               name="txtNSingBussEstRentName" placeholder="From Whom" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Signboard--%>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label> <input type="checkbox" class=""
+                                                                   id="chkSignboard"
+                                                                   onclick="document.getElementById('numNSingBussEstSignbrdArea').disabled=!this.checked;">
+                                                        Using A Signboard
+                                                    </label> <input type="text" id="numNSingBussEstSignbrdArea"
+                                                                    name="numNSingBussEstSignbrdArea"
+                                                                    class="form-control col-md-3" placeholder="Area of Signboard"
+                                                                    disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-5 -->
+                                <!-- begin wizard step-6 -->
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">If You Have Other Existing Businesss Permits</legend>
+
+                                        <%--Other exisiting table--%>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Existing Kind of Business</label>
+                                                    <div class="controls">
+                                                        <input type="text" class="form-control" id="txtNSingExBuss"
+                                                               name="txtNSingExBuss" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Business Permit No.</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingExBussNo"
+                                                               name="txtNSingExBussNo" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Business Location</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingExBussLoc"
+                                                               name="txtNSingExBussLoc" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <input type="text" class="form-control" id="txtNSingExBuss1"
+                                                               name="txtNSingExBuss1" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingExBussNo1"
+                                                               name="txtNSingExBussNo1" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingExBussLoc1"
+                                                               name="txtNSingExBussLoc1" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <input type="text" class="form-control" id="txtNSingExBuss2"
+                                                               name="txtNSingExBuss2" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingExBussNo2"
+                                                               name="txtNSingExBussNo2" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <input type="text" id="txtNSingExBussLoc2"
+                                                               name="txtNSingExBussLoc2" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-6 -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- end panel -->
+            </div>
+            <!-- end col-12 -->
+        </div>
+    </div>
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
@@ -57,7 +543,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page=""></jsp:include>
+<jsp:include page="AplSglBusFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -85,10 +571,41 @@
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
+<script src="assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="assets/plugins/masked-input/masked-input.min.js"></script>
+<script src="assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+<script src="assets/plugins/password-indicator/js/password-indicator.js"></script>
+<script src="assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+<script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="assets/plugins/select2/dist/js/select2.min.js"></script>
+<script src="assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/bootstrap-show-password/bootstrap-show-password.js"></script>
+<script src="assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
+<script src="assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
+<script src="assets/js/form-plugins.demo.min.js"></script>
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="assets/js/form-wizards.demo.min.js"></script>
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
 <script>
     $(document).ready(function() {
         App.init();
         TableManageResponsive.init();
+        FormWizard.init();
+        FormPlugins.init();
     });
 </script>
 <script>

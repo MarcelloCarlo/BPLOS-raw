@@ -348,7 +348,6 @@
 											class="form-control col-md-3" placeholder="Area of Signboard"
 											disabled>
 									</div>
-
 								</div>
 								<div class="col-xs-12">
 									<div class="form-group">
@@ -555,10 +554,9 @@
 										</table>
 										<label>TOTAL: Php </label>
 									</div>
-
 								</div>
 								<div class="col-md-12">
-								<div class="form-group">
+								    <div class="form-group">
 										<label class="control-label" for="fileUnifiedRequirements">Unified File Requirements: (.doc,.docx,.pdf, and must be maximum of 10MB)<span class="required">*</span>
 										</label><br>
 										<label class="control-label">Locational

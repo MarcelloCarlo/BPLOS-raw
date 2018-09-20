@@ -54,7 +54,7 @@
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <h3 class="m-t-10"> Select an Application Form:</h3>
                         <p>Bussiness Application Form</p>
-                        <button class="btn btn-sm btn-success">Proceed</button>
+                        <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
 
                     </div>
 
