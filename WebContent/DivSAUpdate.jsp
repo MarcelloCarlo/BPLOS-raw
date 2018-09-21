@@ -75,16 +75,21 @@
                                 Statement stat = null;
                                 ResultSet res = null;
                                 PreparedStatement stmt = null;
-                                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+                               // Class.forName("com.mysql.jdbc.Driver").newInstance();
                                 conn = DriverManager.getConnection(host,"root","");
                             %>
                             <form class="form-horizontal" action=" " method="POST">
                                 <%
-                                    stat = conn.createStatement();
+                                    //stat = conn.createStatement();
+                                    //stat = conn.createStatement();
                                     String u = request.getParameter("u");
                                     int num = Integer.parseInt(u);
-                                    String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                    res = stat.executeQuery(data);
+                                   // String data = "select * from lgu_r_user where U_ID='"+num+"'";
+                                    PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_user where U_ID= ? ");
+                                    getInfo.setInt(1,num);
+                                    //res = stat.executeQuery(data);
+                                    res = getInfo.executeQuery();
                                     while (res.next())
                                     {
                                 %>

@@ -111,7 +111,7 @@
                                             <%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
                                         <%--</td>--%>
                                         <td>
-                                            <a href="DivSAUpdate.jsp?<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
+                                            <a href="DivSAUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                             <%
