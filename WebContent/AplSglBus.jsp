@@ -641,12 +641,11 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls fileupload-buttonbar">
-                                                       <span class="btn btn-success fileinput-button">
-                                    <i class="fa fa-plus"></i>
+
                                     <span>Add files...</span>
                                     <input type="file" name="fileUnifiedRequirements"
                                            id="fileUnifiedRequirements" required="required" accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf">
-                                </span>
+
                                                     </div>
                                                 </div>
                                             </div>

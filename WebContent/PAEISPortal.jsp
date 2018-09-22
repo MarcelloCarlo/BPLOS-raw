@@ -53,7 +53,14 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <h3 class="m-t-10"> Select an Application Form:</h3>
-                        <p>Bussiness Application Form</p>
+                        <p>Bussiness Application Form (Single)</p>
+                        <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
+                        <p>Bussiness Application Form (Partnsership/Corporation)</p>
+                        <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
+                        <h3 class="m-t-10"> Select an Application Form (Renewal):</h3>
+                        <p>Bussiness Application Form (Single)</p>
+                        <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
+                        <p>Bussiness Application Form (Partnsership/Corporation)</p>
                         <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
 
                     </div>
