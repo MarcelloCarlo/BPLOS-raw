@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Li Ven
+  Date: 9/23/2018
+  Time: 2:42 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -65,7 +72,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="AplSglBusComponent.jsp"></jsp:include>
+<jsp:include page="AplCrpBusComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -80,27 +87,27 @@
                     <div class="panel-heading">
                         <div class="panel-heading-btn">
                         </div>
-                        <h4 class="panel-title">Business Permit Application Form For Single
-                            Propriertorship</h4>
+                        <h4 class="panel-title">Business Permit Application Form For Partnership &
+                            Corporation</h4>
                     </div>
                     <div class="panel-body">
                         <form data-parsley-validate="true" enctype="multipart/form-data" name="applicationFormSingle">
                             <div id="wizard">
                                 <ol>
                                     <li>
-                                        Applicant's Information
-                                        <small></small>
-                                    </li>
-                                    <li>
                                         Business' Information
                                         <small></small>
                                     </li>
                                     <li>
-                                        Additional Information
+                                        Applicant's Information
                                         <small></small>
                                     </li>
                                     <li>
                                         Representative Information
+                                        <small></small>
+                                    </li>
+                                    <li>
+                                        Additional Information
                                         <small></small>
                                     </li>
                                     <li>
@@ -123,100 +130,24 @@
                                 <!-- begin wizard step-1 -->
                                 <div class="wizard-st-1">
                                     <fieldset>
-                                        <legend class="pull-left width-full">Applicant's Information</legend>
-                                        <!-- begin row -->
-
-                                        <%--Name--%>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Taxpayer's Name*</label>
-                                                    <input type="text" id="txtNSingTaxPayLName"
-                                                           name="txtNSingTaxPayLName" placeholder="Last Name"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingTaxPayFName"
-                                                           name="txtNSingTaxPayFName" placeholder="First Name"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingTaxPayMName"
-                                                           name="txtNSingTaxPayMName" placeholder="Middle Name"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <%--Address--%>
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Taxpayer's Address*</label>
-                                                    <input type="text" id="txtNSingBussOwnHsNum"
-                                                           name="txtNSingBussOwnHsNum" placeholder="House No."
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussOwnStrt"
-                                                           name="txtNSingBussOwnStrt" placeholder="Street"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussOwnBrgy"
-                                                           name="txtNSingBussOwnBrgy" placeholder="Barangay"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussOwnCity"
-                                                           name="txtNSingBussOwnCity" placeholder="City"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <%--TIN--%>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Taxpayer's Identification Number (TIN)*</label>
-                                                    <input type="text" id="txtNSingTaxPayTINNo"
-                                                           name="txtNSingTaxPayTINNo" placeholder="TIN"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-1 -->
-                                <!-- begin wizard step-2 -->
-                                <div class="wizard-st-2">
-                                    <fieldset>
                                         <legend class="pull-left width-full">Business' Information</legend>
 
                                         <%--Business Name--%>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Business Name/Trade Name*</label>
-                                                    <input type="text" id="txtNSingBussName"
-                                                           name="txtNSingBussName"
+                                                    <input type="text" name="txtNCorpBussName"
+                                                           id="txtNCorpBussName"
+                                                           placeholder="Business Name/Trade Name" class="form-control"
+                                                           required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>President*</label>
+                                                    <input type="text" name="txtNCorpPresidentName"
+                                                           id="txtNCorpPresidentName"
                                                            placeholder="Business Name/Trade Name" class="form-control"
                                                            required/>
                                                 </div>
@@ -228,8 +159,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Business Location (Indicate exact address)*</label>
-                                                    <input type="text" id="txtNSingBussFlrNo"
-                                                           name="txtNSingBussFlrNo"
+                                                    <input type="text" name="txtNCorpBussFlrNo"
+                                                           id="txtNCorpBussFlrNo"
                                                            placeholder="If within a bldg.., specify stall, room, floor number"
                                                            class="form-control" required/>
                                                 </div>
@@ -237,24 +168,22 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussStrtNo"
-                                                           name="txtNSingBussStrtNo" placeholder="Street No."
+                                                    <input type="text" name="txtNCorpBussStrtNo"
+                                                           placeholder="Street No." placeholder="Street No."
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussStrtName"
-                                                           name="txtNSingBussStrtName" placeholder="Street Name"
+                                                    <input type="text" name="txtNCorpBussStrtName" placeholder="Street Name"
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussBrgyName"
-                                                           name="txtNSingBussBrgyName" placeholder="Barangay"
+                                                    <input type="text" name="txtNCorpBussBrgyName" placeholder="Barangay"
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
@@ -265,16 +194,14 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Property Index No.*</label>
-                                                    <input type="text" id="txtNSingPropIdxNo"
-                                                           name="txtNSingPropIdxNo" placeholder="Property Index No."
+                                                    <input type="text" name="txtNCorpPropIdxNo" placeholder="Property Index No."
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Lot & Block No.*</label>
-                                                    <input type="text" id="txtNSingLotBlckNo"
-                                                           name="txtNSingLotBlckNo" placeholder="Lot & Block No."
+                                                    <input type="text" name="txtNCorpLotBlckNo" placeholder="Lot & Block No."
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
@@ -282,9 +209,138 @@
 
                                     </fieldset>
                                 </div>
+                                <!-- end wizard step-1 -->
+                                <!-- begin wizard step-2 -->
+                                <div class="wizard-st-2">
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Applicant's Information</legend>
+                                        <!-- begin row -->
+
+                                        <%--Name--%>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Taxpayer's Name*</label>
+                                                    <input type="text" id="txtNSingTaxPayLName"
+                                                           name="txtNSingTaxPayLName" placeholder="Taxpayer's Name"
+                                                           class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <%--<div class="col-md-4">--%>
+                                                <%--<div class="form-group">--%>
+                                                    <%--<label>&nbsp</label>--%>
+                                                    <%--<input type="text" name="txtNCorpTaxPayName"--%>
+                                                           <%--id="txtNCorpTaxPayName" placeholder="First Name"--%>
+                                                           <%--class="form-control" required/>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="col-md-4">--%>
+                                                <%--<div class="form-group">--%>
+                                                    <%--<label>&nbsp</label>--%>
+                                                    <%--<input type="text" id="txtNSingTaxPayMName"--%>
+                                                           <%--name="txtNSingTaxPayMName" placeholder="Middle Name"--%>
+                                                           <%--class="form-control" required/>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                        </div>
+
+                                        <%--TIN--%>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Taxpayer's Identification Number (TIN)*</label>
+                                                    <input type="text" name="txtNCorpTaxPayTINNo" placeholder="TIN"
+                                                           class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end row -->
+                                    </fieldset>
+                                </div>
                                 <!-- end wizard step-2 -->
                                 <!-- begin wizard step-3 -->
                                 <div class="wizard-st-3">
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Additional Information</legend>
+
+                                        <%--Representative--%>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label>Name of Authorized Representative*</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="txtNCorpAuthRepName" placeholder="Last Name"
+                                                               class="form-control"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%--<div class="col-md-4">--%>
+                                                <%--<div class="form-group">--%>
+                                                    <%--<label>&nbsp</label>--%>
+                                                    <%--<div class="controls">--%>
+                                                        <%--<input type="text" id="txtNSingBussRepFName"--%>
+                                                               <%--name="txtNSingBussRepFName" placeholder="First Name"--%>
+                                                               <%--class="form-control"/>--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="col-md-4">--%>
+                                                <%--<div class="form-group">--%>
+                                                    <%--<label>&nbsp</label>--%>
+                                                    <%--<div class="controls">--%>
+                                                        <%--<input type="text" id="txtNSingBussRepMName"--%>
+                                                               <%--name="txtNSingBussRepMName" placeholder="Middle Name"--%>
+                                                               <%--class="form-control"/>--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Position (Official Capacity)*</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="txtNCorpAuthRepPos" placeholder="Position"
+                                                               class="form-control"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <%--Address--%>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Home Address of Representative*</label>
+                                                    <input type="text" name="txtNCorpAuthRepStrtNo" placeholder="Street No."
+                                                           class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" name="txtNCorpAuthRepStrtName" placeholder="Street Name"
+                                                           class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" name="txtNCorpAuthRepBrgyName" placeholder="Barangay"
+                                                           class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>&nbsp</label>
+                                                    <input type="text" name="txtNCorpAuthRepCity" placeholder="City"
+                                                           class="form-control" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-3 -->
+                                <!-- begin wizard step-4 -->
+                                <div class="wizard-st-4">
                                     <fieldset>
                                         <legend class="pull-left width-full">Additional Information</legend>
                                         <!-- begin row -->
@@ -293,22 +349,26 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <label>DTI (Business Name)
-                                                        Registration Number*</label>
+                                                    <label>SEC Registration Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussDTIRegNo"
-                                                               name="txtNSingBussDTIRegNo" placeholder="DTI
+                                                        <input type="text" name="txtNCorpBussSECRegNo" placeholder="SEC
                                                         Registration Number" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
+                                                    <label>Date Issued*</label>
+                                                    <input type="text" class="form-control" id="datepicker-autoClose"
+                                                           name="dateNCorpBussSECReg" required/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
                                                     <label>Telephone Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussTelNo"
-                                                               name="txtNSingBussTelNo" placeholder="Telephone Number"
-                                                               class="form-control"/>
+                                                        <input type="text" name="txtNCorpTelNo" placeholder="Telephone Number"
+                                                               class="form-control" data-inputmask="'mask': '999-9999'"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -316,17 +376,9 @@
                                                 <div class="form-group">
                                                     <label>Fax Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussFaxNo"
-                                                               name="txtNSingBussFaxNo" placeholder="Fax Number"
-                                                               class="form-control"/>
+                                                        <input type="text" name="txtNCorpFaxNo" placeholder="Fax Number"
+                                                               class="form-control" data-inputmask="'mask': '999-9999'"/>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Date*</label>
-                                                    <input type="text" class="form-control" id="datepicker-autoClose"
-                                                           name="dateNSingBussDTIReg" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,8 +389,7 @@
                                                 <div class="form-group">
                                                     <label>If Employer, Employer's Social Security Number (SSS)</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingEmpSSSNo"
-                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number"
+                                                        <input type="text" name="txtNCorpEmpSSSNo" placeholder="SSS Number"
                                                                class="form-control"/>
                                                     </div>
                                                 </div>
@@ -347,67 +398,13 @@
                                                 <div class="form-group">
                                                     <label>No of Employees*</label>
                                                     <div class="controls">
-                                                        <input type="number" id="numNSingBussEmpQTY"
-                                                               name="numNSingBussEmpQTY" placeholder="No of Employees"
+                                                        <input type="number" name="numNCorpEmpQTY" placeholder="No of Employees"
                                                                class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- end row -->
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-3 -->
-                                <!-- begin wizard step-4 -->
-                                <div class="wizard-st-4">
-                                    <fieldset>
-                                        <legend class="pull-left width-full">Additional Information</legend>
-
-                                        <%--Representative--%>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Name of Authorized Representative*</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingBussRepLName"
-                                                               name="txtNSingBussRepLName" placeholder="Last Name"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingBussRepFName"
-                                                               name="txtNSingBussRepFName" placeholder="First Name"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>&nbsp</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingBussRepMName"
-                                                               name="txtNSingBussRepMName" placeholder="Middle Name"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <%--Address--%>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Home Address of Authorized Representative*</label>
-                                                    <input type="text" id="txtNSingBussRepAddr"
-                                                           name="txtNSingBussRepAddr" placeholder="Home Address"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </fieldset>
                                 </div>
                                 <!-- end wizard step-4 -->
@@ -424,7 +421,7 @@
                                                     <div class="controls">
                                                         <input type="text" class="form-control"
                                                                id="datepicker-autoClose2"
-                                                               name="dateNSingBussEstRentStart" placeholder="Since when"
+                                                               name="dateNCorpBussEstRentStart" placeholder="Since when"
                                                                class="form-control"/>
                                                     </div>
                                                 </div>
@@ -433,8 +430,7 @@
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <div class="controls">
-                                                        <input type="text" id="numNSingBussEstRentMonth"
-                                                               name="numNSingBussEstRentMonth"
+                                                        <input type="text" name="numNCorpBussEstRentMonth"
                                                                placeholder="Monthly Rental" class="form-control"/>
                                                     </div>
                                                 </div>
@@ -443,8 +439,7 @@
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussEstRentName"
-                                                               name="txtNSingBussEstRentName" placeholder="From Whom"
+                                                        <input type="text" name="txtNCorpBussEstRentName" placeholder="From Whom"
                                                                class="form-control"/>
                                                     </div>
                                                 </div>
@@ -457,10 +452,9 @@
                                                 <div class="form-group">
                                                     <label> <input type="checkbox" class=""
                                                                    id="chkSignboard"
-                                                                   onclick="document.getElementById('numNSingBussEstSignbrdArea').disabled=!this.checked;">
+                                                                   onclick="document.getElementById('numNCorpBussEstSignbrdArea').disabled=!this.checked;">
                                                         Using A Signboard
-                                                    </label> <input type="text" id="numNSingBussEstSignbrdArea"
-                                                                    name="numNSingBussEstSignbrdArea"
+                                                    </label> <input type="text" name="numNCorpBussEstSignbrdArea" id="numNCorpBussEstSignbrdArea"
                                                                     class="form-control col-md-3"
                                                                     placeholder="Area of Signboard"
                                                                     disabled>
@@ -485,8 +479,8 @@
                                                 <div class="form-group">
                                                     <label>Existing Kind of Business</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNSingExBuss"
-                                                               name="txtNSingExBuss" class="form-control"/>
+                                                        <input type="text" class="form-control" id="txtNCorpExBuss"
+                                                               name="txtNCorpExBuss" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -494,8 +488,8 @@
                                                 <div class="form-group">
                                                     <label>Business Permit No.</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo"
-                                                               name="txtNSingExBussNo" class="form-control"/>
+                                                        <input type="text" id="txtNCorpExBussNo"
+                                                               name="txtNCorpExBussNo" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -503,8 +497,8 @@
                                                 <div class="form-group">
                                                     <label>Business Location</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc"
-                                                               name="txtNSingExBussLoc" class="form-control"/>
+                                                        <input type="text" id="txtNCorpExBussLoc"
+                                                               name="txtNCorpExBussLoc" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -514,24 +508,24 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNSingExBuss1"
-                                                               name="txtNSingExBuss1" class="form-control"/>
+                                                        <input type="text" class="form-control" id="txtNCorpExBuss1"
+                                                               name="txtNCorpExBuss1" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo1"
-                                                               name="txtNSingExBussNo1" class="form-control"/>
+                                                        <input type="text" id="txtNCorpExBussNo1"
+                                                               name="txtNCorpExBussNo1" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc1"
-                                                               name="txtNSingExBussLoc1" class="form-control"/>
+                                                        <input type="text" id="txtNCorpExBussLoc1"
+                                                               name="txtNCorpExBussLoc1" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -541,24 +535,24 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNSingExBuss2"
-                                                               name="txtNSingExBuss2" class="form-control"/>
+                                                        <input type="text" class="form-control" id="txtNCorpExBuss2"
+                                                               name="txtNCorpExBuss2" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo2"
-                                                               name="txtNSingExBussNo2" class="form-control"/>
+                                                        <input type="text" id="txtNCorpExBussNo2"
+                                                               name="txtNCorpExBussNo2" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc2"
-                                                               name="txtNSingExBussLoc2" class="form-control"/>
+                                                        <input type="text" id="txtNCorpExBussLoc2"
+                                                               name="txtNCorpExBussLoc2" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -578,7 +572,7 @@
                                                     <label>Kind/Nature of Business or Activity</label>
                                                     <div class="controls">
                                                         <select class="selectpicker form-control" data-style="btn-white"
-                                                                id="txtNSBussAct" name="txtNSBussAct" tabindex="-1">
+                                                                id="txtNCBussAct" name="txtNCBussAct" tabindex="-1">
                                                             <%
                                                                 String natureSt = "";
                                                                 LGUConnect conX = new LGUConnect();
@@ -610,8 +604,8 @@
                                                 <div class="form-group">
                                                     <label>Unit No./Qty</label>
                                                     <div class="controls">
-                                                        <input type="text" id="numNSingBussUnitNo"
-                                                               name="numNSingBussUnitNo" class="form-control"/>
+                                                        <input type="text" id="numNCorpBussUnitNo"
+                                                               name="numNCorpBussUnitNo" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -619,8 +613,8 @@
                                                 <div class="form-group">
                                                     <label>Area (Sq. Mts.)</label>
                                                     <div class="controls">
-                                                        <input type="text" id="numNSingBussAreaSqmts"
-                                                               name="numNSingBussAreaSqmts" class="form-control"/>
+                                                        <input type="text" id="numNCorpBussAreaSqmts"
+                                                               name="numNCorpBussAreaSqmts" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -630,8 +624,8 @@
                                                         or Paid-Up (PHP)</label>
                                                     <div class="controls">
                                                         <input type="currency"
-                                                               id="numNSingBussCapitalization"
-                                                               name="numNSingBussCapitalization" class="form-control"/>
+                                                               id="numNCorpBussCapitalization"
+                                                               name="numNCorpBussCapitalization" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -681,7 +675,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="AplSglBusFooter.jsp"></jsp:include>
+<jsp:include page="AplCrpBusFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
