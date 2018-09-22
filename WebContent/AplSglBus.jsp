@@ -83,7 +83,7 @@
                         <h4 class="panel-title">Form Wizards</h4>
                     </div>
                     <div class="panel-body">
-                        <form action="/" method="POST">
+                        <form data-parsley-validate="true" enctype="multipart/form-data" name="applicationFormSingle">
                             <div id="wizard">
                                 <ol>
                                     <li>
@@ -120,7 +120,7 @@
                                     </li>
                                 </ol>
                                 <!-- begin wizard step-1 -->
-                                <div>
+                                <div class="wizard-st-1">
                                     <fieldset>
                                         <legend class="pull-left width-full">Applicant's Information</legend>
                                         <!-- begin row -->
@@ -205,7 +205,7 @@
                                 </div>
                                 <!-- end wizard step-1 -->
                                 <!-- begin wizard step-2 -->
-                                <div>
+                                <div class="wizard-st-2">
                                     <fieldset>
                                         <legend class="pull-left width-full">Business' Information</legend>
 
@@ -283,7 +283,7 @@
                                 </div>
                                 <!-- end wizard step-2 -->
                                 <!-- begin wizard step-3 -->
-                                <div>
+                                <div class="wizard-st-3">
                                     <fieldset>
                                         <legend class="pull-left width-full">Additional Information</legend>
                                         <!-- begin row -->
@@ -358,7 +358,7 @@
                                 </div>
                                 <!-- end wizard step-3 -->
                                 <!-- begin wizard step-4 -->
-                                <div>
+                                <div class="wizard-st-4">
                                     <fieldset>
                                         <legend class="pull-left width-full">Additional Information</legend>
 
@@ -411,7 +411,7 @@
                                 </div>
                                 <!-- end wizard step-4 -->
                                 <!-- begin wizard step-5 -->
-                                <div>
+                                <div class="wizard-st-5">
                                     <fieldset>
                                         <legend class="pull-left width-full">Other Information</legend>
 
@@ -422,7 +422,7 @@
                                                     <label>If Business Establishment is Rented</label>
                                                     <div class="controls">
                                                         <input type="text" class="form-control"
-                                                               id="datepicker-autoClose"
+                                                               id="datepicker-autoClose2"
                                                                name="dateNSingBussEstRentStart" placeholder="Since when"
                                                                class="form-control"/>
                                                     </div>
@@ -472,7 +472,7 @@
                                 </div>
                                 <!-- end wizard step-5 -->
                                 <!-- begin wizard step-6 -->
-                                <div>
+                                <div class="wizard-st-6">
                                     <fieldset>
                                         <legend class="pull-left width-full">If You Have Other Existing Businesss
                                             Permits
@@ -566,7 +566,7 @@
                                 </div>
                                 <!-- end wizard step-6 -->
                                 <!-- begin wizard step-7 -->
-                                <div>
+                                <div class="wizard-st-7">
                                     <fieldset>
                                         <legend class="pull-left width-full">Business Nature and Attachement</legend>
 
@@ -649,26 +649,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo2"
-                                                               name="txtNSingExBussNo2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc2"
-                                                               name="txtNSingExBussLoc2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </fieldset>
                                 </div>
-                                <!-- end wizard step-6 -->
+                                <!-- end wizard step-7 -->
+                                <!-- begin wizard step-8 -->
+                                <div>
+                                    <div class="jumbotron m-b-0 text-center">
+                                        <h1>Login Successfully</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat commodo porttitor. Vivamus eleifend, arcu in tincidunt semper, lorem odio molestie lacus, sed malesuada est lacus ac ligula. Aliquam bibendum felis id purus ullamcorper, quis luctus leo sollicitudin. </p>
+                                        <p><a class="btn btn-success btn-lg" role="button">Proceed to User Profile</a></p>
+                                    </div>
+                                </div>
+                                <!-- end wizard step-8 -->
                             </div>
                         </form>
                     </div>
@@ -738,22 +731,22 @@
 <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
 <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
 <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
-<script src="assets/js/form-plugins.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
-<script src="assets/js/form-multiple-upload.demo.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
-<script src="assets/js/form-wizards.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/form-wizards-validation.demo.min.js"></script>
+<script src="assets/js/form-plugins.demo.min.js"></script>
+<script src="assets/js/form-multiple-upload.demo.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
-        FormWizard.init();
+        FormWizardValidation.init();
         FormPlugins.init();
     });
 </script>
