@@ -166,6 +166,8 @@
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -178,6 +180,22 @@
                                         String apType = gg3.getString("AP_TYPE");
                                         String modalMode = "";
                                         String modalClass = "";
+                                        String assess = "";
+                                        if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
+                                            if (gg3.getString("AP_STATUS").equals("Assess") && gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV")) {
+                                                assess = "";
+                                            } else {
+                                                assess = "disabled";
+                                            }
+                                        } else if (gg3.getString("BN_CLASSIFICATION").equals("S")) {
+                                            if (gg3.getString("AP_STATUS").equals("Assess")) {
+                                                assess = "";
+                                            } else {
+                                                assess = "disabled";
+                                            }
+                                        } else {
+                                            assess = "disabled";
+                                        }
                                         if (apType.equals("New")) {
                                             modalMode = ".evaluation-modal-new";
                                             modalClass = "newModal";
@@ -201,6 +219,8 @@
                                     </td>
                                     <td><%=gg3.getString("AP_DATE")%>
                                     </td><!--5-->
+                                    <td class="hide"><%=gg3.getString("BU_PRESIDENT")%>
+                                    </td>
                                     <td>
                                         <button
                                                 type="button"
@@ -209,8 +229,13 @@
                                                 data-target="<%=modalMode%>"
                                         >Evaluate
                                         </button>
-                                    </td><!--6-->
-                                    <td class="hide"><%=gg3.getString("BU_PRESIDENT")%>
+                                        <button
+                                                type="button"
+                                                class="btn btn-success <%=assess%>"
+                                                data-toggle="modal"
+                                                data-target=".assess-Modal"
+                                        >Assess
+                                        </button>
                                     </td><!--7-->
                                     <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
                                     </td>
@@ -238,11 +263,11 @@
                                     ><%=gg3.getString("AP_ID")%>
                                     </td>
                                     <!-- 15 -->
-                                    <td id="_AT_BRGY_CLEARANCE" class="hide"><%=gg3.getString("AT_BRGY_CLEARANCE")%>
+                                    <td class="hide"><%=String.valueOf(gg3.getString("AT_BRGY_CLEARANCE"))%>
                                     </td><!-- 16 -->
-                                    <td id="_AT_DTI_REGISTRATION" class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
+                                    <td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
                                     </td>
-                                    <td id="_AT_SEC_REGISTRATION" class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
+                                    <td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%>
                                     </td>
@@ -285,6 +310,10 @@
                                     <td class="hide"><%=gg3.getString("AP_Remarks")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("BN_NAME")%>
+                                    </td>
+                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("OT_CODE")%>
                                     </td>
                                 </tr>
                                 <%
@@ -340,6 +369,10 @@
                                           class="hide"
                                           id="_AP_ID"
                                           name="_AP_ID"
+                            /><input type="text"
+                                     class="hide"
+                                     id="_AP_REFERENCE_NO"
+                                     name="_AP_REFERENCE_NO"
                             />
                                 <div class="col-md-8">
                                     <h5>
@@ -394,7 +427,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="">
+                                <div class="panel-body">
                                     <h5>Requirements Checklist</h5>
                                     <div class="">
                                         <ul class="to_do">
@@ -407,7 +440,7 @@
                                                         value="Pass"
                                                 > Original Barangay Clearance
                                             </p>
-                                            <p>
+                                            <p id="dtiID">
                                                 <input
                                                         type="checkbox"
                                                         id="AT_DTI_REGISTRATION"
@@ -416,7 +449,7 @@
                                                         value="Pass"
                                                 > DTI Registration (for Single Proprietorship
                                             </p>
-                                            <p>
+                                            <p id="secID">
                                                 <input
                                                         type="checkbox"
                                                         id="AT_SEC_REGISTRATION"
@@ -466,16 +499,35 @@
                                             </p>
                                         </ul>
                                     </div>
-                                    <hr>
-                                    <div class="col-md-9">
-											<textarea
-                                                    class="form-control"
-                                                    placeholder="Remarks"
-                                                    id="AP_Remarks"
-                                                    name="AP_Remarks"
-                                                    rows="3"
-                                            ></textarea>
+
+                                </div>
+                                <hr>
+                                <div class="panel-body">
+                                    <div class="note note-info">
+                                        <h4>Evaluation Notes</h4>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    Other Requirements based on the business nature should be in the
+                                                    document. LEAVE UNCHECK THE "OTHER DOCUMENTS" IF ANY OTHER
+                                                    REQUIREMENTS ON THE ATTACHMENT IS INVALID OR INCOMPLETE.
+                                                </p>
+                                            </li>
+                                            <li><p>
+                                                Incomplete/Invalid documents on general and other requirements will
+                                                redirect you to termination form of the application.
+                                            </p></li>
+                                        </ul>
                                     </div>
+                                    <!--  <div class="col-md-9">
+                                              <textarea
+                                                      class="form-control"
+                                                      placeholder="Remarks"
+                                                      id="AP_Remarks"
+                                                      name="AP_Remarks"
+                                                      rows="3"
+                                              ></textarea>
+                                      </div>-->
                                 </div>
                             </div>
                         </div>
@@ -490,12 +542,6 @@
                         </button>
                         <button
                                 type="button"
-                                id="btnNewApplRev"
-                                class="btn btn-primary"
-                        >Revise
-                        </button>
-                        <button
-                                type="button"
                                 id="btnNewAppl"
                                 class="btn btn-success"
                         >Evaluate
@@ -505,6 +551,7 @@
             </form>
         </div>
     </div>
+
     <!-- Renewal modal -->
     <div
             class="modal fade evaluation-modal-renew"
@@ -650,6 +697,105 @@
             </div>
         </div>
     </div>
+
+    <!-- Termination modal -->
+    <div
+            class="modal modal-message fade evaluation-modal-terminate"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <form
+                    id="terminateApplForm"
+                    class="form-horizontal"
+                    name="terminateApplForm"
+                    enctype="multipart/form-data"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="panel-heading-btn">
+                            <button
+                                    type="button"
+                                    id="closeTermPanelWindow"
+                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
+                                    data-dismiss="modal"
+                            >
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <h4
+                                class="modal-title"
+                        >Application Termination</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="col-md-8">
+                                    <h5>
+                                        Application/Referrence Number:
+                                        <!-- <input disabled=""
+                                        id="nBussName" type="text" /> -->
+                                        <label id="tRefNo"></label>
+                                    </h5>
+                                    <h5>
+                                        Business Name:
+                                        <!-- <input
+                                        disabled="" id="nBussOwner" type="text" /> -->
+                                        <label id="tBussName"></label>
+                                    </h5>
+                                    <h5>
+                                        Business Nature:
+                                        <!-- <input disabled="" id="nBussAddr"
+                                        type="text" /> -->
+                                        <label id="tBussNature"></label>
+                                    </h5>
+                                    <h5>
+                                        Authorized Representative:
+                                        <!--  <input disabled=""
+                                        id="nBussAuthRepName" type="text" /> -->
+                                        <label id="tBussAuthRepName"></label>
+                                    </h5>
+                                    <h5>
+                                        Business Owner:
+                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                        <label id="tBussOwner"></label>
+                                    </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <hr>
+                                   <div class="col-md-9">
+                                              <textarea
+                                                      class="form-control"
+                                                      placeholder="Remarks"
+                                                      id="AP_Remarks"
+                                                      name="AP_Remarks"
+                                                      rows="3"
+                                              ></textarea>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                id="btnCloseTermApplModal"
+                        >Close
+                        </button>
+                        <button
+                                type="button"
+                                id="btnTermAppl"
+                                class="btn btn-success"
+                        >Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <jsp:include page="footer.jsp"></jsp:include>
 </div>
 <!-- ================== BEGIN BASE JS ================== -->
@@ -700,40 +846,50 @@
             document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
             $("#_AT_ID").val(Number($("#AT_ID").text()));
             $("#_AP_ID").val(Number($("#AP_ID").text()));
+            $("#_AP_REFERENCE_NO").val($("#AP_REFERENCE_NO").text().trim());
 
-            if ($(this).closest("tbody tr").find("td:eq(8)").text() === "null") {
-                document.getElementById('nBussOwner').innerHTML = 'None';
+            if ($(this).closest("tbody tr").find("td:eq(41)").html().trim() === "OT-SIN") {
+                $("#AT_SEC_REGISTRATION").hide("swing");
+                $("#secID").hide("fast");
+            } else if ($(this).closest("tbody tr").find("td:eq(41)").html().trim() === "OT-PRT") {
+                $("#AT_DTI_REGISTRATION").hide("fast");
+                $("#dtiID").hide("swing");
+            }
+            if ($(this).closest("tbody tr").find("td:eq(6)").html().trim() === "null") {
+                document.getElementById('nBussOwner').innerHTML = "None";
+            } else {
+                document.getElementById('nBussOwner').innerHTML = $(this).closest("tbody tr").find("td:eq(6)").html();
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(38)").text() === "null") {
+            /*if ($(this).closest("tbody tr").find("td:eq(38)").text().trim() === "null") {
                 $("#AP_Remarks").val("");
-            }
+            }*/
 
-            if ($(this).closest("tbody tr").find("td:eq(16)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(16)").text().trim() === "Pass") {
                 $("#AT_BRGY_CLEARANCE").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(17)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(17)").text().trim() === "Pass") {
                 $("#AT_DTI_REGISTRATION").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(18)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(18)").text().trim() === "Pass") {
                 $("#AT_SEC_REGISTRATION").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(19)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(19)").text().trim() === "Pass") {
                 $("#AT_TITLE_TO_PROPERTY").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(21)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(21)").text().trim() === "Pass") {
                 $("#AT_CONTRACT_OF_LEASE").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(23)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(23)").text().trim() === "Pass") {
                 $("#AT_AUTHORIZATION").prop("checked", true);
             }
 
-            if ($(this).closest("tbody tr").find("td:eq(37)").text() === "Pass") {
+            if ($(this).closest("tbody tr").find("td:eq(37)").text().trim() === "Pass") {
                 $("#AT_MISC_DOCUMENTS").prop("checked", true);
             }
 
@@ -748,6 +904,10 @@
         });
 
         $('#btnCloseNewApplModal').click(function () {
+            $("#AT_SEC_REGISTRATION").show("swing");
+            $("#secID").show("fast");
+            $("#AT_DTI_REGISTRATION").show("fast");
+            $("#dtiID").show("swing");
             $("#AT_BRGY_CLEARANCE").prop("checked", false);
             $("#AT_DTI_REGISTRATION").prop("checked", false);
             $("#AT_SEC_REGISTRATION").prop("checked", false);
@@ -758,6 +918,10 @@
         });
 
         $('#closeNewPanelWindow').click(function () {
+            $("#AT_SEC_REGISTRATION").show("swing");
+            $("#secID").show("fast");
+            $("#AT_DTI_REGISTRATION").show("fast");
+            $("#dtiID").show("swing");
             $("#AT_BRGY_CLEARANCE").prop("checked", false);
             $("#AT_DTI_REGISTRATION").prop("checked", false);
             $("#AT_SEC_REGISTRATION").prop("checked", false);
@@ -774,6 +938,26 @@
 <!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
 <!-- Init script -->
 <script type="text/javascript">
+    $(document).ready(function () {
+        $("#closeTermPanelWindow").click(function () {
+            $("#tRefNo").text("");
+            $("#tBussName").text("");
+            $("#tBussNature").text("");
+            $("#tBussAuthRepName").text("");
+            $("#tBussOwner").text("");
+        });
+
+        $("#btnCloseTermApplModal").click(function () {
+            $("#tRefNo").text("");
+            $("#tBussName").text("");
+            $("#tBussNature").text("");
+            $("#tBussAuthRepName").text("");
+            $("#tBussOwner").text("");
+        });
+
+    });
+</script>
+<script type="text/javascript">
     /*clippy.load('Clippy', function(agent){
         // do anything with the loaded agent
           agent.animate();
@@ -782,39 +966,49 @@
     });*/
 
     $('#btnNewAppl').click(function () {
-        swal({
-            title: "Are you sure?",
-            text: "You will save your current changes",
-            type: "warning",
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Confirm!",
-            showCancelButton: true,
-            cancelButtonText: 'Cancel',
-        }).then((result) => {
-            if (result.value) {
-                var datanewApplForm = new FormData($('#newApplForm')[0]); //working method
-                $.ajax({
-                    type: "POST",
-                    url: "updateNewAppEvaluationForm",
-                    data: datanewApplForm,
-                    processData: false,
-                    contentType: false,
-                    success: function () {
-                        swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated'});
-                    }/*,
+
+        if ($("#AT_BRGY_CLEARANCE").is(':checked') && ($("#AT_DTI_REGISTRATION").is(':checked') || $("#AT_SEC_REGISTRATION").is(':checked')) && $("#AT_TITLE_TO_PROPERTY").is(':checked') && $("#AT_CONTRACT_OF_LEASE").is(':checked') && $("#AT_AUTHORIZATION").is(':checked') && $("#AT_MISC_DOCUMENTS").is(':checked')) {
+
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.value) {
+                    var datanewApplForm = new FormData($('#newApplForm')[0]); //working method
+                    $.ajax({
+                        type: "POST",
+                        url: "updateNewAppEvaluationForm",
+                        data: datanewApplForm,
+                        processData: false,
+                        contentType: false,
+                        success: function () {
+                            swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated'});
+                        }/*,
                     error: function () {
                         swal("error", "Evaluation encountered and error", "error");
                     }*/
-                });
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                swalWithBootstrapButtons(
-                    'Cancelled',
-                    'Operation Halted',
-                    'error'
-                )
+                    });
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
 
-            }
-        })
+                }
+            });
+        } else {$(".evaluation-modal-terminate").modal('toggle');
+        $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
+            $("#tBussName").append($("#nBussName").text().trim());
+            $("#tBussNature").append($("#nBussNature").text().trim());
+            $("#tBussAuthRepName").append($("#nBussAuthRepName").text().trim());
+            $("#tBussOwner").append($("#nBussOwner").text().trim());
+            $(".evaluation-modal-new").modal('toggle');}
     });
 </script>
 </body>

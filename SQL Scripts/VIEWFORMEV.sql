@@ -1,7 +1,7 @@
-DROP VIEW view_applicationformsev;
+DROP VIEW IF EXISTS view_applicationformsev;
 CREATE VIEW view_applicationformsev AS
-  SELECT  AP.AP_REFERENCE_NO,
-          BUS.BU_NAME,
+  SELECT AP.AP_REFERENCE_NO,
+         BUS.BU_NAME,
          BUS.BU_PRESIDENT,
          CONCAT(
            TP.TP_FNAME,
@@ -21,12 +21,16 @@ CREATE VIEW view_applicationformsev AS
              ) AUTH_REPNAME,
          AR.AR_HOME_ADDRESS,
          BN.BN_NAME,
+         BN.BN_CLASSIFICATION,
          OT.OT_NAME,
+         OT.OT_CODE,
          AP.AP_TYPE,
          AP.AP_DATE,
          ATC.AT_UNIFIED_FILE_NAME,
          AP.AP_ID,
          AP.AP_STATUS,
+         AP.AP_DIV_CODE_TO,
+         AP.AP_DIV_CODE_FROM,
          ATC.AT_ID,
          ATC.AT_BRGY_CLEARANCE,
          ATC.AT_DTI_REGISTRATION,
@@ -53,11 +57,11 @@ CREATE VIEW view_applicationformsev AS
          ATC.AP_Remarks
   FROM lgu_r_business BUS
          INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID
-         INNER JOIN lgu_r_ownership_type OT ON OT.OT_ID = BUS.OT_ID
+         INNER JOIN lgu_r_ownership_type OT ON OT.OT_CODE = BUS.OT_CODE
          INNER JOIN lgu_r_bp_application AP ON AP.BU_ID = BUS.BU_ID
          INNER JOIN lgu_r_taxpayer TP ON TP.TP_ID = BUS.TP_ID
          INNER JOIN lgu_r_bu_ar BUxAR ON BUxAR.BU_ID = BUS.BU_ID
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
-         INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE
-  WHERE AP.AP_DIV_CODE = 'DIV-EV';
+         INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
+  WHERE AP.AP_DIV_CODE_TO = 'DIV-EV';
