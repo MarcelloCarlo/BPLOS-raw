@@ -42,7 +42,7 @@
 <!-- end #header -->
 
 <!-- begin #top-menu -->
-<div id="top-menu" class="top-menu">
+<div id="top-menu" class="top-menu type-primary">
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>

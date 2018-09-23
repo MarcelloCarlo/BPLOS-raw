@@ -96,12 +96,9 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- begin panel -->
-                <div class="panel panel-inverse">
+                <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        </div>
-                        <h4 class="panel-title">Users Table</h4>
+                        <h4 class="panel-title">Route Slip</h4>
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
@@ -130,7 +127,7 @@
                     <hr>
 
                     <div class="panel-body">
-                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th>Reference Number</th>

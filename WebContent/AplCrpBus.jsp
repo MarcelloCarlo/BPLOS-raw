@@ -83,7 +83,7 @@
             <!-- begin col-12 -->
             <div class="col-md-12">
                 <!-- begin panel -->
-                <div class="panel panel-inverse panel-primary">
+                <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
                         <div class="panel-heading-btn">
                         </div>
