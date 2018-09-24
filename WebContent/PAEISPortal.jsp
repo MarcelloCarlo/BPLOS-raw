@@ -86,6 +86,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <a class="btn btn-sm btn-primary">Log In</a>
                         </div>
                     </div>
                 </div>
