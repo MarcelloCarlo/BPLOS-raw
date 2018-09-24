@@ -64,4 +64,4 @@ CREATE VIEW view_applicationformsev AS
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
          INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
-  WHERE AP.AP_DIV_CODE_TO = 'DIV-EV';
+  WHERE AP.AP_DIV_CODE_TO = 'DIV-EV' AND (AP.AP_STATUS = 'Pending' OR AP.AP_STATUS = 'Assess') ;

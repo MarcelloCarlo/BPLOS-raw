@@ -168,6 +168,7 @@
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -233,7 +234,7 @@
                                                 type="button"
                                                 class="btn btn-success <%=assess%>"
                                                 data-toggle="modal"
-                                                data-target=".assess-Modal"
+                                                data-target=".assess-modal"
                                         >Assess
                                         </button>
                                     </td><!--7-->
@@ -315,6 +316,7 @@
                                     </td>
                                     <td class="hide"><%=gg3.getString("OT_CODE")%>
                                     </td>
+                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%></td>
                                 </tr>
                                 <%
                                     }
@@ -373,6 +375,10 @@
                                      class="hide"
                                      id="_AP_REFERENCE_NO"
                                      name="_AP_REFERENCE_NO"
+                            /><input type="text"
+                                     class="hide"
+                                     id="_BN_CLASSIFICATION"
+                                     name="_BN_CLASSIFICATION"
                             />
                                 <div class="col-md-8">
                                     <h5>
@@ -847,6 +853,7 @@
             $("#_AT_ID").val(Number($("#AT_ID").text()));
             $("#_AP_ID").val(Number($("#AP_ID").text()));
             $("#_AP_REFERENCE_NO").val($("#AP_REFERENCE_NO").text().trim());
+            $("#_BN_CLASSIFICATION").val($("#BN_CLASSIFICATION").text().trim());
 
             if ($(this).closest("tbody tr").find("td:eq(41)").html().trim() === "OT-SIN") {
                 $("#AT_SEC_REGISTRATION").hide("swing");
@@ -987,7 +994,12 @@
                         processData: false,
                         contentType: false,
                         success: function () {
-                            swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated'});
+                            swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated', confirmButtonText:'OK'}).then((result) => {
+                                if (result.value) {
+                                    location.reload(true);
+                                }
+                            });
+
                         }/*,
                     error: function () {
                         swal("error", "Evaluation encountered and error", "error");
