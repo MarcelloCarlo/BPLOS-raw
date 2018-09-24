@@ -71,7 +71,7 @@
                     <h4 class="panel-title">Users Table</h4>
                 </div>
                 <div class="panel-body">
-                    <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add User</a>
+                    <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add User</a>
                 </div>
                 <div class="panel-body">
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
@@ -132,7 +132,7 @@
                 <div class="modal-header">
                     <div class="panel panel-inverse">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Add User</h4>
+                            <h4 class="panel-title panel-danger">Add User</h4>
                         </div>
                         <div class="panel-body">
                             <form action="DivSAUsrInsert.jsp" method="POST">

@@ -71,7 +71,7 @@
                     <h4 class="panel-title">Fees</h4>
                 </div>
                 <div class="panel-body">
-                    <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add Fee</a>
+                    <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add Fee</a>
                 </div>
                 <div class="panel-body">
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
@@ -124,7 +124,7 @@
                 <div class="modal-header">
                     <div class="panel panel-inverse">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Add Fee</h4>
+                            <h4 class="panel-title panel-danger">Add Fee</h4>
                         </div>
                         <div class="panel-body">
                             <form action="DivSAFeeInsert.jsp" method="POST">

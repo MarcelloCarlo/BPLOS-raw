@@ -71,7 +71,7 @@
                         <h4 class="panel-title">Requirements</h4>
                     </div>
                     <div class="panel-body">
-                        <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add Requirements</a>
+                        <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add Requirements</a>
                     </div>
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
@@ -122,7 +122,7 @@
                 <div class="modal-header">
                     <div class="panel panel-inverse">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Add Requirements</h4>
+                            <h4 class="panel-title panel-danger">Add Requirements</h4>
                         </div>
                         <div class="panel-body">
                             <form action="DivSAReqInsert.jsp" method="POST">
