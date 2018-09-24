@@ -12,7 +12,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | User Management</title>
+    <title>PAEIS | Requirements Configuration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -31,6 +31,7 @@
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
     <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -51,95 +52,61 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">System Admin</a></li>
-            <li class="active">User Management</li>
+            <li>Configurables</li>
+            <li class="active">Requirements</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">User Management</h1>
+        <h1 class="page-header">Requirements Configuration</h1>
         <!-- end page-header -->
 
         <div class="row">
             <div class="col-md-12">
                 <!-- begin panel -->
-                <div class="panel panel-inverse">
+                <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
                         <div class="panel-heading-btn">
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         </div>
-                        <h4 class="panel-title">Users Table</h4>
-                        <div class="panel-body">
+                        <h4 class="panel-title">Requirements</h4>
+                    </div>
+                    <div class="panel-body">
+                        <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add Requirements</a>
+                    </div>
+                    <div class="panel-body">
+                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                            <thead>
+                            <tr>
+                                <th>Requirement Name</th>
+                                <th>Requirement Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
+                                String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
                                 Connection conn = null;
                                 Statement stat = null;
                                 ResultSet res = null;
-                                PreparedStatement stmt = null;
-                                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                               // Class.forName("com.mysql.jdbc.Driver").newInstance();
+                                Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
+                                stat = conn.createStatement();
+                                String data = "select * from lgu_r_req_type order by RT_ID desc";
+                                res = stat.executeQuery(data);
+                                while (res.next())
+                                {
                             %>
-                            <form class="form-horizontal" action=" " method="POST">
-                                <%
-                                    //stat = conn.createStatement();
-                                    //stat = conn.createStatement();
-                                    String u = request.getParameter("u");
-                                    int num = Integer.parseInt(u);
-                                   // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                    PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_user where U_ID= ? ");
-                                    getInfo.setInt(1,num);
-                                    //res = stat.executeQuery(data);
-                                    res = getInfo.executeQuery();
-                                    while (res.next())
-                                    {
-                                %>
-                                <input type="hidden" name="id" value='<%=res.getString("U_ID")%>'/>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="username" class="form-control" value='<%=res.getString("U_USERNAME")%>' />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">User Type</label>
-                                    <div class="col-md-8">
-                                        <select name="type" class="form-control" value='<%=res.getString("U_TYPE")%>'>
-                                            <option>Staff</option>
-                                            <option>Admin</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Department</label>
-                                    <div class="col-md-8">
-                                        <select name="role" class="form-control">
-                                            <option>Evaluation</option>
-                                            <option>Inspection</option>
-                                            <option>Investigation</option>
-                                            <option>Treasury</option>
-                                            <option>Releasing</option>
-                                            <option>System Admin</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Status</label>
-                                    <div class="col-md-8">
-                                        <select name="status" class="form-control">
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <%
-                                    }
-                                %>
-                                <div class="modal-footer">
-                                    <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-sm btn-success">Update</button>
-                                </div>
-                            </form>
-                        </div>
+                            <tr>
+                                <td><%=res.getString("RT_NAME")%></td>
+                                <td><%=res.getString("RT_DESC")%></td>
+                                <td>
+                                    <a href="DivSAReqUpdate.jsp?u=<%=res.getString("RT_ID")%>" class="btn btn-success">Edit</a>
+                                </td>
+                            </tr>
+                            <%
+                                }
+                            %>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- end panel -->
@@ -148,11 +115,71 @@
     </div>
     <!-- end #content -->
 
+    <!-- #modal-adduser -->
+    <div class="modal fade" id="modal-adduser">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="panel panel-inverse">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Add Requirements</h4>
+                        </div>
+                        <div class="panel-body">
+                            <form action="DivSAReqInsert.jsp" method="POST">
+
+                                <div>
+                                    <fieldset>
+                                        <legend class="pull-left width-full">Requirements</legend>
+                                        <!-- begin row -->
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Requirement Name</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="reqname" placeholder="Requirement Name" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Requirement Description</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="reqdesc" placeholder="Requirement Description" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <br>
+
+                                        <div class="modal-footer">
+                                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                        </div>
+                                        <!-- end row -->
+                                    </fieldset>
+                                </div>
+                                <!-- end wizard step-3 -->
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
+
+<jsp:include page="DivSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -177,6 +204,8 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="assets/js/form-wizards.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
@@ -184,6 +213,7 @@
     $(document).ready(function() {
         App.init();
         TableManageResponsive.init();
+        FormWizard.init();
     });
 </script>
 <script>
@@ -198,22 +228,3 @@
 </script>
 </body>
 </html>
-
-<%
-    String a = request.getParameter("id");
-    String b = request.getParameter("username");
-    String c = request.getParameter("type");
-    String d = request.getParameter("role");
-    String e = request.getParameter("status");
-    if(a!=null && b!=null && c!=null && d!=null && e!=null)
-    {
-        String query = "update lgu_r_user set U_USERNAME=?,  U_TYPE=?, U_ROLE=?, U_STATUS=? where U_ID='"+a+"'";
-        stmt = conn.prepareStatement(query);
-        stmt.setString(1,b);
-        stmt.setString(2,c);
-        stmt.setString(3,d);
-        stmt.setString(4,e);
-        stmt.executeUpdate();
-        response.sendRedirect("DivSAUserManagement.jsp");
-    }
-%>

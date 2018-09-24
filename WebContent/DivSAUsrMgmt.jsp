@@ -77,7 +77,6 @@
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Full Name</th>
                             <th>Username</th>
                             <th>User Type</th>
@@ -101,7 +100,6 @@
                                 {
                             %>
                                     <tr>
-                                        <td><%=res.getString("U_ID")%></td>
                                         <td><%=res.getString("U_FIRSTNAME")%></td>
                                         <td><%=res.getString("U_USERNAME")%></td>
                                         <td><%=res.getString("U_TYPE")%></td>
@@ -111,7 +109,7 @@
                                             <%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
                                         <%--</td>--%>
                                         <td>
-                                            <a href="DivSAUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
+                                            <a href="DivSAUsrUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                             <%
@@ -137,7 +135,7 @@
                             <h4 class="panel-title">Add User</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSAInsert.jsp" method="POST">
+                            <form action="DivSAUsrInsert.jsp" method="POST">
                                 <div id="wizard">
                                     <ol>
                                         <li>
@@ -286,7 +284,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>

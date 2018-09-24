@@ -37,6 +37,6 @@
         stat.setString(9,i);
         stat.setString(10,j);
         stat.executeUpdate();
-        response.sendRedirect("DivSAUserManagement.jsp");
+        response.sendRedirect("DivSAUsrMgmt.jsp");
     }
 %>
