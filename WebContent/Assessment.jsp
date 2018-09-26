@@ -5,11 +5,8 @@
   Time: 9:52 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -17,6 +14,14 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
+
+<% LGUConnect conX = new LGUConnect();
+Connection connection = conX.getConnection();
+    String refNo= request.getParameter("refNo");
+PreparedStatement getAssess = connection.prepareStatement("SELECT * FROM view_assessment WHERE AP_REFERENCE_NO = ?");
+getAssess.setString(1,refNo);
+ResultSet rs = getAssess.executeQuery();
+while (rs.next()){%>
 <head>
     <meta charset="utf-8" />
     <title>PAEIS | Assessment</title>
@@ -62,21 +67,54 @@
                     <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Export as PDF</a>
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Print</a>
                     </span>
-                    [Insert Company Name] Applicant's Copy
+                   Applicant's Copy
                 </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
                         <address class="m-t-5 m-b-5">
-                            <strong>[Company Name]</strong><br />
-                            [Company Address]<br />
-                            [  ]<br />
-                            [Company Contact]<br />
+                            <strong>OR Number: <% try {
+                                out.print(rs.getString("AS_OR_NO"));} catch (SQLException e) {
+                                e.printStackTrace();
+                                } %></strong><br />
+                            Business Name: <%
+                            try {
+                                out.print(rs.getString("BU_NAME"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %><br/>
+                            Business Location:  <%
+                            try {
+                                out.print(rs.getString("BU_LOCATION"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %><br />
+                            Contact:  <%
+                            try {
+                                out.print(rs.getString("BU_CONTACT"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %><br />
                         </address>
                     </div>
                     <div class="invoice-date">
-                        <div class="date m-t-5">[Date]</div>
+                        <div class="date m-t-5">Period Covered: <%
+                            try {
+                                out.print(rs.getString("AS_PERIOD_COVERED"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %></div>
                         <div class="invoice-detail">
-                            [Receipt Number]
+                            Due Date: <%
+                            try {
+                                out.print(rs.getString("AS_DUE_DATE"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %>
                         </div>
                     </div>
                 </div>
@@ -390,6 +428,7 @@
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
+<%}%>
 <!-- end page container -->
 
 

@@ -65,6 +65,12 @@ public class updateNewAppEvaluationForm extends HttpServlet {
             changeDiv.setString(1, AP_REFERENCE_NO);
             changeDiv.executeUpdate();
 
+            if (BN_CLASSIFICATION.equals("S")) {
+               PreparedStatement assessApplication = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_assessment`(`AS_OR_NO`, `AS_AP_REFERENCE_NO`, `AS_FEE_SET`, `AS_PERIOD_COVERED`, `AS_DUE_DATE`) VALUES (CONCAT(LPAD(AS_ID,3,'0'),'-',REPLACE(?,'-','')),?,'FS-SET1',CURRENT_DATE(),DATE_ADD(AS_PERIOD_COVERED, INTERVAL 1 YEAR))");
+               assessApplication.setString(1,AP_REFERENCE_NO);
+               assessApplication.setString(2,AP_REFERENCE_NO);
+               assessApplication.executeUpdate();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
