@@ -49,8 +49,8 @@
                 <span>Configurables</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="gallery.html">Fees</a></li>
-                <li><a href="gallery_v2.html">Requirements</a></li>
+                <li><a href="DivSAFee.jsp">Fees</a></li>
+                <li><a href="DivSAReq.jsp">Requirements</a></li>
             </ul>
         </li>
     </ul>
