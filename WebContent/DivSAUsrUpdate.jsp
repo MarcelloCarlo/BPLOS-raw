@@ -3,6 +3,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.Connection" %>
+<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -93,30 +94,42 @@
                                 %>
                                 <input type="hidden" name="id" value='<%=res.getString("U_ID")%>'/>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
+                                    <label class="col-md-4 control-label">Role</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="username" class="form-control" value='<%=res.getString("U_USERNAME")%>' />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">User Type</label>
-                                    <div class="col-md-8">
-                                        <select name="type" class="form-control" value='<%=res.getString("U_TYPE")%>'>
-                                            <option>Staff</option>
-                                            <option>Admin</option>
+                                        <select name="role" class="form-control">
+                                            <%
+                                                LGUConnect connnn = new LGUConnect();
+                                                Connection connnn1 = connnn.getConnection();
+                                                Statement aaaaa = connnn1.createStatement();
+                                                ResultSet sssss = aaaaa.executeQuery("SELECT * FROM `lgu_r_role`");
+                                                while (sssss.next()){
+                                            %>
+                                            <option value="<%out.print(sssss.getInt("ROLE_ID"));%>">
+                                                <%out.print(sssss.getString("ROLE_NAME"));%>
+                                            </option>
+                                            <%
+                                                }
+                                            %>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Department</label>
+                                    <label class="col-md-4 control-label">Division</label>
                                     <div class="col-md-8">
                                         <select name="role" class="form-control">
-                                            <option>Evaluation</option>
-                                            <option>Inspection</option>
-                                            <option>Investigation</option>
-                                            <option>Treasury</option>
-                                            <option>Releasing</option>
-                                            <option>System Admin</option>
+                                            <%
+                                                LGUConnect connn = new LGUConnect();
+                                                Connection connn1 = connn.getConnection();
+                                                Statement aaaa = connn1.createStatement();
+                                                ResultSet ssss = aaaa.executeQuery("SELECT * FROM `lgu_r_division`");
+                                                while (ssss.next()){
+                                            %>
+                                            <option value="<%out.print(ssss.getInt("DIV_ID"));%>">
+                                                <%out.print(ssss.getString("DIV_NAME"));%>
+                                            </option>
+                                            <%
+                                                }
+                                            %>
                                         </select>
                                     </div>
                                 </div>

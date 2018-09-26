@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
                             <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
+                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
                                 Connection conn = null;
                                 Statement stat = null;
                                 ResultSet res = null;
@@ -131,7 +131,7 @@
                                         <!-- begin row -->
                                         <div class="row">
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Requirement Name</label>
                                                     <div class="controls">
@@ -140,7 +140,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Requirement Description</label>
                                                     <div class="controls">

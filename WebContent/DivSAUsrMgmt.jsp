@@ -130,9 +130,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="panel panel-inverse">
+                    <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title panel-danger">Add User</h4>
+                            <h4 class="panel-title">Add User</h4>
                         </div>
                         <div class="panel-body">
                             <form action="DivSAUsrInsert.jsp" method="POST">
@@ -184,8 +184,8 @@
                                                         <label>Gender</label>
                                                         <div class="controls">
                                                             <select name="gender" class="form-control">
-                                                                <option value="Male">Evaluation</option>
-                                                                <option value="Female">Inspection</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -194,7 +194,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
-                                                        <input type="text" name="bdate" placeholder="Last Name"
+                                                        <input type="text" name="bdate" placeholder="Birthdate"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
@@ -202,7 +202,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Status</label>
-                                                        <input type="text" name="status" placeholder="Last Name"
+                                                        <input type="text" name="status" placeholder="Status"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
@@ -210,7 +210,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Job Description</label>
-                                                        <input type="text" name="jopdesc" placeholder="Last Name"
+                                                        <input type="text" name="jobdesc" placeholder="Job Description"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
@@ -279,8 +279,8 @@
                                                     <label>Pasword</label>
                                                     <div class="controls">
                                                         <input type="password" name="password"
-                                                               placeholder="Your password" class="form-control"
-                                                               required/>
+                                                               value="Bplo_user111" class="form-control"
+                                                               disabled/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -290,7 +290,19 @@
                                                     <label>User Role</label>
                                                     <div class="controls">
                                                         <select name="urole" class="form-control">
-                                                            <option value="fedit">For editing</option>
+                                                            <%
+                                                                LGUConnect con = new LGUConnect();
+                                                                Connection con1 = con.getConnection();
+                                                                Statement aa = con1.createStatement();
+                                                                ResultSet ss = aa.executeQuery("SELECT * FROM `lgu_r_role`");
+                                                                while (ss.next()){
+                                                            %>
+                                                            <option value="<%out.print(ss.getInt("ROLE_ID"));%>">
+                                                                <%out.print(ss.getString("ROLE_NAME"));%>
+                                                            </option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -301,7 +313,19 @@
                                                     <label>Division</label>
                                                     <div class="controls">
                                                         <select name="udiv" class="form-control">
-                                                            <option value="fedit">For Editing</option>
+                                                            <%
+                                                                LGUConnect conn = new LGUConnect();
+                                                                Connection conn1 = conn.getConnection();
+                                                                Statement aaa = conn1.createStatement();
+                                                                ResultSet sss = aaa.executeQuery("SELECT * FROM `lgu_r_division`");
+                                                                while (sss.next()){
+                                                            %>
+                                                            <option value="<%out.print(sss.getInt("DIV_ID"));%>">
+                                                                <%out.print(sss.getString("DIV_NAME"));%>
+                                                            </option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>

@@ -12,7 +12,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | Requirements Configuration</title>
+    <title>PAEIS | Fees Configuration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -31,7 +31,6 @@
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
     <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
     <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -52,12 +51,12 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li>Configurables</li>
-            <li class="active">Requirements</li>
+            <li>Configubles</li>
+            <li class="active">Fee</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Requirements Configuration</h1>
+        <h1 class="page-header">Fees Configuration</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -65,56 +64,61 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Requirements</h4>
+                        <h4 class="panel-title">Fees</h4>
                     </div>
                     <div class="panel-body">
+                        <%
+                            String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
+                            Connection conn = null;
+                            Statement stat = null;
+                            ResultSet res = null;
+                            PreparedStatement stmt = null;
+                            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+                            // Class.forName("com.mysql.jdbc.Driver").newInstance();
+                            conn = DriverManager.getConnection(host,"root","");
+                        %>
+                        <form class="form-horizontal" action=" " method="POST">
                             <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
-                                Connection conn = null;
-                                Statement stat = null;
-                                ResultSet res = null;
-                                PreparedStatement stmt = null;
-                                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                                // Class.forName("com.mysql.jdbc.Driver").newInstance();
-                                conn = DriverManager.getConnection(host,"root","");
+                                //stat = conn.createStatement();
+                                //stat = conn.createStatement();
+                                String u = request.getParameter("u");
+                                int num = Integer.parseInt(u);
+                                // String data = "select * from lgu_r_user where U_ID='"+num+"'";
+                                PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_fees where FEES_PK= ? ");
+                                getInfo.setInt(1,num);
+                                //res = stat.executeQuery(data);
+                                res = getInfo.executeQuery();
+                                while (res.next())
+                                {
                             %>
-                            <form class="form-horizontal" action=" " method="POST">
-                                <%
-                                    //stat = conn.createStatement();
-                                    //stat = conn.createStatement();
-                                    String u = request.getParameter("u");
-                                    int num = Integer.parseInt(u);
-                                    // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                    PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_req_type where RT_ID= ? ");
-                                    getInfo.setInt(1,num);
-                                    //res = stat.executeQuery(data);
-                                    res = getInfo.executeQuery();
-                                    while (res.next())
-                                    {
-                                %>
-                                <input type="hidden" name="id" value='<%=res.getString("RT_ID")%>'/>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Requirement Name</label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="reqname" class="form-control" value='<%=res.getString("RT_NAME")%>' />
-                                    </div>
+                            <input type="hidden" name="id" value='<%=res.getString("FEES_PK")%>'/>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fee Code</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="feecode" class="form-control" value='<%=res.getString("FEES_CODE")%>' />
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Requirement Description</label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="reqdesc" class="form-control" value='<%=res.getString("RT_DESC")%>' />
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fee Name</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="feename" class="form-control" value='<%=res.getString("FEES_NAME")%>' />
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Fee Amount</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="feeamo" class="form-control" value='<%=res.getString("AMOUNT")%>' />
+                                </div>
+                            </div>
 
-                                <%
-                                    }
-                                %>
-                                <div class="modal-footer">
-                                    <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-sm btn-success">Update</button>
-                                </div>
-                            </form>
-                        </div>
+                            <%
+                                }
+                            %>
+                            <div class="modal-footer">
+                                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-success">Update</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- end panel -->
@@ -176,15 +180,17 @@
 
 <%
     String a = request.getParameter("id");
-    String b = request.getParameter("reqname");
-    String c = request.getParameter("reqcode");
-    if(a!=null && b!=null && c!=null)
+    String b = request.getParameter("feecode");
+    String c = request.getParameter("feename");
+    String d = request.getParameter("feeamo");
+    if(a!=null && b!=null && c!=null && d!=null)
     {
-        String query = "update lgu_r_fees set RT_NAME=?,  RT_DESC=? where RT_ID='"+a+"'";
+        String query = "update lgu_r_fees set FEES_CODE=?,  FEES_NAME=?, AMOUNT=? where FEES_PK='"+a+"'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1,b);
         stmt.setString(2,c);
+        stmt.setString(3,d);
         stmt.executeUpdate();
-        response.sendRedirect("DivSAReq.jsp");
+        response.sendRedirect("DivSAFee.jsp");
     }
 %>

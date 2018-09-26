@@ -9,7 +9,7 @@
 <%
     String a = request.getParameter("reqname");
     String b = request.getParameter("reqdesc");
-    String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
+    String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
     Connection conn = null;
     PreparedStatement stat = null;
     Class.forName("com.mysql.jdbc.Driver").newInstance();

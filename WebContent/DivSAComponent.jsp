@@ -51,6 +51,8 @@
             <ul class="sub-menu">
                 <li><a href="DivSAFee.jsp">Fees</a></li>
                 <li><a href="DivSAReq.jsp">Requirements</a></li>
+                <li><a href="DivSARoles.jsp">User Roles</a></li>
+                <li><a href="DivSADvsion.jsp">Division</a></li>
             </ul>
         </li>
     </ul>

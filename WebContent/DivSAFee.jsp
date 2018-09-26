@@ -82,7 +82,7 @@
                         </thead>
                         <tbody>
                             <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
+                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
                                 Connection conn = null;
                                 Statement stat = null;
                                 ResultSet res = null;
