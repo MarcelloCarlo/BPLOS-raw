@@ -116,7 +116,7 @@
                                         data-click="panel-reload"
                                 ><i class="fa fa-repeat"></i></a>
                             </div>
-                            <h4 class="panel-title">Application Form Evaluation Table</h4>
+                            <h4 class="panel-title">Evaluation Table</h4>
                         </div>
                         <div class="panel-body">
                             <table
@@ -234,7 +234,7 @@
                                                 type="button"
                                                 class="btn btn-success <%=assess%>"
                                                 data-toggle="modal"
-                                                data-target=".assess-modal"
+                                                onclick="location.href='Assessment.jsp?refNo=<%=gg3.getString("AP_REFERENCE_NO")%>'"
                                         >Assess
                                         </button>
                                     </td><!--7-->
@@ -316,7 +316,8 @@
                                     </td>
                                     <td class="hide"><%=gg3.getString("OT_CODE")%>
                                     </td>
-                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%></td>
+                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>
+                                    </td>
                                 </tr>
                                 <%
                                     }
@@ -363,11 +364,11 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="number"
+                                <input type="text"
                                        class="hide"
                                        id="_AT_ID"
                                        name="_AT_ID"
-                                /> <input type="number"
+                                /> <input type="text"
                                           class="hide"
                                           id="_AP_ID"
                                           name="_AP_ID"
@@ -739,8 +740,8 @@
                                 <div class="col-md-8">
                                     <h5>
                                         Application/Referrence Number:
-                                        <!-- <input disabled=""
-                                        id="nBussName" type="text" /> -->
+                                        <input class="hide" name="tRefNoh"
+                                        id="tRefNoh" type="text" />
                                         <label id="tRefNo"></label>
                                     </h5>
                                     <h5>
@@ -769,7 +770,7 @@
                                 </div>
                                 <div class="panel-body">
                                     <hr>
-                                   <div class="col-md-9">
+                                    <div class="col-md-9">
                                               <textarea
                                                       class="form-control"
                                                       placeholder="Remarks"
@@ -777,7 +778,7 @@
                                                       name="AP_Remarks"
                                                       rows="3"
                                               ></textarea>
-                                      </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -850,10 +851,10 @@
             document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
             document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
             document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
-            $("#_AT_ID").val(Number($("#AT_ID").text()));
-            $("#_AP_ID").val(Number($("#AP_ID").text()));
-            $("#_AP_REFERENCE_NO").val($("#AP_REFERENCE_NO").text().trim());
-            $("#_BN_CLASSIFICATION").val($("#BN_CLASSIFICATION").text().trim());
+            document.getElementById('_AT_ID').value = $(this).closest("tbody tr").find("td:eq(14)").html().trim();
+            document.getElementById('_AP_ID').value = $(this).closest("tbody tr").find("td:eq(15)").html().trim();
+            document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(40)").html().trim();
+            document.getElementById('_BN_CLASSIFICATION').value = $(this).closest("tbody tr").find("td:eq(42)").html().trim();
 
             if ($(this).closest("tbody tr").find("td:eq(41)").html().trim() === "OT-SIN") {
                 $("#AT_SEC_REGISTRATION").hide("swing");
@@ -862,6 +863,7 @@
                 $("#AT_DTI_REGISTRATION").hide("fast");
                 $("#dtiID").hide("swing");
             }
+
             if ($(this).closest("tbody tr").find("td:eq(6)").html().trim() === "null") {
                 document.getElementById('nBussOwner').innerHTML = "None";
             } else {
@@ -904,10 +906,12 @@
 
         $("#fileDownload").click(function (event) {
             // event.preventDefault();
-            var fID = $("#_AT_ID").val();
-            var apID = $("#_AP_ID").val();
+            var fID = Number($("#_AT_ID").val());
+            var apID = Number($("#_AP_ID").val());
             var link = "?fID=" + fID + "&apID=" + apID;
             window.open("downloadAttachment" + link);
+           /* fID.empty();
+            apID.empty();*/
         });
 
         $('#btnCloseNewApplModal').click(function () {
@@ -922,6 +926,10 @@
             $("#AT_CONTRACT_OF_LEASE").prop("checked", false);
             $("#AT_AUTHORIZATION").prop("checked", false);
             $("#AT_MISC_DOCUMENTS").prop("checked", false);
+            $("#_AT_ID").empty();
+            $("#_AP_ID").empty();
+            $("#_AP_REFERENCE_NO").empty();
+            $("#_BN_CLASSIFICATION").empty();
         });
 
         $('#closeNewPanelWindow').click(function () {
@@ -936,6 +944,10 @@
             $("#AT_CONTRACT_OF_LEASE").prop("checked", false);
             $("#AT_AUTHORIZATION").prop("checked", false);
             $("#AT_MISC_DOCUMENTS").prop("checked", false);
+            $("#_AT_ID").empty();
+            $("#_AP_ID").empty();
+            $("#_AP_REFERENCE_NO").empty();
+            $("#_BN_CLASSIFICATION").empty();
         });
 
     });
@@ -994,7 +1006,12 @@
                         processData: false,
                         contentType: false,
                         success: function () {
-                            swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated', confirmButtonText:'OK'}).then((result) => {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Evaluated',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
                                 if (result.value) {
                                     location.reload(true);
                                 }
@@ -1014,13 +1031,60 @@
 
                 }
             });
-        } else {$(".evaluation-modal-terminate").modal('toggle');
-        $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
+        } else {
+            $(".evaluation-modal-terminate").modal('toggle');
+            $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
+            $("#tRefNoh").val($("#_AP_REFERENCE_NO").val().trim());
             $("#tBussName").append($("#nBussName").text().trim());
             $("#tBussNature").append($("#nBussNature").text().trim());
             $("#tBussAuthRepName").append($("#nBussAuthRepName").text().trim());
             $("#tBussOwner").append($("#nBussOwner").text().trim());
-            $(".evaluation-modal-new").modal('toggle');}
+            $(".evaluation-modal-new").modal('toggle');
+        }
+        
+        $("#btnTermAppl").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.value) {
+                    var terminateApplForm = new FormData($('#terminateApplForm')[0]);
+                    $.ajax({
+                        type:"POST",
+                        url:"terminateApplForm",
+                        data: terminateApplForm,
+                        processData: false,
+                        contentType: false,
+                        success: function () {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Terminated',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.value) {
+                                    location.reload(true);
+                                }
+                            });
+
+                        }
+                    });
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+
+        })
     });
 </script>
 </body>

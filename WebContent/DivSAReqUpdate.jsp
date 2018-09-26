@@ -113,7 +113,7 @@
                                     }
                                 %>
                                 <div class="modal-footer">
-                                    <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-sm btn-white" onclick="location.href='DivSAUsrMgmt.jsp'">Close</button>
                                     <button type="submit" class="btn btn-sm btn-success">Update</button>
                                 </div>
                             </form>

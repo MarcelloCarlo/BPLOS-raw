@@ -8,7 +8,7 @@ public class LGUConnect {
 	           ClassNotFoundException {
 	       String hostName = "localhost";
 	 
-	       String dbName = "lgu_qcpa_eis_db";
+	       String dbName = "lgu_paeis_db";
 	       String userName = "root";
 	       String password = "";
 	 

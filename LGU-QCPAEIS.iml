@@ -17,21 +17,6 @@
         <webroots>
           <root url="file://$MODULE_DIR$/WebContent" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/WebContent" />
-          <root url="file://$MODULE_DIR$/WebContent/WEB-INF/lib" />
-          <root url="file://$MODULE_DIR$/src" />
-        </sourceRoots>
-      </configuration>
-    </facet>
-    <facet type="web" name="Web2">
-      <configuration>
-        <descriptors>
-          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/classes/artifacts/BPLOS_raw_Web_exploded/WEB-INF/web.xml" />
-        </descriptors>
-        <webroots>
-          <root url="file://$MODULE_DIR$/classes/artifacts/BPLOS_raw_Web_exploded" relative="/" />
-        </webroots>
       </configuration>
     </facet>
   </component>
@@ -43,6 +28,11 @@
       <sourceFolder url="file://$MODULE_DIR$/WebContent" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WebContent/WEB-INF/lib" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/.settings" />
+      <excludeFolder url="file://$MODULE_DIR$/.vs" />
+      <excludeFolder url="file://$MODULE_DIR$/SQL Scripts" />
+      <excludeFolder url="file://$MODULE_DIR$/bin" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
