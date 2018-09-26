@@ -40,7 +40,7 @@
     <ul class="nav">
         <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li>
-            <a href="DivSAUserManagement.jsp"><i class="fa fa-users"></i> <span>User Management</span></a>
+            <a href="DivSAUsrMgmt.jsp"><i class="fa fa-users"></i> <span>User Management</span></a>
         </li>
         <li class="has-sub">
             <a href="javascript:;">

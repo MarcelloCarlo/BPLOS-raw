@@ -179,32 +179,44 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>User Type</label>
+                                                        <label>Gender</label>
                                                         <div class="controls">
-                                                            <select name="type" class="form-control">
-                                                                <option value="Staff">Staff</option>
-                                                                <option value="SysAdmin">System Admin</option></select>
+                                                            <select name="gender" class="form-control">
+                                                                <option value="Male">Evaluation</option>
+                                                                <option value="Female">Inspection</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Department</label>
-                                                    <div class="controls">
-                                                        <select name="role" id="role" class="form-control">
-                                                            <option value="DIV-EV">Evaluation</option>
-                                                            <option value="DIV-INS">Inspection</option>
-                                                            <option value="DIV-INV">Investigation</option>
-                                                            <option value="DIV-TRE">Treasury</option>
-                                                            <option value="DIV-REL">Releasing</option></select>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Birthdate</label>
+                                                        <input type="text" name="bdate" placeholder="Last Name"
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                    </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Status</label>
+                                                        <input type="text" name="status" placeholder="Last Name"
+                                                               class="form-control" required/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Job Description</label>
+                                                        <input type="text" name="jopdesc" placeholder="Last Name"
+                                                               class="form-control" required/>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
                                     <!-- end row -->
                                     </fieldset>
                                 </div>
@@ -218,8 +230,8 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Phone Number</label>
-                                                    <input type="text" name="phone" placeholder="123-456-7890"
+                                                    <label>Contact Number</label>
+                                                    <input type="text" name="contact" placeholder="123-456-7890"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -234,7 +246,7 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Home Address</label>
+                                                    <label>Address</label>
                                                     <input type="text" name="home" placeholder="Current Address"
                                                            class="form-control"/>
                                                 </div>
@@ -269,6 +281,28 @@
                                                         <input type="password" name="password"
                                                                placeholder="Your password" class="form-control"
                                                                required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>User Role</label>
+                                                    <div class="controls">
+                                                        <select name="urole" class="form-control">
+                                                            <option value="fedit">For editing</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Division</label>
+                                                    <div class="controls">
+                                                        <select name="udiv" class="form-control">
+                                                            <option value="fedit">For Editing</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
