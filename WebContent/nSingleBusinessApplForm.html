@@ -1,0 +1,249 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: John Carlo Villar
+  Date: 09/15/2018
+  Time: 14:10
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="com.qcapaeis.dbConnection.LGUConnect"%>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Color Admin | Wizards + Validation</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+	<link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="assets/css/animate.min.css" rel="stylesheet" />
+	<link href="assets/css/style.min.css" rel="stylesheet" />
+	<link href="assets/css/style-responsive.min.css" rel="stylesheet" />
+	<link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
+	<link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet" />
+	<link href="assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="assets/plugins/pace/pace.min.js"></script>
+	<!-- ================== END BASE JS ================== -->
+</head>
+<body>
+	<!-- begin #page-loader -->
+	<div id="page-loader" class="fade in"><span class="spinner"></span></div>
+	<!-- end #page-loader -->
+	
+	<!-- begin #page-container -->
+	<div id="page-container" class="fade container body">
+		<!-- end #header -->
+		<!-- begin #content -->
+		<div id="content" class="main_container">
+			<!-- begin page-header -->
+			<h1 class="page-header">Business Permit Application Form For Single
+                Propriertorship</h1>
+			<!-- end page-header -->
+			
+			<!-- begin row -->
+			<div class="row">
+                <!-- begin col-12 -->
+			    <div class="col-md-12 col-sm-12 col-xs-12">
+			        <!-- begin panel -->
+                    <div class="panel panel-inverse">
+                        <div class="panel-body">
+                            <form id="applicationFormSingle" name="applicationFormSingle" data-parsley-validate="true" enctype="multipart/form-data">
+								<div id="wizard">
+									<ol>
+										<li>
+										    Taxpayer's Information
+										    <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</small>
+										</li>
+										<li>
+										    Contact Information
+										    <small>Aliquam bibendum felis id purus ullamcorper, quis luctus leo sollicitudin.</small>
+										</li>
+										<li>
+										    Login
+										    <small>Phasellus lacinia placerat neque pretium condimentum.</small>
+										</li>
+										<li>
+										    Completed
+										    <small>Sed nunc neque, dapibus non leo sed, rhoncus dignissim elit.</small>
+										</li>
+									</ol>
+									<!-- begin wizard step-1 -->
+									<div class="wizard-step-1">
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Taxpayer's Information</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+													<div class="form-group block1">
+														<label>First Name</label>
+														<input type="text" name="firstname" placeholder="John" class="form-control" data-parsley-group="wizard-step-1" required />
+													</div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+													<div class="form-group">
+														<label>Middle Initial</label>
+														<input type="text" name="middle" placeholder="A" class="form-control" data-parsley-group="wizard-step-1" required />
+													</div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+													<div class="form-group">
+														<label>Last Name</label>
+														<input type="text" name="lastname" placeholder="Smith" class="form-control" data-parsley-group="wizard-step-1" required />
+													</div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									<!-- end wizard step-1 -->
+									<!-- begin wizard step-2 -->
+									<div class="wizard-step-2">
+										<fieldset>
+											<legend class="pull-left width-full">Contact Information</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-6">
+													<div class="form-group">
+														<label>Phone Number</label>
+														<input type="text" name="phone" placeholder="1234567890" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="number" required />
+													</div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                                <!-- begin col-6 -->
+                                                <div class="col-md-6">
+													<div class="form-group">
+														<label>Email Address</label>
+														<input type="email" name="email" placeholder="someone@example.com" class="form-control" data-parsley-group="wizard-step-2" data-parsley-type="email" required />
+													</div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                            </div>
+                                            <!-- end row -->
+										</fieldset>
+									</div>
+									<!-- end wizard step-2 -->
+									<!-- begin wizard step-3 -->
+									<div class="wizard-step-3">
+										<fieldset>
+											<legend class="pull-left width-full">Login</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="username" placeholder="johnsmithy" class="form-control" data-parsley-group="wizard-step-3" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Pasword</label>
+                                                        <div class="controls">
+                                                            <input type="password" name="password" placeholder="Your password" class="form-control" data-parsley-group="wizard-step-3" required />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-4 -->
+                                                <!-- begin col-4 -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Confirm Pasword</label>
+                                                        <div class="controls">
+                                                            <input type="password" name="password2" placeholder="Confirmed password" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col-6 -->
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+									</div>
+									<!-- end wizard step-3 -->
+									<!-- begin wizard step-4 -->
+									<div>
+									    <div class="jumbotron m-b-0 text-center">
+                                            <h1>Login Successfully</h1>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat commodo porttitor. Vivamus eleifend, arcu in tincidunt semper, lorem odio molestie lacus, sed malesuada est lacus ac ligula. Aliquam bibendum felis id purus ullamcorper, quis luctus leo sollicitudin. </p>
+                                            <p><a class="btn btn-success btn-lg" role="button">Proceed to User Profile</a></p>
+                                        </div>
+									</div>
+									<!-- end wizard step-4 -->
+								</div>
+							</form>
+                        </div>
+                    </div>
+                    <!-- end panel -->
+                </div>
+                <!-- end col-12 -->
+            </div>
+            <!-- end row -->
+		</div>
+		<!-- end #content -->
+	</div>
+	<!-- end page container -->
+	
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+	<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+	<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+	<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
+	<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+	<script src="assets/js/form-wizards-validation.demo.min.js"></script>
+	<script src="assets/js/apps.min.js"></script>
+	<!-- ================== END PAGE LEVEL JS ================== -->
+	
+	<script>
+		$(document).ready(function() {
+			App.init();
+			FormWizardValidation.init();
+		});
+	</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53034621-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

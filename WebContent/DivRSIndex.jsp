@@ -73,6 +73,7 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
+                                <th>Reference Number</th>
                                 <th>Business Owner</th>
                                 <th>Business Name</th>
                                 <th>Business Type</th>
@@ -95,6 +96,7 @@
                             <%--{--%>
                             <%--%>--%>
                             <tr>
+                                <td>1111-1111-1111</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
                                 <td>Sample</td>
@@ -126,6 +128,12 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" action="#" method="POST">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Reference Number: </label>
+                            <div class="col-md-8">
+                                <input type="text" name=" " class="form-control" placeholder="/Reference Number/" />
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Business Owner: </label>
                             <div class="col-md-8">

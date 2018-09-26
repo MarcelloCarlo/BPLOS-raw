@@ -12,7 +12,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | User Management</title>
+    <title>PAEIS | Fees Configuration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -52,66 +52,56 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">System Admin</a></li>
-            <li class="active">User Management</li>
+            <li>Configurables</li>
+            <li class="active">Fees</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">User Management</h1>
+        <h1 class="page-header">Fees Configuration</h1>
         <!-- end page-header -->
 
         <div class="row">
             <div class="col-md-12">
             <!-- begin panel -->
-            <div class="panel panel-inverse">
+            <div class="panel panel-inverse panel-danger">
                 <div class="panel-heading">
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                     </div>
-                    <h4 class="panel-title">Users Table</h4>
+                    <h4 class="panel-title">Fees</h4>
                 </div>
                 <div class="panel-body">
-                    <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add User</a>
+                    <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add Fee</a>
                 </div>
                 <div class="panel-body">
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Full Name</th>
-                            <th>Username</th>
-                            <th>User Type</th>
-                            <th>Department</th>
-                            <th>User Status</th>
-                            <th>Action</th>
+                            <th>Fees Code</th>
+                            <th>Fees Name</th>
+                            <th>Amount</th>
                         </tr>
                         </thead>
                         <tbody>
                             <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
+                                String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
                                 Connection conn = null;
                                 Statement stat = null;
                                 ResultSet res = null;
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_user order by U_ID desc";
+                                String data = "select * from lgu_r_fees order by FEES_PK desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {
                             %>
                                     <tr>
-                                        <td><%=res.getString("U_ID")%></td>
-                                        <td><%=res.getString("U_FIRSTNAME")%></td>
-                                        <td><%=res.getString("U_USERNAME")%></td>
-                                        <td><%=res.getString("U_TYPE")%></td>
-                                        <td><%=res.getString("U_ROLE")%></td>
-                                        <td><%=res.getString("U_STATUS")%></td>
-                                        <%--<td>--%>
-                                            <%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
-                                        <%--</td>--%>
+                                        <td><%=res.getString("FEES_CODE")%></td>
+                                        <td><%=res.getString("FEES_NAME")%></td>
+                                        <td><%=res.getString("AMOUNT")%></td>
                                         <td>
-                                            <a href="DivSAUpdate.jsp?<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
+                                            <a href="DivSAFeeUpdate.jsp?u=<%=res.getString("FEES_PK")%>" class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                             <%
@@ -134,135 +124,40 @@
                 <div class="modal-header">
                     <div class="panel panel-inverse">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Add User</h4>
+                            <h4 class="panel-title panel-danger">Add Fee</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSAInsert.jsp" method="POST">
-                                <div id="wizard">
-                                    <ol>
-                                        <li>
-                                            Identification
-                                        </li>
-                                        <li>
-                                            Contact Information
-                                        </li>
-                                        <li>
-                                            Login Information
-                                        </li>
-                                    </ol>
-                                    <!-- begin wizard step-1 -->
+                            <form action="DivSAFeeInsert.jsp" method="POST">
+
                                     <div>
                                         <fieldset>
-                                            <legend class="pull-left width-full">Identification</legend>
+                                            <legend class="pull-left width-full">Fee</legend>
                                             <!-- begin row -->
                                             <div class="row">
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>First Name</label>
-                                                        <input type="text" name="firstname" placeholder="First Name" class="form-control" required/>
+                                                        <label>Fee Code</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="feecode" placeholder="Fee Code" class="form-control" required/>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Middle Name</label>
-                                                        <input type="text" name="middle" placeholder="Middle Name" class="form-control" required/>
+                                                        <label>Fee Name</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="feename" placeholder="Fee Name" class="form-control" required/>
+                                                        </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Last Name</label>
-                                                        <input type="text" name="lastname" placeholder="Last Name" class="form-control" required/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>User Type</label>
+                                                        <label>Amount</label>
                                                         <div class="controls">
-                                                            <select name="type" class="form-control">
-                                                                <option>Staff</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Department</label>
-                                                        <div class="controls">
-                                                            <select name="role" class="form-control">
-                                                                <option>Evaluation</option>
-                                                                <option>Inspection</option>
-                                                                <option>Investigation</option>
-                                                                <option>Treasury</option>
-                                                                <option>Releasing</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- end row -->
-                                        </fieldset>
-                                    </div>
-                                    <!-- end wizard step-1 -->
-                                    <!-- begin wizard step-2 -->
-                                    <div>
-                                        <fieldset>
-                                            <legend class="pull-left width-full">Contact Information</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Phone Number</label>
-                                                        <input type="text" name="phone" placeholder="123-456-7890" class="form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Email Address</label>
-                                                        <input type="text" name="email" placeholder="someone@example.com" class="form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Home Address</label>
-                                                        <input type="text" name="home" placeholder="Current Address" class="form-control" />
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <!-- end row -->
-                                        </fieldset>
-                                    </div>
-                                    <!-- end wizard step-2 -->
-                                    <!-- begin wizard step-3 -->
-                                    <div>
-                                        <fieldset>
-                                            <legend class="pull-left width-full">Login</legend>
-                                            <!-- begin row -->
-                                            <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Username</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="username" placeholder="Your username" class="form-control" required/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pasword</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password" placeholder="Your password" class="form-control" required/>
+                                                            <input type="text" name="feeamo" placeholder="Amount" class="form-control" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,7 +173,7 @@
                                         </fieldset>
                                     </div>
                                     <!-- end wizard step-3 -->
-                                </div>
+
                             </form>
                         </div>
                     </div>

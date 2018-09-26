@@ -348,7 +348,6 @@
 											class="form-control col-md-3" placeholder="Area of Signboard"
 											disabled>
 									</div>
-
 								</div>
 								<div class="col-xs-12">
 									<div class="form-group">
@@ -442,7 +441,6 @@
 																<%out.print(gg3.getString("BN_NAME"));%>
 															</option>
 															<%
-
                                                         }
                                                     %>
 													</select></td>
@@ -556,10 +554,29 @@
 										</table>
 										<label>TOTAL: Php </label>
 									</div>
-
 								</div>
 								<div class="col-md-12">
-									<div class="form-group">
+								    <div class="form-group">
+										<label class="control-label" for="fileUnifiedRequirements">Unified File Requirements: (.doc,.docx,.pdf, and must be maximum of 10MB)<span class="required">*</span>
+										</label><br>
+										<label class="control-label">Locational
+											Sketch of Business Establishment
+										</label><br>
+										<label class="control-label">Orginal
+											Copy of Barangay Clearance</label>
+											<label class="control-label">DTI
+											Registration File</label><br>
+											<label class="control-label">Title
+											To Property / Tax Declaration (If Owned) or Contract of Lease
+											(If Renting)</label><br>
+											<label class="control-label">Lessor's Business Permit (If Rented)</label><br>
+											 <label class="control-label">Authorization Letter w/ ID (Both Business Owner
+											& Filer)</label><br>
+											<label class="control-label">Other Required Document/s</label><br> 
+											<input type="file" name="fileUnifiedRequirements"
+											id="fileUnifiedRequirements" required="required" accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"/>
+									</div>
+								<!-- 	<div class="form-group">
 										<label class="control-label" for="fileNSingLocSketchEst">Locational
 											Sketch of Business Establishment <span class="required">*</span>
 										</label> <input type="file" name="fileNSingLocSketchEst"
@@ -601,7 +618,7 @@
 											class="required">*</span>
 										</label> <input type="file" name="fileNSingOthers"
 											id="fileNSingOthers" required="required" multiple="true" />
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -678,8 +695,6 @@
 </script>
 	<script>
     $(function () {
-    	
-
         $('#applicationFormSingle').parsley().on('field:validated', function () {
             var ok = $('.parsley-error').length === 0;
             $('.bs-callout-info').toggleClass('hidden', !ok);
@@ -708,11 +723,11 @@
                          processData: false,
                          contentType: false,
                         success: function(response){
-                        	$('#ajaxGetUserServletResponse').text(response);
                             swal({
                                 	 type: 'success',
-                                	  title: 'DONE!.',
-                                	  text: 'Please Wait for Your Reference Number',
+                                	  title: 'All Done!',
+                                	  html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!'
+
                                 	  
                             })
                         }

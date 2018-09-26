@@ -39,7 +39,20 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="DivSAUserManagement.jsp"><i class="fa fa-users"></i> <span>User Management</span></a></li>
+        <li>
+            <a href="DivSAUsrMgmt.jsp"><i class="fa fa-users"></i> <span>User Management</span></a>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-gears"></i>
+                <span>Configurables</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="DivSAFee.jsp">Fees</a></li>
+                <li><a href="DivSAReq.jsp">Requirements</a></li>
+            </ul>
+        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>
