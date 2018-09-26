@@ -47,15 +47,14 @@ CREATE VIEW view_applicationFormsIP AS
          ATC.AT_TAX_BILL,
          ATC.AT_OFFICIAL_RECEIPT,
          ATC.AT_PCAB_LICENSE,
-         ATC.AT_MISC_DOCUMENTS,
-         ATC.AP_Remarks
+         ATC.AT_MISC_DOCUMENTS
   FROM lgu_r_business BUS
          INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID
-         INNER JOIN lgu_r_ownership_type OT ON OT.OT_ID = BUS.OT_ID
+         INNER JOIN lgu_r_ownership_type OT ON OT.OT_CODE = BUS.OT_CODE
          INNER JOIN lgu_r_bp_application AP ON AP.BU_ID = BUS.BU_ID
          INNER JOIN lgu_r_taxpayer TP ON TP.TP_ID = BUS.TP_ID
          INNER JOIN lgu_r_bu_ar BUxAR ON BUxAR.BU_ID = BUS.BU_ID
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
-         INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE
-  WHERE AP.AP_DIV_CODE = 'DIV-INS' AND BN.BN_CLASSIFICATION = 'L';
+         INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
+  WHERE AP.AP_DIV_CODE_TO = 'DIV-INS' AND BN.BN_CLASSIFICATION = 'L';

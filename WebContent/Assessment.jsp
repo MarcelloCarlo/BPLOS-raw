@@ -4,7 +4,7 @@
   Date: 9/25/2018
   Time: 9:52 PM
   To change this template use File | Settings | File Templates.
---%>
+--%>b
 <%@ page import="java.sql.*" %>
 <%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -124,114 +124,110 @@ while (rs.next()){%>
                             <thead>
                             <tr>
                                 <th>Fee Description</th>
-                                <th> </th>
-                                <th> </th>
                                 <th>Amount</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Permit Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td><%
+                                    try {
+                                        out.print(rs.getString("FEES_NAME"));
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %></td>
+
+                                <td>PHP<%
+                                    try {
+                                        out.print(rs.getString("AMOUNT"));
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %></td>
                             </tr>
                             <tr>
                                 <td>City Tax</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Garbage Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Sanitary Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Bldg. Insp. Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Electrical Insp. Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Plumbing Insp. Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Signboard Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Fire Insp. Fee</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Plate/Sticker</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Zoning Fees</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Penalty & Interest</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Tourism</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Adjustment</td>
                                 <td> </td>
                                 <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="invoice-price">
                         <div class="invoice-price-left">
-                            <div class="invoice-price-row">
-                                <div class="sub-price">
-                                    <small>SUBTOTAL</small>
-                                    $4,500.00
-                                </div>
-                                <div class="sub-price">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <div class="sub-price">
-                                    <small>ADDITIONAL FEE (5.4%)</small>
-                                    $108.00
-                                </div>
-                            </div>
                         </div>
                         <div class="invoice-price-right">
                             <small>TOTAL</small> $4508.00
