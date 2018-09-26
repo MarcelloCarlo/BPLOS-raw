@@ -19,7 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | </title>
+    <title>PAEIS | Assessment</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -46,26 +46,14 @@
     <!-- ================== END BASE JS ================== -->
 </head>
 <body>
-<!-- begin #page-loader -->
-<div id="page-loader" class="fade in"><span class="spinner"></span></div>
-<!-- end #page-loader -->
 
-<jsp:include page="InvoiceComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
-<div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
+<div id="page-container" class="page-without-sidebar ">
 
     <!-- begin #content -->
         <div id="content" class="content">
-            <!-- begin breadcrumb -->
-            <ol class="breadcrumb hidden-print pull-right">
-                <li><a href="javascript:;">Home</a></li>
-                <li class="active">Invoice</li>
-            </ol>
-            <!-- end breadcrumb -->
-            <!-- begin page-header -->
-            <h1 class="page-header hidden-print">Invoice</h1>
-            <!-- end page-header -->
+
 
             <!-- begin invoice -->
             <div class="invoice">
