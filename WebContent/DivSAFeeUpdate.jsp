@@ -62,12 +62,10 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- begin panel -->
-                <div class="panel panel-inverse">
+                <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        </div>
                         <h4 class="panel-title">Fees</h4>
+                    </div>
                         <div class="panel-body">
                             <%
                                 String host = "jdbc:mysql://localhost:3306/lgu_qcpa_eis_db";
@@ -101,13 +99,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Fee Code</label>
+                                    <label class="col-md-4 control-label">Fee Name</label>
                                     <div class="col-md-8">
                                         <input type="text" name="feename" class="form-control" value='<%=res.getString("FEES_NAME")%>' />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Fee Code</label>
+                                    <label class="col-md-4 control-label">Fee Amount</label>
                                     <div class="col-md-8">
                                         <input type="text" name="feeamo" class="form-control" value='<%=res.getString("AMOUNT")%>' />
                                     </div>
@@ -122,7 +120,6 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
                 </div>
                 <!-- end panel -->
             </div>

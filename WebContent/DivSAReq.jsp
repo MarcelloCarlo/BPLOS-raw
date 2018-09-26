@@ -65,9 +65,6 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        </div>
                         <h4 class="panel-title">Requirements</h4>
                     </div>
                     <div class="panel-body">
@@ -79,6 +76,7 @@
                             <tr>
                                 <th>Requirement Name</th>
                                 <th>Requirement Description</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
