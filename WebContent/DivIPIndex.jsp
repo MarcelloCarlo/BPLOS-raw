@@ -201,13 +201,13 @@
                                             assess = "disabled";
                                         }
                                         if (apType.equals("New")) {
-                                            modalMode = ".evaluation-modal-new";
+                                            modalMode = ".inspection-modal-new";
                                             modalClass = "newModal";
                                         } else if (apType.equals("Renew")) {
-                                            modalMode = ".evaluation-modal-renew";
+                                            modalMode = ".inspection-modal-renew";
                                             modalClass = "renewModal";
                                         } else {
-                                            modalMode = ".evaluation-modal-new";
+                                            modalMode = ".inspection-modal-new";
                                         }
                                 %>
                                 <tr>
@@ -230,15 +230,14 @@
                                                 type="button"
                                                 class="btn btn-success <%=modalClass%>"
                                                 data-toggle="modal"
-                                                data-target="<%=modalMode%>"
-                                        ><i class="fa fa-lg fa-rocket"></i>
+                                                data-target="<%=modalMode%>" title="Comply the Inspected Business"
+                                        ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
                                         <button
                                                 type="button"
-                                                class="btn btn-success <%=assess%>"
-                                                data-toggle="modal"
-                                                onclick="location.href='Assessment.jsp?refNo=<%=gg3.getString("AP_REFERENCE_NO")%>'"
-                                        ><i class="fa fa-lg fa-list-ul"></i>
+                                                class="btn btn-success"
+                                                data-toggle="modal" title="Release a Mission Order"
+                                        ><i class="fa fa-lg fa-rocket"></i>
                                         </button>
                                     </td><!--7-->
                                     <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
@@ -337,7 +336,7 @@
     <!-- /page content -->
     <!-- New modal -->
     <div
-            class="modal modal-message fade evaluation-modal-new"
+            class="modal modal-message fade inspection-modal-new"
             aria-hidden="true"
     >
         <div class="modal-dialog">
@@ -536,7 +535,7 @@
     </div>
     <!-- Renewal modal -->
     <div
-            class="modal fade evaluation-modal-renew"
+            class="modal fade inspection-modal-renew"
             tabindex="-1"
             role="dialog"
             aria-hidden="true"
