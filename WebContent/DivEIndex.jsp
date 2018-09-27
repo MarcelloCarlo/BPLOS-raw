@@ -182,14 +182,17 @@
                                         String modalMode = "";
                                         String modalClass = "";
                                         String assess = "";
+                                        String refno = "";
                                         if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
                                             if (gg3.getString("AP_STATUS").equals("Assess") && gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV")) {
+                                                refno = "location.href='Assessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
                                                 assess = "";
                                             } else {
                                                 assess = "disabled";
                                             }
                                         } else if (gg3.getString("BN_CLASSIFICATION").equals("S")) {
                                             if (gg3.getString("AP_STATUS").equals("Assess")) {
+                                                refno = "location.href='Assessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
                                                 assess = "";
                                             } else {
                                                 assess = "disabled";
@@ -234,7 +237,8 @@
                                                 type="button"
                                                 class="btn btn-success <%=assess%>"
                                                 data-toggle="modal"
-                                                onclick="location.href='Assessment.jsp?refNo=<%=gg3.getString("AP_REFERENCE_NO")%>'"
+                                                id="assess"
+                                                onclick="<%=refno%>"
                                         >Assess
                                         </button>
                                     </td><!--7-->

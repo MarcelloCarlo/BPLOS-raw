@@ -1,15 +1,13 @@
-<%@ page
-        language="java"
-        contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1"
-%>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
+<%@ page import="java.sql.*" %><%--
+  Created by IntelliJ IDEA.
+  User: John Carlo Villar
+  Date: 09/27/2018
+  Time: 14:55
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta
             http-equiv="Content-Type"
@@ -26,7 +24,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>PAEIS | Inspection</title>
+    <title>PAEIS | Termination Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link
             href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -80,18 +78,9 @@
         rel="stylesheet"> -->
 </head>
 <body>
-<!-- begin #page-loader -->
-<div
-        id="page-loader"
-        class="fade in"
->
-    <span class="spinner"></span>
-</div>
-<!-- end #page-loader -->
-<jsp:include page="DivIPComponent.jsp"/>
 <div
         id="page-container"
-        class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"
+        class="page-container fade page-without-sidebar page-header-fixed"
 >
     <!-- page content -->
     <div
@@ -101,11 +90,11 @@
         <div class="">
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
-                <li><a href="javascript:;">Evaluation</a></li>
-                <li class="active">Application Inspection</li>
+                <li><a href="javascript:;">PAEIS-BPLS</a></li>
+                <li class="active">Termination Reports</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header">Application Inspection</h1>
+            <h1 class="page-header">Termination Reports</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">
@@ -119,7 +108,7 @@
                                         data-click="panel-reload"
                                 ><i class="fa fa-repeat"></i></a>
                             </div>
-                            <h4 class="panel-title">Application Form Inspection Table</h4>
+                            <h4 class="panel-title">Terminated Applications</h4>
                         </div>
                         <div class="panel-body">
                             <table
@@ -131,196 +120,36 @@
                                 <tr>
                                     <th>Business Name</th>
                                     <th>Business Nature</th>
-                                    <th>Ownership Type</th>
-                                    <th>Application Type</th>
-                                    <th>Status</th>
-                                    <th>Date Received</th>
-                                    <th>President/Representative</th>
-                                    <th>Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
+                                    <th>Date Terminated</th>
+                                    <th>Remarks</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <%
                                     LGUConnect conX = new LGUConnect();
-                                    Connection conn3 = conX.getConnection();
-                                    Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
+                                    Connection conn3 = null;
+                                    ResultSet gg3 = null;
+                                    try {
+                                        conn3 = conX.getConnection();
+                                        Statement ss3 = conn3.createStatement();
+                                        gg3 = ss3.executeQuery("SELECT * FROM view_terminatedap");
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     while (gg3.next()) {
-                                        String apType = gg3.getString("AP_TYPE");
-                                        String modalMode = "";
-                                        String modalClass = "";
-                                        String assess = "";
-                                        if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess") && gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV")) {
-                                                assess = "";
-                                            } else {
-                                                assess = "disabled";
-                                            }
-                                        } else if (gg3.getString("BN_CLASSIFICATION").equals("S")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess")) {
-                                                assess = "";
-                                            } else {
-                                                assess = "disabled";
-                                            }
-                                        } else {
-                                            assess = "disabled";
-                                        }
-                                        if (apType.equals("New")) {
-                                            modalMode = ".evaluation-modal-new";
-                                            modalClass = "newModal";
-                                        } else if (apType.equals("Renew")) {
-                                            modalMode = ".evaluation-modal-renew";
-                                            modalClass = "renewModal";
-                                        } else {
-                                            modalMode = ".evaluation-modal-new";
-                                        }
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
                                     </td><!--0-->
                                     <td><%=gg3.getString("BN_NAME")%>
                                     </td><!--1-->
-                                    <td><%=gg3.getString("OT_NAME")%>
-                                    </td><!--2-->
-                                    <td><%=apType%>
-                                    </td><!--3-->
-                                    <td><%=gg3.getString("AP_STATUS")%>
-                                    </td>
-                                    <td><%=gg3.getString("AP_DATE")%>
-                                    </td><!--5-->
-                                    <td><%=gg3.getString("BU_PRESIDENT")%>
-                                    </td>
-                                    <td>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success <%=modalClass%>"
-                                                data-toggle="modal"
-                                                data-target="<%=modalMode%>"
-                                        ><i class="fa fa-lg fa-rocket"></i>
-                                        </button>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success <%=assess%>"
-                                                data-toggle="modal"
-                                                onclick="location.href='Assessment.jsp?refNo=<%=gg3.getString("AP_REFERENCE_NO")%>'"
-                                        ><i class="fa fa-lg fa-list-ul"></i>
-                                        </button>
-                                    </td><!--7-->
-                                    <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_LOCATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%>
-                                    </td>
-                                    <td
-                                            class="hide"
-                                            id="AT_ID"
-                                            name="AT_ID"
-                                    ><%=gg3.getString("AT_ID")%>
-                                    </td>
-                                    <!-- 14 -->
-                                    <td
-                                            class="hide"
-                                            id="AP_ID"
-                                            name="AP_ID"
-                                    ><%=gg3.getString("AP_ID")%>
-                                    </td>
-                                    <!-- 15 -->
-                                    <td class="hide"><%=String.valueOf(gg3.getString("AT_BRGY_CLEARANCE"))%>
-                                    </td><!-- 16 -->
-                                    <td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TAX_DECLARATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_CONTRACT_OF_LEASE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_LESSORS_BP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_AUTHORIZATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_LOCATIONAL_CLR")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SANITARY_HEALTH_CERT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_BUILDING_PERMIT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_POLLUTION_CLR")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_MECHANICAL_PERMIT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_ELECTRICAL_INSP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_POLICE_CLEARANCE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_CTAO_CLEARANCE_CERT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_FSIC")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_PREV_BP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TAX_BILL")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_OFFICIAL_RECEIPT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AP_Remarks")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                    </td>
-                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("OT_CODE")%>
-                                    </td>
-                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>
-                                    </td>
+                                    <td><%=gg3.getString("AP_DATE_ACCESSED")%>
+                                    </td><!--1-->
+                                    <td><%=gg3.getString("AP_REMARKS")%>
+                                    </td><!--1-->
                                 </tr>
                                 <%
                                     }
@@ -688,8 +517,9 @@
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
 </div>
+
 <!-- ================== BEGIN BASE JS ================== -->
-<script src="assets/plugins/js/jquery.min.js"></script>
+<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -701,154 +531,22 @@
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 <!-- ================== END BASE JS ================== -->
+
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-<script
-        src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"
-></script>
-<script
-        src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"
-></script>
+<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 <script type="text/javascript">
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
-    });
-</script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $(".newModal").click(function () {
-            document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(38)").html();
-            $("#_AT_ID").val(Number($(this).closest("tbody tr").find("td:eq(13)").html()));
-            $("#_AP_ID").val(Number($(this).closest("tbody tr").find("td:eq(14)").html()));
-
-            if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
-                document.getElementById('nBussOwner').innerHTML = 'None';
-            }
-            if ($(this).closest("tbody tr").find("td:eq(37)").text() === "null") {
-                $("#AP_Remarks").val("");
-            }
-            if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass") {
-                $("#AT_BRGY_CLEARANCE").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(16)").text() === "Pass") {
-                $("#AT_DTI_REGISTRATION").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(17)").text() === "Pass") {
-                $("#AT_SEC_REGISTRATION").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(18)").text() === "Pass") {
-                $("#AT_TITLE_TO_PROPERTY").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(20)").text() === "Pass") {
-                $("#AT_CONTRACT_OF_LEASE").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(22)").text() === "Pass") {
-                $("#AT_AUTHORIZATION").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(36)").text() === "Pass") {
-                $("#AT_MISC_DOCUMENTS").prop("checked", true);
-            }
-
-        });
-
-        $("#fileDownload").click(function (event) {
-            // event.preventDefault();
-            var fID = $("#_AT_ID").val();
-            var apID = $("#_AP_ID").val();
-            var link = "?fID=" + fID + "&apID=" + apID;
-            window.open("downloadAttachment" + link);
-        });
-
-        $('#btnCloseNewApplModal').click(function () {
-            $("#AT_BRGY_CLEARANCE").prop("checked", false);
-            $("#AT_DTI_REGISTRATION").prop("checked", false);
-            $("#AT_SEC_REGISTRATION").prop("checked", false);
-            $("#AT_TITLE_TO_PROPERTY").prop("checked", false);
-            $("#AT_CONTRACT_OF_LEASE").prop("checked", false);
-            $("#AT_AUTHORIZATION").prop("checked", false);
-            $("#AT_MISC_DOCUMENTS").prop("checked", false);
-        });
-
-        $('#closeNewPanelWindow').click(function () {
-            $("#AT_BRGY_CLEARANCE").prop("checked", false);
-            $("#AT_DTI_REGISTRATION").prop("checked", false);
-            $("#AT_SEC_REGISTRATION").prop("checked", false);
-            $("#AT_TITLE_TO_PROPERTY").prop("checked", false);
-            $("#AT_CONTRACT_OF_LEASE").prop("checked", false);
-            $("#AT_AUTHORIZATION").prop("checked", false);
-            $("#AT_MISC_DOCUMENTS").prop("checked", false);
-        });
-
-    });
-
-</script>
-<!-- clippy -->
-<!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
-<!-- Init script -->
-<script type="text/javascript">
-    /*clippy.load('Clippy', function(agent){
-        // do anything with the loaded agent
-          agent.animate();
-        agent.show();
-
-    });*/
-
-    $('#btnNewAppl').click(function () {
-        swal({
-            title: "Are you sure?",
-            text: "You will save your current changes",
-            type: "warning",
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Confirm!",
-            showCancelButton: true,
-            cancelButtonText: 'Cancel',
-        }).then((result) => {
-            if (result.value) {
-                var datanewApplForm = new FormData($('#newApplForm')[0]); //working method
-                $.ajax({
-                    type: "POST",
-                    url: "updateNewAppEvaluationForm",
-                    data: datanewApplForm,
-                    processData: false,
-                    contentType: false,
-                    success: function () {
-                        swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated'});
-                    }/*,
-                    error: function () {
-                        swal("error", "Evaluation encountered and error", "error");
-                    }*/
-                });
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                swalWithBootstrapButtons(
-                    'Cancelled',
-                    'Operation Halted',
-                    'error'
-                )
-
-            }
-        })
     });
 </script>
 </body>

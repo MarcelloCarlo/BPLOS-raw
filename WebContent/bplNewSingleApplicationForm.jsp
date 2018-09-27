@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect"%>
+<%@ page import="com.paeis.dbConnection.LGUConnect"%>
 <!DOCTYPE html>
 <html lang="en">
 
