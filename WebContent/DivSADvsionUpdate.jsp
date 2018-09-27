@@ -58,7 +58,7 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li>Configubles</li>
+            <li>Configurables</li>
             <li class="active">Division</li>
         </ol>
         <!-- end breadcrumb -->

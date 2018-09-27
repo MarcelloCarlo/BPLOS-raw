@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 9/27/2018
-  Time: 6:00 AM
+  Time: 4:14 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.sql.DriverManager" %>
@@ -19,7 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | Division Configuration</title>
+    <title>PAEIS | Module Configuration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -60,11 +60,11 @@
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
             <li>Configurables</li>
-            <li class="active">Division</li>
+            <li class="active">Module</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Division Configuration</h1>
+        <h1 class="page-header">Module Configuration</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -72,18 +72,17 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Division</h4>
+                        <h4 class="panel-title">Module</h4>
                     </div>
                     <div class="panel-body">
-                        <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add Division</a>
+                        <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add Module</a>
                     </div>
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th>Division Code</th>
-                                <th>Division Name</th>
-                                <th>Division Description</th>
+                                <th>Module Name</th>
+                                <th>Module Description</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -96,17 +95,16 @@
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_division order by DIV_ID desc";
+                                String data = "select * from lgu_r_module order by MOD_ID desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {
                             %>
                             <tr>
-                                <td><%=res.getString("DIV_CODE")%></td>
-                                <td><%=res.getString("DIV_NAME")%></td>
-                                <td><%=res.getString("DIV_DESC")%></td>
+                                <td><%=res.getString("MOD_NAME")%></td>
+                                <td><%=res.getString("MOD_DESC")%></td>
                                 <td>
-                                    <a href="DivSADvsionUpdate.jsp?u=<%=res.getString("DIV_ID")%>" class="btn btn-success">Edit</a>
+                                    <a href="DivSAMdleUpdate.jsp?u=<%=res.getString("MOD_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -129,40 +127,31 @@
                 <div class="modal-header">
                     <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Add Division</h4>
+                            <h4 class="panel-title">Add Module</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSADvsionInsert.jsp" method="POST">
+                            <form action="DivSAMdleInsert.jsp" method="POST">
 
                                 <div>
                                     <fieldset>
-                                        <legend class="pull-left width-full">Division</legend>
+                                        <legend class="pull-left width-full">Module</legend>
                                         <!-- begin row -->
                                         <div class="row">
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Division Code</label>
+                                                    <label>Module Name</label>
                                                     <div class="controls">
-                                                        <input type="text" name="divcode" placeholder="Division Code" class="form-control" required/>
+                                                        <input type="text" name="modname" placeholder="Module Name" class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Division Name</label>
+                                                    <label>Module Description</label>
                                                     <div class="controls">
-                                                        <input type="text" name="divname" placeholder="Division Name" class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Division Description</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="divdesc" placeholder="Division Description" class="form-control" required/>
+                                                        <input type="text" name="modesc" placeholder="Module Description" class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>

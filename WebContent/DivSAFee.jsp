@@ -120,9 +120,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="panel panel-inverse">
+                    <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title panel-danger">Add Fee</h4>
+                            <h4 class="panel-title">Add Fee</h4>
                         </div>
                         <div class="panel-body">
                             <form action="DivSAFeeInsert.jsp" method="POST">

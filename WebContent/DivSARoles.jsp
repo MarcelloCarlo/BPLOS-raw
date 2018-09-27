@@ -83,7 +83,6 @@
                             <tr>
                                 <th>Role Name</th>
                                 <th>Role Description</th>
-                                <th></th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -126,9 +125,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div class="panel panel-inverse">
+                    <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title panel-danger">Add User Roles</h4>
+                            <h4 class="panel-title">Add User Roles</h4>
                         </div>
                         <div class="panel-body">
                             <form action="DivSARolesInsert.jsp" method="POST">

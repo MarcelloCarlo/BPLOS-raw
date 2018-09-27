@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 9/27/2018
-  Time: 5:51 AM
+  Time: 4:03 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.sql.DriverManager" %>
@@ -14,20 +14,24 @@
          pageEncoding="ISO-8859-1" %>
 
 <%
-    String a = request.getParameter("rolename");
-    String b = request.getParameter("roledesc");
+    String a = request.getParameter("busnat");
+    String b = request.getParameter("bnc");
+//    String c = request.getParameter("bnrc");
     String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
     Connection conn = null;
     PreparedStatement stat = null;
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     if(a!=null && b!=null)
+//    if(a!=null && b!=null && c!=null)
     {
         conn = DriverManager.getConnection(host,"root","");
-        String data = "insert into lgu_r_role(ROLE_NAME,ROLE_DESC) values (?,?)";
+        String data = "insert into lgu_r_business_nature(BN_NAME,BN_CLASSIFICATION) values (?,?)";
+//        String data = "insert into lgu_r_business_nature(BN_NAME,BN_CLASSIFICATION,BNR_CODE) values (?,?,?)";
         stat = conn.prepareStatement(data);
         stat.setString(1,a);
         stat.setString(2,b);
+//        stat.setString(3,c);
         stat.executeUpdate();
-        response.sendRedirect("DivSARoles.jsp");
+        response.sendRedirect("DivSABusNat.jsp");
     }
 %>
