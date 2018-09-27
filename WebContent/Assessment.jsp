@@ -4,9 +4,9 @@
   Date: 9/25/2018
   Time: 9:52 PM
   To change this template use File | Settings | File Templates.
---%>b
+--%>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -67,7 +67,7 @@ while (rs.next()){%>
                     <a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Export as PDF</a>
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Print</a>
                     </span>
-                   Applicant's Copy
+                   Application Assessment (Applicant's Copy)
                 </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
@@ -124,26 +124,26 @@ while (rs.next()){%>
                             <thead>
                             <tr>
                                 <th>Fee Description</th>
-                                <th>Amount</th>
+                                <th>Amount (PHP)</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td><%
+                                <%
                                     try {
-                                        out.print(rs.getString("FEES_NAME"));
+                                        out.print("<td>PHP "+rs.getString("FEES_NAME")+"</td>");
                                     } catch (SQLException e) {
                                         e.printStackTrace();
                                     }
-                                %></td>
+                                %>
 
-                                <td>PHP<%
+                                <%
                                     try {
-                                        out.print(rs.getString("AMOUNT"));
+                                        out.print("<td class='amt'>"+rs.getString("AMOUNT")+"</td>");
                                     } catch (SQLException e) {
                                         e.printStackTrace();
                                     }
-                                %></td>
+                                %>
                             </tr>
                             <tr>
                                 <td>City Tax</td>
@@ -229,8 +229,9 @@ while (rs.next()){%>
                     <div class="invoice-price">
                         <div class="invoice-price-left">
                         </div>
-                        <div class="invoice-price-right">
-                            <small>TOTAL</small> $4508.00
+                        <div class="invoice-price-right row">
+                            <small>TOTAL PHP</small>
+                            <label id="total" style="color: white"></label>
                         </div>
                     </div>
                 </div>
@@ -241,7 +242,7 @@ while (rs.next()){%>
                 <%--</div>--%>
                 <div class="invoice-footer text-muted">
                     <p class="text-center m-b-5">
-                        THANK YOU FOR YOUR BUSINESS
+                        LGU-PAEIS ASSESSMENT
                         <br>
                         <br>
                         <br>
@@ -262,21 +263,54 @@ while (rs.next()){%>
             <!-- begin invoice -->
             <div class="invoice">
                 <div class="invoice-company">
-                    [Insert Company Name] Treasury's Copy
+                    Application Assessment (Treasury's Copy)
                 </div>
                 <div class="invoice-header">
                     <div class="invoice-from">
                         <address class="m-t-5 m-b-5">
-                            <strong>[Company Name]</strong><br />
-                            [Company Address]<br />
-                            [  ]<br />
-                            [Company Contact]<br />
+                            <strong>OR Number: <% try {
+                                out.print(rs.getString("AS_OR_NO"));} catch (SQLException e) {
+                                e.printStackTrace();
+                            } %></strong><br />
+                            Business Name: <%
+                            try {
+                                out.print(rs.getString("BU_NAME"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %><br/>
+                            Business Location:  <%
+                            try {
+                                out.print(rs.getString("BU_LOCATION"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %><br />
+                            Contact:  <%
+                            try {
+                                out.print(rs.getString("BU_CONTACT"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %><br />
                         </address>
                     </div>
                     <div class="invoice-date">
-                        <div class="date m-t-5">[Date]</div>
+                        <div class="date m-t-5">Period Covered: <%
+                            try {
+                                out.print(rs.getString("AS_PERIOD_COVERED"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %></div>
                         <div class="invoice-detail">
-                            [Receipt Number]
+                            Due Date: <%
+                            try {
+                                out.print(rs.getString("AS_DUE_DATE"));
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %>
                         </div>
                     </div>
                 </div>
@@ -286,117 +320,81 @@ while (rs.next()){%>
                             <thead>
                             <tr>
                                 <th>Fee Description</th>
-                                <th> </th>
-                                <th> </th>
-                                <th>Amount</th>
+                                <th>Amount (PHP)</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>Permit Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <%
+                                    try {
+                                        out.print("<td>PHP "+rs.getString("FEES_NAME")+"</td>");
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %>
+                                <td id="tdPerm"></td>
                             </tr>
                             <tr>
                                 <td>City Tax</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Garbage Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Sanitary Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Bldg. Insp. Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Electrical Insp. Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Plumbing Insp. Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Signboard Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Fire Insp. Fee</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Plate/Sticker</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Zoning Fees</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Penalty & Interest</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Tourism</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td>Adjustment</td>
-                                <td> </td>
-                                <td> </td>
-                                <td>$2,500.00</td>
+                                <td></td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div class="invoice-price">
                         <div class="invoice-price-left">
-                            <div class="invoice-price-row">
-                                <div class="sub-price">
-                                    <small>SUBTOTAL</small>
-                                    $4,500.00
-                                </div>
-                                <div class="sub-price">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <div class="sub-price">
-                                    <small>ADDITIONAL FEE (5.4%)</small>
-                                    $108.00
-                                </div>
-                            </div>
                         </div>
-                        <div class="invoice-price-right">
-                            <small>TOTAL</small> $4508.00
+                        <div class="invoice-price-right row">
+                            <small>TOTAL PHP</small>
+                            <label id="total2" style="color: white"></label>
                         </div>
                     </div>
                 </div>
@@ -407,7 +405,7 @@ while (rs.next()){%>
                 <%--</div>--%>
                 <div class="invoice-footer text-muted">
                     <p class="text-center m-b-5">
-                        THANK YOU FOR YOUR BUSINESS
+                        LGU-PAEIS ASSESSMENT
                     </p>
                     <%--<p class="text-center">--%>
                     <%--<span class="m-r-10"><i class="fa fa-globe"></i> matiasgallipoli.com</span>--%>
@@ -458,6 +456,21 @@ while (rs.next()){%>
     $(document).ready(function() {
         App.init();
         TableManageResponsive.init();
+
+
+        var sum = 0;
+//iterate through each td based on class and add the values
+        $(".amt").each(function() {
+
+            //add only if the value is number
+            if(!isNaN($(this).text()) /*&& $(this).value.length!=0*/) {
+                sum += parseFloat($(this).text());
+            }
+console.log($(this).text());
+            $("#tdPerm").text($(this).text());
+        });
+        $('#total').text(sum);
+        $('#total2').text($('#total').text());
     });
 </script>
 <script>

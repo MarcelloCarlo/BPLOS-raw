@@ -1,4 +1,4 @@
-package com.qcapaeis.dbConnection;
+package com.paeis.dbConnection;
 
 import java.sql.*;
 

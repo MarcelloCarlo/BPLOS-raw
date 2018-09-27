@@ -1,7 +1,7 @@
-package com.qcapaeis.lguTransactions;
+package com.paeis.lguTransactions;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.qcapaeis.dbConnection.LGUConnect;
+import com.paeis.dbConnection.LGUConnect;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

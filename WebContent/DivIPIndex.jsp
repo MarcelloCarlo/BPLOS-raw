@@ -1,158 +1,16 @@
-<<<<<<< HEAD
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-=======
 <%@ page
         language="java"
         contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"
 %>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
->>>>>>> ec2068e7a43f7bf34d477b7313d06173611f6c82
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
 <head>
-<<<<<<< HEAD
-    <meta charset="utf-8" />
-    <title>PAEIS | Inspection</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
-
-    <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
-    <link href="assets/css/style.min.css" rel="stylesheet" />
-    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
-    <!-- ================== END BASE CSS STYLE ================== -->
-
-    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-    <!-- ================== END PAGE LEVEL STYLE ================== -->
-
-    <!-- ================== BEGIN BASE JS ================== -->
-    <script src="assets/plugins/pace/pace.min.js"></script>
-    <!-- ================== END BASE JS ================== -->
-</head>
-<body>
-<!-- begin #page-loader -->
-<div id="page-loader" class="fade in"><span class="spinner"></span></div>
-<!-- end #page-loader -->
-
-<jsp:include page="DivSAComponent.jsp"></jsp:include>
-
-<!-- begin #page-container -->
-<div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
-
-    <!-- begin #content -->
-    <div id="content" class="content">
-        <!-- begin breadcrumb -->
-        <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">System Admin</a></li>
-            <li class="active">Inspection Division</li>
-        </ol>
-        <!-- end breadcrumb -->
-        <!-- begin page-header -->
-        <h1 class="page-header">INSPECTION DIVISION
-        </h1>
-        <!-- end page-header -->
-
-        <div class="row">
-            <div class="col-md-12">
-                <!-- begin panel -->
-                <div class="panel panel-inverse">
-                    <div class="panel-heading">
-                        <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                        </div>
-                        <h4 class="panel-title">Inspection Table</h4>
-                    </div>
-                    <div class="panel-body">
-                       <!-- <a href="#modal-adduser" class="btn btn-sm btn-success" data-toggle="modal">Add User</a> -->
-                    </div>
-                    <div class="panel-body">
-                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
-                            <thead>
-                            <tr>
-                                <th>Reference Number</th>
-                                <th>Applicant Name</th>
-                                <th>Business Name</th>
-                                <th>Business Type</th>
-                                <th>Application Type</th>
-                                <th>Inspection Date</th>
-                                <th>Remarks</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
-                                Connection conn = null;
-                                Statement stat = null;
-                                ResultSet res = null;
-                                Class.forName("com.mysql.jdbc.Driver");
-                                conn = DriverManager.getConnection(host,"root","");
-                                stat = conn.createStatement();
-                                String data = "select * from lgu_r_inspection order by INS_ID desc";
-                                res = stat.executeQuery(data);
-                                while (res.next())
-                                {
-                            %>
-                            <tr>
-                                <td><%=res.getString("REF_NO")%></td>
-                                <td><%=res.getString("BUSI_NAME")%></td>
-                                <td><%=res.getString("APP_NAME")%></td>
-                                <td><%=res.getString("BUSI_TYPE")%></td>
-                                <td><%=res.getString("APP_TYPE")%></td>
-                                <td><%=res.getString("INS_DATE")%></td>
-                                <td><%=res.getString("REMARKS")%></td>
-                                <td><a href="#modal-adduser" data-toggle="modal" class="btn btn-success m-r-5">Edit</a></td>
-
-                            </tr>
-                            <%
-                                }
-                            %>
-                            </tbody>
-
-                        </table>
-                        <p></p>
-
-                        BUSINESS REGISTRATION INSPECTION
-                        <p></p>
-                        <input type="checkbox" name="Zoning Inspections" /> Zoning Inspections
-                        <br />
-                        <input type="checkbox" name="Fire Inspections" /> Fire Inspections
-                        <br />
-                        <input type="checkbox" name="Health and Sanitation Inspections" /> Health and Sanitation Inspection
-                        <br />
-                        <input type="checkbox" name="Miscellaneous Inspections" /> Miscellaneous Inspections
-                        <br />
-                        <input type="checkbox" name="Zoning Inspections" /> Building Inspections
-                        <br />
-                        <input type="checkbox" name="Labor Inspections" /> Labor Inspections
-                        <br />
-                        <br />
-                        <br />
-
-
-                        <a href="#" class="btn btn-danger m-r-5"> Denied!<a/>
-                            <a href="#" class="btn btn-success m-r-5"> Approved!<a/>
-
-=======
     <meta
             http-equiv="Content-Type"
             content="text/html; charset=UTF-8"
@@ -168,7 +26,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>QCPAEIS | Inspection</title>
+    <title>PAEIS | Inspection</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link
             href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -318,7 +176,7 @@
                                     LGUConnect conX = new LGUConnect();
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationFormsIP`");
+                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
                                     while (gg3.next()) {
                                         String apType = gg3.getString("AP_TYPE");
                                         String modalMode = "";
@@ -438,7 +296,6 @@
                                 </tbody>
                             </table>
                         </div>
->>>>>>> ec2068e7a43f7bf34d477b7313d06173611f6c82
                     </div>
                     <!-- end panel -->
                 </div>
@@ -796,80 +653,11 @@
 
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-    <!-- end #content -->
-
-
-
-    <!-- #modal-adduser -->
-    <div class="modal fade" id="modal-adduser">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Add User</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" action="DivSAInsert.jsp" method="POST">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Username</label>
-                            <div class="col-md-8">
-                                <input type="text" name="username" class="form-control" placeholder="Enter username" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Password</label>
-                            <div class="col-md-8">
-                                <input type="password" name="password" class="form-control" placeholder="Password" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">User Type</label>
-                            <div class="col-md-8">
-                                <select name="type" class="form-control">
-                                    <option>Staff</option>
-                                    <option>Admin</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">User Role</label>
-                            <div class="col-md-8">
-                                <select name="role" class="form-control">
-                                    <option>Evaluation</option>
-                                    <option>Inspection</option>
-                                    <option>Investigation</option>
-                                    <option>Treasury</option>
-                                    <option>Releasing</option>
-                                    <option>System Admin</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-success">Add</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-    <!-- end scroll to top btn -->
-</div>
-<!-- end page container -->
-
-<!-- ================== BEGIN BASE JS ================== -->
-<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
-=======
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
 </div>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/js/jquery.min.js"></script>
->>>>>>> ec2068e7a43f7bf34d477b7313d06173611f6c82
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -881,23 +669,6 @@
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 <!-- ================== END BASE JS ================== -->
-<<<<<<< HEAD
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-<script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-<script src="assets/js/table-manage-responsive.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function() {
-=======
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 <script
@@ -915,22 +686,10 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 <script type="text/javascript">
     $(document).ready(function () {
->>>>>>> ec2068e7a43f7bf34d477b7313d06173611f6c82
         App.init();
         TableManageResponsive.init();
     });
 </script>
-<<<<<<< HEAD
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-=======
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -1059,7 +818,6 @@
             }
         })
     });
->>>>>>> ec2068e7a43f7bf34d477b7313d06173611f6c82
 </script>
 </body>
 </html>

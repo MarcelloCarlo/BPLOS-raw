@@ -1,4 +1,4 @@
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->

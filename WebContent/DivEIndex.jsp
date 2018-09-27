@@ -4,7 +4,7 @@
         pageEncoding="ISO-8859-1"
 %>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>QCPAEIS | Evaluation</title>
+    <title>PAEIS | Evaluation</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%-- <link
              href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
