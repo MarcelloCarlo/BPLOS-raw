@@ -4,7 +4,7 @@
         pageEncoding="ISO-8859-1"
 %>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +23,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>QCPAEIS | Evaluation</title>
+    <title>PAEIS | Evaluation</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%-- <link
              href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -182,14 +182,17 @@
                                         String modalMode = "";
                                         String modalClass = "";
                                         String assess = "";
+                                        String refno = "";
                                         if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
                                             if (gg3.getString("AP_STATUS").equals("Assess") && gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV")) {
+                                                refno = "location.href='Assessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
                                                 assess = "";
                                             } else {
                                                 assess = "disabled";
                                             }
                                         } else if (gg3.getString("BN_CLASSIFICATION").equals("S")) {
                                             if (gg3.getString("AP_STATUS").equals("Assess")) {
+                                                refno = "location.href='Assessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
                                                 assess = "";
                                             } else {
                                                 assess = "disabled";
@@ -234,7 +237,8 @@
                                                 type="button"
                                                 class="btn btn-success <%=assess%>"
                                                 data-toggle="modal"
-                                                onclick="location.href='Assessment.jsp?refNo=<%=gg3.getString("AP_REFERENCE_NO")%>'"
+                                                id="assess"
+                                                onclick="<%=refno%>"
                                         >Assess
                                         </button>
                                     </td><!--7-->

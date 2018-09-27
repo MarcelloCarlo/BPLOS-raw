@@ -1,10 +1,9 @@
-package com.qcapaeis.lguTransactions;
+package com.paeis.lguTransactions;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mysql.jdbc.Blob;
 import com.mysql.jdbc.PreparedStatement;
-import com.qcapaeis.dbConnection.LGUConnect;
+import com.paeis.dbConnection.LGUConnect;
 
 
 @WebServlet("/downloadAttachment")

@@ -1,4 +1,4 @@
-package com.qcapaeis.lguTransactions;
+package com.paeis.lguTransactions;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.mysql.jdbc.PreparedStatement;
-import com.qcapaeis.dbConnection.LGUConnect;
+import com.paeis.dbConnection.LGUConnect;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
 		maxFileSize = 1024 * 1024 * 50, // 50 MB

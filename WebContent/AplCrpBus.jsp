@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.sql.*" %>
-<%@ page import="com.qcapaeis.dbConnection.LGUConnect" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>

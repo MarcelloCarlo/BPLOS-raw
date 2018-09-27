@@ -1,30 +1,36 @@
-CREATE VIEW view_applicationFormsIP AS
-  SELECT BUS.BU_NAME,
+DROP VIEW IF EXISTS view_applicationformsip;
+CREATE VIEW view_applicationformsip AS
+  SELECT AP.AP_REFERENCE_NO,
+         BUS.BU_NAME,
          BUS.BU_PRESIDENT,
          CONCAT(
            TP.TP_FNAME,
-           ' ',
-           COALESCE(TP.TP_MNAME, ' '),
-           ' ',
-           COALESCE(TP.TP_LNAME, ' ')
+           '' '',
+           COALESCE(TP.TP_MNAME, '' ''),
+           '' '',
+           COALESCE(TP.TP_LNAME, '' '')
              ) TAX_PAYERNAME,
          BUS.BU_LOCATION,
          BUS.BU_CONTACT,
          CONCAT(
            AR.AR_FNAME,
-           ' ',
-           COALESCE(AR.AR_MNAME, ' '),
-           ' ',
-           COALESCE(AR.AR_LNAME, ' ')
+           '' '',
+           COALESCE(AR.AR_MNAME, '' ''),
+           '' '',
+           COALESCE(AR.AR_LNAME, '' '')
              ) AUTH_REPNAME,
          AR.AR_HOME_ADDRESS,
          BN.BN_NAME,
+         BN.BN_CLASSIFICATION,
          OT.OT_NAME,
+         OT.OT_CODE,
          AP.AP_TYPE,
          AP.AP_DATE,
          ATC.AT_UNIFIED_FILE_NAME,
          AP.AP_ID,
          AP.AP_STATUS,
+         AP.AP_DIV_CODE_TO,
+         AP.AP_DIV_CODE_FROM,
          ATC.AT_ID,
          ATC.AT_BRGY_CLEARANCE,
          ATC.AT_DTI_REGISTRATION,
@@ -47,7 +53,8 @@ CREATE VIEW view_applicationFormsIP AS
          ATC.AT_TAX_BILL,
          ATC.AT_OFFICIAL_RECEIPT,
          ATC.AT_PCAB_LICENSE,
-         ATC.AT_MISC_DOCUMENTS
+         ATC.AT_MISC_DOCUMENTS,
+         ATC.AP_Remarks
   FROM lgu_r_business BUS
          INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID
          INNER JOIN lgu_r_ownership_type OT ON OT.OT_CODE = BUS.OT_CODE
@@ -57,4 +64,4 @@ CREATE VIEW view_applicationFormsIP AS
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
          INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
-  WHERE AP.AP_DIV_CODE_TO = 'DIV-INS' AND BN.BN_CLASSIFICATION = 'L';
+  WHERE AP.AP_DIV_CODE_TO = ''DIV-INS '' AND BN.BN_CLASSIFICATION = ''L'';
