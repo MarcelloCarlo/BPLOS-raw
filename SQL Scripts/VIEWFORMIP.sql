@@ -5,19 +5,19 @@ CREATE VIEW view_applicationformsip AS
          BUS.BU_PRESIDENT,
          CONCAT(
            TP.TP_FNAME,
-           '' '',
-           COALESCE(TP.TP_MNAME, '' ''),
-           '' '',
-           COALESCE(TP.TP_LNAME, '' '')
+           '',
+           COALESCE(TP.TP_MNAME,''),
+           '',
+           COALESCE(TP.TP_LNAME,'')
              ) TAX_PAYERNAME,
          BUS.BU_LOCATION,
          BUS.BU_CONTACT,
          CONCAT(
            AR.AR_FNAME,
-           '' '',
-           COALESCE(AR.AR_MNAME, '' ''),
-           '' '',
-           COALESCE(AR.AR_LNAME, '' '')
+          '',
+           COALESCE(AR.AR_MNAME,''),
+           '',
+           COALESCE(AR.AR_LNAME,'')
              ) AUTH_REPNAME,
          AR.AR_HOME_ADDRESS,
          BN.BN_NAME,
@@ -64,4 +64,4 @@ CREATE VIEW view_applicationformsip AS
          INNER JOIN lgu_r_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN lgu_r_attachments ATC ON ATC.AP_ID = AP.AP_ID
          INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
-  WHERE AP.AP_DIV_CODE_TO = ''DIV-INS '' AND BN.BN_CLASSIFICATION = ''L'';
+  WHERE AP.AP_DIV_CODE_TO = 'DIV-INS' AND BN.BN_CLASSIFICATION = 'L';

@@ -439,7 +439,7 @@
                                                         name="AT_BRGY_CLEARANCE"
                                                         class="flat"
                                                         value="Pass"
-                                                > Original Barangay Clearance
+                                                > Zoning Inspection
                                             </p>
                                             <p>
                                                 <input
@@ -448,7 +448,7 @@
                                                         name="AT_DTI_REGISTRATION"
                                                         class="flat"
                                                         value="Pass"
-                                                > DTI Registration (for Single Proprietorship
+                                                > Fire Inspection
                                             </p>
                                             <p>
                                                 <input
@@ -457,8 +457,7 @@
                                                         name="AT_SEC_REGISTRATION"
                                                         class="flat"
                                                         value="Pass"
-                                                > SEC Registration with Artices (for
-                                                Corporation/Partnership
+                                                > Health & Sanitation Inspection
                                             </p>
                                             <p>
                                                 <input
@@ -467,7 +466,7 @@
                                                         name="AT_TITLE_TO_PROPERTY"
                                                         class="flat"
                                                         value="Pass"
-                                                > Title to property of Tax Declaration (if owned)
+                                                > Building Inspection
                                             </p>
                                             <p>
                                                 <input
@@ -476,8 +475,7 @@
                                                         name="AT_CONTRACT_OF_LEASE"
                                                         class="flat"
                                                         value="Pass"
-                                                > Contract of Lease and Lessor's Business Permit (if
-                                                rented)
+                                                > Labor Inspection
                                             </p>
                                             <p>
                                                 <input
@@ -486,17 +484,7 @@
                                                         name="AT_AUTHORIZATION"
                                                         class="flat"
                                                         value="Pass"
-                                                > Authorization Letter & ID (Owner and representative(if
-                                                any))
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="AT_MISC_DOCUMENTS"
-                                                        name="AT_MISC_DOCUMENTS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Other Documents (See Business Natures)
+                                                > Miscellaneous Inspection (See Business Nature)
                                             </p>
                                         </ul>
                                     </div>
