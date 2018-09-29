@@ -40,15 +40,15 @@ public class updateNewAppEvaluationForm extends HttpServlet {
         LGUConnect conX = new LGUConnect();
         String currBN = "";
         if (BN_CLASSIFICATION.equals("S")) {
-            currBN = "UPDATE lgu_r_bp_application SET AP_STATUS = 'Assess', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
+            currBN = "UPDATE lgu_t_bp_application SET AP_STATUS = 'Assess', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
         } else if (BN_CLASSIFICATION.equals("L")) {
-            currBN = "UPDATE lgu_r_bp_application SET AP_DIV_CODE_TO = 'DIV-INS', AP_DIV_CODE_FROM = 'DIV-EV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
+            currBN = "UPDATE lgu_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INS', AP_DIV_CODE_FROM = 'DIV-EV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
         }
 
         try {
             Connection connection = conX.getConnection();
             PreparedStatement updateRequirements = (PreparedStatement) connection.prepareStatement(
-                    "UPDATE lgu_r_attachments SET AT_BRGY_CLEARANCE = ?, AT_DTI_REGISTRATION = ?, AT_SEC_REGISTRATION = ?,AT_TITLE_TO_PROPERTY = ?, AT_CONTRACT_OF_LEASE = ?, AT_AUTHORIZATION = ?, AT_MISC_DOCUMENTS = ?, AP_Remarks = ? WHERE AT_ID = ? AND AP_ID = ?; ");
+                    "UPDATE lgu_t_attachments SET AT_BRGY_CLEARANCE = ?, AT_DTI_REGISTRATION = ?, AT_SEC_REGISTRATION = ?,AT_TITLE_TO_PROPERTY = ?, AT_CONTRACT_OF_LEASE = ?, AT_AUTHORIZATION = ?, AT_MISC_DOCUMENTS = ?, AP_Remarks = ? WHERE AT_ID = ? AND AP_ID = ?; ");
             updateRequirements.setString(1, getCheckboxtatus(AT_BRGY_CLEARANCE));
             updateRequirements.setString(2, getCheckboxtatus(AT_DTI_REGISTRATION));
             updateRequirements.setString(3, getCheckboxtatus(AT_SEC_REGISTRATION));
@@ -66,7 +66,7 @@ public class updateNewAppEvaluationForm extends HttpServlet {
             changeDiv.executeUpdate();
 
             if (BN_CLASSIFICATION.equals("S")) {
-               PreparedStatement assessApplication = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_r_assessment`(`AS_OR_NO`, `AS_AP_REFERENCE_NO`, `AS_FEE_SET`, `AS_PERIOD_COVERED`, `AS_DUE_DATE`) VALUES (CONCAT(LPAD(AS_ID,3,'0'),'-',REPLACE(?,'-','')),?,'FS-SET1',CURRENT_DATE(),DATE_ADD(AS_PERIOD_COVERED, INTERVAL 1 YEAR))");
+               PreparedStatement assessApplication = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_assessment`(`AS_OR_NO`, `AS_AP_REFERENCE_NO`, `AS_FEE_SET`, `AS_PERIOD_COVERED`, `AS_DUE_DATE`) VALUES (CONCAT(LPAD(AS_ID,3,'0'),'-',REPLACE(?,'-','')),?,'FS-SET1',CURRENT_DATE(),DATE_ADD(AS_PERIOD_COVERED, INTERVAL 1 YEAR))");
                assessApplication.setString(1,AP_REFERENCE_NO);
                assessApplication.setString(2,AP_REFERENCE_NO);
                assessApplication.executeUpdate();
