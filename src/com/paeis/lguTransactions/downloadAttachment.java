@@ -42,12 +42,10 @@ import com.paeis.dbConnection.LGUConnect;
 				conn = conX.getConnection();
 
 				// queries the database
-				String sql = "SELECT `AT_UNIFIED_FILE`, `AT_UNIFIED_FILE_NAME` FROM `lgu_t_attachement` WHERE `AT_ID` = ? AND `AP_ID` = ?";
+				String sql = "SELECT `AT_UNIFIED_FILE`, `AT_UNIFIED_FILE_NAME` FROM `lgu_t_attachments` WHERE `AT_ID` = ? AND `AP_ID` = ?";
 				PreparedStatement statement = (PreparedStatement) conn.prepareStatement(sql);
 				statement.setInt(1, attachId);
 				statement.setInt(2, applId);
-				
-
 				ResultSet result = statement.executeQuery();
 				if (result.next()) {
 					// gets file name and file blob data

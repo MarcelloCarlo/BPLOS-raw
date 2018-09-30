@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: jcgutierrez0102
+  Date: 9/30/18
+  Time: 10:18 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page
         language="java"
         contentType="text/html; charset=ISO-8859-1"
@@ -341,9 +348,9 @@
     >
         <div class="modal-dialog">
             <form
-                    id="newApplForm"
+                    id="newInsApplForm"
                     class="form-horizontal"
-                    name="newApplForm"
+                    name="newInsApplForm"
                     enctype="multipart/form-data"
             >
                 <div class="modal-content">
@@ -361,7 +368,7 @@
                         <h4
                                 class="modal-title"
                                 id="myModalLabel"
-                        >Check Requirements for New Application</h4>
+                        >Inspection for New Application</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -375,7 +382,7 @@
                                           id="_AP_ID"
                                           name="_AP_ID"
                             />
-                                <div class="col-md-8">
+                                <div class="col-md-8 panel-body">
                                     <h5>
                                         Business Name/Corporate Name:
                                         <!-- <input disabled=""
@@ -416,27 +423,15 @@
                                         <label id="nBussNature"></label>
                                     </h5>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="col-md-6">
-                                        <hr>
-                                        <label id="AT_UNIFIED_FILE_NAME"></label><br>
-                                        <button
-                                                type="button"
-                                                class="btn btn-primary form-control"
-                                                id="fileDownload"
-                                        >DOWNLOAD ATTACHMENT
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <h5>Requirements Checklist</h5>
+                                <div class="panel-body">
+                                    <h5>Inspection Checklist</h5>
                                     <div class="">
                                         <ul class="to_do">
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="AT_BRGY_CLEARANCE"
-                                                        name="AT_BRGY_CLEARANCE"
+                                                        id="chkZONING_INS"
+                                                        name="ZONING_INS"
                                                         class="flat"
                                                         value="Pass"
                                                 > Zoning Inspection
@@ -444,8 +439,8 @@
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="AT_DTI_REGISTRATION"
-                                                        name="AT_DTI_REGISTRATION"
+                                                        id="chkFIRE_INS"
+                                                        name="FIRE_INS"
                                                         class="flat"
                                                         value="Pass"
                                                 > Fire Inspection
@@ -453,8 +448,8 @@
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="AT_SEC_REGISTRATION"
-                                                        name="AT_SEC_REGISTRATION"
+                                                        id="chkHS_INS"
+                                                        name="HS_INS"
                                                         class="flat"
                                                         value="Pass"
                                                 > Health & Sanitation Inspection
@@ -462,8 +457,8 @@
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="AT_TITLE_TO_PROPERTY"
-                                                        name="AT_TITLE_TO_PROPERTY"
+                                                        id="chkBLDG_INS"
+                                                        name="BLDG_INS"
                                                         class="flat"
                                                         value="Pass"
                                                 > Building Inspection
@@ -471,8 +466,8 @@
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="AT_CONTRACT_OF_LEASE"
-                                                        name="AT_CONTRACT_OF_LEASE"
+                                                        id="chkLABOR_INS"
+                                                        name="LABOR_INS"
                                                         class="flat"
                                                         value="Pass"
                                                 > Labor Inspection
@@ -480,21 +475,23 @@
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="AT_AUTHORIZATION"
-                                                        name="AT_AUTHORIZATION"
+                                                        id="chkMISC_INS"
+                                                        name="MISC_INS"
                                                         class="flat"
                                                         value="Pass"
                                                 > Miscellaneous Inspection (See Business Nature)
                                             </p>
                                         </ul>
                                     </div>
+                                </div>
+                                <div class="panel-body">
                                     <hr>
                                     <div class="col-md-9">
 											<textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
-                                                    id="AP_Remarks"
-                                                    name="AP_Remarks"
+                                                    id="txtMISC_REMARKS"
+                                                    name="MISC_REMARKS"
                                                     rows="3"
                                             ></textarea>
                                     </div>
@@ -512,7 +509,7 @@
                         </button>
                         <button
                                 type="button"
-                                id="btnNewAppl"
+                                id="btnInsNewAppl"
                                 class="btn btn-success"
                         >Save Changes
                         </button>
@@ -715,77 +712,38 @@
 
         $(".newModal").click(function () {
             document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(38)").html();
+            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
+            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
+            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
+            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+            //document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
+            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
             $("#_AT_ID").val(Number($(this).closest("tbody tr").find("td:eq(13)").html()));
             $("#_AP_ID").val(Number($(this).closest("tbody tr").find("td:eq(14)").html()));
 
             if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
                 document.getElementById('nBussOwner').innerHTML = 'None';
             }
-            if ($(this).closest("tbody tr").find("td:eq(37)").text() === "null") {
-                $("#AP_Remarks").val("");
-            }
-            if ($(this).closest("tbody tr").find("td:eq(15)").text() === "Pass") {
-                $("#AT_BRGY_CLEARANCE").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(16)").text() === "Pass") {
-                $("#AT_DTI_REGISTRATION").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(17)").text() === "Pass") {
-                $("#AT_SEC_REGISTRATION").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(18)").text() === "Pass") {
-                $("#AT_TITLE_TO_PROPERTY").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(20)").text() === "Pass") {
-                $("#AT_CONTRACT_OF_LEASE").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(22)").text() === "Pass") {
-                $("#AT_AUTHORIZATION").prop("checked", true);
-            }
-
-            if ($(this).closest("tbody tr").find("td:eq(36)").text() === "Pass") {
-                $("#AT_MISC_DOCUMENTS").prop("checked", true);
-            }
 
         });
 
-        $("#fileDownload").click(function (event) {
-            // event.preventDefault();
-            var fID = $("#_AT_ID").val();
-            var apID = $("#_AP_ID").val();
-            var link = "?fID=" + fID + "&apID=" + apID;
-            window.open("downloadAttachment" + link);
-        });
 
         $('#btnCloseNewApplModal').click(function () {
-            $("#AT_BRGY_CLEARANCE").prop("checked", false);
-            $("#AT_DTI_REGISTRATION").prop("checked", false);
-            $("#AT_SEC_REGISTRATION").prop("checked", false);
-            $("#AT_TITLE_TO_PROPERTY").prop("checked", false);
-            $("#AT_CONTRACT_OF_LEASE").prop("checked", false);
-            $("#AT_AUTHORIZATION").prop("checked", false);
-            $("#AT_MISC_DOCUMENTS").prop("checked", false);
+            $("#chkBLDG_INS").prop("checked", false);
+            $("#chkFIRE_INS").prop("checked", false);
+            $("#chkHS_INS").prop("checked", false);
+            $("#chkLABOR_INS").prop("checked", false);
+            $("#chkMISC_INS").prop("checked", false);
+            $("#chkZONING_INS").prop("checked", false);
         });
 
         $('#closeNewPanelWindow').click(function () {
-            $("#AT_BRGY_CLEARANCE").prop("checked", false);
-            $("#AT_DTI_REGISTRATION").prop("checked", false);
-            $("#AT_SEC_REGISTRATION").prop("checked", false);
-            $("#AT_TITLE_TO_PROPERTY").prop("checked", false);
-            $("#AT_CONTRACT_OF_LEASE").prop("checked", false);
-            $("#AT_AUTHORIZATION").prop("checked", false);
-            $("#AT_MISC_DOCUMENTS").prop("checked", false);
+            $("#chkBLDG_INS").prop("checked", false);
+            $("#chkFIRE_INS").prop("checked", false);
+            $("#chkHS_INS").prop("checked", false);
+            $("#chkLABOR_INS").prop("checked", false);
+            $("#chkMISC_INS").prop("checked", false);
+            $("#chkZONING_INS").prop("checked", false);
         });
 
     });
@@ -795,48 +753,15 @@
 <!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
 <!-- Init script -->
 <script type="text/javascript">
+    $(document).ready(function () {
+        
+    })
     /*clippy.load('Clippy', function(agent){
         // do anything with the loaded agent
           agent.animate();
         agent.show();
 
     });*/
-
-    $('#btnNewAppl').click(function () {
-        swal({
-            title: "Are you sure?",
-            text: "You will save your current changes",
-            type: "warning",
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Confirm!",
-            showCancelButton: true,
-            cancelButtonText: 'Cancel',
-        }).then((result) => {
-            if (result.value) {
-                var datanewApplForm = new FormData($('#newApplForm')[0]); //working method
-                $.ajax({
-                    type: "POST",
-                    url: "updateNewAppEvaluationForm",
-                    data: datanewApplForm,
-                    processData: false,
-                    contentType: false,
-                    success: function () {
-                        swal({type: 'success', title: 'DONE!.', text: 'Succesfully Evaluated'});
-                    }/*,
-                    error: function () {
-                        swal("error", "Evaluation encountered and error", "error");
-                    }*/
-                });
-            } else if (result.dismiss === swal.DismissReason.cancel) {
-                swalWithBootstrapButtons(
-                    'Cancelled',
-                    'Operation Halted',
-                    'error'
-                )
-
-            }
-        })
-    });
 </script>
 </body>
 </html>
