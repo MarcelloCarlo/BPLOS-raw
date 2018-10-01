@@ -184,7 +184,7 @@
                                         String assess = "";
                                         String refno = "";
                                         if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess") && gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV")) {
+                                            if (gg3.getString("AP_STATUS").equals("Assess") && (gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV") || gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INS"))) {
                                                 refno = "location.href='Assessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
                                                 assess = "";
                                             } else {

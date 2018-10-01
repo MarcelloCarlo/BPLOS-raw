@@ -151,34 +151,6 @@
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -191,22 +163,6 @@
                                         String apType = gg3.getString("AP_TYPE");
                                         String modalMode = "";
                                         String modalClass = "";
-                                        String assess = "";
-                                        if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess") && gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV")) {
-                                                assess = "";
-                                            } else {
-                                                assess = "disabled";
-                                            }
-                                        } else if (gg3.getString("BN_CLASSIFICATION").equals("S")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess")) {
-                                                assess = "";
-                                            } else {
-                                                assess = "disabled";
-                                            }
-                                        } else {
-                                            assess = "disabled";
-                                        }
                                         if (apType.equals("New")) {
                                             modalMode = ".inspection-modal-new";
                                             modalClass = "newModal";
@@ -232,6 +188,20 @@
                                     </td><!--5-->
                                     <td><%=gg3.getString("BU_PRESIDENT")%>
                                     </td>
+                                    <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("BU_LOCATION")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("BU_CONTACT")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("BN_NAME")%>
+                                    </td>
+                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
+                                    </td>
                                     <td>
                                         <button
                                                 type="button"
@@ -246,86 +216,6 @@
                                                 data-toggle="modal" title="Release a Mission Order"
                                         ><i class="fa fa-lg fa-rocket"></i>
                                         </button>
-                                    </td><!--7-->
-                                    <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_LOCATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%>
-                                    </td>
-                                    <td
-                                            class="hide"
-                                            id="AT_ID"
-                                            name="AT_ID"
-                                    ><%=gg3.getString("AT_ID")%>
-                                    </td>
-                                    <!-- 14 -->
-                                    <td
-                                            class="hide"
-                                            id="AP_ID"
-                                            name="AP_ID"
-                                    ><%=gg3.getString("AP_ID")%>
-                                    </td>
-                                    <!-- 15 -->
-                                    <td class="hide"><%=String.valueOf(gg3.getString("AT_BRGY_CLEARANCE"))%>
-                                    </td><!-- 16 -->
-                                    <td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TAX_DECLARATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_CONTRACT_OF_LEASE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_LESSORS_BP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_AUTHORIZATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_LOCATIONAL_CLR")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SANITARY_HEALTH_CERT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_BUILDING_PERMIT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_POLLUTION_CLR")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_MECHANICAL_PERMIT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_ELECTRICAL_INSP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_POLICE_CLEARANCE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_CTAO_CLEARANCE_CERT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_FSIC")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_PREV_BP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TAX_BILL")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_OFFICIAL_RECEIPT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AP_Remarks")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                    </td>
-                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("OT_CODE")%>
-                                    </td>
-                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>
                                     </td>
                                 </tr>
                                 <%
@@ -373,15 +263,11 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="number"
+                                <input type="text"
                                        class="hide"
-                                       id="_AT_ID"
-                                       name="_AT_ID"
-                                /> <input type="number"
-                                          class="hide"
-                                          id="_AP_ID"
-                                          name="_AP_ID"
-                            />
+                                       id="_AP_REFERENCE_NO"
+                                       name="_AP_REFERENCE_NO"
+                                />
                                 <div class="col-md-8 panel-body">
                                     <h5>
                                         Business Name/Corporate Name:
@@ -495,6 +381,32 @@
                                                     rows="3"
                                             ></textarea>
                                     </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="note note-info">
+                                        <h4>Inspection Notes</h4>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    Miscellaneous Inspection based on the business nature should be in the
+                                                    business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY OTHER
+                                                    REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
+                                                </p>
+                                            </li>
+                                            <li><p>
+                                                Any unchecked item/s on the Inspection Requirements will be sent to the Investigation upon submission. Please define the violation/s on the remarks for other details.
+                                            </p></li>
+                                        </ul>
+                                    </div>
+                                    <!--  <div class="col-md-9">
+                                              <textarea
+                                                      class="form-control"
+                                                      placeholder="Remarks"
+                                                      id="AP_Remarks"
+                                                      name="AP_Remarks"
+                                                      rows="3"
+                                              ></textarea>
+                                      </div>-->
                                 </div>
                             </div>
                         </div>
@@ -712,17 +624,16 @@
 
         $(".newModal").click(function () {
             document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
+            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
+            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
+            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
             //document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
-            $("#_AT_ID").val(Number($(this).closest("tbody tr").find("td:eq(13)").html()));
-            $("#_AP_ID").val(Number($(this).closest("tbody tr").find("td:eq(14)").html()));
+            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+            document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(13)").html().trim();
 
             if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
-                document.getElementById('nBussOwner').innerHTML = 'None';
+                document.getElementById('nBussOwner').value = 'None';
             }
 
         });
@@ -754,14 +665,45 @@
 <!-- Init script -->
 <script type="text/javascript">
     $(document).ready(function () {
-        
+       $("#btnInsNewAppl").click(function () {
+           swal({
+               title: "Are you sure?",
+               text: "You will save your current changes",
+               type: "warning",
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "Confirm!",
+               showCancelButton: true,
+               cancelButtonText: 'Cancel'
+           }).then((result) => {
+               if(result.value) {
+               var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
+               $.ajax({
+                   type: "POST",
+                   url: "updateNewAppInspectionForm",
+                   data: datanewInsApplForm,
+                   processData: false,
+                   contentType: false,
+                   success: function () {
+                       swal({
+                           type: 'success',
+                           title: 'DONE!.',
+                           text: 'Succesfully Evaluated',
+                           confirmButtonText: 'OK'
+                       }).then((result) => {
+                           if(result.value)
+                       {
+                           location.reload(true);
+                       }
+                   });
+                   },
+                    error: function () {
+                        swal("error", "The process encountered and error", "error");
+                    }
+               });
+           }
+       });
+       })
     })
-    /*clippy.load('Clippy', function(agent){
-        // do anything with the loaded agent
-          agent.animate();
-        agent.show();
-
-    });*/
 </script>
 </body>
 </html>
