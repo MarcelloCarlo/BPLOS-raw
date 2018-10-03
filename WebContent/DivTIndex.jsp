@@ -1,8 +1,5 @@
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -67,45 +64,116 @@
                         <h4 class="panel-title">Payment Processing Table</h4>
                     </div>
                     <div class="panel-body">
-                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
+                        <table
+                                id="data-table"
+                                class="table table-striped table-bordered nowrap"
+                                width="100%"
+                        >
                             <thead>
                             <tr>
-                                <th>Reference Number</th>
-                                <th>Business Owner</th>
                                 <th>Business Name</th>
-                                <th>Business Type</th>
-                                <th>Remarks</th>
+                                <th>Business Nature</th>
+                                <th>Ownership Type</th>
+                                <th>Application Type</th>
+                                <th>Status</th>
+                                <th>Date Received</th>
+                                <th>President/Representative</th>
                                 <th>Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
+                                <th class="hide">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%--<%--%>
-                                <%--String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";--%>
-                                <%--Connection conn = null;--%>
-                                <%--Statement stat = null;--%>
-                                <%--ResultSet res = null;--%>
-                                <%--Class.forName("com.mysql.jdbc.Driver");--%>
-                                <%--conn = DriverManager.getConnection(host,"root","");--%>
-                                <%--stat = conn.createStatement();--%>
-                                <%--String data = "select * from lgu_r_user order by U_ID desc";--%>
-                                <%--res = stat.executeQuery(data);--%>
-                                <%--while (res.next())--%>
-                                <%--{--%>
-                            <%--%>--%>
+                            <%
+                                LGUConnect conX = new LGUConnect();
+                                try {
+                                    Connection conn3 = conX.getConnection();
+                                    Statement ss3 = conn3.createStatement();
+                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformstre`");
+                                    while (gg3.next()) {
+                                        String apType = gg3.getString("AP_TYPE");
+                                        String modalMode = "";
+                                        String modalClass = "";
+                                        if (apType.equals("New")) {
+                                            modalMode = ".investigation-modal-new";
+                                            modalClass = "newModal";
+                                        } else if (apType.equals("Renew")) {
+                                            modalMode = ".investigation-modal-renew";
+                                            modalClass = "renewModal";
+                                        } else {
+                                            modalMode = ".investigation-modal-new";
+                                        }
+                            %>
                             <tr>
-                                <td>1111-1111-1111-1111</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
+                                <td><%=gg3.getString("BU_NAME")%>
+                                </td><!--0-->
+                                <td><%=gg3.getString("BN_NAME")%>
+                                </td><!--1-->
+                                <td><%=gg3.getString("OT_NAME")%>
+                                </td><!--2-->
+                                <td><%=apType%>
+                                </td><!--3-->
+                                <td><%=gg3.getString("AP_STATUS")%>
+                                </td>
+                                <td><%=gg3.getString("AP_DATE")%>
+                                </td><!--5-->
+                                <td><%=gg3.getString("BU_PRESIDENT")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("BU_LOCATION")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("BU_CONTACT")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
+                                </td><!--10-->
+                                <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("BN_NAME")%>
+                                </td>
+                                <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
+                                </td>
                                 <td>
-                                    <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
-                                    <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
+                                    <button
+                                            type="button"
+                                            class="btn btn-success <%=modalClass%>"
+                                            data-toggle="modal"
+                                            data-target="<%=modalMode%>" title="Comply for the Inspection"
+                                    ><i class="fa fa-lg fa-list-ul"></i>
+                                    </button>
+                                </td>
+                                <td class="hide"><%=gg3.getString("ZONING_INS")%>
+                                </td><!--15-->
+                                <td class="hide"><%=gg3.getString("FIRE_INS")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("HEALTH_SANITATION_INS")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("BUILDING_INS")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("LABOR_INS")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("MISC_INS")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("INS_REMARKS")%>
                                 </td>
                             </tr>
-                            <%--<%--%>
-                                <%--}--%>
-                            <%--%>--%>
+                            <%
+                                    }}catch(SQLException | ClassNotFoundException e){
+                                    out.print(e);
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
