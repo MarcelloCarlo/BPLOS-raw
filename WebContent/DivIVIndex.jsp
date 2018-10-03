@@ -151,11 +151,19 @@
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
+                                    <th class="hide">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <%
                                     LGUConnect conX = new LGUConnect();
+                                    try {
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
                                     ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsiv`");
@@ -164,13 +172,13 @@
                                         String modalMode = "";
                                         String modalClass = "";
                                         if (apType.equals("New")) {
-                                            modalMode = ".inspection-modal-new";
+                                            modalMode = ".investigation-modal-new";
                                             modalClass = "newModal";
                                         } else if (apType.equals("Renew")) {
-                                            modalMode = ".inspection-modal-renew";
+                                            modalMode = ".investigation-modal-renew";
                                             modalClass = "renewModal";
                                         } else {
-                                            modalMode = ".inspection-modal-new";
+                                            modalMode = ".investigation-modal-new";
                                         }
                                 %>
                                 <tr>
@@ -195,7 +203,7 @@
                                     <td class="hide"><%=gg3.getString("BU_CONTACT")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
+                                    </td><!--10-->
                                     <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("BN_NAME")%>
@@ -207,18 +215,28 @@
                                                 type="button"
                                                 class="btn btn-success <%=modalClass%>"
                                                 data-toggle="modal"
-                                                data-target="<%=modalMode%>" title="Comply the Inspected Business"
+                                                data-target="<%=modalMode%>" title="Comply for the Inspection"
                                         ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success"
-                                                data-toggle="modal" title="Release a Mission Order"
-                                        ><i class="fa fa-lg fa-rocket"></i>
-                                        </button>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("ZONING_INS")%>
+                                    </td><!--15-->
+                                    <td class="hide"><%=gg3.getString("FIRE_INS")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("HEALTH_SANITATION_INS")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("BUILDING_INS")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("LABOR_INS")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("MISC_INS")%>
+                                    </td>
+                                    <td class="hide"><%=gg3.getString("INS_REMARKS")%>
                                     </td>
                                 </tr>
                                 <%
+                                    }}catch(SQLException | ClassNotFoundException e){
+                                        out.print(e);
                                     }
                                 %>
                                 </tbody>
@@ -233,7 +251,7 @@
     <!-- /page content -->
     <!-- New modal -->
     <div
-            class="modal modal-message fade inspection-modal-new"
+            class="modal modal-message fade investigation-modal-new"
             aria-hidden="true"
     >
         <div class="modal-dialog">
@@ -258,11 +276,11 @@
                         <h4
                                 class="modal-title"
                                 id="myModalLabel"
-                        >Inspection for New Application</h4>
+                        >Investigation for New Application</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-11">
                                 <input type="text"
                                        class="hide"
                                        id="_AP_REFERENCE_NO"
@@ -275,16 +293,12 @@
                                         id="nBussName" type="text" /> -->
                                         <label id="nBussName"></label>
                                     </h5>
-                                    <h5>
+                                   <!-- <h5>
                                         Name of Sole Proprietor/Partnership/President:
-                                        <!-- <input
-                                        disabled="" id="nBussOwner" type="text" /> -->
                                         <label id="nBussOwner"></label>
-                                    </h5>
+                                    </h5>-->
                                     <h5>
                                         Business Address:
-                                        <!-- <input disabled="" id="nBussAddr"
-                                        type="text" /> -->
                                         <label id="nBussAddr"></label>
                                     </h5>
                                     <h5>
@@ -310,7 +324,7 @@
                                     </h5>
                                 </div>
                                 <div class="panel-body">
-                                    <h5>Inspection Checklist</h5>
+                                    <h5>Inspected List</h5>
                                     <div class="">
                                         <ul class="to_do">
                                             <p>
@@ -371,7 +385,8 @@
                                     </div>
                                 </div>
                                 <div class="panel-body">
-                                    <hr>
+                                    <div class="col-md-8">
+                                        <label for="txtMISC_REMARKS">Violation Details</label></div>
                                     <div class="col-md-9">
 											<textarea
                                                     class="form-control"
@@ -384,17 +399,19 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="note note-info">
-                                        <h4>Inspection Notes</h4>
+                                        <h5>Investigation Notes</h5>
                                         <ul>
                                             <li>
                                                 <p>
-                                                    Miscellaneous Inspection based on the business nature should be in the
-                                                    business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY OTHER
+                                                    Miscellaneous Investigation based on the business nature should be in
+                                                    the business. LEAVE UNCHECK THE "MISCELLANOUS INVESTIGATION" IF ANY OTHER
                                                     REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
                                                 </p>
                                             </li>
                                             <li><p>
-                                                Any unchecked item/s on the Inspection Requirements will be sent to the Investigation upon submission. Please define the violation/s on the remarks for other details.
+                                                Any unchecked item/s on the Inspection Requirements will be sent to the
+                                                Investigation upon submission. Please define the violation/s on the
+                                                remarks for other details.
                                             </p></li>
                                         </ul>
                                     </div>
@@ -432,7 +449,7 @@
     </div>
     <!-- Renewal modal -->
     <div
-            class="modal fade inspection-modal-renew"
+            class="modal fade investigation-modal-renew"
             tabindex="-1"
             role="dialog"
             aria-hidden="true"
@@ -607,103 +624,9 @@
 ></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/js/apps.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="assets/js/divInvestigation.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $(".newModal").click(function () {
-            document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            //document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
-            document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(13)").html().trim();
-
-            if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
-                document.getElementById('nBussOwner').value = 'None';
-            }
-
-        });
-
-
-        $('#btnCloseNewApplModal').click(function () {
-            $("#chkBLDG_INS").prop("checked", false);
-            $("#chkFIRE_INS").prop("checked", false);
-            $("#chkHS_INS").prop("checked", false);
-            $("#chkLABOR_INS").prop("checked", false);
-            $("#chkMISC_INS").prop("checked", false);
-            $("#chkZONING_INS").prop("checked", false);
-        });
-
-        $('#closeNewPanelWindow').click(function () {
-            $("#chkBLDG_INS").prop("checked", false);
-            $("#chkFIRE_INS").prop("checked", false);
-            $("#chkHS_INS").prop("checked", false);
-            $("#chkLABOR_INS").prop("checked", false);
-            $("#chkMISC_INS").prop("checked", false);
-            $("#chkZONING_INS").prop("checked", false);
-        });
-
-    });
-
-</script>
-<!-- clippy -->
-<!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
-<!-- Init script -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnInsNewAppl").click(function () {
-            swal({
-                title: "Are you sure?",
-                text: "You will save your current changes",
-                type: "warning",
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Confirm!",
-                showCancelButton: true,
-                cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if(result.value) {
-                var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
-                $.ajax({
-                    type: "POST",
-                    url: "updateNewAppInspectionForm",
-                    data: datanewInsApplForm,
-                    processData: false,
-                    contentType: false,
-                    success: function () {
-                        swal({
-                            type: 'success',
-                            title: 'DONE!.',
-                            text: 'Succesfully Evaluated',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if(result.value)
-                        {
-                            location.reload(true);
-                        }
-                    });
-                    },
-                    error: function () {
-                        swal("error", "The process encountered and error", "error");
-                    }
-                });
-            }
-        });
-        })
-    })
-</script>
 </body>
 </html>

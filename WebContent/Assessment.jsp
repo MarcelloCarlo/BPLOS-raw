@@ -16,6 +16,7 @@
 <!--<![endif]-->
 
 <% LGUConnect conX = new LGUConnect();
+try {
 Connection connection = conX.getConnection();
     String refNo= request.getParameter("refNo");
 PreparedStatement getAssess = connection.prepareStatement("SELECT * FROM view_assessment WHERE AP_REFERENCE_NO = ?");
@@ -420,7 +421,9 @@ while (rs.next()){%>
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
-<%}%>
+<%}}catch(SQLException | ClassNotFoundException e){
+    out.print(e);
+}%>
 <!-- end page container -->
 
 
@@ -444,42 +447,7 @@ while (rs.next()){%>
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/assessment.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function() {
-        App.init();
-        TableManageResponsive.init();
-
-
-        var sum = 0;
-//iterate through each td based on class and add the values
-        $(".amt").each(function() {
-
-            //add only if the value is number
-            if(!isNaN($(this).text()) /*&& $(this).value.length!=0*/) {
-                sum += parseFloat($(this).text());
-            }
-console.log($(this).text());
-            $("#tdPerm").text($(this).text());
-        });
-        $('#total').text(sum);
-        $('#total2').text($('#total').text());
-    });
-</script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>

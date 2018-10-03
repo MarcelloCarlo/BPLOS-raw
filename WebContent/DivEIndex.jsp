@@ -167,6 +167,7 @@
                                 <tbody>
                                 <%
                                     LGUConnect conX = new LGUConnect();
+                                    try{
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
                                     ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");
@@ -317,6 +318,8 @@
                                     </td>
                                 </tr>
                                 <%
+                                    }}catch(SQLException | ClassNotFoundException e){
+                                    out.print(e);
                                     }
                                 %>
                                 </tbody>

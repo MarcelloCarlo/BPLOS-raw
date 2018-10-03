@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.*" %><%--
   Created by IntelliJ IDEA.
   User: John Carlo Villar
   Date: 09/23/2018
@@ -6,6 +7,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% LGUConnect conX = new LGUConnect();
+    try {
+        Connection connection = conX.getConnection();
+        String refNo= request.getParameter("refNo");
+        PreparedStatement getAssess = connection.prepareStatement("SELECT * FROM view_routeslip WHERE AP_REFERENCE_NO = ?");
+        getAssess.setString(1,refNo);
+        ResultSet rs = getAssess.executeQuery();
+        while (rs.next()){%>
 <html>
 <head>
     <title>PAEIS | Route Slip</title>
@@ -102,25 +111,25 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <label>Business Name/Corporate Name:</label>
+                            <h5>Business Name/Corporate Name: <label><%out.print(rs.getString("BU_NAME"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <label>Name of Sole Proprietor/Partnership/President:</label>
+                            <h5>Name of Sole Proprietor/Partnership/President: <label><%out.print(rs.getString("BU_PRESIDENT"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <label>Business Address:</label>
+                            <h5>Business Address: <label><%out.print(rs.getString("BU_LOCATION"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <label>Tel No.:</label>
+                            <h5>Tel No.: <label><%out.print(rs.getString("BU_LOCATION"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <label>Authorized Representative:</label>
+                            <h5>Authorized Representative: <label><%out.print(rs.getString("TP_FNAME"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <label>Address:</label>
+                            <h5>Address: <label><%out.print(rs.getString("TP_HOME_ADDRESS"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <label>Business Nature:</label>
+                            <h5>Business Nature: <label><%out.print(rs.getString("BN_NAME"));%></label></h5>
                         </div>
                     </div>
 
@@ -138,9 +147,9 @@
                             <tbody>
 
                             <tr>
-                                <td>wewew</td>
-                                <td>wewew</td>
-                                <td>wewew</td>
+                                <td><%out.print(rs.getString("AP_REFERENCE_NO"));%></td>
+                                <td><%out.print(rs.getString("AP_STATUS"));%></td>
+                                <td><%out.print(rs.getString("AP_DIV_CODE_TO"));%></td>
                             </tr>
 
                             </tbody>
@@ -160,7 +169,9 @@
     <!-- end scroll to top btn -->
 </div>
 
-
+<%}}catch(SQLException | ClassNotFoundException e){
+    out.print(e);
+}%>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
