@@ -332,7 +332,7 @@
                                                         type="checkbox"
                                                         id="chkZONING_INS"
                                                         name="ZONING_INS"
-                                                        class="flat"
+                                                        class="flat-black"
                                                         value="Pass"
                                                 > Zoning Inspection
                                             </p>
@@ -341,7 +341,7 @@
                                                         type="checkbox"
                                                         id="chkFIRE_INS"
                                                         name="FIRE_INS"
-                                                        class="flat"
+                                                        class="flat-black"
                                                         value="Pass"
                                                 > Fire Inspection
                                             </p>
@@ -350,7 +350,7 @@
                                                         type="checkbox"
                                                         id="chkHS_INS"
                                                         name="HS_INS"
-                                                        class="flat"
+                                                        class="flat-black"
                                                         value="Pass"
                                                 > Health & Sanitation Inspection
                                             </p>
@@ -359,7 +359,7 @@
                                                         type="checkbox"
                                                         id="chkBLDG_INS"
                                                         name="BLDG_INS"
-                                                        class="flat"
+                                                        class="flat-black"
                                                         value="Pass"
                                                 > Building Inspection
                                             </p>
@@ -368,7 +368,7 @@
                                                         type="checkbox"
                                                         id="chkLABOR_INS"
                                                         name="LABOR_INS"
-                                                        class="flat"
+                                                        class="flat-black"
                                                         value="Pass"
                                                 > Labor Inspection
                                             </p>
@@ -377,7 +377,7 @@
                                                         type="checkbox"
                                                         id="chkMISC_INS"
                                                         name="MISC_INS"
-                                                        class="flat"
+                                                        class="flat-black"
                                                         value="Pass"
                                                 > Miscellaneous Inspection (See Business Nature)
                                             </p>
@@ -395,6 +395,15 @@
                                                     name="MISC_REMARKS"
                                                     rows="3"
                                             ></textarea>
+                                    </div>
+                                </div>
+                                <div class="panel-body row">
+                                    <div class="col-md-4">
+                                        <input type="checkbox" id="chkRectify" name="chkRectify" class="flat-black">
+                                        <label for="chkRectify">Rectify Application</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input type="number" id="numMonths" name="numMonths" class="form-control" placeholder="Months">
                                     </div>
                                 </div>
                                 <div class="panel-body">
@@ -438,7 +447,7 @@
                         </button>
                         <button
                                 type="button"
-                                id="btnInsNewAppl"
+                                id="btnInvNewAppl"
                                 class="btn btn-success"
                         >Save Changes
                         </button>
@@ -448,157 +457,104 @@
         </div>
     </div>
     <!-- Renewal modal -->
+
     <div
-            class="modal fade investigation-modal-renew"
-            tabindex="-1"
-            role="dialog"
+            class="modal modal-message fade investigation-modal-terminate"
             aria-hidden="true"
     >
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                    >
-                        <span aria-hidden="true">x</span>
-                    </button>
-                    <h4
-                            class="modal-title"
-                            id="myModalLabel2"
-                    >Check Requirements for Renewal Application</h4>
-                </div>
-                <div class="modal-body">
-                    <label>Business Name/Corporate Name: </label><br> <label>Business
-                    Permit No: </label><br> <label>Name of Sole
-                    Proprietor/Partnership/President: </label><br> <label>Business
-                    Address: </label><br> <label>District: </label><br> <label>Authorized
-                    Representative: </label><br> <label>Cellphone No.: </label><br>
-                    <label>Address: </label>
-                    <hr>
-                    <div class="x_content">
-                        <div class="">
-                            <ul class="to_do">
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Original Copy of Previous Business Permit, if not
-                                        applicable Certified xerox copy
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Xerox copy of Tax Bill and Official Receipt (current)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Original Copy of Barangay Clearance (for renewal purpose)
-                                    </p>
-                                </li>
-                                <p>Other Document Requirements required such as:</p>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Locational Clearance (LC)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Fire Safety Inspection Certificate (FSIC)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Sanitary Permit (SP)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > CTAO Certificate
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Certificate of Electrical Inspection (CEI)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Lessor's Business Permit (if rented)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > PCAB License
-                                    </p>
-                                </li>
-                            </ul>
+        <div class="modal-dialog">
+            <form
+                    id="terminateApplForm"
+                    class="form-horizontal"
+                    name="terminateApplForm"
+                    enctype="multipart/form-data"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="panel-heading-btn">
+                            <button
+                                    type="button"
+                                    id="closeTermPanelWindow"
+                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
+                                    data-dismiss="modal"
+                            >
+                                <i class="fa fa-times"></i>
+                            </button>
+                        </div>
+                        <h4
+                                class="modal-title"
+                        >Application Termination</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="col-md-8">
+                                    <h5>
+                                        Application/Referrence Number:
+                                        <input class="hide" name="tRefNoh"
+                                               id="tRefNoh" type="text" />
+                                        <label id="tRefNo"></label>
+                                    </h5>
+                                    <h5>
+                                        Business Name:
+                                        <!-- <input
+                                        disabled="" id="nBussOwner" type="text" /> -->
+                                        <label id="tBussName"></label>
+                                    </h5>
+                                    <h5>
+                                        Business Nature:
+                                        <!-- <input disabled="" id="nBussAddr"
+                                        type="text" /> -->
+                                        <label id="tBussNature"></label>
+                                    </h5>
+                                    <h5>
+                                        Authorized Representative:
+                                        <!--  <input disabled=""
+                                        id="nBussAuthRepName" type="text" /> -->
+                                        <label id="tBussAuthRepName"></label>
+                                    </h5>
+                                    <h5>
+                                        Business Owner:
+                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                        <label id="tBussOwner"></label>
+                                    </h5>
+                                </div>
+                                <div class="panel-body">
+                                    <hr>
+                                    <div class="col-md-9">
+                                              <textarea
+                                                      class="form-control"
+                                                      placeholder="Remarks"
+                                                      id="AP_Remarks"
+                                                      name="AP_Remarks"
+                                                      rows="3"
+                                              ></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                id="btnCloseTermApplModal"
+                        >Close
+                        </button>
+                        <button
+                                type="button"
+                                id="btnTermAppl"
+                                class="btn btn-success"
+                        >Submit
+                        </button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button
-                            type="button"
-                            class="btn btn-default"
-                            data-dismiss="modal"
-                    >Close
-                    </button>
-                    <button
-                            type="submit"
-                            class="btn btn-primary"
-                    >Rectify
-                    </button>
-                    <button
-                            type="submit"
-                            class="btn btn-success"
-                    >Approve
-                    </button>
-                </div>
-                <!-- end panel -->
-
-            </div>
+            </form>
         </div>
     </div>
+   
     <jsp:include page="footer.jsp"></jsp:include>
 </div>
 <!-- ================== BEGIN BASE JS ================== -->

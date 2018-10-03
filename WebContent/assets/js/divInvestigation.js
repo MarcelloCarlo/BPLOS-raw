@@ -76,7 +76,8 @@ $(document).ready(function () {
         $("#chkMISC_INS").attr("disabled", false);
     });
 
-    var click = $("#btnInsNewAppl").click(function () {
+    var click = $("#btnInvNewAppl").click(function () {
+        // noinspection BadExpressionStatementJS
         swal({
             title: "Are you sure?",
             text: "You will save your current changes",
@@ -96,14 +97,14 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 success: function () {
+                    // noinspection BadExpressionStatementJS
                     swal({
                         type: 'success',
                         title: 'DONE!.',
                         text: 'Succesfully Evaluated',
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        if(result.value)
-                    {
+                        if(result.value){
                         location.reload(true);
                     }
                 });
