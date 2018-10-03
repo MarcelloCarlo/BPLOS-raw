@@ -398,7 +398,7 @@
                                     </div>
                                 </div>
                                 <div class="panel-body row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="checkbox" id="chkRectify" name="chkRectify" class="flat-black">
                                         <label for="chkRectify">Rectify Application</label>
                                     </div>
@@ -526,8 +526,8 @@
                                               <textarea
                                                       class="form-control"
                                                       placeholder="Remarks"
-                                                      id="AP_Remarks"
-                                                      name="AP_Remarks"
+                                                      id="txtRemarks"
+                                                      name="txtRemarks"
                                                       rows="3"
                                               ></textarea>
                                     </div>
@@ -572,6 +572,7 @@
 <!-- ================== END BASE JS ================== -->
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="assets/plugins/masked-input/masked-input.min.js"></script>
 <script
         src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"
 ></script>

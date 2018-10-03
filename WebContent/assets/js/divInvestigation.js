@@ -2,6 +2,9 @@ $(document).ready(function () {
 
     App.init();
     TableManageResponsive.init();
+    $("#numMonths").prop('disabled', true);
+    "use strict";
+    $("#numMonths").mask("99");
 
     $(".newModal").click(function () {
         document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
@@ -45,75 +48,136 @@ $(document).ready(function () {
         }
     });
 
-
-    $('#btnCloseNewApplModal').click(function () {
-        $("#chkFIRE_INS").prop("checked", false);
-        $("#chkHS_INS").prop("checked", false);
-        $("#chkBLDG_INS").prop("checked", false);
-        $("#chkLABOR_INS").prop("checked", false);
-        $("#chkMISC_INS").prop("checked", false);
-        $("#chkZONING_INS").prop("checked", false);
-        $("#chkZONING_INS").attr("disabled", false);
-        $("#chkFIRE_INS").attr("disabled", false);
-        $("#chkHS_INS").attr("disabled", false);
-        $("#chkBLDG_INS").attr("disabled", false);
-        $("#chkLABOR_INS").attr("disabled", false);
-        $("#chkMISC_INS").attr("disabled", false);
-    });
-
-    $('#closeNewPanelWindow').click(function () {
-        $("#chkFIRE_INS").prop("checked", false);
-        $("#chkHS_INS").prop("checked", false);
-        $("#chkBLDG_INS").prop("checked", false);
-        $("#chkLABOR_INS").prop("checked", false);
-        $("#chkMISC_INS").prop("checked", false);
-        $("#chkZONING_INS").prop("checked", false);
-        $("#chkZONING_INS").attr("disabled", false);
-        $("#chkFIRE_INS").attr("disabled", false);
-        $("#chkHS_INS").attr("disabled", false);
-        $("#chkBLDG_INS").attr("disabled", false);
-        $("#chkLABOR_INS").attr("disabled", false);
-        $("#chkMISC_INS").attr("disabled", false);
-    });
-
-    var click = $("#btnInvNewAppl").click(function () {
-        // noinspection BadExpressionStatementJS
-        swal({
-            title: "Are you sure?",
-            text: "You will save your current changes",
-            type: "warning",
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Confirm!",
-            showCancelButton: true,
-            cancelButtonText: 'Cancel'
-        }).then((result) => {
-            if(result.value)
-        {
-            var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
-            $.ajax({
-                type: "POST",
-                url: "updateNewAppInspectionForm",
-                data: datanewInsApplForm,
-                processData: false,
-                contentType: false,
-                success: function () {
-                    // noinspection BadExpressionStatementJS
-                    swal({
-                        type: 'success',
-                        title: 'DONE!.',
-                        text: 'Succesfully Evaluated',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if(result.value){
-                        location.reload(true);
-                    }
-                });
-                },
-                error: function () {
-                    swal("error", "The process encountered and error", "error");
-                }
-            });
+    $("#chkRectify").change(function () {
+        if (this.checked){
+            $("#numMonths").prop('disabled', false);
+            $("#numMonths").prop('required', true);
+        } else {
+            $("#numMonths").prop('disabled', true);
+            $("#numMonths").prop('required', false);
         }
     });
+
+    $('.investigation-modal-new').on('hidden.bs.modal', function () {
+        $("#chkFIRE_INS").prop("checked", false);
+        $("#chkHS_INS").prop("checked", false);
+        $("#chkBLDG_INS").prop("checked", false);
+        $("#chkLABOR_INS").prop("checked", false);
+        $("#chkMISC_INS").prop("checked", false);
+        $("#chkZONING_INS").prop("checked", false);
+        $("#chkZONING_INS").attr("disabled", false);
+        $("#chkFIRE_INS").attr("disabled", false);
+        $("#chkHS_INS").attr("disabled", false);
+        $("#chkBLDG_INS").attr("disabled", false);
+        $("#chkLABOR_INS").attr("disabled", false);
+        $("#chkMISC_INS").attr("disabled", false);
+        $("#chkRectify").prop("checked", false);
+        $("#numMonths").prop('disabled', true);
+        $("#txtMISC_REMARKS").value = "";
+        $("#numMonths").val("");
+    });
+
+    $("#btnInvNewAppl").click(function () {
+        var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
+        if($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked') && !$("#chkRectify").is(':checked') ){
+            //Assessment
+            // noinspection BadExpressionStatementJS
+            swal({
+                title: "Continue Assessment?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if(result.value)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "updateNewAppInspectionForm",
+                    data: datanewInsApplForm,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        // noinspection BadExpressionStatementJS
+                        swal({
+                            type: 'success',
+                            title: 'DONE!.',
+                            text: 'Succesfully Investigated',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if(result.value){
+                            location.reload(true);
+                        }
+                    });
+                    },
+                    error: function () {
+                        swal("error", "The process encountered and error", "error");
+                    }
+                });
+            }
+        });
+        }else if ( $("#chkRectify").is(':checked') && $("#numMonths").val()!==""){
+            //Rectify
+            // noinspection BadExpressionStatementJS
+            swal({
+                title: "Request Rectification?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if(result.value)
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "updateNewAppInspectionForm",
+                    data: datanewInsApplForm,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        // noinspection BadExpressionStatementJS
+                        swal({
+                            type: 'success',
+                            title: 'DONE!.',
+                            text: 'Rectification Sent!',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if(result.value){
+                            location.reload(true);
+                        }
+                    });
+                    },
+                    error: function () {
+                        swal("error", "The process encountered and error", "error");
+                    }
+                });
+            }
+        });
+
+        } else{
+            //Terminate
+            $(".investigation-modal-terminate").modal('toggle');
+            $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
+            $("#tRefNoh").val($("#_AP_REFERENCE_NO").val().trim());
+            $("#tBussName").append($("#nBussName").text().trim());
+            $("#tBussNature").append($("#nBussNature").text().trim());
+            $("#tBussAuthRepName").append($("#nBussAuthRepName").text().trim());
+            $("#tBussOwner").append($("#nBussOwner").text().trim());
+            $(".investigation-modal-new").modal('toggle');
+        }
+
+        $(".investigation-modal-terminate").on('hidden.bs.modal', function () {
+            $("#tRefNo").val("");
+            $("#tRefNoh").val("");
+            $("#tBussName").val("");
+            $("#tBussNature").val("");
+            $("#tBussAuthRepName").val("");
+            $("#tBussOwner").val("");
+            $("#txtRemarks").val("");
+        });
     });
 });
