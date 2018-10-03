@@ -107,15 +107,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- begin panel -->
-                    <div class="panel panel-inverse">
+                    <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <div class="panel-heading-btn">
-                                <a
-                                        href="javascript:;"
-                                        class="btn btn-xs btn-icon btn-circle btn-success"
-                                        data-click="panel-reload"
-                                ><i class="fa fa-repeat"></i></a>
-                            </div>
                             <h4 class="panel-title">Evaluation Table</h4>
                         </div>
                         <div class="panel-body">
@@ -338,7 +331,7 @@
     <!-- /page content -->
     <!-- New modal -->
     <div
-            class="modal modal-message fade evaluation-modal-new"
+            class="modal fade evaluation-modal-new"
             aria-hidden="true"
     >
         <div class="modal-dialog">
@@ -350,20 +343,10 @@
             >
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="panel-heading-btn">
-                            <button
-                                    type="button"
-                                    id="closeNewPanelWindow"
-                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
-                                    data-dismiss="modal"
-                            >
-                                <i class="fa fa-times"></i>
-                            </button>
+                        <div class="panel panel-inverse panel-danger">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Check Requirement for New Application</h4>
                         </div>
-                        <h4
-                                class="modal-title"
-                                id="myModalLabel"
-                        >Check Requirements for New Application</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -385,7 +368,7 @@
                                      id="_BN_CLASSIFICATION"
                                      name="_BN_CLASSIFICATION"
                             />
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <h5>
                                         Business Name/Corporate Name:
                                         <!-- <input disabled=""
@@ -427,7 +410,6 @@
                                     </h5>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="col-md-6">
                                         <hr>
                                         <label id="AT_UNIFIED_FILE_NAME"></label><br>
                                         <button
@@ -436,7 +418,6 @@
                                                 id="fileDownload"
                                         >DOWNLOAD ATTACHMENT
                                         </button>
-                                    </div>
                                 </div>
                                 <div class="panel-body">
                                     <h5>Requirements Checklist</h5>

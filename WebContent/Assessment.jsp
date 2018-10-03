@@ -243,13 +243,6 @@ while (rs.next()){%>
                 <div class="invoice-footer text-muted">
                     <p class="text-center m-b-5">
                         LGU-PAEIS ASSESSMENT
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
                     </p>
                     <%--<p class="text-center">--%>
                         <%--<span class="m-r-10"><i class="fa fa-globe"></i> matiasgallipoli.com</span>--%>
@@ -258,8 +251,13 @@ while (rs.next()){%>
                     <%--</p>--%>
                 </div>
             </div>
-            <br>
             <!-- end invoice -->
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <!-- begin invoice -->
             <div class="invoice">
                 <div class="invoice-company">

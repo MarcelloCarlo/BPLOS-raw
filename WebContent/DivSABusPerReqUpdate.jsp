@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Li Ven
+  Date: 9/27/2018
+  Time: 4:03 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
@@ -12,7 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | Treasury</title>
+    <title>PAEIS | Business Nature Configuration</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -42,7 +49,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="DivTComponent.jsp"></jsp:include>
+<jsp:include page="DivSAComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -51,12 +58,12 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Treasury</a></li>
-            <li class="active">Payment Processing</li>
+            <li>Configurables</li>
+            <li class="active">Business Nature</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Payment Processing</h1>
+        <h1 class="page-header">Business Nature Configuration</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -64,50 +71,64 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Payment Processing Table</h4>
+                        <h4 class="panel-title">Business Nature</h4>
                     </div>
                     <div class="panel-body">
-                        <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
-                            <thead>
-                            <tr>
-                                <th>Reference Number</th>
-                                <th>Business Owner</th>
-                                <th>Business Name</th>
-                                <th>Business Type</th>
-                                <th>Remarks</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <%--<%--%>
-                                <%--String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";--%>
-                                <%--Connection conn = null;--%>
-                                <%--Statement stat = null;--%>
-                                <%--ResultSet res = null;--%>
-                                <%--Class.forName("com.mysql.jdbc.Driver");--%>
-                                <%--conn = DriverManager.getConnection(host,"root","");--%>
-                                <%--stat = conn.createStatement();--%>
-                                <%--String data = "select * from lgu_r_user order by U_ID desc";--%>
-                                <%--res = stat.executeQuery(data);--%>
-                                <%--while (res.next())--%>
-                                <%--{--%>
-                            <%--%>--%>
-                            <tr>
-                                <td>1111-1111-1111-1111</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>
-                                    <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
-                                    <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
-                                </td>
-                            </tr>
-                            <%--<%--%>
-                                <%--}--%>
-                            <%--%>--%>
-                            </tbody>
-                        </table>
+                        <%
+                            String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
+                            Connection conn = null;
+                            Statement stat = null;
+                            ResultSet res = null;
+                            PreparedStatement stmt = null;
+                            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+                            // Class.forName("com.mysql.jdbc.Driver").newInstance();
+                            conn = DriverManager.getConnection(host,"root","");
+                        %>
+                        <form class="form-horizontal" action=" " method="POST">
+                            <%
+                                //stat = conn.createStatement();
+                                //stat = conn.createStatement();
+                                String u = request.getParameter("u");
+                                int num = Integer.parseInt(u);
+                                // String data = "select * from lgu_r_user where U_ID='"+num+"'";
+                                PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_business_nature where BN_ID= ? ");
+                                getInfo.setInt(1,num);
+                                //res = stat.executeQuery(data);
+                                res = getInfo.executeQuery();
+                                while (res.next())
+                                {
+                            %>
+                            <input type="hidden" name="id" value='<%=res.getString("BN_ID")%>'/>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Business Nature</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="feecode" class="form-control" value='<%=res.getString("BN_NAME")%>' />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Business Nature Classification</label>
+                                <div class="col-md-8">
+                                    <select name="bnc" class="form-control"  value='<%=res.getString("BN_CLASSIFICATION")%>'>
+                                        <option value="S">Small Scale</option>
+                                        <option value="L">Large Scale</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Business Nature Code</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="bnrc" class="form-control" value='<%=res.getString("BNR_CODE")%>' />
+                                </div>
+                            </div>
+
+                            <%
+                                }
+                            %>
+                            <div class="modal-footer">
+                                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-sm btn-success">Update</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- end panel -->
@@ -116,58 +137,11 @@
     </div>
     <!-- end #content -->
 
-    <!-- #modal-processpayment -->
-    <div class="modal fade" id="modal-processpayment">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Process Payment</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" action="#" method="POST">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Reference Number: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Reference Number/" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Business Owner: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Business Owner Name/" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Business Name: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Business Name/" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Fee: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Fee/" />
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-success">Process</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
-
-<jsp:include page="DivTFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -213,3 +187,20 @@
 </script>
 </body>
 </html>
+
+<%
+    String a = request.getParameter("id");
+    String b = request.getParameter("busnat");
+    String c = request.getParameter("bnc");
+    String d = request.getParameter("bnrc");
+    if(a!=null && b!=null && c!=null && d!=null)
+    {
+        String query = "update lgu_r_business_nature set BN_NAME=?,  BN_CLASSIFICATION=?, BNR_CODE=? where BN_ID='"+a+"'";
+        stmt = conn.prepareStatement(query);
+        stmt.setString(1,b);
+        stmt.setString(2,c);
+        stmt.setString(3,d);
+        stmt.executeUpdate();
+        response.sendRedirect("DivSABusNat.jsp");
+    }
+%>

@@ -53,7 +53,7 @@
                 <li><a href="DivSAReq.jsp">Requirements</a></li>
                 <li><a href="DivSARoles.jsp">User Roles</a></li>
                 <li><a href="DivSADvsion.jsp">Division</a></li>
-                <li><a href="DivSABusNat.jsp">Business Nature</a></li>
+                <%--<li><a href="DivSABusNat.jsp">Business Nature</a></li>--%>
                 <li><a href="DivSAMdle.jsp">Module</a></li>
             </ul>
         </li>
