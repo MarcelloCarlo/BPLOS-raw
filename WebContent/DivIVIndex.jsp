@@ -35,10 +35,10 @@
     <meta charset="ISO-8859-1">
     <title>PAEIS | Investigation</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link
-            href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-            rel="stylesheet"
-    >
+    <%--<link--%>
+            <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
+            <%--rel="stylesheet"--%>
+    <%-->--%>
     <link
             href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"
             rel="stylesheet"
@@ -117,15 +117,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- begin panel -->
-                    <div class="panel panel-inverse">
+                    <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <div class="panel-heading-btn">
-                                <a
-                                        href="javascript:;"
-                                        class="btn btn-xs btn-icon btn-circle btn-success"
-                                        data-click="panel-reload"
-                                ><i class="fa fa-repeat"></i></a>
-                            </div>
                             <h4 class="panel-title">Application Form Investigation Table</h4>
                         </div>
                         <div class="panel-body">
@@ -251,7 +244,7 @@
     <!-- /page content -->
     <!-- New modal -->
     <div
-            class="modal modal-message fade investigation-modal-new"
+            class="modal fade investigation-modal-new"
             aria-hidden="true"
     >
         <div class="modal-dialog">
@@ -263,20 +256,13 @@
             >
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="panel-heading-btn">
-                            <button
-                                    type="button"
-                                    id="closeNewPanelWindow"
-                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
-                                    data-dismiss="modal"
-                            >
-                                <i class="fa fa-times"></i>
-                            </button>
+                        <div class="panel panel-inverse panel-danger">
+                        <div class="panel-heading">
+                            <h4
+                                    class="panel-title"
+                                    id="myModalLabel"
+                            >Investigation for New Application</h4>
                         </div>
-                        <h4
-                                class="modal-title"
-                                id="myModalLabel"
-                        >Investigation for New Application</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -387,7 +373,7 @@
                                 <div class="panel-body">
                                     <div class="col-md-8">
                                         <label for="txtMISC_REMARKS">Violation Details</label></div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-12">
 											<textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
@@ -459,7 +445,7 @@
     <!-- Renewal modal -->
 
     <div
-            class="modal modal-message fade investigation-modal-terminate"
+            class="modal fade investigation-modal-terminate"
             aria-hidden="true"
     >
         <div class="modal-dialog">
@@ -471,20 +457,13 @@
             >
                 <div class="modal-content">
                     <div class="modal-header">
+                        <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading-btn">
-                            <button
-                                    type="button"
-                                    id="closeTermPanelWindow"
-                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
-                                    data-dismiss="modal"
-                            >
-                                <i class="fa fa-times"></i>
-                            </button>
+                            <h4
+                                    class="panel-title"
+                            >Application Termination</h4>
                         </div>
-                        <h4
-                                class="modal-title"
-                        >Application Termination</h4>
-                    </div>
+                        </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -555,7 +534,7 @@
         </div>
     </div>
    
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="DivIVFooter.jsp"></jsp:include>
 </div>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/js/jquery.min.js"></script>
