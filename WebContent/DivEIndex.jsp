@@ -371,7 +371,7 @@
                                      id="_BN_CLASSIFICATION"
                                      name="_BN_CLASSIFICATION"
                             />
-                                <div class="col-md-6">
+                                <div class="col-md-6 panel-body">
                                     <h5>
                                         Business Name/Corporate Name:
                                         <!-- <input disabled=""
@@ -412,7 +412,7 @@
                                         <label id="nBussNature"></label>
                                     </h5>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                         <hr>
                                         <label id="AT_UNIFIED_FILE_NAME"></label><br>
                                         <button
@@ -791,7 +791,7 @@
         </div>
     </div>
 
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="DivEFooter.jsp"></jsp:include>
 </div>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/js/jquery.min.js"></script>
