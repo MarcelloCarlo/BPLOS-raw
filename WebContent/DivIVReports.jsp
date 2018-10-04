@@ -26,10 +26,10 @@
     <meta charset="ISO-8859-1">
     <title>PAEIS | Termination Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link
-            href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-            rel="stylesheet"
-    >
+    <%--<link--%>
+            <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
+            <%--rel="stylesheet"--%>
+    <%-->--%>
     <link
             href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"
             rel="stylesheet"
@@ -78,9 +78,10 @@
         rel="stylesheet"> -->
 </head>
 <body>
+<jsp:include page="DivIVComponent.jsp"/>
 <div
         id="page-container"
-        class="page-container fade page-without-sidebar page-header-fixed"
+        class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"
 >
     <!-- page content -->
     <div
@@ -90,7 +91,7 @@
         <div class="">
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
-                <li><a href="javascript:;">PAEIS-BPLS</a></li>
+                <li><a href="javascript:;">Investigation</a></li>
                 <li class="active">Termination Reports</li>
             </ol>
             <!-- begin page-header -->
@@ -99,15 +100,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <!-- begin panel -->
-                    <div class="panel panel-inverse">
+                    <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <div class="panel-heading-btn">
-                                <a
-                                        href="javascript:;"
-                                        class="btn btn-xs btn-icon btn-circle btn-success"
-                                        data-click="panel-reload"
-                                ><i class="fa fa-repeat"></i></a>
-                            </div>
                             <h4 class="panel-title">Terminated Applications</h4>
                         </div>
                         <div class="panel-body">
@@ -515,7 +509,7 @@
             </div>
         </div>
     </div>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="DivIVFooter.jsp"></jsp:include>
 </div>
 
 <!-- ================== BEGIN BASE JS ================== -->

@@ -40,7 +40,7 @@
     <ul class="nav">
         <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="DivEIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Processing</span></a></li>
-        <li><a href="DivReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+        <li><a href="DivEReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>
