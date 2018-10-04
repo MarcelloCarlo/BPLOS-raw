@@ -1,22 +1,13 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.*" %><%--
   Created by IntelliJ IDEA.
-  User: jcgutierrez0102
-  Date: 9/30/18
-  Time: 10:18 PM
+  User: John Carlo Villar
+  Date: 09/27/2018
+  Time: 14:55
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page
-        language="java"
-        contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1"
-%>
-<%@ page import="java.sql.*" %>
-<%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if !IE]><!-->
-<html lang="en">
-<!--<![endif]-->
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
     <meta
             http-equiv="Content-Type"
@@ -33,7 +24,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>PAEIS | Inspection</title>
+    <title>PAEIS | Termination Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>
             <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
@@ -87,15 +78,7 @@
         rel="stylesheet"> -->
 </head>
 <body>
-<!-- begin #page-loader -->
-<div
-        id="page-loader"
-        class="fade in"
->
-    <span class="spinner"></span>
-</div>
-<!-- end #page-loader -->
-<jsp:include page="DivIPComponent.jsp"/>
+<jsp:include page="DivEComponent.jsp"/>
 <div
         id="page-container"
         class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"
@@ -108,18 +91,18 @@
         <div class="">
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
-                <li><a href="javascript:;">Inspection</a></li>
-                <li class="active">Application Inspection</li>
+                <li><a href="javascript:;">Evaluation</a></li>
+                <li class="active">Termination Reports</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header">Application Inspection</h1>
+            <h1 class="page-header">Termination Reports</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">
                     <!-- begin panel -->
                     <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Application Form Inspection Table</h4>
+                            <h4 class="panel-title">Terminated Applications</h4>
                         </div>
                         <div class="panel-body">
                             <table
@@ -131,85 +114,36 @@
                                 <tr>
                                     <th>Business Name</th>
                                     <th>Business Nature</th>
-                                    <th>Ownership Type</th>
-                                    <th>Application Type</th>
-                                    <th>Status</th>
-                                    <th>Date Received</th>
-                                    <th>President/Representative</th>
-                                    <th>Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
+                                    <th>Date Terminated</th>
+                                    <th>Remarks</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <%
                                     LGUConnect conX = new LGUConnect();
-                                    Connection conn3 = conX.getConnection();
-                                    Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
+                                    Connection conn3 = null;
+                                    ResultSet gg3 = null;
+                                    try {
+                                        conn3 = conX.getConnection();
+                                        Statement ss3 = conn3.createStatement();
+                                        gg3 = ss3.executeQuery("SELECT * FROM view_terminatedap");
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     while (gg3.next()) {
-                                        String apType = gg3.getString("AP_TYPE");
-                                        String modalMode = "";
-                                        String modalClass = "";
-                                        if (apType.equals("New")) {
-                                            modalMode = ".inspection-modal-new";
-                                            modalClass = "newModal";
-                                        } else if (apType.equals("Renew")) {
-                                            modalMode = ".inspection-modal-renew";
-                                            modalClass = "renewModal";
-                                        } else {
-                                            modalMode = ".inspection-modal-new";
-                                        }
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
                                     </td><!--0-->
                                     <td><%=gg3.getString("BN_NAME")%>
                                     </td><!--1-->
-                                    <td><%=gg3.getString("OT_NAME")%>
-                                    </td><!--2-->
-                                    <td><%=apType%>
-                                    </td><!--3-->
-                                    <td><%=gg3.getString("AP_STATUS")%>
-                                    </td>
-                                    <td><%=gg3.getString("AP_DATE")%>
-                                    </td><!--5-->
-                                    <td><%=gg3.getString("BU_PRESIDENT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_LOCATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                    </td>
-                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
-                                    </td>
-                                    <td>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success <%=modalClass%>"
-                                                data-toggle="modal"
-                                                data-target="<%=modalMode%>" title="Comply the Inspected Business"
-                                        ><i class="fa fa-lg fa-list-ul"></i>
-                                        </button>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success"
-                                                data-toggle="modal" title="Release a Mission Order"
-                                        ><i class="fa fa-lg fa-rocket"></i>
-                                        </button>
-                                    </td>
+                                    <td><%=gg3.getString("AP_DATE_ACCESSED")%>
+                                    </td><!--1-->
+                                    <td><%=gg3.getString("AP_REMARKS")%>
+                                    </td><!--1-->
                                 </tr>
                                 <%
                                     }
@@ -226,35 +160,46 @@
     <!-- /page content -->
     <!-- New modal -->
     <div
-            class="modal fade inspection-modal-new"
+            class="modal modal-message fade evaluation-modal-new"
             aria-hidden="true"
     >
         <div class="modal-dialog">
             <form
-                    id="newInsApplForm"
+                    id="newApplForm"
                     class="form-horizontal"
-                    name="newInsApplForm"
+                    name="newApplForm"
                     enctype="multipart/form-data"
             >
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="panel panel-inverse panel-danger">
-                        <div class="panel-heading">
-                            <h4
-                                    class="panel-title"
-                                    id="myModalLabel"
-                            >Inspection for New Application</h4>
+                        <div class="panel-heading-btn">
+                            <button
+                                    type="button"
+                                    id="closeNewPanelWindow"
+                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
+                                    data-dismiss="modal"
+                            >
+                                <i class="fa fa-times"></i>
+                            </button>
                         </div>
+                        <h4
+                                class="modal-title"
+                                id="myModalLabel"
+                        >Check Requirements for New Application</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="text"
+                                <input type="number"
                                        class="hide"
-                                       id="_AP_REFERENCE_NO"
-                                       name="_AP_REFERENCE_NO"
-                                />
-                                <div class="col-md-8 panel-body">
+                                       id="_AT_ID"
+                                       name="_AT_ID"
+                                /> <input type="number"
+                                          class="hide"
+                                          id="_AP_ID"
+                                          name="_AP_ID"
+                            />
+                                <div class="col-md-8">
                                     <h5>
                                         Business Name/Corporate Name:
                                         <!-- <input disabled=""
@@ -295,104 +240,100 @@
                                         <label id="nBussNature"></label>
                                     </h5>
                                 </div>
-                                <div class="panel-body">
-                                    <h5>Inspection Checklist</h5>
+                                <div class="col-md-8">
+                                    <div class="col-md-6">
+                                        <hr>
+                                        <label id="AT_UNIFIED_FILE_NAME"></label><br>
+                                        <button
+                                                type="button"
+                                                class="btn btn-primary form-control"
+                                                id="fileDownload"
+                                        >DOWNLOAD ATTACHMENT
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <h5>Requirements Checklist</h5>
                                     <div class="">
                                         <ul class="to_do">
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="chkZONING_INS"
-                                                        name="ZONING_INS"
+                                                        id="AT_BRGY_CLEARANCE"
+                                                        name="AT_BRGY_CLEARANCE"
                                                         class="flat"
                                                         value="Pass"
-                                                > Zoning Inspection
+                                                > Original Barangay Clearance
                                             </p>
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="chkFIRE_INS"
-                                                        name="FIRE_INS"
+                                                        id="AT_DTI_REGISTRATION"
+                                                        name="AT_DTI_REGISTRATION"
                                                         class="flat"
                                                         value="Pass"
-                                                > Fire Inspection
+                                                > DTI Registration (for Single Proprietorship
                                             </p>
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="chkHS_INS"
-                                                        name="HS_INS"
+                                                        id="AT_SEC_REGISTRATION"
+                                                        name="AT_SEC_REGISTRATION"
                                                         class="flat"
                                                         value="Pass"
-                                                > Health & Sanitation Inspection
+                                                > SEC Registration with Artices (for
+                                                Corporation/Partnership
                                             </p>
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="chkBLDG_INS"
-                                                        name="BLDG_INS"
+                                                        id="AT_TITLE_TO_PROPERTY"
+                                                        name="AT_TITLE_TO_PROPERTY"
                                                         class="flat"
                                                         value="Pass"
-                                                > Building Inspection
+                                                > Title to property of Tax Declaration (if owned)
                                             </p>
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="chkLABOR_INS"
-                                                        name="LABOR_INS"
+                                                        id="AT_CONTRACT_OF_LEASE"
+                                                        name="AT_CONTRACT_OF_LEASE"
                                                         class="flat"
                                                         value="Pass"
-                                                > Labor Inspection
+                                                > Contract of Lease and Lessor's Business Permit (if
+                                                rented)
                                             </p>
                                             <p>
                                                 <input
                                                         type="checkbox"
-                                                        id="chkMISC_INS"
-                                                        name="MISC_INS"
+                                                        id="AT_AUTHORIZATION"
+                                                        name="AT_AUTHORIZATION"
                                                         class="flat"
                                                         value="Pass"
-                                                > Miscellaneous Inspection (See Business Nature)
+                                                > Authorization Letter & ID (Owner and representative(if
+                                                any))
+                                            </p>
+                                            <p>
+                                                <input
+                                                        type="checkbox"
+                                                        id="AT_MISC_DOCUMENTS"
+                                                        name="AT_MISC_DOCUMENTS"
+                                                        class="flat"
+                                                        value="Pass"
+                                                > Other Documents (See Business Natures)
                                             </p>
                                         </ul>
                                     </div>
-                                </div>
-                                <div class="panel-body">
                                     <hr>
-                                    <div class="col-md-12">
+                                    <div class="col-md-9">
 											<textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
-                                                    id="txtMISC_REMARKS"
-                                                    name="MISC_REMARKS"
+                                                    id="AP_Remarks"
+                                                    name="AP_Remarks"
                                                     rows="3"
                                             ></textarea>
                                     </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="note note-info">
-                                        <h4>Inspection Notes</h4>
-                                        <ul>
-                                            <li>
-                                                <p>
-                                                    Miscellaneous Inspection based on the business nature should be in the
-                                                    business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY OTHER
-                                                    REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
-                                                </p>
-                                            </li>
-                                            <li><p>
-                                                Any unchecked item/s on the Inspection Requirements will be sent to the Investigation upon submission. Please define the violation/s on the remarks for other details.
-                                            </p></li>
-                                        </ul>
-                                    </div>
-                                    <!--  <div class="col-md-9">
-                                              <textarea
-                                                      class="form-control"
-                                                      placeholder="Remarks"
-                                                      id="AP_Remarks"
-                                                      name="AP_Remarks"
-                                                      rows="3"
-                                              ></textarea>
-                                      </div>-->
                                 </div>
                             </div>
                         </div>
@@ -407,7 +348,7 @@
                         </button>
                         <button
                                 type="button"
-                                id="btnInsNewAppl"
+                                id="btnNewAppl"
                                 class="btn btn-success"
                         >Save Changes
                         </button>
@@ -418,7 +359,7 @@
     </div>
     <!-- Renewal modal -->
     <div
-            class="modal fade inspection-modal-renew"
+            class="modal fade evaluation-modal-renew"
             tabindex="-1"
             role="dialog"
             aria-hidden="true"
@@ -568,10 +509,11 @@
             </div>
         </div>
     </div>
-    <jsp:include page="DivIPFooter.jsp"></jsp:include>
+    <jsp:include page="DivEFooter.jsp"></jsp:include>
 </div>
+
 <!-- ================== BEGIN BASE JS ================== -->
-<script src="assets/plugins/js/jquery.min.js"></script>
+<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -583,113 +525,23 @@
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 <!-- ================== END BASE JS ================== -->
+
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-<script
-        src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"
-></script>
-<script
-        src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"
-></script>
+<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 <script type="text/javascript">
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
     });
-</script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $(".newModal").click(function () {
-            document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            //document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
-            document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(13)").html().trim();
-
-            if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
-                document.getElementById('nBussOwner').value = 'None';
-            }
-
-        });
-
-
-        $('#btnCloseNewApplModal').click(function () {
-            $("#chkBLDG_INS").prop("checked", false);
-            $("#chkFIRE_INS").prop("checked", false);
-            $("#chkHS_INS").prop("checked", false);
-            $("#chkLABOR_INS").prop("checked", false);
-            $("#chkMISC_INS").prop("checked", false);
-            $("#chkZONING_INS").prop("checked", false);
-        });
-
-        $('#closeNewPanelWindow').click(function () {
-            $("#chkBLDG_INS").prop("checked", false);
-            $("#chkFIRE_INS").prop("checked", false);
-            $("#chkHS_INS").prop("checked", false);
-            $("#chkLABOR_INS").prop("checked", false);
-            $("#chkMISC_INS").prop("checked", false);
-            $("#chkZONING_INS").prop("checked", false);
-        });
-
-    });
-
-</script>
-<!-- clippy -->
-<!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
-<!-- Init script -->
-<script type="text/javascript">
-    $(document).ready(function () {
-       $("#btnInsNewAppl").click(function () {
-           swal({
-               title: "Are you sure?",
-               text: "You will save your current changes",
-               type: "warning",
-               confirmButtonColor: "#DD6B55",
-               confirmButtonText: "Confirm!",
-               showCancelButton: true,
-               cancelButtonText: 'Cancel'
-           }).then((result) => {
-               if(result.value) {
-               var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
-               $.ajax({
-                   type: "POST",
-                   url: "updateNewAppInspectionForm",
-                   data: datanewInsApplForm,
-                   processData: false,
-                   contentType: false,
-                   success: function () {
-                       swal({
-                           type: 'success',
-                           title: 'DONE!.',
-                           text: 'Succesfully Evaluated',
-                           confirmButtonText: 'OK'
-                       }).then((result) => {
-                           if(result.value)
-                       {
-                           location.reload(true);
-                       }
-                   });
-                   },
-                    error: function () {
-                        swal("error", "The process encountered and error", "error");
-                    }
-               });
-           }
-       });
-       })
-    })
 </script>
 </body>
 </html>
