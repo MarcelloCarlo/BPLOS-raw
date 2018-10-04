@@ -1,0 +1,7 @@
+DROP EVENT IF EXISTS reinspectionduration;
+CREATE EVENT reinspectionduration
+  ON SCHEDULE EVERY 2 MINUTE
+  ON COMPLETION NOT PRESERVE
+  ENABLE DO UPDATE lgu_t_bp_application
+            SET AP_DIV_CODE_TO = 'DIV-INS'
+            WHERE DATEDIFF(AP_DATE_RE_INS, CURRENT_TIMESTAMP) < 1

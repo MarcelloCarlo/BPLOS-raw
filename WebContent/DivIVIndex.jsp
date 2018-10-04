@@ -249,9 +249,9 @@
     >
         <div class="modal-dialog">
             <form
-                    id="newInsApplForm"
+                    id="newInvApplForm"
                     class="form-horizontal"
-                    name="newInsApplForm"
+                    name="newInvApplForm"
                     enctype="multipart/form-data"
             >
                 <div class="modal-content">
@@ -385,7 +385,7 @@
                                 </div>
                                 <div class="panel-body row">
                                     <div class="col-md-3">
-                                        <input type="checkbox" id="chkRectify" name="chkRectify" class="flat-black">
+                                        <input type="checkbox" id="chkRectify" name="Rectify" class="flat-black">
                                         <label for="chkRectify">Rectify Application</label>
                                     </div>
                                     <div class="col-md-3">

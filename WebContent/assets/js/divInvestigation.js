@@ -78,7 +78,7 @@ $(document).ready(function () {
     });
 
     $("#btnInvNewAppl").click(function () {
-        var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
+        var datanewInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
         if($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked') && !$("#chkRectify").is(':checked') ){
             //Assessment
             // noinspection BadExpressionStatementJS
@@ -95,8 +95,8 @@ $(document).ready(function () {
             {
                 $.ajax({
                     type: "POST",
-                    url: "updateNewAppInspectionForm",
-                    data: datanewInsApplForm,
+                    url: "updateNewAppInvestigationForm",
+                    data: datanewInvApplForm,
                     processData: false,
                     contentType: false,
                     success: function () {
@@ -134,8 +134,8 @@ $(document).ready(function () {
             {
                 $.ajax({
                     type: "POST",
-                    url: "updateNewAppInspectionForm",
-                    data: datanewInsApplForm,
+                    url: "updateNewAppInvestigationForm",
+                    data: datanewInvApplForm,
                     processData: false,
                     contentType: false,
                     success: function () {
