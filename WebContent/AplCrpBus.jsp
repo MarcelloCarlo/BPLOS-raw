@@ -732,7 +732,7 @@
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/form-wizards-validation.demo.min.js"></script>
+<script src="assets/js/newSingleFormApplValidation.js"></script>
 <script src="assets/js/form-plugins.demo.min.js"></script>
 <script src="assets/js/form-multiple-upload.demo.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->

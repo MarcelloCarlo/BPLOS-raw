@@ -102,7 +102,6 @@ $(document).ready(function () {
 
     $('#btnNewAppl').click(function () {
         if ($("#AT_BRGY_CLEARANCE").is(':checked') && ($("#AT_DTI_REGISTRATION").is(':checked') || $("#AT_SEC_REGISTRATION").is(':checked')) && $("#AT_TITLE_TO_PROPERTY").is(':checked') && $("#AT_CONTRACT_OF_LEASE").is(':checked') && $("#AT_AUTHORIZATION").is(':checked') && $("#AT_MISC_DOCUMENTS").is(':checked')) {
-
             swal({
                 title: "Are you sure?",
                 text: "You will save your current changes",

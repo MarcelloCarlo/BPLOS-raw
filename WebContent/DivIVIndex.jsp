@@ -384,11 +384,11 @@
                                     </div>
                                 </div>
                                 <div class="panel-body row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-5">
                                         <input type="checkbox" id="chkRectify" name="Rectify" class="flat-black">
                                         <label for="chkRectify">Rectify Application</label>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <input type="number" id="numMonths" name="numMonths" class="form-control" placeholder="Months">
                                     </div>
                                 </div>

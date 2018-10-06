@@ -78,7 +78,6 @@ $(document).ready(function () {
     });
 
     $("#btnInvNewAppl").click(function () {
-        var datanewInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
         if($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked') && !$("#chkRectify").is(':checked') ){
             //Assessment
             // noinspection BadExpressionStatementJS
@@ -93,13 +92,27 @@ $(document).ready(function () {
             }).then((result) => {
                 if(result.value)
             {
+                $("#chkZONING_INS").attr("disabled", false);
+                $("#chkFIRE_INS").attr("disabled", false);
+                $("#chkHS_INS").attr("disabled", false);
+                $("#chkBLDG_INS").attr("disabled", false);
+                $("#chkLABOR_INS").attr("disabled", false);
+                $("#chkMISC_INS").attr("disabled", false);
+                var datanewAsInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
                 $.ajax({
                     type: "POST",
                     url: "updateNewAppInvestigationForm",
-                    data: datanewInvApplForm,
+                    enctype:"multipart/form-data",
+                    data: datanewAsInvApplForm,
                     processData: false,
                     contentType: false,
                     success: function () {
+                        $("#chkZONING_INS").attr("disabled", true);
+                        $("#chkFIRE_INS").attr("disabled", true);
+                        $("#chkHS_INS").attr("disabled", true);
+                        $("#chkBLDG_INS").attr("disabled", true);
+                        $("#chkLABOR_INS").attr("disabled", false);
+                        $("#chkMISC_INS").attr("disabled", false);
                         // noinspection BadExpressionStatementJS
                         swal({
                             type: 'success',
@@ -113,7 +126,7 @@ $(document).ready(function () {
                     });
                     },
                     error: function () {
-                        swal("error", "The process encountered and error", "error");
+                        swal("error", "The process encountered and error. Try again or contact your system administrator", "error");
                     }
                 });
             }
@@ -132,10 +145,12 @@ $(document).ready(function () {
             }).then((result) => {
                 if(result.value)
             {
+                var datanewRcInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
                 $.ajax({
                     type: "POST",
                     url: "updateNewAppInvestigationForm",
-                    data: datanewInvApplForm,
+                    data: datanewRcInvApplForm,
+                    enctype:"multipart/form-data",
                     processData: false,
                     contentType: false,
                     success: function () {

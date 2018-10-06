@@ -685,59 +685,6 @@
 	<!-- Custom Theme Scripts -->
 	<script src="assets/plugins/js/custom.min.js"></script>
 	<!-- Initialize datetimepicker -->
-	<script>
-    $('#dateNSingBussDTIReg').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-    $('#dateNSingBussEstRentStart').datetimepicker({
-        format: 'DD.MM.YYYY'
-    });
-</script>
-	<script>
-    $(function () {
-        $('#applicationFormSingle').parsley().on('field:validated', function () {
-            var ok = $('.parsley-error').length === 0;
-            $('.bs-callout-info').toggleClass('hidden', !ok);
-            $('.bs-callout-warning').toggleClass('hidden', ok);
-
-        })
-            .on('form:submit', function () {
-                swal.mixin({
-                confirmButtonText: 'Next &rarr;',
-                showCancelButton: true,
-                progressSteps: ['1', '2']
-            }).queue([{
-                title: 'Terms & Conditions',
-                text: 'Chaining swal2 modals is easy'
-            },
-                'Confirm?',
-            ]).then((result) => {
-                if (result.value) {
-                	var formApplicationFormSingle = $('#applicationFormSingle')[0];
-                    var dataApplicationFormSingle = new FormData(formApplicationFormSingle);
-                    $.ajax({
-                        type: "POST",
-                        enctype:"multipart/form-data",
-                         url: "uploadSingleAppForm",
-                         data: dataApplicationFormSingle,
-                         processData: false,
-                         contentType: false,
-                        success: function(response){
-                            swal({
-                                	 type: 'success',
-                                	  title: 'All Done!',
-                                	  html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!'
-
-                                	  
-                            })
-                        }
-                    });
-                }
-            })
-            return false;
-            });
-    });
-</script>
 </body>
 
 </html>
