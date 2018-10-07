@@ -54,22 +54,22 @@
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <h3 class="m-t-10"> Select an Application Form:</h3>
                         <div class="controls">
-                            <select name="gender" class="form-control">
-                                <option>Business Application Form (Single)</option>
-                                <option>Business Application Form (Partnership/Corporation)</option>
+                            <select id="newForm" class="form-control">
+                                <option value="nSing">Business Application Form (Single)</option>
+                                <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
                             </select>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-primary">Proceed</button>
+                                <button type="submit" class="btn btn-sm btn-primary" id="newBtn">Proceed</button>
                             </div>
                         </div>
                         <h3 class="m-t-10"> Select an Application Form (Renewal):</h3>
                         <div class="controls">
-                            <select name="gender" class="form-control">
-                                <option>Business Application Form (Single)</option>
-                                <option>Business Application Form (Partnership/Corporation)</option>
+                            <select id="renewForm" class="form-control">
+                                <option value="rSing">Business Application Form (Single)</option>
+                                <option value="rCorp">Business Application Form (Partnership/Corporation)</option>
                             </select>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-primary">Proceed</button>
+                                <button type="submit" class="btn btn-sm btn-primary" id="renewBtn">Proceed</button>
                             </div>
                         </div>
                     </div>
@@ -132,77 +132,15 @@
 <![endif]-->
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
-<!-- ================== END BASE JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
+<!-- ================== END BASE JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/js/portal.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function() {
-        App.init();
-        TableManageResponsive.init();
-
-        $('#loginEmpForm').parsley().on('field:validated', function () {
-            var ok = $('.parsley-error').length === 0;
-            $('.bs-callout-info').toggleClass('hidden', !ok);
-            $('.bs-callout-warning').toggleClass('hidden', ok);
-
-        })
-            .on('form:submit', function () {
-                swal.mixin({
-                    confirmButtonText: 'Next &rarr;',
-                    showCancelButton: true,
-                    progressSteps: ['1', '2']
-                }).queue([{
-                    title: 'Terms & Conditions',
-                    text: 'Chaining swal2 modals is easy'
-                },
-                    'Confirm?',
-                ]).then((result) => {
-                    if (result.value) {
-                        var loginEmpForm = new FormData($('#loginEmpForm')[0]);
-                        $.ajax({
-                            type: "POST",
-                            enctype:"multipart/form-data",
-                            url: "uploadSingleAppForm",
-                            data: loginEmpForm,
-                            processData: false,
-                            contentType: false,
-                            error: function(response){
-                                swal({
-                                    type: 'success',
-                                    title: 'All Done!',
-                                    html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!'
-
-
-                                })
-                            }
-                        });
-                    }
-                })
-                return false;
-            });
-
-    });
-</script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>
