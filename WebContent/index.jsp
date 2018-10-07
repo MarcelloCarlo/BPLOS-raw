@@ -99,7 +99,7 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <%--<li><a href="DivSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
+        <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="DivEIndex.jsp"><i class="fa fa-file-text"></i> <span>Evaluation</span></a></li>
             <li><a href="DivIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Inspection</span></a></li>
         <li><a href="DivIVIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Investigation</span></a></li>
