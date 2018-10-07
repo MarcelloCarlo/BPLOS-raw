@@ -696,7 +696,7 @@
 
     <!-- Termination modal -->
     <div
-            class="modal modal-message fade evaluation-modal-terminate"
+            class="modal fade evaluation-modal-terminate"
             aria-hidden="true"
     >
         <div class="modal-dialog">
@@ -708,20 +708,14 @@
             >
                 <div class="modal-content">
                     <div class="modal-header">
-                        <div class="panel-heading-btn">
-                            <button
-                                    type="button"
-                                    id="closeTermPanelWindow"
-                                    class="btn btn-xs btn-icon btn-circle btn-danger right"
-                                    data-dismiss="modal"
-                            >
-                                <i class="fa fa-times"></i>
-                            </button>
+                        <div class="panel panel-inverse panel-danger">
+                            <div class="panel-heading">
+                                <h4
+                                        class="panel-title"
+                                        id="myModalLabel"
+                                >Application Termination</h4>
+                            </div>
                         </div>
-                        <h4
-                                class="modal-title"
-                        >Application Termination</h4>
-                    </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-12">
@@ -758,8 +752,8 @@
                                     </h5>
                                 </div>
                                 <div class="panel-body">
-                                    <hr>
-                                    <div class="col-md-9">
+                                    <div class="col-md-12">
+                                        <hr>
                                               <textarea
                                                       class="form-control"
                                                       placeholder="Remarks"
@@ -788,12 +782,14 @@
                         </button>
                     </div>
                 </div>
+                </div>
             </form>
         </div>
     </div>
 
-    <jsp:include page="BPLSEFooter.jsp"></jsp:include>
 </div>
+
+<jsp:include page="BPLSEFooter.jsp"></jsp:include>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/js/jquery.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
