@@ -43,7 +43,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="DivSAComponent.jsp"></jsp:include>
+<jsp:include page="PAEISSAComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -109,7 +109,7 @@
                                 <%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
                                 <%--</td>--%>
                                 <td>
-                                    <a href="DivSAUsrUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
+                                    <a href="PAEISSAUsrUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -135,7 +135,7 @@
                             <h4 class="panel-title">Add User</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSAUsrInsert.jsp" method="POST">
+                            <form action="PAEISSAUsrInsert.jsp" method="POST">
                                 <div id="wizard">
                                     <ol>
                                         <li>
@@ -358,7 +358,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="DivSAFooter.jsp"></jsp:include>
+<jsp:include page="PAEISSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>

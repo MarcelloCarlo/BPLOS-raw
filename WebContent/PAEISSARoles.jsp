@@ -50,7 +50,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="DivSAComponent.jsp"></jsp:include>
+<jsp:include page="PAEISSAComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -104,7 +104,7 @@
                                 <td><%=res.getString("ROLE_NAME")%></td>
                                 <td><%=res.getString("ROLE_DESC")%></td>
                                 <td>
-                                    <a href="DivSARolesUpdate.jsp?u=<%=res.getString("ROLE_ID")%>" class="btn btn-success">Edit</a>
+                                    <a href="PAEISSARolesUpdate.jsp?u=<%=res.getString("ROLE_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -130,7 +130,7 @@
                             <h4 class="panel-title">Add User Roles</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSARolesInsert.jsp" method="POST">
+                            <form action="PAEISSARolesInsert.jsp" method="POST">
 
                                 <div>
                                     <fieldset>
@@ -184,7 +184,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="DivSAFooter.jsp"></jsp:include>
+<jsp:include page="PAEISSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>

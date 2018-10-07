@@ -50,7 +50,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="DivSAComponent.jsp"></jsp:include>
+<jsp:include page="PAEISSAComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -104,7 +104,7 @@
                                 <td><%=res.getString("MOD_NAME")%></td>
                                 <td><%=res.getString("MOD_DESC")%></td>
                                 <td>
-                                    <a href="DivSAMdleUpdate.jsp?u=<%=res.getString("MOD_ID")%>" class="btn btn-success">Edit</a>
+                                    <a href="PAEISSAMdleUpdate.jsp?u=<%=res.getString("MOD_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -130,7 +130,7 @@
                             <h4 class="panel-title">Add Module</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSAMdleInsert.jsp" method="POST">
+                            <form action="PAEISSAMdleInsert.jsp" method="POST">
 
                                 <div>
                                     <fieldset>
@@ -183,7 +183,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="DivSAFooter.jsp"></jsp:include>
+<jsp:include page="PAEISSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>

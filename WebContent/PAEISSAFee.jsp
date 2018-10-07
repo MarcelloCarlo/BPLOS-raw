@@ -43,7 +43,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="DivSAComponent.jsp"></jsp:include>
+<jsp:include page="PAEISSAComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -99,7 +99,7 @@
                                         <td><%=res.getString("FEES_NAME")%></td>
                                         <td><%=res.getString("AMOUNT")%></td>
                                         <td>
-                                            <a href="DivSAFeeUpdate.jsp?u=<%=res.getString("FEES_PK")%>" class="btn btn-success">Edit</a>
+                                            <a href="PAEISSAFeeUpdate.jsp?u=<%=res.getString("FEES_PK")%>" class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                             <%
@@ -125,7 +125,7 @@
                             <h4 class="panel-title">Add Fee</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSAFeeInsert.jsp" method="POST">
+                            <form action="PAEISSAFeeInsert.jsp" method="POST">
 
                                     <div>
                                         <fieldset>
@@ -187,7 +187,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="DivSAFooter.jsp"></jsp:include>
+<jsp:include page="PAEISSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>

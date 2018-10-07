@@ -43,7 +43,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="DivSAComponent.jsp"></jsp:include>
+<jsp:include page="PAEISSAComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -97,7 +97,7 @@
                                 <td><%=res.getString("RT_NAME")%></td>
                                 <td><%=res.getString("RT_DESC")%></td>
                                 <td>
-                                    <a href="DivSAReqUpdate.jsp?u=<%=res.getString("RT_ID")%>" class="btn btn-success">Edit</a>
+                                    <a href="PAEISReqUpdate.jsp?u=<%=res.getString("RT_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -123,7 +123,7 @@
                             <h4 class="panel-title">Add Requirements</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="DivSAReqInsert.jsp" method="POST">
+                            <form action="PAEISSAReqInsert.jsp" method="POST">
 
                                 <div>
                                     <fieldset>
@@ -177,7 +177,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="DivSAFooter.jsp"></jsp:include>
+<jsp:include page="PAEISSAFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>

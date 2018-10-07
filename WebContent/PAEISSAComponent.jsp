@@ -40,7 +40,7 @@
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li>
-            <a href="DivSAUsrMgmt.jsp"><i class="fa fa-users"></i> <span>User Management</span></a>
+            <a href="PAEISSAUsrMgmt.jsp"><i class="fa fa-users"></i> <span>User Management</span></a>
         </li>
         <li class="has-sub">
             <a href="javascript:;">
@@ -49,12 +49,12 @@
                 <span>Configurables</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="DivSAFee.jsp">Fees</a></li>
-                <li><a href="DivSAReq.jsp">Requirements</a></li>
-                <li><a href="DivSARoles.jsp">User Roles</a></li>
-                <li><a href="DivSADvsion.jsp">Division</a></li>
+                <li><a href="PAEISSAFee.jsp">Fees</a></li>
+                <li><a href="PAEISSAReq.jsp">Requirements</a></li>
+                <li><a href="PAEISSARoles.jsp">User Roles</a></li>
+                <li><a href="PAEISSADvsion.jsp">Division</a></li>
                 <%--<li><a href="PAEISSABusNat.jsp">Business Nature</a></li>--%>
-                <li><a href="DivSAMdle.jsp">Module</a></li>
+                <li><a href="PAEISSAMdle.jsp">Module</a></li>
             </ul>
         </li>
     </ul>
