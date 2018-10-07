@@ -53,16 +53,25 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="default-tab-1">
                         <h3 class="m-t-10"> Select an Application Form:</h3>
-                        <p>Bussiness Application Form (Single)</p>
-                        <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
-                        <p>Bussiness Application Form (Partnsership/Corporation)</p>
-                        <a href="AplCorpBus.jsp" class="btn btn-primary">Proceed</a>
+                        <div class="controls">
+                            <select name="gender" class="form-control">
+                                <option>Business Application Form (Single)</option>
+                                <option>Business Application Form (Partnership/Corporation)</option>
+                            </select>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-sm btn-primary">Proceed</button>
+                            </div>
+                        </div>
                         <h3 class="m-t-10"> Select an Application Form (Renewal):</h3>
-                        <p>Bussiness Application Form (Single)</p>
-                        <a href="AplSglBus.jsp" class="btn btn-primary">Proceed</a>
-                        <p>Bussiness Application Form (Partnsership/Corporation)</p>
-                        <a href="AplCorpBus.jsp" class="btn btn-primary">Proceed</a>
-
+                        <div class="controls">
+                            <select name="gender" class="form-control">
+                                <option>Business Application Form (Single)</option>
+                                <option>Business Application Form (Partnership/Corporation)</option>
+                            </select>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-sm btn-primary">Proceed</button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade" id="default-tab-2">
@@ -87,10 +96,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-sm btn-primary">Log In</button>
                             </div>
-                        </div>
+
                         </form>
                     </div>
                 </div>
