@@ -1,6 +1,6 @@
 $(document).ready(function() {
     App.init();
-    TableManageResponsive.init();
+    LoginV2.init();
 
     $('#loginEmpForm').parsley().on('field:validated', function () {
         var ok = $('.parsley-error').length === 0;
@@ -43,7 +43,7 @@ $(document).ready(function() {
             return false;
         });
 
-    $("#newBtn").click(function () {
+    $("#bplsBtn").click(function () {
         var formX = $("#newForm").val();
         if ( formX === "nSing"){
             window.open("BPLSAplSglBus.jsp");

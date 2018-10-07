@@ -4,18 +4,15 @@ $(document).ready(function () {
     FormWizardValidation.init();
     FormPlugins.init();
 
-    $('#dateNSingBussDTIReg').datepicker({
-        format: 'DD.MM.YYYY',
-        todayHighlight: !0,
-        autoclose: !0
+    $('#dateNSingBussDTIReg').datetimepicker({
+        format: "DD-MM-YYYY",
+
     });
-    $('#dateNSingBussEstRentStart').datepicker({
-        format: 'DD.MM.YYYY',
-        todayHighlight: !0,
-        autoclose: !0
+    $('#dateNSingBussEstRentStart').datetimepicker({
+        format: "DD-MM-YYYY",
     });
 
-    $('#applicationFormSingle').on('form:submit', function () {
+    $('#submitBtn').click( function () {
             swal.mixin({
                 confirmButtonText: 'Next &rarr;',
                 showCancelButton: true,
@@ -40,10 +37,18 @@ $(document).ready(function () {
                         swal({
                             type: 'success',
                             title: 'All Done!',
-                            html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!'
-
-
-                        })
+                            html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!',
+                            confirmButtonText: 'Proceed'
+                        }).then((result) => {
+                            if (result.value) {
+                                var refx = "?refNo="+response;
+                                //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
+                                window.open("BPLSRtSlip.jsp"+refx);
+                            }
+                        });
+                    },
+                    error: function () {
+                        swal("error", "Process encountered an error", "error");
                     }
                 });
             }

@@ -167,7 +167,7 @@ public class uploadSingleAppForm extends HttpServlet {
 		String tp_addr = txtNSingBussOwnHsNum + " " + txtNSingBussOwnStrt + " " + txtNSingBussOwnBrgy + " "
 				+ txtNSingBussOwnCity;
 
-		String queery = "SELECT MAX(AP_ID),AP_REFERENCE_NO FROM lgu_r_bp_application";
+		String queery = "SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM lgu_t_bp_application";
 		String _refNo = "";
 
 		try {
@@ -202,7 +202,7 @@ public class uploadSingleAppForm extends HttpServlet {
 			taxPayerInfo.setString(6,txtNSingEmpSSSNo);
 			taxPayerInfo.executeUpdate();
 			PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_business`( `BU_NAME`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `DTI_REG_NO`, `DTI_DATE`,`BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES('"
+					"INSERT INTO `lgu_t_business`( `BU_NAME`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `DTI_REG_NO`, `DTI_DATE`,`BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_CODE`) VALUES('"
 							+ txtNSingBussName + "','" + bu_loc + "','" + txtNSingPropIdxNo + "','" + txtNSingLotBlckNo
 							+ "','" + txtNSingBussFaxNo + "','" + txtNSingBussTelNo + "','"
 							+ Float.parseFloat(numNSingBussEstSignbrdArea) + "','"
@@ -210,14 +210,12 @@ public class uploadSingleAppForm extends HttpServlet {
 							+ Integer.parseInt(numNSingBussEmpQTY) + "','" + Integer.parseInt(numNSingBussUnitNo)
 							+ "','" + Float.parseFloat(numNSingBussEstSignbrdArea) + "','"
 							+ Float.parseFloat(numNSingBussCapitalization) + "','" + Integer.parseInt(txtNSBussAct)
-							+ "',(SELECT MAX(`TP_ID`) FROM `lgu_t_taxpayer`),1)");
+							+ "',(SELECT MAX(`TP_ID`) FROM `lgu_t_taxpayer`),'OT-SIN')");
 			businessInfo.executeUpdate();
 			PreparedStatement authRep2Bus = (PreparedStatement) connection
-					.prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
-							+ "VALUES((SELECT MAX(`AR_ID`) FROM `lgu_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_t_business`)) ");
+					.prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`) VALUES((SELECT MAX(`AR_ID`) FROM `lgu_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_t_business`)) ");
 			authRep2Bus.executeLargeUpdate();
-			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_t_business),(SELECT MAX(AR_ID) FROM lgu_t_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_t_business)) ");
+			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_t_business),(SELECT MAX(AR_ID) FROM lgu_t_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_t_business),'DIV-EV') ");
 			refNoInfo.executeUpdate();
 
 			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement(
@@ -225,10 +223,11 @@ public class uploadSingleAppForm extends HttpServlet {
 			fileUpload.setBlob(1, is);
 			fileUpload.setString(2, fileName);
 			fileUpload.executeUpdate();
+
 			Statement ss3 = connection.createStatement();
 			ResultSet gg3 = ss3.executeQuery(queery);
 			while (gg3.next()) {
-				_refNo = gg3.getString("AP_REFERENCE_NO");
+				_refNo = gg3.getString("REF_NO");
 				response.getWriter().print(_refNo);
 				// response.getWriter().write(_refNo);
 			}

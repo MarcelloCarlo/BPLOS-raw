@@ -119,7 +119,7 @@
                     <!-- begin panel -->
                     <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Application Form Investigation Table</h4>
+                            <h4 class="panel-title">Investigation Table</h4>
                         </div>
                         <div class="panel-body">
                             <table

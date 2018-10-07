@@ -5,6 +5,7 @@
 %>
 <%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="javafx.application.Application" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,33 +176,27 @@
                                         String apType = gg3.getString("AP_TYPE");
                                         String modalMode = "";
                                         String modalClass = "";
-                                        String assess = "";
-                                        String refno = "";
-                                        if (gg3.getString("BN_CLASSIFICATION").equals("L")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess") && (gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INV") || gg3.getString("AP_DIV_CODE_FROM").equals("DIV-INS"))) {
-                                                refno = "location.href='BPLSBPLSAssessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
-                                                assess = "";
-                                            } else {
-                                                assess = "disabled";
-                                            }
-                                        } else if (gg3.getString("BN_CLASSIFICATION").equals("S")) {
-                                            if (gg3.getString("AP_STATUS").equals("Assess")) {
-                                                refno = "location.href='BPLSBPLSAssessment.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") +"'";
-                                                assess = "";
-                                            } else {
-                                                assess = "disabled";
-                                            }
-                                        } else {
-                                            assess = "disabled";
-                                        }
-                                        if (apType.equals("New")) {
+                                        String btnTitle = "";
+                                        String btnIcon = "";
+                                        if (apType.equals("New") && !gg3.getString("AP_STATUS").equals("Assess")) {
                                             modalMode = ".evaluation-modal-new";
                                             modalClass = "newModal";
-                                        } else if (apType.equals("Renew")) {
+                                            btnTitle = "title='Evaluate New Application'";
+                                            btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
+                                        } else if (apType.equals("Renew") && !gg3.getString("AP_STATUS").equals("Assess")) {
                                             modalMode = ".evaluation-modal-renew";
                                             modalClass = "renewModal";
+                                            btnTitle = "title='Evaluate Renew Application'";
+                                            btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
+                                        } else if (gg3.getString("AP_STATUS").equals("Assess")){
+                                            modalMode = ".evaluation-modal-assess";
+                                            modalClass = "assessModal";
+                                            btnTitle = "title='Assess the Application'";
+                                            btnIcon = "<i class='fa fa-lg fa-check-square-o'></i>";
                                         } else {
-                                            modalMode = ".evaluation-modal-new";
+                                            modalClass = "red";
+                                            modalMode = "";
+
                                         }
                                 %>
                                 <tr>
@@ -222,18 +217,10 @@
                                     <td>
                                         <button
                                                 type="button"
-                                                class="btn btn-success <%=modalClass%>"
+                                                class="btn btn-success <%=modalClass%> "
                                                 data-toggle="modal"
-                                                data-target="<%=modalMode%>"
-                                        >Evaluate
-                                        </button>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success <%=assess%>"
-                                                data-toggle="modal"
-                                                id="assess"
-                                                onclick="<%=refno%>"
-                                        >Assess
+                                                data-target="<%=modalMode%>" <%=btnTitle%>
+                                        ><%=btnIcon%>
                                         </button>
                                     </td><!--7-->
                                     <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
@@ -786,7 +773,221 @@
             </form>
         </div>
     </div>
+    <!-- Assess Modal -->
+    <div
+            class="modal fade evaluation-modal-assess"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <form
+                    id="assessNewApplForm"
+                    class="form-horizontal"
+                    name="assessNewApplForm"
+                    enctype="multipart/form-data"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="panel panel-inverse panel-danger">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Check Requirement for New Application</h4>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text"
+                                           class="hide"
+                                           id="_AT_ID"
+                                           name="_AT_ID"
+                                    /> <input type="text"
+                                              class="hide"
+                                              id="_AP_ID"
+                                              name="_AP_ID"
+                                /><input type="text"
+                                         class="hide"
+                                         id="_AP_REFERENCE_NO"
+                                         name="_AP_REFERENCE_NO"
+                                /><input type="text"
+                                         class="hide"
+                                         id="_BN_CLASSIFICATION"
+                                         name="_BN_CLASSIFICATION"
+                                />
+                                    <div class="col-md-6 panel-body">
+                                        <h5>
+                                            Business Name/Corporate Name:
+                                            <!-- <input disabled=""
+                                            id="nBussName" type="text" /> -->
+                                            <label id="nBussName"></label>
+                                        </h5>
+                                        <h5>
+                                            Name of Sole Proprietor/Partnership/President:
+                                            <!-- <input
+                                            disabled="" id="nBussOwner" type="text" /> -->
+                                            <label id="nBussOwner"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Address:
+                                            <!-- <input disabled="" id="nBussAddr"
+                                            type="text" /> -->
+                                            <label id="nBussAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Tel No.:
+                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
+                                            <label id="nBussConTelno"></label>
+                                        </h5>
+                                        <h5>
+                                            Authorized Representative:
+                                            <!--  <input disabled=""
+                                            id="nBussAuthRepName" type="text" /> -->
+                                            <label id="nBussAuthRepName"></label>
+                                        </h5>
+                                        <h5>
+                                            Address:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="nBussAuthRepAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Nature:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="nBussNature"></label>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <label id="AT_UNIFIED_FILE_NAME"></label><br>
+                                        <button
+                                                type="button"
+                                                class="btn btn-primary form-control"
+                                                id="fileDownload"
+                                        >DOWNLOAD ATTACHMENT
+                                        </button>
+                                    </div>
+                                    <div class="panel-body">
+                                        <h5>Requirements Checklist</h5>
+                                        <div class="">
+                                            <ul class="to_do">
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_BRGY_CLEARANCE"
+                                                            name="AT_BRGY_CLEARANCE"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Original Barangay Clearance
+                                                </p>
+                                                <p id="dtiID">
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_DTI_REGISTRATION"
+                                                            name="AT_DTI_REGISTRATION"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > DTI Registration (for Single Proprietorship
+                                                </p>
+                                                <p id="secID">
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_SEC_REGISTRATION"
+                                                            name="AT_SEC_REGISTRATION"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > SEC Registration with Artices (for
+                                                    Corporation/Partnership
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_TITLE_TO_PROPERTY"
+                                                            name="AT_TITLE_TO_PROPERTY"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Title to property of Tax Declaration (if owned)
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_CONTRACT_OF_LEASE"
+                                                            name="AT_CONTRACT_OF_LEASE"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Contract of Lease and Lessor's Business Permit (if
+                                                    rented)
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_AUTHORIZATION"
+                                                            name="AT_AUTHORIZATION"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Authorization Letter & ID (Owner and representative(if
+                                                    any))
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="AT_MISC_DOCUMENTS"
+                                                            name="AT_MISC_DOCUMENTS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Other Documents (See Business Natures)
+                                                </p>
+                                            </ul>
+                                        </div>
 
+                                    </div>
+                                    <hr>
+                                    <div class="panel-body">
+                                        <div class="note note-info">
+                                            <h4>Evaluation Notes</h4>
+                                            <ul>
+                                                <li>
+                                                    <p>
+                                                        Other Requirements based on the business nature should be in the
+                                                        document. LEAVE UNCHECK THE "OTHER DOCUMENTS" IF ANY OTHER
+                                                        REQUIREMENTS ON THE ATTACHMENT IS INVALID OR INCOMPLETE.
+                                                    </p>
+                                                </li>
+                                                <li><p>
+                                                    Incomplete/Invalid documents on general and other requirements will
+                                                    redirect you to termination form of the application.
+                                                </p></li>
+                                            </ul>
+                                        </div>
+                                        <!--  <div class="col-md-9">
+                                                  <textarea
+                                                          class="form-control"
+                                                          placeholder="Remarks"
+                                                          id="AP_Remarks"
+                                                          name="AP_Remarks"
+                                                          rows="3"
+                                                  ></textarea>
+                                          </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal"
+                                    id="btnCloseNewApplModal"
+                            >Close
+                            </button>
+                            <button
+                                    type="button"
+                                    id="btnNewAppl"
+                                    class="btn btn-success"
+                            >Evaluate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <jsp:include page="BPLSEFooter.jsp"></jsp:include>

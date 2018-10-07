@@ -84,7 +84,7 @@
                             Proprietorship</h4>
                     </div>
                     <div class="panel-body">
-                        <form data-parsley-validate="" novalidate="" enctype="multipart/form-data" name="applicationFormSingle">
+                        <form data-parsley-validate="" novalidate="" enctype="multipart/form-data" name="applicationFormSingle" id="applicationFormSingle">
                             <div id="wizard">
                                 <ol>
                                     <li>
@@ -324,7 +324,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Date*</label>
-                                                    <input type="text" class="form-control" id="datepicker-autoClose"
+                                                    <input type="text" class="form-control date" id="dateNSingBussDTIReg"
                                                            name="dateNSingBussDTIReg" data-parsley-group="wizard-st-3" required/>
                                                 </div>
                                             </div>
@@ -421,8 +421,8 @@
                                                 <div class="form-group">
                                                     <label>If Business Establishment is Rented</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control"
-                                                               id="datepicker-autoClose2"
+                                                        <input type="text" class="form-control date"
+                                                               id="dateNSingBussEstRentStart"
                                                                name="dateNSingBussEstRentStart" placeholder="Since when"
                                                                class="form-control"/>
                                                     </div>
@@ -658,7 +658,7 @@
                                         <h1>Finished!</h1>
                                         <p>Click the "Continue" button to proceed to the next step. Make sure you fill out all of the requirements right to move forward :-)</p>
                                         <p>
-                                            <button type="submit" class="btn btn-success btn-lg">Continue</button></p>
+                                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg">Continue</button></p>
                                     </div>
                                 </div>
                                 <!-- end wizard step-8 -->
@@ -694,6 +694,7 @@
 <![endif]-->
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END BASE JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
@@ -733,6 +734,7 @@
 <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
