@@ -49,15 +49,10 @@ $(document).ready(function() {
             window.open("BPLSAplSglBus.jsp");
         }else if (formX === "nCorp") {
             window.open("BPLSAplCrpBus.jsp");
-        }
-    });
+        } else if (formX === "rSing") {
 
-    $("#renewBtn").click(function () {
-        var formX = $("#renewForm").val();
-        if ( formX === "rSing"){
-            window.open("BPLSAplSglBus.jsp");
-        }else if (formX === "rCorp") {
-            window.open("BPLSAplCrpBus.jsp");
+        } else if (formX === "rCorp") {
+
         }
     });
 });
