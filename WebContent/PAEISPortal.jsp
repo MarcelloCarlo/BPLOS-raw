@@ -57,19 +57,11 @@
                             <select id="newForm" class="form-control">
                                 <option value="nSing">Business Application Form (Single)</option>
                                 <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
+                                <option value="rSing">Business Application Form (Single - Renewal)</option>
+                                <option value="rCorp">Business Application Form (Partnership/Corporation - Renewal)</option>
                             </select>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-sm btn-primary" id="newBtn">Proceed</button>
-                            </div>
-                        </div>
-                        <h3 class="m-t-10"> Select an Application Form (Renewal):</h3>
-                        <div class="controls">
-                            <select id="renewForm" class="form-control">
-                                <option value="rSing">Business Application Form (Single)</option>
-                                <option value="rCorp">Business Application Form (Partnership/Corporation)</option>
-                            </select>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-primary" id="renewBtn">Proceed</button>
                             </div>
                         </div>
                     </div>
