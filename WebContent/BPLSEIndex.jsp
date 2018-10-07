@@ -23,7 +23,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>PAEIS | Evaluation</title>
+    <title>BPLS | Evaluation</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%-- <link
              href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -85,7 +85,7 @@
     <span class="spinner"></span>
 </div>
 <!-- end #page-loader -->
-<jsp:include page="DivEComponent.jsp"/>
+<jsp:include page="BPLSEComponent.jsp"/>
 <div
         id="page-container"
         class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"

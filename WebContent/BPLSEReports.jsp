@@ -24,7 +24,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>PAEIS | Termination Reports</title>
+    <title>BPLS | Termination Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>
             <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
@@ -78,7 +78,7 @@
         rel="stylesheet"> -->
 </head>
 <body>
-<jsp:include page="DivEComponent.jsp"/>
+<jsp:include page="BPLSEComponent.jsp"/>
 <div
         id="page-container"
         class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"

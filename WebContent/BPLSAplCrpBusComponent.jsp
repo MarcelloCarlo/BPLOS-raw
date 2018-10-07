@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS/BPLS</a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 
@@ -27,7 +27,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="AplCrpBus.jsp"><i class="fa fa-file-o"></i> <span>Application Processing</span></a></li>
+        <li><a href="BPLSAplCrpBus.jsp"><i class="fa fa-file-o"></i> <span>Application Processing</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

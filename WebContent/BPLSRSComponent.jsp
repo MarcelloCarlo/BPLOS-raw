@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS/BPLS</a>
             <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="DivRSIndex.jsp"><i class="fa fa-print"></i> <span>Permit Releasing</span></a></li>
+        <li><a href="BPLSRSIndex.jsp"><i class="fa fa-print"></i> <span>Permit Releasing</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

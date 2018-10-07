@@ -8,7 +8,7 @@
 <!-- begin #footer -->
 <hr>
 <div class="col-md-12">
-    &copy; 2018 PAEIS - Inspection All Rights Reserved
+    &copy; 2018 BPLS - Inspection All Rights Reserved
 </div>
 &nbsp;
 <!-- end #footer -->

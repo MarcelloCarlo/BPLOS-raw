@@ -17,7 +17,7 @@
         while (rs.next()){%>
 <html>
 <head>
-    <title>PAEIS | Route Slip</title>
+    <title>BPLS | Route Slip</title>
 
     <meta
             http-equiv="Content-Type"
@@ -87,7 +87,7 @@
         rel="stylesheet"> -->
 </head>
 <body>
-<jsp:include page="RSnav.jsp"/>
+<jsp:include page="BPLSRtSlipComponent.jsp"/>
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
 
     <!-- begin #content -->
