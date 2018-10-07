@@ -1,5 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Li Ven
+  Date: 10/7/2018
+  Time: 8:30 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -7,7 +12,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | Portal</title>
+    <title>PAEIS PORTAL</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -23,29 +28,30 @@
     <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
     <!-- ================== END BASE CSS STYLE ================== -->
 
-    <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
-    <!-- ================== END PAGE LEVEL STYLE ================== -->
-
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
-<body>
+<body class="pace-top">
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="PortalComponent.jsp"></jsp:include>
-
+<div class="login-cover">
+    <div class="login-cover-image"><img src="assets/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt="" /></div>
+    <div class="login-cover-bg"></div>
+</div>
 <!-- begin #page-container -->
-<div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
-
-    <!-- begin #content -->
-    <div id="content" class="content">
-        <div class="row">
-            <div>
+<div id="page-container" class="fade">
+    <!-- begin login -->
+    <div class="login login-v2" data-pageload-addclass="animated fadeIn">
+        <!-- begin brand -->
+        <div class="login-header">
+            <div class="brand text-center">
+                <span class="logo"></span> PAEIS
+            </div>
+        </div>
+        <!-- end brand -->
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#default-tab-1" data-toggle="tab">Application Forms</a></li>
                     <li class=""><a href="#default-tab-2" data-toggle="tab">Users Login</a></li>
@@ -69,26 +75,26 @@
                     <div class="tab-pane fade" id="default-tab-2">
                         <h4>Users Login</h4>
                         <form name="loginEmpForm" id="loginEmpForm" enctype="multipart/form-data" novalidate="" data-parsley-validate="">
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Username</label>
-                                    <div class="controls">
-                                        <input type="text" name="username" placeholder="Your username" class="form-control" required/>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <div class="controls">
+                                            <input type="text" name="username" placeholder="Your username" class="form-control" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Pasword</label>
+                                        <div class="controls">
+                                            <input type="password" name="password" placeholder="Your password" class="form-control" required/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Pasword</label>
-                                    <div class="controls">
-                                        <input type="password" name="password" placeholder="Your password" class="form-control" required/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-sm btn-primary">Log In</button>
@@ -97,26 +103,17 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
-    <!-- end #content -->
+    <!-- end login -->
 
-
-    <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-    <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
-
-<jsp:include page="PortalFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <!--[if lt IE 9]>
 <script src="assets/crossbrowserjs/html5shiv.js"></script>
 <script src="assets/crossbrowserjs/respond.min.js"></script>
@@ -124,15 +121,28 @@
 <![endif]-->
 <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
-<script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
-<script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-<script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-<script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <!-- ================== END BASE JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/portal.js"></script>
+<script src="assets/js/login-v2.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+    $(document).ready(function() {
+        App.init();
+        LoginV2.init();
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>
