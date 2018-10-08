@@ -45,6 +45,7 @@ $(document).ready(function () {
                                 //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
                                 window.open("BPLSRtSlip.jsp"+refx);
                             }
+                            window.close();
                         });
                     },
                     error: function () {

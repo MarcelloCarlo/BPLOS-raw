@@ -200,4 +200,20 @@ $(document).ready(function () {
 
         })
     });
+
+    $(".assessModal").click(function () {
+        document.getElementById('aBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
+        document.getElementById('aBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
+        document.getElementById('aBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
+        document.getElementById('aBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
+        document.getElementById('aBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+        document.getElementById('aBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
+        document.getElementById('_AAP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(40)").html().trim();
+
+        if ($(this).closest("tbody tr").find("td:eq(6)").html().trim() === "null") {
+            document.getElementById('aBussOwner').innerHTML = "None";
+        } else {
+            document.getElementById('aBussOwner').innerHTML = $(this).closest("tbody tr").find("td:eq(6)").html();
+        }
+    })
 });

@@ -790,79 +790,67 @@
                     <div class="modal-header">
                         <div class="panel panel-inverse panel-danger">
                             <div class="panel-heading">
-                                <h4 class="panel-title">Check Requirement for New Application</h4>
+                                <h4 class="panel-title">Assessment for Application</h4>
                             </div>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text"
-                                           class="hide"
-                                           id="_AT_ID"
-                                           name="_AT_ID"
-                                    /> <input type="text"
-                                              class="hide"
-                                              id="_AP_ID"
-                                              name="_AP_ID"
-                                /><input type="text"
+                                   <input type="text"
                                          class="hide"
-                                         id="_AP_REFERENCE_NO"
+                                         id="_AAP_REFERENCE_NO"
                                          name="_AP_REFERENCE_NO"
-                                /><input type="text"
-                                         class="hide"
-                                         id="_BN_CLASSIFICATION"
-                                         name="_BN_CLASSIFICATION"
                                 />
                                     <div class="col-md-12 panel-body">
                                         <h5>
                                             Business Name/Corporate Name:
                                             <!-- <input disabled=""
                                             id="nBussName" type="text" /> -->
-                                            <label id="nBussName"></label>
+                                            <label id="aBussName"></label>
                                         </h5>
                                         <h5>
                                             Name of Sole Proprietor/Partnership/President:
                                             <!-- <input
                                             disabled="" id="nBussOwner" type="text" /> -->
-                                            <label id="nBussOwner"></label>
+                                            <label id="aBussOwner"></label>
                                         </h5>
                                         <h5>
                                             Business Address:
                                             <!-- <input disabled="" id="nBussAddr"
                                             type="text" /> -->
-                                            <label id="nBussAddr"></label>
+                                            <label id="aBussAddr"></label>
                                         </h5>
                                         <h5>
                                             Tel No.:
                                             <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
-                                            <label id="nBussConTelno"></label>
+                                            <label id="aBussConTelno"></label>
                                         </h5>
                                         <h5>
                                             Authorized Representative:
-                                            <!--  <input disabled=""
+                                            <!--  <input disabled="
                                             id="nBussAuthRepName" type="text" /> -->
-                                            <label id="nBussAuthRepName"></label>
+                                            <label id="aBussAuthRepName"></label>
                                         </h5>
                                         <h5>
                                             Address:
                                             <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="nBussAuthRepAddr"></label>
+                                            <label id="aBussAuthRepAddr"></label>
                                         </h5>
                                         <h5>
                                             Business Nature:
                                             <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="nBussNature"></label>
+                                            <label id="aBussNature"></label>
                                         </h5>
                                     </div>
                                     <div class="col-md-6 panel-body">
-                                        <h5>Requirements Checklist</h5>
+                                        <h5>Payment Checklist</h5>
                                         <div class="">
                                             <ul class="to_do">
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_BRGY_CLEARANCE"
-                                                            name="AT_BRGY_CLEARANCE"
+                                                            id="chkMayorsPerm"
+                                                            name="Mayors_Perm"
                                                             class="flat"
                                                             value="Pass"
                                                     > Mayor's Permit
@@ -870,8 +858,8 @@
                                                 <p id="dtiID">
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_DTI_REGISTRATION"
-                                                            name="AT_DTI_REGISTRATION"
+                                                            id="chkCity_Tax"
+                                                            name="City_Tax"
                                                             class="flat"
                                                             value="Pass"
                                                     > City Tax
@@ -879,8 +867,8 @@
                                                 <p id="secID">
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_SEC_REGISTRATION"
-                                                            name="AT_SEC_REGISTRATION"
+                                                            id="chkGarbage_Fee"
+                                                            name="Garbage_Fee"
                                                             class="flat"
                                                             value="Pass"
                                                     > Garbage Fee
@@ -888,7 +876,7 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_TITLE_TO_PROPERTY"
+                                                            id="chkSanitary_Fee"
                                                             name="AT_TITLE_TO_PROPERTY"
                                                             class="flat"
                                                             value="Pass"

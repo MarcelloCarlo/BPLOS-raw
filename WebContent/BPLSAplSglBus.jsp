@@ -196,7 +196,7 @@
                                                 <div class="form-group">
                                                     <label>Taxpayer's Identification Number (TIN)*</label>
                                                     <input type="text" id="txtNSingTaxPayTINNo"
-                                                           name="txtNSingTaxPayTINNo" placeholder="TIN"
+                                                           name="txtNSingTaxPayTINNo" placeholder="TIN (9-12 Digits)"
                                                            class="form-control" data-parsley-group="wizard-st-1" required/>
                                                 </div>
                                             </div>
@@ -266,7 +266,7 @@
                                                 <div class="form-group">
                                                     <label>Property Index No.*</label>
                                                     <input type="text" id="txtNSingPropIdxNo"
-                                                           name="txtNSingPropIdxNo" placeholder="Property Index No."
+                                                           name="txtNSingPropIdxNo" placeholder="Property Index No. (14 Digits)"
                                                            class="form-control" data-parsley-group="wizard-st-2" required/>
                                                 </div>
                                             </div>
@@ -297,7 +297,7 @@
                                                         Registration Number*</label>
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussDTIRegNo"
-                                                               name="txtNSingBussDTIRegNo" placeholder="Registration Number" class="form-control" data-parsley-group="wizard-st-3" required />
+                                                               name="txtNSingBussDTIRegNo" placeholder="Registration Number (8 Digits)" class="form-control" data-parsley-group="wizard-st-3" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -337,7 +337,7 @@
                                                     <label>If Employer, Employer's Social Security Number (SSS)</label>
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingEmpSSSNo"
-                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number"
+                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number (9 Digits)"
                                                                class="form-control" data-parsley-group="wizard-st-3" required/>
                                                     </div>
                                                 </div>
