@@ -14,7 +14,8 @@
         PreparedStatement getAssess = connection.prepareStatement("SELECT * FROM view_routeslip WHERE AP_REFERENCE_NO = ?");
         getAssess.setString(1,refNo);
         ResultSet rs = getAssess.executeQuery();
-        while (rs.next()){%>
+        while (rs.next()){
+%>
 <html>
 <head>
     <title>BPLS | Route Slip</title>
@@ -149,7 +150,7 @@
                             <tr>
                                 <td><%out.print(rs.getString("AP_REFERENCE_NO"));%></td>
                                 <td><%out.print(rs.getString("AP_STATUS"));%></td>
-                                <td><%out.print(rs.getString("AP_DIV_CODE_TO"));%></td>
+                                <td><%out.print(rs.getString("DIV_NAME"));%></td>
                             </tr>
 
                             </tbody>

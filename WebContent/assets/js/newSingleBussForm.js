@@ -19,7 +19,7 @@ $(document).ready(function () {
                 progressSteps: ['1', '2']
             }).queue([{
                 title: 'Terms & Conditions',
-                text: 'Chaining swal2 modals is easy'
+                text: 'Do you agree on the terms and conditions?'
             },
                 'Confirm?',
             ]).then((result) => {
@@ -43,7 +43,7 @@ $(document).ready(function () {
                             if (result.value) {
                                 var refx = "?refNo="+response;
                                 //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
-                                window.open("BPLSRtSlip.jsp"+refx);
+                                window.location.replace("BPLSRtSlip.jsp"+refx);
                             }
                         });
                     },

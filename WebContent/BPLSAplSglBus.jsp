@@ -196,7 +196,7 @@
                                                 <div class="form-group">
                                                     <label>Taxpayer's Identification Number (TIN)*</label>
                                                     <input type="text" id="txtNSingTaxPayTINNo"
-                                                           name="txtNSingTaxPayTINNo" placeholder="TIN"
+                                                           name="txtNSingTaxPayTINNo" placeholder="TIN (9-12 Digits)"
                                                            class="form-control" data-parsley-group="wizard-st-1" required/>
                                                 </div>
                                             </div>
@@ -266,7 +266,7 @@
                                                 <div class="form-group">
                                                     <label>Property Index No.*</label>
                                                     <input type="text" id="txtNSingPropIdxNo"
-                                                           name="txtNSingPropIdxNo" placeholder="Property Index No."
+                                                           name="txtNSingPropIdxNo" placeholder="Property Index No. (14 Digits)"
                                                            class="form-control" data-parsley-group="wizard-st-2" required/>
                                                 </div>
                                             </div>
@@ -297,7 +297,7 @@
                                                         Registration Number*</label>
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussDTIRegNo"
-                                                               name="txtNSingBussDTIRegNo" placeholder="Registration Number" class="form-control" data-parsley-group="wizard-st-3" required />
+                                                               name="txtNSingBussDTIRegNo" placeholder="Registration Number (8 Digits)" class="form-control" data-parsley-group="wizard-st-3" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -337,7 +337,7 @@
                                                     <label>If Employer, Employer's Social Security Number (SSS)</label>
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingEmpSSSNo"
-                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number"
+                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number (9 Digits)"
                                                                class="form-control" data-parsley-group="wizard-st-3" required/>
                                                     </div>
                                                 </div>
@@ -568,7 +568,7 @@
                                 <!-- begin wizard step-7 -->
                                 <div class="wizard-st-7">
                                     <fieldset>
-                                        <legend class="pull-left width-full">Business Nature and Attachement</legend>
+                                        <legend class="pull-left width-full">Business Nature and Attachment</legend>
 
                                         <%--Other exisiting table--%>
                                         <div class="row">
@@ -581,9 +581,10 @@
                                                             <%
                                                                 String natureSt = "";
                                                                 LGUConnect conX = new LGUConnect();
+                                                                try {
                                                                 Connection conn3 = conX.getConnection();
                                                                 Statement ss3 = conn3.createStatement();
-                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `lgu_r_business_nature`");
+                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `bpls_r_business_nature`");
                                                                 while (gg3.next()) {
                                                                     String classification = gg3.getString("BN_CLASSIFICATION");
                                                                     if (classification.equalsIgnoreCase("S")) {
@@ -599,6 +600,8 @@
                                                                 <%out.print(gg3.getString("BN_NAME"));%>
                                                             </option>
                                                             <%
+                                                                } } catch(SQLException | ClassNotFoundException e){
+                                                                    e.printStackTrace();
                                                                 }
                                                             %>
                                                         </select>

@@ -1,8 +1,5 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -18,7 +15,6 @@
     <meta content="" name="author"/>
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -38,6 +34,15 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%   LGUConnect conX = new LGUConnect();
+try{
+    Connection conn3 = conX.getConnection();
+    Statement ss3 = conn3.createStatement();
+    Statement aaa = conn3.createStatement();
+    Statement aa = conn3.createStatement();
+    ResultSet ss = aa.executeQuery("SELECT * FROM `bpls_r_role`");
+    ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
+    ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.UEP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -78,9 +83,8 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th>Full Name</th>
+                                <th>Name</th>
                                 <th>Username</th>
-                                <th>User Type</th>
                                 <th>Department</th>
                                 <th>User Status</th>
                                 <th>Action</th>
@@ -88,20 +92,14 @@
                             </thead>
                             <tbody>
                             <%
-                                LGUConnect conX = new LGUConnect();
-                                Connection conn3 = conX.getConnection();
-                                Statement ss3 = conn3.createStatement();
-                                ResultSet res = ss3.executeQuery("select * from lgu_r_user order by U_ID desc");
                                 while (res.next()) {
                             %>
                             <tr>
-                                <td><%=res.getString("U_FIRSTNAME")%>
+                                <td><%=res.getString("EP_FNAME")%>
                                 </td>
                                 <td><%=res.getString("U_USERNAME")%>
                                 </td>
-                                <td><%=res.getString("U_TYPE")%>
-                                </td>
-                                <td><%=res.getString("U_ROLE")%>
+                                <td><%=res.getString("DIV_NAME")%>
                                 </td>
                                 <td><%=res.getString("U_STATUS")%>
                                 </td>
@@ -181,7 +179,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Gender</label>
+                                                        <label>Sex</label>
                                                         <div class="controls">
                                                             <select name="gender" class="form-control">
                                                                 <option value="Male">Male</option>
@@ -291,10 +289,6 @@
                                                     <div class="controls">
                                                         <select name="urole" class="form-control">
                                                             <%
-                                                                LGUConnect con = new LGUConnect();
-                                                                Connection con1 = con.getConnection();
-                                                                Statement aa = con1.createStatement();
-                                                                ResultSet ss = aa.executeQuery("SELECT * FROM `lgu_r_role`");
                                                                 while (ss.next()){
                                                             %>
                                                             <option value="<%out.print(ss.getInt("ROLE_ID"));%>">
@@ -314,10 +308,6 @@
                                                     <div class="controls">
                                                         <select name="udiv" class="form-control">
                                                             <%
-                                                                LGUConnect conn = new LGUConnect();
-                                                                Connection conn1 = conn.getConnection();
-                                                                Statement aaa = conn1.createStatement();
-                                                                ResultSet sss = aaa.executeQuery("SELECT * FROM `lgu_r_division`");
                                                                 while (sss.next()){
                                                             %>
                                                             <option value="<%out.print(sss.getInt("DIV_ID"));%>">
@@ -423,4 +413,7 @@
 
 </script>
 </body>
+<%} catch (SQLException | ClassNotFoundException e){
+    e.printStackTrace();
+}%>
 </html>

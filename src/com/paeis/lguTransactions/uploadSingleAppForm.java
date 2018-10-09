@@ -167,7 +167,7 @@ public class uploadSingleAppForm extends HttpServlet {
 		String tp_addr = txtNSingBussOwnHsNum + " " + txtNSingBussOwnStrt + " " + txtNSingBussOwnBrgy + " "
 				+ txtNSingBussOwnCity;
 
-		String queery = "SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM lgu_t_bp_application";
+		String queery = "SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM bpls_t_bp_application";
 		String _refNo = "";
 
 		try {
@@ -180,20 +180,20 @@ public class uploadSingleAppForm extends HttpServlet {
 			java.sql.Date _dateNSingBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
 
 			PreparedStatement authRepinfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_authorize_rep`( `AR_FNAME`, `AR_MNAME`, `AR_LNAME`, `AR_HOME_ADDRESS`) VALUES (?,?,?,?)");
+					"INSERT INTO `bpls_t_authorize_rep`( `AR_FNAME`, `AR_MNAME`, `AR_LNAME`, `AR_HOME_ADDRESS`) VALUES (?,?,?,?)");
 			authRepinfo.setString(1,txtNSingBussRepFName);
 			authRepinfo.setString(2,txtNSingBussRepMName);
 			authRepinfo.setString(3,txtNSingBussRepLName);
 			authRepinfo.setString(4,txtNSingBussRepAddr);
 			authRepinfo.executeUpdate();
 			PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
+					"INSERT INTO `bpls_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
 			rentInfo.setDate(1,_dateNSingBussEstRentStart);
 			rentInfo.setFloat(2,Float.parseFloat(numNSingBussEstRentMonth));
 			rentInfo.setString(3,txtNSingBussEstRentName);
 			rentInfo.executeUpdate();
 			PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_taxpayer`(`TP_FNAME`, `TP_MNAME`, `TP_LNAME`, `TP_HOME_ADDRESS`, `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?,?,?,?)");
+					"INSERT INTO `bpls_t_taxpayer`(`TP_FNAME`, `TP_MNAME`, `TP_LNAME`, `TP_HOME_ADDRESS`, `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?,?,?,?)");
 			taxPayerInfo.setString(1,txtNSingTaxPayFName);
 			taxPayerInfo.setString(2,txtNSingTaxPayMName);
 			taxPayerInfo.setString(3,txtNSingTaxPayLName);
@@ -202,7 +202,7 @@ public class uploadSingleAppForm extends HttpServlet {
 			taxPayerInfo.setString(6,txtNSingEmpSSSNo);
 			taxPayerInfo.executeUpdate();
 			PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_business`( `BU_NAME`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `DTI_REG_NO`, `DTI_DATE`,`BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_CODE`) VALUES('"
+					"INSERT INTO `bpls_t_business`( `BU_NAME`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `DTI_REG_NO`, `DTI_DATE`,`BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`,`RNT_ID`, `OT_CODE`) VALUES('"
 							+ txtNSingBussName + "','" + bu_loc + "','" + txtNSingPropIdxNo + "','" + txtNSingLotBlckNo
 							+ "','" + txtNSingBussFaxNo + "','" + txtNSingBussTelNo + "','"
 							+ Float.parseFloat(numNSingBussEstSignbrdArea) + "','"
@@ -210,16 +210,16 @@ public class uploadSingleAppForm extends HttpServlet {
 							+ Integer.parseInt(numNSingBussEmpQTY) + "','" + Integer.parseInt(numNSingBussUnitNo)
 							+ "','" + Float.parseFloat(numNSingBussEstSignbrdArea) + "','"
 							+ Float.parseFloat(numNSingBussCapitalization) + "','" + Integer.parseInt(txtNSBussAct)
-							+ "',(SELECT MAX(`TP_ID`) FROM `lgu_t_taxpayer`),'OT-SIN')");
+							+ "',(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),(SELECT MAX(`RENT_ID`) FROM `bpls_t_is_rented`),'OT-SIN')");
 			businessInfo.executeUpdate();
 			PreparedStatement authRep2Bus = (PreparedStatement) connection
-					.prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`) VALUES((SELECT MAX(`AR_ID`) FROM `lgu_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_t_business`)) ");
+					.prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`) VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
 			authRep2Bus.executeLargeUpdate();
-			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_t_business),(SELECT MAX(AR_ID) FROM lgu_t_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_t_business),'DIV-EV') ");
+			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV') ");
 			refNoInfo.executeUpdate();
 
 			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `lgu_t_bp_application`))");
+					"INSERT INTO `bpls_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `bpls_t_bp_application`))");
 			fileUpload.setBlob(1, is);
 			fileUpload.setString(2, fileName);
 			fileUpload.executeUpdate();
@@ -234,7 +234,7 @@ public class uploadSingleAppForm extends HttpServlet {
 
 			/*
 			 * callProc = (com.mysql.jdbc.CallableStatement) connection.
-			 * prepareCall("{ call lgu_application_sp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+			 * prepareCall("{ call bpls_application_sp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
 			 * ); // callProc.registerOutParameter(1,java.sql.Types.VARCHAR);
 			 * callProc.setString(1, txtNSingBussName); callProc.setString(2,
 			 * txtNSingTaxPayLName); callProc.setString(3, txtNSingTaxPayFName);
@@ -265,10 +265,6 @@ public class uploadSingleAppForm extends HttpServlet {
 			// String txtApplicationRefNo = callProc.getString(1);
 			// echo.write(txtApplicationRefNo);*/
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
