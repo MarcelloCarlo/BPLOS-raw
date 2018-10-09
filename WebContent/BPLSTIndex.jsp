@@ -34,6 +34,12 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+    LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM view_applicationformstre");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -71,108 +77,43 @@
                         >
                             <thead>
                             <tr>
+                                <th>Reference No.</th>
                                 <th>Business Name</th>
                                 <th>Business Nature</th>
-                                <th>Ownership Type</th>
-                                <th>Application Type</th>
-                                <th>Status</th>
-                                <th>Date Received</th>
-                                <th>President/Representative</th>
+                                <th>Taxpayer Name</th>
+                                <th>Taxpayer's Address</th>
+                                <th>Date Billed</th>
+                                <th class="hide">TB_ID</th>
+                                <th class="hide">EMP</th>
                                 <th>Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
-                                <th class="hide">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%
-                                LGUConnect conX = new LGUConnect();
-                                try {
-                                    Connection conn3 = conX.getConnection();
-                                    Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformstre`");
+                           <%
                                     while (gg3.next()) {
-                                        String apType = gg3.getString("AP_TYPE");
-                                        String modalMode = "";
-                                        String modalClass = "";
-                                        if (apType.equals("New")) {
-                                            modalMode = ".investigation-modal-new";
-                                            modalClass = "newModal";
-                                        } else if (apType.equals("Renew")) {
-                                            modalMode = ".investigation-modal-renew";
-                                            modalClass = "renewModal";
-                                        } else {
-                                            modalMode = ".investigation-modal-new";
-                                        }
+
                             %>
                             <tr>
-                                <td><%=gg3.getString("BU_NAME")%>
-                                </td><!--0-->
-                                <td><%=gg3.getString("BN_NAME")%>
-                                </td><!--1-->
-                                <td><%=gg3.getString("OT_NAME")%>
-                                </td><!--2-->
-                                <td><%=apType%>
-                                </td><!--3-->
-                                <td><%=gg3.getString("AP_STATUS")%>
-                                </td>
-                                <td><%=gg3.getString("AP_DATE")%>
-                                </td><!--5-->
-                                <td><%=gg3.getString("BU_PRESIDENT")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("BU_LOCATION")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                </td><!--10-->
-                                <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                </td>
-                                <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
-                                </td>
+                                <td><%=gg3.getString("AP_REFERENCE_NO")%></td>
+                                <td><%=gg3.getString("BU_NAME")%></td>
+                                <td><%=gg3.getString("BN_NAME")%></td>
+                                <td><%=gg3.getString("TP_NAME")%></td>
+                                <td><%=gg3.getString("TP_HOME_ADDRESS")%></td>
+                                <td><%=gg3.getString("TB_DATE_BILLED")%></td>
+                                <td class="hide"><%=gg3.getString("TB_ID")%></td>
+                                <td class="hide"><%=gg3.getString("EMP_NAME")%></td>
                                 <td>
                                     <button
                                             type="button"
-                                            class="btn btn-success <%=modalClass%>"
+                                            class="btn btn-success"
                                             data-toggle="modal"
-                                            data-target="<%=modalMode%>" title="Comply for the Inspection"
-                                    ><i class="fa fa-lg fa-list-ul"></i>
+                                            data-target="#modal-processpayment" title="Payment for Permit"
+                                    ><i class="fa fa-lg fa-money"></i>
                                     </button>
-                                </td>
-                                <td class="hide"><%=gg3.getString("ZONING_INS")%>
-                                </td><!--15-->
-                                <td class="hide"><%=gg3.getString("FIRE_INS")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("HEALTH_SANITATION_INS")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("BUILDING_INS")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("LABOR_INS")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("MISC_INS")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("INS_REMARKS")%>
                                 </td>
                             </tr>
                             <%
-                                    }}catch(SQLException | ClassNotFoundException e){
-                                    out.print(e);
-                                }
+                                    }
                             %>
                             </tbody>
                         </table>
@@ -193,34 +134,32 @@
                     <h4 class="modal-title">Process Payment</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#" method="POST">
+                    <form class="form-horizontal" id="treasuryNewApplForm" name="treasuryNewApplForm">
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Reference Number: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Reference Number/" />
-                            </div>
+                            <h5>Reference Number: <label class="col-md-4 control-label" id=""></label></h5>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Business Owner: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Business Owner Name/" />
-                            </div>
+                            <h5>Business Name: <label class="col-md-4 control-label" id=""></label></h5>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Business Name: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Business Name/" />
-                            </div>
+                            <h5>Business Nature: <label class="col-md-4 control-label" id=""></label></h5>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Fee: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Fee/" />
-                            </div>
+                            <h5>Taxpayer Name:  <label class="col-md-4 control-label" id=""></label></h5>
                         </div>
+                        <div class="form-group">
+                            <h5>Taxpayer Address:  <label class="col-md-4 control-label" id=""></label></h5>
+                        </div>
+                        <div class="form-group">
+                            <h5>Date Billed:  <label class="col-md-4 control-label" id=""></label></h5>
+                        </div>
+                        <div class="form-group">
+                            <h5>Assessed By:  <label class="col-md-4 control-label" id=""></label></h5>
+                        </div>
+
                         <div class="modal-footer">
                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-success">Process</button>
+                            <button type="submit" id="btnTreNewAppl"class="btn btn-sm btn-success">Process</button>
                         </div>
                     </form>
                 </div>
@@ -257,27 +196,12 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/divTreasury.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function() {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
+<%
+    }catch(SQLException | ClassNotFoundException e){
+    out.print(e);
+    }
+%>
 </html>

@@ -80,10 +80,17 @@
 <%  LGUConnect conX = new LGUConnect();
     try {
         Connection conn3 = conX.getConnection();
-        Statement ss4 = conn3.createStatement();
-        ResultSet rs4 = ss4.executeQuery("SELECT * FROM bpls_r_fee_list");
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");%>
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");
+        Statement ss2 = conn3.createStatement();
+        ResultSet rs3 = ss2.executeQuery("SELECT * FROM bpls_t_employee_profile");
+        Statement ss5 = conn3.createStatement();
+        ResultSet rs5 = ss5.executeQuery("SELECT * FROM bpls_t_employee_profile");
+        Statement ss6 = conn3.createStatement();
+        ResultSet rs6 = ss6.executeQuery("SELECT * FROM bpls_t_employee_profile");
+        Statement ss7 = conn3.createStatement();
+        ResultSet rs7 = ss7.executeQuery("SELECT * FROM bpls_t_employee_profile");
+       %>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -307,7 +314,8 @@
                                     </td>
                                 </tr>
                                 <%
-                                        }
+                                        }gg3.close();
+                                        ss3.close();
                                 %>
                                 </tbody>
                             </table>
@@ -904,7 +912,7 @@
                                                             name="BLDG_Fee"
                                                             class="flat"
                                                             value="5"
-                                                    > Building Inspection Fee)
+                                                    > Building Inspection Fee
                                                 </p>
                                                 <p>
                                                     <input
@@ -1062,6 +1070,58 @@
 
                                     </div>
                                     <hr>
+                                    <div class="col-md-12 panel-body">
+                                        <ul class="to_do">
+                                            <p>
+                                                <label>Assessed By</label>
+                                                <select class="selectpicker form-control" data-style="btn-white"
+                                                        id="aId" name="aId" tabindex="-1" required>
+
+                                                    <%while(rs3.next()){%>
+                                                    <option data-subtext="<%=rs3.getString("EP_JOB_DESC")%>" title="<%=rs3.getString("EP_JOB_DESC")%>"
+                                                            value="<%=rs3.getInt("EP_ID")%>">
+                                                            <%out.print(rs3.getString("EP_FNAME") + " " + rs3.getString("EP_MNAME")+ " " + rs3.getString("EP_LNAME"));%>
+                                                    <%} rs3.close();ss2.close();%>
+                                                </select>
+                                            </p>
+                                            <p>
+                                                <label>Verified By</label>
+                                                <select class="selectpicker form-control" data-style="btn-white"
+                                                        id="verId" name="verId" tabindex="-1" required>
+
+                                                    <%while(rs5.next()){%>
+                                                    <option data-subtext="<%=rs5.getString("EP_JOB_DESC")%>" title="<%=rs5.getString("EP_JOB_DESC")%>"
+                                                            value="<%=rs5.getInt("EP_ID")%>">
+                                                            <%out.print(rs5.getString("EP_FNAME") + " " + rs5.getString("EP_MNAME")+ " " + rs5.getString("EP_LNAME"));%>
+                                                            <%} rs5.close();ss5.close();%>
+                                                </select>
+                                            </p>
+                                            <p>
+                                                <label>Recommending Approval By</label>
+                                                <select class="selectpicker form-control" data-style="btn-white"
+                                                        id="recId" name="recId" tabindex="-1" required>
+
+                                                    <%while(rs6.next()){%>
+                                                    <option data-subtext="<%=rs6.getString("EP_JOB_DESC")%>" title="<%=rs6.getString("EP_JOB_DESC")%>"
+                                                            value="<%=rs6.getInt("EP_ID")%>">
+                                                            <%out.print(rs6.getString("EP_FNAME") + " " + rs6.getString("EP_MNAME")+ " " + rs6.getString("EP_LNAME"));%>
+                                                            <%}rs6.close();ss6.close();%>
+                                                </select>
+                                            </p>
+                                            <p>
+                                                <label>Approved By</label>
+                                                <select class="selectpicker form-control" data-style="btn-white"
+                                                        id="aprId" name="aprId" tabindex="-1" required>
+
+                                                    <%while(rs7.next()){%>
+                                                    <option data-subtext="<%=rs7.getString("EP_JOB_DESC")%>" title="<%=rs7.getString("EP_JOB_DESC")%>"
+                                                            value="<%=rs7.getInt("EP_ID")%>">
+                                                            <%out.print(rs7.getString("EP_FNAME") + " " + rs7.getString("EP_MNAME")+ " " + rs7.getString("EP_LNAME"));%>
+                                                            <%}rs7.close();ss7.close();%>
+                                                </select>
+                                            </p>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1092,6 +1152,8 @@
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/plugins/select2/dist/js/select2.min.js"></script>
+<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 <!--[if lt IE 9]>
 <script src="assets/crossbrowserjs/html5shiv.js"></script>
 <script src="assets/crossbrowserjs/respond.min.js"></script>

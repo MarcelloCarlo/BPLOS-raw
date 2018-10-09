@@ -38,7 +38,7 @@
 <!-- end #page-loader -->
 
 <div class="login-cover">
-    <div class="login-cover-image"><img src="assets/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt="" /></div>
+    <div class="login-cover-image"></div>
     <div class="login-cover-bg"></div>
 </div>
 <!-- begin #page-container -->
@@ -133,7 +133,6 @@
 <!-- ================== END BASE JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/login-v2.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <script src="assets/js/portal.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
