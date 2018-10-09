@@ -25,7 +25,7 @@ public class terminateApplForm extends HttpServlet {
 
         try {
             Connection connection = conX.getConnection();
-            PreparedStatement terminateApplicationForm = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_bp_application SET AP_STATUS = 'Terminated', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement terminateApplicationForm = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS = 'Terminated', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             terminateApplicationForm.setString(1, REMARKS);
             terminateApplicationForm.setString(2, REFERENCE_NO);
             terminateApplicationForm.executeUpdate();

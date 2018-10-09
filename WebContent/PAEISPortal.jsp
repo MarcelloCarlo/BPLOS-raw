@@ -82,7 +82,7 @@
 
                     <div class="tab-pane fade" id="default-tab-3">
                         <h4>Users Login</h4>
-                        <form name="loginEmpForm" id="loginEmpForm" enctype="multipart/form-data" novalidate="" data-parsley-validate="">
+                        <form name="loginEmpForm" id="loginEmpForm" novalidate="" data-parsley-validate="" enctype="multipart/form-data">
                             <div class="row">
 
                                 <div class="col-md-6">
@@ -105,7 +105,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-primary">Log In</button>
+                                <button type="submit" id="loginBtn" class="btn btn-sm btn-primary">Log In</button>
                             </div>
 
                         </form>

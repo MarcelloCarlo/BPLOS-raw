@@ -581,9 +581,10 @@
                                                             <%
                                                                 String natureSt = "";
                                                                 LGUConnect conX = new LGUConnect();
+                                                                try {
                                                                 Connection conn3 = conX.getConnection();
                                                                 Statement ss3 = conn3.createStatement();
-                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `lgu_r_business_nature`");
+                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `bpls_r_business_nature`");
                                                                 while (gg3.next()) {
                                                                     String classification = gg3.getString("BN_CLASSIFICATION");
                                                                     if (classification.equalsIgnoreCase("S")) {
@@ -599,6 +600,8 @@
                                                                 <%out.print(gg3.getString("BN_NAME"));%>
                                                             </option>
                                                             <%
+                                                                } } catch(SQLException | ClassNotFoundException e){
+                                                                    e.printStackTrace();
                                                                 }
                                                             %>
                                                         </select>
