@@ -53,11 +53,19 @@
         </div>
         <!-- end brand -->
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#default-tab-1" data-toggle="tab">Application Forms</a></li>
-                    <li class=""><a href="#default-tab-2" data-toggle="tab">Users Login</a></li>
+                    <li class="active"><a href="#default-tab-1" data-toggle="tab">News/Announcements</a></li>
+                    <li class=""><a href="#default-tab-2" data-toggle="tab">Application Forms</a></li>
+                    <li class=""><a href="#default-tab-3" data-toggle="tab">Users Login</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="default-tab-1">
+                        <h3 class="m-t-10"> News/Announcements:</h3>
+                        <p>
+                            Preview Notes here
+                        </p>
+                    </div>
+
+                    <div class="tab-pane fade" id="default-tab-2">
                         <h3 class="m-t-10"> Select an Application Form:</h3>
                         <div class="controls">
                             <select id="newForm" class="form-control">
@@ -72,7 +80,7 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="default-tab-2">
+                    <div class="tab-pane fade" id="default-tab-3">
                         <h4>Users Login</h4>
                         <form name="loginEmpForm" id="loginEmpForm" enctype="multipart/form-data" novalidate="" data-parsley-validate="">
                             <div class="row">

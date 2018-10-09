@@ -568,7 +568,7 @@
                                 <!-- begin wizard step-7 -->
                                 <div class="wizard-st-7">
                                     <fieldset>
-                                        <legend class="pull-left width-full">Business Nature and Attachement</legend>
+                                        <legend class="pull-left width-full">Business Nature and Attachment</legend>
 
                                         <%--Other exisiting table--%>
                                         <div class="row">

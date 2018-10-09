@@ -181,7 +181,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Gender</label>
+                                                        <label>Sex</label>
                                                         <div class="controls">
                                                             <select name="gender" class="form-control">
                                                                 <option value="Male">Male</option>
