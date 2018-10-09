@@ -23,7 +23,7 @@ public class generateDivisions extends HttpServlet {
             Connection conn = conX.getConnection();
 
                 Statement ss3 = conn.createStatement();
-                ResultSet res = ss3.executeQuery("select * from lgu_r_division");
+                ResultSet res = ss3.executeQuery("select * from bpls_r_division");
                 String a = "<option value=";
                 while (res.next()){
                     out.print("<option value="+res.getString("DIV_CODE")+">"+res.getString("DIV_NAME")+"</option>");

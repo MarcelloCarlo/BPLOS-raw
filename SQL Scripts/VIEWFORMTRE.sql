@@ -37,13 +37,13 @@ CREATE VIEW view_applicationformstre AS
          INS.LABOR_INS,
          INS.MISC_INS,
          INS.INS_REMARKS
-  FROM lgu_t_business BUS
-         INNER JOIN lgu_r_business_nature BN ON BN.BN_ID = BUS.BN_ID
-         INNER JOIN lgu_r_ownership_type OT ON OT.OT_CODE = BUS.OT_CODE
-         INNER JOIN lgu_t_bp_application AP ON AP.BU_ID = BUS.BU_ID
-         INNER JOIN lgu_t_taxpayer TP ON TP.TP_ID = BUS.TP_ID
-         INNER JOIN lgu_r_bu_ar BUxAR ON BUxAR.BU_ID = BUS.BU_ID
-         INNER JOIN lgu_t_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
-         INNER JOIN lgu_t_inspections INS ON INS.INS_AP_REFERENCE_NO = AP_REFERENCE_NO
-         INNER JOIN lgu_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
+  FROM bpls_t_business BUS
+         INNER JOIN bpls_r_business_nature BN ON BN.BN_ID = BUS.BN_ID
+         INNER JOIN bpls_r_ownership_type OT ON OT.OT_CODE = BUS.OT_CODE
+         INNER JOIN bpls_t_bp_application AP ON AP.BU_ID = BUS.BU_ID
+         INNER JOIN bpls_t_taxpayer TP ON TP.TP_ID = BUS.TP_ID
+         INNER JOIN bpls_r_bu_ar BUxAR ON BUxAR.BU_ID = BUS.BU_ID
+         INNER JOIN bpls_t_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
+         INNER JOIN bpls_t_inspections INS ON INS.INS_AP_REFERENCE_NO = AP_REFERENCE_NO
+         INNER JOIN bpls_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
   WHERE AP.AP_DIV_CODE_TO = 'DIV-TRE' OR AP.AP_STATUS = 'Assess';

@@ -77,6 +77,13 @@
     <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
         rel="stylesheet"> -->
 </head>
+<%  LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss4 = conn3.createStatement();
+        ResultSet rs4 = ss4.executeQuery("SELECT * FROM bpls_r_fee_list");
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");%>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -167,11 +174,6 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                    LGUConnect conX = new LGUConnect();
-                                    try {
-                                        Connection conn3 = conX.getConnection();
-                                        Statement ss3 = conn3.createStatement();
-                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");
                                         while (gg3.next()) {
                                             String apType = gg3.getString("AP_TYPE");
                                             String modalMode = "";
@@ -306,12 +308,27 @@
                                 </tr>
                                 <%
                                         }
-                                    } catch (SQLException | ClassNotFoundException e) {
-                                        out.print(e);
-                                    }
                                 %>
                                 </tbody>
                             </table>
+                            <%--<table class="table" id="feetable">
+                                <thead>
+                                <tr>
+                                    <th>Fee Name</th>
+                                    <th>Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <%while(rs4.next()){
+                                %>
+                                <tr>
+                                    <td><%=rs4.getString("FL_NAME")%></td>
+                                    <td><%=rs4.getString("FL_AMOUNT")%></td>
+                                </tr>
+                                <%}%>
+                                </tbody>
+                            </table>--%>
+
                         </div>
                     </div>
                     <!-- end panel -->
@@ -847,102 +864,100 @@
                                         <div class="">
                                             <ul class="to_do">
                                                 <p>
-                                                    <input
-                                                            type="checkbox"
+                                                    <input type="checkbox"
                                                             id="chkMayorsPerm"
                                                             name="Mayors_Perm"
                                                             class="flat"
-                                                            value="Pass"
-                                                    > Mayor's Permit
+                                                            value="1"> Mayor's Permit
                                                 </p>
-                                                <p id="dtiID">
+                                                <p>
                                                     <input
                                                             type="checkbox"
                                                             id="chkCity_Tax"
                                                             name="City_Tax"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="2"
                                                     > City Tax
                                                 </p>
-                                                <p id="secID">
+                                                <p>
                                                     <input
                                                             type="checkbox"
                                                             id="chkGarbage_Fee"
                                                             name="Garbage_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="3"
                                                     > Garbage Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
                                                             id="chkSanitary_Fee"
-                                                            name="AT_TITLE_TO_PROPERTY"
+                                                            name="Sanitary_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="4"
                                                     > Sanitary Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_CONTRACT_OF_LEASE"
-                                                            name="AT_CONTRACT_OF_LEASE"
+                                                            id="chkBLDG_Fee"
+                                                            name="BLDG_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="5"
                                                     > Building Inspection Fee)
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_AUTHORIZATION"
-                                                            name="AT_AUTHORIZATION"
+                                                            id="chkELECI_Fee"
+                                                            name="ELECI_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="6"
                                                     > Electrical Inspection Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkPLUMI_Fee"
+                                                            name="PLUMI_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="7"
                                                     > Plumbing Inspection Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkSIGBRD_Fee"
+                                                            name="SIGNBRD_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="8"
                                                     > Signboard
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkFS_Fee"
+                                                            name="FS_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="9"
                                                     > Fire Inspection Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkNRPS_Fee"
+                                                            name="NRPS_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="10"
                                                     > New Registered Plate Sticker
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkZoning_Fee"
+                                                            name="Zoning_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="11"
                                                     > Zoning Fee
                                                 </p>
                                             </ul>
@@ -955,91 +970,91 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkPENI_Fee"
+                                                            name="PENI_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="12"
                                                     > Penalty Interest
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkTourism_Fee"
+                                                            name="Tourism_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="13"
                                                     > Tourism
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkQCBRD_Fee"
+                                                            name="QCBRD_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="14"
                                                     > QCBRD
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkADJ_Fee"
+                                                            name="ADJ_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="15"
                                                     > Adjustments
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkDISC_Fee"
+                                                            name="DISC_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="16"
                                                     > Discount
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkPENDEL_Fee"
+                                                            name="PENDEL_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="17"
                                                     > Penalty for Delinquency
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkADJTOUR_Fee"
+                                                            name="ADJTOUR_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="18"
                                                     > Adjustment for Tourism
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkSPECPER_Fee"
+                                                            name="SPECPER_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="19"
                                                     > Special Permit
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkADD_Fee"
+                                                            name="ADD_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="20"
                                                     > Additional Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="AT_MISC_DOCUMENTS"
-                                                            name="AT_MISC_DOCUMENTS"
+                                                            id="chkCTC_Fee"
+                                                            name="CTC_Fee"
                                                             class="flat"
-                                                            value="Pass"
+                                                            value="21"
                                                     > CTC
                                                 </p>
                                             </ul>
@@ -1047,33 +1062,6 @@
 
                                     </div>
                                     <hr>
-                                    <div class="col-md-12 panel-body">
-                                        <div class="note note-info">
-                                            <h4>Evaluation Notes</h4>
-                                            <ul>
-                                                <li>
-                                                    <p>
-                                                        Other Requirements based on the business nature should be in the
-                                                        document. LEAVE UNCHECK THE "OTHER DOCUMENTS" IF ANY OTHER
-                                                        REQUIREMENTS ON THE ATTACHMENT IS INVALID OR INCOMPLETE.
-                                                    </p>
-                                                </li>
-                                                <li><p>
-                                                    Incomplete/Invalid documents on general and other requirements will
-                                                    redirect you to termination form of the application.
-                                                </p></li>
-                                            </ul>
-                                        </div>
-                                        <!--  <div class="col-md-9">
-                                                  <textarea
-                                                          class="form-control"
-                                                          placeholder="Remarks"
-                                                          id="AP_Remarks"
-                                                          name="AP_Remarks"
-                                                          rows="3"
-                                                  ></textarea>
-                                          </div>-->
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1082,12 +1070,11 @@
                                     type="button"
                                     class="btn btn-default"
                                     data-dismiss="modal"
-                                    id="btnCloseNewApplModal"
                             >Close
                             </button>
                             <button
                                     type="button"
-                                    id="btnNewAppl"
+                                    id="btnAssNewAppl"
                                     class="btn btn-success"
                             >Evaluate
                             </button>
@@ -1129,4 +1116,7 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 </body>
+<%  } catch (SQLException | ClassNotFoundException e) {
+    out.print(e);
+}%>
 </html>
