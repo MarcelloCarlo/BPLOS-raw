@@ -34,6 +34,14 @@ public class assessApplication extends HttpServlet {
         int nrpsFee = Integer.parseInt(request.getParameter("NRPS_Fee"));
         int zoningFee = Integer.parseInt(request.getParameter("Zoning_Fee"));
         int peniFee = Integer.parseInt(request.getParameter("PENI_Fee"));
+        int tourismFee = Integer.parseInt(request.getParameter("Tourism_Fee"));
+        int qcbrdFee = Integer.parseInt(request.getParameter("QCBRD_Fee"));
+        int adjFee = Integer.parseInt(request.getParameter("ADJ_Fee"));
+        int discFee = Integer.parseInt(request.getParameter("DISC_Fee"));
+        int pendelFee = Integer.parseInt(request.getParameter("PENDEL_Fee"));
+        int adjTourFee = Integer.parseInt(request.getParameter("ADJTOUR_Fee"));
+        int specperFee = Integer.parseInt(request.getParameter("SPECPER_Fee"));
+
         LGUConnect conX = new LGUConnect();
         String currBN = "";
             currBN = "UPDATE bpls_t_bp_application SET AP_STATUS = 'Assess', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
