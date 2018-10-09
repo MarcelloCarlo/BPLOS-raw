@@ -1,6 +1,6 @@
-describe('Default Configs', function() {
-	describe('Bubble Chart', function() {
-		it('should return correct tooltip strings', function() {
+describe('Default Configs', function () {
+	describe('Bubble Chart', function () {
+		it('should return correct tooltip strings', function () {
 			var config = Chart.defaults.bubble;
 			var chart = window.acquireChart({
 				type: 'bubble',
@@ -31,8 +31,8 @@ describe('Default Configs', function() {
 		});
 	});
 
-	describe('Doughnut Chart', function() {
-		it('should return correct tooltip strings', function() {
+	describe('Doughnut Chart', function () {
+		it('should return correct tooltip strings', function () {
 			var config = Chart.defaults.doughnut;
 			var chart = window.acquireChart({
 				type: 'doughnut',
@@ -58,7 +58,7 @@ describe('Default Configs', function() {
 			}]);
 		});
 
-		it('should return correct tooltip string for a multiline label', function() {
+		it('should return correct tooltip string for a multiline label', function () {
 			var config = Chart.defaults.doughnut;
 			var chart = window.acquireChart({
 				type: 'doughnut',
@@ -88,7 +88,7 @@ describe('Default Configs', function() {
 			}]);
 		});
 
-		it('should return the correct html legend', function() {
+		it('should return the correct html legend', function () {
 			var config = Chart.defaults.doughnut;
 			var chart = window.acquireChart({
 				type: 'doughnut',
@@ -106,7 +106,7 @@ describe('Default Configs', function() {
 			expect(chart.generateLegend()).toBe(expectedLegend);
 		});
 
-		it('should return correct legend label objects', function() {
+		it('should return correct legend label objects', function () {
 			var config = Chart.defaults.doughnut;
 			var chart = window.acquireChart({
 				type: 'doughnut',
@@ -147,7 +147,7 @@ describe('Default Configs', function() {
 			expect(chart.legend.legendItems).toEqual(expected);
 		});
 
-		it('should hide the correct arc when a legend item is clicked', function() {
+		it('should hide the correct arc when a legend item is clicked', function () {
 			var config = Chart.defaults.doughnut;
 			var chart = window.acquireChart({
 				type: 'doughnut',
@@ -177,8 +177,8 @@ describe('Default Configs', function() {
 		});
 	});
 
-	describe('Polar Area Chart', function() {
-		it('should return correct tooltip strings', function() {
+	describe('Polar Area Chart', function () {
+		it('should return correct tooltip strings', function () {
 			var config = Chart.defaults.polarArea;
 			var chart = window.acquireChart({
 				type: 'polarArea',
@@ -204,7 +204,7 @@ describe('Default Configs', function() {
 			}]);
 		});
 
-		it('should return the correct html legend', function() {
+		it('should return the correct html legend', function () {
 			var config = Chart.defaults.polarArea;
 			var chart = window.acquireChart({
 				type: 'polarArea',
@@ -222,7 +222,7 @@ describe('Default Configs', function() {
 			expect(chart.generateLegend()).toBe(expectedLegend);
 		});
 
-		it('should return correct legend label objects', function() {
+		it('should return correct legend label objects', function () {
 			var config = Chart.defaults.polarArea;
 			var chart = window.acquireChart({
 				type: 'polarArea',
@@ -263,7 +263,7 @@ describe('Default Configs', function() {
 			expect(chart.legend.legendItems).toEqual(expected);
 		});
 
-		it('should hide the correct arc when a legend item is clicked', function() {
+		it('should hide the correct arc when a legend item is clicked', function () {
 			var config = Chart.defaults.polarArea;
 			var chart = window.acquireChart({
 				type: 'polarArea',

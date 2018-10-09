@@ -10,9 +10,11 @@
         contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"
 %>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="javafx.application.Application" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

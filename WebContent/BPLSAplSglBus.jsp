@@ -1,5 +1,8 @@
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -84,7 +87,8 @@
                             Proprietorship</h4>
                     </div>
                     <div class="panel-body">
-                        <form data-parsley-validate="" novalidate="" enctype="multipart/form-data" name="applicationFormSingle" id="applicationFormSingle">
+                        <form data-parsley-validate="" novalidate="" enctype="multipart/form-data"
+                              name="applicationFormSingle" id="applicationFormSingle">
                             <div id="wizard">
                                 <ol>
                                     <li>
@@ -105,10 +109,6 @@
                                     </li>
                                     <li>
                                         Other Information
-                                        <small></small>
-                                    </li>
-                                    <li>
-                                        Existing Business Information
                                         <small></small>
                                     </li>
                                     <li>
@@ -133,7 +133,8 @@
                                                     <label>Taxpayer's Name*</label>
                                                     <input type="text" id="txtNSingTaxPayLName"
                                                            name="txtNSingTaxPayLName" placeholder="Last Name"
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -141,7 +142,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingTaxPayFName"
                                                            name="txtNSingTaxPayFName" placeholder="First Name"
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
@@ -149,7 +151,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingTaxPayMName"
                                                            name="txtNSingTaxPayMName" placeholder="Middle Name"
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -161,7 +164,8 @@
                                                     <label>Taxpayer's Address*</label>
                                                     <input type="text" id="txtNSingBussOwnHsNum"
                                                            name="txtNSingBussOwnHsNum" placeholder="House No."
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -169,7 +173,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingBussOwnStrt"
                                                            name="txtNSingBussOwnStrt" placeholder="Street"
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -177,7 +182,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingBussOwnBrgy"
                                                            name="txtNSingBussOwnBrgy" placeholder="Barangay"
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -185,7 +191,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingBussOwnCity"
                                                            name="txtNSingBussOwnCity" placeholder="City"
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -197,7 +204,8 @@
                                                     <label>Taxpayer's Identification Number (TIN)*</label>
                                                     <input type="text" id="txtNSingTaxPayTINNo"
                                                            name="txtNSingTaxPayTINNo" placeholder="TIN (9-12 Digits)"
-                                                           class="form-control" data-parsley-group="wizard-st-1" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-1"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -231,7 +239,8 @@
                                                     <input type="text" id="txtNSingBussFlrNo"
                                                            name="txtNSingBussFlrNo"
                                                            placeholder="If within a bldg.., specify stall, room, floor number"
-                                                           class="form-control" data-parsley-group="wizard-st-2" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-2"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -239,7 +248,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingBussStrtNo"
                                                            name="txtNSingBussStrtNo" placeholder="Street No."
-                                                           class="form-control" data-parsley-group="wizard-st-2" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-2"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -247,7 +257,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingBussStrtName"
                                                            name="txtNSingBussStrtName" placeholder="Street Name"
-                                                           class="form-control" data-parsley-group="wizard-st-2" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-2"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -255,7 +266,8 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" id="txtNSingBussBrgyName"
                                                            name="txtNSingBussBrgyName" placeholder="Barangay"
-                                                           class="form-control" data-parsley-group="wizard-st-2" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-2"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -266,8 +278,10 @@
                                                 <div class="form-group">
                                                     <label>Property Index No.*</label>
                                                     <input type="text" id="txtNSingPropIdxNo"
-                                                           name="txtNSingPropIdxNo" placeholder="Property Index No. (14 Digits)"
-                                                           class="form-control" data-parsley-group="wizard-st-2" required/>
+                                                           name="txtNSingPropIdxNo"
+                                                           placeholder="Property Index No. (14 Digits)"
+                                                           class="form-control" data-parsley-group="wizard-st-2"
+                                                           required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -275,7 +289,8 @@
                                                     <label>Lot & Block No.*</label>
                                                     <input type="text" id="txtNSingLotBlckNo"
                                                            name="txtNSingLotBlckNo" placeholder="Lot & Block No."
-                                                           class="form-control" data-parsley-group="wizard-st-2" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-2"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -297,7 +312,10 @@
                                                         Registration Number*</label>
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussDTIRegNo"
-                                                               name="txtNSingBussDTIRegNo" placeholder="Registration Number (8 Digits)" class="form-control" data-parsley-group="wizard-st-3" required />
+                                                               name="txtNSingBussDTIRegNo"
+                                                               placeholder="Registration Number (8 Digits)"
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -307,7 +325,8 @@
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussTelNo"
                                                                name="txtNSingBussTelNo" placeholder="Telephone Number"
-                                                               class="form-control" data-parsley-group="wizard-st-3" required/>
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -317,15 +336,18 @@
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussFaxNo"
                                                                name="txtNSingBussFaxNo" placeholder="Fax Number"
-                                                               class="form-control" data-parsley-group="wizard-st-3" required/>
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Date*</label>
-                                                    <input type="text" class="form-control date" id="dateNSingBussDTIReg"
-                                                           name="dateNSingBussDTIReg" data-parsley-group="wizard-st-3" required/>
+                                                    <input type="text" class="form-control date"
+                                                           id="dateNSingBussDTIReg"
+                                                           name="dateNSingBussDTIReg" data-parsley-group="wizard-st-3"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -337,8 +359,10 @@
                                                     <label>If Employer, Employer's Social Security Number (SSS)</label>
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingEmpSSSNo"
-                                                               name="txtNSingEmpSSSNo" placeholder="SSS Number (9 Digits)"
-                                                               class="form-control" data-parsley-group="wizard-st-3" required/>
+                                                               name="txtNSingEmpSSSNo"
+                                                               placeholder="SSS Number (9 Digits)"
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -348,7 +372,8 @@
                                                     <div class="controls">
                                                         <input type="number" id="numNSingBussEmpQTY"
                                                                name="numNSingBussEmpQTY" placeholder="No of Employees"
-                                                               class="form-control" data-parsley-group="wizard-st-3" required/>
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,7 +395,8 @@
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussRepLName"
                                                                name="txtNSingBussRepLName" placeholder="Last Name"
-                                                               class="form-control" data-parsley-group="wizard-st-4" required/>
+                                                               class="form-control" data-parsley-group="wizard-st-4"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -380,7 +406,8 @@
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussRepFName"
                                                                name="txtNSingBussRepFName" placeholder="First Name"
-                                                               class="form-control" data-parsley-group="wizard-st-4" required/>
+                                                               class="form-control" data-parsley-group="wizard-st-4"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -390,7 +417,8 @@
                                                     <div class="controls">
                                                         <input type="text" id="txtNSingBussRepMName"
                                                                name="txtNSingBussRepMName" placeholder="Middle Name"
-                                                               class="form-control" data-parsley-group="wizard-st-4" required/>
+                                                               class="form-control" data-parsley-group="wizard-st-4"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -403,7 +431,8 @@
                                                     <label>Home Address of Authorized Representative*</label>
                                                     <input type="text" id="txtNSingBussRepAddr"
                                                            name="txtNSingBussRepAddr" placeholder="Home Address"
-                                                           class="form-control" data-parsley-group="wizard-st-4" required/>
+                                                           class="form-control" data-parsley-group="wizard-st-4"
+                                                           required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -474,100 +503,6 @@
                                 <!-- begin wizard step-6 -->
                                 <div class="wizard-st-6">
                                     <fieldset>
-                                        <legend class="pull-left width-full">If You Have Other Existing Businesss
-                                            Permits
-                                        </legend>
-
-                                        <%--Other exisiting table--%>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Existing Kind of Business</label>
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNSingExBuss"
-                                                               name="txtNSingExBuss" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Business Permit No.</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo"
-                                                               name="txtNSingExBussNo" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Business Location</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc"
-                                                               name="txtNSingExBussLoc" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNSingExBuss1"
-                                                               name="txtNSingExBuss1" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo1"
-                                                               name="txtNSingExBussNo1" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc1"
-                                                               name="txtNSingExBussLoc1" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNSingExBuss2"
-                                                               name="txtNSingExBuss2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussNo2"
-                                                               name="txtNSingExBussNo2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNSingExBussLoc2"
-                                                               name="txtNSingExBussLoc2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-6 -->
-                                <!-- begin wizard step-7 -->
-                                <div class="wizard-st-7">
-                                    <fieldset>
                                         <legend class="pull-left width-full">Business Nature and Attachment</legend>
 
                                         <%--Other exisiting table--%>
@@ -577,30 +512,32 @@
                                                     <label>Kind/Nature of Business or Activity</label>
                                                     <div class="controls">
                                                         <select class="selectpicker form-control" data-style="btn-white"
-                                                                id="txtNSBussAct" name="txtNSBussAct" tabindex="-1" data-parsley-group="wizard-st-7" required>
+                                                                id="txtNSBussAct" name="txtNSBussAct" tabindex="-1"
+                                                                data-parsley-group="wizard-st-7" required>
                                                             <%
                                                                 String natureSt = "";
                                                                 LGUConnect conX = new LGUConnect();
                                                                 try {
-                                                                Connection conn3 = conX.getConnection();
-                                                                Statement ss3 = conn3.createStatement();
-                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `bpls_r_business_nature`");
-                                                                while (gg3.next()) {
-                                                                    String classification = gg3.getString("BN_CLASSIFICATION");
-                                                                    if (classification.equalsIgnoreCase("S")) {
-                                                                        natureSt = "Small Scale";
-                                                                    } else if (classification.equalsIgnoreCase("L")) {
-                                                                        natureSt = "Large Scale";
-                                                                    } else {
-                                                                        natureSt = "Unidentified";
-                                                                    }
+                                                                    Connection conn3 = conX.getConnection();
+                                                                    Statement ss3 = conn3.createStatement();
+                                                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `bpls_r_business_nature`");
+                                                                    while (gg3.next()) {
+                                                                        String classification = gg3.getString("BN_CLASSIFICATION");
+                                                                        if (classification.equalsIgnoreCase("S")) {
+                                                                            natureSt = "Small Scale";
+                                                                        } else if (classification.equalsIgnoreCase("L")) {
+                                                                            natureSt = "Large Scale";
+                                                                        } else {
+                                                                            natureSt = "Unidentified";
+                                                                        }
                                                             %>
                                                             <option data-subtext="<%=natureSt%>"
                                                                     value="<%out.print(gg3.getInt("BN_ID"));%>">
                                                                 <%out.print(gg3.getString("BN_NAME"));%>
                                                             </option>
                                                             <%
-                                                                } } catch(SQLException | ClassNotFoundException e){
+                                                                    }
+                                                                } catch (SQLException | ClassNotFoundException e) {
                                                                     e.printStackTrace();
                                                                 }
                                                             %>
@@ -613,7 +550,8 @@
                                                     <label>Unit No./Qty</label>
                                                     <div class="controls">
                                                         <input type="text" id="numNSingBussUnitNo"
-                                                               name="numNSingBussUnitNo" class="form-control" data-parsley-group="wizard-st-7" required/>
+                                                               name="numNSingBussUnitNo" class="form-control"
+                                                               data-parsley-group="wizard-st-7" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -622,7 +560,8 @@
                                                     <label>Area (Sq. Mts.)</label>
                                                     <div class="controls">
                                                         <input type="text" id="numNSingBussAreaSqmts"
-                                                               name="numNSingBussAreaSqmts" class="form-control" data-parsley-group="wizard-st-7" required/>
+                                                               name="numNSingBussAreaSqmts" class="form-control"
+                                                               data-parsley-group="wizard-st-7" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -633,7 +572,8 @@
                                                     <div class="controls">
                                                         <input type="currency"
                                                                id="numNSingBussCapitalization"
-                                                               name="numNSingBussCapitalization" class="form-control" data-parsley-group="wizard-st-7" required/>
+                                                               name="numNSingBussCapitalization" class="form-control"
+                                                               data-parsley-group="wizard-st-7" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -644,9 +584,11 @@
                                                 <div class="form-group">
                                                     <div class="controls fileupload-buttonbar">
 
-                                    <span>Add files...</span>
-                                    <input type="file" name="fileUnifiedRequirements"
-                                           id="fileUnifiedRequirements" accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf" data-parsley-group="wizard-st-7" required>
+                                                        <span>Add files...</span>
+                                                        <input type="file" name="fileUnifiedRequirements"
+                                                               id="fileUnifiedRequirements"
+                                                               accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
+                                                               data-parsley-group="wizard-st-7" required>
 
                                                     </div>
                                                 </div>
@@ -654,17 +596,21 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                                <!-- end wizard step-7 -->
-                                <!-- begin wizard step-8 -->
+                                <!-- end wizard step-6 -->
+                                <!-- begin wizard step-7 -->
                                 <div>
                                     <div class="jumbotron m-b-0 text-center">
                                         <h1>Finished!</h1>
-                                        <p>Click the "Continue" button to proceed to the next step. Make sure you fill out all of the requirements right to move forward :-)</p>
+                                        <p>Click the "Continue" button to proceed to the next step. Make sure you fill
+                                            out all of the requirements right to move forward :-)</p>
                                         <p>
-                                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg">Continue</button></p>
+                                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg">
+                                                Continue
+                                            </button>
+                                        </p>
                                     </div>
                                 </div>
-                                <!-- end wizard step-8 -->
+                                <!-- end wizard step-7 -->
                             </div>
                         </form>
                     </div>

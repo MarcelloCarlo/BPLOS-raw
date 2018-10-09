@@ -49,7 +49,7 @@ $(document).ready(function () {
     });
 
     $("#chkRectify").change(function () {
-        if (this.checked){
+        if (this.checked) {
             $("#numMonths").prop('disabled', false);
             $("#numMonths").prop('required', true);
         } else {
@@ -78,7 +78,7 @@ $(document).ready(function () {
     });
 
     $("#btnInvNewAppl").click(function () {
-        if($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked') && !$("#chkRectify").is(':checked') ){
+        if ($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked') && !$("#chkRectify").is(':checked')) {
             //Assessment
             // noinspection BadExpressionStatementJS
             swal({
@@ -89,8 +89,9 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if(result.value)
+            }).then((result) = > {
+                if(result.value
+        )
             {
                 $("#chkZONING_INS").attr("disabled", false);
                 $("#chkFIRE_INS").attr("disabled", false);
@@ -102,7 +103,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: "updateNewAppInvestigationForm",
-                    enctype:"multipart/form-data",
+                    enctype: "multipart/form-data",
                     data: datanewAsInvApplForm,
                     processData: false,
                     contentType: false,
@@ -119,19 +120,23 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Investigated',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if(result.value){
+                        }).then((result) = > {
+                            if(result.value
+                    )
+                        {
                             location.reload(true);
                         }
-                    });
+                    })
+                        ;
                     },
                     error: function () {
                         swal("error", "The process encountered and error. Try again or contact your system administrator", "error");
                     }
                 });
             }
-        });
-        }else if ( $("#chkRectify").is(':checked') && $("#numMonths").val()!==""){
+        })
+            ;
+        } else if ($("#chkRectify").is(':checked') && $("#numMonths").val() !== "") {
             //Rectify
             // noinspection BadExpressionStatementJS
             swal({
@@ -142,15 +147,16 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if(result.value)
+            }).then((result) = > {
+                if(result.value
+        )
             {
                 var datanewRcInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
                 $.ajax({
                     type: "POST",
                     url: "updateNewAppInvestigationForm",
                     data: datanewRcInvApplForm,
-                    enctype:"multipart/form-data",
+                    enctype: "multipart/form-data",
                     processData: false,
                     contentType: false,
                     success: function () {
@@ -160,20 +166,24 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Rectification Sent!',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if(result.value){
+                        }).then((result) = > {
+                            if(result.value
+                    )
+                        {
                             location.reload(true);
                         }
-                    });
+                    })
+                        ;
                     },
                     error: function () {
                         swal("error", "The process encountered and error", "error");
                     }
                 });
             }
-        });
+        })
+            ;
 
-        } else{
+        } else {
             //Terminate
             $(".investigation-modal-terminate").modal('toggle');
             $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());

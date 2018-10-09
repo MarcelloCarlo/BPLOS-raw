@@ -1,4 +1,3 @@
-
 /* Prettyify */
 $(document).ready(function () {
     prettyPrint();
@@ -32,10 +31,14 @@ var shiftWindow = function () {
         );
         if (!scrolledToBottomOfPage) {
             scrollBy(0, -60);
-        };
-    };
+        }
+        ;
+    }
+    ;
 };
-if (location.hash) { shiftWindow(); }
+if (location.hash) {
+    shiftWindow();
+}
 window.addEventListener("hashchange", shiftWindow);
 
 
@@ -48,7 +51,8 @@ $("ul.nav a").click(function () {
         /* Force a single 'hashchange' event to occur after the click event */
         window.disableShift = true;
         location.hash = '';
-    };
+    }
+    ;
 });
 
 $(document).bind('DOMNodeInserted',

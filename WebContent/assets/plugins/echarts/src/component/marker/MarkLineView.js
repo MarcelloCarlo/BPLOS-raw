@@ -113,7 +113,7 @@ define(function (require) {
             if (
                 fromCoord && toCoord &&
                 (ifMarkLineHasOnlyDim(1, fromCoord, toCoord, coordSys)
-                || ifMarkLineHasOnlyDim(0, fromCoord, toCoord, coordSys))
+                    || ifMarkLineHasOnlyDim(0, fromCoord, toCoord, coordSys))
             ) {
                 return true;
             }
@@ -365,7 +365,7 @@ define(function (require) {
             });
         }
         else {
-            coordDimsInfos =[{
+            coordDimsInfos = [{
                 name: 'value',
                 type: 'float'
             }];
@@ -388,15 +388,21 @@ define(function (require) {
             return item.value;
         };
         fromData.initData(
-            zrUtil.map(optData, function (item) { return item[0]; }),
+            zrUtil.map(optData, function (item) {
+                return item[0];
+            }),
             null, dimValueGetter
         );
         toData.initData(
-            zrUtil.map(optData, function (item) { return item[1]; }),
+            zrUtil.map(optData, function (item) {
+                return item[1];
+            }),
             null, dimValueGetter
         );
         lineData.initData(
-            zrUtil.map(optData, function (item) { return item[2]; })
+            zrUtil.map(optData, function (item) {
+                return item[2];
+            })
         );
         return {
             from: fromData,

@@ -134,7 +134,7 @@ define(function (require) {
                 mpData.setItemVisual(idx, {
                     symbolSize: symbolSize,
                     color: itemModel.get('itemStyle.normal.color')
-                        || seriesData.getVisual('color'),
+                    || seriesData.getVisual('color'),
                     symbol: itemModel.getShallow('symbol')
                 });
             });
@@ -173,7 +173,7 @@ define(function (require) {
             });
         }
         else {
-            coordDimsInfos =[{
+            coordDimsInfos = [{
                 name: 'value',
                 type: 'float'
             }];
@@ -181,8 +181,8 @@ define(function (require) {
 
         var mpData = new List(coordDimsInfos, mpModel);
         var dataOpt = zrUtil.map(mpModel.get('data'), zrUtil.curry(
-                markerHelper.dataTransform, seriesModel
-            ));
+            markerHelper.dataTransform, seriesModel
+        ));
         if (coordSys) {
             dataOpt = zrUtil.filter(
                 dataOpt, zrUtil.curry(markerHelper.dataFilter, coordSys)

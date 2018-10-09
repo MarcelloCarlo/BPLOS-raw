@@ -12,7 +12,7 @@ $(document).ready(function () {
         format: "DD-MM-YYYY",
     });
 
-    $('#submitBtn').click( function () {
+    $('#submitBtn').click(function () {
         swal.mixin({
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,
@@ -22,29 +22,34 @@ $(document).ready(function () {
             text: 'Do you agree on the terms and conditions?'
         },
             'Confirm?',
-        ]).then((result) => {
-            if (result.value) {
+        ]).then((result) = > {
+            if(result.value
+    )
+        {
             var applicationFormCorp = new FormData($('#applicationFormCorp')[0]);
             $.ajax({
                 type: "POST",
-                enctype:"multipart/form-data",
+                enctype: "multipart/form-data",
                 url: "uploadCorpAppForm",
                 data: applicationFormCorp,
                 processData: false,
                 contentType: false,
-                success: function(response){
+                success: function (response) {
                     swal({
                         type: 'success',
                         title: 'All Done!',
                         html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!',
                         confirmButtonText: 'Proceed'
-                    }).then((result) => {
-                        if (result.value) {
-                        var refx = "?refNo="+response;
+                    }).then((result) = > {
+                        if(result.value
+                )
+                    {
+                        var refx = "?refNo=" + response;
                         //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
-                        window.location.replace("BPLSRtSlip.jsp"+refx);
+                        window.location.replace("BPLSRtSlip.jsp" + refx);
                     }
-                });
+                })
+                    ;
                 },
                 error: function () {
                     swal("error", "Process encountered an error", "error");

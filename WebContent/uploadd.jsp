@@ -13,10 +13,10 @@
     <title>Guru Uploading File</title>
 </head>
 <body>
-File: <br />
+File: <br/>
 <form action="upload" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" />
-    <input type="submit" value="upload" />
+    <input type="file" name="file"/>
+    <input type="submit" value="upload"/>
 </form>
 </body>
 </html>

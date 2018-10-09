@@ -14,7 +14,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="assets/img/user-13.jpg" alt="" />
+                    <img src="assets/img/user-13.jpg" alt=""/>
                     <span class="hidden-xs">Sample User</span> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInLeft">
@@ -52,17 +52,17 @@
                 <li><a href="PAEISSAMdle.jsp">Module</a></li>
             </ul>
         </li>
-            <li class="has-sub">
-                <a href="javascript:;">
-                    <b class="caret pull-right"></b>
-                    <i class="fa fa-text"></i>
-                    <span>Reports</span>
-                </a>
-                <ul class="sub-menu">
-                    <li><a href="">Termination Reports</a></li>
-                    <li><a href="">Accomplishment Reports</a></li>
-                </ul>
-            </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-text"></i>
+                <span>Reports</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="">Termination Reports</a></li>
+                <li><a href="">Accomplishment Reports</a></li>
+            </ul>
+        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>

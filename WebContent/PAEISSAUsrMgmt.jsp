@@ -1,5 +1,8 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -35,15 +38,15 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
-<%   LGUConnect conX = new LGUConnect();
-try{
-    Connection conn3 = conX.getConnection();
-    Statement ss3 = conn3.createStatement();
-    Statement aaa = conn3.createStatement();
-    Statement aa = conn3.createStatement();
-    ResultSet ss = aa.executeQuery("SELECT * FROM `bpls_r_role`");
-    ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
-    ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.UEP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
+<% LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        Statement aaa = conn3.createStatement();
+        Statement aa = conn3.createStatement();
+        ResultSet ss = aa.executeQuery("SELECT * FROM `bpls_r_role`");
+        ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
+        ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.UEP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -78,7 +81,8 @@ try{
                         <h4 class="panel-title">Users Table</h4>
                     </div>
                     <div class="panel-body">
-                        <a href="#modal-adduser" id="addUserbtn" class="btn btn-sm btn-primary" data-toggle="modal">Add User</a>
+                        <a href="#modal-adduser" id="addUserbtn" class="btn btn-sm btn-primary" data-toggle="modal">Add
+                            User</a>
                     </div>
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
@@ -216,136 +220,138 @@ try{
 
 
                                             </div>
-                                    <!-- end row -->
-                                    </fieldset>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-1 -->
+                                    <!-- begin wizard step-2 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Contact Information</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Contact Number</label>
+                                                        <input type="text" name="contact" placeholder="123-456-7890"
+                                                               class="form-control"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email Address</label>
+                                                        <input type="text" name="email"
+                                                               placeholder="someone@example.com"
+                                                               class="form-control"/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <input type="text" name="home" placeholder="Current Address"
+                                                               class="form-control"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-2 -->
+                                    <!-- begin wizard step-3 -->
+                                    <div>
+                                        <fieldset>
+                                            <legend class="pull-left width-full">Login</legend>
+                                            <!-- begin row -->
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Username</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="username"
+                                                                   placeholder="Your username"
+                                                                   class="form-control" required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Pasword</label>
+                                                        <div class="controls">
+                                                            <input type="password" name="password"
+                                                                   value="Bplo_user111" class="form-control"
+                                                                   disabled/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>User Role</label>
+                                                        <div class="controls">
+                                                            <select name="urole" class="form-control">
+                                                                <%
+                                                                    while (ss.next()) {
+                                                                %>
+                                                                <option value="<%out.print(ss.getInt("ROLE_ID"));%>">
+                                                                    <%out.print(ss.getString("ROLE_NAME"));%>
+                                                                </option>
+                                                                <%
+                                                                    }
+                                                                %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Division</label>
+                                                        <div class="controls">
+                                                            <select name="udiv" class="form-control">
+                                                                <%
+                                                                    while (sss.next()) {
+                                                                %>
+                                                                <option value="<%out.print(sss.getInt("DIV_ID"));%>">
+                                                                    <%out.print(sss.getString("DIV_NAME"));%>
+                                                                </option>
+                                                                <%
+                                                                    }
+                                                                %>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <br>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            </div>
+                                            <!-- end row -->
+                                        </fieldset>
+                                    </div>
+                                    <!-- end wizard step-3 -->
                                 </div>
-                                <!-- end wizard step-1 -->
-                                <!-- begin wizard step-2 -->
-                                <div>
-                                    <fieldset>
-                                        <legend class="pull-left width-full">Contact Information</legend>
-                                        <!-- begin row -->
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Contact Number</label>
-                                                    <input type="text" name="contact" placeholder="123-456-7890"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Email Address</label>
-                                                    <input type="text" name="email" placeholder="someone@example.com"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" name="home" placeholder="Current Address"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <!-- end row -->
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-2 -->
-                                <!-- begin wizard step-3 -->
-                                <div>
-                                    <fieldset>
-                                        <legend class="pull-left width-full">Login</legend>
-                                        <!-- begin row -->
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Username</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="username" placeholder="Your username"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Pasword</label>
-                                                    <div class="controls">
-                                                        <input type="password" name="password"
-                                                               value="Bplo_user111" class="form-control"
-                                                               disabled/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>User Role</label>
-                                                    <div class="controls">
-                                                        <select name="urole" class="form-control">
-                                                            <%
-                                                                while (ss.next()){
-                                                            %>
-                                                            <option value="<%out.print(ss.getInt("ROLE_ID"));%>">
-                                                                <%out.print(ss.getString("ROLE_NAME"));%>
-                                                            </option>
-                                                            <%
-                                                                }
-                                                            %>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Division</label>
-                                                    <div class="controls">
-                                                        <select name="udiv" class="form-control">
-                                                            <%
-                                                                while (sss.next()){
-                                                            %>
-                                                            <option value="<%out.print(sss.getInt("DIV_ID"));%>">
-                                                                <%out.print(sss.getString("DIV_NAME"));%>
-                                                            </option>
-                                                            <%
-                                                                }
-                                                            %>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <br>
-
-                                        <div class="modal-footer">
-                                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
-                                        </div>
-                                        <!-- end row -->
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-3 -->
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- begin scroll to top btn -->
-<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
-        class="fa fa-angle-up"></i></a>
-<!-- end scroll to top btn -->
+    <!-- begin scroll to top btn -->
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+            class="fa fa-angle-up"></i></a>
+    <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
 
@@ -414,7 +420,9 @@ try{
 
 </script>
 </body>
-<%} catch (SQLException | ClassNotFoundException e){
-    e.printStackTrace();
-}%>
+<%
+    } catch (SQLException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+%>
 </html>

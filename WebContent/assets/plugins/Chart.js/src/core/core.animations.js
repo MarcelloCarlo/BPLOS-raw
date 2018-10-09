@@ -25,7 +25,7 @@ module.exports = {
 	 * @param {Number} duration - The animation duration in ms.
 	 * @param {Boolean} lazy - if true, the chart is not marked as animating to enable more responsive interactions
 	 */
-	addAnimation: function(chart, animation, duration, lazy) {
+	addAnimation: function (chart, animation, duration, lazy) {
 		var animations = this.animations;
 		var i, ilen;
 
@@ -50,8 +50,8 @@ module.exports = {
 		}
 	},
 
-	cancelAnimation: function(chart) {
-		var index = helpers.findIndex(this.animations, function(animation) {
+	cancelAnimation: function (chart) {
+		var index = helpers.findIndex(this.animations, function (animation) {
 			return animation.chart === chart;
 		});
 
@@ -61,13 +61,13 @@ module.exports = {
 		}
 	},
 
-	requestAnimationFrame: function() {
+	requestAnimationFrame: function () {
 		var me = this;
 		if (me.request === null) {
 			// Skip animation frame requests until the active one is executed.
 			// This can happen when processing mouse events, e.g. 'mousemove'
 			// and 'mouseout' events will trigger multiple renders.
-			me.request = helpers.requestAnimFrame.call(window, function() {
+			me.request = helpers.requestAnimFrame.call(window, function () {
 				me.request = null;
 				me.startDigest();
 			});
@@ -77,7 +77,7 @@ module.exports = {
 	/**
 	 * @private
 	 */
-	startDigest: function() {
+	startDigest: function () {
 		var me = this;
 		var startTime = Date.now();
 		var framesToDrop = 0;
@@ -102,7 +102,7 @@ module.exports = {
 	/**
 	 * @private
 	 */
-	advance: function(count) {
+	advance: function (count) {
 		var animations = this.animations;
 		var animation, chart;
 		var i = 0;

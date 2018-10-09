@@ -1,5 +1,8 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="java.sql.*" %><%--
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: John Carlo Villar
   Date: 09/23/2018
@@ -10,11 +13,11 @@
 <% LGUConnect conX = new LGUConnect();
     try {
         Connection connection = conX.getConnection();
-        String refNo= request.getParameter("refNo");
+        String refNo = request.getParameter("refNo");
         PreparedStatement getAssess = connection.prepareStatement("SELECT * FROM view_routeslip WHERE AP_REFERENCE_NO = ?");
-        getAssess.setString(1,refNo);
+        getAssess.setString(1, refNo);
         ResultSet rs = getAssess.executeQuery();
-        while (rs.next()){
+        while (rs.next()) {
 %>
 <html>
 <head>
@@ -95,8 +98,8 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <%--<ol class="breadcrumb pull-right">--%>
-            <%--<li><a href="javascript:;">System Admin</a></li>--%>
-            <%--<li class="active">User Management</li>--%>
+        <%--<li><a href="javascript:;">System Admin</a></li>--%>
+        <%--<li class="active">User Management</li>--%>
         <%--</ol>--%>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
@@ -112,10 +115,12 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <h5>Business Name/Corporate Name: <label><%out.print(rs.getString("BU_NAME"));%></label></h5>
+                            <h5>Business Name/Corporate Name: <label><%out.print(rs.getString("BU_NAME"));%></label>
+                            </h5>
                         </div>
                         <div class="form-group">
-                            <h5>Name of Sole Proprietor/Partnership/President: <label><%out.print(rs.getString("BU_PRESIDENT"));%></label></h5>
+                            <h5>Name of Sole Proprietor/Partnership/President: <label><%
+                                out.print(rs.getString("BU_PRESIDENT"));%></label></h5>
                         </div>
                         <div class="form-group">
                             <h5>Business Address: <label><%out.print(rs.getString("BU_LOCATION"));%></label></h5>
@@ -164,15 +169,18 @@
     <!-- end #content -->
 
 
-
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+            class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
 
-<%}}catch(SQLException | ClassNotFoundException e){
-    out.print(e);
-}%>
+<%
+        }
+    } catch (SQLException | ClassNotFoundException e) {
+        out.print(e);
+    }
+%>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
@@ -202,17 +210,24 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
         FormWizard.init();
     });
 </script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-53034621-1', 'auto');
     ga('send', 'pageview');

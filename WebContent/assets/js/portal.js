@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
     App.init();
 
-    $('#loginBtn').click( function () {
+    $('#loginBtn').click(function () {
         console.log("Login On");
         var loginEmpForm = new FormData($('#loginEmpForm')[0]);
         $.ajax({
@@ -10,7 +10,7 @@ $(document).ready(function() {
             data: loginEmpForm,
             processData: false,
             contentType: false,
-            error: function(response){
+            error: function (response) {
                 swal({
                     type: 'error',
                     title: 'Login Failed!',
@@ -21,9 +21,9 @@ $(document).ready(function() {
 
     $("#bplsBtn").click(function () {
         var formX = $("#newForm").val();
-        if ( formX === "nSing"){
+        if (formX === "nSing") {
             window.open("BPLSAplSglBus.jsp");
-        }else if (formX === "nCorp") {
+        } else if (formX === "nCorp") {
             window.open("BPLSAplCrpBus.jsp");
         } else if (formX === "rSing") {
 

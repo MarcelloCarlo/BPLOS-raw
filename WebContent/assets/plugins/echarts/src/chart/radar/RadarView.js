@@ -10,6 +10,7 @@ define(function (require) {
         }
         return symbolSize;
     }
+
     return require('../../echarts').extendChartView({
         type: 'radar',
 
@@ -67,6 +68,7 @@ define(function (require) {
                     return [polar.cx, polar.cy];
                 });
             }
+
             data.diff(oldData)
                 .add(function (idx) {
                     var points = data.getItemLayout(idx);

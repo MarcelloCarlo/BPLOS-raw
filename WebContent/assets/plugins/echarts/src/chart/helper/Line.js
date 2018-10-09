@@ -12,9 +12,11 @@ define(function (require) {
     var numberUtil = require('../../util/number');
 
     var SYMBOL_CATEGORIES = ['fromSymbol', 'toSymbol'];
+
     function makeSymbolTypeKey(symbolCategory) {
         return '_' + symbolCategory + 'Type';
     }
+
     /**
      * @inner
      */
@@ -63,7 +65,7 @@ define(function (require) {
         }
     }
 
-    function updateSymbolAndLabelBeforeLineUpdate () {
+    function updateSymbolAndLabelBeforeLineUpdate() {
         var lineGroup = this;
         var symbolFrom = lineGroup.childOfName('fromSymbol');
         var symbolTo = lineGroup.childOfName('toSymbol');

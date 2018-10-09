@@ -1,5 +1,5 @@
 // Layout helpers for each component positioning
-define(function(require) {
+define(function (require) {
     'use strict';
 
     var zrUtil = require('zrender/core/util');

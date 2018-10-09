@@ -1,4 +1,4 @@
- define(function(require) {
+define(function (require) {
 
     var graphic = require('../../util/graphic');
     var layout = require('../../util/layout');

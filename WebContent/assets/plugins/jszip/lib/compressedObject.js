@@ -1,4 +1,5 @@
 'use strict';
+
 function CompressedObject() {
     this.compressedSize = 0;
     this.uncompressedSize = 0;
@@ -13,7 +14,7 @@ CompressedObject.prototype = {
      * The format will depend on the decompressor.
      * @return {Object} the decompressed content.
      */
-    getContent: function() {
+    getContent: function () {
         return null; // see implementation
     },
     /**
@@ -21,7 +22,7 @@ CompressedObject.prototype = {
      * The format will depend on the compressed conten source.
      * @return {Object} the compressed content.
      */
-    getCompressedContent: function() {
+    getCompressedContent: function () {
         return null; // see implementation
     }
 };

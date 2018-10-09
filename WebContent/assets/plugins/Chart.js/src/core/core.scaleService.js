@@ -13,26 +13,26 @@ module.exports = {
 
 	// Scale config defaults
 	defaults: {},
-	registerScaleType: function(type, scaleConstructor, scaleDefaults) {
+	registerScaleType: function (type, scaleConstructor, scaleDefaults) {
 		this.constructors[type] = scaleConstructor;
 		this.defaults[type] = helpers.clone(scaleDefaults);
 	},
-	getScaleConstructor: function(type) {
+	getScaleConstructor: function (type) {
 		return this.constructors.hasOwnProperty(type) ? this.constructors[type] : undefined;
 	},
-	getScaleDefaults: function(type) {
+	getScaleDefaults: function (type) {
 		// Return the scale defaults merged with the global settings so that we always use the latest ones
 		return this.defaults.hasOwnProperty(type) ? helpers.merge({}, [defaults.scale, this.defaults[type]]) : {};
 	},
-	updateScaleDefaults: function(type, additions) {
+	updateScaleDefaults: function (type, additions) {
 		var me = this;
 		if (me.defaults.hasOwnProperty(type)) {
 			me.defaults[type] = helpers.extend(me.defaults[type], additions);
 		}
 	},
-	addScalesToLayout: function(chart) {
+	addScalesToLayout: function (chart) {
 		// Adds each scale to the chart.boxes array to be sized accordingly
-		helpers.each(chart.scales, function(scale) {
+		helpers.each(chart.scales, function (scale) {
 			// Set ILayoutItem parameters for backwards compatibility
 			scale.fullWidth = scale.options.fullWidth;
 			scale.position = scale.options.position;

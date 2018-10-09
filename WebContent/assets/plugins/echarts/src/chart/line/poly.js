@@ -118,10 +118,18 @@ define(function (require) {
         if (smoothConstraint) {
             for (var i = 0; i < points.length; i++) {
                 var pt = points[i];
-                if (pt[0] < ptMin[0]) { ptMin[0] = pt[0]; }
-                if (pt[1] < ptMin[1]) { ptMin[1] = pt[1]; }
-                if (pt[0] > ptMax[0]) { ptMax[0] = pt[0]; }
-                if (pt[1] > ptMax[1]) { ptMax[1] = pt[1]; }
+                if (pt[0] < ptMin[0]) {
+                    ptMin[0] = pt[0];
+                }
+                if (pt[1] < ptMin[1]) {
+                    ptMin[1] = pt[1];
+                }
+                if (pt[0] > ptMax[0]) {
+                    ptMax[0] = pt[0];
+                }
+                if (pt[1] > ptMax[1]) {
+                    ptMax[1] = pt[1];
+                }
             }
         }
         return {

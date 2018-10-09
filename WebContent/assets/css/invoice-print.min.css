@@ -22,14 +22,14 @@ Website: http://www.seantheme.com/color-admin-v2.1/admin/html/
     .invoice .invoice-from, .invoice .invoice-to {
         float: left !important;
         display: inline !important;
-        width: 25% !important;
+        width: 40% !important;
         margin: 0 !important
     }
 
     .invoice .invoice-date {
         float: right !important;
         margin: 0 !important;
-        width: 25% !important;
+        width: 20% !important;
         display: inline !important;
         text-align: right !important
     }

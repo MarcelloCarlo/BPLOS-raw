@@ -5,8 +5,10 @@
   Time: 2:42 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -116,10 +118,6 @@
                                         <small></small>
                                     </li>
                                     <li>
-                                        Existing Business Information
-                                        <small></small>
-                                    </li>
-                                    <li>
                                         Business Nature and Attachement
                                         <small></small>
                                     </li>
@@ -140,7 +138,8 @@
                                                     <label>Business Name/Trade Name*</label>
                                                     <input type="text" name="txtNCorpBussName"
                                                            id="txtNCorpBussName"
-                                                           placeholder="Business Name/Trade Name" data-parsley-group="wizard-st-1" class="form-control"
+                                                           placeholder="Business Name/Trade Name"
+                                                           data-parsley-group="wizard-st-1" class="form-control"
                                                            required/>
                                                 </div>
                                             </div>
@@ -163,7 +162,8 @@
                                                     <input type="text" name="txtNCorpBussFlrNo"
                                                            id="txtNCorpBussFlrNo"
                                                            placeholder="If within a bldg.., specify stall, room, floor number"
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -171,21 +171,26 @@
                                                     <label>&nbsp</label>
                                                     <input type="text" name="txtNCorpBussStrtNo"
                                                            placeholder="Street No."
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" name="txtNCorpBussStrtName" placeholder="Street Name"
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                    <input type="text" name="txtNCorpBussStrtName"
+                                                           placeholder="Street Name"
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" name="txtNCorpBussBrgyName" placeholder="Barangay"
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                    <input type="text" name="txtNCorpBussBrgyName"
+                                                           placeholder="Barangay"
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -195,15 +200,19 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Property Index No.*</label>
-                                                    <input type="text" name="txtNCorpPropIdxNo" placeholder="Property Index No."
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                    <input type="text" name="txtNCorpPropIdxNo"
+                                                           placeholder="Property Index No."
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Lot & Block No.*</label>
-                                                    <input type="text" name="txtNCorpLotBlckNo" placeholder="Lot & Block No."
-                                                           class="form-control" required data-parsley-group="wizard-st-1"/>
+                                                    <input type="text" name="txtNCorpLotBlckNo"
+                                                           placeholder="Lot & Block No."
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,24 +233,25 @@
                                                     <label>Taxpayer's Name*</label>
                                                     <input type="text" id="txtNSingTaxPayLName"
                                                            name="txtNSingTaxPayLName" placeholder="Taxpayer's Name"
-                                                           class="form-control" required data-parsley-group="wizard-st-2"/>
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-2"/>
                                                 </div>
                                             </div>
                                             <%--<div class="col-md-4">--%>
-                                                <%--<div class="form-group">--%>
-                                                    <%--<label>&nbsp</label>--%>
-                                                    <%--<input type="text" name="txtNCorpTaxPayName"--%>
-                                                           <%--id="txtNCorpTaxPayName" placeholder="First Name"--%>
-                                                           <%--class="form-control" required/>--%>
-                                                <%--</div>--%>
+                                            <%--<div class="form-group">--%>
+                                            <%--<label>&nbsp</label>--%>
+                                            <%--<input type="text" name="txtNCorpTaxPayName"--%>
+                                            <%--id="txtNCorpTaxPayName" placeholder="First Name"--%>
+                                            <%--class="form-control" required/>--%>
+                                            <%--</div>--%>
                                             <%--</div>--%>
                                             <%--<div class="col-md-4">--%>
-                                                <%--<div class="form-group">--%>
-                                                    <%--<label>&nbsp</label>--%>
-                                                    <%--<input type="text" id="txtNSingTaxPayMName"--%>
-                                                           <%--name="txtNSingTaxPayMName" placeholder="Middle Name"--%>
-                                                           <%--class="form-control" required/>--%>
-                                                <%--</div>--%>
+                                            <%--<div class="form-group">--%>
+                                            <%--<label>&nbsp</label>--%>
+                                            <%--<input type="text" id="txtNSingTaxPayMName"--%>
+                                            <%--name="txtNSingTaxPayMName" placeholder="Middle Name"--%>
+                                            <%--class="form-control" required/>--%>
+                                            <%--</div>--%>
                                             <%--</div>--%>
                                         </div>
 
@@ -251,7 +261,8 @@
                                                 <div class="form-group">
                                                     <label>Taxpayer's Identification Number (TIN)*</label>
                                                     <input type="text" name="txtNCorpTaxPayTINNo" placeholder="TIN"
-                                                           class="form-control" required data-parsley-group="wizard-st-2"/>
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-2"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -270,37 +281,41 @@
                                                 <div class="form-group">
                                                     <label>Name of Authorized Representative*</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpAuthRepName" placeholder="Last Name"
-                                                               class="form-control" data-parsley-group="wizard-st-3" required/>
+                                                        <input type="text" name="txtNCorpAuthRepName"
+                                                               placeholder="Last Name"
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <%--<div class="col-md-4">--%>
-                                                <%--<div class="form-group">--%>
-                                                    <%--<label>&nbsp</label>--%>
-                                                    <%--<div class="controls">--%>
-                                                        <%--<input type="text" id="txtNSingBussRepFName"--%>
-                                                               <%--name="txtNSingBussRepFName" placeholder="First Name"--%>
-                                                               <%--class="form-control"/>--%>
-                                                    <%--</div>--%>
-                                                <%--</div>--%>
+                                            <%--<div class="form-group">--%>
+                                            <%--<label>&nbsp</label>--%>
+                                            <%--<div class="controls">--%>
+                                            <%--<input type="text" id="txtNSingBussRepFName"--%>
+                                            <%--name="txtNSingBussRepFName" placeholder="First Name"--%>
+                                            <%--class="form-control"/>--%>
+                                            <%--</div>--%>
+                                            <%--</div>--%>
                                             <%--</div>--%>
                                             <%--<div class="col-md-4">--%>
-                                                <%--<div class="form-group">--%>
-                                                    <%--<label>&nbsp</label>--%>
-                                                    <%--<div class="controls">--%>
-                                                        <%--<input type="text" id="txtNSingBussRepMName"--%>
-                                                               <%--name="txtNSingBussRepMName" placeholder="Middle Name"--%>
-                                                               <%--class="form-control"/>--%>
-                                                    <%--</div>--%>
-                                                <%--</div>--%>
+                                            <%--<div class="form-group">--%>
+                                            <%--<label>&nbsp</label>--%>
+                                            <%--<div class="controls">--%>
+                                            <%--<input type="text" id="txtNSingBussRepMName"--%>
+                                            <%--name="txtNSingBussRepMName" placeholder="Middle Name"--%>
+                                            <%--class="form-control"/>--%>
+                                            <%--</div>--%>
+                                            <%--</div>--%>
                                             <%--</div>--%>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Position (Official Capacity)*</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpAuthRepPos" placeholder="Position"
-                                                               class="form-control" data-parsley-group="wizard-st-3" required/>
+                                                        <input type="text" name="txtNCorpAuthRepPos"
+                                                               placeholder="Position"
+                                                               class="form-control" data-parsley-group="wizard-st-3"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -311,29 +326,36 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Home Address of Representative*</label>
-                                                    <input type="text" name="txtNCorpAuthRepStrtNo" placeholder="Street No."
-                                                           class="form-control" required data-parsley-group="wizard-st-3"/>
+                                                    <input type="text" name="txtNCorpAuthRepStrtNo"
+                                                           placeholder="Street No."
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-3"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" name="txtNCorpAuthRepStrtName" placeholder="Street Name"
-                                                           class="form-control" required data-parsley-group="wizard-st-3"/>
+                                                    <input type="text" name="txtNCorpAuthRepStrtName"
+                                                           placeholder="Street Name"
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-3"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" name="txtNCorpAuthRepBrgyName" placeholder="Barangay"
-                                                           class="form-control" required data-parsley-group="wizard-st-3"/>
+                                                    <input type="text" name="txtNCorpAuthRepBrgyName"
+                                                           placeholder="Barangay"
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-3"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <input type="text" name="txtNCorpAuthRepCity" placeholder="City"
-                                                           class="form-control" required data-parsley-group="wizard-st-3"/>
+                                                           class="form-control" required
+                                                           data-parsley-group="wizard-st-3"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -353,7 +375,8 @@
                                                     <label>SEC Registration Number*</label>
                                                     <div class="controls">
                                                         <input type="text" name="txtNCorpBussSECRegNo" placeholder="SEC
-                                                        Registration Number" class="form-control" data-parsley-group="wizard-st-4" required/>
+                                                        Registration Number" class="form-control"
+                                                               data-parsley-group="wizard-st-4" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -361,15 +384,18 @@
                                                 <div class="form-group">
                                                     <label>Date Issued*</label>
                                                     <input type="text" class="form-control" id="dateNCorpBussSECReg"
-                                                           name="dateNCorpBussSECReg" required data-parsley-group="wizard-st-4"/>
+                                                           name="dateNCorpBussSECReg" required
+                                                           data-parsley-group="wizard-st-4"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Telephone Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpTelNo" placeholder="Telephone Number"
-                                                               class="form-control" data-inputmask="'mask': '999-9999'" required data-parsley-group="wizard-st-4"/>
+                                                        <input type="text" name="txtNCorpTelNo"
+                                                               placeholder="Telephone Number"
+                                                               class="form-control" data-inputmask="'mask': '999-9999'"
+                                                               required data-parsley-group="wizard-st-4"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -378,7 +404,8 @@
                                                     <label>Fax Number*</label>
                                                     <div class="controls">
                                                         <input type="text" name="txtNCorpFaxNo" placeholder="Fax Number"
-                                                               class="form-control" data-inputmask="'mask': '999-9999'" required data-parsley-group="wizard-st-4"/>
+                                                               class="form-control" data-inputmask="'mask': '999-9999'"
+                                                               required data-parsley-group="wizard-st-4"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -390,8 +417,9 @@
                                                 <div class="form-group">
                                                     <label>If Employer, Employer's Social Security Number (SSS)</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpEmpSSSNo" placeholder="SSS Number"
-                                                               class="form-control" />
+                                                        <input type="text" name="txtNCorpEmpSSSNo"
+                                                               placeholder="SSS Number"
+                                                               class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -399,8 +427,10 @@
                                                 <div class="form-group">
                                                     <label>No of Employees*</label>
                                                     <div class="controls">
-                                                        <input type="number" name="numNCorpEmpQTY" placeholder="No of Employees"
-                                                               class="form-control" data-parsley-group="wizard-st-4" required/>
+                                                        <input type="number" name="numNCorpEmpQTY"
+                                                               placeholder="No of Employees"
+                                                               class="form-control" data-parsley-group="wizard-st-4"
+                                                               required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -440,7 +470,8 @@
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpBussEstRentName" placeholder="From Whom"
+                                                        <input type="text" name="txtNCorpBussEstRentName"
+                                                               placeholder="From Whom"
                                                                class="form-control"/>
                                                     </div>
                                                 </div>
@@ -455,7 +486,8 @@
                                                                    id="chkSignboard"
                                                                    onclick="document.getElementById('numNCorpBussEstSignbrdArea').disabled=!this.checked;">
                                                         Using A Signboard
-                                                    </label> <input type="text" name="numNCorpBussEstSignbrdArea" id="numNCorpBussEstSignbrdArea"
+                                                    </label> <input type="text" name="numNCorpBussEstSignbrdArea"
+                                                                    id="numNCorpBussEstSignbrdArea"
                                                                     class="form-control col-md-3"
                                                                     placeholder="Area of Signboard"
                                                                     disabled>
@@ -470,100 +502,6 @@
                                 <!-- begin wizard step-6 -->
                                 <div class="wizard-st-6">
                                     <fieldset>
-                                        <legend class="pull-left width-full">If You Have Other Existing Businesss
-                                            Permits
-                                        </legend>
-
-                                        <%--Other exisiting table--%>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Existing Kind of Business</label>
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNCorpExBuss"
-                                                               name="txtNCorpExBuss" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Business Permit No.</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNCorpExBussNo"
-                                                               name="txtNCorpExBussNo" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Business Location</label>
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNCorpExBussLoc"
-                                                               name="txtNCorpExBussLoc" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNCorpExBuss1"
-                                                               name="txtNCorpExBuss1" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNCorpExBussNo1"
-                                                               name="txtNCorpExBussNo1" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNCorpExBussLoc1"
-                                                               name="txtNCorpExBussLoc1" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control" id="txtNCorpExBuss2"
-                                                               name="txtNCorpExBuss2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNCorpExBussNo2"
-                                                               name="txtNCorpExBussNo2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <input type="text" id="txtNCorpExBussLoc2"
-                                                               name="txtNCorpExBussLoc2" class="form-control"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-6 -->
-                                <!-- begin wizard step-7 -->
-                                <div class="wizard-st-7">
-                                    <fieldset>
                                         <legend class="pull-left width-full">Business Nature and Attachement</legend>
 
                                         <%--Other exisiting table--%>
@@ -573,13 +511,14 @@
                                                     <label>Kind/Nature of Business or Activity</label>
                                                     <div class="controls">
                                                         <select class="selectpicker form-control" data-style="btn-white"
-                                                                id="txtNCBussAct" name="txtNCBussAct" tabindex="-1" required data-parsley-group="wizard-st-7">
+                                                                id="txtNCBussAct" name="txtNCBussAct" tabindex="-1"
+                                                                required data-parsley-group="wizard-st-7">
                                                             <%
                                                                 String natureSt = "";
                                                                 LGUConnect conX = new LGUConnect();
                                                                 Connection conn3 = conX.getConnection();
                                                                 Statement ss3 = conn3.createStatement();
-                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `lgu_r_business_nature`");
+                                                                ResultSet gg3 = ss3.executeQuery("SELECT * FROM `bpls_r_business_nature`");
                                                                 while (gg3.next()) {
                                                                     String classification = gg3.getString("BN_CLASSIFICATION");
                                                                     if (classification.equalsIgnoreCase("S")) {
@@ -606,7 +545,8 @@
                                                     <label>Unit No./Qty</label>
                                                     <div class="controls">
                                                         <input type="text" id="numNCorpBussUnitNo"
-                                                               name="numNCorpBussUnitNo" class="form-control" required data-parsley-group="wizard-st-7"/>
+                                                               name="numNCorpBussUnitNo" class="form-control" required
+                                                               data-parsley-group="wizard-st-7"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -615,7 +555,8 @@
                                                     <label>Area (Sq. Mts.)</label>
                                                     <div class="controls">
                                                         <input type="text" id="numNCorpBussAreaSqmts"
-                                                               name="numNCorpBussAreaSqmts" class="form-control" required data-parsley-group="wizard-st-7"/>
+                                                               name="numNCorpBussAreaSqmts" class="form-control"
+                                                               required data-parsley-group="wizard-st-7"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -626,7 +567,8 @@
                                                     <div class="controls">
                                                         <input type="currency"
                                                                id="numNCorpBussCapitalization"
-                                                               name="numNCorpBussCapitalization" required data-parsley-group="wizard-st-7" class="form-control"/>
+                                                               name="numNCorpBussCapitalization" required
+                                                               data-parsley-group="wizard-st-7" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -640,7 +582,9 @@
                                     <i class="fa fa-plus"></i>
                                     <span>Add files...</span>
                                     <input type="file" name="fileUnifiedRequirements"
-                                           id="fileUnifiedRequirements" required="required" accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf" data-parsley-group="wizard-st-7">
+                                           id="fileUnifiedRequirements" required="required"
+                                           accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
+                                           data-parsley-group="wizard-st-7">
                                 </span>
                                                     </div>
                                                 </div>
@@ -648,17 +592,21 @@
                                         </div>
                                     </fieldset>
                                 </div>
-                                <!-- end wizard step-7 -->
-                                <!-- begin wizard step-8 -->
+                                <!-- end wizard step-6 -->
+                                <!-- begin wizard step-7 -->
                                 <div>
                                     <div class="jumbotron m-b-0 text-center">
                                         <h1>Finished!</h1>
-                                        <p>Click the "Continue" button to proceed to the next step. Make sure you fill out all of the requirements right to move forward :-)</p>
+                                        <p>Click the "Continue" button to proceed to the next step. Make sure you fill
+                                            out all of the requirements right to move forward :-)</p>
                                         <p>
-                                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg">Continue</button></p>
+                                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg">
+                                                Continue
+                                            </button>
+                                        </p>
                                     </div>
                                 </div>
-                                <!-- end wizard step-8 -->
+                                <!-- end wizard step-7 -->
                             </div>
                         </form>
                     </div>

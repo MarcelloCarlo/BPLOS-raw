@@ -129,8 +129,8 @@ define(function (require) {
 
     function calculateBorderColor(borderColorSaturation, thisNodeColor) {
         return thisNodeColor != null
-             ? zrColor.modifyHSL(thisNodeColor, null, null, borderColorSaturation)
-             : null;
+            ? zrColor.modifyHSL(thisNodeColor, null, null, borderColorSaturation)
+            : null;
     }
 
     function getValueVisualDefine(visuals, name) {
@@ -206,10 +206,10 @@ define(function (require) {
             var colorMappingBy = mappingType === 'color' && mapping.__drColorMappingBy;
             var value =
                 colorMappingBy === 'index'
-                ? index
-                : colorMappingBy === 'id'
-                ? seriesModel.mapIdToIndex(child.getId())
-                : child.getValue(nodeModel.get('visualDimension'));
+                    ? index
+                    : colorMappingBy === 'id'
+                    ? seriesModel.mapIdToIndex(child.getId())
+                    : child.getValue(nodeModel.get('visualDimension'));
 
             childVisuals[mappingType] = mapping.mapValueToVisual(value);
         }
