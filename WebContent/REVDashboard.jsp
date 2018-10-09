@@ -76,8 +76,10 @@
                 <div class="widget widget-stats bg-green">
                     <div class="stats-icon"><i class="fa fa-desktop"></i></div>
                     <div class="stats-info">
-                        <h4>TOTAL VISITORS</h4>
-                        <p>3,291,922</p>
+                        <div> <p>Business Permit</p></div>
+                        <div> <h4>Pending:</h4></div>
+                        <div> <h4>Released:</h4></div>
+                        <div> <h4>Terminated:</h4></div>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -90,8 +92,10 @@
                 <div class="widget widget-stats bg-blue">
                     <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
                     <div class="stats-info">
-                        <h4>BOUNCE RATE</h4>
-                        <p>20.44%</p>
+                        <div> <p>MTOPS</p></div>
+                        <div> <h4>Pending:</h4></div>
+                        <div> <h4>Released:</h4></div>
+                        <div> <h4>Terminated:</h4></div>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -104,8 +108,10 @@
                 <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-users"></i></div>
                     <div class="stats-info">
-                        <h4>UNIQUE VISITORS</h4>
-                        <p>1,291,922</p>
+                        <div> <p>Revenue</p></div>
+                        <div> <h4>BPLS:</h4></div>
+                        <div> <h4>MTOPS:</h4></div>
+                        <div> <h4></h4></div>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
