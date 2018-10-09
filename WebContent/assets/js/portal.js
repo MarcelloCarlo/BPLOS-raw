@@ -1,13 +1,12 @@
 $(document).ready(function() {
     App.init();
-    LoginV2.init();
 
     $('#loginBtn').click( function () {
+        console.log("Login On");
         var loginEmpForm = new FormData($('#loginEmpForm')[0]);
         $.ajax({
             type: "POST",
             url: "LoginServlet",
-            enctype:"multipart/form-data",
             data: loginEmpForm,
             processData: false,
             contentType: false,

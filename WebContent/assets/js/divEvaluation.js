@@ -244,7 +244,12 @@ $(document).ready(function () {
     });
 
     $("#btnAssNewAppl").click(function () {
-        var assessNewApplForm = new FormData($('#assessNewApplForm')[0]);
+
+        if (!$("#chkMayorsPerm").is(':checked')){
+            $("#chkMayorsPerm").prop("checked", true);
+        }
+
+            var assessNewApplForm = new FormData($('#assessNewApplForm')[0]);
 
         swal({
             title: "Are you sure?",
@@ -258,8 +263,9 @@ $(document).ready(function () {
             if (result.value) {
             $.ajax({
                 type:"POST",
-                url:"terminateApplForm",
+                url:"assessNewApplForm",
                 data: assessNewApplForm,
+                enctype:"multipart/form-data",
                 processData: false,
                 contentType: false,
                 success: function () {

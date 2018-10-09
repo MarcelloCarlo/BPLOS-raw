@@ -1,4 +1,4 @@
-package com.paeis.bplsTransactions;
+package com.paeis.lguTransactions;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
