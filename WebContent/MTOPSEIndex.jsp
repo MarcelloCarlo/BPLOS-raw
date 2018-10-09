@@ -131,8 +131,6 @@
                                 <tr>
                                     <th>Applicant's Name</th>
                                     <th>TODA</th>
-                                    <th>Ownership Type</th>
-                                    <th>Application Type</th>
                                     <th>Status</th>
                                     <th>Date Received</th>
                                     <th>Action</th>
@@ -213,10 +211,6 @@
                                     </td><!--0-->
                                     <td><%=gg3.getString("BN_NAME")%>
                                     </td><!--1-->
-                                    <td><%=gg3.getString("OT_NAME")%>
-                                    </td><!--2-->
-                                    <td><%=apType%>
-                                    </td><!--3-->
                                     <td><%=gg3.getString("AP_STATUS")%>
                                     </td>
                                     <td><%=gg3.getString("AP_DATE")%>

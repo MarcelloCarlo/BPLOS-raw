@@ -77,22 +77,6 @@ public class uploadSingleAppForm extends HttpServlet {
         String txtNSingBussEstRentName = request.getParameter("txtNSingBussEstRentName");
         String numNSingBussEstSignbrdArea = request.getParameter("numNSingBussEstSignbrdArea");
 
-        String txtNSingExBuss = request.getParameter("txtNSingExBuss");
-        String txtNSingExBussNo = request.getParameter("txtNSingExBussNo");
-        String txtNSingExBussLoc = request.getParameter("txtNSingExBussLoc");
-
-        String txtNSingExBuss1 = request.getParameter("txtNSingExBuss1");
-        String txtNSingExBussNo1 = request.getParameter("txtNSingExBussNo1");
-        String txtNSingExBussLoc1 = request.getParameter("txtNSingExBussLoc1");
-
-        String txtNSingExBuss2 = request.getParameter("txtNSingExBuss2");
-        String txtNSingExBussNo2 = request.getParameter("txtNSingExBussNo2");
-        String txtNSingExBussLoc2 = request.getParameter("txtNSingExBussLoc2");
-
-        String txtNSingExBuss3 = request.getParameter("txtNSingExBuss3");
-        String txtNSingExBussNo3 = request.getParameter("txtNSingExBussNo3");
-        String txtNSingExBussLoc3 = request.getParameter("txtNSingExBussLoc3");
-
         String txtNSBussAct = request.getParameter("txtNSBussAct");
         String numNSingBussUnitNo = request.getParameter("numNSingBussUnitNo");
         String numNSingBussAreaSqmts = request.getParameter("numNSingBussAreaSqmts");
@@ -156,25 +140,21 @@ public class uploadSingleAppForm extends HttpServlet {
                 // this.writeToDB(conn, fileName, is, description);
             }
         }
-        DateFormat defaultDateF = new SimpleDateFormat("dd-MM-yyyy");
+
         Connection connection = null;
-        PreparedStatement pStmt = null;
-        com.mysql.jdbc.CallableStatement callProc = null;
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter echo = response.getWriter();
         LGUConnect conX = new LGUConnect();
         String bu_loc = txtNSingBussFlrNo + " " + txtNSingBussStrtNo + " " + txtNSingBussStrtName + " "
                 + txtNSingBussBrgyName;
         String tp_addr = txtNSingBussOwnHsNum + " " + txtNSingBussOwnStrt + " " + txtNSingBussOwnBrgy + " "
                 + txtNSingBussOwnCity;
 
-        String queery = "SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM bpls_t_bp_application";
-        String _refNo = "";
-
+        String divCode = "";
+        String divName = "";
+        String refNo = "";
         try {
             connection = conX.getConnection();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-            int updateQuery = 0;
             Date dtiDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussDTIReg);
             Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNSingBussEstRentStart);
             java.sql.Date _dateNSingBussDTIReg = new java.sql.Date(dtiDate.getTime());
@@ -187,12 +167,14 @@ public class uploadSingleAppForm extends HttpServlet {
             authRepinfo.setString(3, txtNSingBussRepLName);
             authRepinfo.setString(4, txtNSingBussRepAddr);
             authRepinfo.executeUpdate();
+
             PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement(
                     "INSERT INTO `bpls_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
             rentInfo.setDate(1, _dateNSingBussEstRentStart);
             rentInfo.setFloat(2, Float.parseFloat(numNSingBussEstRentMonth));
             rentInfo.setString(3, txtNSingBussEstRentName);
             rentInfo.executeUpdate();
+
             PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement(
                     "INSERT INTO `bpls_t_taxpayer`(`TP_FNAME`, `TP_MNAME`, `TP_LNAME`, `TP_HOME_ADDRESS`, `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?,?,?,?)");
             taxPayerInfo.setString(1, txtNSingTaxPayFName);
@@ -202,6 +184,7 @@ public class uploadSingleAppForm extends HttpServlet {
             taxPayerInfo.setString(5, txtNSingTaxPayTINNo);
             taxPayerInfo.setString(6, txtNSingEmpSSSNo);
             taxPayerInfo.executeUpdate();
+
             PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement(
                     "INSERT INTO `bpls_t_business`( `BU_NAME`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `DTI_REG_NO`, `DTI_DATE`,`BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`,`RENT_ID`, `OT_CODE`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),(SELECT MAX(`RENT_ID`) FROM `bpls_t_is_rented`),'OT-SIN')");
             businessInfo.setString(1, txtNSingBussName);
@@ -215,10 +198,11 @@ public class uploadSingleAppForm extends HttpServlet {
             businessInfo.setDate(9, _dateNSingBussDTIReg);
             businessInfo.setInt(10, Integer.parseInt(numNSingBussEmpQTY));
             businessInfo.setInt(11, Integer.parseInt(numNSingBussUnitNo));
-            businessInfo.setFloat(12, Float.parseFloat(numNSingBussEstSignbrdArea));
+            businessInfo.setFloat(12, Float.parseFloat(numNSingBussAreaSqmts));
             businessInfo.setFloat(13, Float.parseFloat(numNSingBussCapitalization));
             businessInfo.setInt(14, Integer.parseInt(txtNSBussAct));
             businessInfo.executeUpdate();
+
             PreparedStatement authRep2Bus = (PreparedStatement) connection
                     .prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`) VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
             authRep2Bus.executeLargeUpdate();
@@ -230,47 +214,35 @@ public class uploadSingleAppForm extends HttpServlet {
             fileUpload.setBlob(1, is);
             fileUpload.setString(2, fileName);
             fileUpload.executeUpdate();
-
-            Statement ss3 = connection.createStatement();
-            ResultSet gg3 = ss3.executeQuery(queery);
-            while (gg3.next()) {
-                _refNo = gg3.getString("REF_NO");
-                response.getWriter().print(_refNo);
-                // response.getWriter().write(_refNo);
+//Record
+            PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM bpls_t_bp_application");
+            ResultSet rsAPNO = getAPno.executeQuery();
+            while (rsAPNO.next()){
+                refNo = rsAPNO.getString("REF_NO");
             }
 
-            /*
-             * callProc = (com.mysql.jdbc.CallableStatement) connection.
-             * prepareCall("{ call bpls_application_sp(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-             * ); // callProc.registerOutParameter(1,java.sql.Types.VARCHAR);
-             * callProc.setString(1, txtNSingBussName); callProc.setString(2,
-             * txtNSingTaxPayLName); callProc.setString(3, txtNSingTaxPayFName);
-             * callProc.setString(4, txtNSingTaxPayMName); callProc.setString(5,
-             * txtNSingBussOwnHsNum); callProc.setString(6, txtNSingBussOwnStrt);
-             * callProc.setString(7, txtNSingBussOwnBrgy); callProc.setString(8,
-             * txtNSingBussOwnCity); callProc.setString(9, txtNSingBussFlrNo);
-             * callProc.setString(10, txtNSingBussStrtNo); callProc.setString(11,
-             * txtNSingBussStrtName); callProc.setString(12, txtNSingBussBrgyName);
-             * callProc.setString(13, txtNSingPropIdxNo); callProc.setString(14,
-             * txtNSingLotBlckNo); callProc.setString(15, txtNSingTaxPayTINNo);
-             * callProc.setInt(16, Integer.parseInt(txtNSingBussDTIRegNo));
-             * callProc.setDate(17, _dateNSingBussDTIReg); callProc.setString(18,
-             * txtNSingBussTelNo); callProc.setString(19, txtNSingBussFaxNo);
-             * callProc.setString(20, txtNSingEmpSSSNo); callProc.setInt(21,
-             * Integer.parseInt(numNSingBussEmpQTY)); callProc.setString(22,
-             * txtNSingBussRepLName); callProc.setString(23, txtNSingBussRepFName);
-             * callProc.setString(24, txtNSingBussRepMName); callProc.setString(25,
-             * txtNSingBussRepAddr); callProc.setDate(26, _dateNSingBussEstRentStart);
-             * callProc.setDouble(27, Double.parseDouble(numNSingBussEstRentMonth));
-             * callProc.setString(28, txtNSingBussEstRentName); callProc.setDouble(29,
-             * Double.parseDouble(numNSingBussEstSignbrdArea)); // Business nature ID
-             * callProc.setInt(30, Integer.parseInt("1")); callProc.setInt(31,
-             * Integer.parseInt(numNSingBussUnitNo)); callProc.setDouble(32,
-             * Double.parseDouble(numNSingBussAreaSqmts)); callProc.setDouble(33,
-             * Double.parseDouble(numNSingBussCapitalization)); callProc.execute();
-             */
-            // String txtApplicationRefNo = callProc.getString(1);
-            // echo.write(txtApplicationRefNo);*/
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, refNo);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            while (rsAP.next()){
+                divCode = rsAP.getString("AP_DIV_CODE_TO");
+            }
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME) VALUES (?,?,?)");
+            recHist.setString(1, refNo);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.executeUpdate();
+
+            response.getWriter().print(refNo);
+
 
         } catch (Exception e) {
             e.printStackTrace();

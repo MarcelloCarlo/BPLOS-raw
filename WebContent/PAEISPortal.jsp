@@ -38,7 +38,9 @@
 <!-- end #page-loader -->
 
 <div class="login-cover">
-    <div class="login-cover-image"></div>
+    <div class="login-cover-image">
+        <img src="extras/logo1.png" data-id="login-cover-image" alt="" />
+    </div>
     <div class="login-cover-bg"></div>
 </div>
 <!-- begin #page-container -->
@@ -137,6 +139,8 @@
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/login-v2.demo.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/portal.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
