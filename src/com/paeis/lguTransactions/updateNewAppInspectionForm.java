@@ -67,7 +67,7 @@ public class updateNewAppInspectionForm extends HttpServlet {
     private void passedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS){
         try{
 
-            PreparedStatement passIns = (PreparedStatement) connection.prepareStatement("INSERT INTO lgu_t_inspections (INS_AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HEALTH_SANITATION_INS, BUILDING_INS, LABOR_INS, MISC_INS, INS_REMARKS) VALUES (?,?,?,?,?,?,?,?) ");
+            PreparedStatement passIns = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_inspections (INS_AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HEALTH_SANITATION_INS, BUILDING_INS, LABOR_INS, MISC_INS, INS_REMARKS) VALUES (?,?,?,?,?,?,?,?) ");
             passIns.setString(1,AP_REFERENCE_NO);
             passIns.setString(2,ZONING_INS);
             passIns.setString(3,FIRE_INS);
@@ -77,14 +77,10 @@ public class updateNewAppInspectionForm extends HttpServlet {
             passIns.setString(7,MISC_INS);
             passIns.setString(8,MISC_REMARKS);
             passIns.executeUpdate();
-            PreparedStatement assessIns = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement assessIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             assessIns.setString(1,MISC_REMARKS);
             assessIns.setString(2,AP_REFERENCE_NO);
             assessIns.executeUpdate();
-            PreparedStatement assessApplication = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_assessment`(`AS_OR_NO`, `AS_AP_REFERENCE_NO`, `AS_FEE_SET`, `AS_PERIOD_COVERED`, `AS_DUE_DATE`) VALUES (CONCAT(LPAD(AS_ID,3,'0'),'-',REPLACE(?,'-','')),?,'FS-SET1',CURRENT_DATE(),DATE_ADD(AS_PERIOD_COVERED, INTERVAL 1 YEAR))");
-            assessApplication.setString(1,AP_REFERENCE_NO);
-            assessApplication.setString(2,AP_REFERENCE_NO);
-            assessApplication.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,7 +90,7 @@ public class updateNewAppInspectionForm extends HttpServlet {
         LGUConnect connect = new LGUConnect();
         try{
             Connection connection = connect.getConnection();
-            PreparedStatement failIns = (PreparedStatement) connection.prepareStatement("INSERT INTO lgu_t_inspections (INS_AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HEALTH_SANITATION_INS, BUILDING_INS, LABOR_INS, MISC_INS, INS_REMARKS) VALUES (?,?,?,?,?,?,?,?) ");
+            PreparedStatement failIns = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_inspections (INS_AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HEALTH_SANITATION_INS, BUILDING_INS, LABOR_INS, MISC_INS, INS_REMARKS) VALUES (?,?,?,?,?,?,?,?) ");
             failIns.setString(1,AP_REFERENCE_NO);
             failIns.setString(2,ZONING_INS);
             failIns.setString(3,FIRE_INS);
@@ -104,7 +100,7 @@ public class updateNewAppInspectionForm extends HttpServlet {
             failIns.setString(7,MISC_INS);
             failIns.setString(8,MISC_REMARKS);
             failIns.executeUpdate();
-            PreparedStatement updateIns = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement updateIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             updateIns.setString(1,MISC_REMARKS);
             updateIns.setString(2,AP_REFERENCE_NO);
             updateIns.executeUpdate();

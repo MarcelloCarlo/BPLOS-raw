@@ -100,14 +100,26 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="BPLSEIndex.jsp"><i class="fa fa-file-text"></i> <span>Evaluation</span></a></li>
-            <li><a href="BPLSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Inspection</span></a></li>
-        <li><a href="BPLSIVIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Investigation</span></a></li>
-            <li><a href="BPLSTIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Treasury</span></a></li>
-            <li><a href="PAEISPortal.jsp"><i class="fa fa-file-excel-o"></i> <span>Portal</span></a></li>
-            <li><a href="BPLSAplCrpBus.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Corp</span></a></li>
-            <li><a href="BPLSAplSglBus.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Single</span></a></li>
-            <li><a href="bplNewSingleApplicationForm.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Single (Legacy)</span></a></li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-gears"></i>
+                    <span>BPLS</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="BPLSEIndex.jsp"><i class="fa fa-file-text"></i> <span>Evaluation</span></a></li>
+                    <li><a href="BPLSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Inspection</span></a></li>
+                    <li><a href="BPLSIVIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Investigation</span></a></li>
+                    <li><a href="BPLSTIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Treasury</span></a></li>
+                    <li><a href="BPLSRSIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Releasing</span></a></li>
+                    <li><a href="PAEISPortal.jsp"><i class="fa fa-file-excel-o"></i> <span>Portal</span></a></li>
+                    <li><a href="BPLSAplCrpBus.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Corp</span></a></li>
+                    <li><a href="BPLSAplSglBus.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Single</span></a></li>
+                    <li><a href="bplNewSingleApplicationForm.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Single (Legacy)</span></a></li>
+                    <li><a href="bplNewCorpApplicationForm.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Corp (Legacy)</span></a></li>
+                </ul>
+            </li>
+
     </ul>
     <!-- end top-menu nav -->
 </div>

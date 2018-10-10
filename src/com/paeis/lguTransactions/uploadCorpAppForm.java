@@ -147,7 +147,7 @@ public class uploadCorpAppForm extends HttpServlet {
 		String authRep_addr = txtNCorpAuthRepStrtNo + " " + txtNCorpAuthRepStrtName + " " + txtNCorpAuthRepBrgyName + " "
 				+ txtNCorpAuthRepCity;
 	
-		String queery = "SELECT MAX(AP_ID),AP_REFERENCE_NO FROM lgu_t_bp_application";
+		String queery = "SELECT MAX(AP_REFERENCE_NO) AS AP_REFERENCE_NO FROM bpls_t_bp_application";
 		String _refNo = "";
 		
 
@@ -160,22 +160,22 @@ public class uploadCorpAppForm extends HttpServlet {
     		java.sql.Date _dateNCorpBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
             // Parse the request
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-           PreparedStatement authRepInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_authorize_rep`( `AR_FNAME`, `AR_POSITION`,`AR_HOME_ADDRESS`) VALUES (?,?,?)");
+           PreparedStatement authRepInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_authorize_rep`( `AR_FNAME`, `AR_POSITION`,`AR_HOME_ADDRESS`) VALUES (?,?,?)");
            authRepInfo.setString(1, txtNCorpAuthRepName);
            authRepInfo.setString(2, txtNCorpAuthRepPos);
            authRepInfo.setString(3, authRep_addr);
            authRepInfo.executeUpdate();
-           PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
+           PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
            rentInfo.setDate(1, _dateNCorpBussEstRentStart);
            rentInfo.setFloat(2, Float.parseFloat(numNCorpBussEstRentMonth));
            rentInfo.setString(3, txtNCorpBussEstRentName);
            rentInfo.executeUpdate();
-           PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_taxpayer`(`TP_FNAME`,  `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?)");
+           PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_taxpayer`(`TP_FNAME`,  `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?)");
            taxPayerInfo.setString(1, txtNCorpTaxPayName);
            taxPayerInfo.setString(2, txtNCorpTaxPayTINNo);
            taxPayerInfo.setString(3, txtNCorpEmpSSSNo);
            taxPayerInfo.executeUpdate();
-           PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `lgu_t_taxpayer`),2)");
+           PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),2)");
            businessInfo.setString(1, txtNCorpBussName);
            businessInfo.setString(2, txtNCorpPresidentName);
            businessInfo.setString(3, bu_loc);
@@ -193,13 +193,13 @@ public class uploadCorpAppForm extends HttpServlet {
            businessInfo.setInt(15, Integer.parseInt(txtNCBussAct));
            businessInfo.executeUpdate();
            PreparedStatement authRep2Bus = (PreparedStatement) connection
-					.prepareStatement("INSERT INTO `lgu_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
-							+ "VALUES((SELECT MAX(`AR_ID`) FROM `lgu_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `lgu_t_business`)) ");
+					.prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
+							+ "VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
 			authRep2Bus.executeLargeUpdate();
 			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `lgu_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM lgu_t_business),(SELECT MAX(AR_ID) FROM lgu_t_authorize_rep),(SELECT MAX(TP_ID) FROM lgu_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM lgu_t_business)) ");
+					"INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business)) ");
 			refNoInfo.executeUpdate();
-			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `lgu_t_bp_application`))");
+			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `bpls_t_bp_application`))");
 			fileUpload.setBlob(1,is);
 			fileUpload.setString(2,fileName);
 			fileUpload.executeUpdate();

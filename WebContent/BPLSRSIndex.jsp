@@ -1,8 +1,8 @@
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.Connection" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="com.mysql.jdbc.*" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -10,6 +10,12 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
+<%LGUConnect conX = new LGUConnect();
+try{
+    Connection conn = conX.getConnection();
+    PreparedStatement getReltbl = (PreparedStatement) conn.prepareStatement("SELECT * FROM view_applicationformsrel");
+    ResultSet rsRel = getReltbl.executeQuery();
+%>
 <head>
     <meta charset="utf-8" />
     <title>BPLS | Releasing</title>
@@ -79,33 +85,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%--<%--%>
-                            <%--String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";--%>
-                            <%--Connection conn = null;--%>
-                            <%--Statement stat = null;--%>
-                            <%--ResultSet res = null;--%>
-                            <%--Class.forName("com.mysql.jdbc.Driver");--%>
-                            <%--conn = DriverManager.getConnection(host,"root","");--%>
-                            <%--stat = conn.createStatement();--%>
-                            <%--String data = "select * from lgu_r_user order by U_ID desc";--%>
-                            <%--res = stat.executeQuery(data);--%>
-                            <%--while (res.next())--%>
-                            <%--{--%>
-                            <%--%>--%>
+                           <%while (rsRel.next()){%>
                             <tr>
-                                <td>1111-1111-1111</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>Sample</td>
-                                <td>1,000</td>
+                                <td><%=rsRel.getString("AP_REFERENCE_NO")%></td>
+                                <td><%=rsRel.getString("BU_NAME")%></td>
+                                <td><%=rsRel.getString("BN_NAME")%></td>
+                                <td><%=rsRel.getString("TP_NAME")%></td>
+                                <td><%=rsRel.getString("TB_DATE_BILLED")%></td>
                                 <td>
                                     <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
                                     <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
                                 </td>
                             </tr>
-                            <%--<%--%>
-                            <%--}--%>
-                            <%--%>--%>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
@@ -189,27 +181,8 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/divReleasing.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function() {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
+<%}catch(SQLException | ClassNotFoundException e){ e.printStackTrace();}%>
 </html>
