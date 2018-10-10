@@ -48,7 +48,7 @@
         <!-- begin brand -->
         <div class="login-header">
             <div class="brand text-center">
-                <span class="logo"></span> PAEIS
+                <img src="extras/logo1.png" style="width:50px;height:50px;"> PAEIS
             </div>
         </div>
         <!-- end brand -->

@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Li Ven
+  Date: 10/10/2018
+  Time: 2:16 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!-- begin #header -->
@@ -6,7 +13,13 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <img src="extras/logo1.png" style="width:30px;height:30px;"> PAEIS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> BPLS</a>
+            <small>Revenue</small>
+            <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 
@@ -14,7 +27,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="assets/img/user-13.jpg" alt="" />
+                    <img src="assets/img/user-13.jpg" alt=""/>
                     <span class="hidden-xs">Sample User</span> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInLeft">
@@ -34,24 +47,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li>
-            <a href="PAEISSAUsrMgmt.jsp"><i class="fa fa-users"></i> <span>User Management</span></a>
-        </li>
-        <li class="has-sub">
-            <a href="javascript:;">
-                <b class="caret pull-right"></b>
-                <i class="fa fa-gears"></i>
-                <span>Configurables</span>
-            </a>
-            <ul class="sub-menu">
-                <li><a href="PAEISSAFee.jsp">Fees</a></li>
-                <li><a href="PAEISSAReq.jsp">Requirements</a></li>
-                <li><a href="PAEISSARoles.jsp">User Roles</a></li>
-                <li><a href="PAEISSADvsion.jsp">Division</a></li>
-                <%--<li><a href="PAEISSABusNat.jsp">Business Nature</a></li>--%>
-                <li><a href="PAEISSAMdle.jsp">Module</a></li>
-            </ul>
-        </li>
+        <li><a href="REVDashboard.jsp"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

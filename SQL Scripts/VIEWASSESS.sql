@@ -16,6 +16,6 @@ CREATE ALGORITHM = UNDEFINED
          `f`.`AMOUNT`               AS `AMOUNT`
   from `bpls_r_assessment` `_as`
          join `bpls_t_bp_application` `ap` on `ap`.`AP_REFERENCE_NO` = `_as`.`AS_AP_REFERENCE_NO`
-         join `lgu_r_fee_set` `fs` on `fs`.`FS_CODE` = `_as`.`AS_FEE_SET`
-         join `lgu_r_fees` `f` on `f`.`FEES_CODE` = `fs`.`FS_PRM_FEE`
-         join `lgu_r_business` `bus` on `bus`.`BU_ID` = `ap`.`BU_ID`;
+         join `bpls_r_fee_set` `fs` on `fs`.`FS_CODE` = `_as`.`AS_FEE_SET`
+         join `bpls_r_fees` `f` on `f`.`FEES_CODE` = `fs`.`FS_PRM_FEE`
+         join `bpls_r_business` `bus` on `bus`.`BU_ID` = `ap`.`BU_ID`;

@@ -13,6 +13,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
+    <link rel="icon" href="extras/logo1.png">
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
