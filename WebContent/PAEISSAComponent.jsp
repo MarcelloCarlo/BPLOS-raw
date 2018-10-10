@@ -52,6 +52,17 @@
                 <li><a href="PAEISSAMdle.jsp">Module</a></li>
             </ul>
         </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-text"></i>
+                    <span>Reports</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="">Termination Reports</a></li>
+                    <li><a href="">Accomplishment Reports</a></li>
+                </ul>
+            </li>
     </ul>
     <!-- end top-menu nav -->
 </div>
