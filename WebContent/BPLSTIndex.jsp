@@ -8,26 +8,26 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>BPLS | Treasury</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
-    <link href="assets/css/style.min.css" rel="stylesheet" />
-    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="assets/css/style.min.css" rel="stylesheet"/>
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet"/>
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -89,31 +89,40 @@
                             </tr>
                             </thead>
                             <tbody>
-                           <%
-                                    while (gg3.next()) {
+                            <%
+                                while (gg3.next()) {
+                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo="+ gg3.getString("AP_REFERENCE_NO")+ "&tbId="+gg3.getString("TB_ID")+"'";
 
                             %>
                             <tr>
-                                <td><%=gg3.getString("AP_REFERENCE_NO")%></td>
-                                <td><%=gg3.getString("BU_NAME")%></td>
-                                <td><%=gg3.getString("BN_NAME")%></td>
-                                <td><%=gg3.getString("TP_NAME")%></td>
-                                <td><%=gg3.getString("TP_HOME_ADDRESS")%></td>
-                                <td><%=gg3.getString("TB_DATE_BILLED")%></td>
-                                <td class="hide"><%=gg3.getString("TB_ID")%></td>
-                                <td class="hide"><%=gg3.getString("EMP_NAME")%></td>
+                                <td><%=gg3.getString("AP_REFERENCE_NO")%>
+                                </td>
+                                <td><%=gg3.getString("BU_NAME")%>
+                                </td>
+                                <td><%=gg3.getString("BN_NAME")%>
+                                </td>
+                                <td><%=gg3.getString("TP_NAME")%>
+                                </td>
+                                <td><%=gg3.getString("TP_HOME_ADDRESS")%>
+                                </td>
+                                <td><%=gg3.getString("TB_DATE_BILLED")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("TB_ID")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("EMP_NAME")%>
+                                </td>
                                 <td>
                                     <button
                                             type="button"
                                             class="btn btn-success"
-                                            data-toggle="modal"
-                                            data-target="#modal-processpayment" title="Payment for Permit"
+                                          <%--  data-toggle="modal"
+                                            data-target="#modal-processpayment"--%> onclick="<%=lastPart%>" title="Payment for Permit"
                                     ><i class="fa fa-lg fa-money"></i>
                                     </button>
                                 </td>
                             </tr>
                             <%
-                                    }
+                                }
                             %>
                             </tbody>
                         </table>
@@ -133,44 +142,85 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title">Process Payment</h4>
                 </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="treasuryNewApplForm" name="treasuryNewApplForm">
+                <form class="form-horizontal" id="treasuryNewApplForm" name="treasuryNewApplForm">
+                    <div class="modal-body">
+                        <div class="panel-body col-md-12">
+
+                            <h5>Reference Number: <label class="control-label" id=""></label></h5>
+
+                            <h5>Business Name: <label class=" control-label" id=""></label></h5>
+
+
+                            <h5>Business Nature: <label class=" control-label" id=""></label></h5>
+
+
+                            <h5>Taxpayer Name: <label class=" control-label" id=""></label></h5>
+
+
+                            <h5>Taxpayer Address: <label class=" control-label" id=""></label></h5>
+
+                            <h5>Date Billed: <label class="control-label" id=""></label></h5>
+
+                            <h5>Assessed By: <label class=" control-label" id=""></label></h5>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Kind of Fee/Tax</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group"><label class="col-md-4 control-label">Payment Mode: </label>
+                            <div class="col-md-8">
+                                <select name="optPaymentType" class="form-control" data-style="btn-white" tabindex="-1">
+                                    <option value="CH">Cash</option>
+                                    <option value="TW">Treasury Warrant</option>
+                                    <option value="CK">Cash</option>
+                                    <option value="MO">Money Order</option>
+                                </select>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
-                            <h5>Reference Number: <label class="col-md-4 control-label" id=""></label></h5>
+                            <label class="col-md-4 control-label">Amount: </label>
+                            <div class="col-md-5">
+                                <input type="text" name="txtAmt" class="form-control" placeholder="PHP"/>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <h5>Business Name: <label class="col-md-4 control-label" id=""></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Business Nature: <label class="col-md-4 control-label" id=""></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Taxpayer Name:  <label class="col-md-4 control-label" id=""></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Taxpayer Address:  <label class="col-md-4 control-label" id=""></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Date Billed:  <label class="col-md-4 control-label" id=""></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Assessed By:  <label class="col-md-4 control-label" id=""></label></h5>
+                            <label class="col-md-4 control-label">Amount: </label>
+                            <div class="col-md-5">
+                                <input type="text" name="txtChng" class="form-control" placeholder="PHP"/>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" id="btnTreNewAppl"class="btn btn-sm btn-success">Process</button>
+                            <button type="submit" id="btnTreNewAppl" class="btn btn-sm btn-success">Process</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-    <!-- end scroll to top btn -->
+<!-- begin scroll to top btn -->
+<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+        class="fa fa-angle-up"></i></a>
+<!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
 
@@ -200,8 +250,8 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
 <%
-    }catch(SQLException | ClassNotFoundException e){
-    out.print(e);
+    } catch (SQLException | ClassNotFoundException e) {
+        out.print(e);
     }
 %>
 </html>

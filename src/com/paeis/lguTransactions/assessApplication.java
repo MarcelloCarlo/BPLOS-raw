@@ -111,7 +111,7 @@ public class assessApplication extends HttpServlet {
                 setF1.setDouble(3,frs1.getDouble("FL_AMOUNT"));
                 setF1.executeUpdate();
             }frs1.close();
-        } else {
+        } else if (feeName == 0){
             PreparedStatement getF2 = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_fee_list WHERE FL_ID = ?");
             getF2.setInt(1, feeName);
             ResultSet frs2 = getF2.executeQuery();
