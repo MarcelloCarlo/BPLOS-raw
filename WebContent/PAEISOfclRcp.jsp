@@ -19,7 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8" />
-    <title>PAEIS | </title>
+    <title>PAEIS | Official Receipt</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -67,12 +67,11 @@
                     <%--<a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Export as PDF</a>--%>
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Print</a>
                     </span>
-                Computerized Official Receipt
+                Computerized Official Receipt (Original)
             </div>
             <div class="invoice-header">
                 <div class="invoice-from">
                     <address class="m-t-5 m-b-5">
-                        <strong>Computerized Official Receipt</strong><br />
                         Machine Validation No.<br />
                         Bill Number<br/>
                         Payor
@@ -80,7 +79,6 @@
                 </div>
                 <div class="invoice-to">
                     <address class="m-t-5 m-b-5">
-                        <strong>Original</strong><br />
                         Insert Machine Validation No. here<br />
                         Insert Bill Number here<br />
                         Insert Payor here
