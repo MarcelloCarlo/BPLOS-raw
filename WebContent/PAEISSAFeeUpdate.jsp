@@ -84,30 +84,24 @@
                                     String u = request.getParameter("u");
                                     int num = Integer.parseInt(u);
                                    // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                    PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_fees where FEES_PK= ? ");
+                                    PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_fee_list where FL_NAME= ? ");
                                     getInfo.setInt(1,num);
                                     //res = stat.executeQuery(data);
                                     res = getInfo.executeQuery();
                                     while (res.next())
                                     {
                                 %>
-                                <input type="hidden" name="id" value='<%=res.getString("FEES_PK")%>'/>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Fee Code</label>
-                                    <div class="col-md-8">
-                                        <input type="text" name="feecode" class="form-control" value='<%=res.getString("FEES_CODE")%>' />
-                                    </div>
-                                </div>
+                                <input type="hidden" name="id" value='<%=res.getString("FL_ID")%>'/>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Fee Name</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="feename" class="form-control" value='<%=res.getString("FEES_NAME")%>' />
+                                        <input type="text" name="feename" class="form-control" value='<%=res.getString("FL_NAME")%>' />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Fee Amount</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="feeamo" class="form-control" value='<%=res.getString("AMOUNT")%>' />
+                                        <input type="text" name="feeamo" class="form-control" value='<%=res.getString("FL_AMOUNT")%>' />
                                     </div>
                                 </div>
 
@@ -180,16 +174,14 @@
 
 <%
     String a = request.getParameter("id");
-    String b = request.getParameter("feecode");
-    String c = request.getParameter("feename");
-    String d = request.getParameter("feeamo");
-    if(a!=null && b!=null && c!=null && d!=null)
+    String b = request.getParameter("feename");
+    String c = request.getParameter("feeamo");
+    if(a!=null && b!=null && c!=null)
     {
-        String query = "update lgu_r_fees set FEES_CODE=?,  FEES_NAME=?, AMOUNT=? where FEES_PK='"+a+"'";
+        String query = "update bpls_r_fee_list set  FL_NAME=?, FL_AMOUNT=? where FL_ID='"+a+"'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1,b);
         stmt.setString(2,c);
-        stmt.setString(3,d);
         stmt.executeUpdate();
         response.sendRedirect("PAEISSAFee.jsp");
     }

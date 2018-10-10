@@ -25,7 +25,7 @@
 //    if(a!=null && b!=null && c!=null)
     {
         conn = DriverManager.getConnection(host,"root","");
-        String data = "insert into lgu_r_business_nature(BN_NAME,BN_CLASSIFICATION) values (?,?)";
+        String data = "insert into bpls_r_business_nature(BN_NAME,BN_CLASSIFICATION) values (?,?)";
 //        String data = "insert into lgu_r_business_nature(BN_NAME,BN_CLASSIFICATION,BNR_CODE) values (?,?,?)";
         stat = conn.prepareStatement(data);
         stat.setString(1,a);

@@ -74,7 +74,6 @@
                     <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                         <thead>
                         <tr>
-                            <th>Fees Code</th>
                             <th>Fees Name</th>
                             <th>Amount</th>
                             <th>Action</th>
@@ -89,17 +88,16 @@
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_fees order by FEES_PK desc";
+                                String data = "select * from bpls_r_fee_list order by FL_ID desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {
                             %>
                                     <tr>
-                                        <td><%=res.getString("FEES_CODE")%></td>
-                                        <td><%=res.getString("FEES_NAME")%></td>
-                                        <td><%=res.getString("AMOUNT")%></td>
+                                        <td><%=res.getString("FL_NAME")%></td>
+                                        <td><%=res.getString("FL_AMOUNT")%></td>
                                         <td>
-                                            <a href="PAEISSAFeeUpdate.jsp?u=<%=res.getString("FEES_PK")%>" class="btn btn-success">Edit</a>
+                                            <a href="PAEISSAFeeUpdate.jsp?u=<%=res.getString("FL_ID")%>" class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                             <%

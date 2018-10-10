@@ -28,7 +28,7 @@
     if(a!=null && b!=null && c!=null && d!=null && e!=null && f!=null && g!=null && h!=null && i!=null && j!=null)
     {
         conn = DriverManager.getConnection(host,"root","");
-        String data = "insert into lgu_r_employee_profile(EP_FNAME,EP_MNAME,EP_LNAME,EP_GENDER,EP_BIRTHDATE,EP_STATUS,EP_JOB_DESC,EP_CONTACT_NO,EP_EMAIL,EP_ADDRESS) values (?,?,?,?,?,?,?,?,?,?)";
+        String data = "insert into bpls_r_employee_profile(EP_FNAME,EP_MNAME,EP_LNAME,EP_GENDER,EP_BIRTHDATE,EP_STATUS,EP_JOB_DESC,EP_CONTACT_NO,EP_EMAIL,EP_ADDRESS) values (?,?,?,?,?,?,?,?,?,?)";
         stat = conn.prepareStatement(data);
         stat.setString(1,a);
         stat.setString(2,b);

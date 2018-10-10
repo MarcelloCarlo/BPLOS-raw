@@ -217,19 +217,6 @@
                 </div>
                 <div class="invoice-price">
                     <div class="invoice-price-left">
-                        <div class="invoice-price-row">
-                            <%--<div class="sub-price">--%>
-                                <%--<small>SUBTOTAL</small>--%>
-                                <%--$4,500.00--%>
-                            <%--</div>--%>
-                            <%--<div class="sub-price">--%>
-                                <%--<i class="fa fa-plus"></i>--%>
-                            <%--</div>--%>
-                            <%--<div class="sub-price">--%>
-                                <%--<small>PAYPAL FEE (5.4%)</small>--%>
-                                <%--$108.00--%>
-                            <%--</div>--%>
-                        </div>
                     </div>
                     <div class="invoice-price-right">
                         <small>TOTAL</small> Insert Total Here

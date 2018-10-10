@@ -24,7 +24,7 @@
     if(a!=null && b!=null && c!=null)
     {
         conn = DriverManager.getConnection(host,"root","");
-        String data = "insert into lgu_r_division(DIV_CODE,DIV_NAME,DIV_DESC) values (?,?,?)";
+        String data = "insert into bpls_r_division(DIV_CODE,DIV_NAME,DIV_DESC) values (?,?,?)";
         stat = conn.prepareStatement(data);
         stat.setString(1,a);
         stat.setString(2,b);

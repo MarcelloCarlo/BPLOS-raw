@@ -185,7 +185,7 @@
     String d = request.getParameter("feeamo");
     if(a!=null && b!=null && c!=null && d!=null)
     {
-        String query = "update lgu_r_fees set FEES_CODE=?,  FEES_NAME=?, AMOUNT=? where FEES_PK='"+a+"'";
+        String query = "update bpls_r_fees set FEES_CODE=?,  FEES_NAME=?, AMOUNT=? where FEES_PK='"+a+"'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1,b);
         stmt.setString(2,c);

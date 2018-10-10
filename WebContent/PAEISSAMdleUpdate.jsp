@@ -91,7 +91,7 @@
                                 String u = request.getParameter("u");
                                 int num = Integer.parseInt(u);
                                 // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_module where MOD_ID= ? ");
+                                PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_module where MOD_ID= ? ");
                                 getInfo.setInt(1,num);
                                 //res = stat.executeQuery(data);
                                 res = getInfo.executeQuery();
@@ -185,7 +185,7 @@
     String c = request.getParameter("modesc");
     if(a!=null && b!=null && c!=null)
     {
-        String query = "update lgu_r_fees set MOD_NAME=?,  MOD_DESC=? where MOD_ID='"+a+"'";
+        String query = "update bpls_r_fees set MOD_NAME=?,  MOD_DESC=? where MOD_ID='"+a+"'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1,b);
         stmt.setString(2,c);

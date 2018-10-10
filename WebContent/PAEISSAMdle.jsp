@@ -95,7 +95,7 @@
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_module order by MOD_ID desc";
+                                String data = "select * from bpls_r_module order by MOD_ID desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {
