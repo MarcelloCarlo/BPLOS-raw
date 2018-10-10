@@ -22,7 +22,6 @@ $("#txtAmt").on('input',function () {
 $("#btnTreNewAppl").click(function () {
 
     var treaNewApplForm = new FormData($('#treaNewApplForm')[0]);
-
     swal({
         title: "Are you sure?",
         text: "You will save your current changes",

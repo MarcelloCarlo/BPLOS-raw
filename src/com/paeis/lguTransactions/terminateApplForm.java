@@ -29,9 +29,7 @@ public class terminateApplForm extends HttpServlet {
             terminateApplicationForm.setString(1, REMARKS);
             terminateApplicationForm.setString(2, REFERENCE_NO);
             terminateApplicationForm.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

@@ -66,18 +66,15 @@ public class updateNewAppInvestigationForm extends HttpServlet {
 
     private void passedInvestigation(String AP_REFERENCE_NO, String MISC_REMARKS) {
         try {
-            PreparedStatement passInv = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_inspections SET ZONING_INS = 'Pass', FIRE_INS = 'Pass' , HEALTH_SANITATION_INS = 'Pass', BUILDING_INS = 'Pass', LABOR_INS = 'Pass', MISC_INS = 'Pass', INS_REMARKS = 'Pass', INS_REMARKS = ? WHERE INS_AP_REFERENCE_NO = ? ");
+            PreparedStatement passInv = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_inspections SET ZONING_INS = 'Pass', FIRE_INS = 'Pass' , HEALTH_SANITATION_INS = 'Pass', BUILDING_INS = 'Pass', LABOR_INS = 'Pass', MISC_INS = 'Pass', INS_REMARKS = 'Pass', INS_REMARKS = ? WHERE INS_AP_REFERENCE_NO = ? ");
             passInv.setString(1, MISC_REMARKS);
             passInv.setString(2, AP_REFERENCE_NO);
             passInv.executeUpdate();
-            PreparedStatement assessInv = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement assessInv = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             assessInv.setString(1, MISC_REMARKS);
             assessInv.setString(2, AP_REFERENCE_NO);
             assessInv.executeUpdate();
-            PreparedStatement assessApplication = (PreparedStatement) connection.prepareStatement("INSERT INTO `lgu_t_assessment`(`AS_OR_NO`, `AS_AP_REFERENCE_NO`, `AS_FEE_SET`, `AS_PERIOD_COVERED`, `AS_DUE_DATE`) VALUES (CONCAT(LPAD(AS_ID,3,'0'),'-',REPLACE(?,'-','')),?,'FS-SET1',CURRENT_DATE(),DATE_ADD(AS_PERIOD_COVERED, INTERVAL 1 YEAR))");
-            assessApplication.setString(1, AP_REFERENCE_NO);
-            assessApplication.setString(2, AP_REFERENCE_NO);
-            assessApplication.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,11 +82,11 @@ public class updateNewAppInvestigationForm extends HttpServlet {
 
     private void rectifyInvestigation(String AP_REFERENCE_NO, String MISC_REMARKS, int numMonths) {
         try {
-            PreparedStatement insertRem = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_inspections SET INS_REMARKS = ? WHERE INS_AP_REFERENCE_NO = ?");
+            PreparedStatement insertRem = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_inspections SET INS_REMARKS = ? WHERE INS_AP_REFERENCE_NO = ?");
             insertRem.setString(1, MISC_REMARKS);
             insertRem.setString(2, AP_REFERENCE_NO);
             insertRem.executeUpdate();
-            PreparedStatement rectAppl = (PreparedStatement) connection.prepareStatement("UPDATE lgu_t_bp_application SET AP_DIV_CODE_FROM = 'DIV-INV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_DATE_RE_INS = CURRENT_TIMESTAMP + INTERVAL ? MONTH, AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement rectAppl = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_FROM = 'DIV-INV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_DATE_RE_INS = CURRENT_TIMESTAMP + INTERVAL ? MONTH, AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             rectAppl.setInt(1, numMonths);
             rectAppl.setString(2, MISC_REMARKS);
             rectAppl.setString(3, AP_REFERENCE_NO);
