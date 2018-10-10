@@ -146,22 +146,18 @@
                     <div class="modal-body">
                         <div class="panel-body col-md-12">
 
-                            <h5>Reference Number: <label class="control-label" id=""></label></h5>
+                            <h5>Reference Number: <label class="control-label" id="tRefno"></label></h5>
 
-                            <h5>Business Name: <label class=" control-label" id=""></label></h5>
+                            <h5>Business Name: <label class=" control-label" id="tBuNa"></label></h5>
 
+                            <h5>Business Nature: <label class=" control-label" id="tBuN"></label></h5>
 
-                            <h5>Business Nature: <label class=" control-label" id=""></label></h5>
+                            <h5>Taxpayer Name: <label class=" control-label" id="tTPN"></label></h5>
 
+                            <h5>Taxpayer Address: <label class=" control-label" id="tTA"></label></h5>
 
-                            <h5>Taxpayer Name: <label class=" control-label" id=""></label></h5>
+                            <h5>Date Billed: <label class="control-label" id="tDB"></label></h5>
 
-
-                            <h5>Taxpayer Address: <label class=" control-label" id=""></label></h5>
-
-                            <h5>Date Billed: <label class="control-label" id=""></label></h5>
-
-                            <h5>Assessed By: <label class=" control-label" id=""></label></h5>
                         </div>
                         <div class="panel-body">
                             <table class="table">

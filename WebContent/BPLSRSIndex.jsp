@@ -15,6 +15,8 @@ try{
     Connection conn = conX.getConnection();
     PreparedStatement getReltbl = (PreparedStatement) conn.prepareStatement("SELECT * FROM view_applicationformsrel");
     ResultSet rsRel = getReltbl.executeQuery();
+    PreparedStatement getEmp = (PreparedStatement) conn.prepareStatement("SELECT * FROM bpls_t_employee_profile");
+    ResultSet rsEmp = getEmp.executeQuery();
 %>
 <head>
     <meta charset="utf-8" />
@@ -77,10 +79,11 @@ try{
                             <thead>
                             <tr>
                                 <th>Reference Number</th>
-                                <th>Business Owner</th>
                                 <th>Business Name</th>
-                                <th>Business Type</th>
-                                <th>Amount</th>
+                                <th>Business Nature</th>
+                                <th>Taxpayer Name</th>
+                                <th>Date Billed</th>
+                                <th class="hide">TB_ID</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -92,10 +95,15 @@ try{
                                 <td><%=rsRel.getString("BN_NAME")%></td>
                                 <td><%=rsRel.getString("TP_NAME")%></td>
                                 <td><%=rsRel.getString("TB_DATE_BILLED")%></td>
-                                <td>
-                                    <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
-                                    <a href="#modal-processpayment" class="btn btn-success" data-toggle="modal">Button</a>
-                                </td>
+                                <td class="hide"><%=rsRel.getInt("TB_ID")%></td>
+                                <td><button
+                                    type="button"
+                                    class="btn btn-success modalRel"
+                            data-toggle="modal"
+                              data-target="#modal-processpayment" title="Release of Business Permit"
+                            ><i class="fa fa-lg fa-money"></i>
+                                </button></td>
+
                             </tr>
                             <%}%>
                             </tbody>
@@ -114,37 +122,52 @@ try{
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Process Permit</h4>
+                    <h4 class="modal-title">Paid Permit</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" action="#" method="POST">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Reference Number: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Reference Number/" />
+                    <form class="form-horizontal" id="relApplForm" name="relApplForm">
+                        <input type="text" id="AP_REF" name="AP_REF" class="hide">
+                        <input type="text" name="tbId" id="tbId" class="hide">
+                        <div class="panel-body col-md-12">
+                            <h5>Reference Number: <label class="control-label" id="rRefno"></label></h5>
+
+                            <h5>Business Name: <label class=" control-label" id="rBuNa"></label></h5>
+
+                            <h5>Business Nature: <label class=" control-label" id="rBuN"></label></h5>
+
+                            <h5>Taxpayer Name: <label class=" control-label" id="rTPN"></label></h5>
+
+                            <h5>Date Billed: <label class="control-label" id="rDB"></label></h5>
+                        </div>
+                        <div class="panel-body">
+                            div class="form-group"><label class="col-md-4 control-label">Treasurer: </label>
+                            <div class="col-md-5">
+                                <select name="optTreasurer" class="form-control" data-style="btn-white"
+                                        tabindex="-1">
+                                    <%while (rsEmp.next()) {%>
+                                    <option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"
+                                            title="<%=rsEmp.getString("EP_JOB_DESC")%>"
+                                            value="<%=rsEmp.getInt("EP_ID")%>">
+                                            <%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME")+ " " + rsEmp.getString("EP_LNAME"));%>
+                                            <%} rsEmp.close();%>
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Business Owner: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Business Owner Name/" />
-                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Business Name: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Business Name/" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Fee: </label>
-                            <div class="col-md-8">
-                                <input type="text" name=" " class="form-control" placeholder="/Fee/" />
+                        <div class="panel-body">
+                            <div class="col-md-12">
+											<textarea
+                                                    class="form-control"
+                                                    placeholder="Remarks"
+                                                    id="txtMISC_REMARKS"
+                                                    name="AP_REMARKS"
+                                                    rows="2"
+                                            ></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-sm btn-success">Process</button>
+                            <button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
                         </div>
                     </form>
                 </div>
@@ -177,6 +200,7 @@ try{
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>

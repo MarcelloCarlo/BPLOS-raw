@@ -1,6 +1,7 @@
 $(document).ready(function() {
     App.init();
     TableManageResponsive.init();
+
 $("#txtChng").attr('disabled', true);
     var sum = 0.00;
 //iterate through each td based on class and add the values
@@ -19,7 +20,11 @@ $("#txtAmt").on('input',function () {
     $("#txtChng").val(parseFloat($(this).val()) - sum);
 });
 
-$("#btnTreNewAppl").click(function () {
+});
+function goBack() {
+    window.history.back();
+};
+$("#btnTresNewAppl").click(function () {
 
     var treaNewApplForm = new FormData($('#treaNewApplForm')[0]);
     swal({
@@ -49,7 +54,7 @@ $("#btnTreNewAppl").click(function () {
                     if (result.value) {
                     var oRX = "?orNo="+response;
                     //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
-                    window.location.replace("BPLSORf.jsp"+oRX);
+                    //window.location.replace("BPLSORf.jsp"+oRX);
                 }
             });
 
@@ -64,8 +69,4 @@ $("#btnTreNewAppl").click(function () {
 
     }
 });
-})
 });
-function goBack() {
-    window.history.back();
-}

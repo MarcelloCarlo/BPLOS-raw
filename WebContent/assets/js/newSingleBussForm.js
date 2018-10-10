@@ -5,11 +5,11 @@ $(document).ready(function () {
     FormPlugins.init();
 
     $('#dateNSingBussDTIReg').datetimepicker({
-        format: "DD-MM-YYYY",
+        format: "DD-MM-YYYY"
 
     });
     $('#dateNSingBussEstRentStart').datetimepicker({
-        format: "DD-MM-YYYY",
+        format: "DD-MM-YYYY"
     });
 
     $('#submitBtn').click( function () {
@@ -52,7 +52,7 @@ $(document).ready(function () {
                     }
                 });
             }
-        })
+        });
             return false;
         });
 });

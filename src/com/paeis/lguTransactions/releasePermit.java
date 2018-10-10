@@ -21,11 +21,12 @@ public class releasePermit extends HttpServlet {
         super();
     }
 
-    protected void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException {
-        String ap_ref_no = String.valueOf(request.getParameter("AP_REFERENCE_NO"));
+    @Override
+    protected void doPost( HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String ap_ref_no = String.valueOf(request.getParameter("AP_REF"));
         String ap_remarks = String.valueOf((request.getParameter("AP_REMARKS")));
         int tbId = Integer.parseInt(request.getParameter("tbId"));
-        int empId = Integer.parseInt(request.getParameter("empId"));
+        int empId = Integer.parseInt(request.getParameter("optTreasurer"));
         LGUConnect conx = new LGUConnect();
 
         try {
@@ -40,7 +41,7 @@ public class releasePermit extends HttpServlet {
             }
 
             PreparedStatement genBuPerm = (PreparedStatement) connect.prepareStatement("INSERT INTO bpls_t_business_permit (BP_NUMBER, BP_ISSUED_DATE, BP_VALID_YEARS, BP_REMARKS, BU_ID, AP_ID) VALUES (CONCAT(?,'-',REPLACE(CURRENT_TIMESTAMP,'-','')),NOW(),DATE_ADD(CURRENT_TIMESTAMP,INTERVAL 1 YEAR ),?,?,?)");
-            genBuPerm.setInt(1, bu_id);
+            genBuPerm.setInt(1, tbId);
             genBuPerm.setString(2, ap_remarks);
             genBuPerm.setInt(3, bu_id);
             genBuPerm.setInt(4, ap_id);

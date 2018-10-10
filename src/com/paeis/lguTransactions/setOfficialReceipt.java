@@ -3,28 +3,28 @@ package com.paeis.lguTransactions;
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
 
-import javax.servlet.annotation.*;
-import javax.servlet.http.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 @MultipartConfig
 @WebServlet("/setOfficialReceipt")
 public class setOfficialReceipt extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public setOfficialReceipt() {
-        super();
-    }
-
-    protected void doPost(HttpServletResponse response, HttpServletRequest request) throws IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
         int tbId = Integer.parseInt(request.getParameter("tbId"));
         String paymentType = String.valueOf(request.getParameter("optPaymentType"));
-        int optTreasurer = Integer.parseInt("optTreasurer");
-        String ap_ref_no = String.valueOf("AP_REF_NO");
+        int optTreasurer = Integer.parseInt(request.getParameter("optTreasurer"));
+        String ap_ref_no = String.valueOf(request.getParameter("AP_REF"));
         LGUConnect conX = new LGUConnect();
         try {
 
@@ -35,7 +35,7 @@ public class setOfficialReceipt extends HttpServlet {
             upAPB.setString(1,ap_ref_no);
             upAPB.executeUpdate();
 
-            PreparedStatement genOR = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_official_receipt (OR_DATE, OR_PYMT_TYPE, OR_TW_CH_MO_NO, OR_TW_CH_MO_DATE, OIC_CITY_TREASURER, TB_ID) VALUES (NOW(),?,CONCAT(?,'-',OR_ID,REPLACE(CURRENT_TIMESTAMP,'-','')),NOW(),?,?)");
+            PreparedStatement genOR = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_official_receipt (OR_DATE, OR_PYMT_TYPE, OR_TW_CH_MO_NO, OR_TW_CH_MO_DATE, OIC_CITY_TREASURER, TB_ID) VALUES (NOW(),?,CONCAT(?,'-',REPLACE(CURRENT_TIMESTAMP,'-','')),NOW(),?,?)");
         genOR.setString(1,getPaymentMethod(paymentType));
         genOR.setString(2,paymentType);
         genOR.setInt(3,optTreasurer);
