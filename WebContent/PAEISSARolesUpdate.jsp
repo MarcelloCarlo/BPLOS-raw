@@ -84,7 +84,7 @@
                                 String u = request.getParameter("u");
                                 int num = Integer.parseInt(u);
                                 // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_role where ROLE_ID= ? ");
+                                PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_role where ROLE_ID= ? ");
                                 getInfo.setInt(1,num);
                                 //res = stat.executeQuery(data);
                                 res = getInfo.executeQuery();
@@ -177,7 +177,7 @@
     String c = request.getParameter("roledesc");
     if(a!=null && b!=null && c!=null)
     {
-        String query = "update lgu_r_role set ROLE_NAME=? where ROLE_ID='"+a+"'";
+        String query = "update bpls_r_role set ROLE_NAME=?, ROLE_DESC=? where ROLE_ID='"+a+"'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1,b);
         stmt.setString(2,c);

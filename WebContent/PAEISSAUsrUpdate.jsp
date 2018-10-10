@@ -85,7 +85,7 @@
                                     String u = request.getParameter("u");
                                     int num = Integer.parseInt(u);
                                    // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                    PreparedStatement getInfo = conn.prepareStatement("select * from lgu_r_user where U_ID= ? ");
+                                    PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_user where U_ID= ? ");
                                     getInfo.setInt(1,num);
                                     //res = stat.executeQuery(data);
                                     res = getInfo.executeQuery();
@@ -101,7 +101,7 @@
                                                 LGUConnect connnn = new LGUConnect();
                                                 Connection connnn1 = connnn.getConnection();
                                                 Statement aaaaa = connnn1.createStatement();
-                                                ResultSet sssss = aaaaa.executeQuery("SELECT * FROM `lgu_r_role`");
+                                                ResultSet sssss = aaaaa.executeQuery("SELECT * FROM `bpls_r_role`");
                                                 while (sssss.next()){
                                             %>
                                             <option value="<%out.print(sssss.getInt("ROLE_ID"));%>">
@@ -121,7 +121,7 @@
                                                 LGUConnect connn = new LGUConnect();
                                                 Connection connn1 = connn.getConnection();
                                                 Statement aaaa = connn1.createStatement();
-                                                ResultSet ssss = aaaa.executeQuery("SELECT * FROM `lgu_r_division`");
+                                                ResultSet ssss = aaaa.executeQuery("SELECT * FROM `bpls_r_division`");
                                                 while (ssss.next()){
                                             %>
                                             <option value="<%out.print(ssss.getInt("DIV_ID"));%>">
@@ -218,7 +218,7 @@
     String e = request.getParameter("status");
     if(a!=null && b!=null && c!=null && d!=null && e!=null)
     {
-        String query = "update lgu_r_user set U_USERNAME=?,  U_TYPE=?, U_ROLE=?, U_STATUS=? where U_ID='"+a+"'";
+        String query = "update bpls_r_user set U_USERNAME=?,  U_TYPE=?, U_ROLE=?, U_STATUS=? where U_ID='"+a+"'";
         stmt = conn.prepareStatement(query);
         stmt.setString(1,b);
         stmt.setString(2,c);

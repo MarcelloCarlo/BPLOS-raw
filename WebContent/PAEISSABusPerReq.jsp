@@ -98,7 +98,7 @@
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_buspereq order by BNR_ID desc";
+                                String data = "select * from bpls_r_buspereq order by BNR_ID desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {
@@ -152,7 +152,7 @@
                                                                 LGUConnect con = new LGUConnect();
                                                                 Connection con1 = con.getConnection();
                                                                 Statement aa = con1.createStatement();
-                                                                ResultSet ss = aa.executeQuery("SELECT * FROM `lgu_r_business_nature`");
+                                                                ResultSet ss = aa.executeQuery("SELECT * FROM `bpls_r_business_nature`");
                                                                 while (ss.next()){
                                                             %>
                                                             <option value="<%out.print(ss.getInt("BN_ID"));%>">
@@ -175,7 +175,7 @@
                                                                 LGUConnect connn = new LGUConnect();
                                                                 Connection connn1 = connn.getConnection();
                                                                 Statement aaaa = connn1.createStatement();
-                                                                ResultSet ssss = aaaa.executeQuery("SELECT * FROM `lgu_r_rreq`");
+                                                                ResultSet ssss = aaaa.executeQuery("SELECT * FROM `bpls_r_rreq`");
                                                                 while (ssss.next()){
                                                             %>
                                                             <option value="<%out.print(ssss.getInt("RREQ_ID"));%>">

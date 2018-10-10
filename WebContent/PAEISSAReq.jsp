@@ -88,7 +88,7 @@
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_req_type order by RT_ID desc";
+                                String data = "select * from bpls_r_req_type order by RT_ID desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {

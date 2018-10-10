@@ -16,7 +16,7 @@
     if(a!=null && b!=null)
     {
         conn = DriverManager.getConnection(host,"root","");
-        String data = "insert into lgu_r_req_type(RT_NAME,RT_DESC) values (?,?)";
+        String data = "insert into bpls_r_req_type(RT_NAME,RT_DESC) values (?,?)";
         stat = conn.prepareStatement(data);
         stat.setString(1,a);
         stat.setString(2,b);

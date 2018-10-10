@@ -89,7 +89,7 @@
                                 Class.forName("com.mysql.jdbc.Driver");
                                 conn = DriverManager.getConnection(host,"root","");
                                 stat = conn.createStatement();
-                                String data = "select * from lgu_r_fees order by FEES_PK desc";
+                                String data = "select * from bpls_r_fees order by FEES_PK desc";
                                 res = stat.executeQuery(data);
                                 while (res.next())
                                 {
