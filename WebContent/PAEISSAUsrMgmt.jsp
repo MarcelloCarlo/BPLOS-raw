@@ -44,9 +44,8 @@
         Statement ss3 = conn3.createStatement();
         Statement aaa = conn3.createStatement();
         Statement aa = conn3.createStatement();
-        ResultSet ss = aa.executeQuery("SELECT * FROM `bpls_r_role`");
         ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
-        ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.UEP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
+        ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.EP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -78,7 +77,7 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
                                data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         </div>
-                        <h4 class="panel-title">Users Table</h4>
+                        <h4 class="panel-title">Users Table (Authorised User Only)</h4>
                     </div>
                     <div class="panel-body">
                         <a href="#modal-adduser" id="addUserbtn" class="btn btn-sm btn-primary" data-toggle="modal">Add
@@ -90,6 +89,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Username</th>
+                                <th>Password</th>
                                 <th>Department</th>
                                 <th>User Status</th>
                                 <th>Action</th>
@@ -103,6 +103,8 @@
                                 <td><%=res.getString("EP_FNAME")%>
                                 </td>
                                 <td><%=res.getString("U_USERNAME")%>
+                                </td>
+                                <td><%=res.getString("U_PASSWORD")%>
                                 </td>
                                 <td><%=res.getString("DIV_NAME")%>
                                 </td>
@@ -189,6 +191,7 @@
                                                             <select name="gender" class="form-control">
                                                                 <option value="Male">Male</option>
                                                                 <option value="Female">Female</option>
+                                                                <option value="Other">Female</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -197,7 +200,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
-                                                        <input type="text" name="bdate" placeholder="Birthdate"
+                                                        <input type="text" name="bdate" id="birthdate" placeholder="Birthdate"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
@@ -274,7 +277,7 @@
                                                         <div class="controls">
                                                             <input type="text" name="username"
                                                                    placeholder="Your username"
-                                                                   class="form-control" required/>
+                                                                   class="form-control" disabled/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -284,27 +287,8 @@
                                                         <label>Pasword</label>
                                                         <div class="controls">
                                                             <input type="password" name="password"
-                                                                   value="Bplo_user111" class="form-control"
+                                                                   value="bpls_user" class="form-control"
                                                                    disabled/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>User Role</label>
-                                                        <div class="controls">
-                                                            <select name="urole" class="form-control">
-                                                                <%
-                                                                    while (ss.next()) {
-                                                                %>
-                                                                <option value="<%out.print(ss.getInt("ROLE_ID"));%>">
-                                                                    <%out.print(ss.getString("ROLE_NAME"));%>
-                                                                </option>
-                                                                <%
-                                                                    }
-                                                                %>
-                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -317,7 +301,7 @@
                                                                 <%
                                                                     while (sss.next()) {
                                                                 %>
-                                                                <option value="<%out.print(sss.getInt("DIV_ID"));%>">
+                                                                <option value="<%out.print(sss.getInt("DIV_CODE"));%>">
                                                                     <%out.print(sss.getString("DIV_NAME"));%>
                                                                 </option>
                                                                 <%
@@ -377,13 +361,10 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
-<script src="assets/js/form-wizards.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
 <script>
     $(document).ready(function () {
         App.init();
@@ -400,24 +381,13 @@
                 }
             });
         })*/
+        $('#birthdate').datetimepicker({
+            format: "DD-MM-YYYY"
+
+        });
     });
 </script>
 <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
 </script>
 </body>
 <%

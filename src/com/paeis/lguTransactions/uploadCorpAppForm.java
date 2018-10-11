@@ -18,19 +18,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.mysql.jdbc.PreparedStatement;
+
 @MultipartConfig
 @WebServlet("/uploadCorpAppForm")
 public class uploadCorpAppForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     public uploadCorpAppForm() {
-		super();// TODO Auto-generated constructor stub
-	} 
+        super();// TODO Auto-generated constructor stub
+    }
 
     @Override
     protected void doPost(HttpServletRequest reqX, HttpServletResponse respX) throws ServletException, IOException {
 
-       
+
         String txtNCorpBussName = reqX.getParameter("txtNCorpBussName");
         String txtNCorpTaxPayName = reqX.getParameter("txtNCorpTaxPayName");
         String txtNCorpPresidentName = reqX.getParameter("txtNCorpPresidentName");
@@ -38,7 +40,7 @@ public class uploadCorpAppForm extends HttpServlet {
         String txtNCorpBussStrtNo = reqX.getParameter("txtNCorpBussStrtNo");
         String txtNCorpBussStrtName = reqX.getParameter("txtNCorpBussStrtName");
         String txtNCorpBussBrgyName = reqX.getParameter("txtNCorpBussBrgyName");
-        String txtNCorpPropIdxNo =reqX.getParameter("txtNCorpPropIdxNo");
+        String txtNCorpPropIdxNo = reqX.getParameter("txtNCorpPropIdxNo");
         String txtNCorpLotBlckNo = reqX.getParameter("txtNCorpLotBlckNo");
         String txtNCorpAuthRepName = reqX.getParameter("txtNCorpAuthRepName");
         String txtNCorpAuthRepPos = reqX.getParameter("txtNCorpAuthRepPos");
@@ -126,8 +128,8 @@ public class uploadCorpAppForm extends HttpServlet {
                 .collect(Collectors.toList());
 
         InputStream is = null;
-		String fileName = null;
-		   // Part list (multi files).
+        String fileName = null;
+        // Part list (multi files).
         for (Part part : reqX.getParts()) {
             fileName = extractFileName(part);
             if (fileName != null && fileName.length() > 0) {
@@ -137,105 +139,122 @@ public class uploadCorpAppForm extends HttpServlet {
                 //this.writeToDB(conn, fileName, is, description);
             }
         }
-		Connection connection = null;
-		com.mysql.jdbc.CallableStatement callProc = null;
-		respX.setContentType("text/html;charset=UTF-8");
-		PrintWriter echo = respX.getWriter();
-		LGUConnect conX = new LGUConnect();
-		String bu_loc = txtNCorpBussFlrNo + " " + txtNCorpBussStrtNo + " " + txtNCorpBussStrtName + " "
-				+ txtNCorpBussBrgyName;
-		String authRep_addr = txtNCorpAuthRepStrtNo + " " + txtNCorpAuthRepStrtName + " " + txtNCorpAuthRepBrgyName + " "
-				+ txtNCorpAuthRepCity;
-	
-		String queery = "SELECT MAX(AP_REFERENCE_NO) AS AP_REFERENCE_NO FROM bpls_t_bp_application";
-		String _refNo = "";
-		
+        Connection connection = null;
+        com.mysql.jdbc.CallableStatement callProc = null;
+        respX.setContentType("text/html;charset=UTF-8");
+        PrintWriter echo = respX.getWriter();
+        LGUConnect conX = new LGUConnect();
+        String bu_loc = txtNCorpBussFlrNo + " " + txtNCorpBussStrtNo + " " + txtNCorpBussStrtName + " "
+                + txtNCorpBussBrgyName;
+        String authRep_addr = txtNCorpAuthRepStrtNo + " " + txtNCorpAuthRepStrtName + " " + txtNCorpAuthRepBrgyName + " "
+                + txtNCorpAuthRepCity;
+
+
+        String refNo = "";
+        String divCode = "";
+        String divName = "";
+
 
         // Do the insert here if you can
         try {
-        	connection = conX.getConnection();
-        	Date secDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNCorpBussSECReg);
-    		Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNCorpBussEstRentStart);
-    		java.sql.Date _dateNCorpBussSECReg = new java.sql.Date(secDate.getTime());
-    		java.sql.Date _dateNCorpBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
+            connection = conX.getConnection();
+            Date secDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNCorpBussSECReg);
+            Date bussEstStartDate = new SimpleDateFormat("dd-MM-yyyy").parse(dateNCorpBussEstRentStart);
+            java.sql.Date _dateNCorpBussSECReg = new java.sql.Date(secDate.getTime());
+            java.sql.Date _dateNCorpBussEstRentStart = new java.sql.Date(bussEstStartDate.getTime());
             // Parse the request
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-           PreparedStatement authRepInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_authorize_rep`( `AR_FNAME`, `AR_POSITION`,`AR_HOME_ADDRESS`) VALUES (?,?,?)");
-           authRepInfo.setString(1, txtNCorpAuthRepName);
-           authRepInfo.setString(2, txtNCorpAuthRepPos);
-           authRepInfo.setString(3, authRep_addr);
-           authRepInfo.executeUpdate();
-           PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
-           rentInfo.setDate(1, _dateNCorpBussEstRentStart);
-           rentInfo.setFloat(2, Float.parseFloat(numNCorpBussEstRentMonth));
-           rentInfo.setString(3, txtNCorpBussEstRentName);
-           rentInfo.executeUpdate();
-           PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_taxpayer`(`TP_FNAME`,  `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?)");
-           taxPayerInfo.setString(1, txtNCorpTaxPayName);
-           taxPayerInfo.setString(2, txtNCorpTaxPayTINNo);
-           taxPayerInfo.setString(3, txtNCorpEmpSSSNo);
-           taxPayerInfo.executeUpdate();
-           PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),2)");
-           businessInfo.setString(1, txtNCorpBussName);
-           businessInfo.setString(2, txtNCorpPresidentName);
-           businessInfo.setString(3, bu_loc);
-           businessInfo.setString(4, txtNCorpPropIdxNo);
-           businessInfo.setString(5, txtNCorpLotBlckNo);
-           businessInfo.setString(6, txtNCorpFaxNo);
-           businessInfo.setString(7, txtNCorpTelNo);
-           businessInfo.setFloat(8, Float.parseFloat(numNCorpBussEstSignbrdArea));
-           businessInfo.setString(9, txtNCorpBussSECRegNo);
-           businessInfo.setDate(10, _dateNCorpBussSECReg);
-           businessInfo.setInt(11, Integer.parseInt(numNCorpEmpQTY));
-           businessInfo.setInt(12, Integer.parseInt(numNCorpBussUnitNo));
-           businessInfo.setFloat(13, Float.parseFloat(numNCorpBussEstSignbrdArea));
-           businessInfo.setFloat(14, Float.parseFloat(numNCorpBussCapitalization));
-           businessInfo.setInt(15, Integer.parseInt(txtNCBussAct));
-           businessInfo.executeUpdate();
-           PreparedStatement authRep2Bus = (PreparedStatement) connection
-					.prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
-							+ "VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
-			authRep2Bus.executeLargeUpdate();
-			PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
-					"INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business)) ");
-			refNoInfo.executeUpdate();
-			PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `bpls_t_bp_application`))");
-			fileUpload.setBlob(1,is);
-			fileUpload.setString(2,fileName);
-			fileUpload.executeUpdate();
-			
-			Statement ss3 = connection.createStatement();
-			ResultSet gg3 = ss3.executeQuery(queery);
-			while (gg3.next()) {
-				_refNo = gg3.getString("AP_REFERENCE_NO");
-				respX.getWriter().print(_refNo);	
-				// response.getWriter().write(_refNo);
-			}
+            PreparedStatement authRepInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_authorize_rep`( `AR_FNAME`, `AR_POSITION`,`AR_HOME_ADDRESS`) VALUES (?,?,?)");
+            authRepInfo.setString(1, txtNCorpAuthRepName);
+            authRepInfo.setString(2, txtNCorpAuthRepPos);
+            authRepInfo.setString(3, authRep_addr);
+            authRepInfo.executeUpdate();
+            PreparedStatement rentInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_is_rented`(`RENT_DATE_STARTED`, `RENT_MONTHLY_RENTAL`, `RENT_LESSOR`) VALUES(?,?,?)");
+            rentInfo.setDate(1, _dateNCorpBussEstRentStart);
+            rentInfo.setFloat(2, Float.parseFloat(numNCorpBussEstRentMonth));
+            rentInfo.setString(3, txtNCorpBussEstRentName);
+            rentInfo.executeUpdate();
+            PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_taxpayer`(`TP_FNAME`,  `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?)");
+            taxPayerInfo.setString(1, txtNCorpTaxPayName);
+            taxPayerInfo.setString(2, txtNCorpTaxPayTINNo);
+            taxPayerInfo.setString(3, txtNCorpEmpSSSNo);
+            taxPayerInfo.executeUpdate();
+            PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),2)");
+            businessInfo.setString(1, txtNCorpBussName);
+            businessInfo.setString(2, txtNCorpPresidentName);
+            businessInfo.setString(3, bu_loc);
+            businessInfo.setString(4, txtNCorpPropIdxNo);
+            businessInfo.setString(5, txtNCorpLotBlckNo);
+            businessInfo.setString(6, txtNCorpFaxNo);
+            businessInfo.setString(7, txtNCorpTelNo);
+            businessInfo.setFloat(8, Float.parseFloat(numNCorpBussEstSignbrdArea));
+            businessInfo.setString(9, txtNCorpBussSECRegNo);
+            businessInfo.setDate(10, _dateNCorpBussSECReg);
+            businessInfo.setInt(11, Integer.parseInt(numNCorpEmpQTY));
+            businessInfo.setInt(12, Integer.parseInt(numNCorpBussUnitNo));
+            businessInfo.setFloat(13, Float.parseFloat(numNCorpBussEstSignbrdArea));
+            businessInfo.setFloat(14, Float.parseFloat(numNCorpBussCapitalization));
+            businessInfo.setInt(15, Integer.parseInt(txtNCBussAct));
+            businessInfo.executeUpdate();
+            PreparedStatement authRep2Bus = (PreparedStatement) connection
+                    .prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
+                            + "VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
+            authRep2Bus.executeLargeUpdate();
+            PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
+                    "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business)) ");
+            refNoInfo.executeUpdate();
+            PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `bpls_t_bp_application`))");
+            fileUpload.setBlob(1, is);
+            fileUpload.setString(2, fileName);
+            fileUpload.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+            //Record
+            PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM bpls_t_bp_application");
+            ResultSet rsAPNO = getAPno.executeQuery();
+            refNo = rsAPNO.getString("REF_NO");
+
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, refNo);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            divCode = rsAP.getString("AP_DIV_CODE_TO");
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME) VALUES (?,?,?)");
+            recHist.setString(1, refNo);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.executeUpdate();
+
+            respX.getWriter().print(refNo);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-	private String extractFileName(Part part) {
-		// TODO Auto-generated method stub
-		  String contentDisp = part.getHeader("content-disposition");
-	        String[] items = contentDisp.split(";");
-	        for (String s : items) {
-	            if (s.trim().startsWith("filename")) {
-	                // C:\file1.zip
-	                // C:\Note\file2.zip
-	                String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
-	                clientFileName = clientFileName.replace("\\", "/");
-	                int i = clientFileName.lastIndexOf('/');
-	                // file1.zip
-	                // file2.zip
-	                return clientFileName.substring(i + 1);
-	            }
-	        }
-		return null;
-	}
+    private String extractFileName(Part part) {
+        // TODO Auto-generated method stub
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                // C:\file1.zip
+                // C:\Note\file2.zip
+                String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+                clientFileName = clientFileName.replace("\\", "/");
+                int i = clientFileName.lastIndexOf('/');
+                // file1.zip
+                // file2.zip
+                return clientFileName.substring(i + 1);
+            }
+        }
+        return null;
+    }
 }

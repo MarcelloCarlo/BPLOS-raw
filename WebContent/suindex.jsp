@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>PAES | Quick Navigation</title>
+    <title>PAES | DEBUG MODE</title>
 
     <meta
             http-equiv="Content-Type"
@@ -67,7 +67,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> DEBUG MODE</a>
             <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -81,7 +81,7 @@
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="assets/img/user-13.jpg" alt=""/>
-                    <span class="hidden-xs">Sample User</span> <b class="caret"></b>
+                    <span class="hidden-xs">(SUPER USER)</span> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInLeft">
                     <li class="arrow"></li>
@@ -113,6 +113,7 @@
                 <li><a href="BPLSTIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Treasury</span></a></li>
                 <li><a href="BPLSRSIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Releasing</span></a></li>
                 <li><a href="PAEISPortal.jsp"><i class="fa fa-file-excel-o"></i> <span>Portal</span></a></li>
+                <li><a href="PAEISSAUsrMgmt.jsp"><i class="fa fa-file-excel-o"></i> <span>Sysadmin</span></a></li>
                 <li><a href="BPLSAplCrpBus.jsp"><i class="fa fa-file-excel-o"></i>
                     <span>Application Form Corp</span></a></li>
                 <li><a href="BPLSAplSglBus.jsp"><i class="fa fa-file-excel-o"></i> <span>Application Form Single</span></a>

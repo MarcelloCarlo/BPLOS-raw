@@ -1,8 +1,14 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: John Carlo Villar
   Date: 09/23/2018
@@ -12,12 +18,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% LGUConnect conX = new LGUConnect();
     try {
+        String natureSt = "";
         Connection connection = conX.getConnection();
         String refNo = request.getParameter("refNo");
-        PreparedStatement getAssess = connection.prepareStatement("SELECT * FROM view_routeslip WHERE AP_REFERENCE_NO = ?");
+        PreparedStatement getAssess = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_business BU JOIN bpls_t_bp_application AP ON BU.BU_ID = AP.BU_ID JOIN bpls_t_taxpayer TP ON BU.TP_ID = TP.TP_ID JOIN bpls_r_business_nature BN ON BU.BN_ID = BN.BN_ID WHERE AP_REFERENCE_NO = ?");
         getAssess.setString(1, refNo);
         ResultSet rs = getAssess.executeQuery();
-        while (rs.next()) {
+        PreparedStatement getHist = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_ap_history WHERE TL_AP_NO = ?");
+        getHist.setString(1,refNo);
+        ResultSet rs1 = getHist.executeQuery();
 %>
 <html>
 <head>
@@ -82,6 +91,7 @@
             href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css"
             rel="stylesheet"
     />
+
     <!-- ================== END PAGE LEVEL STYLE ================== -->
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
@@ -114,19 +124,33 @@
                         <h4 class="panel-title">Route Slip</h4>
                     </div>
                     <div class="panel-body">
+                        <%while (rs.next()) {
+                            String _pres = String.valueOf(rs.getString("BU_PRESIDENT"));
+                            String pres="";
+                            if (_pres.equalsIgnoreCase("null")){
+                                pres = "None";
+                            }
+                            String classification = String.valueOf(rs.getString("BN_CLASSIFICATION"));
+                            if (classification.equalsIgnoreCase("S")) {
+                                natureSt = "(Small Scale)";
+                            } else if (classification.equalsIgnoreCase("L")) {
+                                natureSt = "(Large Scale)";
+                            } else {
+                                natureSt = "(Unidentified)";
+                            }%>
                         <div class="form-group">
+<input class="hidden" name="hidAPID" id="hidAPID" value="<%out.print(rs.getString("AP_ID"));%>"/>
                             <h5>Business Name/Corporate Name: <label><%out.print(rs.getString("BU_NAME"));%></label>
                             </h5>
                         </div>
                         <div class="form-group">
-                            <h5>Name of Sole Proprietor/Partnership/President: <label><%
-                                out.print(rs.getString("BU_PRESIDENT"));%></label></h5>
+                            <h5>Name of Sole Proprietor/Partnership/President: <label><%=pres%></label></h5>
                         </div>
                         <div class="form-group">
                             <h5>Business Address: <label><%out.print(rs.getString("BU_LOCATION"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <h5>Tel No.: <label><%out.print(rs.getString("BU_LOCATION"));%></label></h5>
+                            <h5>Tel No.: <label><%out.print(rs.getString("BU_CONTACT"));%></label></h5>
                         </div>
                         <div class="form-group">
                             <h5>Authorized Representative: <label><%out.print(rs.getString("TP_FNAME"));%></label></h5>
@@ -135,31 +159,80 @@
                             <h5>Address: <label><%out.print(rs.getString("TP_HOME_ADDRESS"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <h5>Business Nature: <label><%out.print(rs.getString("BN_NAME"));%></label></h5>
+                            <h5>Business Nature: <label><%out.print(rs.getString("BN_NAME"));%> <%=natureSt%></label></h5>
                         </div>
+                        <%  }rs.close();%>
                     </div>
 
                     <hr>
 
                     <div class="panel-body">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Reference Number</th>
-                                <th>Status</th>
-                                <th>Phase</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr>
-                                <td><%out.print(rs.getString("AP_REFERENCE_NO"));%></td>
-                                <td><%out.print(rs.getString("AP_STATUS"));%></td>
-                                <td><%out.print(rs.getString("DIV_NAME"));%></td>
-                            </tr>
-
-                            </tbody>
-                        </table>
+                        <ul class="timeline">
+                            <% int total = 0; while (rs1.next()) {
+                                String stRemarks = "";
+                                String divGuide = "";
+                                String remarks = String.valueOf(rs1.getString("TL_REMARKS"));
+                                String divCode = String.valueOf(rs1.getString("TL_DIV_CODE"));
+                                Date _tldate = rs1.getTimestamp("TL_DATE");
+                                String tldate = null;
+                               String tltime = null;
+                               String reuploadBtn = "";
+                            if (remarks.equalsIgnoreCase("null")||remarks.isEmpty()){
+                                stRemarks = "No Comments."; }
+                                else { stRemarks = remarks;}
+                                tldate = new SimpleDateFormat("MMMM dd, yyyy").format(_tldate);
+                                tltime =  new SimpleDateFormat("hh:mm aaa").format(_tldate);
+                                if(divCode.equals("DIV-EV")){
+                                    divGuide = "Great! Evaluating you Application.";
+                                } else if (divCode.equals("DIV-INS")){
+                                    divGuide = "Inspectioning your business.";
+                                } else if (divCode.equals("DIV-INV")){
+                                    divGuide = "It seems you have violations. Starting investigation.";
+                                } else if (divCode.equals("DIV-AS")){
+                                    divGuide = "Assessing your payment for your business.";
+                                } else if (divCode.equals("DIV-TRE")){
+                                    divGuide = "Assessed! Please claim your billing statement and prepare for the payment";
+                                } else if (divCode.equals("DIV-REL")){
+                                    divGuide = "Releasing! Please claim your business permit.";
+                                } else if (divCode.equals("END")){
+                                    divGuide = "Done! Thank you for your contribution!";
+                                } else if (divCode.equals("DIV-RINS")){
+                                    divGuide = "Giving you an another re-inspection. Please comply to procede.";
+                                } else if (divCode.equals("DIV-REV")){
+                                    divGuide = "There's a problem on your documents. Please re-upload your file with required documents";
+                                    reuploadBtn = "<p><form enctype='multipart/form-data' name='reuploadFile' id='reuploadFile' action='reuploadFile.jsp' method='post'> <input type='text' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required><button type='submit' id='submitBtn' class='btn btn-success btn-lg'>Reupload</button></form><p>";
+                                }
+                            %>
+                            <li>
+                                <!-- begin timeline-time -->
+                                <div class="timeline-time">
+                                    <span class="date"><%out.print(tldate);%></span>
+                                    <span class="time"><%out.print(tltime);%></span>
+                                </div>
+                                <!-- end timeline-time -->
+                                <!-- begin timeline-icon -->
+                                <div class="timeline-icon">
+                                    <a href="javascript:;"><%=total+=1%></a>
+                                </div>
+                                <!-- end timeline-icon -->
+                                <!-- begin timeline-body -->
+                                <div class="timeline-body">
+                                    <div class="timeline-header">
+                                        <span class="username"><a href="javascript:;">Status: <%=rs1.getString("TL_DIV_NAME")%></a> <small></small></span>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <p>
+                                            <%= stRemarks%>
+                                        </p><%=reuploadBtn%>
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <p><%=divGuide%></p>
+                                    </div>
+                                </div>
+                                <!-- end timeline-body -->
+                            </li>
+                            <%}rs1.close();%>
+                        </ul>
                     </div>
                 </div>
                 <!-- end panel -->
@@ -167,8 +240,6 @@
         </div>
     </div>
     <!-- end #content -->
-
-
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
             class="fa fa-angle-up"></i></a>
@@ -176,8 +247,7 @@
 </div>
 
 <%
-        }
-    } catch (SQLException | ClassNotFoundException e) {
+    } catch (/*Exception*/SQLException e) {
         out.print(e);
     }
 %>
@@ -214,24 +284,8 @@
         App.init();
         TableManageResponsive.init();
         FormWizard.init();
+        $("#apID").val($("#hidAPID").val());
     });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
 </script>
 </body>
 </html>

@@ -22,7 +22,7 @@ $(document).ready(function () {
             text: 'Do you agree on the terms and conditions?'
         },
             'Confirm?',
-        ]).then((result) = > {
+        ]).then((result) => {
             if(result.value
     )
         {
@@ -40,7 +40,7 @@ $(document).ready(function () {
                         title: 'All Done!',
                         html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!',
                         confirmButtonText: 'Proceed'
-                    }).then((result) = > {
+                    }).then((result) => {
                         if(result.value
                 )
                     {
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 }
             });
         }
-    })
+    });
         return false;
     });
 });
