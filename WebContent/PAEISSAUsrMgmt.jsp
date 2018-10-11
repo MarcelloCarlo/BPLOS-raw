@@ -301,7 +301,7 @@
                                                                 <%
                                                                     while (sss.next()) {
                                                                 %>
-                                                                <option value="<%out.print(sss.getInt("DIV_CODE"));%>">
+                                                                <option value="<%out.print(sss.getString("DIV_CODE"));%>">
                                                                     <%out.print(sss.getString("DIV_NAME"));%>
                                                                 </option>
                                                                 <%
@@ -391,8 +391,8 @@
 </script>
 </body>
 <%
-    } catch (SQLException | ClassNotFoundException e) {
-        e.printStackTrace();
+    } catch (Exception e) {
+        out.print(e);
     }
 %>
 </html>

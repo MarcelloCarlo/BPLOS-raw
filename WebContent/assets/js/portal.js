@@ -23,10 +23,13 @@ $(document).ready(function () {
             data: loginEmpForm,
             processData: false,
             contentType: false,
+            success: function (response) {
+               window.location = response.url;
+            },
             error: function (response) {
                 swal({
                     type: 'error',
-                    title: 'Login Failed!',
+                    title: 'Login Failed!'
                 });
             }
         });

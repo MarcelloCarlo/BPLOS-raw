@@ -1,4 +1,4 @@
-package com.paeis.lguTransactions;
+package com.paeis.bplsTransactions;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 @MultipartConfig
 @WebServlet("/updateNewAppEvaluationForm")
@@ -39,6 +40,7 @@ public class updateNewAppEvaluationForm extends HttpServlet {
 
         LGUConnect conX = new LGUConnect();
         String currBN = "";
+        String divCode = "", divName = "";
         if (BN_CLASSIFICATION.equals("S")) {
             currBN = "UPDATE bpls_t_bp_application SET AP_STATUS = 'Assess', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
         } else if (BN_CLASSIFICATION.equals("L")) {
@@ -64,6 +66,30 @@ public class updateNewAppEvaluationForm extends HttpServlet {
             PreparedStatement changeDiv = (PreparedStatement) connection.prepareStatement(currBN);
             changeDiv.setString(1, AP_REFERENCE_NO);
             changeDiv.executeUpdate();
+
+            //Record
+
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, AP_REFERENCE_NO);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            while (rsAP.next()){
+                divCode = rsAP.getString("AP_DIV_CODE_TO");
+            }
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME) VALUES (?,?,?)");
+            recHist.setString(1, AP_REFERENCE_NO);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.executeUpdate();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

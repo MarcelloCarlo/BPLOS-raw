@@ -1,4 +1,4 @@
-package com.paeis.lguTransactions;
+package com.paeis;
 
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 			try 
 			{
 				Connection connection = conn.getConnection();
-				PreparedStatement login = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_employee_profile EP JOIN bpls_t_user U ON EP.EP_ID = U.UEP_ID WHERE U.U_USERNAME = ? AND U.U_PASSWORD = ? AND U.U_STATUS = 'Active'");
+				PreparedStatement login = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_employee_profile EP JOIN bpls_t_user U ON EP.EP_ID = U.EP_ID WHERE U.U_USERNAME = ? AND U.U_PASSWORD = ? AND U.U_STATUS = 'Active'");
 				login.setString(1,username);
 				login.setString(2, password);
 				ResultSet resultSet = login.executeQuery();
@@ -73,42 +73,30 @@ public class LoginServlet extends HttpServlet {
 					
 					if(empDIV.equals("DIV-SYSAD"))
 					{
-						
 						RequestDispatcher dispatcher = request.getRequestDispatcher("PAEISSAUsrMgmt.jsp");
 						dispatcher.forward(request, response);
-					}
-					
-					else if(empDIV.equals("DIV_EV"))
+					} else if(empDIV.equals("DIV-EV"))
 					{
 						RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSEIndex.jsp");
 						dispatcher.forward(request, response);
-					}
-					
-					else if(empDIV.equals("DIV-INS"))
+					} else if(empDIV.equals("DIV-INS"))
 					{
 						RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSIPIndex.jsp");
 						dispatcher.forward(request, response);
-					}
-					
-					else if(empDIV.equals("DIV-INV"))
+					} else if(empDIV.equals("DIV-INV"))
 					{
 						RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSIVIndex.jsp");
 						dispatcher.forward(request, response);
-					}
-					
-					else if(empDIV.equals("DIV-TRE"))
+					} else if(empDIV.equals("DIV-TRE"))
 					{
 						RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSTIndex.jsp");
 						dispatcher.forward(request, response);
-					}
-					
-					else if(empDIV.equals("DIV-REL"))
+					} else if(empDIV.equals("DIV-REL"))
 					{
 						RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSRSIndex.jsp");
 						dispatcher.forward(request, response);
 					}
-				}
-				else
+				} else
 				{
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISPortal.jsp");
 					requestDispatcher.forward(request, response);

@@ -1,11 +1,10 @@
-package com.paeis.lguTransactions;
+package com.paeis.bplsTransactions;
 
 import com.paeis.dbConnection.LGUConnect;
 
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

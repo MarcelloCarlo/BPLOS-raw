@@ -7,6 +7,17 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
+<%
+    //stat = conn.createStatement();
+    //stat = conn.createStatement();
+    LGUConnect lguConnect = new LGUConnect();
+    String u = request.getParameter("u");
+    int num = Integer.parseInt(u);
+    try {
+   Connection connection = lguConnect.getConnection();
+    PreparedStatement getInfo = connection.prepareStatement("select * from bpls_t_user where U_ID= ? ");
+    getInfo.setInt(1, num);
+    ResultSet res = getInfo.executeQuery();%>
 <head>
     <meta charset="utf-8"/>
     <title>PAEIS | User Management</title>
@@ -64,58 +75,19 @@
                         <h4 class="panel-title">Users Table</h4>
                     </div>
                     <div class="panel-body">
-                        <%
-                            String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
-                            Connection conn = null;
-                            Statement stat = null;
-                            ResultSet res = null;
-                            PreparedStatement stmt = null;
-                            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                            // Class.forName("com.mysql.jdbc.Driver").newInstance();
-                            conn = DriverManager.getConnection(host, "root", "");
-                        %>
                         <form class="form-horizontal" action=" " method="POST">
-                            <%
-                                //stat = conn.createStatement();
-                                //stat = conn.createStatement();
-                                String u = request.getParameter("u");
-                                int num = Integer.parseInt(u);
-                                // String data = "select * from lgu_r_user where U_ID='"+num+"'";
-                                PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_user where U_ID= ? ");
-                                getInfo.setInt(1, num);
-                                //res = stat.executeQuery(data);
-                                res = getInfo.executeQuery();
+                           <%
                                 while (res.next()) {
                             %>
                             <input type="hidden" name="id" value='<%=res.getString("U_ID")%>'/>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Role</label>
-                                <div class="col-md-8">
-                                    <select name="role" class="form-control">
-                                        <%
-                                            LGUConnect connnn = new LGUConnect();
-                                            Connection connnn1 = connnn.getConnection();
-                                            Statement aaaaa = connnn1.createStatement();
-                                            ResultSet sssss = aaaaa.executeQuery("SELECT * FROM `bpls_r_role`");
-                                            while (sssss.next()) {
-                                        %>
-                                        <option value="<%out.print(sssss.getInt("ROLE_ID"));%>">
-                                            <%out.print(sssss.getString("ROLE_NAME"));%>
-                                        </option>
-                                        <%
-                                            }
-                                        %>
-                                    </select>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Division</label>
                                 <div class="col-md-8">
                                     <select name="role" class="form-control">
                                         <%
-                                            LGUConnect connn = new LGUConnect();
-                                            Connection connn1 = connn.getConnection();
-                                            Statement aaaa = connn1.createStatement();
+
+                                            Statement aaaa = connection.createStatement();
                                             ResultSet ssss = aaaa.executeQuery("SELECT * FROM `bpls_r_division`");
                                             while (ssss.next()) {
                                         %>
@@ -132,8 +104,8 @@
                                 <label class="col-md-4 control-label">Status</label>
                                 <div class="col-md-8">
                                     <select name="status" class="form-control">
-                                        <option>Active</option>
-                                        <option>Inactive</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
                                     </select>
                                 </div>
                             </div>
@@ -193,23 +165,6 @@
         TableManageResponsive.init();
     });
 </script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 </html>
 
@@ -220,13 +175,14 @@
     String d = request.getParameter("role");
     String e = request.getParameter("status");
     if (a != null && b != null && c != null && d != null && e != null) {
-        String query = "update bpls_r_user set U_USERNAME=?,  U_TYPE=?, U_ROLE=?, U_STATUS=? where U_ID='" + a + "'";
-        stmt = conn.prepareStatement(query);
+        String query = "update bpls_t_user set U_USERNAME=?,   U_ROLE=?, U_STATUS=? where U_ID='" + a + "'";
+        PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, b);
-        stmt.setString(2, c);
-        stmt.setString(3, d);
-        stmt.setString(4, e);
+        stmt.setString(2, d);
+        stmt.setString(3, e);
         stmt.executeUpdate();
         response.sendRedirect("PAEISSAUsrMgmt.jsp");
     }
+
+    } catch (Exception e){e.printStackTrace();}
 %>

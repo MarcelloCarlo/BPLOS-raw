@@ -200,7 +200,7 @@
                                     divGuide = "Giving you an another re-inspection. Please comply to procede.";
                                 } else if (divCode.equals("DIV-REV")){
                                     divGuide = "There's a problem on your documents. Please re-upload your file with required documents";
-                                    reuploadBtn = "<p><form enctype='multipart/form-data' name='reuploadFile' id='reuploadFile' action='reuploadFile.jsp' method='post'> <input type='text' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required><button type='submit' id='submitBtn' class='btn btn-success btn-lg'>Reupload</button></form><p>";
+                                    reuploadBtn = "<p><form  name='reuploadFileForm' id='reuploadFileForm'> <input type='number' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required> <button type='submit' id='submitBtn' class='btn btn-success btn-lg'>Reupload</button></form><p>";
                                 }
                             %>
                             <li>
@@ -247,7 +247,7 @@
 </div>
 
 <%
-    } catch (/*Exception*/SQLException e) {
+    } catch (Exception e) {
         out.print(e);
     }
 %>
@@ -270,22 +270,14 @@
 <script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
 <script src="assets/js/form-wizards.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
+<script src="assets/js/reuploadFile.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-        FormWizard.init();
-        $("#apID").val($("#hidAPID").val());
-    });
-</script>
 </body>
 </html>

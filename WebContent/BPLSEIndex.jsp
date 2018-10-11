@@ -185,6 +185,8 @@
                                 <%
                                     while (gg3.next()) {
                                         String apType = gg3.getString("AP_TYPE");
+                                        String _classif = gg3.getString("BN_CLASSIFICATION");
+                                        String classif = "";
                                         String modalMode = "";
                                         String modalClass = "";
                                         String btnTitle = "";
@@ -209,11 +211,18 @@
                                             modalMode = "";
 
                                         }
+                                        if(_classif.equals("L")){
+                                            classif = "Large Scale";
+                                        } else if (_classif.equals("S")){
+                                            classif = "Small Scale";
+                                        } else {
+                                            classif = "x";
+                                        }
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
                                     </td><!--0-->
-                                    <td><%=gg3.getString("BN_NAME")%>
+                                    <td><%=gg3.getString("BN_NAME")%> (<%=classif%>)
                                     </td><!--1-->
                                     <td><%=gg3.getString("OT_NAME")%>
                                     </td><!--2-->
@@ -781,7 +790,7 @@
                                             <textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
-                                                    id="AP_Remarks"
+                                                    id="_AP_Remarks"
                                                     name="AP_Remarks"
                                                     rows="3"
                                             ></textarea>
@@ -1152,6 +1161,74 @@
                                     id="btnAssNewAppl"
                                     class="btn btn-success"
                             >Evaluate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Re-Eval modal -->
+    <div
+            class="modal fade evaluation-modal-reevval"
+            aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <form
+                    id="reEvalApplForm"
+                    class="form-horizontal"
+                    name="reEvalApplForm"
+                    enctype="multipart/form-data"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="panel panel-inverse panel-danger">
+                            <div class="panel-heading">
+                                <h4
+                                        class="panel-title"
+                                >Request File Reupload</h4>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="col-md-8">
+                                        <h5>
+                                            Application/Referrence Number:
+                                            <input class="hide" name="reRefNoh"
+                                                   id="reRefNoh" type="text"/>
+                                            <label id="reRefNo"></label>
+                                        </h5>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12">
+                                            <hr>
+                                            <textarea
+                                                    class="form-control"
+                                                    placeholder="Specify Specific Missing Requirements"
+                                                    id="__AP_Remarks"
+                                                    name="AP_Remarks"
+                                                    rows="3" required
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal"
+                            >Close
+                            </button>
+                            <button
+                                    type="button"
+                                    id="btnRevAppl"
+                                    class="btn btn-success"
+                            >Submit
                             </button>
                         </div>
                     </div>

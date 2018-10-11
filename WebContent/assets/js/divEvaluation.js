@@ -110,7 +110,7 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-            }).then((result) = > {
+            }).then((result) => {
                 if(result.value
         )
             {
@@ -127,7 +127,7 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Evaluated',
                             confirmButtonText: 'OK'
-                        }).then((result) = > {
+                        }).then((result) => {
                             if(result.value
                     )
                         {
@@ -151,17 +151,44 @@ $(document).ready(function () {
                 )
 
             }
-        })
-            ;
+        });
         } else {
-            $(".evaluation-modal-terminate").modal('toggle');
-            $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
-            $("#tRefNoh").val($("#_AP_REFERENCE_NO").val().trim());
-            $("#tBussName").append($("#nBussName").text().trim());
-            $("#tBussNature").append($("#nBussNature").text().trim());
-            $("#tBussAuthRepName").append($("#nBussAuthRepName").text().trim());
-            $("#tBussOwner").append($("#nBussOwner").text().trim());
-            $(".evaluation-modal-new").modal('toggle');
+
+            var swalWithBootstrapButtons = swal.mixin({
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons({
+                title: 'Missing Requirements',
+                text: "There are missing/invalid requirement(s), Continue?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Terminate',
+                cancelButtonText: 'Re-Evaluate',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                $(".evaluation-modal-terminate").modal('toggle');
+                $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
+                $("#tRefNoh").val($("#_AP_REFERENCE_NO").val().trim());
+                $("#tBussName").append($("#nBussName").text().trim());
+                $("#tBussNature").append($("#nBussNature").text().trim());
+                $("#tBussAuthRepName").append($("#nBussAuthRepName").text().trim());
+                $("#tBussOwner").append($("#nBussOwner").text().trim());
+                $(".evaluation-modal-new").modal('toggle');
+            } else if (
+                // Read more about handling dismissals
+                result.dismiss === swal.DismissReason.cancel
+            ) { //Re-evaluate
+                $(".evaluation-modal-reevval").modal('toggle');
+                $("#reRefNo").append($("#_AP_REFERENCE_NO").val().trim());
+                $("#reRefNoh").val($("#_AP_REFERENCE_NO").val().trim());
+                $(".evaluation-modal-new").modal('toggle');
+            }
+        })
+
         }
 
         $("#btnTermAppl").click(function () {
@@ -173,9 +200,8 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-            }).then((result) = > {
-                if(result.value
-        )
+            }).then((result) => {
+                if(result.value)
             {
                 var terminateApplForm = new FormData($('#terminateApplForm')[0]);
                 $.ajax({
@@ -190,14 +216,13 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Terminated',
                             confirmButtonText: 'OK'
-                        }).then((result) = > {
+                        }).then((result) => {
                             if(result.value
                     )
                         {
                             location.reload(true);
                         }
-                    })
-                        ;
+                    });
 
                     }
                 });
@@ -211,8 +236,7 @@ $(document).ready(function () {
                 )
 
             }
-        })
-            ;
+        });
 
         })
     });
@@ -259,6 +283,59 @@ $(document).ready(function () {
 
     });
 
+    $('.evaluation-modal-reevval').on('hidden.bs.modal', function () {
+        $("#reRefNo").text('');
+
+    });
+
+    $("#btnRevAppl").click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "You will save your current changes",
+            type: "warning",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Confirm!",
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if(result.value)
+        {
+            var reEvalApplForm = new FormData($('#reEvalApplForm')[0]);
+            $.ajax({
+                type: "POST",
+                url: "reEvaluateApplForm",
+                data: reEvalApplForm,
+                processData: false,
+                contentType: false,
+                success: function () {
+                    swal({
+                        type: 'success',
+                        title: 'DONE!.',
+                        text: 'Succesfully Terminated',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if(result.value)
+                    {
+                        location.reload(true);
+                    }
+                });
+
+                }
+            });
+        }
+    else
+        if (result.dismiss === swal.DismissReason.cancel) {
+            swalWithBootstrapButtons(
+                'Cancelled',
+                'Operation Halted',
+                'error'
+            )
+
+        }
+    });
+    })
+
+
     $("#btnAssNewAppl").click(function () {
 
         if (!$("#chkMayorsPerm").is(':checked')) {
@@ -275,7 +352,7 @@ $(document).ready(function () {
             confirmButtonText: "Confirm!",
             showCancelButton: true,
             cancelButtonText: 'Cancel',
-        }).then((result) = > {
+        }).then((result) => {
             if(result.value
     )
         {
@@ -292,7 +369,7 @@ $(document).ready(function () {
                         title: 'DONE!.',
                         text: 'Succesfully Assessed',
                         confirmButtonText: 'OK'
-                    }).then((result) = > {
+                    }).then((result) => {
                         if(result.value
                 )
                     {
