@@ -27,7 +27,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="BPLSAplCrpBus.jsp"><i class="fa fa-file-o"></i> <span>Application Processing</span></a></li>
+        <li><a href="#"><i class="fa fa-file-o"></i> <span>Application Processing</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>
