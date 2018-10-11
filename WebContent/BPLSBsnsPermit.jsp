@@ -5,11 +5,6 @@
   Time: 3:42 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.Connection" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -18,27 +13,27 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>PAEIS | Business Permit</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
-    <link href="assets/css/style.min.css" rel="stylesheet" />
-    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
-    <link href="assets/css/invoice-print.min.css" rel="stylesheet" />
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="assets/css/style.min.css" rel="stylesheet"/>
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet"/>
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>
+    <link href="assets/css/invoice-print.min.css" rel="stylesheet"/>
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -65,24 +60,25 @@
             <div class="invoice-company">
                     <span class="pull-right hidden-print">
                     <%--<a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Export as PDF</a>--%>
-                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Print</a>
+                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
+                            class="fa fa-print m-r-5"></i> Print</a>
                     </span>
                 Business Permit
             </div>
             <div class="invoice-header">
                 <div class="invoice-from">
                     <address class="m-t-5 m-b-5">
-                        This certifies that<br />
+                        This certifies that<br/>
                         with registered trade name as<br/>
-                        as represented by<br />
+                        as represented by<br/>
                         with business address at
                     </address>
                 </div>
                 <div class="invoice-to">
                     <address class="m-t-5 m-b-5">
-                        Insert<br />
-                        Insert<br />
-                        Insert<br />
+                        Insert<br/>
+                        Insert<br/>
+                        Insert<br/>
                         Insert
                     </address>
                 </div>
@@ -98,17 +94,19 @@
                 <br>
                 <br>
                 <address>
-                    has been granted a <strong>BUSINESS PERMIT</strong> to operate the following business/es under ordinance No. SP-91,
-                    S-93, otherwise known as the 1993 Quezon City Revenue Code, and the ordinance/s indicated at the back hereof, subject
+                    has been granted a <strong>BUSINESS PERMIT</strong> to operate the following business/es under
+                    ordinance No. SP-91,
+                    S-93, otherwise known as the 1993 Quezon City Revenue Code, and the ordinance/s indicated at the
+                    back hereof, subject
                     to such other pertinent ordinances, laws and related administrative implementary regulations.
                 </address>
             </div>
             <%--<div class="invoice-header">--%>
-                    <%--<address>--%>
-                        <%--has been granted a <strong>BUSINESS PERMIT</strong> to operate the following business/es under ordinance No. SP-91,--%>
-                        <%--S-93, otherwise known as the 1993 Quezon City Revenue Code, and the ordinance/s indicated at the back hereof, subject--%>
-                        <%--to such other pertinent ordinances, laws and related administrative implementary regulations.--%>
-                    <%--</address>--%>
+            <%--<address>--%>
+            <%--has been granted a <strong>BUSINESS PERMIT</strong> to operate the following business/es under ordinance No. SP-91,--%>
+            <%--S-93, otherwise known as the 1993 Quezon City Revenue Code, and the ordinance/s indicated at the back hereof, subject--%>
+            <%--to such other pertinent ordinances, laws and related administrative implementary regulations.--%>
+            <%--</address>--%>
             <%--</div>--%>
             <div class="invoice-content">
                 <div class="table-responsive">
@@ -121,8 +119,8 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td> </td>
-                            <td> </td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -155,10 +153,10 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -166,7 +164,7 @@
                         <thead>
                         <tr>
                             <th class="text-center">SUBJECT TO THE CONDITIONS AT THE BACK HERE OF</th>
-                            <th> </th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -177,100 +175,100 @@
                         </tbody>
                     </table>
                     <%--<table class="table table-invoice">--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th width="25%">&nbsp</th>--%>
-                            <%--<th width="25%">&nbsp</th>--%>
-                            <%--<th class="text-right">PARTICULARS</th>--%>
-                            <%--<th class="text-left">OF PAYMENT</th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                        <%--<tbody>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Official Receipt No.</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Date of Payment</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Period Recovered</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Permit Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">City Tax</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Garbage Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Sanitary Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Building Inspection Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Electrical Inspection Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Plumbing Inspection Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Signboard Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Fire Inspection Fee</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Penalty & Interest</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td> </td>--%>
-                            <%--<td> </td>--%>
-                            <%--<td class="text-center">Plate / Sticker</td>--%>
-                            <%--<td> </td>--%>
-                        <%--</tr>--%>
-                        <%--</tbody>--%>
+                    <%--<thead>--%>
+                    <%--<tr>--%>
+                    <%--<th width="25%">&nbsp</th>--%>
+                    <%--<th width="25%">&nbsp</th>--%>
+                    <%--<th class="text-right">PARTICULARS</th>--%>
+                    <%--<th class="text-left">OF PAYMENT</th>--%>
+                    <%--</tr>--%>
+                    <%--</thead>--%>
+                    <%--<tbody>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Official Receipt No.</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Date of Payment</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Period Recovered</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Permit Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">City Tax</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Garbage Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Sanitary Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Building Inspection Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Electrical Inspection Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Plumbing Inspection Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Signboard Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Fire Inspection Fee</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Penalty & Interest</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--<tr>--%>
+                    <%--<td> </td>--%>
+                    <%--<td> </td>--%>
+                    <%--<td class="text-center">Plate / Sticker</td>--%>
+                    <%--<td> </td>--%>
+                    <%--</tr>--%>
+                    <%--</tbody>--%>
                     <%--</table>--%>
                 </div>
 
@@ -291,12 +289,14 @@
                         </div>
                     </div>
                     <div class="invoice-price-right">
-                        <small>TOTAL</small> Insert Total Here
+                        <small>TOTAL</small>
+                        Insert Total Here
                     </div>
                 </div>
             </div>
             <div class="invoice-note">
-                * Write the number and date of this receipt on the back of the treasury warrant, check or money order received
+                * Write the number and date of this receipt on the back of the treasury warrant, check or money order
+                received
             </div>
             <%--<div class="invoice-footer text-muted">--%>
             <%--<p class="text-center m-b-5">--%>
@@ -314,7 +314,8 @@
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+            class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
@@ -347,18 +348,24 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 
-
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
     });
 </script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-53034621-1', 'auto');
     ga('send', 'pageview');

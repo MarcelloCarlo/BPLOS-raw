@@ -1,8 +1,8 @@
-<%@ page import="java.sql.Connection" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="com.mysql.jdbc.*" %>
-<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -10,35 +10,36 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
-<%LGUConnect conX = new LGUConnect();
-try{
-    Connection conn = conX.getConnection();
-    PreparedStatement getReltbl = (PreparedStatement) conn.prepareStatement("SELECT * FROM view_applicationformsrel");
-    ResultSet rsRel = getReltbl.executeQuery();
-    PreparedStatement getEmp = (PreparedStatement) conn.prepareStatement("SELECT * FROM bpls_t_employee_profile");
-    ResultSet rsEmp = getEmp.executeQuery();
+<%
+    LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn = conX.getConnection();
+        PreparedStatement getReltbl = (PreparedStatement) conn.prepareStatement("SELECT * FROM view_applicationformsrel");
+        ResultSet rsRel = getReltbl.executeQuery();
+        PreparedStatement getEmp = (PreparedStatement) conn.prepareStatement("SELECT * FROM bpls_t_employee_profile");
+        ResultSet rsEmp = getEmp.executeQuery();
 %>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>BPLS | Releasing</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
-    <link href="assets/css/style.min.css" rel="stylesheet" />
-    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="assets/css/style.min.css" rel="stylesheet"/>
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet"/>
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -88,21 +89,29 @@ try{
                             </tr>
                             </thead>
                             <tbody>
-                           <%while (rsRel.next()){%>
+                            <%while (rsRel.next()) {%>
                             <tr>
-                                <td><%=rsRel.getString("AP_REFERENCE_NO")%></td>
-                                <td><%=rsRel.getString("BU_NAME")%></td>
-                                <td><%=rsRel.getString("BN_NAME")%></td>
-                                <td><%=rsRel.getString("TP_NAME")%></td>
-                                <td><%=rsRel.getString("TB_DATE_BILLED")%></td>
-                                <td class="hide"><%=rsRel.getInt("TB_ID")%></td>
-                                <td><button
-                                    type="button"
-                                    class="btn btn-success modalRel"
-                            data-toggle="modal"
-                              data-target="#modal-processpayment" title="Release of Business Permit"
-                            ><i class="fa fa-lg fa-money"></i>
-                                </button></td>
+                                <td><%=rsRel.getString("AP_REFERENCE_NO")%>
+                                </td>
+                                <td><%=rsRel.getString("BU_NAME")%>
+                                </td>
+                                <td><%=rsRel.getString("BN_NAME")%>
+                                </td>
+                                <td><%=rsRel.getString("TP_NAME")%>
+                                </td>
+                                <td><%=rsRel.getString("TB_DATE_BILLED")%>
+                                </td>
+                                <td class="hide"><%=rsRel.getInt("TB_ID")%>
+                                </td>
+                                <td>
+                                    <button
+                                            type="button"
+                                            class="btn btn-success modalRel"
+                                            data-toggle="modal"
+                                            data-target="#modal-processpayment" title="Release of Business Permit"
+                                    ><i class="fa fa-lg fa-money"></i>
+                                    </button>
+                                </td>
 
                             </tr>
                             <%}%>
@@ -153,9 +162,9 @@ try{
                                 </select>
                             </div>
                         </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-md-12">
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
 											<textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
@@ -163,22 +172,23 @@ try{
                                                     name="AP_REMARKS"
                                                     rows="2"
                                             ></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
-    <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-    <!-- end scroll to top btn -->
+<!-- begin scroll to top btn -->
+<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+        class="fa fa-angle-up"></i></a>
+<!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
 
@@ -208,5 +218,9 @@ try{
 <script src="assets/js/divReleasing.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
-<%}catch(SQLException | ClassNotFoundException e){ e.printStackTrace();}%>
+<%
+    } catch (SQLException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+%>
 </html>

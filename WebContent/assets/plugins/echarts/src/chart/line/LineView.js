@@ -1,4 +1,4 @@
-define(function(require) {
+define(function (require) {
 
     'use strict';
 
@@ -45,6 +45,7 @@ define(function(require) {
     function sign(val) {
         return val >= 0 ? 1 : -1;
     }
+
     /**
      * @param {module:echarts/coord/cartesian/Cartesian2D|module:echarts/coord/polar/Polar} coordSys
      * @param {module:echarts/data/List} data
@@ -67,7 +68,7 @@ define(function(require) {
             // Find first stacked value with same sign
             while (stackedOn &&
                 sign(stackedOn.get(valueDim, idx)) === sign(val)
-            ) {
+                ) {
                 stackedOnSameSign = stackedOn;
                 break;
             }
@@ -540,11 +541,11 @@ define(function(require) {
             });
 
             this._polyline =
-            this._polygon =
-            this._coordSys =
-            this._points =
-            this._stackedOnPoints =
-            this._data = null;
+                this._polygon =
+                    this._coordSys =
+                        this._points =
+                            this._stackedOnPoints =
+                                this._data = null;
         }
     });
 });

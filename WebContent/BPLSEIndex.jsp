@@ -3,9 +3,11 @@
         contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"
 %>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="javafx.application.Application" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +79,7 @@
     <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
         rel="stylesheet"> -->
 </head>
-<%  LGUConnect conX = new LGUConnect();
+<% LGUConnect conX = new LGUConnect();
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
@@ -90,7 +92,7 @@
         ResultSet rs6 = ss6.executeQuery("SELECT * FROM bpls_t_employee_profile");
         Statement ss7 = conn3.createStatement();
         ResultSet rs7 = ss7.executeQuery("SELECT * FROM bpls_t_employee_profile");
-       %>
+%>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -181,32 +183,32 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                        while (gg3.next()) {
-                                            String apType = gg3.getString("AP_TYPE");
-                                            String modalMode = "";
-                                            String modalClass = "";
-                                            String btnTitle = "";
-                                            String btnIcon = "";
-                                            if (apType.equals("New") && !gg3.getString("AP_STATUS").equals("Assess")) {
-                                                modalMode = ".evaluation-modal-new";
-                                                modalClass = "newModal";
-                                                btnTitle = "title='Evaluate New Application'";
-                                                btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
-                                            } else if (apType.equals("Renew") && !gg3.getString("AP_STATUS").equals("Assess")) {
-                                                modalMode = ".evaluation-modal-renew";
-                                                modalClass = "renewModal";
-                                                btnTitle = "title='Evaluate Renew Application'";
-                                                btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
-                                            } else if (gg3.getString("AP_STATUS").equals("Assess")) {
-                                                modalMode = ".evaluation-modal-assess";
-                                                modalClass = "assessModal";
-                                                btnTitle = "title='Assess the Application'";
-                                                btnIcon = "<i class='fa fa-lg fa-check-square-o'></i>";
-                                            } else {
-                                                modalClass = "red";
-                                                modalMode = "";
+                                    while (gg3.next()) {
+                                        String apType = gg3.getString("AP_TYPE");
+                                        String modalMode = "";
+                                        String modalClass = "";
+                                        String btnTitle = "";
+                                        String btnIcon = "";
+                                        if (apType.equals("New") && !gg3.getString("AP_STATUS").equals("Assess")) {
+                                            modalMode = ".evaluation-modal-new";
+                                            modalClass = "newModal";
+                                            btnTitle = "title='Evaluate New Application'";
+                                            btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
+                                        } else if (apType.equals("Renew") && !gg3.getString("AP_STATUS").equals("Assess")) {
+                                            modalMode = ".evaluation-modal-renew";
+                                            modalClass = "renewModal";
+                                            btnTitle = "title='Evaluate Renew Application'";
+                                            btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
+                                        } else if (gg3.getString("AP_STATUS").equals("Assess")) {
+                                            modalMode = ".evaluation-modal-assess";
+                                            modalClass = "assessModal";
+                                            btnTitle = "title='Assess the Application'";
+                                            btnIcon = "<i class='fa fa-lg fa-check-square-o'></i>";
+                                        } else {
+                                            modalClass = "red";
+                                            modalMode = "";
 
-                                            }
+                                        }
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
@@ -314,8 +316,9 @@
                                     </td>
                                 </tr>
                                 <%
-                                        }gg3.close();
-                                        ss3.close();
+                                    }
+                                    gg3.close();
+                                    ss3.close();
                                 %>
                                 </tbody>
                             </table>
@@ -434,6 +437,14 @@
                                                 id="fileDownload"
                                         >DOWNLOAD ATTACHMENT
                                         </button>
+                                        <hr>
+                                        <textarea
+                                                class="form-control"
+                                                placeholder="Remarks"
+                                                id="AP_Remarks"
+                                                name="AP_Remarks"
+                                                rows="3"
+                                        ></textarea>
                                     </div>
                                     <div class="panel-body">
                                         <h5>Requirements Checklist</h5>
@@ -821,11 +832,11 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                   <input type="text"
-                                         class="hide"
-                                         id="_AAP_REFERENCE_NO"
-                                         name="_AP_REFERENCE_NO"
-                                />
+                                    <input type="text"
+                                           class="hide"
+                                           id="_AAP_REFERENCE_NO"
+                                           name="_AP_REFERENCE_NO"
+                                    />
                                     <div class="col-md-12 panel-body">
                                         <h5>
                                             Business Name/Corporate Name:
@@ -873,10 +884,10 @@
                                             <ul class="to_do">
                                                 <p>
                                                     <input type="checkbox"
-                                                            id="chkMayorsPerm"
-                                                            name="Mayors_Perm"
-                                                            class="flat"
-                                                            value="1"> Mayor's Permit
+                                                           id="chkMayorsPerm"
+                                                           name="Mayors_Perm"
+                                                           class="flat"
+                                                           value="1"> Mayor's Permit
                                                 </p>
                                                 <p>
                                                     <input
@@ -1077,11 +1088,12 @@
                                                 <select class="selectpicker form-control" data-style="btn-white"
                                                         id="aId" name="aId" tabindex="-1" required>
 
-                                                    <%while(rs3.next()){%>
-                                                    <option data-subtext="<%=rs3.getString("EP_JOB_DESC")%>" title="<%=rs3.getString("EP_JOB_DESC")%>"
+                                                    <%while (rs3.next()) {%>
+                                                    <option data-subtext="<%=rs3.getString("EP_JOB_DESC")%>"
+                                                            title="<%=rs3.getString("EP_JOB_DESC")%>"
                                                             value="<%=rs3.getInt("EP_ID")%>">
                                                             <%out.print(rs3.getString("EP_FNAME") + " " + rs3.getString("EP_MNAME")+ " " + rs3.getString("EP_LNAME"));%>
-                                                    <%} rs3.close();ss2.close();%>
+                                                            <%} rs3.close();ss2.close();%>
                                                 </select>
                                             </p>
                                             <p>
@@ -1089,8 +1101,9 @@
                                                 <select class="selectpicker form-control" data-style="btn-white"
                                                         id="verId" name="verId" tabindex="-1" required>
 
-                                                    <%while(rs5.next()){%>
-                                                    <option data-subtext="<%=rs5.getString("EP_JOB_DESC")%>" title="<%=rs5.getString("EP_JOB_DESC")%>"
+                                                    <%while (rs5.next()) {%>
+                                                    <option data-subtext="<%=rs5.getString("EP_JOB_DESC")%>"
+                                                            title="<%=rs5.getString("EP_JOB_DESC")%>"
                                                             value="<%=rs5.getInt("EP_ID")%>">
                                                             <%out.print(rs5.getString("EP_FNAME") + " " + rs5.getString("EP_MNAME")+ " " + rs5.getString("EP_LNAME"));%>
                                                             <%} rs5.close();ss5.close();%>
@@ -1101,8 +1114,9 @@
                                                 <select class="selectpicker form-control" data-style="btn-white"
                                                         id="recId" name="recId" tabindex="-1" required>
 
-                                                    <%while(rs6.next()){%>
-                                                    <option data-subtext="<%=rs6.getString("EP_JOB_DESC")%>" title="<%=rs6.getString("EP_JOB_DESC")%>"
+                                                    <%while (rs6.next()) {%>
+                                                    <option data-subtext="<%=rs6.getString("EP_JOB_DESC")%>"
+                                                            title="<%=rs6.getString("EP_JOB_DESC")%>"
                                                             value="<%=rs6.getInt("EP_ID")%>">
                                                             <%out.print(rs6.getString("EP_FNAME") + " " + rs6.getString("EP_MNAME")+ " " + rs6.getString("EP_LNAME"));%>
                                                             <%}rs6.close();ss6.close();%>
@@ -1113,8 +1127,9 @@
                                                 <select class="selectpicker form-control" data-style="btn-white"
                                                         id="aprId" name="aprId" tabindex="-1" required>
 
-                                                    <%while(rs7.next()){%>
-                                                    <option data-subtext="<%=rs7.getString("EP_JOB_DESC")%>" title="<%=rs7.getString("EP_JOB_DESC")%>"
+                                                    <%while (rs7.next()) {%>
+                                                    <option data-subtext="<%=rs7.getString("EP_JOB_DESC")%>"
+                                                            title="<%=rs7.getString("EP_JOB_DESC")%>"
                                                             value="<%=rs7.getInt("EP_ID")%>">
                                                             <%out.print(rs7.getString("EP_FNAME") + " " + rs7.getString("EP_MNAME")+ " " + rs7.getString("EP_LNAME"));%>
                                                             <%}rs7.close();ss7.close();%>
@@ -1178,7 +1193,7 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 </body>
-<%  } catch (SQLException | ClassNotFoundException e) {
+<% } catch (SQLException | ClassNotFoundException e) {
     out.print(e);
 }%>
 </html>

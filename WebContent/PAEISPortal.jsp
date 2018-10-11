@@ -11,21 +11,21 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>PAEIS PORTAL</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
-    <link href="assets/css/style.min.css" rel="stylesheet" />
-    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="assets/css/style.min.css" rel="stylesheet"/>
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet"/>
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -52,65 +52,68 @@
             </div>
         </div>
         <!-- end brand -->
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#default-tab-1" data-toggle="tab">News/Announcements</a></li>
-                    <li class=""><a href="#default-tab-2" data-toggle="tab">Application Forms</a></li>
-                    <li class=""><a href="#default-tab-3" data-toggle="tab">Users Login</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade active in" id="default-tab-1">
-                        <h3 class="m-t-10"> News/Announcements:</h3>
-                        <p>
-                            Preview Notes here
-                        </p>
-                    </div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#default-tab-1" data-toggle="tab">News/Announcements</a></li>
+            <li class=""><a href="#default-tab-2" data-toggle="tab">Application Forms</a></li>
+            <li class=""><a href="#default-tab-3" data-toggle="tab">Users Login</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="default-tab-1">
+                <h3 class="m-t-10"> News/Announcements:</h3>
+                <p>
+                    Preview Notes here
+                </p>
+            </div>
 
-                    <div class="tab-pane fade" id="default-tab-2">
-                        <h3 class="m-t-10"> Select an Application Form:</h3>
-                        <div class="controls">
-                            <select id="newForm" class="form-control">
-                                <option value="nSing">Business Application Form (Single)</option>
-                                <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
-                                <option value="rSing">Business Application Form (Single - Renewal)</option>
-                                <option value="rCorp">Business Application Form (Partnership/Corporation - Renewal)</option>
-                            </select>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>
+            <div class="tab-pane fade" id="default-tab-2">
+                <h3 class="m-t-10"> Select an Application Form:</h3>
+                <div class="controls">
+                    <select id="newForm" class="form-control">
+                        <option value="nSing">Business Application Form (Single)</option>
+                        <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
+                        <option value="rSing">Business Application Form (Single - Renewal)</option>
+                        <option value="rCorp">Business Application Form (Partnership/Corporation - Renewal)</option>
+                    </select>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="default-tab-3">
+                <h4>Users Login</h4>
+                <form name="loginEmpForm" id="loginEmpForm" novalidate="" data-parsley-validate=""
+                      enctype="multipart/form-data">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Username</label>
+                                <div class="controls">
+                                    <input type="text" name="username" placeholder="Your username" class="form-control"
+                                           required/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="controls">
+                                    <input type="password" name="password" placeholder="Your password"
+                                           class="form-control" required/>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="tab-pane fade" id="default-tab-3">
-                        <h4>Users Login</h4>
-                        <form name="loginEmpForm" id="loginEmpForm" novalidate="" data-parsley-validate="" enctype="multipart/form-data">
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <div class="controls">
-                                            <input type="text" name="username" placeholder="Your username" class="form-control" required/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <div class="controls">
-                                            <input type="password" name="password" placeholder="Your password" class="form-control" required/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="submit" id="loginBtn" class="btn btn-sm btn-primary">Log In</button>
-                            </div>
-
-                        </form>
+                    <div class="modal-footer">
+                        <button type="submit" id="loginBtn" class="btn btn-sm btn-primary">Log In</button>
                     </div>
-                </div>
+
+                </form>
+            </div>
+        </div>
     </div>
     <!-- end login -->
 

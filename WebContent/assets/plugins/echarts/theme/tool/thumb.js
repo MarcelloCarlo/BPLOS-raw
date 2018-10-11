@@ -55,6 +55,7 @@ glob('../*.js', function (err, themePathList) {
         fs.writeFileSync('../thumb/' + themeName + '.png', outputCanvas.toBuffer());
     });
 });
+
 function createCanvas() {
     var canvas = new Canvas(WIDTH, HEIGHT);
     var ctx = canvas.getContext('2d');

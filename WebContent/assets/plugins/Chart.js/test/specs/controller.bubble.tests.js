@@ -1,7 +1,7 @@
-describe('Chart.controllers.bubble', function() {
+describe('Chart.controllers.bubble', function () {
 	describe('auto', jasmine.specsFromFixtures('controller.bubble'));
 
-	it('should be constructed', function() {
+	it('should be constructed', function () {
 		var chart = window.acquireChart({
 			type: 'bubble',
 			data: {
@@ -21,7 +21,7 @@ describe('Chart.controllers.bubble', function() {
 		expect(meta.controller.index).toBe(1);
 	});
 
-	it('should use the first scale IDs if the dataset does not specify them', function() {
+	it('should use the first scale IDs if the dataset does not specify them', function () {
 		var chart = window.acquireChart({
 			type: 'bubble',
 			data: {
@@ -47,7 +47,7 @@ describe('Chart.controllers.bubble', function() {
 		expect(meta.yAxisID).toBe('firstYScaleID');
 	});
 
-	it('should create point elements for each data item during initialization', function() {
+	it('should create point elements for each data item during initialization', function () {
 		var chart = window.acquireChart({
 			type: 'bubble',
 			data: {
@@ -66,7 +66,7 @@ describe('Chart.controllers.bubble', function() {
 		expect(meta.data[3] instanceof Chart.elements.Point).toBe(true);
 	});
 
-	it('should draw all elements', function() {
+	it('should draw all elements', function () {
 		var chart = window.acquireChart({
 			type: 'bubble',
 			data: {
@@ -95,7 +95,7 @@ describe('Chart.controllers.bubble', function() {
 		expect(meta.data[3].draw.calls.count()).toBe(1);
 	});
 
-	it('should update elements when modifying style', function() {
+	it('should update elements when modifying style', function () {
 		var chart = window.acquireChart({
 			type: 'bubble',
 			data: {
@@ -143,7 +143,7 @@ describe('Chart.controllers.bubble', function() {
 			{r: 1, x: 171, y: 512},
 			{r: 2, x: 341, y: 486},
 			{r: 1, x: 512, y: 0}
-		].forEach(function(expected, i) {
+		].forEach(function (expected, i) {
 			expect(meta.data[i]._model.radius).toBe(expected.r);
 			expect(meta.data[i]._model.x).toBeCloseToPixel(expected.x);
 			expect(meta.data[i]._model.y).toBeCloseToPixel(expected.y);
@@ -199,7 +199,7 @@ describe('Chart.controllers.bubble', function() {
 		}));
 	});
 
-	it('should handle number of data point changes in update', function() {
+	it('should handle number of data point changes in update', function () {
 		var chart = window.acquireChart({
 			type: 'bubble',
 			data: {
@@ -278,8 +278,8 @@ describe('Chart.controllers.bubble', function() {
 		expect(meta.data[4] instanceof Chart.elements.Point).toBe(true);
 	});
 
-	describe('Interactions', function() {
-		beforeEach(function() {
+	describe('Interactions', function () {
+		beforeEach(function () {
 			this.chart = window.acquireChart({
 				type: 'bubble',
 				data: {
@@ -317,7 +317,7 @@ describe('Chart.controllers.bubble', function() {
 			});
 		});
 
-		it ('should handle default hover styles', function() {
+		it('should handle default hover styles', function () {
 			var chart = this.chart;
 			var point = chart.getDatasetMeta(0).data[0];
 
@@ -334,7 +334,7 @@ describe('Chart.controllers.bubble', function() {
 			expect(point._model.radius).toBe(20);
 		});
 
-		it ('should handle hover styles defined via dataset properties', function() {
+		it('should handle hover styles defined via dataset properties', function () {
 			var chart = this.chart;
 			var point = chart.getDatasetMeta(0).data[0];
 
@@ -360,7 +360,7 @@ describe('Chart.controllers.bubble', function() {
 			expect(point._model.radius).toBe(20);
 		});
 
-		it ('should handle hover styles defined via element options', function() {
+		it('should handle hover styles defined via element options', function () {
 			var chart = this.chart;
 			var point = chart.getDatasetMeta(0).data[0];
 
@@ -386,7 +386,7 @@ describe('Chart.controllers.bubble', function() {
 			expect(point._model.radius).toBe(20);
 		});
 
-		it ('should handle hover styles defined via element custom', function() {
+		it('should handle hover styles defined via element custom', function () {
 			var chart = this.chart;
 			var point = chart.getDatasetMeta(0).data[0];
 

@@ -10,8 +10,10 @@
         contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"
 %>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Statement" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -36,8 +38,8 @@
     <title>BPLS | Inspection</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>
-            <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
-            <%--rel="stylesheet"--%>
+    <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
+    <%--rel="stylesheet"--%>
     <%-->--%>
     <link
             href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"
@@ -239,126 +241,126 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="panel panel-inverse panel-danger">
-                        <div class="panel-heading">
-                            <h4
-                                    class="panel-title"
-                                    id="myModalLabel"
-                            >Inspection for New Application</h4>
+                            <div class="panel-heading">
+                                <h4
+                                        class="panel-title"
+                                        id="myModalLabel"
+                                >Inspection for New Application</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="text"
-                                       class="hide"
-                                       id="_AP_REFERENCE_NO"
-                                       name="_AP_REFERENCE_NO"
-                                />
-                                <div class="col-md-8 panel-body">
-                                    <h5>
-                                        Business Name/Corporate Name:
-                                        <!-- <input disabled=""
-                                        id="nBussName" type="text" /> -->
-                                        <label id="nBussName"></label>
-                                    </h5>
-                                    <h5>
-                                        Name of Sole Proprietor/Partnership/President:
-                                        <!-- <input
-                                        disabled="" id="nBussOwner" type="text" /> -->
-                                        <label id="nBussOwner"></label>
-                                    </h5>
-                                    <h5>
-                                        Business Address:
-                                        <!-- <input disabled="" id="nBussAddr"
-                                        type="text" /> -->
-                                        <label id="nBussAddr"></label>
-                                    </h5>
-                                    <h5>
-                                        Tel No.:
-                                        <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
-                                        <label id="nBussConTelno"></label>
-                                    </h5>
-                                    <h5>
-                                        Authorized Representative:
-                                        <!--  <input disabled=""
-                                        id="nBussAuthRepName" type="text" /> -->
-                                        <label id="nBussAuthRepName"></label>
-                                    </h5>
-                                    <h5>
-                                        Address:
-                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                        <label id="nBussAuthRepAddr"></label>
-                                    </h5>
-                                    <h5>
-                                        Business Nature:
-                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                        <label id="nBussNature"></label>
-                                    </h5>
-                                </div>
-                                <div class="panel-body">
-                                    <h5>Inspection Checklist</h5>
-                                    <div class="">
-                                        <ul class="to_do">
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkZONING_INS"
-                                                        name="ZONING_INS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Zoning Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkFIRE_INS"
-                                                        name="FIRE_INS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Fire Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkHS_INS"
-                                                        name="HS_INS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Health & Sanitation Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkBLDG_INS"
-                                                        name="BLDG_INS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Building Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkLABOR_INS"
-                                                        name="LABOR_INS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Labor Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkMISC_INS"
-                                                        name="MISC_INS"
-                                                        class="flat"
-                                                        value="Pass"
-                                                > Miscellaneous Inspection (See Business Nature)
-                                            </p>
-                                        </ul>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text"
+                                           class="hide"
+                                           id="_AP_REFERENCE_NO"
+                                           name="_AP_REFERENCE_NO"
+                                    />
+                                    <div class="col-md-8 panel-body">
+                                        <h5>
+                                            Business Name/Corporate Name:
+                                            <!-- <input disabled=""
+                                            id="nBussName" type="text" /> -->
+                                            <label id="nBussName"></label>
+                                        </h5>
+                                        <h5>
+                                            Name of Sole Proprietor/Partnership/President:
+                                            <!-- <input
+                                            disabled="" id="nBussOwner" type="text" /> -->
+                                            <label id="nBussOwner"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Address:
+                                            <!-- <input disabled="" id="nBussAddr"
+                                            type="text" /> -->
+                                            <label id="nBussAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Tel No.:
+                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
+                                            <label id="nBussConTelno"></label>
+                                        </h5>
+                                        <h5>
+                                            Authorized Representative:
+                                            <!--  <input disabled=""
+                                            id="nBussAuthRepName" type="text" /> -->
+                                            <label id="nBussAuthRepName"></label>
+                                        </h5>
+                                        <h5>
+                                            Address:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="nBussAuthRepAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Nature:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="nBussNature"></label>
+                                        </h5>
                                     </div>
-                                </div>
-                                <div class="panel-body">
-                                    <hr>
-                                    <div class="col-md-12">
+                                    <div class="panel-body">
+                                        <h5>Inspection Checklist</h5>
+                                        <div class="">
+                                            <ul class="to_do">
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkZONING_INS"
+                                                            name="ZONING_INS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Zoning Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkFIRE_INS"
+                                                            name="FIRE_INS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Fire Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkHS_INS"
+                                                            name="HS_INS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Health & Sanitation Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkBLDG_INS"
+                                                            name="BLDG_INS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Building Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkLABOR_INS"
+                                                            name="LABOR_INS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Labor Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkMISC_INS"
+                                                            name="MISC_INS"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > Miscellaneous Inspection (See Business Nature)
+                                                </p>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <hr>
+                                        <div class="col-md-12">
 											<textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
@@ -366,53 +368,57 @@
                                                     name="MISC_REMARKS"
                                                     rows="3"
                                             ></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="note note-info">
-                                        <h4>Inspection Notes</h4>
-                                        <ul>
-                                            <li>
-                                                <p>
-                                                    Miscellaneous Inspection based on the business nature should be in the
-                                                    business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY OTHER
-                                                    REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
-                                                </p>
-                                            </li>
-                                            <li><p>
-                                                Any unchecked item/s on the Inspection Requirements will be sent to the Investigation upon submission. Please define the violation/s on the remarks for other details.
-                                            </p></li>
-                                        </ul>
+                                    <div class="panel-body">
+                                        <div class="note note-info">
+                                            <h4>Inspection Notes</h4>
+                                            <ul>
+                                                <li>
+                                                    <p>
+                                                        Miscellaneous Inspection based on the business nature should be
+                                                        in the
+                                                        business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY
+                                                        OTHER
+                                                        REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
+                                                    </p>
+                                                </li>
+                                                <li><p>
+                                                    Any unchecked item/s on the Inspection Requirements will be sent to
+                                                    the Investigation upon submission. Please define the violation/s on
+                                                    the remarks for other details.
+                                                </p></li>
+                                            </ul>
+                                        </div>
+                                        <!--  <div class="col-md-9">
+                                                  <textarea
+                                                          class="form-control"
+                                                          placeholder="Remarks"
+                                                          id="AP_Remarks"
+                                                          name="AP_Remarks"
+                                                          rows="3"
+                                                  ></textarea>
+                                          </div>-->
                                     </div>
-                                    <!--  <div class="col-md-9">
-                                              <textarea
-                                                      class="form-control"
-                                                      placeholder="Remarks"
-                                                      id="AP_Remarks"
-                                                      name="AP_Remarks"
-                                                      rows="3"
-                                              ></textarea>
-                                      </div>-->
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal"
+                                    id="btnCloseNewApplModal"
+                            >Close
+                            </button>
+                            <button
+                                    type="button"
+                                    id="btnInsNewAppl"
+                                    class="btn btn-success"
+                            >Save Changes
+                            </button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button
-                                type="button"
-                                class="btn btn-default"
-                                data-dismiss="modal"
-                                id="btnCloseNewApplModal"
-                        >Close
-                        </button>
-                        <button
-                                type="button"
-                                id="btnInsNewAppl"
-                                class="btn btn-success"
-                        >Save Changes
-                        </button>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
@@ -651,44 +657,49 @@
 <!-- Init script -->
 <script type="text/javascript">
     $(document).ready(function () {
-       $("#btnInsNewAppl").click(function () {
-           swal({
-               title: "Are you sure?",
-               text: "You will save your current changes",
-               type: "warning",
-               confirmButtonColor: "#DD6B55",
-               confirmButtonText: "Confirm!",
-               showCancelButton: true,
-               cancelButtonText: 'Cancel'
-           }).then((result) => {
-               if(result.value) {
-               var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
-               $.ajax({
-                   type: "POST",
-                   url: "updateNewAppInspectionForm",
-                   data: datanewInsApplForm,
-                   processData: false,
-                   contentType: false,
-                   success: function () {
-                       swal({
-                           type: 'success',
-                           title: 'DONE!.',
-                           text: 'Succesfully Evaluated',
-                           confirmButtonText: 'OK'
-                       }).then((result) => {
-                           if(result.value)
-                       {
-                           location.reload(true);
-                       }
-                   });
-                   },
+        $("#btnInsNewAppl").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then((result) = > {
+                if(result.value
+        )
+            {
+                var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
+                $.ajax({
+                    type: "POST",
+                    url: "updateNewAppInspectionForm",
+                    data: datanewInsApplForm,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        swal({
+                            type: 'success',
+                            title: 'DONE!.',
+                            text: 'Succesfully Evaluated',
+                            confirmButtonText: 'OK'
+                        }).then((result) = > {
+                            if(result.value
+                    )
+                        {
+                            location.reload(true);
+                        }
+                    })
+                        ;
+                    },
                     error: function () {
                         swal("error", "The process encountered and error", "error");
                     }
-               });
-           }
-       });
-       })
+                });
+            }
+        })
+            ;
+        })
     })
 </script>
 </body>

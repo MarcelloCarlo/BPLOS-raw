@@ -12,7 +12,7 @@
     // ======================
 
     // it only does '%s', and return '' when arguments are undefined
-    var sprintf = function(str) {
+    var sprintf = function (str) {
         var args = arguments,
             flag = true,
             i = 1;
@@ -35,9 +35,9 @@
     // PASSWORD CLASS DEFINITION
     // ======================
 
-    var Password = function(element, options) {
-        this.options   = options;
-        this.$element  = $(element);
+    var Password = function (element, options) {
+        this.options = options;
+        this.$element = $(element);
         this.isShown = false;
 
         this.init();
@@ -52,7 +52,7 @@
         eyeCloseClass: 'glyphicon-eye-close'
     };
 
-    Password.prototype.init = function() {
+    Password.prototype.init = function () {
         var placementFuc,
             inputClass; // v2 class
 
@@ -83,27 +83,27 @@
         this.$icon = $([
             '<span tabindex="100" title="' + this.options.message + '" class="add-on input-group-addon">',
             '<i class="icon-eye-open' + (this.options.white ? ' icon-white' : '') +
-                ' ' + this.options.eyeClass + ' ' + this.options.eyeOpenClass + '"></i>',
+            ' ' + this.options.eyeClass + ' ' + this.options.eyeOpenClass + '"></i>',
             '</span>'
         ].join(''))[placementFuc](this.$text).css('cursor', 'pointer');
 
         // events
-        this.$text.off('keyup').on('keyup', $.proxy(function() {
+        this.$text.off('keyup').on('keyup', $.proxy(function () {
             if (!this.isShown) return;
             this.$element.val(this.$text.val()).trigger('change');
         }, this));
 
-        this.$icon.off('click').on('click', $.proxy(function() {
+        this.$icon.off('click').on('click', $.proxy(function () {
             this.$text.val(this.$element.val()).trigger('change');
             this.toggle();
         }, this));
     };
 
-    Password.prototype.toggle = function(_relatedTarget) {
+    Password.prototype.toggle = function (_relatedTarget) {
         this[!this.isShown ? 'show' : 'hide'](_relatedTarget);
     };
 
-    Password.prototype.show = function(_relatedTarget) {
+    Password.prototype.show = function (_relatedTarget) {
         var e = $.Event('show.bs.password', {relatedTarget: _relatedTarget});
         this.$element.trigger(e);
 
@@ -118,7 +118,7 @@
         this.$text[this.options.placement](this.$element);
     };
 
-    Password.prototype.hide = function(_relatedTarget) {
+    Password.prototype.hide = function (_relatedTarget) {
         var e = $.Event('hide.bs.password', {relatedTarget: _relatedTarget});
         this.$element.trigger(e);
 
@@ -148,14 +148,14 @@
 
     var old = $.fn.password;
 
-    $.fn.password = function() {
+    $.fn.password = function () {
         var option = arguments[0],
             args = arguments,
 
             value,
             allowedMethods = ['show', 'hide', 'toggle', 'val']; // public function
 
-        this.each(function() {
+        this.each(function () {
             var $this = $(this),
                 data = $this.data('bs.password'),
                 options = $.extend({}, Password.DEFAULTS, $this.data(), typeof option === 'object' && option);
@@ -184,7 +184,7 @@
     // PASSWORD NO CONFLICT
     // =================
 
-    $.fn.password.noConflict = function() {
+    $.fn.password.noConflict = function () {
         $.fn.password = old;
         return this;
     };

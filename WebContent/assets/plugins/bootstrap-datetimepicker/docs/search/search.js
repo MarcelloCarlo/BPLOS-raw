@@ -1,5 +1,5 @@
 require.config({
-   baseUrl: base_url + "/search/"
+    baseUrl: base_url + "/search/"
 });
 
 require([
@@ -8,17 +8,14 @@ require([
     'text!search-results-template.mustache',
     'text!search_index.json',
 ], function (Mustache, lunr, results_template, data) {
-   "use strict";
+    "use strict";
 
-    function getSearchTerm()
-    {
+    function getSearchTerm() {
         var sPageURL = window.location.search.substring(1);
         var sURLVariables = sPageURL.split('&');
-        for (var i = 0; i < sURLVariables.length; i++)
-        {
+        for (var i = 0; i < sURLVariables.length; i++) {
             var sParameterName = sURLVariables[i].split('=');
-            if (sParameterName[0] == 'q')
-            {
+            if (sParameterName[0] == 'q') {
                 return decodeURIComponent(sParameterName[1].replace(/\+/g, '%20'));
             }
         }
@@ -33,14 +30,14 @@ require([
     data = JSON.parse(data);
     var documents = {};
 
-    for (var i=0; i < data.docs.length; i++){
+    for (var i = 0; i < data.docs.length; i++) {
         var doc = data.docs[i];
         doc.location = base_url + doc.location;
         index.add(doc);
         documents[doc.location] = doc;
     }
 
-    var search = function(){
+    var search = function () {
 
         var query = document.getElementById('mkdocs-search-query').value;
         var search_results = document.getElementById("mkdocs-search-results");
@@ -48,14 +45,14 @@ require([
             search_results.removeChild(search_results.firstChild);
         }
 
-        if(query === ''){
+        if (query === '') {
             return;
         }
 
         var results = index.search(query);
 
-        if (results.length > 0){
-            for (var i=0; i < results.length; i++){
+        if (results.length > 0) {
+            for (var i = 0; i < results.length; i++) {
                 var result = results[i];
                 doc = documents[result.ref];
                 doc.base_url = base_url;
@@ -67,12 +64,12 @@ require([
             search_results.insertAdjacentHTML('beforeend', "<p>No results found</p>");
         }
 
-        if(jQuery){
+        if (jQuery) {
             /*
              * We currently only automatically hide bootstrap models. This
              * requires jQuery to work.
              */
-            jQuery('#mkdocs_search_modal a').click(function(){
+            jQuery('#mkdocs_search_modal a').click(function () {
                 jQuery('#mkdocs_search_modal').modal('hide');
             });
         }
@@ -82,11 +79,13 @@ require([
     var search_input = document.getElementById('mkdocs-search-query');
 
     var term = getSearchTerm();
-    if (term){
+    if (term) {
         search_input.value = term;
         search();
     }
 
-    if (search_input){search_input.addEventListener("keyup", search);}
+    if (search_input) {
+        search_input.addEventListener("keyup", search);
+    }
 
 });

@@ -131,7 +131,7 @@ define(function (require) {
                             );
 
                             itemGroup.on('click', curry(dispatchSelectAction, name, api))
-                                // FIXME Should not specify the series name
+                            // FIXME Should not specify the series name
                                 .on('mouseover', curry(dispatchHighlightAction, seriesModel, name, api))
                                 .on('mouseout', curry(dispatchDownplayAction, seriesModel, name, api));
 

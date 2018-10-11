@@ -5,11 +5,7 @@
   Time: 6:01 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -18,26 +14,26 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>PAEIS | Division Configuration</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+    <meta content="" name="description"/>
+    <meta content="" name="author"/>
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
-    <link href="assets/css/style.min.css" rel="stylesheet" />
-    <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="assets/css/style.min.css" rel="stylesheet"/>
+    <link href="assets/css/style-responsive.min.css" rel="stylesheet"/>
+    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
-    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+    <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -82,7 +78,7 @@
                             PreparedStatement stmt = null;
                             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                             // Class.forName("com.mysql.jdbc.Driver").newInstance();
-                            conn = DriverManager.getConnection(host,"root","");
+                            conn = DriverManager.getConnection(host, "root", "");
                         %>
                         <form class="form-horizontal" action=" " method="POST">
                             <%
@@ -92,29 +88,31 @@
                                 int num = Integer.parseInt(u);
                                 // String data = "select * from lgu_r_user where U_ID='"+num+"'";
                                 PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_division where DIV_ID= ? ");
-                                getInfo.setInt(1,num);
+                                getInfo.setInt(1, num);
                                 //res = stat.executeQuery(data);
                                 res = getInfo.executeQuery();
-                                while (res.next())
-                                {
+                                while (res.next()) {
                             %>
                             <input type="hidden" name="id" value='<%=res.getString("DIV_ID")%>'/>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Division Code</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="divcode" class="form-control" value='<%=res.getString("DIV_CODE")%>' />
+                                    <input type="text" name="divcode" class="form-control"
+                                           value='<%=res.getString("DIV_CODE")%>'/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Division Name</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="divname" class="form-control" value='<%=res.getString("DIV_NAME")%>' />
+                                    <input type="text" name="divname" class="form-control"
+                                           value='<%=res.getString("DIV_NAME")%>'/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Division Description</label>
                                 <div class="col-md-8">
-                                    <input type="text" name="divdesc" class="form-control" value='<%=res.getString("DIV_DESC")%>' />
+                                    <input type="text" name="divdesc" class="form-control"
+                                           value='<%=res.getString("DIV_DESC")%>'/>
                                 </div>
                             </div>
 
@@ -135,7 +133,8 @@
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+            class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
@@ -167,16 +166,23 @@
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
     });
 </script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-53034621-1', 'auto');
     ga('send', 'pageview');
@@ -190,13 +196,12 @@
     String b = request.getParameter("divcode");
     String c = request.getParameter("divname");
     String d = request.getParameter("divdesc");
-    if(a!=null && b!=null && c!=null && d!=null)
-    {
-        String query = "update bpls_r_division set DIV_CODE=?,  DIV_NAME=?, DIV_DESC=? where DIV_ID='"+a+"'";
+    if (a != null && b != null && c != null && d != null) {
+        String query = "update bpls_r_division set DIV_CODE=?,  DIV_NAME=?, DIV_DESC=? where DIV_ID='" + a + "'";
         stmt = conn.prepareStatement(query);
-        stmt.setString(1,b);
-        stmt.setString(2,c);
-        stmt.setString(3,d);
+        stmt.setString(1, b);
+        stmt.setString(2, c);
+        stmt.setString(3, d);
         stmt.executeUpdate();
         response.sendRedirect("PAEISSADvsion.jsp");
     }

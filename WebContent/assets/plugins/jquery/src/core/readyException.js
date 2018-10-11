@@ -1,13 +1,13 @@
-define( [
+define([
 	"../core"
-], function( jQuery ) {
+], function (jQuery) {
 
-"use strict";
+	"use strict";
 
-jQuery.readyException = function( error ) {
-	window.setTimeout( function() {
-		throw error;
-	} );
-};
+	jQuery.readyException = function (error) {
+		window.setTimeout(function () {
+			throw error;
+		});
+	};
 
-} );
+});

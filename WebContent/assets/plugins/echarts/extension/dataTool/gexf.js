@@ -78,14 +78,14 @@ define(function (require) {
                 // z
             }
             if (vizColorDom) {
-                node.itemStyle.normal.color = 'rgb(' +[
+                node.itemStyle.normal.color = 'rgb(' + [
                     getAttr(vizColorDom, 'r') | 0,
                     getAttr(vizColorDom, 'g') | 0,
                     getAttr(vizColorDom, 'b') | 0
                 ].join(',') + ')';
             }
             // if (vizShapeDom) {
-                // node.shape = getAttr(vizShapeDom, 'shape');
+            // node.shape = getAttr(vizShapeDom, 'shape');
             // }
             if (attvaluesDom) {
                 var attvalueDomList = getChildrenByTagName(attvaluesDom, 'attvalue');
@@ -168,7 +168,7 @@ define(function (require) {
         return el.getAttribute(attrName);
     }
 
-    function getChildByTagName (parent, tagName) {
+    function getChildByTagName(parent, tagName) {
         var node = parent.firstChild;
 
         while (node) {
@@ -185,7 +185,7 @@ define(function (require) {
         return null;
     }
 
-    function getChildrenByTagName (parent, tagName) {
+    function getChildrenByTagName(parent, tagName) {
         var node = parent.firstChild;
         var children = [];
         while (node) {

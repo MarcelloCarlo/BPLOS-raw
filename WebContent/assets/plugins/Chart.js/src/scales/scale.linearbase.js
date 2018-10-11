@@ -67,19 +67,19 @@ function generateTicks(generationOptions, dataRange) {
 	return ticks;
 }
 
-module.exports = function(Chart) {
+module.exports = function (Chart) {
 
 	var noop = helpers.noop;
 
 	Chart.LinearScaleBase = Scale.extend({
-		getRightValue: function(value) {
+		getRightValue: function (value) {
 			if (typeof value === 'string') {
 				return +value;
 			}
 			return Scale.prototype.getRightValue.call(this, value);
 		},
 
-		handleTickRangeOptions: function() {
+		handleTickRangeOptions: function () {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -148,7 +148,7 @@ module.exports = function(Chart) {
 		getTickLimit: noop,
 		handleDirectionalChanges: noop,
 
-		buildTicks: function() {
+		buildTicks: function () {
 			var me = this;
 			var opts = me.options;
 			var tickOpts = opts.ticks;
@@ -186,7 +186,7 @@ module.exports = function(Chart) {
 				me.end = me.max;
 			}
 		},
-		convertTicksToLabels: function() {
+		convertTicksToLabels: function () {
 			var me = this;
 			me.ticksAsNumbers = me.ticks.slice();
 			me.zeroLineIndex = me.ticks.indexOf(0);

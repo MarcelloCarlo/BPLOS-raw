@@ -24,8 +24,8 @@ define(function (require) {
             var ecModel = this.ecModel;
             ecModel.eachComponent(axisType, function (axisModel) {
                 if (ecModel.getComponent(
-                        'polar', axisModel.getShallow('polarIndex')
-                    ) === this) {
+                    'polar', axisModel.getShallow('polarIndex')
+                ) === this) {
                     angleAxisModel = axisModel;
                 }
             }, this);

@@ -1,26 +1,27 @@
-$(document).ready(function() {
+$(document).ready(function () {
     App.init();
     TableManageResponsive.init();
 
-$("#txtChng").attr('disabled', true);
+    $("#txtChng").attr('disabled', true);
     var sum = 0.00;
 //iterate through each td based on class and add the values
-    $(".amt").each(function() {
+    $(".amt").each(function () {
 
         //add only if the value is number
-        if(!isNaN($(this).text()) /*&& $(this).value.length!=0*/) {
+        if (!isNaN($(this).text()) /*&& $(this).value.length!=0*/) {
             sum += parseFloat($(this).text());
         }
         console.log($(this).text());
         $("#tdPerm").text($(this).text());
     });
-$("#lblTotal").text(sum);
+    $("#lblTotal").text(sum);
 
-$("#txtAmt").on('input',function () {
-    $("#txtChng").val(parseFloat($(this).val()) - sum);
+    $("#txtAmt").on('input', function () {
+        $("#txtChng").val(parseFloat($(this).val()) - sum);
+    });
+
 });
 
-});
 function goBack() {
     window.history.back();
 };
@@ -35,13 +36,15 @@ $("#btnTresNewAppl").click(function () {
         confirmButtonText: "Confirm!",
         showCancelButton: true,
         cancelButtonText: 'Cancel',
-    }).then((result) => {
-        if (result.value) {
+    }).then((result) = > {
+        if(result.value
+)
+    {
         $.ajax({
-            type:"POST",
-            url:"setOfficialReceipt",
+            type: "POST",
+            url: "setOfficialReceipt",
             data: treaNewApplForm,
-            enctype:"multipart/form-data",
+            enctype: "multipart/form-data",
             processData: false,
             contentType: false,
             success: function (response) {
@@ -50,17 +53,22 @@ $("#btnTresNewAppl").click(function () {
                     title: 'DONE!.',
                     text: 'Succesfully Processed',
                     confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                    var oRX = "?orNo="+response;
+                }).then((result) = > {
+                    if(result.value
+            )
+                {
+                    var oRX = "?orNo=" + response;
                     //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
                     //window.location.replace("BPLSORf.jsp"+oRX);
                 }
-            });
+            })
+                ;
 
             }
         });
-    } else if (result.dismiss === swal.DismissReason.cancel) {
+    }
+else
+    if (result.dismiss === swal.DismissReason.cancel) {
         swalWithBootstrapButtons(
             'Cancelled',
             'Operation Halted',
@@ -68,5 +76,6 @@ $("#btnTresNewAppl").click(function () {
         )
 
     }
-});
+})
+    ;
 });

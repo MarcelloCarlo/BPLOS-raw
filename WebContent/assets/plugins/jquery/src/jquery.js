@@ -1,4 +1,4 @@
-define( [
+define([
 	"./core",
 	"./selector",
 	"./traversing",
@@ -31,10 +31,10 @@ define( [
 	"./deprecated",
 	"./exports/amd",
 	"./exports/global"
-], function( jQuery ) {
+], function (jQuery) {
 
-"use strict";
+	"use strict";
 
-return jQuery;
+	return jQuery;
 
-} );
+});

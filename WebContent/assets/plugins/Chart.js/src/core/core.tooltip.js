@@ -37,7 +37,7 @@ defaults._set('global', {
 		callbacks: {
 			// Args are: (tooltipItems, data)
 			beforeTitle: helpers.noop,
-			title: function(tooltipItems, data) {
+			title: function (tooltipItems, data) {
 				// Pick first xLabel for now
 				var title = '';
 				var labels = data.labels;
@@ -62,7 +62,7 @@ defaults._set('global', {
 
 			// Args are: (tooltipItem, data)
 			beforeLabel: helpers.noop,
-			label: function(tooltipItem, data) {
+			label: function (tooltipItem, data) {
 				var label = data.datasets[tooltipItem.datasetIndex].label || '';
 
 				if (label) {
@@ -71,7 +71,7 @@ defaults._set('global', {
 				label += tooltipItem.yLabel;
 				return label;
 			},
-			labelColor: function(tooltipItem, chart) {
+			labelColor: function (tooltipItem, chart) {
 				var meta = chart.getDatasetMeta(tooltipItem.datasetIndex);
 				var activeElement = meta.data[tooltipItem.index];
 				var view = activeElement._view;
@@ -80,7 +80,7 @@ defaults._set('global', {
 					backgroundColor: view.backgroundColor
 				};
 			},
-			labelTextColor: function() {
+			labelTextColor: function () {
 				return this._options.bodyFontColor;
 			},
 			afterLabel: helpers.noop,
@@ -103,7 +103,7 @@ var positioners = {
 	 * @param elements {ChartElement[]} the elements being displayed in the tooltip
 	 * @returns {Point} tooltip position
 	 */
-	average: function(elements) {
+	average: function (elements) {
 		if (!elements.length) {
 			return false;
 		}
@@ -136,7 +136,7 @@ var positioners = {
 	 * @param eventPosition {Point} the position of the event in canvas coordinates
 	 * @returns {Point} the tooltip position
 	 */
-	nearest: function(elements, eventPosition) {
+	nearest: function (elements, eventPosition) {
 		var x = eventPosition.x;
 		var y = eventPosition.y;
 		var minDistance = Number.POSITIVE_INFINITY;
@@ -287,7 +287,7 @@ function getTooltipSize(tooltip, model) {
 
 	// Count of all lines in the body
 	var body = model.body;
-	var combinedBodyLength = body.reduce(function(count, bodyItem) {
+	var combinedBodyLength = body.reduce(function (count, bodyItem) {
 		return count + bodyItem.before.length + bodyItem.lines.length + bodyItem.after.length;
 	}, 0);
 	combinedBodyLength += model.beforeBody.length + model.afterBody.length;
@@ -309,7 +309,7 @@ function getTooltipSize(tooltip, model) {
 
 	// Title width
 	var widthPadding = 0;
-	var maxLineWidth = function(line) {
+	var maxLineWidth = function (line) {
 		width = Math.max(width, ctx.measureText(line).width + widthPadding);
 	};
 
@@ -322,7 +322,7 @@ function getTooltipSize(tooltip, model) {
 
 	// Body lines may include some extra width due to the color box
 	widthPadding = model.displayColors ? (bodyFontSize + 2) : 0;
-	helpers.each(body, function(bodyItem) {
+	helpers.each(body, function (bodyItem) {
 		helpers.each(bodyItem.before, maxLineWidth);
 		helpers.each(bodyItem.lines, maxLineWidth);
 		helpers.each(bodyItem.after, maxLineWidth);
@@ -367,28 +367,28 @@ function determineAlignment(tooltip, size) {
 	var midY = (chartArea.top + chartArea.bottom) / 2;
 
 	if (yAlign === 'center') {
-		lf = function(x) {
+		lf = function (x) {
 			return x <= midX;
 		};
-		rf = function(x) {
+		rf = function (x) {
 			return x > midX;
 		};
 	} else {
-		lf = function(x) {
+		lf = function (x) {
 			return x <= (size.width / 2);
 		};
-		rf = function(x) {
+		rf = function (x) {
 			return x >= (chart.width - (size.width / 2));
 		};
 	}
 
-	olf = function(x) {
+	olf = function (x) {
 		return x + size.width + model.caretSize + model.caretPadding > chart.width;
 	};
-	orf = function(x) {
+	orf = function (x) {
 		return x - size.width - model.caretSize - model.caretPadding < 0;
 	};
-	yf = function(y) {
+	yf = function (y) {
 		return y <= midY ? 'top' : 'bottom';
 	};
 
@@ -479,14 +479,14 @@ function getBeforeAfterBodyLines(callback) {
 }
 
 var exports = module.exports = Element.extend({
-	initialize: function() {
+	initialize: function () {
 		this._model = getBaseModel(this._options);
 		this._lastActive = [];
 	},
 
 	// Get the title
 	// Args are: (tooltipItem, data)
-	getTitle: function() {
+	getTitle: function () {
 		var me = this;
 		var opts = me._options;
 		var callbacks = opts.callbacks;
@@ -504,17 +504,17 @@ var exports = module.exports = Element.extend({
 	},
 
 	// Args are: (tooltipItem, data)
-	getBeforeBody: function() {
+	getBeforeBody: function () {
 		return getBeforeAfterBodyLines(this._options.callbacks.beforeBody.apply(this, arguments));
 	},
 
 	// Args are: (tooltipItem, data)
-	getBody: function(tooltipItems, data) {
+	getBody: function (tooltipItems, data) {
 		var me = this;
 		var callbacks = me._options.callbacks;
 		var bodyItems = [];
 
-		helpers.each(tooltipItems, function(tooltipItem) {
+		helpers.each(tooltipItems, function (tooltipItem) {
 			var bodyItem = {
 				before: [],
 				lines: [],
@@ -531,13 +531,13 @@ var exports = module.exports = Element.extend({
 	},
 
 	// Args are: (tooltipItem, data)
-	getAfterBody: function() {
+	getAfterBody: function () {
 		return getBeforeAfterBodyLines(this._options.callbacks.afterBody.apply(this, arguments));
 	},
 
 	// Get the footer and beforeFooter and afterFooter lines
 	// Args are: (tooltipItem, data)
-	getFooter: function() {
+	getFooter: function () {
 		var me = this;
 		var callbacks = me._options.callbacks;
 
@@ -553,7 +553,7 @@ var exports = module.exports = Element.extend({
 		return lines;
 	},
 
-	update: function(changed) {
+	update: function (changed) {
 		var me = this;
 		var opts = me._options;
 
@@ -600,20 +600,20 @@ var exports = module.exports = Element.extend({
 
 			// If the user provided a filter function, use it to modify the tooltip items
 			if (opts.filter) {
-				tooltipItems = tooltipItems.filter(function(a) {
+				tooltipItems = tooltipItems.filter(function (a) {
 					return opts.filter(a, data);
 				});
 			}
 
 			// If the user provided a sorting function, use it to modify the tooltip items
 			if (opts.itemSort) {
-				tooltipItems = tooltipItems.sort(function(a, b) {
+				tooltipItems = tooltipItems.sort(function (a, b) {
 					return opts.itemSort(a, b, data);
 				});
 			}
 
 			// Determine colors for boxes
-			helpers.each(tooltipItems, function(tooltipItem) {
+			helpers.each(tooltipItems, function (tooltipItem) {
 				labelColors.push(opts.callbacks.labelColor.call(me, tooltipItem, me._chart));
 				labelTextColors.push(opts.callbacks.labelTextColor.call(me, tooltipItem, me._chart));
 			});
@@ -665,7 +665,7 @@ var exports = module.exports = Element.extend({
 		return me;
 	},
 
-	drawCaret: function(tooltipPoint, size) {
+	drawCaret: function (tooltipPoint, size) {
 		var ctx = this._chart.ctx;
 		var vm = this._view;
 		var caretPosition = this.getCaretPosition(tooltipPoint, size, vm);
@@ -674,7 +674,7 @@ var exports = module.exports = Element.extend({
 		ctx.lineTo(caretPosition.x2, caretPosition.y2);
 		ctx.lineTo(caretPosition.x3, caretPosition.y3);
 	},
-	getCaretPosition: function(tooltipPoint, size, vm) {
+	getCaretPosition: function (tooltipPoint, size, vm) {
 		var x1, x2, x3, y1, y2, y3;
 		var caretSize = vm.caretSize;
 		var cornerRadius = vm.cornerRadius;
@@ -734,7 +734,7 @@ var exports = module.exports = Element.extend({
 		return {x1: x1, x2: x2, x3: x3, y1: y1, y2: y2, y3: y3};
 	},
 
-	drawTitle: function(pt, vm, ctx, opacity) {
+	drawTitle: function (pt, vm, ctx, opacity) {
 		var title = vm.title;
 
 		if (title.length) {
@@ -759,7 +759,7 @@ var exports = module.exports = Element.extend({
 		}
 	},
 
-	drawBody: function(pt, vm, ctx, opacity) {
+	drawBody: function (pt, vm, ctx, opacity) {
 		var bodyFontSize = vm.bodyFontSize;
 		var bodySpacing = vm.bodySpacing;
 		var body = vm.body;
@@ -770,7 +770,7 @@ var exports = module.exports = Element.extend({
 
 		// Before Body
 		var xLinePadding = 0;
-		var fillLineOfText = function(line) {
+		var fillLineOfText = function (line) {
 			ctx.fillText(line, pt.x + xLinePadding, pt.y);
 			pt.y += bodyFontSize + bodySpacing;
 		};
@@ -783,12 +783,12 @@ var exports = module.exports = Element.extend({
 		xLinePadding = drawColorBoxes ? (bodyFontSize + 2) : 0;
 
 		// Draw body lines now
-		helpers.each(body, function(bodyItem, i) {
+		helpers.each(body, function (bodyItem, i) {
 			var textColor = mergeOpacity(vm.labelTextColors[i], opacity);
 			ctx.fillStyle = textColor;
 			helpers.each(bodyItem.before, fillLineOfText);
 
-			helpers.each(bodyItem.lines, function(line) {
+			helpers.each(bodyItem.lines, function (line) {
 				// Draw Legend-like boxes if needed
 				if (drawColorBoxes) {
 					// Fill a white rect so that colours merge nicely if the opacity is < 1
@@ -820,7 +820,7 @@ var exports = module.exports = Element.extend({
 		pt.y -= bodySpacing; // Remove last body spacing
 	},
 
-	drawFooter: function(pt, vm, ctx, opacity) {
+	drawFooter: function (pt, vm, ctx, opacity) {
 		var footer = vm.footer;
 
 		if (footer.length) {
@@ -832,14 +832,14 @@ var exports = module.exports = Element.extend({
 			ctx.fillStyle = mergeOpacity(vm.footerFontColor, opacity);
 			ctx.font = helpers.fontString(vm.footerFontSize, vm._footerFontStyle, vm._footerFontFamily);
 
-			helpers.each(footer, function(line) {
+			helpers.each(footer, function (line) {
 				ctx.fillText(line, pt.x, pt.y);
 				pt.y += vm.footerFontSize + vm.footerSpacing;
 			});
 		}
 	},
 
-	drawBackground: function(pt, vm, ctx, tooltipSize, opacity) {
+	drawBackground: function (pt, vm, ctx, tooltipSize, opacity) {
 		ctx.fillStyle = mergeOpacity(vm.backgroundColor, opacity);
 		ctx.strokeStyle = mergeOpacity(vm.borderColor, opacity);
 		ctx.lineWidth = vm.borderWidth;
@@ -882,7 +882,7 @@ var exports = module.exports = Element.extend({
 		}
 	},
 
-	draw: function() {
+	draw: function () {
 		var ctx = this._chart.ctx;
 		var vm = this._view;
 
@@ -930,7 +930,7 @@ var exports = module.exports = Element.extend({
 	 * @param {IEvent} event - The event to handle
 	 * @returns {Boolean} true if the tooltip changed
 	 */
-	handleEvent: function(e) {
+	handleEvent: function (e) {
 		var me = this;
 		var options = me._options;
 		var changed = false;

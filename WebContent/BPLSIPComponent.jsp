@@ -19,7 +19,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="assets/img/user-13.jpg" alt="" />
+                    <img src="assets/img/user-13.jpg" alt=""/>
                     <span class="hidden-xs">Sample User</span> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu animated fadeInLeft">
@@ -40,7 +40,7 @@
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="BPLSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Inspection</span></a></li>
-            <li><a href="BPLSIPReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+        <li><a href="BPLSIPReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

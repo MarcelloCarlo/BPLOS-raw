@@ -10,8 +10,11 @@
         contentType="text/html; charset=ISO-8859-1"
         pageEncoding="ISO-8859-1"
 %>
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -36,8 +39,8 @@
     <title>BPLS | Investigation</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>
-            <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
-            <%--rel="stylesheet"--%>
+    <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
+    <%--rel="stylesheet"--%>
     <%-->--%>
     <link
             href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"
@@ -157,22 +160,22 @@
                                 <%
                                     LGUConnect conX = new LGUConnect();
                                     try {
-                                    Connection conn3 = conX.getConnection();
-                                    Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsiv`");
-                                    while (gg3.next()) {
-                                        String apType = gg3.getString("AP_TYPE");
-                                        String modalMode = "";
-                                        String modalClass = "";
-                                        if (apType.equals("New")) {
-                                            modalMode = ".investigation-modal-new";
-                                            modalClass = "newModal";
-                                        } else if (apType.equals("Renew")) {
-                                            modalMode = ".investigation-modal-renew";
-                                            modalClass = "renewModal";
-                                        } else {
-                                            modalMode = ".investigation-modal-new";
-                                        }
+                                        Connection conn3 = conX.getConnection();
+                                        Statement ss3 = conn3.createStatement();
+                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsiv`");
+                                        while (gg3.next()) {
+                                            String apType = gg3.getString("AP_TYPE");
+                                            String modalMode = "";
+                                            String modalClass = "";
+                                            if (apType.equals("New")) {
+                                                modalMode = ".investigation-modal-new";
+                                                modalClass = "newModal";
+                                            } else if (apType.equals("Renew")) {
+                                                modalMode = ".investigation-modal-renew";
+                                                modalClass = "renewModal";
+                                            } else {
+                                                modalMode = ".investigation-modal-new";
+                                            }
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
@@ -228,7 +231,8 @@
                                     </td>
                                 </tr>
                                 <%
-                                    }}catch(SQLException | ClassNotFoundException e){
+                                        }
+                                    } catch (SQLException | ClassNotFoundException e) {
                                         out.print(e);
                                     }
                                 %>
@@ -257,123 +261,123 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="panel panel-inverse panel-danger">
-                        <div class="panel-heading">
-                            <h4
-                                    class="panel-title"
-                                    id="myModalLabel"
-                            >Investigation for New Application</h4>
+                            <div class="panel-heading">
+                                <h4
+                                        class="panel-title"
+                                        id="myModalLabel"
+                                >Investigation for New Application</h4>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-11">
-                                <input type="text"
-                                       class="hide"
-                                       id="_AP_REFERENCE_NO"
-                                       name="_AP_REFERENCE_NO"
-                                />
-                                <div class="col-md-8 panel-body">
-                                    <h5>
-                                        Business Name/Corporate Name:
-                                        <!-- <input disabled=""
-                                        id="nBussName" type="text" /> -->
-                                        <label id="nBussName"></label>
-                                    </h5>
-                                   <!-- <h5>
-                                        Name of Sole Proprietor/Partnership/President:
-                                        <label id="nBussOwner"></label>
-                                    </h5>-->
-                                    <h5>
-                                        Business Address:
-                                        <label id="nBussAddr"></label>
-                                    </h5>
-                                    <h5>
-                                        Tel No.:
-                                        <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
-                                        <label id="nBussConTelno"></label>
-                                    </h5>
-                                    <h5>
-                                        Authorized Representative:
-                                        <!--  <input disabled=""
-                                        id="nBussAuthRepName" type="text" /> -->
-                                        <label id="nBussAuthRepName"></label>
-                                    </h5>
-                                    <h5>
-                                        Address:
-                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                        <label id="nBussAuthRepAddr"></label>
-                                    </h5>
-                                    <h5>
-                                        Business Nature:
-                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                        <label id="nBussNature"></label>
-                                    </h5>
-                                </div>
-                                <div class="panel-body">
-                                    <h5>Inspected List</h5>
-                                    <div class="">
-                                        <ul class="to_do">
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkZONING_INS"
-                                                        name="ZONING_INS"
-                                                        class="flat-black"
-                                                        value="Pass"
-                                                > Zoning Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkFIRE_INS"
-                                                        name="FIRE_INS"
-                                                        class="flat-black"
-                                                        value="Pass"
-                                                > Fire Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkHS_INS"
-                                                        name="HS_INS"
-                                                        class="flat-black"
-                                                        value="Pass"
-                                                > Health & Sanitation Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkBLDG_INS"
-                                                        name="BLDG_INS"
-                                                        class="flat-black"
-                                                        value="Pass"
-                                                > Building Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkLABOR_INS"
-                                                        name="LABOR_INS"
-                                                        class="flat-black"
-                                                        value="Pass"
-                                                > Labor Inspection
-                                            </p>
-                                            <p>
-                                                <input
-                                                        type="checkbox"
-                                                        id="chkMISC_INS"
-                                                        name="MISC_INS"
-                                                        class="flat-black"
-                                                        value="Pass"
-                                                > Miscellaneous Inspection (See Business Nature)
-                                            </p>
-                                        </ul>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <input type="text"
+                                           class="hide"
+                                           id="_AP_REFERENCE_NO"
+                                           name="_AP_REFERENCE_NO"
+                                    />
+                                    <div class="col-md-8 panel-body">
+                                        <h5>
+                                            Business Name/Corporate Name:
+                                            <!-- <input disabled=""
+                                            id="nBussName" type="text" /> -->
+                                            <label id="nBussName"></label>
+                                        </h5>
+                                        <!-- <h5>
+                                             Name of Sole Proprietor/Partnership/President:
+                                             <label id="nBussOwner"></label>
+                                         </h5>-->
+                                        <h5>
+                                            Business Address:
+                                            <label id="nBussAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Tel No.:
+                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
+                                            <label id="nBussConTelno"></label>
+                                        </h5>
+                                        <h5>
+                                            Authorized Representative:
+                                            <!--  <input disabled=""
+                                            id="nBussAuthRepName" type="text" /> -->
+                                            <label id="nBussAuthRepName"></label>
+                                        </h5>
+                                        <h5>
+                                            Address:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="nBussAuthRepAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Nature:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="nBussNature"></label>
+                                        </h5>
                                     </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="col-md-8">
-                                        <label for="txtMISC_REMARKS">Violation Details</label></div>
-                                    <div class="col-md-12">
+                                    <div class="panel-body">
+                                        <h5>Inspected List</h5>
+                                        <div class="">
+                                            <ul class="to_do">
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkZONING_INS"
+                                                            name="ZONING_INS"
+                                                            class="flat-black"
+                                                            value="Pass"
+                                                    > Zoning Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkFIRE_INS"
+                                                            name="FIRE_INS"
+                                                            class="flat-black"
+                                                            value="Pass"
+                                                    > Fire Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkHS_INS"
+                                                            name="HS_INS"
+                                                            class="flat-black"
+                                                            value="Pass"
+                                                    > Health & Sanitation Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkBLDG_INS"
+                                                            name="BLDG_INS"
+                                                            class="flat-black"
+                                                            value="Pass"
+                                                    > Building Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkLABOR_INS"
+                                                            name="LABOR_INS"
+                                                            class="flat-black"
+                                                            value="Pass"
+                                                    > Labor Inspection
+                                                </p>
+                                                <p>
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkMISC_INS"
+                                                            name="MISC_INS"
+                                                            class="flat-black"
+                                                            value="Pass"
+                                                    > Miscellaneous Inspection (See Business Nature)
+                                                </p>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-8">
+                                            <label for="txtMISC_REMARKS">Violation Details</label></div>
+                                        <div class="col-md-12">
 											<textarea
                                                     class="form-control"
                                                     placeholder="Remarks"
@@ -381,64 +385,68 @@
                                                     name="MISC_REMARKS"
                                                     rows="3"
                                             ></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="panel-body row">
-                                    <div class="col-md-5">
-                                        <input type="checkbox" id="chkRectify" name="Rectify" class="flat-black">
-                                        <label for="chkRectify">Rectify Application</label>
+                                    <div class="panel-body row">
+                                        <div class="col-md-5">
+                                            <input type="checkbox" id="chkRectify" name="Rectify" class="flat-black">
+                                            <label for="chkRectify">Rectify Application</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="number" id="numMonths" name="numMonths" class="form-control"
+                                                   placeholder="Months">
+                                        </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <input type="number" id="numMonths" name="numMonths" class="form-control" placeholder="Months">
+                                    <div class="panel-body">
+                                        <div class="note note-info">
+                                            <h5>Investigation Notes</h5>
+                                            <ul>
+                                                <li>
+                                                    <p>
+                                                        Miscellaneous Investigation based on the business nature should
+                                                        be in
+                                                        the business. LEAVE UNCHECK THE "MISCELLANOUS INVESTIGATION" IF
+                                                        ANY OTHER
+                                                        REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
+                                                    </p>
+                                                </li>
+                                                <li><p>
+                                                    Any unchecked item/s on the Inspection Requirements will be sent to
+                                                    the
+                                                    Investigation upon submission. Please define the violation/s on the
+                                                    remarks for other details.
+                                                </p></li>
+                                            </ul>
+                                        </div>
+                                        <!--  <div class="col-md-9">
+                                                  <textarea
+                                                          class="form-control"
+                                                          placeholder="Remarks"
+                                                          id="AP_Remarks"
+                                                          name="AP_Remarks"
+                                                          rows="3"
+                                                  ></textarea>
+                                          </div>-->
                                     </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="note note-info">
-                                        <h5>Investigation Notes</h5>
-                                        <ul>
-                                            <li>
-                                                <p>
-                                                    Miscellaneous Investigation based on the business nature should be in
-                                                    the business. LEAVE UNCHECK THE "MISCELLANOUS INVESTIGATION" IF ANY OTHER
-                                                    REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
-                                                </p>
-                                            </li>
-                                            <li><p>
-                                                Any unchecked item/s on the Inspection Requirements will be sent to the
-                                                Investigation upon submission. Please define the violation/s on the
-                                                remarks for other details.
-                                            </p></li>
-                                        </ul>
-                                    </div>
-                                    <!--  <div class="col-md-9">
-                                              <textarea
-                                                      class="form-control"
-                                                      placeholder="Remarks"
-                                                      id="AP_Remarks"
-                                                      name="AP_Remarks"
-                                                      rows="3"
-                                              ></textarea>
-                                      </div>-->
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal"
+                                    id="btnCloseNewApplModal"
+                            >Close
+                            </button>
+                            <button
+                                    type="button"
+                                    id="btnInvNewAppl"
+                                    class="btn btn-success"
+                            >Save Changes
+                            </button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button
-                                type="button"
-                                class="btn btn-default"
-                                data-dismiss="modal"
-                                id="btnCloseNewApplModal"
-                        >Close
-                        </button>
-                        <button
-                                type="button"
-                                id="btnInvNewAppl"
-                                class="btn btn-success"
-                        >Save Changes
-                        </button>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
@@ -458,50 +466,50 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="panel panel-inverse panel-danger">
-                        <div class="panel-heading-btn">
-                            <h4
-                                    class="panel-title"
-                            >Application Termination</h4>
+                            <div class="panel-heading-btn">
+                                <h4
+                                        class="panel-title"
+                                >Application Termination</h4>
+                            </div>
                         </div>
-                        </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
 
-                                <div class="col-md-8">
-                                    <h5>
-                                        Application/Referrence Number:
-                                        <input class="hide" name="tRefNoh"
-                                               id="tRefNoh" type="text" />
-                                        <label id="tRefNo"></label>
-                                    </h5>
-                                    <h5>
-                                        Business Name:
-                                        <!-- <input
-                                        disabled="" id="nBussOwner" type="text" /> -->
-                                        <label id="tBussName"></label>
-                                    </h5>
-                                    <h5>
-                                        Business Nature:
-                                        <!-- <input disabled="" id="nBussAddr"
-                                        type="text" /> -->
-                                        <label id="tBussNature"></label>
-                                    </h5>
-                                    <h5>
-                                        Authorized Representative:
-                                        <!--  <input disabled=""
-                                        id="nBussAuthRepName" type="text" /> -->
-                                        <label id="tBussAuthRepName"></label>
-                                    </h5>
-                                    <h5>
-                                        Business Owner:
-                                        <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                        <label id="tBussOwner"></label>
-                                    </h5>
-                                </div>
-                                <div class="panel-body">
-                                    <hr>
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
+                                        <h5>
+                                            Application/Referrence Number:
+                                            <input class="hide" name="tRefNoh"
+                                                   id="tRefNoh" type="text"/>
+                                            <label id="tRefNo"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Name:
+                                            <!-- <input
+                                            disabled="" id="nBussOwner" type="text" /> -->
+                                            <label id="tBussName"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Nature:
+                                            <!-- <input disabled="" id="nBussAddr"
+                                            type="text" /> -->
+                                            <label id="tBussNature"></label>
+                                        </h5>
+                                        <h5>
+                                            Authorized Representative:
+                                            <!--  <input disabled=""
+                                            id="nBussAuthRepName" type="text" /> -->
+                                            <label id="tBussAuthRepName"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Owner:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="tBussOwner"></label>
+                                        </h5>
+                                    </div>
+                                    <div class="panel-body">
+                                        <hr>
+                                        <div class="col-md-9">
                                               <textarea
                                                       class="form-control"
                                                       placeholder="Remarks"
@@ -509,31 +517,31 @@
                                                       name="txtRemarks"
                                                       rows="3"
                                               ></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal"
+                                    id="btnCloseTermApplModal"
+                            >Close
+                            </button>
+                            <button
+                                    type="button"
+                                    id="btnTermAppl"
+                                    class="btn btn-success"
+                            >Submit
+                            </button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button
-                                type="button"
-                                class="btn btn-default"
-                                data-dismiss="modal"
-                                id="btnCloseTermApplModal"
-                        >Close
-                        </button>
-                        <button
-                                type="button"
-                                id="btnTermAppl"
-                                class="btn btn-success"
-                        >Submit
-                        </button>
-                    </div>
-                </div>
             </form>
         </div>
     </div>
-   
+
     <jsp:include page="BPLSIVFooter.jsp"></jsp:include>
 </div>
 <!-- ================== BEGIN BASE JS ================== -->

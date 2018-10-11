@@ -1,11 +1,11 @@
-describe('Linear Scale', function() {
-	it('Should register the constructor with the scale service', function() {
+describe('Linear Scale', function () {
+	it('Should register the constructor with the scale service', function () {
 		var Constructor = Chart.scaleService.getScaleConstructor('linear');
 		expect(Constructor).not.toBe(undefined);
 		expect(typeof Constructor).toBe('function');
 	});
 
-	it('Should have the correct default config', function() {
+	it('Should have the correct default config', function () {
 		var defaultConfig = Chart.scaleService.getScaleDefaults('linear');
 		expect(defaultConfig).toEqual({
 			display: true,
@@ -49,7 +49,7 @@ describe('Linear Scale', function() {
 		expect(defaultConfig.ticks.callback).toEqual(jasmine.any(Function));
 	});
 
-	it('Should correctly determine the max & min data values', function() {
+	it('Should correctly determine the max & min data values', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -83,7 +83,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(150);
 	});
 
-	it('Should correctly determine the max & min of string data values', function() {
+	it('Should correctly determine the max & min of string data values', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -117,7 +117,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(150);
 	});
 
-	it('Should correctly determine the max & min when no values provided and suggested minimum and maximum are set', function() {
+	it('Should correctly determine the max & min when no values provided and suggested minimum and maximum are set', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -146,7 +146,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(15);
 	});
 
-	it('Should correctly determine the max & min data values ignoring hidden datasets', function() {
+	it('Should correctly determine the max & min data values ignoring hidden datasets', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -181,7 +181,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(80);
 	});
 
-	it('Should correctly determine the max & min data values ignoring data that is NaN', function() {
+	it('Should correctly determine the max & min data values ignoring data that is NaN', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -212,7 +212,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(90);
 	});
 
-	it('Should correctly determine the max & min for scatter data', function() {
+	it('Should correctly determine the max & min for scatter data', function () {
 		var chart = window.acquireChart({
 			type: 'line',
 			data: {
@@ -256,7 +256,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(100);
 	});
 
-	it('Should correctly get the label for the given index', function() {
+	it('Should correctly get the label for the given index', function () {
 		var chart = window.acquireChart({
 			type: 'line',
 			data: {
@@ -297,7 +297,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.getLabelForIndex(3, 0)).toBe(7);
 	});
 
-	it('Should correctly determine the min and max data values when stacked mode is turned on', function() {
+	it('Should correctly determine the min and max data values when stacked mode is turned on', function () {
 		var chart = window.acquireChart({
 			type: 'line',
 			data: {
@@ -338,7 +338,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(200);
 	});
 
-	it('Should correctly determine the min and max data values when stacked mode is turned on and there are hidden datasets', function() {
+	it('Should correctly determine the min and max data values when stacked mode is turned on and there are hidden datasets', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -377,7 +377,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(200);
 	});
 
-	it('Should correctly determine the min and max data values when stacked mode is turned on there are multiple types of datasets', function() {
+	it('Should correctly determine the min and max data values when stacked mode is turned on there are multiple types of datasets', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -410,7 +410,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(160);
 	});
 
-	it('Should ensure that the scale has a max and min that are not equal', function() {
+	it('Should ensure that the scale has a max and min that are not equal', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -432,7 +432,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(1);
 	});
 
-	it('Should ensure that the scale has a max and min that are not equal when beginAtZero is set', function() {
+	it('Should ensure that the scale has a max and min that are not equal when beginAtZero is set', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -457,7 +457,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(1);
 	});
 
-	it('Should use the suggestedMin and suggestedMax options', function() {
+	it('Should use the suggestedMin and suggestedMax options', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -486,7 +486,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.max).toBe(10);
 	});
 
-	it('Should use the min and max options', function() {
+	it('Should use the min and max options', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -517,7 +517,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.ticks[chart.scales.yScale0.ticks.length - 1]).toBe('-1010');
 	});
 
-	it('Should use min, max and stepSize to create fixed spaced ticks', function() {
+	it('Should use min, max and stepSize to create fixed spaced ticks', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -548,8 +548,8 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.ticks).toEqual(['11', '9', '7', '5', '3', '1']);
 	});
 
-	describe('precision', function() {
-		it('Should create integer steps if precision is 0', function() {
+	describe('precision', function () {
+		it('Should create integer steps if precision is 0', function () {
 			var chart = window.acquireChart({
 				type: 'bar',
 				data: {
@@ -578,7 +578,7 @@ describe('Linear Scale', function() {
 			expect(chart.scales.yScale0.ticks).toEqual(['2', '1', '0']);
 		});
 
-		it('Should round the step size to the given number of decimal places', function() {
+		it('Should round the step size to the given number of decimal places', function () {
 			var chart = window.acquireChart({
 				type: 'bar',
 				data: {
@@ -609,7 +609,7 @@ describe('Linear Scale', function() {
 	});
 
 
-	it('should forcibly include 0 in the range if the beginAtZero option is used', function() {
+	it('should forcibly include 0 in the range if the beginAtZero option is used', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -645,7 +645,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.ticks).toEqual(['-20', '-25', '-30', '-35', '-40', '-45', '-50']);
 	});
 
-	it('Should generate tick marks in the correct order in reversed mode', function() {
+	it('Should generate tick marks in the correct order in reversed mode', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -673,7 +673,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.end).toBe(0);
 	});
 
-	it('should use the correct number of decimal places in the default format function', function() {
+	it('should use the correct number of decimal places in the default format function', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -695,7 +695,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.ticks).toEqual(['0.06', '0.05', '0.04', '0.03', '0.02', '0.01', '0']);
 	});
 
-	it('Should build labels using the user supplied callback', function() {
+	it('Should build labels using the user supplied callback', function () {
 		var chart = window.acquireChart({
 			type: 'bar',
 			data: {
@@ -711,7 +711,7 @@ describe('Linear Scale', function() {
 						id: 'yScale0',
 						type: 'linear',
 						ticks: {
-							callback: function(value, index) {
+							callback: function (value, index) {
 								return index.toString();
 							}
 						}
@@ -724,7 +724,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales.yScale0.ticks).toEqual(['0', '1', '2', '3', '4', '5', '6', '7', '8']);
 	});
 
-	it('Should get the correct pixel value for a point', function() {
+	it('Should get the correct pixel value for a point', function () {
 		var chart = window.acquireChart({
 			type: 'line',
 			data: {
@@ -768,7 +768,7 @@ describe('Linear Scale', function() {
 		expect(yScale.getValueForPixel(258)).toBe(0);
 	});
 
-	it('should fit correctly', function() {
+	it('should fit correctly', function () {
 		var chart = window.acquireChart({
 			type: 'line',
 			data: {
@@ -841,7 +841,7 @@ describe('Linear Scale', function() {
 		expect(yScale.height).toBeCloseToPixel(430);
 	});
 
-	it('should fit correctly when display is turned off', function() {
+	it('should fit correctly when display is turned off', function () {
 		var chart = window.acquireChart({
 			type: 'line',
 			data: {
@@ -894,7 +894,7 @@ describe('Linear Scale', function() {
 		expect(yScale.width).toBeCloseToPixel(0);
 	});
 
-	it('max and min value should be valid and finite when charts datasets are hidden', function() {
+	it('max and min value should be valid and finite when charts datasets are hidden', function () {
 		var barData = {
 			labels: ['S1', 'S2', 'S3'],
 			datasets: [{
@@ -927,7 +927,7 @@ describe('Linear Scale', function() {
 			}
 		});
 
-		barData.datasets.forEach(function(data, index) {
+		barData.datasets.forEach(function (data, index) {
 			var meta = chart.getDatasetMeta(index);
 			meta.hidden = true;
 			chart.update();
@@ -937,7 +937,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales['x-axis-0'].max).toEqual(1);
 	});
 
-	it('max and min value should be valid when min is set and all datasets are hidden', function() {
+	it('max and min value should be valid when min is set and all datasets are hidden', function () {
 		var barData = {
 			labels: ['S1', 'S2', 'S3'],
 			datasets: [{
@@ -966,7 +966,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales['x-axis-0'].max).toEqual(21);
 	});
 
-	it('min settings should be used if set to zero', function() {
+	it('min settings should be used if set to zero', function () {
 		var barData = {
 			labels: ['S1', 'S2', 'S3'],
 			datasets: [{
@@ -994,7 +994,7 @@ describe('Linear Scale', function() {
 		expect(chart.scales['x-axis-0'].min).toEqual(0);
 	});
 
-	it('max settings should be used if set to zero', function() {
+	it('max settings should be used if set to zero', function () {
 		var barData = {
 			labels: ['S1', 'S2', 'S3'],
 			datasets: [{

@@ -22,7 +22,7 @@ var exports = module.exports = Element.extend({
  * @todo remove at version 3
  */
 Object.defineProperty(exports.prototype, 'animationObject', {
-	get: function() {
+	get: function () {
 		return this;
 	}
 });
@@ -34,10 +34,10 @@ Object.defineProperty(exports.prototype, 'animationObject', {
  * @todo remove at version 3
  */
 Object.defineProperty(exports.prototype, 'chartInstance', {
-	get: function() {
+	get: function () {
 		return this.chart;
 	},
-	set: function(value) {
+	set: function (value) {
 		this.chart = value;
 	}
 });

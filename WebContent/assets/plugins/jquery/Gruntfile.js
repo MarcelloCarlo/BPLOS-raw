@@ -1,34 +1,35 @@
-module.exports = function( grunt ) {
+module.exports = function (grunt) {
 	"use strict";
 
-	function readOptionalJSON( filepath ) {
-		var stripJSONComments = require( "strip-json-comments" ),
+	function readOptionalJSON(filepath) {
+		var stripJSONComments = require("strip-json-comments"),
 			data = {};
 		try {
-			data = JSON.parse( stripJSONComments(
-				fs.readFileSync( filepath, { encoding: "utf8" } )
-			) );
-		} catch ( e ) {}
+			data = JSON.parse(stripJSONComments(
+				fs.readFileSync(filepath, {encoding: "utf8"})
+			));
+		} catch (e) {
+		}
 		return data;
 	}
 
-	var fs = require( "fs" ),
-		gzip = require( "gzip-js" ),
+	var fs = require("fs"),
+		gzip = require("gzip-js"),
 		isTravis = process.env.TRAVIS;
 
-	if ( !grunt.option( "filename" ) ) {
-		grunt.option( "filename", "jquery.js" );
+	if (!grunt.option("filename")) {
+		grunt.option("filename", "jquery.js");
 	}
 
-	grunt.initConfig( {
-		pkg: grunt.file.readJSON( "package.json" ),
-		dst: readOptionalJSON( "dist/.destination.json" ),
+	grunt.initConfig({
+		pkg: grunt.file.readJSON("package.json"),
+		dst: readOptionalJSON("dist/.destination.json"),
 		"compare_size": {
-			files: [ "dist/jquery.js", "dist/jquery.min.js" ],
+			files: ["dist/jquery.js", "dist/jquery.min.js"],
 			options: {
 				compress: {
-					gz: function( contents ) {
-						return gzip.zip( contents, {} ).length;
+					gz: function (contents) {
+						return gzip.zip(contents, {}).length;
 					}
 				},
 				cache: "build/.sizecache.json"
@@ -38,7 +39,7 @@ module.exports = function( grunt ) {
 			options: {
 				sourceMap: "inline",
 				retainLines: true,
-				plugins: [ "transform-es2015-for-of" ]
+				plugins: ["transform-es2015-for-of"]
 			},
 			nodeSmokeTests: {
 				files: {
@@ -57,15 +58,15 @@ module.exports = function( grunt ) {
 
 				// Exclude specified modules if the module matching the key is removed
 				removeWith: {
-					ajax: [ "manipulation/_evalUrl", "event/ajax" ],
-					callbacks: [ "deferred" ],
-					css: [ "effects", "dimensions", "offset" ],
-					"css/showHide": [ "effects" ],
+					ajax: ["manipulation/_evalUrl", "event/ajax"],
+					callbacks: ["deferred"],
+					css: ["effects", "dimensions", "offset"],
+					"css/showHide": ["effects"],
 					deferred: {
-						remove: [ "ajax", "effects", "queue", "core/ready" ],
-						include: [ "core/ready-no-deferred" ]
+						remove: ["ajax", "effects", "queue", "core/ready"],
+						include: ["core/ready-no-deferred"]
 					},
-					sizzle: [ "css/hiddenVisibleSelectors", "effects/animatedSelector" ]
+					sizzle: ["css/hiddenVisibleSelectors", "effects/animatedSelector"]
 				}
 			}
 		},
@@ -85,9 +86,9 @@ module.exports = function( grunt ) {
 					"qunit/LICENSE.txt": "qunitjs/LICENSE.txt",
 
 					"qunit-assert-step/qunit-assert-step.js":
-					"qunit-assert-step/qunit-assert-step.js",
+						"qunit-assert-step/qunit-assert-step.js",
 					"qunit-assert-step/MIT-LICENSE.txt":
-					"qunit-assert-step/MIT-LICENSE.txt",
+						"qunit-assert-step/MIT-LICENSE.txt",
 
 					"requirejs/require.js": "requirejs/require.js",
 
@@ -98,7 +99,7 @@ module.exports = function( grunt ) {
 		},
 		jsonlint: {
 			pkg: {
-				src: [ "package.json" ]
+				src: ["package.json"]
 			}
 		},
 		eslint: {
@@ -114,7 +115,7 @@ module.exports = function( grunt ) {
 				src: "dist/jquery.js"
 			},
 			dev: {
-				src: [ "src/**/*.js", "Gruntfile.js", "test/**/*.js", "build/**/*.js" ]
+				src: ["src/**/*.js", "Gruntfile.js", "test/**/*.js", "build/**/*.js"]
 			}
 		},
 		testswarm: {
@@ -155,17 +156,17 @@ module.exports = function( grunt ) {
 				customLaunchers: {
 					ChromeHeadlessNoSandbox: {
 						base: "ChromeHeadless",
-						flags: [ "--no-sandbox" ]
+						flags: ["--no-sandbox"]
 					}
 				},
-				frameworks: [ "qunit" ],
-				middleware: [ "mockserver" ],
+				frameworks: ["qunit"],
+				middleware: ["mockserver"],
 				plugins: [
 					"karma-*",
 					{
 						"middleware:mockserver": [
 							"factory",
-							require( "./test/middleware-mockserver.js" )
+							require("./test/middleware-mockserver.js")
 						]
 					}
 				],
@@ -205,16 +206,16 @@ module.exports = function( grunt ) {
 					"test/unit/tween.js",
 					"test/unit/ready.js",
 
-					{ pattern: "dist/jquery.js", included: false, served: true },
-					{ pattern: "dist/*.map", included: false, served: true },
-					{ pattern: "external/qunit/qunit.css", included: false, served: true },
+					{pattern: "dist/jquery.js", included: false, served: true},
+					{pattern: "dist/*.map", included: false, served: true},
+					{pattern: "external/qunit/qunit.css", included: false, served: true},
 					{
 						pattern: "test/**/*.@(js|css|jpg|html|xml|svg)",
 						included: false,
 						served: true
 					}
 				],
-				reporters: [ "dots" ],
+				reporters: ["dots"],
 				autoWatch: false,
 				concurrency: 3,
 				captureTimeout: 20 * 1000,
@@ -223,7 +224,7 @@ module.exports = function( grunt ) {
 			main: {
 
 				// The Chrome sandbox doesn't work on Travis.
-				browsers: [ isTravis ? "ChromeHeadlessNoSandbox" : "ChromeHeadless" ]
+				browsers: [isTravis ? "ChromeHeadlessNoSandbox" : "ChromeHeadless"]
 			},
 
 			// To debug tests with Karma:
@@ -233,17 +234,17 @@ module.exports = function( grunt ) {
 			//    the tests. Unlike the other karma tasks, the debug task will
 			//    keep the browser window open.
 			"chrome-debug": {
-				browsers: [ "Chrome" ],
+				browsers: ["Chrome"],
 				singleRun: false
 			},
 			"firefox-debug": {
-				browsers: [ "Firefox" ],
+				browsers: ["Firefox"],
 				singleRun: false
 			}
 		},
 		watch: {
-			files: [ "<%= eslint.dev.src %>" ],
-			tasks: [ "dev" ]
+			files: ["<%= eslint.dev.src %>"],
+			tasks: ["dev"]
 		},
 		uglify: {
 			all: {
@@ -266,7 +267,7 @@ module.exports = function( grunt ) {
 						"ie8": true
 					},
 					banner: "/*! jQuery v<%= pkg.version %> | " +
-						"(c) JS Foundation and other contributors | jquery.org/license */",
+					"(c) JS Foundation and other contributors | jquery.org/license */",
 					compress: {
 						"hoist_funs": false,
 						loops: false,
@@ -279,15 +280,15 @@ module.exports = function( grunt ) {
 				}
 			}
 		}
-	} );
+	});
 
 	// Load grunt tasks from NPM packages
-	require( "load-grunt-tasks" )( grunt );
+	require("load-grunt-tasks")(grunt);
 
 	// Integrate jQuery specific tasks
-	grunt.loadTasks( "build/tasks" );
+	grunt.loadTasks("build/tasks");
 
-	grunt.registerTask( "lint", [
+	grunt.registerTask("lint", [
 		"jsonlint",
 
 		// Running the full eslint task without breaking it down to targets
@@ -296,25 +297,25 @@ module.exports = function( grunt ) {
 		// if we already know the source files pass the linter.
 		"eslint:dev",
 		"eslint:dist"
-	] );
+	]);
 
-	grunt.registerTask( "lint:newer", [
+	grunt.registerTask("lint:newer", [
 		"newer:jsonlint",
 
 		// Don't replace it with just the task; see the above comment.
 		"newer:eslint:dev",
 		"newer:eslint:dist"
-	] );
+	]);
 
-	grunt.registerTask( "test:fast", "node_smoke_tests" );
-	grunt.registerTask( "test:slow", "promises_aplus_tests" );
+	grunt.registerTask("test:fast", "node_smoke_tests");
+	grunt.registerTask("test:slow", "promises_aplus_tests");
 
-	grunt.registerTask( "test", [
+	grunt.registerTask("test", [
 		"test:fast",
 		"test:slow"
-	] );
+	]);
 
-	grunt.registerTask( "dev", [
+	grunt.registerTask("dev", [
 		"build:*:*",
 		"newer:eslint:dev",
 		"newer:uglify",
@@ -322,9 +323,9 @@ module.exports = function( grunt ) {
 		"dist:*",
 		"qunit_fixture",
 		"compare_size"
-	] );
+	]);
 
-	grunt.registerTask( "default", [
+	grunt.registerTask("default", [
 		"eslint:dev",
 		"build:*:*",
 		"uglify",
@@ -334,5 +335,5 @@ module.exports = function( grunt ) {
 		"eslint:dist",
 		"test:fast",
 		"compare_size"
-	] );
+	]);
 };

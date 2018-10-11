@@ -1,5 +1,8 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="java.sql.*" %><%--
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %><%--
   Created by IntelliJ IDEA.
   User: John Carlo Villar
   Date: 09/27/2018
@@ -27,8 +30,8 @@
     <title>BPLS | Termination Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>
-            <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
-            <%--rel="stylesheet"--%>
+    <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
+    <%--rel="stylesheet"--%>
     <%-->--%>
     <link
             href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css"

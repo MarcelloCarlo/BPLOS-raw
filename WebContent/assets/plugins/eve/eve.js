@@ -22,29 +22,30 @@
         has = "hasOwnProperty",
         separator = /[\.\/]/,
         wildcard = "*",
-        fun = function () {},
+        fun = function () {
+        },
         numsort = function (a, b) {
             return a - b;
         },
         current_event,
         stop,
         events = {n: {}},
-    /*\
-     * eve
-     [ method ]
+        /*\
+         * eve
+         [ method ]
 
-     * Fires event with given `name`, given scope and other parameters.
+         * Fires event with given `name`, given scope and other parameters.
 
-     > Arguments
+         > Arguments
 
-     - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
-     - scope (object) context for the event handlers
-     - varargs (...) the rest of arguments will be sent to event handlers
+         - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
+         - scope (object) context for the event handlers
+         - varargs (...) the rest of arguments will be sent to event handlers
 
-     = (object) array of returned values from the listeners
-    \*/
+         = (object) array of returned values from the listeners
+        \*/
         eve = function (name, scope) {
-			name = String(name);
+            name = String(name);
             var e = events,
                 oldstop = stop,
                 args = Array.prototype.slice.call(arguments, 2),
@@ -104,8 +105,8 @@
             current_event = ce;
             return out.length ? out : null;
         };
-		// Undocumented. Debug only.
-		eve._events = events;
+    // Undocumented. Debug only.
+    eve._events = events;
     /*\
      * eve.listeners
      [ method ]
@@ -149,7 +150,7 @@
         }
         return out;
     };
-    
+
     /*\
      * eve.on
      [ method ]
@@ -175,10 +176,11 @@
      * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
     \*/
     eve.on = function (name, f) {
-		name = String(name);
-		if (typeof f != "function") {
-			return function () {};
-		}
+        name = String(name);
+        if (typeof f != "function") {
+            return function () {
+            };
+        }
         var names = name.split(separator),
             e = events;
         for (var i = 0, ii = names.length; i < ii; i++) {
@@ -212,12 +214,12 @@
 	 - varargs (…) and any other arguments
 	 = (function) possible event handler function
     \*/
-	eve.f = function (event) {
-		var attrs = [].slice.call(arguments, 1);
-		return function () {
-			eve.apply(null, [event, null].concat(attrs).concat([].slice.call(arguments, 0)));
-		};
-	};
+    eve.f = function (event) {
+        var attrs = [].slice.call(arguments, 1);
+        return function () {
+            eve.apply(null, [event, null].concat(attrs).concat([].slice.call(arguments, 0)));
+        };
+    };
     /*\
      * eve.stop
      [ method ]
@@ -278,10 +280,10 @@
      * See @eve.off
     \*/
     eve.off = eve.unbind = function (name, f) {
-		if (!name) {
-		    eve._events = events = {n: {}};
-			return;
-		}
+        if (!name) {
+            eve._events = events = {n: {}};
+            return;
+        }
         var names = name.split(separator),
             e,
             key,
@@ -367,5 +369,7 @@
     eve.toString = function () {
         return "You are running Eve " + version;
     };
-    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : (typeof define != "undefined" ? (define("eve", [], function() { return eve; })) : (glob.eve = eve));
+    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : (typeof define != "undefined" ? (define("eve", [], function () {
+        return eve;
+    })) : (glob.eve = eve));
 })(this);

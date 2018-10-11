@@ -110,8 +110,10 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-            }).then((result) => {
-                if (result.value) {
+            }).then((result) = > {
+                if(result.value
+        )
+            {
                 var datanewApplForm = new FormData($('#newApplForm')[0]); //working method
                 $.ajax({
                     type: "POST",
@@ -125,18 +127,23 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Evaluated',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
+                        }).then((result) = > {
+                            if(result.value
+                    )
+                        {
                             location.reload(true);
                         }
-                    });
+                    })
+                        ;
 
                     }/*,
                     error: function () {
                         swal("error", "Evaluation encountered and error", "error");
                     }*/
                 });
-            } else if (result.dismiss === swal.DismissReason.cancel) {
+            }
+        else
+            if (result.dismiss === swal.DismissReason.cancel) {
                 swalWithBootstrapButtons(
                     'Cancelled',
                     'Operation Halted',
@@ -144,7 +151,8 @@ $(document).ready(function () {
                 )
 
             }
-        });
+        })
+            ;
         } else {
             $(".evaluation-modal-terminate").modal('toggle');
             $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
@@ -165,12 +173,14 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-            }).then((result) => {
-                if (result.value) {
+            }).then((result) = > {
+                if(result.value
+        )
+            {
                 var terminateApplForm = new FormData($('#terminateApplForm')[0]);
                 $.ajax({
-                    type:"POST",
-                    url:"terminateApplForm",
+                    type: "POST",
+                    url: "terminateApplForm",
                     data: terminateApplForm,
                     processData: false,
                     contentType: false,
@@ -180,15 +190,20 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Terminated',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.value) {
+                        }).then((result) = > {
+                            if(result.value
+                    )
+                        {
                             location.reload(true);
                         }
-                    });
+                    })
+                        ;
 
                     }
                 });
-            } else if (result.dismiss === swal.DismissReason.cancel) {
+            }
+        else
+            if (result.dismiss === swal.DismissReason.cancel) {
                 swalWithBootstrapButtons(
                     'Cancelled',
                     'Operation Halted',
@@ -196,7 +211,8 @@ $(document).ready(function () {
                 )
 
             }
-        });
+        })
+            ;
 
         })
     });
@@ -245,11 +261,11 @@ $(document).ready(function () {
 
     $("#btnAssNewAppl").click(function () {
 
-        if (!$("#chkMayorsPerm").is(':checked')){
+        if (!$("#chkMayorsPerm").is(':checked')) {
             $("#chkMayorsPerm").prop("checked", true);
         }
 
-            var assessNewApplForm = new FormData($('#assessNewApplForm')[0]);
+        var assessNewApplForm = new FormData($('#assessNewApplForm')[0]);
 
         swal({
             title: "Are you sure?",
@@ -259,13 +275,15 @@ $(document).ready(function () {
             confirmButtonText: "Confirm!",
             showCancelButton: true,
             cancelButtonText: 'Cancel',
-        }).then((result) => {
-            if (result.value) {
+        }).then((result) = > {
+            if(result.value
+    )
+        {
             $.ajax({
-                type:"POST",
-                url:"assessNewApplForm",
+                type: "POST",
+                url: "assessNewApplForm",
                 data: assessNewApplForm,
-                enctype:"multipart/form-data",
+                enctype: "multipart/form-data",
                 processData: false,
                 contentType: false,
                 success: function () {
@@ -274,15 +292,20 @@ $(document).ready(function () {
                         title: 'DONE!.',
                         text: 'Succesfully Assessed',
                         confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.value) {
+                    }).then((result) = > {
+                        if(result.value
+                )
+                    {
                         location.reload(true);
                     }
-                });
+                })
+                    ;
 
                 }
             });
-        } else if (result.dismiss === swal.DismissReason.cancel) {
+        }
+    else
+        if (result.dismiss === swal.DismissReason.cancel) {
             swalWithBootstrapButtons(
                 'Cancelled',
                 'Operation Halted',
@@ -290,6 +313,7 @@ $(document).ready(function () {
             )
 
         }
-    });
+    })
+        ;
     })
 });

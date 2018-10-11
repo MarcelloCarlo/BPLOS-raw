@@ -1,7 +1,7 @@
 describe('auto', jasmine.specsFromFixtures('controller.polarArea'));
 
-describe('Chart.controllers.polarArea', function() {
-	it('should be constructed', function() {
+describe('Chart.controllers.polarArea', function () {
+	it('should be constructed', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -24,7 +24,7 @@ describe('Chart.controllers.polarArea', function() {
 		expect(meta.controller.index).toBe(0);
 	});
 
-	it('should create arc elements for each data item during initialization', function() {
+	it('should create arc elements for each data item during initialization', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -44,7 +44,7 @@ describe('Chart.controllers.polarArea', function() {
 		expect(meta.data[3] instanceof Chart.elements.Arc).toBe(true);
 	});
 
-	it('should draw all elements', function() {
+	it('should draw all elements', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -71,7 +71,7 @@ describe('Chart.controllers.polarArea', function() {
 		expect(meta.data[3].draw.calls.count()).toBe(1);
 	});
 
-	it('should update elements when modifying data', function() {
+	it('should update elements when modifying data', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -103,7 +103,7 @@ describe('Chart.controllers.polarArea', function() {
 			{o: 243, s: 0, e: 0.5 * Math.PI},
 			{o: 51, s: 0.5 * Math.PI, e: Math.PI},
 			{o: 0, s: Math.PI, e: 1.5 * Math.PI}
-		].forEach(function(expected, i) {
+		].forEach(function (expected, i) {
 			expect(meta.data[i]._model.x).toBeCloseToPixel(256);
 			expect(meta.data[i]._model.y).toBeCloseToPixel(256);
 			expect(meta.data[i]._model.innerRadius).toBeCloseToPixel(0);
@@ -154,7 +154,7 @@ describe('Chart.controllers.polarArea', function() {
 		}));
 	});
 
-	it('should update elements with start angle from options', function() {
+	it('should update elements with start angle from options', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -187,7 +187,7 @@ describe('Chart.controllers.polarArea', function() {
 			{o: 243, s: 0.5 * Math.PI, e: Math.PI},
 			{o: 51, s: Math.PI, e: 1.5 * Math.PI},
 			{o: 0, s: 1.5 * Math.PI, e: 2.0 * Math.PI}
-		].forEach(function(expected, i) {
+		].forEach(function (expected, i) {
 			expect(meta.data[i]._model.x).toBeCloseToPixel(256);
 			expect(meta.data[i]._model.y).toBeCloseToPixel(256);
 			expect(meta.data[i]._model.innerRadius).toBeCloseToPixel(0);
@@ -203,7 +203,7 @@ describe('Chart.controllers.polarArea', function() {
 		});
 	});
 
-	it('should handle number of data point changes in update', function() {
+	it('should handle number of data point changes in update', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -250,7 +250,7 @@ describe('Chart.controllers.polarArea', function() {
 		expect(meta.data[4] instanceof Chart.elements.Arc).toBe(true);
 	});
 
-	it('should set arc hover styles', function() {
+	it('should set arc hover styles', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {
@@ -303,7 +303,7 @@ describe('Chart.controllers.polarArea', function() {
 		expect(arc._model.borderWidth).toBe(5.5);
 	});
 
-	it('should remove hover styles', function() {
+	it('should remove hover styles', function () {
 		var chart = window.acquireChart({
 			type: 'polarArea',
 			data: {

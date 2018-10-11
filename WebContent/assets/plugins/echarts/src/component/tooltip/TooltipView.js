@@ -16,6 +16,7 @@ define(function (require) {
         return round(a[0]) === round(b[0])
             && round(a[1]) === round(b[1]);
     }
+
     /**
      * @inner
      */
@@ -625,7 +626,7 @@ define(function (require) {
                     ? graphic.updateProps(pointerEl, {
                         shape: targetShape
                     }, axisPointerModel)
-                    :  pointerEl.attr({
+                    : pointerEl.attr({
                         shape: targetShape
                     });
             }
@@ -648,7 +649,7 @@ define(function (require) {
                     ? graphic.updateProps(pointerEl, {
                         shape: targetShape
                     }, axisPointerModel)
-                    :  pointerEl.attr({
+                    : pointerEl.attr({
                         shape: targetShape
                     });
             }
@@ -681,7 +682,7 @@ define(function (require) {
                     ? graphic.updateProps(pointerEl, {
                         shape: targetShape
                     }, axisPointerModel)
-                    :  pointerEl.attr({
+                    : pointerEl.attr({
                         shape: targetShape
                     });
             }
@@ -719,6 +720,7 @@ define(function (require) {
                     axisType, point, otherExtent
                 );
             }
+
             /**
              * @inner
              */
@@ -748,7 +750,7 @@ define(function (require) {
                     ? graphic.updateProps(pointerEl, {
                         shape: targetShape
                     }, axisPointerModel)
-                    :  pointerEl.attr({
+                    : pointerEl.attr({
                         shape: targetShape
                     });
             }
@@ -791,7 +793,7 @@ define(function (require) {
                     ? graphic.updateProps(pointerEl, {
                         shape: targetShape
                     }, axisPointerModel)
-                    :  pointerEl.attr({
+                    : pointerEl.attr({
                         shape: targetShape
                     });
             }

@@ -1137,7 +1137,10 @@ describe('Public API method tests', function () {
             });
 
             it('sets key binds', function () {
-                var keyBinds = {up: function () {}};
+                var keyBinds = {
+                    up: function () {
+                    }
+                };
                 expect(dtpElement.datetimepicker('keyBinds', keyBinds)).toBe(dtpElement);
                 expect(dtpElement.datetimepicker('keyBinds')).toEqual(keyBinds);
             });
@@ -1157,7 +1160,8 @@ describe('Public API method tests', function () {
             });
 
             it('sets parse input date', function () {
-                var parseInputDate = function () {};
+                var parseInputDate = function () {
+                };
                 expect(dtpElement.datetimepicker('parseInputDate', parseInputDate)).toBe(dtpElement);
                 expect(dtpElement.datetimepicker('parseInputDate')).toBe(parseInputDate);
             });
@@ -1165,7 +1169,7 @@ describe('Public API method tests', function () {
     });
 
     describe('Time zone tests', function () {
-        function makeFormatTest (format, displayTimeZone) {
+        function makeFormatTest(format, displayTimeZone) {
             it('should not change the value that was set when using format ' + format, function () { // #1326
                 var oldFormat = dtp.format(),
                     oldTimeZone = dtp.timeZone(),

@@ -1,5 +1,8 @@
-<%@ page import="java.sql.*" %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -91,7 +94,7 @@
                             <tbody>
                             <%
                                 while (gg3.next()) {
-                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo="+ gg3.getString("AP_REFERENCE_NO")+ "&tbId="+gg3.getString("TB_ID")+"'";
+                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") + "&tbId=" + gg3.getString("TB_ID") + "'";
 
                             %>
                             <tr>
@@ -115,8 +118,9 @@
                                     <button
                                             type="button"
                                             class="btn btn-success"
-                                          <%--  data-toggle="modal"
-                                            data-target="#modal-processpayment"--%> onclick="<%=lastPart%>" title="Payment for Permit"
+                                    <%--  data-toggle="modal"
+                                      data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
+                                            title="Payment for Permit"
                                     ><i class="fa fa-lg fa-money"></i>
                                     </button>
                                 </td>

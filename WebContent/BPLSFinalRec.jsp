@@ -1,5 +1,8 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
-<%@ page import="java.sql.*" %><%--
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: John Carlo Villar
   Date: 09/23/2018
@@ -209,7 +212,8 @@
                                     <%=magicBtn%>
                                     <%=apRefBtn%>
                                 <button class="btn btn-sm btn-white" onclick="goBack()">Close</button>
-                                <button type="button" id="btnTresNewAppl" class="btn btn-sm btn-success">Process</button>
+                                <button type="button" id="btnTresNewAppl" class="btn btn-sm btn-success">Process
+                                </button>
                         </form>
                     </div>
                 </div>
