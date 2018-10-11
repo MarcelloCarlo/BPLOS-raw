@@ -191,7 +191,7 @@
                                                             <select name="gender" class="form-control">
                                                                 <option value="Male">Male</option>
                                                                 <option value="Female">Female</option>
-                                                                <option value="Other">Female</option>
+                                                                <option value="Other">Other</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -201,7 +201,7 @@
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
                                                         <input type="text" name="bdate" id="birthdate" placeholder="Birthdate"
-                                                               class="form-control" required/>
+                                                               class="form-control date" required/>
                                                     </div>
                                                 </div>
 
@@ -362,14 +362,17 @@
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
+<script src="assets/plugins/bootstrap-daterangepicker/moment.js"></script>
 <script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
     $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
+        App.init();;
         FormWizard.init();
+        TableManageResponsive.init();
+        FormWizardValidation.init();
+        FormPlugins.init();
         /*$("#addUserbtn").click( function () {
             var ok = "ok";
             $.ajax({
@@ -382,7 +385,7 @@
             });
         })*/
         $('#birthdate').datetimepicker({
-            format: "DD-MM-YYYY"
+            format: "DD-MM-YYYY",
 
         });
     });

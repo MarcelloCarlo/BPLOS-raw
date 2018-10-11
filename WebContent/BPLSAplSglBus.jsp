@@ -453,7 +453,7 @@
                                                         <input type="text" class="form-control date"
                                                                id="dateNSingBussEstRentStart"
                                                                name="dateNSingBussEstRentStart" placeholder="Since when"
-                                                               class="form-control"/>
+                                                               />
                                                     </div>
                                                 </div>
                                             </div>
