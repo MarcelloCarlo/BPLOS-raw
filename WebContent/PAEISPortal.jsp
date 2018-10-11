@@ -38,7 +38,9 @@
 <!-- end #page-loader -->
 
 <div class="login-cover">
-    <div class="login-cover-image"></div>
+    <div class="login-cover-image">
+        <img src="extras/logo1.png" data-id="login-cover-image" alt="" />
+    </div>
     <div class="login-cover-bg"></div>
 </div>
 <!-- begin #page-container -->
@@ -139,5 +141,26 @@
 <script src="assets/js/apps.min.js"></script>
 <script src="assets/js/portal.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/js/login-v2.demo.min.js"></script>
+<script src="assets/js/apps.min.js"></script>
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+<script>
+    $(document).ready(function() {
+        App.init();
+        LoginV2.init();
+    });
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-53034621-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>
