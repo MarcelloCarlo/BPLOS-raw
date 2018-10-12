@@ -125,17 +125,12 @@
                                     <fieldset>
                                         <legend class="pull-left width-full">Applicant's Information</legend>
                                         <!-- begin row -->
-
+                                            <div class="form-group">
+                                                <label> <input type="checkbox" class="form-group"
+                                                               id="chkRenewal" name="chkRenewal" value="1"> For Renewal</label>
+                                            </div>
                                         <%--Name--%>
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label> <input type="checkbox" class="form-group"
-                                                                   id="chkRenewal" name="chkRenewal" value="1">
-                                                        Renewal
-                                                    </label>
-                                                </div>
-                                            </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Taxpayer's Name*</label>

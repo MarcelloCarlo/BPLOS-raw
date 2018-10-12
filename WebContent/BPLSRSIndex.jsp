@@ -109,7 +109,7 @@
                                             class="btn btn-success modalRel"
                                             data-toggle="modal"
                                             data-target="#modal-processpayment" title="Release of Business Permit"
-                                    ><i class="fa fa-lg fa-money"></i>
+                                    ><i class="fa fa-lg fa-paper-plane-o"></i>
                                     </button>
                                 </td>
 

@@ -1,6 +1,20 @@
 $(document).ready(function () {
     App.init();
     TableManageResponsive.init();
+    
+    $(".renewModal").click(function () {
+	    document.getElementById('rBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
+	    document.getElementById('rBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
+	    document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
+	    document.getElementById('rBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
+	    document.getElementById('rBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
+	    document.getElementById('AT_UNIFIED_FILE_NAMEr').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
+	    document.getElementById('rBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
+	    document.getElementById('_AT_IDr').value = $(this).closest("tbody tr").find("td:eq(14)").html().trim();
+	    document.getElementById('_AP_IDr').value = $(this).closest("tbody tr").find("td:eq(15)").html().trim();
+	    document.getElementById('_AP_REFERENCE_NOr').value = $(this).closest("tbody tr").find("td:eq(40)").html().trim();
+	    document.getElementById('_BN_CLASSIFICATIONr').value = $(this).closest("tbody tr").find("td:eq(42)").html().trim();
+    });
 
     $(".newModal").click(function () {
         document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
@@ -72,6 +86,16 @@ $(document).ready(function () {
         /* fID.empty();
          apID.empty();*/
     });
+	
+	$("#fileDownloadr").click(function (event) {
+		// event.preventDefault();
+		var fID = Number($("#_AT_IDr").val());
+		var apID = Number($("#_AP_IDr").val());
+		var link = "?fID=" + fID + "&apID=" + apID;
+		window.open("downloadAttachment" + link);
+		/* fID.empty();
+		 apID.empty();*/
+	});
 
     $('.evaluation-modal-new').on('hidden.bs.modal', function () {
         $("#AT_SEC_REGISTRATION").show("swing");

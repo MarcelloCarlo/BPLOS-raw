@@ -446,13 +446,12 @@
                                                 id="fileDownload"
                                         >DOWNLOAD ATTACHMENT
                                         </button>
-                                        <hr>
                                         <textarea
-                                                class="form-control"
+                                                class="form-control hidden"
                                                 placeholder="Remarks"
                                                 id="AP_Remarks"
                                                 name="AP_Remarks"
-                                                rows="3"
+                                                rows=""
                                         ></textarea>
                                     </div>
                                     <div class="panel-body">
@@ -537,25 +536,15 @@
                                                 <li>
                                                     <p>
                                                         Other Requirements based on the business nature should be in the
-                                                        document. LEAVE UNCHECK THE "OTHER DOCUMENTS" IF ANY OTHER
-                                                        REQUIREMENTS ON THE ATTACHMENT IS INVALID OR INCOMPLETE.
+                                                        document. LEAVE UNCHECK THE ITEM IF THE DOCUMENT IS INVALID OR INCOMPLETE.
                                                     </p>
                                                 </li>
                                                 <li><p>
                                                     Incomplete/Invalid documents on general and other requirements will
-                                                    redirect you to termination form of the application.
+                                                    redirect you to termination or re-evaluation form of the application.
                                                 </p></li>
                                             </ul>
                                         </div>
-                                        <!--  <div class="col-md-9">
-                                                  <textarea
-                                                          class="form-control"
-                                                          placeholder="Remarks"
-                                                          id="AP_Remarks"
-                                                          name="AP_Remarks"
-                                                          rows="3"
-                                                  ></textarea>
-                                          </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -565,12 +554,11 @@
                                     type="button"
                                     class="btn btn-default"
                                     data-dismiss="modal"
-                                    id="btnCloseNewApplModal"
                             >Close
                             </button>
                             <button
                                     type="button"
-                                    id="btnNewAppl"
+                                    id="btnRenewAppl"
                                     class="btn btn-success"
                             >Evaluate
                             </button>
@@ -584,146 +572,243 @@
     <!-- Renewal modal -->
     <div
             class="modal fade evaluation-modal-renew"
-            tabindex="-1"
-            role="dialog"
             aria-hidden="true"
     >
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                    >
-                        <span aria-hidden="true">x</span>
-                    </button>
-                    <h4
-                            class="modal-title"
-                            id="myModalLabel2"
-                    >Check Requirements for Renewal Application</h4>
-                </div>
-                <div class="modal-body">
-                    <label>Business Name/Corporate Name: </label><br> <label>Business
-                    Permit No: </label><br> <label>Name of Sole
-                    Proprietor/Partnership/President: </label><br> <label>Business
-                    Address: </label><br> <label>District: </label><br> <label>Authorized
-                    Representative: </label><br> <label>Cellphone No.: </label><br>
-                    <label>Address: </label>
-                    <hr>
-                    <div class="x_content">
-                        <div class="">
-                            <ul class="to_do">
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Original Copy of Previous Business Permit, if not
-                                        applicable Certified xerox copy
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Xerox copy of Tax Bill and Official Receipt (current)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Original Copy of Barangay Clearance (for renewal purpose)
-                                    </p>
-                                </li>
-                                <p>Other Document Requirements required such as:</p>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Locational Clearance (LC)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Fire Safety Inspection Certificate (FSIC)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Sanitary Permit (SP)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > CTAO Certificate
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Certificate of Electrical Inspection (CEI)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > Lessor's Business Permit (if rented)
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        <input
-                                                type="checkbox"
-                                                class="flat"
-                                                value="Pass"
-                                        > PCAB License
-                                    </p>
-                                </li>
-                            </ul>
+        <div class="modal-dialog">
+            <form
+                    id="renewApplForm"
+                    class="form-horizontal"
+                    name="renewApplForm"
+                    enctype="multipart/form-data"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="panel panel-inverse panel-danger">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Check Requirements for Renewal Application</h4>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="text"
+                                           class="hide"
+                                           id="_AT_IDr"
+                                           name="_AT_ID"
+                                    /> <input type="text"
+                                              class="hide"
+                                              id="_AP_IDr"
+                                              name="_AP_ID"
+                                /><input type="text"
+                                         class="hide"
+                                         id="_AP_REFERENCE_NOr"
+                                         name="_AP_REFERENCE_NO"
+                                /><input type="text"
+                                         class="hide"
+                                         id="_BN_CLASSIFICATIONr"
+                                         name="_BN_CLASSIFICATION"
+                                />
+                                    <div class="col-md-12 panel-body">
+                                        <h5>
+                                            Business Name/Corporate Name:
+                                            <!-- <input disabled=""
+                                            id="nBussName" type="text" /> -->
+                                            <label id="rBussName"></label>
+                                        </h5>
+                                        <h5>
+                                            Name of Sole Proprietor/Partnership/President:
+                                            <!-- <input
+                                            disabled="" id="nBussOwner" type="text" /> -->
+                                            <label id="rBussOwner"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Address:
+                                            <!-- <input disabled="" id="nBussAddr"
+                                            type="text" /> -->
+                                            <label id="rBussAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Tel No.:
+                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
+                                            <label id="rBussConTelno"></label>
+                                        </h5>
+                                        <h5>
+                                            Authorized Representative:
+                                            <!--  <input disabled=""
+                                            id="nBussAuthRepName" type="text" /> -->
+                                            <label id="rBussAuthRepName"></label>
+                                        </h5>
+                                        <h5>
+                                            Address:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="rBussAuthRepAddr"></label>
+                                        </h5>
+                                        <h5>
+                                            Business Nature:
+                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
+                                            <label id="rBussNature"></label>
+                                        </h5>
+                                    </div>
+                                    <div class="panel-body">
+                                    <div class="col-md-12">
+                                        <hr>
+                                        <label id="AT_UNIFIED_FILE_NAMEr"></label><br>
+                                        <button
+                                                type="button"
+                                                class="btn btn-primary form-control"
+                                                id="fileDownloadr"
+                                        >DOWNLOAD ATTACHMENT
+                                        </button>
+                                        <textarea
+                                                class="form-control hidden"
+                                                placeholder="Remarks"
+                                                id="AP_Remarksr"
+                                                name="AP_Remarks"
+                                                rows="2" disabled
+                                        ></textarea>
+                                    </div></div>
+                                    <div class="panel-body">
+                                        <h5>Requirements Checklist</h5>
+                                            <ul class="to_do">
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_PREV_BP"
+                                                                name="AT_PREV_BP"
+                                                        > Original Copy of Previous Business Permit, if not
+                                                        applicable Certified xerox copy
+                                                    </p>
+
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_TAX_BILL"
+                                                                name="AT_TAX_BILL"
+                                                        > Xerox copy of Tax Bill and Official Receipt (current)
+                                                    </p>
+
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_BRGY_CLR"
+                                                                name="AT_BRGY_CLEARANCE"
+                                                        > Original Copy of Barangay Clearance (for renewal purpose)
+                                                    </p>
+
+                                                <p>Other Document Requirements required such as:</p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_LOCATIONAL_CLR"
+                                                                name="AT_LOCATIONAL_CLR"
+                                                        > Locational Clearance (LC)
+                                                    </p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_FSIC"
+                                                                name="AT_FSIC"
+                                                        > Fire Safety Inspection Certificate (FSIC)
+                                                    </p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_SANITARY_HEALTH_CERT"
+                                                                name="AT_SANITARY_HEALTH_CERT"
+                                                        > Sanitary Permit (SP)
+                                                    </p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_CTAO_CLEARANCE_CERT"
+                                                                name="AT_CTAO_CLEARANCE_CERT"
+                                                        > CTAO Certificate
+                                                    </p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_ELECTRICAL_INSP"
+                                                                name="AT_ELECTRICAL_INSP"
+                                                        > Certificate of Electrical Inspection (CEI)
+                                                    </p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_LESSORS_BP"
+                                                                name="AT_LESSORS_BP"
+                                                        > Lessor's Business Permit (if rented)
+                                                    </p>
+
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                class="flat"
+                                                                value="Pass"
+                                                                id="AT_PCAB_LICENSE"
+                                                                name="AT_PCAB_LICENSE"
+                                                        > PCAB License
+                                                    </p>
+
+                                            </ul>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="note note-info">
+                                            <h4>Evaluation Notes</h4>
+                                            <ul>
+                                                <li><p>
+                                                    Incomplete/Invalid documents on general and other requirements will
+                                                    redirect you to termination or re-evaluation form of the application.
+                                                </p></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button
+                                    type="button"
+                                    class="btn btn-default"
+                                    data-dismiss="modal"
+                            >Close
+                            </button>
+                            <button
+                                    type="button"
+                                    id="btnNewAppl"
+                                    class="btn btn-success"
+                            >Evaluate
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button
-                            type="button"
-                            class="btn btn-default"
-                            data-dismiss="modal"
-                    >Close
-                    </button>
-                    <button
-                            type="submit"
-                            class="btn btn-success"
-                    >Save changes
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 

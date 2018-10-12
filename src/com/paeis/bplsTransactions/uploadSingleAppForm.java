@@ -42,6 +42,7 @@ public class uploadSingleAppForm extends HttpServlet {
 
         // Form Inputs First. F.Y.I., I will declare at least 82+ variables in here,
         // Goodluck for me KJDKJKJKS!
+        String chkRenewal = String.valueOf(request.getParameter("chkRenewal"));
         String txtNSingBussName = request.getParameter("txtNSingBussName");
         String txtNSingTaxPayLName = request.getParameter("txtNSingTaxPayLName");
         String txtNSingTaxPayFName = request.getParameter("txtNSingTaxPayFName");
@@ -136,6 +137,16 @@ public class uploadSingleAppForm extends HttpServlet {
             }
         }
 
+        String applType = "";
+
+        if(!chkRenewal.equalsIgnoreCase("1")){
+            applType = "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV')";
+        } else if (chkRenewal.equalsIgnoreCase("1")){
+            applType = "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'Renew',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV')";
+        } else {
+            applType = "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV')";
+        }
+
         Connection connection = null;
         response.setContentType("text/html;charset=UTF-8");
         LGUConnect conX = new LGUConnect();
@@ -202,7 +213,7 @@ public class uploadSingleAppForm extends HttpServlet {
                     .prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`) VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
             authRep2Bus.executeLargeUpdate();
 
-            PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV') ");
+            PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(applType);
             refNoInfo.executeUpdate();
 
             PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement(
