@@ -3,7 +3,13 @@ $(document).ready(function () {
     TableManageResponsive.init();
     FormWizardValidation.init();
     FormPlugins.init();
-
+	$('#applicationFormSingle').on('keyup keypress', function(e) {
+		var keyCode = e.keyCode || e.which;
+		if (keyCode === 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
     $('#dateNCorpBussSECReg').datetimepicker({
         format: "DD-MM-YYYY",
 

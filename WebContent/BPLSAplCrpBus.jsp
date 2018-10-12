@@ -130,7 +130,10 @@
                                 <div class="wizard-st-1">
                                     <fieldset>
                                         <legend class="pull-left width-full">Business' Information</legend>
-
+                                        <div class="form-group">
+                                            <label> <input type="checkbox" class="form-group"
+                                                           id="chkRenewal" name="chkRenewal" value="1"> For Renewal</label>
+                                        </div>
                                         <%--Business Name--%>
                                         <div class="row">
 
@@ -581,7 +584,10 @@
                                                     <div class="controls fileupload-buttonbar">
                                                        <span class="btn btn-success fileinput-button">
                                     <i class="fa fa-plus"></i>
-                                    <span>Add files...</span>
+                                   <label class="control-label" for="fileUnifiedRequirements">Unified
+                                        File Requirements: (.doc,.docx,.pdf, and must be maximum of
+                                        1MB)<span class="required">*</span>
+                                    </label>
                                     <input type="file" name="fileUnifiedRequirements"
                                            id="fileUnifiedRequirements" required="required"
                                            accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"

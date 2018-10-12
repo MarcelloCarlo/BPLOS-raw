@@ -17,6 +17,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% LGUConnect conX = new LGUConnect();
+String BPno = "";
     try {
         String natureSt = "";
         Connection connection = conX.getConnection();
@@ -27,6 +28,13 @@
         PreparedStatement getHist = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_ap_history WHERE TL_AP_NO = ?");
         getHist.setString(1,refNo);
         ResultSet rs1 = getHist.executeQuery();
+        PreparedStatement getBP = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_business_permit JOIN bpls_t_bp_application a on bpls_t_business_permit.AP_ID = a.AP_ID WHERE bpls_t_business_permit.AP_ID = ? ");
+        getBP.setString(1,refNo);
+        ResultSet rsx = getBP.executeQuery();
+
+        while (rsx.next()){
+            BPno = String.valueOf(rsx.getString("BP_NUMBER"));
+        }
 %>
 <html>
 <head>
@@ -169,7 +177,9 @@
 
                     <div class="panel-body">
                         <ul class="timeline">
-                            <% int total = 0; while (rs1.next()) {
+                            <%
+
+                                int total = 0; while (rs1.next()) {
                                 String stRemarks = "";
                                 String divGuide = "";
                                 String remarks = String.valueOf(rs1.getString("TL_REMARKS"));
@@ -178,6 +188,7 @@
                                 String tldate = null;
                                String tltime = null;
                                String reuploadBtn = "";
+                               String printPermbtn = "";
                             if (remarks.equalsIgnoreCase("null")||remarks.isEmpty()){
                                 stRemarks = "No Comments."; }
                                 else { stRemarks = remarks;}
@@ -197,6 +208,7 @@
                                     divGuide = "Releasing! Please claim your business permit.";
                                 } else if (divCode.equals("END")){
                                     divGuide = "Done! Thank you for your contribution!";
+                                    printPermbtn = "<a class='btn btn-success'  href='BPLSBsnsPermit.jsp?bpNo="+BPno+"'>Print</a>";
                                 } else if (divCode.equals("DIV-RINS")){
                                     divGuide = "Giving you an another re-inspection. Please comply to procede.";
                                 } else if (divCode.equals("DIV-REV")){
@@ -224,7 +236,7 @@
                                     <div class="timeline-content">
                                         <p>
                                             <%= stRemarks%>
-                                        </p><%=reuploadBtn%>
+                                        </p><%=reuploadBtn%> <%=printPermbtn%>
                                     </div>
                                     <div class="timeline-footer">
                                         <p><%=divGuide%></p>

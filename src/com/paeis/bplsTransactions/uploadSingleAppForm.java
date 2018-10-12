@@ -203,7 +203,7 @@ public class uploadSingleAppForm extends HttpServlet {
             businessInfo.setString(8, txtNSingBussDTIRegNo);
             businessInfo.setDate(9, _dateNSingBussDTIReg);
             businessInfo.setInt(10, Integer.parseInt(numNSingBussEmpQTY));
-            businessInfo.setInt(11, Integer.parseInt(numNSingBussUnitNo));
+            businessInfo.setFloat(11, Float.parseFloat(numNSingBussUnitNo));
             businessInfo.setFloat(12, Float.parseFloat(numNSingBussAreaSqmts));
             businessInfo.setFloat(13, Float.parseFloat(numNSingBussCapitalization));
             businessInfo.setInt(14, Integer.parseInt(txtNSBussAct));

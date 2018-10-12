@@ -46,7 +46,12 @@
                 <i class="fa fa-gears"></i>
                 <span>Reports</span>
             </a>
-            <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+            <ul class="sub-menu">
+                <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+                <li><a href="BPLSEEndReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluated Reports</span></a></li>
+                <li><a href="BPLSESSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Small Scale Reports</span></a></li>
+                <li><a href="BPLSELSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Large Scale Reports</span></a></li>
+            </ul>
         </li>
     </ul>
     <!-- end top-menu nav -->

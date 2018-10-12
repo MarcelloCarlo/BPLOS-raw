@@ -558,7 +558,7 @@
                             </button>
                             <button
                                     type="button"
-                                    id="btnRenewAppl"
+                                    id="btnNewAppl"
                                     class="btn btn-success"
                             >Evaluate
                             </button>
@@ -801,7 +801,7 @@
                             </button>
                             <button
                                     type="button"
-                                    id="btnNewAppl"
+                                    id="btnRenewAppl"
                                     class="btn btn-success"
                             >Evaluate
                             </button>

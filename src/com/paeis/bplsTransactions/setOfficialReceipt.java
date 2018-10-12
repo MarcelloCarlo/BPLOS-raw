@@ -73,7 +73,6 @@ public class setOfficialReceipt extends HttpServlet {
             recHist.setString(3, divName);
             recHist.executeUpdate();
 
-            response.sendRedirect(request.getContextPath()+"/BPLSTIndex.jsp");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             response.getWriter().print(e);

@@ -55,7 +55,7 @@ $("#btnTresNewAppl").click(function () {
                 }).then((result) => {
                     if(result.value)
                 {
-                   window.location.href = response.url;
+                   window.location.replace("BPLSTIndex.jsp");
                     //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
                     //window.location.replace("BPLSORf.jsp"+oRX);
                 }

@@ -46,8 +46,8 @@
 </head>
 <%
 String buId = request.getParameter("bussIns");
-String moDate = new SimpleDateFormat("MMMM dd, yyyy").format(request.getParameter("moDate"));
-String moExpD = new SimpleDateFormat("MMMM dd, yyyy").format(request.getParameter("moExpD"));
+String moDate = String.valueOf(request.getParameter("moDate"));
+String moExpD = String.valueOf(request.getParameter("moExpD"));
 String authIns = request.getParameter("authIns");
 String headIns = request.getParameter("headIns");
 String chiefBp = request.getParameter("chiefBp");

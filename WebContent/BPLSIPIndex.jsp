@@ -455,7 +455,7 @@
                     class="form-horizontal"
                     name="missionOr"
                     enctype="multipart/form-data"
-                    action="BPLSMsnOrdr.jsp" method="POST"
+                    action="BPLSMsnOrdr.jsp" method="GET"
             >
                 <div class="modal-content">
                     <div class="modal-header">

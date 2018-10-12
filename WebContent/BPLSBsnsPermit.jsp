@@ -176,18 +176,18 @@ try {
                     <div class="row">
                         <div class="panel-body col-md-6">
                             <h5>
-                                TOTAL NO. OF EMPLOYEES <%=bp_empNo%>
+                                TOTAL NO. OF EMPLOYEES: <%=bp_empNo%>
                             </h5>
                             <h5>
-                                SSS No. <%=sss_no%>
+                                SSS No." <%=sss_no%>
                             </h5>
                         </div>
                         <div class="panel-body col-md-6">
                             <h5>
-                                AREA OF ESTABLISHMENT <%=bu_area%>
+                                AREA OF ESTABLISHMENT: <%=bu_area%>
                             </h5>
                             <h5>
-                                TIN <%=tp_tin%>
+                                TIN: <%=tp_tin%>
                             </h5>
                         </div>
                     </div>
@@ -226,9 +226,9 @@ try {
                         <br>
                         <br>
                         <p class="pull-right">
-                            Official Receipt No. <%=or_no%><br/>
-                            Date of Payment <%=tb_billed%><br/>
-                            Period Covered<%=bp_val_yr%><br/>
+                            Official Receipt No.: <%=or_no%><br/>
+                            Date of Payment: <%=tb_billed%><br/>
+                            Period Covered: <%=bp_val_yr%><br/>
                         <br/>
                             <strong>Total Amount Paid: P <%=amount%></strong>
                         </p>
