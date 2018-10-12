@@ -80,6 +80,14 @@
     <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
         rel="stylesheet"> -->
 </head>
+<%
+    LGUConnect conX = new LGUConnect();
+    Connection conn3 = null;
+    ResultSet gg3 = null;
+    try {
+        conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        gg3 = ss3.executeQuery("SELECT * FROM view_terminatedap");%>
 <body>
 <jsp:include page="BPLSEComponent.jsp"/>
 <div
@@ -123,18 +131,6 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                    LGUConnect conX = new LGUConnect();
-                                    Connection conn3 = null;
-                                    ResultSet gg3 = null;
-                                    try {
-                                        conn3 = conX.getConnection();
-                                        Statement ss3 = conn3.createStatement();
-                                        gg3 = ss3.executeQuery("SELECT * FROM view_terminatedap");
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
 
                                     while (gg3.next()) {
                                 %>
@@ -547,4 +543,7 @@
     });
 </script>
 </body>
+<%}catch (Exception e){
+        e.printStackTrace();
+}%>
 </html>

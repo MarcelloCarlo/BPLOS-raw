@@ -189,7 +189,7 @@ public class uploadSingleAppForm extends HttpServlet {
             businessInfo.setString(5, txtNSingBussFaxNo);
             businessInfo.setString(6, txtNSingBussTelNo);
             businessInfo.setFloat(7, Float.parseFloat(numNSingBussEstSignbrdArea));
-            businessInfo.setInt(8, Integer.parseInt(txtNSingBussDTIRegNo));
+            businessInfo.setString(8, txtNSingBussDTIRegNo);
             businessInfo.setDate(9, _dateNSingBussDTIReg);
             businessInfo.setInt(10, Integer.parseInt(numNSingBussEmpQTY));
             businessInfo.setInt(11, Integer.parseInt(numNSingBussUnitNo));
@@ -201,6 +201,7 @@ public class uploadSingleAppForm extends HttpServlet {
             PreparedStatement authRep2Bus = (PreparedStatement) connection
                     .prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`) VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
             authRep2Bus.executeLargeUpdate();
+
             PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV') ");
             refNoInfo.executeUpdate();
 

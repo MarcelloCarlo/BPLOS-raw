@@ -121,7 +121,7 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Route Slip</h4>
+                        <h4 class="panel-title">Application Tracker</h4>
                     </div>
                     <div class="panel-body">
                         <%while (rs.next()) {
@@ -201,7 +201,7 @@
                                     divGuide = "Giving you an another re-inspection. Please comply to procede.";
                                 } else if (divCode.equals("DIV-REV")){
                                     divGuide = "There's a problem on your documents. Please re-upload your file with required documents";
-                                    reuploadBtn = "<p><form  name='reuploadFileForm' id='reuploadFileForm' enctype='multipart/form-data' action='reuploadFile' method='POST'> <input type='text' class='hidden' id='refNo' name='refNo'> <input type='number' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required> <button type='submit' class='btn btn-success btn-lg'>Reupload</button></form><p>";
+                                    reuploadBtn = "<p><form  name='reuploadFileForm' id='reuploadFileForm' enctype='multipart/form-data' action='reuploadFile' method='POST'> <input type='text' class='hidden' id='refNo' name='refNo'> <input type='number' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required> <hr><button type='submit' class='btn btn-success '>Reupload</button></form><p>";
                                 }
                             %>
                             <li>

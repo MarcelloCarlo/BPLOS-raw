@@ -93,11 +93,12 @@
             <%--</div>--%>
             <div class="invoice-content">
                 <div class="panel-body">
-                    <p class="pull-right">
+                    <p class="pull-left">
                         Authority to Inspect __________<br/>
                         Date___________________________<br/>
                         Expiry Date____________________<br/>
                     </p>
+                    <br>
                     <br>
                     <br>
                     <br>

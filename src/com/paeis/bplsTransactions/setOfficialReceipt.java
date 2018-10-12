@@ -18,6 +18,7 @@ import java.sql.SQLException;
 @WebServlet("/setOfficialReceipt")
 public class setOfficialReceipt extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private String divCode="", divName="";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
@@ -47,6 +48,30 @@ public class setOfficialReceipt extends HttpServlet {
             while (r1.next()){
                 response.getWriter().print(r1.getInt("OR_ID"));
             }
+
+            //Record
+
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, ap_ref_no);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            while (rsAP.next()){
+                divCode = rsAP.getString("AP_DIV_CODE_TO");
+            }
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME) VALUES (?,?,?)");
+            recHist.setString(1, ap_ref_no);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.executeUpdate();
+
+            response.sendRedirect(request.getContextPath()+"/BPLSTIndex.jsp");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             response.getWriter().print(e);

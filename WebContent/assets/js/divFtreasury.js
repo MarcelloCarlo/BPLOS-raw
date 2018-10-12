@@ -37,8 +37,7 @@ $("#btnTresNewAppl").click(function () {
         showCancelButton: true,
         cancelButtonText: 'Cancel',
     }).then((result) => {
-        if(result.value
-)
+        if(result.value)
     {
         $.ajax({
             type: "POST",
@@ -54,8 +53,7 @@ $("#btnTresNewAppl").click(function () {
                     text: 'Succesfully Processed',
                     confirmButtonText: 'OK'
                 }).then((result) => {
-                    if(result.value
-            )
+                    if(result.value)
                 {
                     var oRX = "?orNo=" + response;
                     //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
