@@ -187,7 +187,9 @@
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
+                                            </div>
 
+                                            <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Sex</label>
@@ -204,19 +206,20 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
-                                                        <input type="text" name="bdate" id="birthdate" placeholder="Birthdate"
-                                                               class="form-control date" required/>
+                                                        <input type="text" class="form-control date" name="bdate" id="birthdate" required/>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Status</label>
-                                                        <input type="text" name="status" placeholder="Status"
-                                                               class="form-control" required/>
+                                                        <input type="text" name="status" placeholder="Active"
+                                                               class="form-control" disabled/>
                                                     </div>
                                                 </div>
+                                            </div>
 
+                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Job Description</label>
@@ -224,9 +227,8 @@
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
-
-
                                             </div>
+
                                             <!-- end row -->
                                         </fieldset>
                                     </div>
@@ -372,6 +374,13 @@
 <script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/js/form-plugins.demo.min.js"></script>
+<script src="assets/plugins/masked-input/masked-input.min.js"></script>
+<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
+<script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+<script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
+<script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
@@ -397,8 +406,6 @@
 
         });
     });
-</script>
-<script>
 </script>
 </body>
 <%

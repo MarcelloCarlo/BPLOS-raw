@@ -449,7 +449,7 @@
                             <div class="panel-heading">
                                 <h4
                                         class="panel-title"
-                                >Preparint Mission Order</h4>
+                                >Print Mission Order</h4>
                             </div>
                         </div>
                         <div class="modal-body">
@@ -462,44 +462,56 @@
                                     />
                                     <div class="col-md-8 panel-body">
                                         <h5>
-                                            Business Name/Corporate Name:
-                                            <!-- <input disabled=""
-                                            id="nBussName" type="text" /> -->
-                                            <label id="nBussName"></label>
-                                        </h5>
-                                        <h5>
-                                            Name of Sole Proprietor/Partnership/President:
+                                            Date:
                                             <!-- <input
                                             disabled="" id="nBussOwner" type="text" /> -->
                                             <label id="nBussOwner"></label>
                                         </h5>
                                         <h5>
-                                            Business Address:
+                                            Expiry Date:
                                             <!-- <input disabled="" id="nBussAddr"
                                             type="text" /> -->
                                             <label id="nBussAddr"></label>
                                         </h5>
                                         <h5>
-                                            Tel No.:
+                                            Authority to Inspect:
+                                            <select>
+                                                <option>Put here</option>
+                                            </select>
+                                        </h5>
+                                        <h5>
+                                            Head Inspection Division:
+                                            <select>
+                                                <option>Put here</option>
+                                            </select>
+                                        </h5>
+                                        <h5>
+                                            Chief BPLO:
+                                            <select>
+                                                <option>Put here</option>
+                                            </select>
+                                        </h5>
+                                        <h5>
+                                            Licence Ispector / Officer:
                                             <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
                                             <label id="nBussConTelno"></label>
                                         </h5>
                                         <h5>
-                                            Authorized Representative:
+                                            Licence Ispector / Officer:
                                             <!--  <input disabled=""
                                             id="nBussAuthRepName" type="text" /> -->
                                             <label id="nBussAuthRepName"></label>
                                         </h5>
-                                        <h5>
-                                            Address:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="nBussAuthRepAddr"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Nature:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="nBussNature"></label>
-                                        </h5>
+                                        <%--<h5>--%>
+                                            <%--Address:--%>
+                                            <%--<!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->--%>
+                                            <%--<label id="nBussAuthRepAddr"></label>--%>
+                                        <%--</h5>--%>
+                                        <%--<h5>--%>
+                                            <%--Business Nature:--%>
+                                            <%--<!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->--%>
+                                            <%--<label id="nBussNature"></label>--%>
+                                        <%--</h5>--%>
                                     </div>
                                     <div class="panel-body">
                                         <h5>Inspection Checklist</h5>

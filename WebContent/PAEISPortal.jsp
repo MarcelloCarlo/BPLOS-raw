@@ -75,6 +75,7 @@
                         <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
                         <option value="rSing">Business Application Form (Single - Renewal)</option>
                         <option value="rCorp">Business Application Form (Partnership/Corporation - Renewal)</option>
+                        <option value="nSing">MTOPS Application Form </option>
                     </select>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>

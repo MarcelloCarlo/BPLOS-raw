@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/12/2018
-  Time: 2:37 AM
+  Time: 2:13 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -45,10 +45,10 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="MTOPSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Inspection</span></a></li>
-        <%--<li><a href="BPLSIPReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>--%>
+        <li><a href="MTOPSRSIndex.jsp"><i class="fa fa-print"></i> <span>Permit Releasing</span></a></li>
+        <%--<li><a href="BPLSRSAcmplReports.jsp"><i class="fa fa-text"></i> <span>Accomplishment Reports</span></a></li>--%>
     </ul>
+
     <!-- end top-menu nav -->
 </div>
 <!-- end #top-menu -->
