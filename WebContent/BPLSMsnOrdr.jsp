@@ -52,7 +52,7 @@
     <!-- begin #content -->
     <div id="content" class="content">
         <!-- begin page-header -->
-        <h1 class="page-header hidden-print">Official Receipt</h1>
+        <h1 class="page-header hidden-print">Mission Order</h1>
         <!-- end page-header -->
 
         <!-- begin invoice -->
