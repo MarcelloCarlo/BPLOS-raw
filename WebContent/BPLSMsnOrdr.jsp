@@ -65,39 +65,42 @@
                     </span>
                 Mission Order
             </div>
-            <div class="invoice-header">
-                <%--<div class="invoice-from">--%>
-                    <%--<address class="m-t-5 m-b-5">--%>
-                        <%--Machine Validation No.<br/>--%>
-                        <%--Bill Number<br/>--%>
-                        <%--Payor--%>
-                    <%--</address>--%>
+            <%--<div class="invoice-header">--%>
+                <%--&lt;%&ndash;<div class="invoice-from">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<address class="m-t-5 m-b-5">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Machine Validation No.<br/>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Bill Number<br/>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Payor&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</address>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;<div class="invoice-to">&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<address class="m-t-5 m-b-5">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Insert Machine Validation No. here<br/>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Insert Bill Number here<br/>&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Insert Payor here&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</address>&ndash;%&gt;--%>
+                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                <%--<div class="invoice-date">--%>
+                    <%--<div class="date m-t-5">--%>
+                        <%--Authority to Inspect __________<br/>--%>
+                        <%--Date___________________________<br/>--%>
+                        <%--Expiry Date____________________<br/>--%>
+                    <%--</div>--%>
+                    <%--&lt;%&ndash;<div class="invoice-detail">&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;Insert No. here&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
                 <%--</div>--%>
-                <%--<div class="invoice-to">--%>
-                    <%--<address class="m-t-5 m-b-5">--%>
-                        <%--Insert Machine Validation No. here<br/>--%>
-                        <%--Insert Bill Number here<br/>--%>
-                        <%--Insert Payor here--%>
-                    <%--</address>--%>
-                <%--</div>--%>
-                <div class="invoice-date">
-                    <div class="date m-t-5">
+            <%--</div>--%>
+            <div class="invoice-content">
+                <div class="panel-body">
+                    <p class="pull-right">
                         Authority to Inspect __________<br/>
                         Date___________________________<br/>
                         Expiry Date____________________<br/>
-                    </div>
-                    <%--<div class="invoice-detail">--%>
-                        <%--Insert No. here--%>
-                    <%--</div>--%>
-                </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="invoice-content">
-                <div class="panel-body">
+                    </p>
+                    <br>
+                    <br>
+                    <br>
                     <p>
                         <strong>M.</strong>_________________<br/>
                         ___________________<br/>
