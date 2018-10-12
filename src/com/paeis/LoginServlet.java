@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
                 String empfnameDB = resultSet.getString("EP_FNAME");
                 String emplnameDB = resultSet.getString("EP_LNAME");
                 String emppositionDB = resultSet.getString("EP_JOB_DESC");
-                String empDIV = resultSet.getString("U_ROLE");
+                String empDIV = resultSet.getString("U.U_ROLE");
                 String empname = emppositionDB + " : " + empfnameDB + " " + emplnameDB;
 
                 session.setAttribute("empidDB", empidDB);

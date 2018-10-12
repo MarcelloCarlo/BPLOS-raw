@@ -62,7 +62,7 @@
             response.sendRedirect("PAEISSAUsrMgmt.jsp");
 
         } catch (Exception ex) {
-            out.print(ex);
+            ex.printStackTrace();
         }
     }
 %>

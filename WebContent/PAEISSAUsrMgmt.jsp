@@ -206,7 +206,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
-                                                        <input type="text" class="form-control date" name="bdate" id="birthdate" required/>
+                                                        <input type="date" class="form-control date" name="bdate" id="birthdate" required/>
                                                     </div>
                                                 </div>
 
