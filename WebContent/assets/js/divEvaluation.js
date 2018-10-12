@@ -15,6 +15,10 @@ $(document).ready(function () {
 	    document.getElementById('_AP_REFERENCE_NOr').value = $(this).closest("tbody tr").find("td:eq(40)").html().trim();
 	    document.getElementById('_BN_CLASSIFICATIONr').value = $(this).closest("tbody tr").find("td:eq(42)").html().trim();
     });
+    
+    $("#btnRenewAppl").click(function () {
+        
+    })
 
     $(".newModal").click(function () {
         document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();

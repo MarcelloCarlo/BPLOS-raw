@@ -207,7 +207,7 @@
                                            placeholder="PHP"/>
                                 </div>
                             </div>
-
+<input class="hidden" type="text" id="totalAmt" name="totalAmt">
                             <div class="panel-body">
                                     <%=magicBtn%>
                                     <%=apRefBtn%>

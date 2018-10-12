@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -40,6 +44,52 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+
+<% LGUConnect connect = new LGUConnect();
+String bpNo = String.valueOf(request.getParameter("bpNo"));
+String bpnum = "",bp_is_dt="",tp_nat = "",bu_name="",ar_name="",bu_pres="",bu_loc="",bp_val_yr="",bu_cap="",bn_name="",bn_clas="",bp_rem="",sss_no="",tp_tin="",bp_empNo="",bu_area="",pres_rep="",or_no="",tb_billed = "",amount="";
+int tb_id = 0;
+
+try {
+    Connection connection = connect.getConnection();
+    PreparedStatement releaseAll = (PreparedStatement) connection.prepareStatement("SELECT * FROM view_bussperm WHERE BP_NUMBER = ?");
+    releaseAll.setString(1,bpNo);
+    ResultSet rsAll = releaseAll.executeQuery();
+    while (rsAll.next()){
+    bpnum = String.valueOf(rsAll.getString("BP_NUMBER"));
+    bp_is_dt = new SimpleDateFormat("MMMM dd, yyyy").format(rsAll.getDate("BP_ISSUED_DATE"));
+    tp_nat = String.valueOf(rsAll.getString("TP_NATIONALITY"));
+    bu_name = String.valueOf(rsAll.getString("BU_NAME"));
+    ar_name = String.valueOf(rsAll.getString("AR_NAME"));
+    bu_pres = String.valueOf(rsAll.getString("BU_PRESIDENT"));
+    bu_loc = String.valueOf(rsAll.getString("BU_LOCATION"));
+    bp_val_yr = new SimpleDateFormat("MMMM dd, yyyy").format(rsAll.getDate("BP_VALID_YEARS"));
+    bu_cap = String.valueOf(rsAll.getFloat("BU_CAPITALIZATION"));
+    bn_name = String.valueOf(rsAll.getString("BN_NAME"));
+    bn_clas = String.valueOf(rsAll.getString("BN_CLASSIFICATION").equalsIgnoreCase("L")? "Large Scale": "Small Scale" );
+    bp_rem = String.valueOf(rsAll.getString("BP_REMARKS"));
+    bp_empNo = String.valueOf(rsAll.getInt("BU_EMP_NO"));
+    sss_no = String.valueOf(rsAll.getString("TP_SSS_NO"));
+    tp_tin = String.valueOf(rsAll.getString("TP_TIN"));
+    bu_area = String.valueOf(rsAll.getFloat("BU_AREA"));
+    tb_id = rsAll.getInt("TB_ID");
+    tb_billed = new SimpleDateFormat("MMMM dd, yyyy").format(rsAll.getDate("TB_DATE_BILLED"));
+
+    if (bu_pres.equalsIgnoreCase("null") || bu_pres.isEmpty()){
+        pres_rep = ar_name + "- REPRESENTATIVE";
+    } else {
+        pres_rep = bu_pres + "- PRESIDENT";
+    }
+    }
+
+    PreparedStatement getTxBl = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_official_receipt WHERE TB_ID = ?");
+    getTxBl.setInt(1,tb_id);
+    ResultSet rsTx = getTxBl.executeQuery();
+    while (rsTx.next()){
+        or_no = String.valueOf(rsTx.getString("OR_TW_CH_MO_NO"));
+        amount = String.valueOf(rsTx.getBigDecimal("OR_TOTAL_AMOUNT"));
+    }
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -51,9 +101,6 @@
 
     <!-- begin #content -->
     <div id="content" class="content">
-        <!-- begin page-header -->
-        <h1 class="page-header hidden-print">Official Receipt</h1>
-        <!-- end page-header -->
 
         <!-- begin invoice -->
         <div class="invoice">
@@ -76,16 +123,16 @@
                 </div>
                 <div class="invoice-to">
                     <address class="m-t-5 m-b-5">
-                        Insert<br/>
-                        Insert<br/>
-                        Insert<br/>
-                        Insert
+                        <%=bu_name%><br/>
+                        <%=bu_name%><br/>
+                        <%=pres_rep%><br/>
+                        <%=bu_loc%>
                     </address>
                 </div>
                 <div class="invoice-date">
-                    <div class="date m-t-5">DATE ISSUED</div>
+                    <div class="date m-t-5"><%=bp_is_dt%></div>
                     <div class="invoice-detail">
-                        Nationality
+                        Nationality <%=tp_nat%>
                     </div>
                 </div>
                 <br>
@@ -110,45 +157,43 @@
             <%--</div>--%>
             <div class="invoice-content">
                 <div class="table-responsive">
+                    <h2>VALID UNTIL <small><%=bp_val_yr%></small></h2>
                     <table class="table table-invoice">
                         <thead>
                         <tr>
                             <th>KIND OF BUSINESS</th>
+
                             <th>REMARKS</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td><%=bn_name%> (<%=bn_clas%>) <br> CAPITALIZED AT <%=bu_cap%></td>
+                            <td><%=bp_rem%></td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="row">
                         <div class="panel-body col-md-6">
                             <h5>
-                                TOTAL NO. OF EMPLOYEES
+                                TOTAL NO. OF EMPLOYEES <%=bp_empNo%>
                             </h5>
                             <h5>
-                                SSS No.
+                                SSS No. <%=sss_no%>
                             </h5>
                         </div>
                         <div class="panel-body col-md-6">
                             <h5>
-                                AREA OF ESTABLISHMENT
+                                AREA OF ESTABLISHMENT <%=bu_area%>
                             </h5>
                             <h5>
-                                TIN
+                                TIN <%=tp_tin%>
                             </h5>
                         </div>
                     </div>
                     <table class="table table-invoice">
                         <thead>
                         <tr>
-                            <th width="25%">TOTAL NO. OF EMPLOYEES</th>
-                            <th>SSS NO.</th>
-                            <th>AREA OF ESTABLISHMENT</th>
-                            <th>TIN</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -181,27 +226,13 @@
                         <br>
                         <br>
                         <p class="pull-right">
-                            Official Receipt No.<br/>
-                            Date of Payment<br/>
-                            Period Covered<br/>
-                            Permit Fee<br/>
-                            City Tax<br/>
-                            Garbage Fee<br/>
-                            Sanitary Fee<br/>
-                            Building Inspection Fee<br/>
-                            Electrical Inspection Fee<br/>
-                            Plumbing Inspection Fee<br/>
-                            Signboard Fee<br/>
-                            Fire Inspection Fee<br/>
-                            Penalty & Interest<br/>
-                            Plate/Sticker
+                            Official Receipt No. <%=or_no%><br/>
+                            Date of Payment <%=tb_billed%><br/>
+                            Period Covered<%=bp_val_yr%><br/>
+                        <br/>
+                            <strong>Total Amount Paid: P <%=amount%></strong>
                         </p>
-                        <br>
-                        <br>
-                        <br>
-                        <p class="pull-right">
-                            <strong>Total Amount Paid</strong>
-                        </p>
+
                 </div>
 
                 <%--<div class="invoice-price">--%>
@@ -242,6 +273,7 @@
             <%--</div>--%>
         </div>
         <!-- end invoice -->
+    </div>
     </div>
     <!-- end #content -->
 
@@ -286,22 +318,8 @@
         TableManageResponsive.init();
     });
 </script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
+<%}catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>

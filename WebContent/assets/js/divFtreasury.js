@@ -15,7 +15,7 @@ $(document).ready(function () {
         $("#tdPerm").text($(this).text());
     });
     $("#lblTotal").text(sum);
-
+$("#totalAmt").val(sum);
     $("#txtAmt").on('input', function () {
         $("#txtChng").val(parseFloat($(this).val()) - sum);
     });
@@ -55,7 +55,7 @@ $("#btnTresNewAppl").click(function () {
                 }).then((result) => {
                     if(result.value)
                 {
-                    var oRX = "?orNo=" + response;
+                   window.location.href = response.url;
                     //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
                     //window.location.replace("BPLSORf.jsp"+oRX);
                 }

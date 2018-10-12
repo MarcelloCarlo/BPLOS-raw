@@ -668,7 +668,7 @@
                                         ></textarea>
                                     </div></div>
                                     <div class="panel-body">
-                                        <h5>Requirements Checklist</h5>
+                                        <h5>Requirements Checklist *</h5>
                                             <ul class="to_do">
 
                                                     <p>
@@ -704,7 +704,7 @@
                                                         > Original Copy of Barangay Clearance (for renewal purpose)
                                                     </p>
 
-                                                <p>Other Document Requirements required such as:</p>
+                                                <Label>Other Document Requirements required such as:</Label>
 
                                                     <p>
                                                         <input

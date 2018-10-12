@@ -90,10 +90,20 @@
 </head>
 <%
     LGUConnect conX = new LGUConnect();
-    try{
-    Connection conn3 = conX.getConnection();
-    Statement ss3 = conn3.createStatement();
-    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");%>
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
+        Statement ss4 = conn3.createStatement();
+        ResultSet gg4 = ss4.executeQuery("SELECT * FROM bpls_t_employee_profile");
+        Statement ss5 = conn3.createStatement();
+        ResultSet gg5 = ss5.executeQuery("SELECT * FROM bpls_t_employee_profile");
+        Statement ss6 = conn3.createStatement();
+        ResultSet gg6 = ss6.executeQuery("SELECT * FROM bpls_t_employee_profile");
+        Statement ss7 = conn3.createStatement();
+        ResultSet gg7 = ss7.executeQuery("SELECT * FROM bpls_t_bp_application BP JOIN bpls_t_business business on BP.BU_ID = business.BU_ID WHERE AP_DIV_CODE_TO = 'DIV-INS'");
+
+%>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -129,6 +139,13 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">Inspection Table</h4>
                         </div>
+                        <div class="panel-body"><button
+                                type="button"
+                                class="btn btn-success .missionOrder"
+                                data-toggle="modal" data-target=".inspection-modal-missionOr"
+                                title="Release a Mission Order"
+                        ><i class="fa fa-lg fa-rocket"></i>
+                        </button></div>
                         <div class="panel-body">
                             <table
                                     id="data-table"
@@ -155,7 +172,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                              <%
+                                <%
                                     while (gg3.next()) {
                                         String apType = gg3.getString("AP_TYPE");
                                         String _PreRep = String.valueOf(gg3.getString("BU_PRESIDENT"));
@@ -171,9 +188,11 @@
                                         } else {
                                             modalMode = ".inspection-modal-new";
                                         }
-                                        if (_PreRep.equalsIgnoreCase("null")){
+                                        if (_PreRep.equalsIgnoreCase("null")) {
                                             PreRep = gg3.getString("TAX_PAYERNAME");
-                                        } else {PreRep = _PreRep;}
+                                        } else {
+                                            PreRep = _PreRep;
+                                        }
                                 %>
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
@@ -189,19 +208,19 @@
                                     <td><%=gg3.getString("AP_DATE")%>
                                     </td><!--5-->
                                     <td><%=PreRep%>
-                                    </td>
+                                    </td><!--6-->
                                     <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
-                                    </td>
+                                    </td><!--7-->
                                     <td class="hide"><%=gg3.getString("BU_LOCATION")%>
-                                    </td>
+                                    </td><!--8-->
                                     <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                    </td>
+                                    </td><!--9-->
                                     <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
+                                    </td><!--10-->
                                     <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
+                                    </td><!--11-->
                                     <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                    </td>
+                                    </td><!--12-->
                                     <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
                                     </td>
                                     <td>
@@ -212,16 +231,11 @@
                                                 data-target="<%=modalMode%>" title="Comply the Inspected Business"
                                         ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success"
-                                                data-toggle="modal" data-target=".inspection-modal-missionOr" title="Release a Mission Order"
-                                        ><i class="fa fa-lg fa-rocket"></i>
-                                        </button>
                                     </td>
                                 </tr>
                                 <%
                                     }
+                                    gg3.close();
                                 %>
                                 </tbody>
                             </table>
@@ -441,7 +455,7 @@
                     class="form-horizontal"
                     name="missionOr"
                     enctype="multipart/form-data"
-                    action="" method="post"
+                    action="BPLSMsnOrdr.jsp" method="POST"
             >
                 <div class="modal-content">
                     <div class="modal-header">
@@ -455,166 +469,88 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text"
-                                           class="hide"
-                                           id="_AP_REFERENCE_NO"
-                                           name="_AP_REFERENCE_NO"
-                                    />
+
                                     <div class="col-md-8 panel-body">
                                         <h5>
+                                            Select An Application:
+                                            <select class="selectpicker form-control" data-style="btn-white"
+                                                    name="bussIns" tabindex="-1"
+                                            >
+                                                <%
+                                                    while (gg7.next()) {
+                                                %>
+                                                <option value='<%=gg7.getString("BU_ID")%>'><%=gg7.getString("BU_NAME")%>
+                                                </option>
+                                                <%
+                                                    }
+                                                    gg7.close();
+                                                %>
+                                            </select>
+                                        </h5>
+                                        <h5>
                                             Date:
-                                            <!-- <input
-                                            disabled="" id="nBussOwner" type="text" /> -->
-                                            <label id="nBussOwner"></label>
+                                            <input name="moDate" type="date" class="form-control date" required/>
                                         </h5>
                                         <h5>
                                             Expiry Date:
-                                            <!-- <input disabled="" id="nBussAddr"
-                                            type="text" /> -->
-                                            <label id="nBussAddr"></label>
+                                            <input name="moExpD" type="date" class="form-control date" required/>
                                         </h5>
                                         <h5>
                                             Authority to Inspect:
-                                            <select>
-                                                <option>Put here</option>
+                                            <select class="selectpicker form-control" data-style="btn-white"
+                                                    name="authIns" tabindex="-1"
+                                            >
+                                                <%
+                                                    while (gg4.next()) {
+                                                        String empName = gg4.getString("EP_FNAME") + " " + gg4.getString("EP_MNAME") + " " + gg4.getString("EP_LNAME");
+                                                %>
+                                                <option value='<%=empName%>'><%=empName%>
+                                                </option>
+                                                <%
+                                                    }
+                                                    gg4.close();
+                                                %>
                                             </select>
                                         </h5>
                                         <h5>
                                             Head Inspection Division:
-                                            <select>
-                                                <option>Put here</option>
-                                            </select>
+                                            <select class="selectpicker form-control" data-style="btn-white"
+                                                    name="headIns" tabindex="-1"
+                                            ><%
+                                                while (gg5.next()) {
+                                                    String empName = gg5.getString("EP_FNAME") + " " + gg5.getString("EP_MNAME") + " " + gg5.getString("EP_LNAME");
+                                            %>
+                                                <option value='<%=empName%>'><%=empName%>
+                                                </option>
+                                                <%
+                                                    }
+                                                    gg5.close();
+                                                %></select>
                                         </h5>
                                         <h5>
                                             Chief BPLO:
-                                            <select>
-                                                <option>Put here</option>
-                                            </select>
+                                            <select class="selectpicker form-control" data-style="btn-white"
+                                                    name="chiefBp" tabindex="-1"
+                                            ><%
+                                                while (gg6.next()) {
+                                                    String empName = gg6.getString("EP_FNAME") + " " + gg6.getString("EP_MNAME") + " " + gg6.getString("EP_LNAME");
+                                            %>
+                                                <option value='<%=empName%>'><%=empName%>
+                                                </option>
+                                                <%
+                                                    }
+                                                    gg6.close();
+                                                %></select>
                                         </h5>
                                         <h5>
                                             Licence Ispector / Officer:
-                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
-                                            <label id="nBussConTelno"></label>
+                                            <input id="insOfficer" name="insOfficer" type="text" class="form-control"/>
                                         </h5>
                                         <h5>
                                             Licence Ispector / Officer:
-                                            <!--  <input disabled=""
-                                            id="nBussAuthRepName" type="text" /> -->
-                                            <label id="nBussAuthRepName"></label>
+                                            <input
+                                                    id="insOfficer1" name="insOfficer1" type="text" class="form-control"/>
                                         </h5>
-                                        <%--<h5>--%>
-                                            <%--Address:--%>
-                                            <%--<!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->--%>
-                                            <%--<label id="nBussAuthRepAddr"></label>--%>
-                                        <%--</h5>--%>
-                                        <%--<h5>--%>
-                                            <%--Business Nature:--%>
-                                            <%--<!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->--%>
-                                            <%--<label id="nBussNature"></label>--%>
-                                        <%--</h5>--%>
-                                    </div>
-                                    <div class="panel-body">
-                                        <h5>Inspection Checklist</h5>
-                                        <div class="">
-                                            <ul class="to_do">
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkZONING_INS"
-                                                            name="ZONING_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Zoning Inspection
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkFIRE_INS"
-                                                            name="FIRE_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Fire Inspection
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkHS_INS"
-                                                            name="HS_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Health & Sanitation Inspection
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkBLDG_INS"
-                                                            name="BLDG_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Building Inspection
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkLABOR_INS"
-                                                            name="LABOR_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Labor Inspection
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkMISC_INS"
-                                                            name="MISC_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Miscellaneous Inspection (See Business Nature)
-                                                </p>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <hr>
-                                        <div class="col-md-12">
-											<textarea
-                                                    class="form-control"
-                                                    placeholder="Remarks"
-                                                    id="txtMISC_REMARKS"
-                                                    name="MISC_REMARKS"
-                                                    rows="3"
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="note note-info">
-                                            <h4>Inspection Notes</h4>
-                                            <ul>
-                                                <li>
-                                                    <p>
-                                                        Miscellaneous Inspection based on the business nature should be
-                                                        in the
-                                                        business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY
-                                                        OTHER
-                                                        REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
-                                                    </p>
-                                                </li>
-                                                <li><p>
-                                                    Any unchecked item/s on the Inspection Requirements will be sent to
-                                                    the Investigation upon submission. Please define the violation/s on
-                                                    the remarks for other details.
-                                                </p></li>
-                                            </ul>
-                                        </div>
-                                        <!--  <div class="col-md-9">
-                                                  <textarea
-                                                          class="form-control"
-                                                          placeholder="Remarks"
-                                                          id="AP_Remarks"
-                                                          name="AP_Remarks"
-                                                          rows="3"
-                                                  ></textarea>
-                                          </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -624,14 +560,13 @@
                                     type="button"
                                     class="btn btn-default"
                                     data-dismiss="modal"
-                                    id="btnCloseNewApplModal"
                             >Close
                             </button>
                             <button
-                                    type="button"
-                                    id="btnInsNewAppl"
+                                    type="submit"
+                                    id="btnMiOrNewAppl"
                                     class="btn btn-success"
-                            >Save Changes
+                            >Start
                             </button>
                         </div>
                     </div>
@@ -671,7 +606,9 @@
 <script src="assets/js/divInspection.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
-<%}catch (Exception e){
+<%
+    } catch (Exception e) {
         e.printStackTrace();
-}%>
+    }
+%>
 </html>

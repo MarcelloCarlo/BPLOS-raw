@@ -2,8 +2,11 @@ $(document).ready(function () {
 
     App.init();
     TableManageResponsive.init();
-
+	var a,g,c;
     $(".newModal").click(function () {
+        a =  $(this).closest("tbody tr").find("td:eq(0)").html();
+        b = $(this).closest("tbody tr").find("td:eq(1)").html();
+        c = $(this).closest("tbody tr").find("td:eq(13)").html();
         document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
         document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
         document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
@@ -18,7 +21,12 @@ $(document).ready(function () {
         }
 
     });
-
+	
+	$(".missionOrder").click(function () {
+		$('#bu_Name').val(a);
+		$('#bn_Name').val(b);
+		$('#bu_Loc').val(c);
+	});
 
     $('#btnCloseNewApplModal').click(function () {
         $("#chkBLDG_INS").prop("checked", false);

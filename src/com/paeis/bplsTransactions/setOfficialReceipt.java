@@ -26,6 +26,7 @@ public class setOfficialReceipt extends HttpServlet {
         String paymentType = String.valueOf(request.getParameter("optPaymentType"));
         int optTreasurer = Integer.parseInt(request.getParameter("optTreasurer"));
         String ap_ref_no = String.valueOf(request.getParameter("AP_REF"));
+        Double total = Double.parseDouble(request.getParameter("totalAmt"));
         LGUConnect conX = new LGUConnect();
         try {
 
@@ -36,11 +37,12 @@ public class setOfficialReceipt extends HttpServlet {
             upAPB.setString(1,ap_ref_no);
             upAPB.executeUpdate();
 
-            PreparedStatement genOR = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_official_receipt (OR_DATE, OR_PYMT_TYPE, OR_TW_CH_MO_NO, OR_TW_CH_MO_DATE, OIC_CITY_TREASURER, TB_ID) VALUES (NOW(),?,CONCAT(?,'-',REPLACE(CURRENT_TIMESTAMP,'-','')),NOW(),?,?)");
+            PreparedStatement genOR = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_official_receipt (OR_DATE, OR_PYMT_TYPE, OR_TW_CH_MO_NO,OR_TW_CH_MO_DATE, OIC_CITY_TREASURER, TB_ID,OR_TOTAL_AMOUNT) VALUES (NOW(),?,CONCAT(?,'-',REPLACE(CURRENT_DATE,'-','')),NOW(),?,?,?)");
         genOR.setString(1,getPaymentMethod(paymentType));
         genOR.setString(2,paymentType);
         genOR.setInt(3,optTreasurer);
         genOR.setInt(4,tbId);
+        genOR.setDouble(5,total);
         genOR.executeUpdate();
 
             PreparedStatement s1 =(PreparedStatement) connection.prepareStatement("SELECT MAX(OR_ID) AS OR_ID FROM bpls_t_official_receipt");

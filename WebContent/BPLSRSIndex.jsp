@@ -149,7 +149,7 @@
                             <h5>Date Billed: <label class="control-label" id="rDB"></label></h5>
                         </div>
                         <div class="panel-body">
-                            div class="form-group"><label class="col-md-4 control-label">Treasurer: </label>
+                           <label class="col-md-4 control-label">Treasurer: </label>
                             <div class="col-md-5">
                                 <select name="optTreasurer" class="form-control" data-style="btn-white"
                                         tabindex="-1">
@@ -157,12 +157,11 @@
                                     <option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"
                                             title="<%=rsEmp.getString("EP_JOB_DESC")%>"
                                             value="<%=rsEmp.getInt("EP_ID")%>">
-                                            <%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME")+ " " + rsEmp.getString("EP_LNAME"));%>
-                                            <%} rsEmp.close();%>
+                                            <%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME")+ " " + rsEmp.getString("EP_LNAME"));%></option>
+                                        <%} rsEmp.close();%>
                                 </select>
                             </div>
-                        </div>
-                </div>
+                            </div>
                 <div class="panel-body">
                     <div class="col-md-12">
 											<textarea
@@ -176,7 +175,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                    <button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
+                    <button type="button" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
                 </div>
                 </form>
             </div>

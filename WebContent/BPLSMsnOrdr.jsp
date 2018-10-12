@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/12/2018
@@ -40,6 +44,31 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+String buId = request.getParameter("bussIns");
+String moDate = new SimpleDateFormat("MMMM dd, yyyy").format(request.getParameter("moDate"));
+String moExpD = new SimpleDateFormat("MMMM dd, yyyy").format(request.getParameter("moExpD"));
+String authIns = request.getParameter("authIns");
+String headIns = request.getParameter("headIns");
+String chiefBp = request.getParameter("chiefBp");
+String insOfficer = request.getParameter("insOfficer");
+String insOfficer1 = request.getParameter("insOfficer1");
+String bu_pres,tp_name,bu_loc,bu_name,bn_name;
+LGUConnect connect = new LGUConnect();
+try{
+Connection concc = connect.getConnection();
+    PreparedStatement getBuinf = concc.prepareStatement("SELECT * FROM bpls_t_business JOIN bpls_t_taxpayer taxpayer on bpls_t_business.TP_ID = taxpayer.TP_ID JOIN bpls_r_business_nature nature on bpls_t_business.BN_ID = nature.BN_ID WHERE  BU_ID = ?");
+    getBuinf.setInt(1,Integer.parseInt(buId));
+    ResultSet rsBu= getBuinf.executeQuery();
+    while(rsBu.next()){
+        bu_pres = rsBu.getString("BU_PRESIDENT");
+        tp_name = rsBu.getString("TP_FNAME")+ " "+rsBu.getString("TP_MNAME")+" "+rsBu.getString("TP_LNAME");
+        bu_loc = rsBu.getString("BU_LOCATION");
+        bu_name = rsBu.getString("BU_NAME");
+        bn_name = rsBu.getString("BN_NAME");
+    }
+
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -65,38 +94,12 @@
                     </span>
                 Mission Order
             </div>
-            <%--<div class="invoice-header">--%>
-                <%--&lt;%&ndash;<div class="invoice-from">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<address class="m-t-5 m-b-5">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Machine Validation No.<br/>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Bill Number<br/>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Payor&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</address>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<div class="invoice-to">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<address class="m-t-5 m-b-5">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Insert Machine Validation No. here<br/>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Insert Bill Number here<br/>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Insert Payor here&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</address>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                <%--<div class="invoice-date">--%>
-                    <%--<div class="date m-t-5">--%>
-                        <%--Authority to Inspect __________<br/>--%>
-                        <%--Date___________________________<br/>--%>
-                        <%--Expiry Date____________________<br/>--%>
-                    <%--</div>--%>
-                    <%--&lt;%&ndash;<div class="invoice-detail">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;Insert No. here&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                <%--</div>--%>
-            <%--</div>--%>
             <div class="invoice-content">
                 <div class="panel-body">
                     <p class="pull-left">
-                        Authority to Inspect __________<br/>
-                        Date___________________________<br/>
-                        Expiry Date____________________<br/>
+                        Authority to Inspect: <%=authIns%><br/>
+                        Date: <%=moDate%><br/>
+                        Expiry Date: <%=moExpD%><br/>
                     </p>
                     <br>
                     <br>
@@ -355,22 +358,8 @@
         TableManageResponsive.init();
     });
 </script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
+<%}catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>
