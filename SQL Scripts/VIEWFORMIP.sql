@@ -38,4 +38,4 @@ CREATE VIEW view_applicationformsip AS
          INNER JOIN bpls_r_bu_ar BUxAR ON BUxAR.BU_ID = BUS.BU_ID
          INNER JOIN bpls_t_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN bpls_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
-  WHERE AP.AP_DIV_CODE_TO = 'DIV-INS';
+  WHERE AP.AP_DIV_CODE_TO = 'DIV-INS' AND NOT AP_STATUS = 'Terminated';

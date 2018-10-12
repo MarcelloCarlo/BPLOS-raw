@@ -31,6 +31,7 @@ public class reuploadFile extends HttpServlet {
             throws ServletException, IOException {
 
         int AP_ID = Integer.parseInt(request.getParameter("apID"));
+        String refNo = String.valueOf(request.getParameter("refNo"));
         InputStream is = null;
         String fileName = null;
         // Part list (multi files).
@@ -52,7 +53,8 @@ public class reuploadFile extends HttpServlet {
             reUpFile.setBlob(2,is);
             reUpFile.setInt(3,AP_ID);
             reUpFile.executeUpdate();
-            
+
+            response.sendRedirect(request.getContextPath()+"/BPLSRtSlip.jsp?refNo="+refNo);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ $(document).ready(function () {
             confirmButtonText: "Confirm!",
             showCancelButton: true,
             cancelButtonText: 'Cancel',
-        }).then((result) = > {
+        }).then((result) => {
             if(result.value
     )
         {
@@ -38,7 +38,7 @@ $(document).ready(function () {
                         title: 'DONE!.',
                         text: 'Succesfully Processed',
                         confirmButtonText: 'OK'
-                    }).then((result) = > {
+                    }).then((result) => {
                         if(result.value
                 )
                     {

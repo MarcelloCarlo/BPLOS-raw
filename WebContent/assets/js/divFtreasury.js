@@ -36,7 +36,7 @@ $("#btnTresNewAppl").click(function () {
         confirmButtonText: "Confirm!",
         showCancelButton: true,
         cancelButtonText: 'Cancel',
-    }).then((result) = > {
+    }).then((result) => {
         if(result.value
 )
     {
@@ -53,7 +53,7 @@ $("#btnTresNewAppl").click(function () {
                     title: 'DONE!.',
                     text: 'Succesfully Processed',
                     confirmButtonText: 'OK'
-                }).then((result) = > {
+                }).then((result) => {
                     if(result.value
             )
                 {

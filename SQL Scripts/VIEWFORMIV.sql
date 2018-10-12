@@ -46,4 +46,4 @@ CREATE VIEW view_applicationformsiv AS
          INNER JOIN bpls_t_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN bpls_t_inspections INS ON INS.INS_AP_REFERENCE_NO = AP_REFERENCE_NO
          INNER JOIN bpls_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
-  WHERE AP.AP_DIV_CODE_TO = 'DIV-INV';
+  WHERE AP.AP_DIV_CODE_TO = 'DIV-INV' AND NOT AP_STATUS = 'Terminated';

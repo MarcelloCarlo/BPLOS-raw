@@ -14,4 +14,4 @@ CREATE VIEW view_applicationformsrel AS
          JOIN bpls_t_taxbill T ON BPA.TB_ID = T.TB_ID
          JOIN bpls_r_business_nature NT ON BU.BN_ID = NT.BN_ID
          JOIN bpls_t_employee_profile EMP ON T.ASSESSED_BY = EMP.EP_ID
-  WHERE BPA.AP_DIV_CODE_TO = 'DIV-REL';
+  WHERE BPA.AP_DIV_CODE_TO = 'DIV-REL' AND NOT AP_STATUS = 'Terminated';

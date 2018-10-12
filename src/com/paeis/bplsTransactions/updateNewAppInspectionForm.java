@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class updateNewAppInspectionForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
-
+    private String divCode = "",divName ="";
     {
         try {
             connection = connect.getConnection();
@@ -75,10 +76,33 @@ public class updateNewAppInspectionForm extends HttpServlet {
             passIns.setString(7,MISC_INS);
             passIns.setString(8,MISC_REMARKS);
             passIns.executeUpdate();
-            PreparedStatement assessIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement assessIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-AS', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             assessIns.setString(1,MISC_REMARKS);
             assessIns.setString(2,AP_REFERENCE_NO);
             assessIns.executeUpdate();
+
+            //Record
+
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, AP_REFERENCE_NO);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            while (rsAP.next()){
+                divCode = rsAP.getString("AP_DIV_CODE_TO");
+            }
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME,TL_REMARKS) VALUES (?,?,?,?)");
+            recHist.setString(1, AP_REFERENCE_NO);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.setString(4,MISC_REMARKS);
+            recHist.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,6 +126,30 @@ public class updateNewAppInspectionForm extends HttpServlet {
             updateIns.setString(1,MISC_REMARKS);
             updateIns.setString(2,AP_REFERENCE_NO);
             updateIns.executeUpdate();
+
+            //Record
+
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, AP_REFERENCE_NO);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            while (rsAP.next()){
+                divCode = rsAP.getString("AP_DIV_CODE_TO");
+            }
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME,TL_REMARKS) VALUES (?,?,?,?)");
+            recHist.setString(1, AP_REFERENCE_NO);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.setString(4,MISC_REMARKS);
+            recHist.executeUpdate();
+
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

@@ -15,6 +15,7 @@ import java.sql.SQLException;
 @MultipartConfig
 public class assessApplication extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private String divCode = "", divName ="";
 
     public assessApplication() {
         super();
@@ -94,6 +95,28 @@ public class assessApplication extends HttpServlet {
             updAppl.setInt(1,TB_ID);
             updAppl.setString(2,AP_REFERENCE_NO);
             updAppl.executeUpdate();
+
+            //Record
+
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
+            getAPinfo.setString(1, AP_REFERENCE_NO);
+            ResultSet rsAP = getAPinfo.executeQuery();
+            while (rsAP.next()){
+                divCode = rsAP.getString("AP_DIV_CODE_TO");
+            }
+
+            PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
+            getDivName.setString(1, divCode);
+            ResultSet rsDivName = getDivName.executeQuery();
+            while (rsDivName.next()) {
+                divName = rsDivName.getString("DIV_NAME");
+            }
+
+            PreparedStatement recHist = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_ap_history(TL_AP_NO, TL_DIV_CODE, TL_DIV_NAME) VALUES (?,?,?)");
+            recHist.setString(1, AP_REFERENCE_NO);
+            recHist.setString(2, divCode);
+            recHist.setString(3, divName);
+            recHist.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             response.getWriter().print(e);
