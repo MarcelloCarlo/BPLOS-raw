@@ -40,7 +40,14 @@
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="BPLSEIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Processing</span></a></li>
-        <li><a href="BPLSEReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-gears"></i>
+                <span>Reports</span>
+            </a>
+            <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>

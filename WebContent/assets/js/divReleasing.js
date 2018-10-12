@@ -40,7 +40,7 @@ $(document).ready(function () {
 					    confirmButtonText: 'OK'
 				    }).then((result) => {
 					    if(result.value){
-					    console.log(eeee);
+					    	console.log(response);
 					    var oRX = "?bpNo=" + response;
 						//$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
 						window.location.replace("BPLSBsnsPermit.jsp"+oRX);

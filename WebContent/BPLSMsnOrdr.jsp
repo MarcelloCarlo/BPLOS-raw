@@ -53,7 +53,7 @@ String headIns = request.getParameter("headIns");
 String chiefBp = request.getParameter("chiefBp");
 String insOfficer = request.getParameter("insOfficer");
 String insOfficer1 = request.getParameter("insOfficer1");
-String bu_pres,tp_name,bu_loc,bu_name,bn_name;
+String bu_pres,tp_name="",bu_loc="",bu_name ="",bn_name="";
 LGUConnect connect = new LGUConnect();
 try{
 Connection concc = connect.getConnection();
@@ -106,7 +106,7 @@ Connection concc = connect.getConnection();
                     <br>
                     <br>
                     <p>
-                        <strong>M.</strong>_________________<br/>
+                        <strong>M.</strong><%=tp_name%><br/>
                         ___________________<br/>
                         ___________________<br/>
                         <strong>Quezon City, Metro Manila</strong>
@@ -114,9 +114,9 @@ Connection concc = connect.getConnection();
                     <p>
                         <strong>Sir/Madam</strong>
                         Please be informed that the bearer, License Inspector/s of this Office whose names and signature/s appear below is/are
-                        hereby authorized to conduct an inspection on your business establishment ____________________________________________<br/>
-                        Operating as ___________________________________________________________<br/>
-                        Located at _____________________________________________________________<br/>
+                        hereby authorized to conduct an inspection on your business establishment <%=bu_name%><br/>
+                        Operating as <%=bn_name%><br/>
+                        Located at <%=bu_loc%><br/>
                         Quezon City, Metro Manila, pursuant to the 1993 Revised Quezon City Revenue Code.
                     </p>
                     <p>
@@ -129,11 +129,11 @@ Connection concc = connect.getConnection();
                     <br>
                     <br>
                     <p class="pull-left">
-                        _______________________________<br/>
+                        <%=insOfficer%><br/>
                         Licence Inspector/Officer
                     </p>
                     <p class="pull-right">
-                        _______________________________<br/>
+                        <%=insOfficer1%><br/>
                         Licence Inspector/Officer
                     </p>
                     <br>
