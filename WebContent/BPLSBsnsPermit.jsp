@@ -174,125 +174,57 @@
                         </tr>
                         </tbody>
                     </table>
-                    <%--<table class="table table-invoice">--%>
-                    <%--<thead>--%>
-                    <%--<tr>--%>
-                    <%--<th width="25%">&nbsp</th>--%>
-                    <%--<th width="25%">&nbsp</th>--%>
-                    <%--<th class="text-right">PARTICULARS</th>--%>
-                    <%--<th class="text-left">OF PAYMENT</th>--%>
-                    <%--</tr>--%>
-                    <%--</thead>--%>
-                    <%--<tbody>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Official Receipt No.</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Date of Payment</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Period Recovered</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Permit Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">City Tax</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Garbage Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Sanitary Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Building Inspection Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Electrical Inspection Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Plumbing Inspection Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Signboard Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Fire Inspection Fee</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Penalty & Interest</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--<tr>--%>
-                    <%--<td> </td>--%>
-                    <%--<td> </td>--%>
-                    <%--<td class="text-center">Plate / Sticker</td>--%>
-                    <%--<td> </td>--%>
-                    <%--</tr>--%>
-                    <%--</tbody>--%>
-                    <%--</table>--%>
+                    <div class="panel-body">
+                        <h5 class="pull-right text-center">
+                            PARTICULARS OF PAYMENT<br/>
+                        </h5>
+                        <br>
+                        <br>
+                        <p class="pull-right">
+                            Official Receipt No.<br/>
+                            Date of Payment<br/>
+                            Period Covered<br/>
+                            Permit Fee<br/>
+                            City Tax<br/>
+                            Garbage Fee<br/>
+                            Sanitary Fee<br/>
+                            Building Inspection Fee<br/>
+                            Electrical Inspection Fee<br/>
+                            Plumbing Inspection Fee<br/>
+                            Signboard Fee<br/>
+                            Fire Inspection Fee<br/>
+                            Penalty & Interest<br/>
+                            Plate/Sticker
+                        </p>
+                        <br>
+                        <br>
+                        <br>
+                        <p class="pull-right">
+                            <strong>Total Amount Paid</strong>
+                        </p>
                 </div>
 
-                <div class="invoice-price">
-                    <div class="invoice-price-left">
-                        <div class="invoice-price-row">
-                            <%--<div class="sub-price">--%>
-                            <%--<small>SUBTOTAL</small>--%>
-                            <%--$4,500.00--%>
-                            <%--</div>--%>
-                            <%--<div class="sub-price">--%>
-                            <%--<i class="fa fa-plus"></i>--%>
-                            <%--</div>--%>
-                            <%--<div class="sub-price">--%>
-                            <%--<small>PAYPAL FEE (5.4%)</small>--%>
-                            <%--$108.00--%>
-                            <%--</div>--%>
-                        </div>
-                    </div>
-                    <div class="invoice-price-right">
-                        <small>TOTAL</small>
-                        Insert Total Here
-                    </div>
-                </div>
+                <%--<div class="invoice-price">--%>
+                    <%--<div class="invoice-price-left">--%>
+                        <%--<div class="invoice-price-row">--%>
+                            <%--&lt;%&ndash;<div class="sub-price">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<small>SUBTOTAL</small>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;$4,500.00&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<div class="sub-price">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<i class="fa fa-plus"></i>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<div class="sub-price">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<small>PAYPAL FEE (5.4%)</small>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;$108.00&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="invoice-price-right">--%>
+                        <%--<small>TOTAL</small>--%>
+                        <%--Insert Total Here--%>
+                    <%--</div>--%>
+                <%--</div>--%>
             </div>
             <div class="invoice-note">
                 * Write the number and date of this receipt on the back of the treasury warrant, check or money order
