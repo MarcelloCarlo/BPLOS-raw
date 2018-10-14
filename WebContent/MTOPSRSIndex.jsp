@@ -97,27 +97,44 @@
                             <tbody>
                             <%while (rsRel.next()) {%>
                             <tr>
-                                <td><%=rsRel.getString("AP_REFERENCE_NO")%>
-                                </td>
-                                <td><%=rsRel.getString("TP_NAME")%>
-                                </td>
-                                <td><%=rsRel.getString("BN_NAME")%>
-                                </td>
-                                <td><%=rsRel.getString("TB_DATE_BILLED")%>
-                                </td>
-                                <td class="hide"><%=rsRel.getInt("TB_ID")%>
+                                <td>
+                                    123-4567
                                 </td>
                                 <td>
-                                    <button
-                                            type="button"
-                                            class="btn btn-success modalRel"
-                                            data-toggle="modal"
-                                            data-target="#modal-processpayment" title="Release of Business Permit"
-                                    ><i class="fa fa-lg fa-money"></i>
-                                    </button>
+                                    Tricycle Driver
                                 </td>
-
+                                <td>
+                                    Commonwealth
+                                </td>
+                                <td>
+                                    10/13/2018
+                                </td>
+                                <td>
+                                    Action
+                                </td>
                             </tr>
+                            <%--<tr>--%>
+                                <%--<td><%=rsRel.getString("AP_REFERENCE_NO")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=rsRel.getString("TP_NAME")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=rsRel.getString("BN_NAME")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=rsRel.getString("TB_DATE_BILLED")%>--%>
+                                <%--</td>--%>
+                                <%--<td class="hide"><%=rsRel.getInt("TB_ID")%>--%>
+                                <%--</td>--%>
+                                <%--<td>--%>
+                                    <%--<button--%>
+                                            <%--type="button"--%>
+                                            <%--class="btn btn-success modalRel"--%>
+                                            <%--data-toggle="modal"--%>
+                                            <%--data-target="#modal-processpayment" title="Release of Business Permit"--%>
+                                    <%--><i class="fa fa-lg fa-money"></i>--%>
+                                    <%--</button>--%>
+                                <%--</td>--%>
+
+                            <%--</tr>--%>
                             <%}%>
                             </tbody>
                         </table>

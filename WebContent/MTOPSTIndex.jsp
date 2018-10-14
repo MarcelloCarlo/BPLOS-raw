@@ -104,31 +104,51 @@
 
                             %>
                             <tr>
-                                <td><%=gg3.getString("AP_REFERENCE_NO")%>
-                                </td>
-                                <td><%=gg3.getString("BN_NAME")%>
-                                </td>
-                                <td><%=gg3.getString("TP_NAME")%>
-                                </td>
-                                <td><%=gg3.getString("TP_HOME_ADDRESS")%>
-                                </td>
-                                <td><%=gg3.getString("TB_DATE_BILLED")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("TB_ID")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("EMP_NAME")%>
+                                <td>
+                                    123-4567
                                 </td>
                                 <td>
-                                    <button
-                                            type="button"
-                                            class="btn btn-success"
-                                    <%--  data-toggle="modal"
-                                      data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
-                                            title="Payment for Permit"
-                                    ><i class="fa fa-lg fa-money"></i>
-                                    </button>
+                                    Tricycle Driver
+                                </td>
+                                <td>
+                                    Commonwealth
+                                </td>
+                                <td>
+                                    Commonwealth, Quezon City
+                                </td>
+                                <td>
+                                    10/13/2018
+                                </td>
+                                <td>
+                                    Action
                                 </td>
                             </tr>
+                            <%--<tr>--%>
+                                <%--<td><%=gg3.getString("AP_REFERENCE_NO")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=gg3.getString("BN_NAME")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=gg3.getString("TP_NAME")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=gg3.getString("TP_HOME_ADDRESS")%>--%>
+                                <%--</td>--%>
+                                <%--<td><%=gg3.getString("TB_DATE_BILLED")%>--%>
+                                <%--</td>--%>
+                                <%--<td class="hide"><%=gg3.getString("TB_ID")%>--%>
+                                <%--</td>--%>
+                                <%--<td class="hide"><%=gg3.getString("EMP_NAME")%>--%>
+                                <%--</td>--%>
+                                <%--<td>--%>
+                                    <%--<button--%>
+                                            <%--type="button"--%>
+                                            <%--class="btn btn-success"--%>
+                                    <%--&lt;%&ndash;  data-toggle="modal"--%>
+                                      <%--data-target="#modal-processpayment"&ndash;%&gt; onclick="<%=lastPart%>"--%>
+                                            <%--title="Payment for Permit"--%>
+                                    <%--><i class="fa fa-lg fa-money"></i>--%>
+                                    <%--</button>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
                             <%
                                 }
                             %>

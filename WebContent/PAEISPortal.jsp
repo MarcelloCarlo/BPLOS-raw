@@ -73,7 +73,7 @@
                     <select id="newForm" class="form-control">
                         <option value="nSing">Business Application Form (Single)</option>
                         <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
-                        <option value="nSing">MTOPS Application Form </option>
+                        <option value="Mtops">MTOPS Application Form </option>
                     </select>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>

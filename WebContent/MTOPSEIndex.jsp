@@ -207,106 +207,123 @@
                                             }
                                 %>
                                 <tr>
-                                    <td><%=gg3.getString("BU_NAME")%>
-                                    </td><!--0-->
-                                    <td><%=gg3.getString("BN_NAME")%>
-                                    </td><!--1-->
-                                    <td><%=gg3.getString("AP_STATUS")%>
-                                    </td>
-                                    <td><%=gg3.getString("AP_DATE")%>
-                                    </td><!--5-->
-                                    <td class="hide"><%=gg3.getString("BU_PRESIDENT")%>
+                                    <td>
+                                        Tricycle Driver
                                     </td>
                                     <td>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success <%=modalClass%> "
-                                                data-toggle="modal"
-                                                data-target="<%=modalMode%>" <%=btnTitle%>
-                                        ><%=btnIcon%>
-                                        </button>
-                                    </td><!--7-->
-                                    <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
+                                        Commonwealth
                                     </td>
-                                    <td class="hide"><%=gg3.getString("BU_LOCATION")%>
+                                    <td>
+                                        Status
                                     </td>
-                                    <td class="hide"><%=gg3.getString("BU_CONTACT")%>
+                                    <td>
+                                        10/13/2018
                                     </td>
-                                    <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%>
-                                    </td>
-                                    <td
-                                            class="hide"
-                                            id="AT_ID"
-                                            name="AT_ID"
-                                    ><%=gg3.getString("AT_ID")%>
-                                    </td>
-                                    <!-- 14 -->
-                                    <td
-                                            class="hide"
-                                            id="AP_ID"
-                                            name="AP_ID"
-                                    ><%=gg3.getString("AP_ID")%>
-                                    </td>
-                                    <!-- 15 -->
-                                    <td class="hide"><%=String.valueOf(gg3.getString("AT_BRGY_CLEARANCE"))%>
-                                    </td><!-- 16 -->
-                                    <td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TAX_DECLARATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_CONTRACT_OF_LEASE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_LESSORS_BP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_AUTHORIZATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_LOCATIONAL_CLR")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_SANITARY_HEALTH_CERT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_BUILDING_PERMIT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_POLLUTION_CLR")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_MECHANICAL_PERMIT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_ELECTRICAL_INSP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_POLICE_CLEARANCE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_CTAO_CLEARANCE_CERT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_FSIC")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_PREV_BP")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_TAX_BILL")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_OFFICIAL_RECEIPT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AP_Remarks")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                    </td>
-                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("OT_CODE")%>
-                                    </td>
-                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>
+                                    <td>
+                                        Action
                                     </td>
                                 </tr>
+                                <%--<tr>--%>
+                                    <%--<td><%=gg3.getString("BU_NAME")%>--%>
+                                    <%--</td><!--0-->--%>
+                                    <%--<td><%=gg3.getString("BN_NAME")%>--%>
+                                    <%--</td><!--1-->--%>
+                                    <%--<td><%=gg3.getString("AP_STATUS")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td><%=gg3.getString("AP_DATE")%>--%>
+                                    <%--</td><!--5-->--%>
+                                    <%--<td class="hide"><%=gg3.getString("BU_PRESIDENT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td>--%>
+                                        <%--<button--%>
+                                                <%--type="button"--%>
+                                                <%--class="btn btn-success <%=modalClass%> "--%>
+                                                <%--data-toggle="modal"--%>
+                                                <%--data-target="<%=modalMode%>" <%=btnTitle%>--%>
+                                        <%--><%=btnIcon%>--%>
+                                        <%--</button>--%>
+                                    <%--</td><!--7-->--%>
+                                    <%--<td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("BU_LOCATION")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("BU_CONTACT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AUTH_REPNAME")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_UNIFIED_FILE_NAME")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td--%>
+                                            <%--class="hide"--%>
+                                            <%--id="AT_ID"--%>
+                                            <%--name="AT_ID"--%>
+                                    <%--><%=gg3.getString("AT_ID")%>--%>
+                                    <%--</td>--%>
+                                    <%--<!-- 14 -->--%>
+                                    <%--<td--%>
+                                            <%--class="hide"--%>
+                                            <%--id="AP_ID"--%>
+                                            <%--name="AP_ID"--%>
+                                    <%--><%=gg3.getString("AP_ID")%>--%>
+                                    <%--</td>--%>
+                                    <%--<!-- 15 -->--%>
+                                    <%--<td class="hide"><%=String.valueOf(gg3.getString("AT_BRGY_CLEARANCE"))%>--%>
+                                    <%--</td><!-- 16 -->--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_DTI_REGISTRATION")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_SEC_REGISTRATION")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_TITLE_TO_PROPERTY")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_TAX_DECLARATION")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_CONTRACT_OF_LEASE")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_LESSORS_BP")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_AUTHORIZATION")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_LOCATIONAL_CLR")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_SANITARY_HEALTH_CERT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_BUILDING_PERMIT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_POLLUTION_CLR")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_MECHANICAL_PERMIT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_ELECTRICAL_INSP")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_POLICE_CLEARANCE")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_CTAO_CLEARANCE_CERT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_FSIC")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_PREV_BP")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_TAX_BILL")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_OFFICIAL_RECEIPT")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_PCAB_LICENSE")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AT_MISC_DOCUMENTS")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("AP_Remarks")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("BN_NAME")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td class="hide"><%=gg3.getString("OT_CODE")%>--%>
+                                    <%--</td>--%>
+                                    <%--<td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>--%>
+                                    <%--</td>--%>
+                                <%--</tr>--%>
                                 <%
                                         }
                                     } catch (SQLException | ClassNotFoundException e) {
