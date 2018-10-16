@@ -64,4 +64,4 @@ CREATE VIEW view_applicationformsev AS
          INNER JOIN bpls_t_authorize_rep AR ON AR.AR_ID = BUxAR.AR_ID
          INNER JOIN bpls_t_attachments ATC ON ATC.AP_ID = AP.AP_ID
          INNER JOIN bpls_r_division DIVS ON DIVS.DIV_CODE = AP.AP_DIV_CODE_TO
-  WHERE (AP.AP_DIV_CODE_TO = 'DIV-EV' OR AP.AP_DIV_CODE_TO = 'DIV-REV' OR AP.AP_DIV_CODE_TO = 'DIV-AS') AND (AP.AP_STATUS = 'Pending' OR AP.AP_STATUS = 'Assess') AND NOT AP_STATUS = 'Terminated';
+  WHERE (AP.AP_DIV_CODE_TO = 'DIV-EV' OR AP.AP_DIV_CODE_TO = 'DIV-REV') AND AP.AP_STATUS = 'Pending' AND NOT AP_STATUS = 'Terminated';

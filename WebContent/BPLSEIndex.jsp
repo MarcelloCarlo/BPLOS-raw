@@ -222,7 +222,7 @@
                                 <tr>
                                     <td><%=gg3.getString("BU_NAME")%>
                                     </td><!--0-->
-                                    <td><%=gg3.getString("BN_NAME")%> (<%=classif%>)
+                                    <td><%=gg3.getString("BN_NAME")%>
                                     </td><!--1-->
                                     <td><%=gg3.getString("OT_NAME")%>
                                     </td><!--2-->

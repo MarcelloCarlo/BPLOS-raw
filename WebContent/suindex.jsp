@@ -108,6 +108,7 @@
             </a>
             <ul class="sub-menu">
                 <li><a href="BPLSEIndex.jsp"><i class="fa fa-file-text"></i> <span>Evaluation</span></a></li>
+                <li><a href="BPLSAIndex.jsp"><i class="fa fa-file-text"></i> <span>Assessment</span></a></li>
                 <li><a href="BPLSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Inspection</span></a></li>
                 <li><a href="BPLSIVIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Investigation</span></a></li>
                 <li><a href="BPLSTIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Treasury</span></a></li>
