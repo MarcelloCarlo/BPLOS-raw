@@ -71,7 +71,7 @@ public class updateNewAppInvestigationForm extends HttpServlet {
             passInv.setString(1, MISC_REMARKS);
             passInv.setString(2, AP_REFERENCE_NO);
             passInv.executeUpdate();
-            PreparedStatement assessInv = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement assessInv = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-AS', AP_DIV_CODE_FROM = 'DIV-INV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
             assessInv.setString(1, MISC_REMARKS);
             assessInv.setString(2, AP_REFERENCE_NO);
             assessInv.executeUpdate();
