@@ -124,8 +124,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Applicant's Name*</label>
-                                                    <input type="text" id="txtNSingTaxPayLName"
-                                                           name="txtNSingTaxPayLName" placeholder="Last Name"
+                                                    <input type="text" id="txtApplicantLName"
+                                                           name="txtApplicantLName" placeholder="Last Name"
                                                            class="form-control" required
                                                            data-parsley-group="wizard-st-1"/>
                                                 </div>
@@ -133,8 +133,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingTaxPayFName"
-                                                           name="txtNSingTaxPayFName" placeholder="First Name"
+                                                    <input type="text" id="txtApplicantFName"
+                                                           name="txtApplicantFName" placeholder="First Name"
                                                            class="form-control" data-parsley-group="wizard-st-1"
                                                            required/>
                                                 </div>
@@ -142,8 +142,8 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingTaxPayMName"
-                                                           name="txtNSingTaxPayMName" placeholder="Middle Name"
+                                                    <input type="text" id="txtApplicantMName"
+                                                           name="txtApplicantMName" placeholder="Middle Name"
                                                            class="form-control" data-parsley-group="wizard-st-1"
                                                            required/>
                                                 </div>
@@ -156,7 +156,7 @@
                                                     <label>Birthdate*</label>
                                                     <input type="text" class="form-control date"
                                                            id="dateNSingBussDTIReg"
-                                                           name="dateNSingBussDTIReg" data-parsley-group="wizard-st-1"
+                                                           name="BDateApplicant" data-parsle-group="wizard-st-1"
                                                            required/>
                                                 </div>
                                             </div>
@@ -165,7 +165,7 @@
                                                 <div class="form-group">
                                                     <label>Sex</label>
                                                     <div class="controls">
-                                                        <select name="gender" class="form-control">
+                                                        <select name="genderApplicant" class="form-control">
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
                                                         </select>
@@ -179,8 +179,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Applicant's Address*</label>
-                                                    <input type="text" id="txtNSingBussOwnHsNum"
-                                                           name="txtNSingBussOwnHsNum" placeholder="House No."
+                                                    <input type="text" id="txtApplicantOwnHsNum"
+                                                           name="txtApplicantOwnHsNum" placeholder="House No."
                                                            class="form-control" data-parsley-group="wizard-st-1"
                                                            required/>
                                                 </div>
@@ -188,8 +188,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussOwnStrt"
-                                                           name="txtNSingBussOwnStrt" placeholder="Street"
+                                                    <input type="text" id="txtApplicantOwnStrt"
+                                                           name="txtApplicantOwnStrt" placeholder="Street"
                                                            class="form-control" data-parsley-group="wizard-st-1"
                                                            required/>
                                                 </div>
@@ -197,8 +197,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussOwnBrgy"
-                                                           name="txtNSingBussOwnBrgy" placeholder="Barangay"
+                                                    <input type="text" id="txtApplicantOwnBrgy"
+                                                           name="txtApplicantOwnBrgy" placeholder="Barangay"
                                                            class="form-control" data-parsley-group="wizard-st-1"
                                                            required/>
                                                 </div>
@@ -206,8 +206,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
-                                                    <input type="text" id="txtNSingBussOwnCity"
-                                                           name="txtNSingBussOwnCity" placeholder="City"
+                                                    <input type="text" id="txtApplicantOwnCity"
+                                                           name="txtApplicantOwnCity" placeholder="City"
                                                            class="form-control" data-parsley-group="wizard-st-1"
                                                            required/>
                                                 </div>
@@ -229,8 +229,8 @@
                                                 <div class="form-group">
                                                     <label>Telephone Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussTelNo"
-                                                               name="txtNSingBussTelNo" placeholder="Telephone Number"
+                                                        <input type="text" id="txtApplicantTelNo"
+                                                               name="txtApplicantTelNo" placeholder="Telephone Number"
                                                                class="form-control" data-parsley-group="wizard-st-2"
                                                                required/>
                                                     </div>
@@ -240,8 +240,8 @@
                                                 <div class="form-group">
                                                     <label>Mailing Address*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussFaxNo"
-                                                               name="txtNSingBussFaxNo" placeholder="Mailing Address"
+                                                        <input type="text" id="txtApplicantMailAdd"
+                                                               name="txtApplicantMailAdd" placeholder="Mailing Address"
                                                                class="form-control" data-parsley-group="wizard-st-2"
                                                                required/>
                                                     </div>
@@ -252,7 +252,7 @@
                                                     <label>Email*</label>
                                                     <div class="controls">
                                                         <input type="text" id=" "
-                                                               name="txtNSingBussFaxNo" placeholder="Email"
+                                                               name="txtApplicantEmail" placeholder="Email"
                                                                class="form-control" data-parsley-group="wizard-st-2"
                                                                required/>
                                                     </div>
@@ -262,8 +262,8 @@
                                                 <div class="form-group">
                                                     <label>Plate Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="dd"
-                                                               name="txtNSingBussFaxNo" placeholder="Plate Number"
+                                                        <input type="text" id="txtApplicantPlateNo"
+                                                               name="txtApplicantPlateNo" placeholder="Plate Number"
                                                                class="form-control" data-parsley-group="wizard-st-2"
                                                                required/>
                                                     </div>
@@ -277,8 +277,8 @@
                                                 <div class="form-group">
                                                     <label>TODA</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingEmpSSSNo"
-                                                               name="txtNSingEmpSSSNo" placeholder="TODA"
+                                                        <input type="text" id="txtApplicantTODA"
+                                                               name="txtApplicantTODA" placeholder="TODA"
                                                                class="form-control" data-parsley-group="wizard-st-2"
                                                                required/>
                                                     </div>
@@ -301,8 +301,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>TIN No.*</label>
-                                                    <input type="text" id="txtNSingTaxPayTINNo"
-                                                           name="txtNSingTaxPayTINNo" placeholder="TIN (9-12 Digits)"
+                                                    <input type="text" id="txtApplicantTINNo"
+                                                           name="txtApplicantTINNo" placeholder="TIN (9-12 Digits)"
                                                            class="form-control" data-parsley-group="wizard-st-2"
                                                            required/>
                                                 </div>
@@ -311,8 +311,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Driver's Licence*</label>
-                                                    <input type="text" id="licenceee"
-                                                           name="txtNSingTaxPayTINNo" placeholder="Driver's Licence"
+                                                    <input type="text" id="txtApplicantDriverLic"
+                                                           name="txtApplicantDriverLic" placeholder="Driver's Licence"
                                                            class="form-control" data-parsley-group="wizard-st-2"
                                                            required/>
                                                 </div>
@@ -333,8 +333,8 @@
                                                 <div class="form-group">
                                                     <label>Name of Authorized Representative*</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussRepLName"
-                                                               name="txtNSingBussRepLName" placeholder="Last Name"
+                                                        <input type="text" id="txtApplicantRepLName"
+                                                               name="txtApplicantRepLName" placeholder="Last Name"
                                                                class="form-control" data-parsley-group="wizard-st-3"
                                                                required/>
                                                     </div>
@@ -344,8 +344,8 @@
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussRepFName"
-                                                               name="txtNSingBussRepFName" placeholder="First Name"
+                                                        <input type="text" id="txtApplicantRepFName"
+                                                               name="txtApplicantRepFName" placeholder="First Name"
                                                                class="form-control" data-parsley-group="wizard-st-3"
                                                                required/>
                                                     </div>
@@ -355,8 +355,8 @@
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtNSingBussRepMName"
-                                                               name="txtNSingBussRepMName" placeholder="Middle Name"
+                                                        <input type="text" id="txtApplicantRepMName"
+                                                               name="txtApplicantRepMName" placeholder="Middle Name"
                                                                class="form-control" data-parsley-group="wizard-st-3"
                                                                required/>
                                                     </div>
@@ -369,8 +369,8 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Home Address of Authorized Representative*</label>
-                                                    <input type="text" id="txtNSingBussRepAddr"
-                                                           name="txtNSingBussRepAddr" placeholder="Home Address"
+                                                    <input type="text" id="txtApplicantRepAddr"
+                                                           name="txtApplicantRepAddr" placeholder="Home Address"
                                                            class="form-control" data-parsley-group="wizard-st-3"
                                                            required/>
                                                 </div>
@@ -381,8 +381,8 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Birthdate*</label>
-                                                    <input type="text" class="form-control date1" id="dateNdate"
-                                                           name="dateNdate" data-parsley-group="wizard-st-3" required/>
+                                                    <input type="text" class="form-control date1" id="ApplicantRepBDate"
+                                                           name="ApplicantRepBDate" data-parsley-group="wizard-st-3" required/>
                                                 </div>
                                             </div>
 
@@ -390,7 +390,7 @@
                                                 <div class="form-group">
                                                     <label>Sex</label>
                                                     <div class="controls">
-                                                        <select name="gender" class="form-control">
+                                                        <select name="ApplicantRepgender" class="form-control">
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
                                                         </select>
@@ -401,7 +401,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Email</label>
-                                                    <input type="text" name="bdate" placeholder="Email"
+                                                    <input type="text" name="ApplicantRepEmail" placeholder="Email"
                                                            class="form-control" data-parsley-group="wizard-st-3"
                                                            required/>
                                                 </div>
@@ -410,7 +410,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Phone Number</label>
-                                                    <input type="text" name="bdate" placeholder="Phone Number"
+                                                    <input type="text" name="ApplicantRepPhoneNo" placeholder="Phone Number"
                                                            class="form-control" data-parsley-group="wizard-st-3"
                                                            required/>
                                                 </div>
@@ -432,8 +432,8 @@
                                                     <div class="controls fileupload-buttonbar">
 
                                                         <span>Add files...</span>
-                                                        <input type="file" name="fileUnifiedRequirements"
-                                                               id="fileUnifiedRequirements"
+                                                        <input type="file" name="ApplicantfileUnifiedRequirements"
+                                                               id="ApplicantfileUnifiedRequirements"
                                                                accept=".doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
                                                                data-parsley-group="wizard-st-7" required>
 
