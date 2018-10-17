@@ -89,6 +89,9 @@ public class LoginServlet extends HttpServlet {
                 } else if (empDIV.equals("DIV-REL")) {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSRSIndex.jsp");
                     dispatcher.forward(request, response);
+                } else if (empDIV.equals("DIV-AS")) {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSAIndex.jsp");
+                    dispatcher.forward(request, response);
                 }
             } else {
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISPortal.jsp");
