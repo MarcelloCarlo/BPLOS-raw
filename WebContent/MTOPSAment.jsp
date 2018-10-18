@@ -33,7 +33,8 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
-    <title>BPLS | Franchising</title>
+    <link rel="icon" href="extras/logo1.png">
+    <title>MTOPS | Franchise Assessment</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%-- <link
              href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
@@ -109,7 +110,7 @@
     <span class="spinner"></span>
 </div>
 <!-- end #page-loader -->
-<jsp:include page="BPLSFrnchsngComponent.jsp"/>
+<jsp:include page="MTOPSAmentComponent.jsp"/>
 <div
         id="page-container"
         class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"
@@ -122,18 +123,18 @@
         <div class="">
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
-                <li><a href="javascript:;">Franchising</a></li>
-                <li class="active">Franchise Processing</li>
+                <li><a href="javascript:;">Franchise Assessment</a></li>
+                <li class="active">Franchise Assessment Processing</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header">Franchise Processing</h1>
+            <h1 class="page-header">Franchise Assessment Processing</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">
                     <!-- begin panel -->
                     <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Franchising Table</h4>
+                            <h4 class="panel-title">Franchising Assessment Table</h4>
                         </div>
                         <div class="panel-body">
                             <table
@@ -823,7 +824,7 @@
     </div>
 </div>
 
-<jsp:include page="BPLSFrnchsngFooter.jsp"></jsp:include>
+<jsp:include page="MTOPSAmentFooter.jsp"></jsp:include>
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/js/jquery.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>

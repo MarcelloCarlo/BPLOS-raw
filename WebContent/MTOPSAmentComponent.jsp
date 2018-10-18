@@ -46,7 +46,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="BPLSFrnchsng.jsp"><i class="fa fa-file-text"></i> <span>Franchise Processing</span></a></li>
+        <li><a href="MTOPSAment.jsp"><i class="fa fa-file-text"></i> <span>Franchise Assessment Processing</span></a></li>
         <%--<li class="has-sub">--%>
             <%--<a href="javascript:;">--%>
                 <%--<b class="caret pull-right"></b>--%>

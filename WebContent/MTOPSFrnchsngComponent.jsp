@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Li Ven
-  Date: 10/12/2018
-  Time: 2:14 PM
+  Date: 10/19/2018
+  Time: 6:57 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"> PAEIS/MTOPS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> BPLS</a>
             <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -46,7 +46,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="MTOPSTIndex.jsp"><i class="fa fa-money"></i> <span>Payment Processing</span></a></li>
+        <li><a href="MTOPSFrnchsng.jsp"><i class="fa fa-file-text"></i> <span>Franchise Processing</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

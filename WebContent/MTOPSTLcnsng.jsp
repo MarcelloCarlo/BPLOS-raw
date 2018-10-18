@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Li Ven
-  Date: 10/12/2018
-  Time: 2:13 PM
+  Date: 10/18/2018
+  Time: 2:07 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
@@ -19,13 +19,14 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
-    <title>MTOPS | Treasury</title>
+    <title>BPLS | Licensing</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
+    <link rel="icon" href="extras/logo1.png">
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <%--<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">--%>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -55,7 +56,7 @@
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="MTOPSTComponent.jsp"></jsp:include>
+<jsp:include page="BPLSTComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -65,11 +66,11 @@
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
             <li><a href="javascript:;">Treasury</a></li>
-            <li class="active">Payment Processing</li>
+            <li class="active">License Processing</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Payment Processing</h1>
+        <h1 class="page-header">License Processing</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -77,7 +78,7 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Payment Processing Table</h4>
+                        <h4 class="panel-title">License Processing Table</h4>
                     </div>
                     <div class="panel-body">
                         <table
@@ -104,51 +105,31 @@
 
                             %>
                             <tr>
-                                <td>
-                                    123-4567
+                                <td><%=gg3.getString("AP_REFERENCE_NO")%>
+                                </td>
+                                <td><%=gg3.getString("BU_NAME")%>
+                                </td>
+                                <td><%=gg3.getString("BN_NAME")%>
+                                </td>
+                                <td><%=gg3.getString("TP_HOME_ADDRESS")%>
+                                </td>
+                                <td><%=gg3.getString("TB_DATE_BILLED")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("TB_ID")%>
+                                </td>
+                                <td class="hide"><%=gg3.getString("EMP_NAME")%>
                                 </td>
                                 <td>
-                                    Tricycle Driver
-                                </td>
-                                <td>
-                                    Commonwealth
-                                </td>
-                                <td>
-                                    Commonwealth, Quezon City
-                                </td>
-                                <td>
-                                    10/13/2018
-                                </td>
-                                <td>
-                                    Action
+                                    <button
+                                            type="button"
+                                            class="btn btn-success"
+                                    <%--  data-toggle="modal"
+                                      data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
+                                            title="Payment for Permit"
+                                    ><i class="fa fa-lg fa-money"></i>
+                                    </button>
                                 </td>
                             </tr>
-                            <%--<tr>--%>
-                                <%--<td><%=gg3.getString("AP_REFERENCE_NO")%>--%>
-                                <%--</td>--%>
-                                <%--<td><%=gg3.getString("BN_NAME")%>--%>
-                                <%--</td>--%>
-                                <%--<td><%=gg3.getString("TP_NAME")%>--%>
-                                <%--</td>--%>
-                                <%--<td><%=gg3.getString("TP_HOME_ADDRESS")%>--%>
-                                <%--</td>--%>
-                                <%--<td><%=gg3.getString("TB_DATE_BILLED")%>--%>
-                                <%--</td>--%>
-                                <%--<td class="hide"><%=gg3.getString("TB_ID")%>--%>
-                                <%--</td>--%>
-                                <%--<td class="hide"><%=gg3.getString("EMP_NAME")%>--%>
-                                <%--</td>--%>
-                                <%--<td>--%>
-                                    <%--<button--%>
-                                            <%--type="button"--%>
-                                            <%--class="btn btn-success"--%>
-                                    <%--&lt;%&ndash;  data-toggle="modal"--%>
-                                      <%--data-target="#modal-processpayment"&ndash;%&gt; onclick="<%=lastPart%>"--%>
-                                            <%--title="Payment for Permit"--%>
-                                    <%--><i class="fa fa-lg fa-money"></i>--%>
-                                    <%--</button>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
                             <%
                                 }
                             %>
@@ -168,7 +149,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Process Payment</h4>
+                    <h4 class="modal-title">Process Licence</h4>
                 </div>
                 <form class="form-horizontal" id="treasuryNewApplForm" name="treasuryNewApplForm">
                     <div class="modal-body">
@@ -176,9 +157,9 @@
 
                             <h5>Reference Number: <label class="control-label" id="tRefno"></label></h5>
 
-                            <h5>Taxpayer Name: <label class=" control-label" id="tTPN"></label></h5>
+                            <h5>Applicant's Name: <label class=" control-label" id="tBuNa"></label></h5>
 
-                            <h5>TODA: <label class=" control-label" id="tBuNa"></label></h5>
+                            <h5>TODA: <label class=" control-label" id="tBuN"></label></h5>
 
                             <h5>Applicant's Address: <label class=" control-label" id="tTA"></label></h5>
 
@@ -246,7 +227,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="MTOPSTFooter.jsp"></jsp:include>
+<jsp:include page="BPLSTFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
