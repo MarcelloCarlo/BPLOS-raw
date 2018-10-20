@@ -14,8 +14,6 @@ import java.sql.*;
 import java.sql.Connection;
 import java.time.format.DateTimeFormatter;
 
-import com.mysql.jdbc.*;
-
 /**
  * Servlet implementation class LoginServlet
  */
@@ -25,6 +23,7 @@ public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
     private static final DateTimeFormatter stf = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private String divcode = "", empId = "";
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -60,46 +59,72 @@ public class LoginServlet extends HttpServlet {
             ResultSet resultSet = login.executeQuery();
             if (resultSet.next()) {
 
-                String empidDB = resultSet.getString("EP_ID");
+                empId = String.valueOf(resultSet.getInt("EP_ID"));
                 String empfnameDB = resultSet.getString("EP_FNAME");
                 String emplnameDB = resultSet.getString("EP_LNAME");
                 String emppositionDB = resultSet.getString("EP_JOB_DESC");
-                String empDIV = resultSet.getString("U.U_ROLE");
-                String empname = emppositionDB + " : " + empfnameDB + " " + emplnameDB;
+                divcode = resultSet.getString("U.U_ROLE");
+                String empname = "Welcome " + empfnameDB + " " + emplnameDB + " - " + emppositionDB;
 
-                session.setAttribute("empidDB", empidDB);
+                session.setAttribute("empidDB", empId);
                 session.setAttribute("empname", empname);
                 session.setAttribute("emppositionDB", emppositionDB);
+                session.setAttribute("empDiv", divcode);
+                session.setMaxInactiveInterval(30 * 60);
+                recSession(divcode, empId);
+                if (divcode.equals("DIV-SYSAD")) {
 
-                if (empDIV.equals("DIV-SYSAD")) {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("PAEISSAUsrMgmt.jsp");
                     dispatcher.forward(request, response);
-                } else if (empDIV.equals("DIV-EV")) {
+                } else if (divcode.equals("DIV-EV")) {
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSEIndex.jsp");
                     dispatcher.forward(request, response);
-                } else if (empDIV.equals("DIV-INS")) {
+                } else if (divcode.equals("DIV-INS")) {
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSIPIndex.jsp");
                     dispatcher.forward(request, response);
-                } else if (empDIV.equals("DIV-INV")) {
+                } else if (divcode.equals("DIV-INV")) {
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSIVIndex.jsp");
                     dispatcher.forward(request, response);
-                } else if (empDIV.equals("DIV-TRE")) {
+                } else if (divcode.equals("DIV-TRE")) {
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSTIndex.jsp");
                     dispatcher.forward(request, response);
-                } else if (empDIV.equals("DIV-REL")) {
+                } else if (divcode.equals("DIV-REL")) {
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSRSIndex.jsp");
                     dispatcher.forward(request, response);
-                } else if (empDIV.equals("DIV-AS")) {
+                } else if (divcode.equals("DIV-AS")) {
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSAIndex.jsp");
                     dispatcher.forward(request, response);
                 }
             } else {
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISPortal.jsp");
+                session.invalidate();
+                request.setAttribute("errMsg", "<font color=red>Login Error. Please ensure that the Username/Password is correct.</font>");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISLogin.jsp");
                 requestDispatcher.forward(request, response);
             }
         } catch (Exception e) {
             response.getWriter().print(e);
         }
+    }
+
+    private void recSession(String divcode, String empId) {
+        LGUConnect connect = new LGUConnect();
+        try {
+            Connection connection = connect.getConnection();
+            PreparedStatement recAudt = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_audit_trail(AUDT_EP_ID, AUDT_DIV_CODE, AUDT_LOG_IN) VALUES (?,?,NOW())");
+            recAudt.setInt(1, Integer.parseInt(empId));
+            recAudt.setString(2, divcode);
+            recAudt.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

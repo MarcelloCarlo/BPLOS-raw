@@ -83,7 +83,7 @@
             </div>
 
             <div class="tab-pane fade" id="default-tab-3">
-                <form name="loginEmpForm" id="loginEmpForm" action="${pageContext.request.contextPath}/LoginServlet" method="post" novalidate="" data-parsley-validate="">
+                <form name="loginEmpForm" id="loginEmpForm" action="/LoginServlet" method="post" novalidate="" data-parsley-validate="">
                 <h4>Users Login</h4>
 
                     <div class="row">
