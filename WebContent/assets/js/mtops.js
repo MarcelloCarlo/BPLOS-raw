@@ -12,7 +12,7 @@ $(document).ready(function () {
         format: "DD-MM-YYYY"
     });
 
-    $('#submitBtn').click(function () {
+    $('#submitMtopsBtn').click(function () {
         swal.mixin({
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,
@@ -26,13 +26,13 @@ $(document).ready(function () {
             if(result.value
     )
         {
-            var formApplicationFormSingle = $('#applicationFormSingle')[0];
-            var dataApplicationFormSingle = new FormData(formApplicationFormSingle);
+            var formApplicationFormMtops = $('#applicationFormMtops')[0];
+            var dataApplicationFormMtops = new FormData(formApplicationFormMtops);
             $.ajax({
                 type: "POST",
                 enctype: "multipart/form-data",
-                url: "uploadSingleAppForm",
-                data: dataApplicationFormSingle,
+                url: "uploadMtopsApplForm",
+                data: dataApplicationFormMtops,
                 processData: false,
                 contentType: false,
                 success: function (response) {
@@ -61,3 +61,48 @@ $(document).ready(function () {
         return false;
     });
 });
+
+var handleBootstrapWizardsValidation = function () {
+	"use strict";
+	$("#wizard").bwizard({
+		validating: function (e, t) {
+			if (t.index == 0) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-1")) {
+					return false
+				}
+			} else if (t.index == 1) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-2")) {
+					return false
+				}
+			} else if (t.index == 2) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-3")) {
+					return false
+				}
+			} else if (t.index == 3) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-4")) {
+					return false
+				}
+			} else if (t.index == 4) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-5")) {
+					return false
+				}
+			} else if (t.index == 5) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-6")) {
+					return false
+				}
+			} else if (t.index == 6) {
+				if (false === $('form[name="applicationFormMtops"]').parsley().validate("wizard-st-7")) {
+					return false
+				}
+			}
+		}
+	})
+};
+var FormWizardValidation = function () {
+	"use strict";
+	return {
+		init: function () {
+			handleBootstrapWizardsValidation()
+		}
+	}
+}()

@@ -90,7 +90,7 @@
                     </div>
                     <div class="panel-body">
                         <form data-parsley-validate="" novalidate="" enctype="multipart/form-data"
-                              name="applicationFormSingle" id="applicationFormSingle">
+                              name="applicationFormMtops" id="applicationFormMtops">
                             <div id="wizard">
                                 <ol>
                                     <li>
@@ -169,6 +169,7 @@
                                                         <select name="genderApplicant" class="form-control">
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
+                                                            <option value="Other">Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -285,16 +286,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <%--<div class="col-md-6">--%>
-                                            <%--<div class="form-group">--%>
-                                            <%--<label>No of Employees*</label>--%>
-                                            <%--<div class="controls">--%>
-                                            <%--<input type="number" id="numNSingBussEmpQTY"--%>
-                                            <%--name="numNSingBussEmpQTY" placeholder="No of Employees"--%>
-                                            <%--class="form-control" data-parsley-group="wizard-st-3" required/>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
                                         </div>
 
                                         <%--Cards--%>
@@ -382,7 +373,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Birthdate*</label>
-                                                    <input type="text" class="form-control date1" id="ApplicantRepBDate"
+                                                    <input type="text" class="form-control date1" id="dateNSingBussEstRentStart"
                                                            name="ApplicantRepBDate" data-parsley-group="wizard-st-3" required/>
                                                 </div>
                                             </div>
@@ -394,6 +385,7 @@
                                                         <select name="ApplicantRepgender" class="form-control">
                                                             <option value="Male">Male</option>
                                                             <option value="Female">Female</option>
+                                                            <option value="Other">Other</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -452,7 +444,7 @@
                                         <p>Click the "Continue" button to proceed to the next step. Make sure you fill
                                             out all of the requirements right to move forward :-)</p>
                                         <p>
-                                            <button type="submit" id="submitBtn" class="btn btn-success btn-lg">
+                                            <button type="submit" id="submitMtopsBtn" class="btn btn-success btn-lg">
                                                 Continue
                                             </button>
                                         </p>
