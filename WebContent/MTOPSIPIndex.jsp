@@ -335,7 +335,7 @@
                                                     <input
                                                             type="checkbox"
                                                             id="hwThrottle"
-                                                            name="ZONING_INS"
+                                                            name="hwThrottle"
                                                             class="flat"
                                                             value="Pass"
                                                     > Throttle
@@ -343,8 +343,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkFIRE_INS"
-                                                            name="FIRE_INS"
+                                                            id="hwBattery"
+                                                            name="hwBattery"
                                                             class="flat"
                                                             value="Pass"
                                                     > Battery
@@ -352,8 +352,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkHS_INS"
-                                                            name="HS_INS"
+                                                            id="hwHeadlamp"
+                                                            name="hwHeadlamp"
                                                             class="flat"
                                                             value="Pass"
                                                     > Headlamp
@@ -361,8 +361,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkBLDG_INS"
-                                                            name="BLDG_INS"
+                                                            id="hwTBLamp"
+                                                            name="hwTBLamp"
                                                             class="flat"
                                                             value="Pass"
                                                     > Tail Lamp / Brake Lamp
@@ -370,8 +370,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkLABOR_INS"
-                                                            name="LABOR_INS"
+                                                            id="hwTSignals"
+                                                            name="hwTSignals"
                                                             class="flat"
                                                             value="Pass"
                                                     > Turn Signals
@@ -379,8 +379,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkMISC_INS"
-                                                            name="MISC_INS"
+                                                            id="hwMirrors"
+                                                            name="hwMirrors"
                                                             class="flat"
                                                             value="Pass"
                                                     > Mirrors
@@ -388,8 +388,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkZONING_INS"
-                                                            name="ZONING_INS"
+                                                            id="hwRefl"
+                                                            name="hwRefl"
                                                             class="flat"
                                                             value="Pass"
                                                     > Lenses & Reflectors
@@ -397,8 +397,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkFIRE_INS"
-                                                            name="FIRE_INS"
+                                                            id="hwWiring"
+                                                            name="hwWiring"
                                                             class="flat"
                                                             value="Pass"
                                                     > Wiring
@@ -406,8 +406,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkHS_INS"
-                                                            name="HS_INS"
+                                                            id="hwLevels"
+                                                            name="hwLevels"
                                                             class="flat"
                                                             value="Pass"
                                                     > Levels
@@ -415,8 +415,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkBLDG_INS"
-                                                            name="BLDG_INS"
+                                                            id="hwLeaks"
+                                                            name="hwLeaks"
                                                             class="flat"
                                                             value="Pass"
                                                     > Leaks
@@ -424,8 +424,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkLABOR_INS"
-                                                            name="LABOR_INS"
+                                                            id="hwFrame"
+                                                            name="hwFrame"
                                                             class="flat"
                                                             value="Pass"
                                                     > Frame
@@ -433,8 +433,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkMISC_INS"
-                                                            name="MISC_INS"
+                                                            id="hwSusp"
+                                                            name="hwSusp"
                                                             class="flat"
                                                             value="Pass"
                                                     > Suspension
@@ -442,8 +442,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkZONING_INS"
-                                                            name="ZONING_INS"
+                                                            id="hwBelt"
+                                                            name="hwBelt"
                                                             class="flat"
                                                             value="Pass"
                                                     > Chain or Belt
@@ -451,8 +451,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkFIRE_INS"
-                                                            name="FIRE_INS"
+                                                            id="hwFastn"
+                                                            name="hwFastn"
                                                             class="flat"
                                                             value="Pass"
                                                     > Fasteners
@@ -460,8 +460,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkHS_INS"
-                                                            name="HS_INS"
+                                                            id="hwCStand"
+                                                            name="hwCStand"
                                                             class="flat"
                                                             value="Pass"
                                                     > Center Stand
@@ -469,7 +469,7 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkBLDG_INS"
+                                                            id="hwSStand"
                                                             name="BLDG_INS"
                                                             class="flat"
                                                             value="Pass"
@@ -499,12 +499,12 @@
                                     type="button"
                                     class="btn btn-default"
                                     data-dismiss="modal"
-                                    id="btnCloseNewApplModal"
+                                    id="btnCloseMtopsApplModal"
                             >Close
                             </button>
                             <button
                                     type="button"
-                                    id="btnInsNewAppl"
+                                    id="btnInsMtopsAppl"
                                     class="btn btn-success"
                             >Save Changes
                             </button>
