@@ -138,7 +138,7 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-            }).then((result) => {
+            }).then(function(result) {
                 if(result.value
         )
             {
@@ -155,7 +155,7 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Evaluated',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
+                        }).then(function(result) {
                             if(result.value
                     )
                         {
@@ -196,7 +196,7 @@ $(document).ready(function () {
                 confirmButtonText: 'Terminate',
                 cancelButtonText: 'Re-Evaluate',
                 reverseButtons: true
-            }).then((result) => {
+            }).then(function(result) {
                 if (result.value) {
                 $(".evaluation-modal-terminate").modal('toggle');
                 $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
@@ -228,7 +228,7 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-            }).then((result) => {
+            }).then(function(result) {
                 if(result.value)
             {
                 var terminateApplForm = new FormData($('#terminateApplForm')[0]);
@@ -244,7 +244,7 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Terminated',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
+                        }).then(function(result) {
                             if(result.value
                     )
                         {
@@ -325,7 +325,7 @@ $(document).ready(function () {
             confirmButtonText: "Confirm!",
             showCancelButton: true,
             cancelButtonText: 'Cancel',
-        }).then((result) => {
+        }).then(function(result) {
             if(result.value)
         {
             var reEvalApplForm = new FormData($('#reEvalApplForm')[0]);
@@ -341,7 +341,7 @@ $(document).ready(function () {
                         title: 'DONE!.',
                         text: 'Succesfully Terminated',
                         confirmButtonText: 'OK'
-                    }).then((result) => {
+                    }).then(function(result) {
                         if(result.value)
                     {
                         location.reload(true);
@@ -380,9 +380,8 @@ $(document).ready(function () {
             confirmButtonText: "Confirm!",
             showCancelButton: true,
             cancelButtonText: 'Cancel',
-        }).then((result) => {
-            if(result.value
-    )
+        }).then(function(result) {
+            if(result.value)
         {
             $.ajax({
                 type: "POST",
@@ -397,7 +396,7 @@ $(document).ready(function () {
                         title: 'DONE!.',
                         text: 'Succesfully Assessed',
                         confirmButtonText: 'OK'
-                    }).then((result) => {
+                    }).then(function(result) {
                         if(result.value
                 )
                     {

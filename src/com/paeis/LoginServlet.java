@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
                 divcode = resultSet.getString("U.U_ROLE");
                 String empname = "Welcome " + empfnameDB + " " + emplnameDB + " - " + emppositionDB;
 
-                session.setAttribute("empidDB", empId);
+                session.setAttribute("empid", empId);
                 session.setAttribute("empname", empname);
                 session.setAttribute("emppositionDB", emppositionDB);
                 session.setAttribute("empDiv", divcode);

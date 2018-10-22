@@ -25,7 +25,7 @@ public class releasePermit extends HttpServlet {
         String ap_ref_no = String.valueOf(request.getParameter("AP_REF"));
         String ap_remarks = String.valueOf((request.getParameter("AP_REMARKS")));
         int tbId = Integer.parseInt(request.getParameter("tbId"));
-        int empId = Integer.parseInt(request.getParameter("optTreasurer"));
+        int empId = Integer.parseInt(request.getParameter("currId"));
         LGUConnect conx = new LGUConnect();
 
         try {

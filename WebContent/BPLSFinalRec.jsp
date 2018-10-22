@@ -15,6 +15,7 @@
         Connection connection = conX.getConnection();
         String refNo = request.getParameter("refNo");
         int tbId = Integer.parseInt(request.getParameter("tbId"));
+        int treId = Integer.parseInt(request.getParameter("treId"));
         PreparedStatement getInfo = connection.prepareStatement("SELECT * FROM view_applicationformstre WHERE AP_REFERENCE_NO = ?");
         getInfo.setString(1, refNo);
         ResultSet rs = getInfo.executeQuery();
@@ -99,7 +100,7 @@
         rel="stylesheet"> -->
 </head>
 <body>
-<jsp:include page="BPLSRtSlipComponent.jsp"/>
+<jsp:include page="BPLSTComponent.jsp"/>
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
 
     <!-- begin #content -->
@@ -168,10 +169,10 @@
                     </div>
                     <div class="panel-body">
                         <form name="treaNewApplForm" id="treaNewApplForm">
-                            <div class="form-group"><label class="col-md-4 control-label">Treasurer: </label>
+                            <div class="form-group hidden"><label class="col-md-4 control-label">Treasurer: </label>
                                 <div class="col-md-5">
                                     <select name="optTreasurer" class="form-control" data-style="btn-white"
-                                            tabindex="-1">
+                                            tabindex="-1" value='<%=treId%>'>
                                         <%while (rs2.next()) {%>
                                         <option data-subtext="<%=rs2.getString("EP_JOB_DESC")%>"
                                                 title="<%=rs2.getString("EP_JOB_DESC")%>"

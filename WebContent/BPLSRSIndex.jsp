@@ -148,11 +148,11 @@
 
                             <h5>Date Billed: <label class="control-label" id="rDB"></label></h5>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body hidden">
                            <label class="col-md-4 control-label">Treasurer: </label>
                             <div class="col-md-5">
-                                <select name="optTreasurer" class="form-control" data-style="btn-white"
-                                        tabindex="-1">
+                                <select name="currId" class="form-control hidden" data-style="btn-white"
+                                        tabindex="-1" value='<%out.print(session.getAttribute("empid").toString());%>'>
                                     <%while (rsEmp.next()) {%>
                                     <option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"
                                             title="<%=rsEmp.getString("EP_JOB_DESC")%>"

@@ -39,6 +39,7 @@
 </head>
 <%
     LGUConnect conX = new LGUConnect();
+    String treId = String.valueOf(session.getAttribute("empid"));
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
@@ -94,7 +95,7 @@
                             <tbody>
                             <%
                                 while (gg3.next()) {
-                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") + "&tbId=" + gg3.getString("TB_ID") + "'";
+                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") + "&tbId=" + gg3.getString("TB_ID") + "&treId="+treId+ "'";
 
                             %>
                             <tr>

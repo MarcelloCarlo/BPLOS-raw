@@ -36,7 +36,7 @@ $("#btnTresNewAppl").click(function () {
         confirmButtonText: "Confirm!",
         showCancelButton: true,
         cancelButtonText: 'Cancel',
-    }).then((result) => {
+    }).then(function(result) {
         if(result.value)
     {
         $.ajax({
@@ -52,7 +52,7 @@ $("#btnTresNewAppl").click(function () {
                     title: 'DONE!.',
                     text: 'Succesfully Processed',
                     confirmButtonText: 'OK'
-                }).then((result) => {
+                }).then(function(result) {
                     if(result.value)
                 {
                    window.location.replace("BPLSTIndex.jsp");

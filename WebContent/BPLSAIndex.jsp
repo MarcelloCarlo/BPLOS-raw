@@ -161,31 +161,6 @@
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
                                     <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -246,28 +221,19 @@
                                     <td class="hide"><%=gg3.getString("BU_LOCATION")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                    </td>
+                                    </td><!--10--->
                                     <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AP_Remarks")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("BN_NAME")%>
                                     </td>
                                     <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
                                     </td>
                                     <td class="hide"><%=gg3.getString("OT_CODE")%>
-                                    </td>
+                                    </td><!--15-->
                                     <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>
                                     </td>
-                                    <td
-                                            class="hide"
-                                            id="AT_ID"
-                                            name="AT_ID"
-                                    ><%=gg3.getString("AT_ID")%>
-                                    </td>
-                                    <!-- 14 -->
                                     <td
                                             class="hide"
                                             id="AP_ID"
@@ -318,100 +284,6 @@
         </div>
     </div>
     <!-- /page content -->
-
-
-    <!-- Termination modal -->
-    <div
-            class="modal fade evaluation-modal-terminate"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <form
-                    id="terminateApplForm"
-                    class="form-horizontal"
-                    name="terminateApplForm"
-                    enctype="multipart/form-data"
-            >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="panel panel-inverse panel-danger">
-                            <div class="panel-heading">
-                                <h4
-                                        class="panel-title"
-                                        id="myModalLabel"
-                                >Application Termination</h4>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div class="col-md-8">
-                                        <h5>
-                                            Application/Referrence Number:
-                                            <input class="hide" name="tRefNoh"
-                                                   id="tRefNoh" type="text"/>
-                                            <label id="tRefNo"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Name:
-                                            <!-- <input
-                                            disabled="" id="nBussOwner" type="text" /> -->
-                                            <label id="tBussName"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Nature:
-                                            <!-- <input disabled="" id="nBussAddr"
-                                            type="text" /> -->
-                                            <label id="tBussNature"></label>
-                                        </h5>
-                                        <h5>
-                                            Authorized Representative:
-                                            <!--  <input disabled=""
-                                            id="nBussAuthRepName" type="text" /> -->
-                                            <label id="tBussAuthRepName"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Owner:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="tBussOwner"></label>
-                                        </h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-md-12">
-                                            <hr>
-                                            <textarea
-                                                    class="form-control"
-                                                    placeholder="Remarks"
-                                                    id="_AP_Remarks"
-                                                    name="AP_Remarks"
-                                                    rows="3"
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button
-                                    type="button"
-                                    class="btn btn-default"
-                                    data-dismiss="modal"
-                                    id="btnCloseTermApplModal"
-                            >Close
-                            </button>
-                            <button
-                                    type="button"
-                                    id="btnTermAppl"
-                                    class="btn btn-success"
-                            >Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <!-- Assess Modal -->
     <div
             class="modal fade evaluation-modal-assess"
@@ -683,12 +555,12 @@
 
                                     </div>
                                     <hr>
-                                    <div class="col-md-12 panel-body">
+                                    <div class="col-md-12 panel-body hidden">
                                         <ul class="to_do">
                                             <p>
                                                 <label>Assessed By</label>
                                                 <select class="selectpicker form-control" data-style="btn-white"
-                                                        id="aId" name="aId" tabindex="-1" required>
+                                                        id="aId" name="aId" tabindex="-1" value='<%out.print(session.getAttribute("empid"));%>'>
 
                                                     <%while (rs3.next()) {%>
                                                     <option data-subtext="<%=rs3.getString("EP_JOB_DESC")%>"
@@ -698,7 +570,7 @@
                                                             <%} rs3.close();ss2.close();%>
                                                 </select>
                                             </p>
-                                            <p>
+                                           <%-- <p>
                                                 <label>Verified By</label>
                                                 <select class="selectpicker form-control" data-style="btn-white"
                                                         id="verId" name="verId" tabindex="-1" required>
@@ -736,7 +608,7 @@
                                                             <%out.print(rs7.getString("EP_FNAME") + " " + rs7.getString("EP_MNAME")+ " " + rs7.getString("EP_LNAME"));%>
                                                             <%}rs7.close();ss7.close();%>
                                                 </select>
-                                            </p>
+                                            </p>--%>
                                         </ul>
                                     </div>
                                 </div>
@@ -753,7 +625,7 @@
                                     type="button"
                                     id="btnAssNewAppl"
                                     class="btn btn-success"
-                            >Evaluate
+                            >Assess
                             </button>
                         </div>
                     </div>
@@ -762,73 +634,6 @@
         </div>
     </div>
 
-    <!-- Re-Eval modal -->
-    <div
-            class="modal fade evaluation-modal-reevval"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <form
-                    id="reEvalApplForm"
-                    class="form-horizontal"
-                    name="reEvalApplForm"
-                    enctype="multipart/form-data"
-            >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="panel panel-inverse panel-danger">
-                            <div class="panel-heading">
-                                <h4
-                                        class="panel-title"
-                                >Request File Reupload</h4>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div class="col-md-8">
-                                        <h5>
-                                            Application/Referrence Number:
-                                            <input class="hide" name="reRefNoh"
-                                                   id="reRefNoh" type="text"/>
-                                            <label id="reRefNo"></label>
-                                        </h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-md-12">
-                                            <hr>
-                                            <textarea
-                                                    class="form-control"
-                                                    placeholder="Specify Specific Missing Requirements"
-                                                    id="__AP_Remarks"
-                                                    name="AP_Remarks"
-                                                    rows="3" required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button
-                                    type="button"
-                                    class="btn btn-default"
-                                    data-dismiss="modal"
-                            >Close
-                            </button>
-                            <button
-                                    type="button"
-                                    id="btnRevAppl"
-                                    class="btn btn-success"
-                            >Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
 
 <jsp:include page="BPLSEFooter.jsp"></jsp:include>
@@ -859,7 +664,7 @@
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/divEvaluation.js"></script>
+<script src="assets/js/divAssessment.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 </body>

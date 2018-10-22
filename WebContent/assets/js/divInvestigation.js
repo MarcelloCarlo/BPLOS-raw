@@ -78,7 +78,7 @@ $(document).ready(function () {
     });
 
     $("#btnInvNewAppl").click(function () {
-        if ($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked') && !$("#chkRectify").is(':checked')) {
+        if ($("#chkZONING_INS").is(':checked') && $("#chkFIRE_INS").is(':checked') && $("#chkHS_INS").is(':checked') && $("#chkBLDG_INS").is(':checked') && $("#chkLABOR_INS").is(':checked') && $("#chkMISC_INS").is(':checked')) {
             //Assessment
             // noinspection BadExpressionStatementJS
             swal({
@@ -89,9 +89,8 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
-            }).then((result) => {
-                if(result.value
-        )
+            }).then(function(result) {
+                if(result.value)
             {
                 $("#chkZONING_INS").attr("disabled", false);
                 $("#chkFIRE_INS").attr("disabled", false);
@@ -120,7 +119,7 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Succesfully Investigated',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
+                        }).then(function(result) {
                             if(result.value
                     )
                         {
@@ -147,7 +146,7 @@ $(document).ready(function () {
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
-            }).then((result) => {
+            }).then( function(result) {
                 if(result.value
         )
             {
@@ -166,14 +165,12 @@ $(document).ready(function () {
                             title: 'DONE!.',
                             text: 'Rectification Sent!',
                             confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if(result.value
-                    )
+                        }).then(function(result){
+                            if(result.value)
                         {
                             location.reload(true);
                         }
-                    })
-                        ;
+                    });
                     },
                     error: function () {
                         swal("error", "The process encountered and error", "error");
@@ -185,6 +182,7 @@ $(document).ready(function () {
 
         } else {
             //Terminate
+	        $(".investigation-modal-new").modal('toggle');
             $(".investigation-modal-terminate").modal('toggle');
             $("#tRefNo").append($("#_AP_REFERENCE_NO").val().trim());
             $("#tRefNoh").val($("#_AP_REFERENCE_NO").val().trim());
@@ -192,7 +190,7 @@ $(document).ready(function () {
             $("#tBussNature").append($("#nBussNature").text().trim());
             $("#tBussAuthRepName").append($("#nBussAuthRepName").text().trim());
             $("#tBussOwner").append($("#nBussOwner").text().trim());
-            $(".investigation-modal-new").modal('toggle');
+            
         }
 
         $(".investigation-modal-terminate").on('hidden.bs.modal', function () {

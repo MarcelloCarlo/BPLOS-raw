@@ -138,34 +138,16 @@
                                     <th>Date Received</th>
                                     <th>Representative</th>
                                     <th>Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <%
                                     LGUConnect conX = new LGUConnect();
+                                    try{
                                     Connection conn3 = conX.getConnection();
                                     Statement ss3 = conn3.createStatement();
                                     ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
                                     while (gg3.next()) {
-                                        String apType = gg3.getString("AP_TYPE");
-                                        String modalMode = "";
-                                        String modalClass = "";
-                                        if (apType.equals("New")) {
-                                            modalMode = ".inspection-modal-new";
-                                            modalClass = "newModal";
-                                        } else if (apType.equals("Renew")) {
-                                            modalMode = ".inspection-modal-renew";
-                                            modalClass = "renewModal";
-                                        } else {
-                                            modalMode = ".inspection-modal-new";
-                                        }
                                 %>
                                 <tr>
                                     <td>
@@ -184,7 +166,13 @@
                                         Jeepney Driver
                                     </td>
                                     <td>
-                                        Action
+                                        <button
+                                        type="button"
+                                        class="btn btn-success mtopsModal"
+                                        data-toggle="modal"
+                                        data-target=".inspection-modal-mtops" title="Comply the Inspected Business"
+                                        ><i class="fa fa-lg fa-list-ul"></i>
+                                        </button>
                                     </td>
                                 </tr>
                                 <%--<tr>--%>
@@ -217,7 +205,7 @@
                                                 <%--type="button"--%>
                                                 <%--class="btn btn-success <%=modalClass%>"--%>
                                                 <%--data-toggle="modal"--%>
-                                                <%--data-target="<%=modalMode%>" title="Comply the Inspected Business"--%>
+                                                <%--data-target="inspection-modal-mtops" title="Comply the Inspected Business"--%>
                                         <%--><i class="fa fa-lg fa-list-ul"></i>--%>
                                         <%--</button>--%>
                                         <%--<button--%>
@@ -229,7 +217,7 @@
                                     <%--</td>--%>
                                 <%--</tr>--%>
                                 <%
-                                    }
+                                    } }catch (Exception e) {out.print(e);}
                                 %>
                                 </tbody>
                             </table>
@@ -243,14 +231,14 @@
     <!-- /page content -->
     <!-- New modal -->
     <div
-            class="modal fade inspection-modal-new"
+            class="modal fade inspection-modal-mtops"
             aria-hidden="true"
     >
         <div class="modal-dialog">
             <form
-                    id="newInsApplForm"
+                    id="mtopsInsApplForm"
                     class="form-horizontal"
-                    name="newInsApplForm"
+                    name="mtopsInsApplForm"
                     enctype="multipart/form-data"
             >
                 <div class="modal-content">
@@ -273,54 +261,27 @@
                                     />
                                     <div class="col-md-8 panel-body">
                                         <h5>
-                                            Business Name/Corporate Name:
+                                            Applicant's Name:
                                             <!-- <input disabled=""
                                             id="nBussName" type="text" /> -->
-                                            <label id="nBussName"></label>
+                                            <label id="nApplName"></label>
                                         </h5>
                                         <h5>
-                                            Name of Sole Proprietor/Partnership/President:
+                                            TODA:
                                             <!-- <input
                                             disabled="" id="nBussOwner" type="text" /> -->
-                                            <label id="nBussOwner"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Address:
-                                            <!-- <input disabled="" id="nBussAddr"
-                                            type="text" /> -->
-                                            <label id="nBussAddr"></label>
-                                        </h5>
-                                        <h5>
-                                            Tel No.:
-                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
-                                            <label id="nBussConTelno"></label>
-                                        </h5>
-                                        <h5>
-                                            Authorized Representative:
-                                            <!--  <input disabled=""
-                                            id="nBussAuthRepName" type="text" /> -->
-                                            <label id="nBussAuthRepName"></label>
-                                        </h5>
-                                        <h5>
-                                            Address:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="nBussAuthRepAddr"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Nature:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="nBussNature"></label>
+                                            <label id="nTODA"></label>
                                         </h5>
                                     </div>
                                     <div class="panel-body">
                                         <h5>Inspection Checklist</h5>
-                                        <div class="">
+                                        <div class="col-md-12">
                                             <ul class="to_do">
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkZONING_INS"
-                                                            name="ZONING_INS"
+                                                            id="hwTires"
+                                                            name="hwTires"
                                                             class="flat"
                                                             value="Pass"
                                                     > Tires
@@ -328,8 +289,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkFIRE_INS"
-                                                            name="FIRE_INS"
+                                                            id="hwWheels"
+                                                            name="hwWheels"
                                                             class="flat"
                                                             value="Pass"
                                                     > Wheels
@@ -337,8 +298,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkHS_INS"
-                                                            name="HS_INS"
+                                                            id="hwBrakes"
+                                                            name="hwBrakes"
                                                             class="flat"
                                                             value="Pass"
                                                     > Brakes
@@ -346,8 +307,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkBLDG_INS"
-                                                            name="BLDG_INS"
+                                                            id="hwLevPed"
+                                                            name="hwLevPed"
                                                             class="flat"
                                                             value="Pass"
                                                     > Levers and Pedals
@@ -355,8 +316,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkLABOR_INS"
-                                                            name="LABOR_INS"
+                                                            id="hwCables"
+                                                            name="hwCables"
                                                             class="flat"
                                                             value="Pass"
                                                     > Cables
@@ -364,8 +325,8 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkMISC_INS"
-                                                            name="MISC_INS"
+                                                            id="hwHoses"
+                                                            name="hwHoses"
                                                             class="flat"
                                                             value="Pass"
                                                     > Hoses
@@ -373,7 +334,7 @@
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkZONING_INS"
+                                                            id="hwThrottle"
                                                             name="ZONING_INS"
                                                             class="flat"
                                                             value="Pass"
@@ -529,36 +490,7 @@
                                             ></textarea>
                                         </div>
                                     </div>
-                                    <div class="panel-body">
-                                        <div class="note note-info">
-                                            <h4>Inspection Notes</h4>
-                                            <ul>
-                                                <li>
-                                                    <p>
-                                                        Miscellaneous Inspection based on the business nature should be
-                                                        in the
-                                                        business. LEAVE UNCHECK THE "MISCELLANOUS INSPECTION" IF ANY
-                                                        OTHER
-                                                        REQUIREMENTS ON THE BUSINESS IS VIOLATED/MISSING/INVALID.
-                                                    </p>
-                                                </li>
-                                                <li><p>
-                                                    Any unchecked item/s on the Inspection Requirements will be sent to
-                                                    the Investigation upon submission. Please define the violation/s on
-                                                    the remarks for other details.
-                                                </p></li>
-                                            </ul>
-                                        </div>
-                                        <!--  <div class="col-md-9">
-                                                  <textarea
-                                                          class="form-control"
-                                                          placeholder="Remarks"
-                                                          id="AP_Remarks"
-                                                          name="AP_Remarks"
-                                                          rows="3"
-                                                  ></textarea>
-                                          </div>-->
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -606,110 +538,10 @@
 <script
         src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"
 ></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/divMtopsInspection.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
-<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
-<script type="text/javascript">
-
-    $(document).ready(function () {
-
-        $(".newModal").click(function () {
-            document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-            document.getElementById('nBussAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-            document.getElementById('nBussConTelno').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-            document.getElementById('nBussAuthRepName').innerHTML = $(this).closest("tbody tr").find("td:eq(10)").html();
-            document.getElementById('nBussAuthRepAddr').innerHTML = $(this).closest("tbody tr").find("td:eq(11)").html();
-            //document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
-            document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(12)").html();
-            document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(13)").html().trim();
-
-            if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
-                document.getElementById('nBussOwner').value = 'None';
-            }
-
-        });
-
-
-        $('#btnCloseNewApplModal').click(function () {
-            $("#chkBLDG_INS").prop("checked", false);
-            $("#chkFIRE_INS").prop("checked", false);
-            $("#chkHS_INS").prop("checked", false);
-            $("#chkLABOR_INS").prop("checked", false);
-            $("#chkMISC_INS").prop("checked", false);
-            $("#chkZONING_INS").prop("checked", false);
-        });
-
-        $('#closeNewPanelWindow').click(function () {
-            $("#chkBLDG_INS").prop("checked", false);
-            $("#chkFIRE_INS").prop("checked", false);
-            $("#chkHS_INS").prop("checked", false);
-            $("#chkLABOR_INS").prop("checked", false);
-            $("#chkMISC_INS").prop("checked", false);
-            $("#chkZONING_INS").prop("checked", false);
-        });
-
-    });
-
-</script>
-<!-- clippy -->
-<!-- <script src="assets/plugins/smore-inc-clippy.js/build/clippy.js"></script> -->
-<!-- Init script -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#btnInsNewAppl").click(function () {
-            swal({
-                title: "Are you sure?",
-                text: "You will save your current changes",
-                type: "warning",
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Confirm!",
-                showCancelButton: true,
-                cancelButtonText: 'Cancel'
-            }).then((result) = > {
-                if(result.value
-        )
-            {
-                var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
-                $.ajax({
-                    type: "POST",
-                    url: "updateNewAppInspectionForm",
-                    data: datanewInsApplForm,
-                    processData: false,
-                    contentType: false,
-                    success: function () {
-                        swal({
-                            type: 'success',
-                            title: 'DONE!.',
-                            text: 'Succesfully Evaluated',
-                            confirmButtonText: 'OK'
-                        }).then((result) = > {
-                            if(result.value
-                    )
-                        {
-                            location.reload(true);
-                        }
-                    })
-                        ;
-                    },
-                    error: function () {
-                        swal("error", "The process encountered and error", "error");
-                    }
-                });
-            }
-        })
-            ;
-        })
-    })
-</script>
 </body>
 </html>

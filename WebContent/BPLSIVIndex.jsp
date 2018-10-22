@@ -447,6 +447,7 @@
                             </button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>
@@ -466,7 +467,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <div class="panel panel-inverse panel-danger">
-                            <div class="panel-heading-btn">
+                            <div class="panel-heading">
                                 <h4
                                         class="panel-title"
                                 >Application Termination</h4>
@@ -538,6 +539,7 @@
                             </button>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
     </div>

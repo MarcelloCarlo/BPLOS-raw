@@ -56,12 +56,13 @@ public class assessApplication extends HttpServlet {
 
         try {
             Connection connection = conX.getConnection();
-            PreparedStatement taxBill = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_taxbill (TB_BILL_NO,TB_DATE_BILLED, ASSESSED_BY, VERIFIED_BY, REC_APPROVAL_BY, APPROVED_BY) VALUES (CONCAT('0',TB_ID,REPLACE(?,'-','')),CURRENT_TIMESTAMP(),?,?,?,?)");
+            /*PreparedStatement taxBill = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_taxbill (TB_BILL_NO,TB_DATE_BILLED, ASSESSED_BY, VERIFIED_BY, REC_APPROVAL_BY, APPROVED_BY) VALUES (CONCAT('0',TB_ID,REPLACE(?,'-','')),CURRENT_TIMESTAMP(),?,?,?,?)");*/
+            PreparedStatement taxBill = (PreparedStatement) connection.prepareStatement("INSERT INTO bpls_t_taxbill (TB_BILL_NO,TB_DATE_BILLED, ASSESSED_BY) VALUES (CONCAT('0',TB_ID,REPLACE(?,'-','')),CURRENT_TIMESTAMP(),?)");
             taxBill.setString(1,AP_REFERENCE_NO);
             taxBill.setInt(2,Integer.parseInt(aId));
-            taxBill.setInt(3,Integer.parseInt(verId));
+           /* taxBill.setInt(3,Integer.parseInt(verId));
             taxBill.setInt(4,Integer.parseInt(recId));
-            taxBill.setInt(5,Integer.parseInt(aprId));
+            taxBill.setInt(5,Integer.parseInt(aprId));*/
             taxBill.executeUpdate();
             PreparedStatement getTBID = (PreparedStatement) connection.prepareStatement("SELECT MAX(TB_ID) AS TB_ID FROM bpls_t_taxbill");
             ResultSet rsTbId = getTBID.executeQuery();
