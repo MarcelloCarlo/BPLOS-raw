@@ -15,10 +15,6 @@ $(document).ready(function () {
 	    document.getElementById('_AP_REFERENCE_NOr').value = $(this).closest("tbody tr").find("td:eq(40)").html().trim();
 	    document.getElementById('_BN_CLASSIFICATIONr').value = $(this).closest("tbody tr").find("td:eq(42)").html().trim();
     });
-    
-    $("#btnRenewAppl").click(function () {
-        
-    })
 
     $(".newModal").click(function () {
         document.getElementById('nBussName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
@@ -143,6 +139,7 @@ $(document).ready(function () {
         )
             {
                 var datanewApplForm = new FormData($('#newApplForm')[0]); //working method
+                datanewApplForm.append("isRenew","F");
                 $.ajax({
                     type: "POST",
                     url: "updateNewAppEvaluationForm",
@@ -329,6 +326,7 @@ $(document).ready(function () {
             if(result.value)
         {
             var reEvalApplForm = new FormData($('#reEvalApplForm')[0]);
+	        reEvalApplForm.append("isRenew","F");
             $.ajax({
                 type: "POST",
                 url: "reEvaluateApplForm",
@@ -361,9 +359,8 @@ $(document).ready(function () {
 
         }
     });
-    })
-
-
+    });
+    
     $("#btnAssNewAppl").click(function () {
 
         if (!$("#chkMayorsPerm").is(':checked')) {
@@ -419,5 +416,53 @@ $(document).ready(function () {
         }
     })
         ;
-    })
+    });
+    
+	$("#btnRenewAppl").click(function () {
+		swal({
+			title: "Are you sure?",
+			text: "You will save your current changes",
+			type: "warning",
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Confirm!",
+			showCancelButton: true,
+			cancelButtonText: 'Cancel',
+		}).then(function(result) {
+			if(result.value)
+			{
+				var renewApplForm = new FormData($('#renewApplForm')[0]);
+				renewApplForm.append("isRenew","T");
+				$.ajax({
+					type: "POST",
+					url: "updateNewAppEvaluationForm",
+					data: renewApplForm,
+					processData: false,
+					contentType: false,
+					success: function () {
+						swal({
+							type: 'success',
+							title: 'DONE!.',
+							text: 'Succesfully Evaluated',
+							confirmButtonText: 'OK'
+						}).then(function(result) {
+							if(result.value)
+							{
+								location.reload(true);
+							}
+						});
+						
+					}
+				});
+			}
+			else
+			if (result.dismiss === swal.DismissReason.cancel) {
+				swalWithBootstrapButtons(
+					'Cancelled',
+					'Operation Halted',
+					'error'
+				)
+				
+			}
+		});
+	});
 });

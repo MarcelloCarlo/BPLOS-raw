@@ -700,7 +700,7 @@
                                                                 class="flat"
                                                                 value="Pass"
                                                                 id="AT_BRGY_CLR"
-                                                                name="AT_BRGY_CLEARANCE"
+                                                                name="AT_BRGY_CLR"
                                                         > Original Copy of Barangay Clearance (for renewal purpose)
                                                     </p>
 
@@ -711,8 +711,8 @@
                                                                 type="checkbox"
                                                                 class="flat"
                                                                 value="Pass"
-                                                                id="AT_LOCATIONAL_CLR"
-                                                                name="AT_LOCATIONAL_CLR"
+                                                                id="AT_LOC_CLR"
+                                                                name="AT_LOC_CLR"
                                                         > Locational Clearance (LC)
                                                     </p>
 
@@ -731,8 +731,8 @@
                                                                 type="checkbox"
                                                                 class="flat"
                                                                 value="Pass"
-                                                                id="AT_SANITARY_HEALTH_CERT"
-                                                                name="AT_SANITARY_HEALTH_CERT"
+                                                                id="AT_SH_CERT"
+                                                                name="AT_SH_CERT"
                                                         > Sanitary Permit (SP)
                                                     </p>
 
@@ -741,8 +741,8 @@
                                                                 type="checkbox"
                                                                 class="flat"
                                                                 value="Pass"
-                                                                id="AT_CTAO_CLEARANCE_CERT"
-                                                                name="AT_CTAO_CLEARANCE_CERT"
+                                                                id="AT_CTAO_CERT"
+                                                                name="AT_CTAO_CERT"
                                                         > CTAO Certificate
                                                     </p>
 
@@ -751,8 +751,8 @@
                                                                 type="checkbox"
                                                                 class="flat"
                                                                 value="Pass"
-                                                                id="AT_ELECTRICAL_INSP"
-                                                                name="AT_ELECTRICAL_INSP"
+                                                                id="AT_E_INSP"
+                                                                name="AT_E_INSP"
                                                         > Certificate of Electrical Inspection (CEI)
                                                     </p>
 

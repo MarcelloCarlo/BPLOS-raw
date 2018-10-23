@@ -259,7 +259,7 @@
                                            id="_AP_REFERENCE_NO"
                                            name="_AP_REFERENCE_NO"
                                     />
-                                    <div class="col-md-8 panel-body">
+                                    <div class="col-md-12 panel-body">
                                         <h5>
                                             Applicant's Name:
                                             <!-- <input disabled=""
@@ -274,8 +274,9 @@
                                         </h5>
                                     </div>
                                     <div class="panel-body">
-                                        <h5>Inspection Checklist</h5>
-                                        <div class="col-md-12">
+                                        <h5>Inspection Checklist:</h5>
+                                        <div class="col-md-6">
+                                        <div class="panel-body">
                                             <ul class="to_do">
                                                 <p>
                                                     <input
@@ -376,121 +377,115 @@
                                                             value="Pass"
                                                     > Turn Signals
                                                 </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwMirrors"
-                                                            name="hwMirrors"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Mirrors
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwRefl"
-                                                            name="hwRefl"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Lenses & Reflectors
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwWiring"
-                                                            name="hwWiring"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Wiring
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwLevels"
-                                                            name="hwLevels"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Levels
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwLeaks"
-                                                            name="hwLeaks"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Leaks
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwFrame"
-                                                            name="hwFrame"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Frame
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwSusp"
-                                                            name="hwSusp"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Suspension
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwBelt"
-                                                            name="hwBelt"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Chain or Belt
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwFastn"
-                                                            name="hwFastn"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Fasteners
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwCStand"
-                                                            name="hwCStand"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Center Stand
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="hwSStand"
-                                                            name="BLDG_INS"
-                                                            class="flat"
-                                                            value="Pass"
-                                                    > Side Stand
-                                                </p>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <hr>
-                                        <div class="col-md-12">
-											<textarea
-                                                    class="form-control"
-                                                    placeholder="Remarks"
-                                                    id="txtMISC_REMARKS"
-                                                    name="MISC_REMARKS"
-                                                    rows="3"
-                                            ></textarea>
-                                        </div>
-                                    </div>
 
+                                            </ul>
+                                        </div> </div>
+                                        <div class="col-md-6">
+                                            <div class="panel-body">
+                                                <ul class="to_do">
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwMirrors"
+                                                                name="hwMirrors"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Mirrors
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwRefl"
+                                                                name="hwRefl"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Lenses & Reflectors
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwWiring"
+                                                                name="hwWiring"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Wiring
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwLevels"
+                                                                name="hwLevels"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Levels
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwLeaks"
+                                                                name="hwLeaks"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Leaks
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwFrame"
+                                                                name="hwFrame"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Frame
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwSusp"
+                                                                name="hwSusp"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Suspension
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwBelt"
+                                                                name="hwBelt"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Chain or Belt
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwFastn"
+                                                                name="hwFastn"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Fasteners
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwCStand"
+                                                                name="hwCStand"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Center Stand
+                                                    </p>
+                                                    <p>
+                                                        <input
+                                                                type="checkbox"
+                                                                id="hwSStand"
+                                                                name="BLDG_INS"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > Side Stand
+                                                    </p>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
