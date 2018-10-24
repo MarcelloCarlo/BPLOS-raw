@@ -125,6 +125,25 @@
                 </li>
             </ul>
         </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret pull-right"></b>
+                    <i class="fa fa-gears"></i>
+                    <span>MTOPS</span>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="MTOPSEIndex.jsp"><i class="fa fa-file-text"></i> <span>Evaluation</span></a></li>
+                    <li><a href="MTOPSAment.jsp"><i class="fa fa-file-text"></i> <span>Assessment</span></a></li>
+                    <li><a href="MTOPSFrnchsng.jsp"><i class="fa fa-file-text"></i> <span>Franchising</span></a></li>
+                    <li><a href="MTOPSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Inspection</span></a></li>
+                    <li><a href="MTOPSTLcnsng.jsp"><i class="fa fa-file-excel-o"></i> <span>Treasury</span></a></li>
+                    <li><a href="MTOPSRSIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Releasing</span></a></li>
+                    <li><a href="PAEISPortal.jsp"><i class="fa fa-file-excel-o"></i> <span>Portal</span></a></li>
+                    <li><a href="PAEISSAUsrMgmt.jsp"><i class="fa fa-file-excel-o"></i> <span>Sysadmin</span></a></li>
+                    <li><a href="MTOPSApl.jsp"><i class="fa fa-file-excel-o"></i>
+                        <span>Application Form</span></a></li>
+                </ul>
+            </li>
 
     </ul>
     <!-- end top-menu nav -->
