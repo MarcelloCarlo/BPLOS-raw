@@ -1,4 +1,7 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -74,9 +77,51 @@
                     <div class="stats-icon"><i class="fa fa-desktop"></i></div>
                     <div class="stats-info">
                         <div> <p>Business Permit</p></div>
-                        <div> <h4>Pending:</h4></div>
-                        <div> <h4>Released:</h4></div>
-                        <div> <h4>Terminated:</h4></div>
+                        <div>
+                            <h4>Pending:
+                                <%
+
+                                    LGUConnect con = new LGUConnect();
+                                    Connection con1 = con.getConnection();
+                                    Statement aa = con1.createStatement();
+                                    ResultSet ss = aa.executeQuery("SELECT COUNT(*) AS C FROM `bpls_t_bp_application` WHERE AP_STATUS = 'Pending' ");
+                                    while (ss.next())
+                                    {
+                                    out.print(ss.getString("C"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Released:
+                                <%
+
+                                    LGUConnect conn = new LGUConnect();
+                                    Connection con2 = conn.getConnection();
+                                    Statement bb = con2.createStatement();
+                                    ResultSet tt = bb.executeQuery("SELECT COUNT(*) AS A FROM `bpls_t_bp_application`");
+                                    while (tt.next())
+                                    {
+                                        out.print(tt.getString("A"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Terminated:
+                                <%
+
+                                    LGUConnect conm = new LGUConnect();
+                                    Connection con3 = conm.getConnection();
+                                    Statement cc = con3.createStatement();
+                                    ResultSet uu = cc.executeQuery("SELECT COUNT(*) AS B FROM `bpls_t_bp_application` WHERE AP_STATUS = 'Terminated' ");
+                                    while (uu.next())
+                                    {
+                                        out.print(uu.getString("B"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -89,10 +134,54 @@
                 <div class="widget widget-stats bg-blue">
                     <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
                     <div class="stats-info">
-                        <div> <p>MTOPS</p></div>
-                        <div> <h4>Pending:</h4></div>
-                        <div> <h4>Released:</h4></div>
-                        <div> <h4>Terminated:</h4></div>
+                        <div>
+                            <p>MTOPS</p>
+                        </div>
+                        <div>
+                            <h4>Pending:
+                                <%
+
+                                    LGUConnect conl = new LGUConnect();
+                                    Connection con4 = conl.getConnection();
+                                    Statement dd = con4.createStatement();
+                                    ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");
+                                    while (vv.next())
+                                    {
+                                        out.print(vv.getString("D"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Released:
+                                <%
+
+                                    LGUConnect cono = new LGUConnect();
+                                    Connection con5 = cono.getConnection();
+                                    Statement ee = con5.createStatement();
+                                    ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");
+                                    while (ww.next())
+                                    {
+                                        out.print(ww.getString("E"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Terminated:
+                                <%
+
+                                    LGUConnect conp = new LGUConnect();
+                                    Connection con6 = conp.getConnection();
+                                    Statement ff = con6.createStatement();
+                                    ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");
+                                    while (xx.next())
+                                    {
+                                        out.print(xx.getString("F"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -106,9 +195,52 @@
                     <div class="stats-icon"><i class="fa fa-users"></i></div>
                     <div class="stats-info">
                         <div> <p>Revenue</p></div>
-                        <div> <h4>BPLS:</h4></div>
-                        <div> <h4>MTOPS:</h4></div>
-                        <div> <h4></h4></div>
+                        <div>
+                            <h4>BPLS:
+                                <%
+
+                                    LGUConnect conq = new LGUConnect();
+                                    Connection con7 = conq.getConnection();
+                                    Statement gg = con7.createStatement();
+                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (yy.next())
+                                    {
+                                        out.print(yy.getString("G"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>MTOPS:
+                                <%
+
+                                    LGUConnect conr = new LGUConnect();
+                                    Connection con8 = conr.getConnection();
+                                    Statement hh = con8.createStatement();
+                                    ResultSet zz = hh.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS H FROM `mtops_t_official_receipt`");
+                                    while (zz.next())
+                                    {
+                                        out.print(zz.getString("H"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>RPT:
+                                <%
+
+                                    LGUConnect cons = new LGUConnect();
+                                    Connection con9 = cons.getConnection();
+                                    Statement ii = con9.createStatement();
+                                    ResultSet jj = ii.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS I FROM `mtops_t_official_receipt`");
+                                    while (jj.next())
+                                    {
+                                        out.print(jj.getString("I"));
+                                    }
+                                %>
+
+                            </h4>
+                        </div>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -220,6 +352,38 @@
                     }
                 ]
             },
+            {
+                "name": "Real Property Tax",
+                "colorByPoint": false,
+                "data": [
+                    {
+                        "name": "2017",
+                        "y": 42.74,
+                        "drilldown": "2017"
+                    },
+                    {
+                        "name": "2018",
+                        "y": 78.57,
+                        "drilldown": "2018"
+                    }
+                ]
+            },
+            {
+                "name": "MTOPS",
+                "colorByPoint": false,
+                "data": [
+                    {
+                        "name": "2017",
+                        "y": 50.74,
+                        "drilldown": "2017"
+                    },
+                    {
+                        "name": "2018",
+                        "y": 60.57,
+                        "drilldown": "2018"
+                    }
+                ]
+            }
 
         ],
         "drilldown": {
@@ -230,51 +394,52 @@
                     "data": [
                         [
                             "January",
-                            0.1
+                            70.0
                         ],
                         [
                             "February",
-                            0.1
+                            40.0
                         ],
                         [
                             "March",
-                            0.1
+                            80.0
                         ],
+
                         [
                             "April",
-                            0.1
+                            60.0
                         ],
                         [
                             "May",
-                            0.1
+                            30.0
                         ],
                         [
                             "June",
-                            0.1
+                            40.0
                         ],
                         [
                             "July",
-                            0.1
+                            70.0
                         ],
                         [
                             "August",
-                            0.1
+                            75.0
                         ],
                         [
                             "September",
-                            0.1
+                            87.0
                         ],
                         [
                             "October",
-                            0.1
+                            93.0
                         ],
                         [
                             "November",
-                            0.1
+                            90.0
                         ],
                         [
                             "December",
-                            0.1
+                            94.0
                         ]
                     ]
                 },
@@ -284,51 +449,51 @@
                     "data": [
                         [
                             "January",
-                            0.1
+                            39.0
                         ],
                         [
                             "February",
-                            0.1
+                            40.0
                         ],
                         [
                             "March",
-                            0.1
+                            80.0
                         ],
                         [
                             "April",
-                            0.1
+                            60.0
                         ],
                         [
                             "May",
-                            0.1
+                            30.0
                         ],
                         [
                             "June",
-                            0.1
+                            40.0
                         ],
                         [
                             "July",
-                            0.1
+                            70.0
                         ],
                         [
                             "August",
-                            0.1
+                            63.0
                         ],
                         [
                             "September",
-                            0.1
+                            87.0
                         ],
                         [
                             "October",
-                            0.1
+                            93.0
                         ],
                         [
                             "November",
-                            0.1
+                            90.0
                         ],
                         [
                             "December",
-                            0.1
+                            85.0
                         ]
                     ]
                 }
