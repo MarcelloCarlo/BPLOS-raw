@@ -202,15 +202,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text"
-                                           class="hide"
-                                           id="_AT_ID"
-                                           name="_AT_ID"
-                                    /> <input type="text"
-                                              class="hide"
-                                              id="_AP_ID"
-                                              name="_AP_ID"
-                                /><input type="text"
+                                 <input type="text"
                                          class="hide"
                                          id="_AP_REFERENCE_NO"
                                          name="_AP_REFERENCE_NO"

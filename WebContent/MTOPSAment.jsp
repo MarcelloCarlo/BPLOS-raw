@@ -91,7 +91,7 @@
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM view_applicationformsas");
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Assessing'");
         Statement ss2 = conn3.createStatement();
         ResultSet rs3 = ss2.executeQuery("SELECT * FROM bpls_t_employee_profile");
         Statement ss5 = conn3.createStatement();
@@ -312,99 +312,6 @@
     </div>
     <!-- /page content -->
 
-
-    <!-- Termination modal -->
-    <div
-            class="modal fade evaluation-modal-terminate"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <form
-                    id="terminateApplForm"
-                    class="form-horizontal"
-                    name="terminateApplForm"
-                    enctype="multipart/form-data"
-            >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="panel panel-inverse panel-danger">
-                            <div class="panel-heading">
-                                <h4
-                                        class="panel-title"
-                                        id="myModalLabel"
-                                >Application Termination</h4>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div class="col-md-8">
-                                        <h5>
-                                            Application/Referrence Number:
-                                            <input class="hide" name="tRefNoh"
-                                                   id="tRefNoh" type="text"/>
-                                            <label id="tRefNo"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Name:
-                                            <!-- <input
-                                            disabled="" id="nBussOwner" type="text" /> -->
-                                            <label id="tBussName"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Nature:
-                                            <!-- <input disabled="" id="nBussAddr"
-                                            type="text" /> -->
-                                            <label id="tBussNature"></label>
-                                        </h5>
-                                        <h5>
-                                            Authorized Representative:
-                                            <!--  <input disabled=""
-                                            id="nBussAuthRepName" type="text" /> -->
-                                            <label id="tBussAuthRepName"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Owner:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="tBussOwner"></label>
-                                        </h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-md-12">
-                                            <hr>
-                                            <textarea
-                                                    class="form-control"
-                                                    placeholder="Remarks"
-                                                    id="_AP_Remarks"
-                                                    name="AP_Remarks"
-                                                    rows="3"
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button
-                                    type="button"
-                                    class="btn btn-default"
-                                    data-dismiss="modal"
-                                    id="btnCloseTermApplModal"
-                            >Close
-                            </button>
-                            <button
-                                    type="button"
-                                    id="btnTermAppl"
-                                    class="btn btn-success"
-                            >Submit
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
     <!-- Assess Modal -->
     <div
             class="modal fade evaluation-modal-assess"
@@ -429,259 +336,98 @@
                                 <div class="col-md-12">
                                     <input type="text"
                                            class="hide"
-                                           id="_AAP_REFERENCE_NO"
+                                           id="_AP_REFERENCE_NO"
                                            name="_AP_REFERENCE_NO"
                                     />
                                     <div class="col-md-12 panel-body">
                                         <h5>
-                                            Business Name/Corporate Name:
+                                            Applicant's Name:
                                             <!-- <input disabled=""
                                             id="nBussName" type="text" /> -->
-                                            <label id="aBussName"></label>
+                                            <label id="nApplName"></label>
                                         </h5>
                                         <h5>
-                                            Name of Sole Proprietor/Partnership/President:
+                                            TODA:
                                             <!-- <input
                                             disabled="" id="nBussOwner" type="text" /> -->
-                                            <label id="aBussOwner"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Address:
-                                            <!-- <input disabled="" id="nBussAddr"
-                                            type="text" /> -->
-                                            <label id="aBussAddr"></label>
-                                        </h5>
-                                        <h5>
-                                            Tel No.:
-                                            <!--  <input disabled="" id="nBussConTelno" type="text" /> -->
-                                            <label id="aBussConTelno"></label>
-                                        </h5>
-                                        <h5>
-                                            Authorized Representative:
-                                            <!--  <input disabled="
-                                            id="nBussAuthRepName" type="text" /> -->
-                                            <label id="aBussAuthRepName"></label>
-                                        </h5>
-                                        <h5>
-                                            Address:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="aBussAuthRepAddr"></label>
-                                        </h5>
-                                        <h5>
-                                            Business Nature:
-                                            <!-- <input disabled="" id="nBussAuthRepAddr" type="text" /> -->
-                                            <label id="aBussNature"></label>
+                                            <label id="nTODA"></label>
                                         </h5>
                                     </div>
-                                    <div class="col-md-6 panel-body">
+                                    <div class="col-md-12 panel-body">
                                         <h5>Payment Checklist</h5>
                                         <div class="">
                                             <ul class="to_do">
                                                 <p>
                                                     <input type="checkbox"
-                                                           id="chkMayorsPerm"
-                                                           name="Mayors_Perm"
+                                                           id="MFF"
+                                                           name="MFF"
                                                            class="flat"
-                                                           value="1"> Mayor's Permit
+                                                           value="1"> MTOP Filing Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkCity_Tax"
-                                                            name="City_Tax"
+                                                            id="IF"
+                                                            name="IF"
                                                             class="flat"
                                                             value="2"
-                                                    > City Tax
+                                                    > Inspection Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkGarbage_Fee"
-                                                            name="Garbage_Fee"
+                                                            id="PF"
+                                                            name="PF"
                                                             class="flat"
                                                             value="3"
-                                                    > Garbage Fee
+                                                    > Permit Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkSanitary_Fee"
-                                                            name="Sanitary_Fee"
+                                                            id="FE"
+                                                            name="FE"
                                                             class="flat"
                                                             value="4"
-                                                    > Sanitary Fee
+                                                    > Franchise Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkBLDG_Fee"
-                                                            name="BLDG_Fee"
+                                                            id="FAE"
+                                                            name="FAE"
                                                             class="flat"
                                                             value="5"
-                                                    > Building Inspection Fee
+                                                    > Fare Adjustment Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkELECI_Fee"
-                                                            name="ELECI_Fee"
+                                                            id="RF"
+                                                            name="RF"
                                                             class="flat"
                                                             value="6"
-                                                    > Electrical Inspection Fee
+                                                    > Regulatory Fee
                                                 </p>
                                                 <p>
                                                     <input
                                                             type="checkbox"
-                                                            id="chkPLUMI_Fee"
-                                                            name="PLUMI_Fee"
+                                                            id="PPF"
+                                                            name="PPF"
                                                             class="flat"
                                                             value="7"
-                                                    > Plumbing Inspection Fee
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkSIGBRD_Fee"
-                                                            name="SIGNBRD_Fee"
-                                                            class="flat"
-                                                            value="8"
-                                                    > Signboard
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkFS_Fee"
-                                                            name="FS_Fee"
-                                                            class="flat"
-                                                            value="9"
-                                                    > Fire Inspection Fee
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkNRPS_Fee"
-                                                            name="NRPS_Fee"
-                                                            class="flat"
-                                                            value="10"
-                                                    > New Registered Plate Sticker
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkZoning_Fee"
-                                                            name="Zoning_Fee"
-                                                            class="flat"
-                                                            value="11"
-                                                    > Zoning Fee
+                                                    > Provisional Permit Fee
                                                 </p>
                                             </ul>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 panel-body">
-                                        <h5>&nbsp</h5>
-                                        <div class="">
-                                            <ul class="to_do">
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkPENI_Fee"
-                                                            name="PENI_Fee"
-                                                            class="flat"
-                                                            value="12"
-                                                    > Penalty Interest
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkTourism_Fee"
-                                                            name="Tourism_Fee"
-                                                            class="flat"
-                                                            value="13"
-                                                    > Tourism
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkQCBRD_Fee"
-                                                            name="QCBRD_Fee"
-                                                            class="flat"
-                                                            value="14"
-                                                    > QCBRD
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkADJ_Fee"
-                                                            name="ADJ_Fee"
-                                                            class="flat"
-                                                            value="15"
-                                                    > Adjustments
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkDISC_Fee"
-                                                            name="DISC_Fee"
-                                                            class="flat"
-                                                            value="16"
-                                                    > Discount
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkPENDEL_Fee"
-                                                            name="PENDEL_Fee"
-                                                            class="flat"
-                                                            value="17"
-                                                    > Penalty for Delinquency
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkADJTOUR_Fee"
-                                                            name="ADJTOUR_Fee"
-                                                            class="flat"
-                                                            value="18"
-                                                    > Adjustment for Tourism
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkSPECPER_Fee"
-                                                            name="SPECPER_Fee"
-                                                            class="flat"
-                                                            value="19"
-                                                    > Special Permit
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkADD_Fee"
-                                                            name="ADD_Fee"
-                                                            class="flat"
-                                                            value="20"
-                                                    > Additional Fee
-                                                </p>
-                                                <p>
-                                                    <input
-                                                            type="checkbox"
-                                                            id="chkCTC_Fee"
-                                                            name="CTC_Fee"
-                                                            class="flat"
-                                                            value="21"
-                                                    > CTC
-                                                </p>
-                                            </ul>
-                                        </div>
-
                                     </div>
                                     <hr>
-                                    <div class="col-md-12 panel-body">
+                                    <div class="col-md-12 panel-body hide">
                                         <ul class="to_do">
                                             <p>
                                                 <label>Assessed By</label>
                                                 <select class="selectpicker form-control" data-style="btn-white"
-                                                        id="aId" name="aId" tabindex="-1" required>
+                                                        id="aId" name="aId" tabindex="-1" value='<%out.print(session.getAttribute("empid"));%>' required>
 
                                                     <%while (rs3.next()) {%>
                                                     <option data-subtext="<%=rs3.getString("EP_JOB_DESC")%>"
@@ -689,45 +435,6 @@
                                                             value="<%=rs3.getInt("EP_ID")%>">
                                                             <%out.print(rs3.getString("EP_FNAME") + " " + rs3.getString("EP_MNAME")+ " " + rs3.getString("EP_LNAME"));%>
                                                             <%} rs3.close();ss2.close();%>
-                                                </select>
-                                            </p>
-                                            <p>
-                                                <label>Verified By</label>
-                                                <select class="selectpicker form-control" data-style="btn-white"
-                                                        id="verId" name="verId" tabindex="-1" required>
-
-                                                    <%while (rs5.next()) {%>
-                                                    <option data-subtext="<%=rs5.getString("EP_JOB_DESC")%>"
-                                                            title="<%=rs5.getString("EP_JOB_DESC")%>"
-                                                            value="<%=rs5.getInt("EP_ID")%>">
-                                                            <%out.print(rs5.getString("EP_FNAME") + " " + rs5.getString("EP_MNAME")+ " " + rs5.getString("EP_LNAME"));%>
-                                                            <%} rs5.close();ss5.close();%>
-                                                </select>
-                                            </p>
-                                            <p>
-                                                <label>Recommending Approval By</label>
-                                                <select class="selectpicker form-control" data-style="btn-white"
-                                                        id="recId" name="recId" tabindex="-1" required>
-
-                                                    <%while (rs6.next()) {%>
-                                                    <option data-subtext="<%=rs6.getString("EP_JOB_DESC")%>"
-                                                            title="<%=rs6.getString("EP_JOB_DESC")%>"
-                                                            value="<%=rs6.getInt("EP_ID")%>">
-                                                            <%out.print(rs6.getString("EP_FNAME") + " " + rs6.getString("EP_MNAME")+ " " + rs6.getString("EP_LNAME"));%>
-                                                            <%}rs6.close();ss6.close();%>
-                                                </select>
-                                            </p>
-                                            <p>
-                                                <label>Approved By</label>
-                                                <select class="selectpicker form-control" data-style="btn-white"
-                                                        id="aprId" name="aprId" tabindex="-1" required>
-
-                                                    <%while (rs7.next()) {%>
-                                                    <option data-subtext="<%=rs7.getString("EP_JOB_DESC")%>"
-                                                            title="<%=rs7.getString("EP_JOB_DESC")%>"
-                                                            value="<%=rs7.getInt("EP_ID")%>">
-                                                            <%out.print(rs7.getString("EP_FNAME") + " " + rs7.getString("EP_MNAME")+ " " + rs7.getString("EP_LNAME"));%>
-                                                            <%}rs7.close();ss7.close();%>
                                                 </select>
                                             </p>
                                         </ul>
@@ -746,75 +453,7 @@
                                     type="button"
                                     id="btnAssNewAppl"
                                     class="btn btn-success"
-                            >Evaluate
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Re-Eval modal -->
-    <div
-            class="modal fade evaluation-modal-reevval"
-            aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <form
-                    id="reEvalApplForm"
-                    class="form-horizontal"
-                    name="reEvalApplForm"
-                    enctype="multipart/form-data"
-            >
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="panel panel-inverse panel-danger">
-                            <div class="panel-heading">
-                                <h4
-                                        class="panel-title"
-                                >Request File Reupload</h4>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                    <div class="col-md-8">
-                                        <h5>
-                                            Application/Referrence Number:
-                                            <input class="hide" name="reRefNoh"
-                                                   id="reRefNoh" type="text"/>
-                                            <label id="reRefNo"></label>
-                                        </h5>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-md-12">
-                                            <hr>
-                                            <textarea
-                                                    class="form-control"
-                                                    placeholder="Specify Specific Missing Requirements"
-                                                    id="__AP_Remarks"
-                                                    name="AP_Remarks"
-                                                    rows="3" required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button
-                                    type="button"
-                                    class="btn btn-default"
-                                    data-dismiss="modal"
-                            >Close
-                            </button>
-                            <button
-                                    type="button"
-                                    id="btnRevAppl"
-                                    class="btn btn-success"
-                            >Submit
+                            >Assess
                             </button>
                         </div>
                     </div>

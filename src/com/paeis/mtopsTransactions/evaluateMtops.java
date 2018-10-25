@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.IDN;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
@@ -17,6 +18,9 @@ import java.sql.ResultSet;
 @WebServlet("/evaluateMtops")
 public class evaluateMtops extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private LGUConnect connect = new LGUConnect();
+    private Connection connection;
+    private int cnt = 0;
 
     public evaluateMtops() {
         super();
@@ -24,35 +28,63 @@ public class evaluateMtops extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int AP_ID = Integer.parseInt(request.getParameter("_AP_ID"));
-        int AT_ID = Integer.parseInt(request.getParameter("_AT_ID"));
-        String AP_REF_N0 = String.valueOf(request.getParameter("_AP_REFERENCE_NO"));
+
+        String AP_REF_NO = String.valueOf(request.getParameter("_AP_REFERENCE_NO"));
         String AT_COMM_TAX_CERT = String.valueOf(request.getParameter("AT_COMM_TAX_CERT"));
         String AT_LTO_REG_CERT = String.valueOf(request.getParameter("AT_LTO_REG_CERT"));
         String AT_TRICUNIT_PURCH = String.valueOf(request.getParameter("AT_TRICUNIT_PURCH"));
         String AT_BRGY_CLEAR = String.valueOf(request.getParameter("AT_BRGY_CLEAR"));
         String AT_TODA_LTR_CERT = String.valueOf(request.getParameter("AT_TODA_LTR_CERT"));
         String AT_ID_PIC = String.valueOf(request.getParameter("AT_ID_PIC"));
-        LGUConnect connect = new LGUConnect();
 
-        try {
-            Connection connection = connect.getConnection();
-            //Take it here
+        getCheckboxtatus(AT_COMM_TAX_CERT);
+        getCheckboxtatus(AT_LTO_REG_CERT);
+        getCheckboxtatus(AT_TRICUNIT_PURCH);
+        getCheckboxtatus(AT_BRGY_CLEAR);
+        getCheckboxtatus(AT_TODA_LTR_CERT);
+        getCheckboxtatus(AT_ID_PIC);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        response.setContentType("text/html;charset=UTF-8");
+        if (cnt == 6){
+            setAssess(AP_REF_NO,response);
+        }else{
+            termApl(AP_REF_NO,response);
         }
 
     }
 
-    private String getCheckboxtatus(String chkbox) {
-
-        if (chkbox.equals("Pass")) {
-            return "Pass";
-        } else if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
-            return "Fail";
+    private void termApl(String _AP_REFERENCE_NO, HttpServletResponse response) {
+        try {
+            connection = connect.getConnection();
+            PreparedStatement setTer = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Terminated',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            setTer.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
+            setTer.executeUpdate();
+            response.getWriter().print("Evaluation Failed, Please Return again with complete requirements");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        return null;
+    private int getCheckboxtatus(String chkbox) {
+        int skip = 0;
+        if (chkbox.equals("Pass")) {
+            cnt++;
+        } else if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
+            skip++;
+        }
+        return cnt;
+    }
+
+
+    private void setAssess(String _AP_REFERENCE_NO, HttpServletResponse response) {
+        try {
+            connection = connect.getConnection();
+            PreparedStatement setAss = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Assessing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            setAss.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
+            setAss.executeUpdate();
+            response.getWriter().print("Evaluation Success, Please Proceed to Assessment");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
