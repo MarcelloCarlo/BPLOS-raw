@@ -2,7 +2,6 @@ $(document).ready(function () {
 	
 	App.init();
 	TableManageResponsive.init();
-	var a,g,c;
 	$(".mtopsModal").click(function () {
 		document.getElementById('nApplName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
 		document.getElementById('nTODA').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
@@ -15,21 +14,11 @@ $(document).ready(function () {
 	});
 	
 	$('#btnCloseNewApplModal').on('hidden.bs.modal',function () {
-		$("#chkBLDG_INS").prop("checked", false);
-		$("#chkFIRE_INS").prop("checked", false);
-		$("#chkHS_INS").prop("checked", false);
-		$("#chkLABOR_INS").prop("checked", false);
-		$("#chkMISC_INS").prop("checked", false);
-		$("#chkZONING_INS").prop("checked", false);
+		$("input:checkbox").prop("checked", false);
 	});
 	
 	$('#closeNewPanelWindow').on('hidden.bs.modal',function () {
-		$("#chkBLDG_INS").prop("checked", false);
-		$("#chkFIRE_INS").prop("checked", false);
-		$("#chkHS_INS").prop("checked", false);
-		$("#chkLABOR_INS").prop("checked", false);
-		$("#chkMISC_INS").prop("checked", false);
-		$("#chkZONING_INS").prop("checked", false);
+		$("input:checkbox").prop("checked", false);
 	});
 	
 	$("#btnInsMtopsAppl").click(function () {

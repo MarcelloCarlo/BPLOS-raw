@@ -144,11 +144,12 @@
                                     try {
                                         Connection conn3 = conX.getConnection();
                                         Statement ss3 = conn3.createStatement();
-                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsev`");
+                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Pending'");
                                         while (gg3.next()) {
 
                                 %>
                                 <tr>
+                                    <td class="hide"></td>
                                     <td>Applicant's Name</td>
                                     <td>TODA</td>
                                     <td>Status</td>

@@ -477,7 +477,7 @@
                                                         <input
                                                                 type="checkbox"
                                                                 id="hwSStand"
-                                                                name="BLDG_INS"
+                                                                name="hwSStand"
                                                                 class="flat"
                                                                 value="Pass"
                                                         > Side Stand

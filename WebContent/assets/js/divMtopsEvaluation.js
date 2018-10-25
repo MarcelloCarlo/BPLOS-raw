@@ -35,12 +35,7 @@ $(document).ready(function () {
 	});
 	
 	$('.evaluation-modal-mtops').on('hidden.bs.modal', function () {
-		$("#AT_BRGY_CLEARANCE").prop("checked", false);
-		$("#AT_DTI_REGISTRATION").prop("checked", false);
-		$("#AT_SEC_REGISTRATION").prop("checked", false);
-		$("#AT_TITLE_TO_PROPERTY").prop("checked", false);
-		$("#AT_CONTRACT_OF_LEASE").prop("checked", false);
-		$("#AT_AUTHORIZATION").prop("checked", false);
+		$("input:checkbox").prop("checked", false);
 		$("#AT_MISC_DOCUMENTS").prop("checked", false);
 		$("#_AT_ID").empty();
 		$("#_AP_ID").empty();

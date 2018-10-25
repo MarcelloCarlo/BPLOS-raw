@@ -34,6 +34,7 @@ public class evaluateMtops extends HttpServlet {
         String AT_TODA_LTR_CERT = String.valueOf(request.getParameter("AT_TODA_LTR_CERT"));
         String AT_ID_PIC = String.valueOf(request.getParameter("AT_ID_PIC"));
         LGUConnect connect = new LGUConnect();
+
         try {
             Connection connection = connect.getConnection();
             //Take it here
