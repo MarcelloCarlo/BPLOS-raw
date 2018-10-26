@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Li Ven
-  Date: 9/27/2018
-  Time: 4:02 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
@@ -18,7 +11,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
-    <title>PAEIS | Business Nature Configuration</title>
+    <title>PAEIS | Audit Logs</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
@@ -59,12 +52,12 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li>Configurables</li>
-            <li class="active">Business Nature</li>
+            <li>Reports</li>
+            <li class="active">Audit Logs</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Business Nature Configuration</h1>
+        <h1 class="page-header">Audit Logs</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -72,47 +65,33 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Business Nature</h4>
-                    </div>
-                    <div class="panel-body">
-                        <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Add Business
-                            Nature</a>
+                        <h4 class="panel-title">Audit Logs</h4>
                     </div>
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th>Business Nature</th>
-                                <th>Business Nature Classification</th>
-                                <th>Action</th>
+                                <th>User</th>
+                                <th>Log In</th>
+                                <th>Log Out</th>
+                                <th>Division Accessed</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%
-                                String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
-                                Connection conn = null;
-                                Statement stat = null;
-                                ResultSet res = null;
-                                Class.forName("com.mysql.jdbc.Driver");
-                                conn = DriverManager.getConnection(host, "root", "");
-                                stat = conn.createStatement();
-                                String data = "select * from bpls_r_business_nature order by BN_ID desc";
-                                res = stat.executeQuery(data);
-                                while (res.next()) {
-                            %>
                             <tr>
-                                <td><%=res.getString("BN_NAME")%>
-                                </td>
-                                <td><%=res.getString("BN_CLASSIFICATION")%>
+                                <td>
+                                    Ako
                                 </td>
                                 <td>
-                                    <a href="PAEISSABusNatUpdate.jsp?u=<%=res.getString("BN_ID")%>"
-                                       class="btn btn-success">Edit</a>
+                                    ikaw
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    
                                 </td>
                             </tr>
-                            <%
-                                }
-                            %>
                             </tbody>
                         </table>
                     </div>
@@ -123,65 +102,6 @@
     </div>
     <!-- end #content -->
 
-    <!-- #modal-adduser -->
-    <div class="modal fade" id="modal-adduser">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="panel panel-inverse panel-danger">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Add Business Nature</h4>
-                        </div>
-                        <div class="panel-body">
-                            <form action="PAEISSABusNatInsert.jsp" method="POST">
-
-                                <div>
-                                    <fieldset>
-                                        <legend class="pull-left width-full">Business Nature</legend>
-                                        <!-- begin row -->
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Business Nature</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="busnat" placeholder="Business Nature"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Classification</label>
-                                                    <div class="controls">
-                                                        <select name="bnc" class="form-control">
-                                                            <option value="S">Small Scale</option>
-                                                            <option value="L">Large Scale</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <br>
-
-                                        <div class="modal-footer">
-                                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
-                                        </div>
-                                        <!-- end row -->
-                                    </fieldset>
-                                </div>
-                                <!-- end wizard step-3 -->
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- begin scroll to top btn -->

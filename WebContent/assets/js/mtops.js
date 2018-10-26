@@ -22,7 +22,7 @@ $(document).ready(function () {
             text: 'Do you agree on the terms and conditions?'
         },
             'Confirm?',
-        ]).then((result) => {
+        ]).then(function(result) {
             if(result.value
     )
         {
@@ -39,18 +39,16 @@ $(document).ready(function () {
                     swal({
                         type: 'success',
                         title: 'All Done!',
-                        html: 'Your Reference Number (Save It!): <b>' + JSON.stringify(response) + '</b> Your Application is subject to evaluation, Wait for further instructions. Ensure that your inserted contact number is active/valid!',
+                        html: 'Upload Done! Please Proceed to the Inspection together with your trycycle',
                         confirmButtonText: 'Proceed'
-                    }).then((result) => {
-                        if(result.value
-                )
+                    }).then(function(result) {
+                        if(result.value)
                     {
-                        var refx = "?refNo=" + response;
-                        //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
-                        window.location.replace("BPLSRtSlip.jsp" + refx);
+                        // var refx = "?refNo=" + response;
+                        // window.location.replace("BPLSRtSlip.jsp" + refx);
+                        location.reload(true);
                     }
-                })
-                    ;
+                });
                 },
                 error: function () {
                     swal("error", "Process encountered an error", "error");

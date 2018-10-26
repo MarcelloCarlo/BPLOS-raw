@@ -49,7 +49,7 @@
         Statement aaa = conn3.createStatement();
         Statement aa = conn3.createStatement();
         ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
-        ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.EP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
+        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_t_employee_profile EMP ON U.EP_ID = EMP.EP_ID JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG DESC");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -144,7 +144,7 @@
                             <h4 class="panel-title">Add User</h4>
                         </div>
                         <div class="panel-body">
-                            <form action="PAEISSAUsrInsert.jsp" method="POST">
+                            <form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">
                                 <div id="wizard">
                                     <ol>
                                         <li>
@@ -206,29 +206,10 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
-                                                        <input type="date" class="form-control date" name="bdate" id="birthdate" required/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Status</label>
-                                                        <input type="text" name="status" placeholder="Active"
-                                                               class="form-control" disabled/>
+                                                        <input type="text" class="form-control date" name="bdate" id="birthdate" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Job Description</label>
-                                                        <input type="text" name="jobdesc" placeholder="Job Description"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <!-- end row -->
                                         </fieldset>
                                     </div>
@@ -273,32 +254,9 @@
                                     <!-- begin wizard step-3 -->
                                     <div>
                                         <fieldset>
-                                            <legend class="pull-left width-full">Login</legend>
+                                            <legend class="pull-left width-full">Assign Division</legend>
                                             <!-- begin row -->
                                             <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Username</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="username"
-                                                                   placeholder="Your username"
-                                                                   class="form-control" disabled/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Pasword</label>
-                                                        <div class="controls">
-                                                            <input type="password" name="password"
-                                                                   value="bpls_user" class="form-control"
-                                                                   disabled/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Division</label>
@@ -318,12 +276,21 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Job Description</label>
+                                                        <input type="text" name="jobdesc" placeholder="Job Description"
+                                                               class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <br>
 
                                             <div class="modal-footer">
                                                 <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                                <button type="button" id="btnUsrsubmit"class="btn btn-sm btn-success">Add</button>
                                             </div>
                                             <!-- end row -->
                                         </fieldset>
@@ -381,32 +348,10 @@
 <script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
 <script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="assets/js/divUsrMgmt.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
-<script>
-    $(document).ready(function () {
-        App.init();
-        FormWizard.init();
-        TableManageResponsive.init();
-        FormWizardValidation.init();
-        FormPlugins.init();
-        /*$("#addUserbtn").click( function () {
-            var ok = "ok";
-            $.ajax({
-                type: "POST",
-                url: "generateDivisions",
-                data: {ok:ok},
-                success: function(response){
-                    $("#role").append(response)
-                }
-            });
-        })*/
-        $('#birthdate').datetimepicker({
-            format: "DD-MM-YYYY",
-
-        });
-    });
-</script>
 </body>
 <%
     } catch (Exception e) {

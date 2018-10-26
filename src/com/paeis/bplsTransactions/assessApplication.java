@@ -123,6 +123,8 @@ public class assessApplication extends HttpServlet {
             response.getWriter().print(e);
         }
     }
+
+
     private void setTaxFeeList(int feeName, int TB_ID, Connection connection) throws SQLException {
         if (feeName != 0){
             PreparedStatement getF1 = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_fee_list WHERE FL_ID = ?");

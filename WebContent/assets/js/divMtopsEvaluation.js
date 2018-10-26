@@ -16,20 +16,9 @@ $(document).ready(function () {
 	
 	$("#fileDownload").click(function () {
 		// event.preventDefault();
-		var fID = Number($("#_AT_ID").val());
-		var apID = Number($("#_AP_ID").val());
-		var link = "?fID=" + fID + "&apID=" + apID;
-		window.open("downloadAttachment" + link);
-		/* fID.empty();
-		 apID.empty();*/
-	});
-	
-	$("#fileDownloadr").click(function () {
-		// event.preventDefault();
-		var fID = Number($("#_AT_IDr").val());
-		var apID = Number($("#_AP_IDr").val());
-		var link = "?fID=" + fID + "&apID=" + apID;
-		window.open("downloadAttachment" + link);
+		var apID = Number($("#_AP_REFERENCE_NO").val());
+		var link = "?apID=" + apID;
+		window.open("downloadAttachmentMtops" + link);
 		/* fID.empty();
 		 apID.empty();*/
 	});
@@ -63,24 +52,24 @@ $(document).ready(function () {
 					data: mtopsApplForm,
 					processData: false,
 					contentType: false,
-					success: function () {
-						swal({
-							type: 'success',
-							title: 'DONE!.',
-							text: 'Succesfully Evaluated',
-							confirmButtonText: 'OK'
-						}).then(function (result) {
-							if (result.value
-							) {
-								location.reload(true);
-							}
-						})
-						;
-						
-					}/*,
+                    success: function (response) {
+                        swal({
+                            type: 'success',
+                            title: 'DONE!.',
+                            html: 'Result: <b>' + JSON.stringify(response),
+                            confirmButtonText: 'OK'
+                        }).then(function(result) {
+                            if(result.value
+                            )
+                            {
+                                location.reload(true);
+                            }
+                        })
+                        ;
+                    },
                     error: function () {
                         swal("error", "Evaluation encountered and error", "error");
-                    }*/
+                    }
 				});
 			}
 			else  {

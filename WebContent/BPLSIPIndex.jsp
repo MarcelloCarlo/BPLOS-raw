@@ -599,9 +599,6 @@
 ></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/divInspection.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->

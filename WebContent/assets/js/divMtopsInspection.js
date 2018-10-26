@@ -41,11 +41,11 @@ $(document).ready(function () {
 				data: mtopsInsApplForm,
 				processData: false,
 				contentType: false,
-				success: function () {
+				success: function (response) {
 					swal({
 						type: 'success',
 						title: 'DONE!.',
-						text: 'Succesfully Evaluated',
+                        html: 'Result: <b>' + JSON.stringify(response),
 						confirmButtonText: 'OK'
 					}).then(function(result) {
 						if(result.value
