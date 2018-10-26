@@ -90,13 +90,11 @@
                             <tr>
                                 <th>Reference No.</th>
                                 <th>Business Name</th>
-                                <th>Business Nature</th>
                                 <th>Taxpayer Name</th>
-                                <th>Taxpayer's Address</th>
+                                <th>Payment Received</th>
                                 <th>Date Billed</th>
                                 <th class="hide">TB_ID</th>
                                 <th class="hide">EMP</th>
-                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -110,8 +108,6 @@
                                 </td>
                                 <td><%=gg3.getString("BU_NAME")%>
                                 </td>
-                                <td><%=gg3.getString("BN_NAME")%>
-                                </td>
                                 <td><%=gg3.getString("TP_NAME")%>
                                 </td>
                                 <td><%=gg3.getString("TP_HOME_ADDRESS")%>
@@ -121,16 +117,6 @@
                                 <td class="hide"><%=gg3.getString("TB_ID")%>
                                 </td>
                                 <td class="hide"><%=gg3.getString("EMP_NAME")%>
-                                </td>
-                                <td>
-                                    <button
-                                            type="button"
-                                            class="btn btn-success"
-                                    <%--  data-toggle="modal"
-                                      data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
-                                            title="Payment for Permit"
-                                    ><i class="fa fa-lg fa-money"></i>
-                                    </button>
                                 </td>
                             </tr>
                             <%
