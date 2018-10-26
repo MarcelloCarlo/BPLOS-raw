@@ -2,8 +2,8 @@ $(document).ready(function () {
 	App.init();
 	FormWizard.init();
 	TableManageResponsive.init();
-	FormWizardValidation.init();
-	FormPlugins.init();
+	//FormWizardValidation.init();
+	//FormPlugins.init();
 	
 	$('#birthdate').datetimepicker({
 		format: "DD-MM-YYYY",
@@ -27,7 +27,7 @@ $(document).ready(function () {
 				$.ajax({
 					type: "POST",
 					enctype: "multipart/form-data",
-					url: "uploadSingleAppForm",
+					url: "insertUserEmp",
 					data: insertUsrForm,
 					processData: false,
 					contentType: false,
@@ -35,7 +35,7 @@ $(document).ready(function () {
 						swal({
 							type: 'success',
 							title: 'All Done!',
-							html: 'Result -> '+JSON.stringify(response),
+							html: 'Success! '+JSON.stringify(response),
 							confirmButtonText: 'Proceed'
 						}).then(function(result) {
 							if(result.value
