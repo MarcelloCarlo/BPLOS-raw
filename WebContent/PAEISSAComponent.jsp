@@ -61,6 +61,7 @@
             <ul class="sub-menu">
                 <li><a href="">Termination Reports</a></li>
                 <li><a href="">Accomplishment Reports</a></li>
+                <li><a href="">Audit Logs</a></li>
             </ul>
         </li>
     </ul>
