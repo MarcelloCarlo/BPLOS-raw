@@ -49,7 +49,7 @@
         Statement aaa = conn3.createStatement();
         Statement aa = conn3.createStatement();
         ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
-        ResultSet res = ss3.executeQuery("select * from bpls_t_user U JOIN bpls_t_employee_profile EP ON U.EP_ID = EP.EP_ID  JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE order by U_ID desc");%>
+        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG DESC");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -206,7 +206,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Birthdate</label>
-                                                        <input type="date" class="form-control date" name="bdate" id="birthdate" required/>
+                                                        <input type="text" class="form-control date" name="bdate" id="birthdate" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -290,7 +290,7 @@
 
                                             <div class="modal-footer">
                                                 <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                                <button type="submit" id="btnUsrsubmit"class="btn btn-sm btn-success">Add</button>
+                                                <button type="button" id="btnUsrsubmit"class="btn btn-sm btn-success">Add</button>
                                             </div>
                                             <!-- end row -->
                                         </fieldset>
@@ -348,6 +348,7 @@
 <script src="assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
 <script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/divUsrMgmt.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
