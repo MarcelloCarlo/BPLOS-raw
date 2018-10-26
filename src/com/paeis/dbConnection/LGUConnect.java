@@ -24,7 +24,7 @@ public class LGUConnect {
 	       // If you use Java> 5, then this line is not needed.
 	       //Class.forName("com.mysql.jdbc.Driver");
 		   DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-	       String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+	       String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName +"?allowMultiQueries=true";
 	 
 	       Connection conX = DriverManager.getConnection(connectionURL, userName,
 	               password);
