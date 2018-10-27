@@ -106,7 +106,7 @@
                 <li class="active">Large Scale Reports</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header"Large Scale Reports</h1>
+            <h1 class="page-header">Large Scale Reports</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">

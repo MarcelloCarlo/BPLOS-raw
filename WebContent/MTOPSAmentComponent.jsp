@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> BPLS</a>
+            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS/MTOPS</a>
             <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

@@ -74,7 +74,7 @@
         <div id="header" class="header navbar navbar-default navbar-fixed-top">
              <!-- begin navbar-header -->
                 <div class="navbar-header">
-                    <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>LGU</b> PA-EIS</a>
+                    <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>PAEIS</b> Occupational</a>
                     <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
