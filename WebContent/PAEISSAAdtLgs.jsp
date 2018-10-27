@@ -80,10 +80,8 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    Ako
                                 </td>
                                 <td>
-                                    ikaw
                                 </td>
                                 <td>
 

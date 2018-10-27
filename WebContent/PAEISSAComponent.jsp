@@ -58,8 +58,8 @@
                 <span>Reports</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="">Termination Reports</a></li>
-                <li><a href="">Accomplishment Reports</a></li>
+                <li><a href="PAEISSATermRep.jsp">Termination Reports</a></li>
+                <li><a href="PAEISSAAccomRep.jsp">Accomplishment Reports</a></li>
                 <li><a href="PAEISSAAdtLgs.jsp">Audit Logs</a></li>
             </ul>
         </li>
