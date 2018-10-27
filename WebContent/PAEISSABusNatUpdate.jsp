@@ -111,13 +111,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Business Nature Code</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="bnrc" class="form-control"
-                                           value='<%=res.getString("BNR_CODE")%>'/>
-                                </div>
-                            </div>
 
                             <%
                                 }

@@ -84,7 +84,6 @@
                             <tr>
                                 <th>Business Nature</th>
                                 <th>Business Nature Classification</th>
-                                <%--<th>Business Nature Code</th>--%>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -106,7 +105,6 @@
                                 </td>
                                 <td><%=res.getString("BN_CLASSIFICATION")%>
                                 </td>
-                                <%--<td><%=res.getString("BNR_CODE")%></td>--%>
                                 <td>
                                     <a href="PAEISSABusNatUpdate.jsp?u=<%=res.getString("BN_ID")%>"
                                        class="btn btn-success">Edit</a>
@@ -164,15 +162,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <%--<div class="col-md-4">--%>
-                                            <%--<div class="form-group">--%>
-                                            <%--<label>Business Nature Code</label>--%>
-                                            <%--<div class="controls">--%>
-                                            <%--<input type="text" name="bnrc" placeholder="Business Nature Code" class="form-control" required/>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
                                         </div>
 
                                         <br>
