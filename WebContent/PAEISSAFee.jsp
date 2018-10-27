@@ -98,8 +98,7 @@
                                 <td><%=res.getString("FL_AMOUNT")%>
                                 </td>
                                 <td>
-                                    <a href="PAEISSAFeeUpdate.jsp?u=<%=res.getString("FL_ID")%>"
-                                       class="btn btn-success">Edit</a>
+                                    <a href="PAEISSAFeeUpdate.jsp?u=<%=res.getString("FL_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -132,16 +131,6 @@
                                         <legend class="pull-left width-full">Fee</legend>
                                         <!-- begin row -->
                                         <div class="row">
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Fee Code</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="feecode" placeholder="Fee Code"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">

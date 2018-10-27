@@ -98,7 +98,7 @@
                                 <td><%=res.getString("RT_DESC")%>
                                 </td>
                                 <td>
-                                    <a href="PAEISReqUpdate.jsp?u=<%=res.getString("RT_ID")%>" class="btn btn-success">Edit</a>
+                                    <a href="PAEISSAReqUpdate.jsp?u=<%=res.getString("RT_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                             <%
