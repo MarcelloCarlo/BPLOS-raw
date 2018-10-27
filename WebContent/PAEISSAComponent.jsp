@@ -46,10 +46,9 @@
             <ul class="sub-menu">
                 <li><a href="PAEISSAFee.jsp">Fees</a></li>
                 <li><a href="PAEISSAReq.jsp">Requirements</a></li>
-                <li><a href="PAEISSARoles.jsp">User Roles</a></li>
                 <li><a href="PAEISSADvsion.jsp">Division</a></li>
-                <%--<li><a href="PAEISSABusNat.jsp">Business Nature</a></li>--%>
-                <li><a href="PAEISSAMdle.jsp">Module</a></li>
+                <li><a href="PAEISSABusNat.jsp">Business Nature</a></li>
+                <%--<li><a href="PAEISSAMdle.jsp">Module</a></li>--%>
             </ul>
         </li>
         <li class="has-sub">
@@ -61,6 +60,7 @@
             <ul class="sub-menu">
                 <li><a href="">Termination Reports</a></li>
                 <li><a href="">Accomplishment Reports</a></li>
+                <li><a href="PAEISSAAdtLgs.jsp">Audit Logs</a></li>
             </ul>
         </li>
     </ul>
