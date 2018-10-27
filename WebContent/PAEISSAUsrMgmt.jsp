@@ -49,7 +49,7 @@
         Statement aaa = conn3.createStatement();
         Statement aa = conn3.createStatement();
         ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
-        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG DESC");%>
+        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_t_employee_profile EMP ON U.EP_ID = EMP.EP_ID JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG DESC");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
