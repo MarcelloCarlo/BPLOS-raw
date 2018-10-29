@@ -141,14 +141,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <%
-                                    LGUConnect conX = new LGUConnect();
-                                    try{
-                                    Connection conn3 = conX.getConnection();
-                                    Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
-                                    while (gg3.next()) {
-                                %>
                                 <tr>
                                     <td>
                                         Tricycle Driver
@@ -167,14 +159,23 @@
                                     </td>
                                     <td>
                                         <button
-                                        type="button"
-                                        class="btn btn-success mtopsModal"
-                                        data-toggle="modal"
-                                        data-target=".inspection-modal-mtops" title="Comply the Inspected Business"
+                                                type="button"
+                                                class="btn btn-success mtopsModal"
+                                                data-toggle="modal"
+                                                data-target=".inspection-modal-mtops" title="Comply the Inspected Business"
                                         ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
                                     </td>
                                 </tr>
+                                <%
+                                    LGUConnect conX = new LGUConnect();
+                                    try{
+                                    Connection conn3 = conX.getConnection();
+                                    Statement ss3 = conn3.createStatement();
+                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
+                                    while (gg3.next()) {
+                                %>
+
                                 <%--<tr>--%>
                                     <%--<td><%=gg3.getString("BU_NAME")%>--%>
                                     <%--</td><!--0-->--%>

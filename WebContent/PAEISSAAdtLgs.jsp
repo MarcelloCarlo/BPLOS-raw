@@ -70,8 +70,7 @@
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
-                            <tr>
-                                <th>User</th>
+                            <tr>-3
                                 <th>Log In</th>
                                 <th>Log Out</th>
                                 <th>Division Accessed</th>
