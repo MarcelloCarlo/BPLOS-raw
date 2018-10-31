@@ -35,7 +35,7 @@
                 </a>
                 <ul class="dropdown-menu animated fadeInLeft">
                     <li class="arrow"></li>
-                    <li><a href="javascript:;">Log Out</a></li>
+                    <li><a href="PAEISPortal.jsp">Log Out</a></li>
                 </ul>
             </li>
         </ul>
