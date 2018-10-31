@@ -76,7 +76,7 @@
                             <%
                                 String u = request.getParameter("u");
                                 int num = Integer.parseInt(u);
-                                PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_fee_list where FL_NAME= ? ");
+                                PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_fee_list where FL_ID= ? ");
                                 getInfo.setInt(1, num);
                                 res = getInfo.executeQuery();
                                 while (res.next()) {
