@@ -8,7 +8,7 @@ $(document).ready(function () {
         } else if (formX === "nCorp") {
             window.open("BPLSAplCrpBus.jsp");
         } else if (formX === "Mtops") {
-            window.open("MTOPSApl.jsp")
+            window.open("MTOPSMtrzdApl.jsp")
         } else if (formX === "rCorp") {
 
         }

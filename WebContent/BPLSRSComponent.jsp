@@ -42,7 +42,6 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="BPLSRSIndex.jsp"><i class="fa fa-print"></i> <span>Permit Releasing</span></a></li>
         <li><a href="BPLSRSAcmplReports.jsp"><i class="fa fa-text"></i> <span>Accomplishment Reports</span></a></li>
     </ul>

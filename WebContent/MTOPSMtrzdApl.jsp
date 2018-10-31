@@ -86,7 +86,7 @@
                     <div class="panel-heading">
                         <div class="panel-heading-btn">
                         </div>
-                        <h4 class="panel-title">Tricycle Operator Permit Application Form</h4>
+                        <h4 class="panel-title">Motorized Tricycle Operator Permit Application Form</h4>
                     </div>
                     <div class="panel-body">
                         <form data-parsley-validate="" novalidate="" enctype="multipart/form-data"

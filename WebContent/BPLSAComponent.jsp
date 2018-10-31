@@ -49,7 +49,6 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="BPLSAIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Processing</span></a></li>
         <li class="has-sub">
             <a href="javascript:;">

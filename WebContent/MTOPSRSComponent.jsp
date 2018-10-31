@@ -46,7 +46,6 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <li><a href="MTOPSRSIndex.jsp"><i class="fa fa-print"></i> <span>Permit Releasing</span></a></li>
-        <%--<li><a href="BPLSRSAcmplReports.jsp"><i class="fa fa-text"></i> <span>Accomplishment Reports</span></a></li>--%>
     </ul>
 
     <!-- end top-menu nav -->

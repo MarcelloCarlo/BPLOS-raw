@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Li Ven
-  Date: 10/7/2018
-  Time: 10:44 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!-- begin #header -->
@@ -26,7 +19,7 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <li><a href="#"><i class="fa fa-file-text"></i> <span>Application Processing</span></a></li>
+        <li><a href="#"><i class="fa fa-file-text"></i> <span>Inventory List</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

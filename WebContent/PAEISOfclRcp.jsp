@@ -60,7 +60,6 @@
         <div class="invoice">
             <div class="invoice-company">
                     <span class="pull-right hidden-print">
-                    <%--<a href="javascript:;" class="btn btn-sm btn-success m-b-10"><i class="fa fa-download m-r-5"></i> Export as PDF</a>--%>
                     <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
                             class="fa fa-print m-r-5"></i> Print</a>
                     </span>
@@ -225,16 +224,6 @@
                 * Write the number and date of this receipt on the back of the treasury warrant, check or money order
                 received
             </div>
-            <%--<div class="invoice-footer text-muted">--%>
-            <%--<p class="text-center m-b-5">--%>
-            <%--THANK YOU FOR YOUR BUSINESS--%>
-            <%--</p>--%>
-            <%--<p class="text-center">--%>
-            <%--<span class="m-r-10"><i class="fa fa-globe"></i> matiasgallipoli.com</span>--%>
-            <%--<span class="m-r-10"><i class="fa fa-phone"></i> T:016-18192302</span>--%>
-            <%--<span class="m-r-10"><i class="fa fa-envelope"></i> rtiemps@gmail.com</span>--%>
-            <%--</p>--%>
-            <%--</div>--%>
         </div>
         <!-- end invoice -->
     </div>

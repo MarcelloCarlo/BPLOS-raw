@@ -85,9 +85,7 @@
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
-    <!-- clippy -->
-    <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
-        rel="stylesheet"> -->
+
 </head>
 <body>
 <!-- begin #page-loader -->
@@ -175,48 +173,6 @@
                                     ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
                                     while (gg3.next()) {
                                 %>
-
-                                <%--<tr>--%>
-                                    <%--<td><%=gg3.getString("BU_NAME")%>--%>
-                                    <%--</td><!--0-->--%>
-                                    <%--<td><%=gg3.getString("BN_NAME")%>--%>
-                                    <%--</td><!--1-->--%>
-                                    <%--<td><%=gg3.getString("AP_STATUS")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td><%=gg3.getString("AP_DATE")%>--%>
-                                    <%--</td><!--5-->--%>
-                                    <%--<td><%=gg3.getString("BU_PRESIDENT")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td class="hide"><%=gg3.getString("BU_LOCATION")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td class="hide"><%=gg3.getString("BU_CONTACT")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td class="hide"><%=gg3.getString("AUTH_REPNAME")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td class="hide"><%=gg3.getString("BN_NAME")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>--%>
-                                    <%--</td>--%>
-                                    <%--<td>--%>
-                                        <%--<button--%>
-                                                <%--type="button"--%>
-                                                <%--class="btn btn-success <%=modalClass%>"--%>
-                                                <%--data-toggle="modal"--%>
-                                                <%--data-target="inspection-modal-mtops" title="Comply the Inspected Business"--%>
-                                        <%--><i class="fa fa-lg fa-list-ul"></i>--%>
-                                        <%--</button>--%>
-                                        <%--<button--%>
-                                                <%--type="button"--%>
-                                                <%--class="btn btn-success"--%>
-                                                <%--data-toggle="modal" title="Release a Mission Order"--%>
-                                        <%--><i class="fa fa-lg fa-rocket"></i>--%>
-                                        <%--</button>--%>
-                                    <%--</td>--%>
-                                <%--</tr>--%>
                                 <%
                                     } }catch (Exception e) {out.print(e);}
                                 %>
@@ -263,14 +219,10 @@
                                     <div class="col-md-12 panel-body">
                                         <h5>
                                             Applicant's Name:
-                                            <!-- <input disabled=""
-                                            id="nBussName" type="text" /> -->
                                             <label id="nApplName"></label>
                                         </h5>
                                         <h5>
                                             TODA:
-                                            <!-- <input
-                                            disabled="" id="nBussOwner" type="text" /> -->
                                             <label id="nTODA"></label>
                                         </h5>
                                     </div>

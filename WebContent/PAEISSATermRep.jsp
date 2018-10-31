@@ -76,9 +76,7 @@
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
-    <!-- clippy -->
-    <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
-        rel="stylesheet"> -->
+
 </head>
 <%
     LGUConnect conX = new LGUConnect();

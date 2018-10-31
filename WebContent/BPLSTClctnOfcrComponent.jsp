@@ -49,7 +49,6 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="BPLSTClctnOfcr.jsp"><i class="fa fa-money"></i> <span>Payment Audit</span></a></li>
     </ul>
     <!-- end top-menu nav -->

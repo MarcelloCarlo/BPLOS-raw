@@ -1,4 +1,15 @@
-<%@ page import="java.sql.*" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Li Ven
+  Date: 10/31/2018
+  Time: 10:38 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -8,7 +19,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
-    <title>PAEIS | Requirements Configuration</title>
+    <title>MTOPS | For Hire Inventory</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
@@ -27,19 +38,25 @@
     <!-- ================== BEGIN PAGE LEVEL STYLE ================== -->
     <link href="assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
-    <link href="assets/plugins/bootstrap-wizard/css/bwizard.min.css" rel="stylesheet"/>
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+    <%
+    LGUConnect conX = new LGUConnect();
+    String treId = String.valueOf(session.getAttribute("empid"));
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM view_applicationformstre");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="PAEISSAComponent.jsp"></jsp:include>
+<jsp:include page="MTOPSInvComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -48,12 +65,12 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li>Configurables</li>
-            <li class="active">Requirements</li>
+            <li><a href="javascript:;">Inventory</a></li>
+            <li class="active">For Hire</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Requirements Configuration</h1>
+        <h1 class="page-header">For Hire</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -61,59 +78,61 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Requirements</h4>
+                        <h4 class="panel-title">For Hire Table</h4>
                     </div>
                     <div class="panel-body">
-                        <%
-                            String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";
-                            Connection conn = null;
-                            Statement stat = null;
-                            ResultSet res = null;
-                            PreparedStatement stmt = null;
-                            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-                            conn = DriverManager.getConnection(host, "root", "");
-                        %>
-                        <form class="form-horizontal" action=" " method="POST">
+                        <table
+                                id="data-table"
+                                class="table table-striped table-bordered nowrap"
+                                width="100%"
+                        >
+                            <thead>
+                            <tr>
+                                <th>Reference No.</th>
+                                <th>Type of Tricycle</th>
+                                <th>TODA</th>
+                                <th>Body Number</th>
+                                <th>Driver's Name</th>
+                                <th class="hide">TB_ID</th>
+                                <th class="hide">EMP</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <%
-                                String u = request.getParameter("u");
-                                int num = Integer.parseInt(u);
-                                PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_req_type where RT_ID= ? ");
-                                getInfo.setInt(1, num);
-                                res = getInfo.executeQuery();
-                                while (res.next()) {
-                            %>
-                            <input type="hidden" name="id" value='<%=res.getString("RT_ID")%>'/>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Requirement Name</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="reqname" class="form-control"
-                                           value='<%=res.getString("RT_NAME")%>'/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Requirement Description</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="reqdesc" class="form-control"
-                                           value='<%=res.getString("RT_DESC")%>'/>
-                                </div>
-                            </div>
+                                while (gg3.next()) {
+                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") + "&tbId=" + gg3.getString("TB_ID") + "&treId="+treId+ "'";
 
+                            %>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
                             <%
                                 }
                             %>
-                            <div class="modal-footer">
-                                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-sm btn-success">Update</button>
-                            </div>
-                        </form>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                <!-- end panel -->
             </div>
-            <!-- end panel -->
         </div>
     </div>
+    <!-- end #content -->
 </div>
-<!-- end #content -->
+
 
 <!-- begin scroll to top btn -->
 <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
@@ -121,6 +140,8 @@
 <!-- end scroll to top btn -->
 </div>
 <!-- end page container -->
+
+<jsp:include page="MTOPSInvFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -142,48 +163,11 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/js/divTreasury.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
-</html>
-
 <%
-    String a = request.getParameter("id");
-    String b = request.getParameter("reqname");
-    String c = request.getParameter("reqcode");
-    if (a != null && b != null && c != null) {
-        String query = "update bpls_r_fees set RT_NAME=?,  RT_DESC=? where RT_ID='" + a + "'";
-        stmt = conn.prepareStatement(query);
-        stmt.setString(1, b);
-        stmt.setString(2, c);
-        stmt.executeUpdate();
-        response.sendRedirect("PAEISSAReq.jsp");
+    } catch (SQLException | ClassNotFoundException e) {
+        out.print(e);
     }
 %>

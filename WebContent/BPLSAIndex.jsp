@@ -123,17 +123,17 @@
             <!-- begin breadcrumb -->
             <ol class="breadcrumb pull-right">
                 <li><a href="javascript:;">Assessment</a></li>
-                <li class="active">Application Processing</li>
+                <li class="active">Application Assessment Processing</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header">Application Processing</h1>
+            <h1 class="page-header">Application Assessment Processing</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">
                     <!-- begin panel -->
                     <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Assessment Table</h4>
+                            <h4 class="panel-title">Application Assessment Table</h4>
                         </div>
                         <div class="panel-body">
                             <table

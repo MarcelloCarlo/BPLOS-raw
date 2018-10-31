@@ -140,7 +140,7 @@
                     <li><a href="MTOPSRSIndex.jsp"><i class="fa fa-file-excel-o"></i> <span>Releasing</span></a></li>
                     <li><a href="PAEISPortal.jsp"><i class="fa fa-file-excel-o"></i> <span>Portal</span></a></li>
                     <li><a href="PAEISSAUsrMgmt.jsp"><i class="fa fa-file-excel-o"></i> <span>Sysadmin</span></a></li>
-                    <li><a href="MTOPSApl.jsp"><i class="fa fa-file-excel-o"></i>
+                    <li><a href="MTOPSMtrzdApl.jsp"><i class="fa fa-file-excel-o"></i>
                         <span>Application Form</span></a></li>
                 </ul>
             </li>

@@ -114,9 +114,6 @@
                                 </td>
                                 <td><%=res.getString("U_STATUS")%>
                                 </td>
-                                <%--<td>--%>
-                                <%--<a href="#" class="btn btn-success btn-xs">Edit</a>--%>
-                                <%--</td>--%>
                                 <td>
                                     <a href="PAEISSAUsrUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
                                 </td>
