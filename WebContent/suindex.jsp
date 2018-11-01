@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>PAES | DEBUG MODE</title>
+    <title>PAEIS | DEBUG MODE</title>
 
     <meta
             http-equiv="Content-Type"
