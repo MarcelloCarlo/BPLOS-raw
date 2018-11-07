@@ -80,6 +80,7 @@
         rel="stylesheet"> -->
 </head>
 <% LGUConnect conX = new LGUConnect();
+    String treId = String.valueOf(session.getAttribute("empid"));
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
