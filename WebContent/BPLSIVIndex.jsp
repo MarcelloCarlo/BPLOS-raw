@@ -89,6 +89,12 @@
     <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
         rel="stylesheet"> -->
 </head>
+<% LGUConnect conX = new LGUConnect();
+    String treId = String.valueOf(session.getAttribute("empid"));
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsiv`");%>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -158,11 +164,6 @@
                                 </thead>
                                 <tbody>
                                 <%
-                                    LGUConnect conX = new LGUConnect();
-                                    try {
-                                        Connection conn3 = conX.getConnection();
-                                        Statement ss3 = conn3.createStatement();
-                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsiv`");
                                         while (gg3.next()) {
                                             String apType = gg3.getString("AP_TYPE");
                                             String modalMode = "";
@@ -232,9 +233,7 @@
                                 </tr>
                                 <%
                                         }
-                                    } catch (SQLException | ClassNotFoundException e) {
-                                        out.print(e);
-                                    }
+
                                 %>
                                 </tbody>
                             </table>
@@ -574,5 +573,10 @@
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/divInvestigation.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+
+<%
+    } catch (SQLException | ClassNotFoundException e) {
+        out.print(e);
+    }%>
 </body>
 </html>

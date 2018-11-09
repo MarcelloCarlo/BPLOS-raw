@@ -33,10 +33,13 @@
                         }
                     %></span> <b class="caret"></b>
                 </a>
+                <form action="LogoutServlet" method="post">
                 <ul class="dropdown-menu animated fadeInLeft">
                     <li class="arrow"></li>
-                    <li><a href="javascript:;">Log Out</a></li>
+                    <input type="text" class="hidden" name="sessionId" hidden value='<%=session.getAttribute("empid")%>'>
+                    <li><a type="submit">Log Out</a></li>
                 </ul>
+                </form>
             </li>
         </ul>
         <!-- end header navigation right -->

@@ -16,22 +16,21 @@
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown navbar-user">
+
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="hidden-xs"><%
-                        if(null!=session.getAttribute("empname"))
-                        {
+                        if (null != session.getAttribute("empname")) {
                             out.println(session.getAttribute("empname"));
                         }
                     %></span> <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu animated fadeInLeft">
-                    <li class="arrow"></li>
-                    <li><a href="javascript:;">Log Out</a></li>
-                </ul>
-            </li>
-        </ul>
+                    <form action="LogoutServlet" method="post">
+                        <input type="text" class="hidden" name="sessionId" hidden
+                               value='<%=session.getAttribute("empid")%>'>
+                        <li><a><button type="submit"> Log Out</button></a></li>
+                    </form>
+
+
         <!-- end header navigation right -->
     </div>
     <!-- end container-fluid -->
@@ -50,10 +49,14 @@
                 <span>Reports</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
-                <li><a href="BPLSEEndReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluated Reports</span></a></li>
-                <li><a href="BPLSESSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Small Scale Reports</span></a></li>
-                <li><a href="BPLSELSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Large Scale Reports</span></a></li>
+                <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i>
+                    <span>Termination Reports</span></a></li>
+                <li><a href="BPLSEEndReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluated Reports</span></a>
+                </li>
+                <li><a href="BPLSESSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Small Scale Reports</span></a>
+                </li>
+                <li><a href="BPLSELSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Large Scale Reports</span></a>
+                </li>
             </ul>
         </li>
     </ul>

@@ -12,6 +12,7 @@
 <!--<![endif]-->
 <%
     LGUConnect conX = new LGUConnect();
+    String treId = String.valueOf(session.getAttribute("empid"));
     try {
         Connection conn = conX.getConnection();
         PreparedStatement getReltbl = (PreparedStatement) conn.prepareStatement("SELECT * FROM view_applicationformsrel");
