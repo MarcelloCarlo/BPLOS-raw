@@ -16,21 +16,16 @@
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
-
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+        <div class="nav navbar-nav navbar-right">
+                <label>
                     <span class="hidden-xs"><%
                         if (null != session.getAttribute("empname")) {
                             out.println(session.getAttribute("empname"));
                         }
-                    %></span> <b class="caret"></b>
-                </a>
-                    <form action="LogoutServlet" method="post">
-                        <input type="text" class="hidden" name="sessionId" hidden
-                               value='<%=session.getAttribute("empid")%>'>
-                        <li><a><button type="submit"> Log Out</button></a></li>
-                    </form>
-
-
+                    %></span>
+                    <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out"></a>
+                </label>
+        </div>
         <!-- end header navigation right -->
     </div>
     <!-- end container-fluid -->

@@ -92,13 +92,15 @@ public class uploadMtopsApplForm extends HttpServlet {
             Connection connection = conX.getConnection();
             Date bDateApplicante = new SimpleDateFormat("dd-MM-yyyy").parse(BDateApplicant);
             Date applicantRepBDate = new SimpleDateFormat("dd-MM-yyyy").parse(ApplicantRepBDate);
+            java.sql.Date _applicantRepBDate = new java.sql.Date(applicantRepBDate.getTime());
+            java.sql.Date _bDateApplicante = new java.sql.Date(bDateApplicante.getTime());
 
             PreparedStatement insrtRepr = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_representative(REPRE_FNAME, REPRE_MNAME, REPRE__LNAME, REPRE_ADDRESS, REPRE_BDAY, REPRE_SEX, REPRE_EMAIL, REPRE_CONTACT_NO) VALUES (?,?,?,?,?,?,?,?)");
             insrtRepr.setString(1, txtApplicantRepFName);
             insrtRepr.setString(2, txtApplicantRepMName);
             insrtRepr.setString(3, txtApplicantRepLName);
             insrtRepr.setString(4, txtApplicantRepAddr);
-            insrtRepr.setDate(5, (java.sql.Date) applicantRepBDate);
+            insrtRepr.setDate(5, _applicantRepBDate);
             insrtRepr.setString(6, ApplicantRepgender);
             insrtRepr.setString(7, ApplicantRepEmail);
             insrtRepr.setString(8, ApplicantRepPhoneNo);
@@ -107,22 +109,22 @@ public class uploadMtopsApplForm extends HttpServlet {
             PreparedStatement insrtAppl = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_application_frm(APF_FNAME, APF_MNAME, APF_LNAME, APF_BDATE, APF_SEX, APF_HOUSE_NO, APF_STREET, APF_BRGY, APF_CITY, APF_CONTACT_NO, APF_MAILING_ADR, APF_EMAIL, APF_PLATE_NO, APF_TIN_NO, APF_DRIVERS_LICENSE_NO, TODA_NAME, APF_FILE, APF_FILENAME, APF_DATEACCESSED,REPRE_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,(SELECT MAX(mtops_t_representative.REPRE_ID) FROM mtops_t_representative))");
             insrtAppl.setString(1, txtApplicantFName);
             insrtAppl.setString(2, txtApplicantMName);
-            insrtAppl.setString(2, txtApplicantLName);
-            insrtAppl.setDate(2, (java.sql.Date) bDateApplicante);
-            insrtAppl.setString(3, genderApplicant);
-            insrtAppl.setString(4, txtApplicantOwnHsNum);
-            insrtAppl.setString(5, txtApplicantOwnStrt);
-            insrtAppl.setString(6, txtApplicantOwnBrgy);
-            insrtAppl.setString(6, txtApplicantOwnCity);
-            insrtAppl.setString(7, txtApplicantTelNo);
-            insrtAppl.setString(8, txtApplicantMailAdd);
-            insrtAppl.setString(9, txtApplicantEmail);
-            insrtAppl.setString(10, txtApplicantPlateNo);
-            insrtAppl.setString(11, txtApplicantTINNo);
-            insrtAppl.setString(12, txtApplicantDriverLic);
-            insrtAppl.setString(13, txtApplicantTODA);
-            insrtAppl.setBlob(14, is);
-            insrtAppl.setString(13, fileName);
+            insrtAppl.setString(3, txtApplicantLName);
+            insrtAppl.setDate(4, _bDateApplicante);
+            insrtAppl.setString(5, genderApplicant);
+            insrtAppl.setString(6, txtApplicantOwnHsNum);
+            insrtAppl.setString(7, txtApplicantOwnStrt);
+            insrtAppl.setString(8, txtApplicantOwnBrgy);
+            insrtAppl.setString(9, txtApplicantOwnCity);
+            insrtAppl.setString(10, txtApplicantTelNo);
+            insrtAppl.setString(11, txtApplicantMailAdd);
+            insrtAppl.setString(12, txtApplicantEmail);
+            insrtAppl.setString(13, txtApplicantPlateNo);
+            insrtAppl.setString(14, txtApplicantTINNo);
+            insrtAppl.setString(15, txtApplicantDriverLic);
+            insrtAppl.setString(16, txtApplicantTODA);
+            insrtAppl.setBlob(17, is);
+            insrtAppl.setString(18, fileName);
             insrtAppl.executeUpdate();
 
 
