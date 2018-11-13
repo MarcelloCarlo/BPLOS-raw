@@ -534,7 +534,7 @@
                                                                             natureSt = "Unidentified";
                                                                         }
                                                             %>
-                                                            <option data-subtext="<%=natureSt%>"
+                                                            <option
                                                                     value="<%out.print(gg3.getInt("BN_ID"));%>">
                                                                 <%out.print(gg3.getString("BN_NAME"));%>
                                                             </option>
