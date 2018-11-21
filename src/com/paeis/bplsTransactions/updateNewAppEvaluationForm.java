@@ -145,11 +145,11 @@ public class updateNewAppEvaluationForm extends HttpServlet {
             updateRequirements.setString(5, getCheckboxtatus(AT_FSIC));
             updateRequirements.setString(6, getCheckboxtatus(AT_SH_CERT));
             updateRequirements.setString(7, getCheckboxtatus(AT_CTAO_CERT));
-            updateRequirements.setString(9, getCheckboxtatus(AT_E_INSP));
-            updateRequirements.setString(10, getCheckboxtatus(AT_LESSORS_BP));
-            updateRequirements.setString(11, getCheckboxtatus(AT_PCAB_LICENSE));
-            updateRequirements.setInt(12, _AT_ID);
-            updateRequirements.setInt(13, _AP_ID);
+            updateRequirements.setString(8, getCheckboxtatus(AT_E_INSP));
+            updateRequirements.setString(9, getCheckboxtatus(AT_LESSORS_BP));
+            updateRequirements.setString(10, getCheckboxtatus(AT_PCAB_LICENSE));
+            updateRequirements.setInt(11, _AT_ID);
+            updateRequirements.setInt(12, _AP_ID);
             updateRequirements.executeUpdate();
 
             PreparedStatement changeDiv = (PreparedStatement) connection.prepareStatement(currBN);

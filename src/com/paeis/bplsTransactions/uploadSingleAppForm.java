@@ -157,7 +157,7 @@ public class uploadSingleAppForm extends HttpServlet {
 
         String divCode = "";
         String divName = "";
-        String refNo = "";
+        String refNo = "",refId="";
         try {
             connection = conX.getConnection();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -222,18 +222,20 @@ public class uploadSingleAppForm extends HttpServlet {
             fileUpload.setString(2, fileName);
             fileUpload.executeUpdate();
 //Record
-            PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM bpls_t_bp_application");
+            PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_ID) AS REF_ID FROM bpls_t_bp_application");
             ResultSet rsAPNO = getAPno.executeQuery();
             while (rsAPNO.next()){
-                refNo = rsAPNO.getString("REF_NO");
+                refId = rsAPNO.getString("REF_ID");
             }
 
-            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
-            getAPinfo.setString(1, refNo);
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_ID = ?");
+            getAPinfo.setInt(1, Integer.parseInt(refId));
             ResultSet rsAP = getAPinfo.executeQuery();
             while (rsAP.next()){
                 divCode = rsAP.getString("AP_DIV_CODE_TO");
+                refNo = rsAP.getString("AP_REFERENCE_NO");
             }
+
 
             PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
             getDivName.setString(1, divCode);

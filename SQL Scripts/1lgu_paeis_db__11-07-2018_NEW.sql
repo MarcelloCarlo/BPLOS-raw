@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `lgu_paeis_db`
 --
-CREATE DATABASE IF NOT EXISTS `lgu_paeis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+DROP DATABASE IF EXISTS `lgu_paeis_db`;
+CREATE DATABASE `lgu_paeis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `lgu_paeis_db`;
 
 -- --------------------------------------------------------
@@ -1976,8 +1977,6 @@ CREATE TABLE IF NOT EXISTS `view_bussperm` (
 -- (See below for the actual view)
 --
 DROP VIEW IF EXISTS `view_terminatedap`;
-CREATE TABLE IF NOT EXISTS `view_terminatedap` (
-);
 
 -- --------------------------------------------------------
 
