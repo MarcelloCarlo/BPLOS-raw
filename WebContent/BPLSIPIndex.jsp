@@ -227,9 +227,9 @@
                                     <td>
                                         <button
                                                 type="button"
-                                                class="btn btn-success <%=modalClass%>"
+                                                class="btn btn-success newModal"
                                                 data-toggle="modal"
-                                                data-target="<%=modalMode%>" title="Comply the Inspected Business"
+                                                data-target=".inspection-modal-new" title="Comply the Inspected Business"
                                         ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
                                     </td>
@@ -379,7 +379,17 @@
                                                 </p>
                                             </ul>
                                         </div>
+                                    </div><div class="panel-body">
+                                    <hr>
+                                    <div class="col-md-12">
+                                        <label for="busType">Business Type</label>
+											<select id="busType" class="selectpicker form-control" data-style="btn-white" tabindex="-1" name="busType">
+                                                <option selected>Select Business Type...</option>
+                                                <option value="L">Large Scale</option>
+                                                <option value="S">Small Scale</option>
+                                            </select>
                                     </div>
+                                </div>
                                     <div class="panel-body">
                                         <hr>
                                         <div class="col-md-12">
@@ -600,6 +610,7 @@
 ></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/divInspection.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
