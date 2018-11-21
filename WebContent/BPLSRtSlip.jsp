@@ -168,7 +168,7 @@ String BPno = "";
                             <h5>Address: <label><%out.print(rs.getString("TP_HOME_ADDRESS"));%></label></h5>
                         </div>
                         <div class="form-group">
-                            <h5>Business Nature: <label><%out.print(rs.getString("BN_NAME"));%> <%=natureSt%></label></h5>
+                            <h5>Business Nature: <label><%out.print(rs.getString("BN_NAME"));%></label></h5>
                         </div>
                         <%  }rs.close();%>
                     </div>
