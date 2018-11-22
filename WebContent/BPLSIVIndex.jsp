@@ -270,6 +270,11 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-11">
+                                    <input type="hidden"
+                                           class="hide"
+                                           id="empID"
+                                           name="empID" value='<%=session.getAttribute("empid")%>'
+                                    />
                                     <input type="text"
                                            class="hide"
                                            id="_AP_REFERENCE_NO"

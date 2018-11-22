@@ -380,6 +380,11 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <input type="hidden"
+                                           class="hide"
+                                           id="empID"
+                                           name="empID" value='<%=session.getAttribute("empid")%>'
+                                    />
                                     <input type="text"
                                            class="hide"
                                            id="_AT_ID"
@@ -594,7 +599,7 @@
                                 <div class="col-md-12">
                                     <input type="hidden"
                                            class="hide"
-                                           id="empID"
+                                           id="rempID"
                                            name="empID" value='<%=session.getAttribute("empid")%>'
                                     />
                                     <input type="text"
