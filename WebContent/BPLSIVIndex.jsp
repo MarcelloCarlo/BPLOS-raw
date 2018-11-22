@@ -442,7 +442,7 @@
                                     type="button"
                                     id="btnInvNewAppl"
                                     class="btn btn-success"
-                            >Save Changes
+                            >Save
                             </button>
                         </div>
                     </div>

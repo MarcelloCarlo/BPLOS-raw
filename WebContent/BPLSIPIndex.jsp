@@ -447,7 +447,7 @@
                                     type="button"
                                     id="btnInsNewAppl"
                                     class="btn btn-success"
-                            >Save Changes
+                            >Save
                             </button>
                         </div>
                     </div>
