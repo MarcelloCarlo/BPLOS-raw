@@ -454,7 +454,7 @@
                                     type="button"
                                     id="btnInsMtopsAppl"
                                     class="btn btn-success"
-                            >Save Changes
+                            >Save
                             </button>
                         </div>
                     </div>

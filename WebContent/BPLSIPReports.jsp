@@ -353,7 +353,7 @@
                                 type="button"
                                 id="btnNewAppl"
                                 class="btn btn-success"
-                        >Save Changes
+                        >Save
                         </button>
                     </div>
                 </div>
