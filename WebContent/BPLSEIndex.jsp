@@ -106,7 +106,7 @@
 <jsp:include page="BPLSEComponent.jsp"/>
 <div
         id="page-container"
-        class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"
+        class="page-container fade page-without-sidebar page -header-fixed page-with-top-menu"
 >
     <!-- page content -->
     <div
@@ -380,6 +380,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
+                                        <input type="text" class="hide" name="epID" id="epID" value="${sessionScope.username}"/>
                                     <input type="text"
                                            class="hide"
                                            id="_AT_ID"
