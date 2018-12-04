@@ -87,6 +87,12 @@
     <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
         rel="stylesheet"> -->
 </head>
+<%
+    LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Pending'"); %>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -138,6 +144,10 @@
 
                                 </tr>
                                 </thead>
+                                <%
+                                    while (gg3.next()) {
+
+                                %>
                                 <tbody>
                                 <tr>
                                     <td class="hide"></td>
@@ -155,15 +165,7 @@
                                         </button>
                                     </td><!--7-->
                                 </tr>
-                                <%
-                                    LGUConnect conX = new LGUConnect();
-                                    try {
-                                        Connection conn3 = conX.getConnection();
-                                        Statement ss3 = conn3.createStatement();
-                                        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Pending'");
-                                        while (gg3.next()) {
 
-                                %>
                                 <%
                                         }
                                     } catch (SQLException | ClassNotFoundException e) {
