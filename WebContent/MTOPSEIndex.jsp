@@ -144,14 +144,14 @@
 
                                 </tr>
                                 </thead>
+                                <tbody>
                                 <%
                                     while (gg3.next()) {
 
                                 %>
-                                <tbody>
+
                                 <tr>
-                                    <td class="hide"></td>
-                                    <td>Applicant's Name</td>
+                                    <td></td>
                                     <td>TODA</td>
                                     <td>Status</td>
                                     <td>Date Received</td>
