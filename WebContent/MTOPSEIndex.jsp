@@ -141,6 +141,9 @@
                                     <th>Status</th>
                                     <th>Date Received</th>
                                     <th>Action</th>
+                                    <th class="hidden">Action</th>
+                                    <th class="hidden">Action</th>
+
 
                                 </tr>
                                 </thead>
@@ -149,12 +152,11 @@
                                     while (gg3.next()) {
 
                                 %>
-
                                 <tr>
-                                    <td></td>
-                                    <td>TODA</td>
-                                    <td>Status</td>
-                                    <td>Date Received</td>
+                                    <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%></td>
+                                    <td><%=gg3.getString("TODA")%></td>
+                                    <td><%=gg3.getString("APF_STATUS")%></td>
+                                    <td><%=gg3.getString("APF_DATEACCESSED")%></td>
                                     <td>
                                         <button
                                                 type="button"
@@ -163,7 +165,9 @@
                                                 data-target=".evaluation-modal-mtops"
                                         > Evaluate
                                         </button>
-                                    </td><!--7-->
+                                    </td>
+                                    <td class="hidden"><%=gg3.getString("APF_FILENAME")%></td>
+                                    <td class="hidden"><%=gg3.getString("APF_ID")%></td>
                                 </tr>
 
                                 <%

@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 
 @MultipartConfig
-@WebServlet("/inspectionMtops")
+@WebServlet("/inspectMtops")
 public class inspectMtops extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
     private int cnt = 0;
+    private int skip = 0;
 
     public inspectMtops() {
         super();
@@ -51,55 +52,44 @@ public class inspectMtops extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        getCheckboxtatus(hwTires);
-        getCheckboxtatus(hwWheels);
-        getCheckboxtatus(hwBrakes);
-        getCheckboxtatus(hwLevPed);
-        getCheckboxtatus(hwCables);
-        getCheckboxtatus(hwHoses);
-        getCheckboxtatus(hwThrottle);
-        getCheckboxtatus(hwBattery);
-        getCheckboxtatus(hwHeadlamp);
-        getCheckboxtatus(hwTBLamp);
-        getCheckboxtatus(hwTSignals);
-        getCheckboxtatus(hwMirrors);
-        getCheckboxtatus(hwRefl);
-        getCheckboxtatus(hwWiring);
-        getCheckboxtatus(hwLevels);
-        getCheckboxtatus(hwLeaks);
-        getCheckboxtatus(hwFrame);
-        getCheckboxtatus(hwSusp);
-        getCheckboxtatus(hwBelt);
-        getCheckboxtatus(hwFastn);
-        getCheckboxtatus(hwCStand);
-        getCheckboxtatus(hwSStand);
+        getCheckboxCount(hwTires);
+        getCheckboxCount(hwWheels);
+        getCheckboxCount(hwBrakes);
+        getCheckboxCount(hwLevPed);
+        getCheckboxCount(hwCables);
+        getCheckboxCount(hwHoses);
+        getCheckboxCount(hwThrottle);
+        getCheckboxCount(hwBattery);
+        getCheckboxCount(hwHeadlamp);
+        getCheckboxCount(hwTBLamp);
+        getCheckboxCount(hwTSignals);
+        getCheckboxCount(hwMirrors);
+        getCheckboxCount(hwRefl);
+        getCheckboxCount(hwWiring);
+        getCheckboxCount(hwLevels);
+        getCheckboxCount(hwLeaks);
+        getCheckboxCount(hwFrame);
+        getCheckboxCount(hwSusp);
+        getCheckboxCount(hwBelt);
+        getCheckboxCount(hwFastn);
+        getCheckboxCount(hwCStand);
+        getCheckboxCount(hwSStand);
 
-        if (cnt == 22){
-            setEval(_AP_REFERENCE_NO,response);
-        }else{
-          termApl(_AP_REFERENCE_NO,response);
+        if (cnt == 22) {
+            setAssess(_AP_REFERENCE_NO, response);
+        } else {
+            termApl(_AP_REFERENCE_NO, response);
         }
 
     }
 
-
-    private int getCheckboxtatus(String chkbox) {
-        int skip = 0;
-        if (chkbox.equals("Pass")) {
-            cnt++;
-        } else if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
-            skip++;
-        }
-        return cnt;
-    }
-
-    private void setEval(String _AP_REFERENCE_NO, HttpServletResponse response) {
+    private void setAssess(String _AP_REFERENCE_NO, HttpServletResponse response) {
         try {
             connection = connect.getConnection();
-            PreparedStatement setEvl = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Pending',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
-            setEvl.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
-            setEvl.executeUpdate();
-            response.getWriter().print("Inspection Success, Please Proceed to Evaluation");
+            PreparedStatement setAssess = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Assessing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            setAssess.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
+            setAssess.executeUpdate();
+            response.getWriter().print("Inspection Success, Please Proceed to Assessment");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,12 +98,20 @@ public class inspectMtops extends HttpServlet {
     private void termApl(String _AP_REFERENCE_NO, HttpServletResponse response) {
         try {
             connection = connect.getConnection();
-            PreparedStatement setAss = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Terminated',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
-            setAss.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
-            setAss.executeUpdate();
+            PreparedStatement termAppl = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Terminated', APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            termAppl.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
+            termAppl.executeUpdate();
             response.getWriter().print("Inspection Failed, Please Return again with complete requirements");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void getCheckboxCount(String chkbox) {
+        if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
+            skip++;
+        } else {
+            cnt++;
         }
     }
 }

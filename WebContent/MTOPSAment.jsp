@@ -89,14 +89,7 @@
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
         ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Assessing'");
-        Statement ss2 = conn3.createStatement();
-        ResultSet rs3 = ss2.executeQuery("SELECT * FROM bpls_t_employee_profile");
-        Statement ss5 = conn3.createStatement();
-        ResultSet rs5 = ss5.executeQuery("SELECT * FROM bpls_t_employee_profile");
-        Statement ss6 = conn3.createStatement();
-        ResultSet rs6 = ss6.executeQuery("SELECT * FROM bpls_t_employee_profile");
-        Statement ss7 = conn3.createStatement();
-        ResultSet rs7 = ss7.executeQuery("SELECT * FROM bpls_t_employee_profile");
+
 %>
 <body>
 <!-- begin #page-loader -->
@@ -147,132 +140,14 @@
                                     <th>Date Received</th>
                                     <th>Action</th>
                                     <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
-                                    <th class="hide">Action</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <%
                                     while (gg3.next()) {
-                                        String apType = gg3.getString("AP_TYPE");
-                                        String _classif = gg3.getString("BN_CLASSIFICATION");
-                                        String classif = "";
-                                        String modalMode = "";
-                                        String modalClass = "";
-                                        String btnTitle = "";
-                                        String btnIcon = "";
-                                        if (apType.equals("New") && !gg3.getString("AP_STATUS").equals("Assess")) {
-                                            modalMode = ".evaluation-modal-new";
-                                            modalClass = "newModal";
-                                            btnTitle = "title='Evaluate New Application'";
-                                            btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
-                                        } else if (apType.equals("Renew") && !gg3.getString("AP_STATUS").equals("Assess")) {
-                                            modalMode = ".evaluation-modal-renew";
-                                            modalClass = "renewModal";
-                                            btnTitle = "title='Evaluate Renew Application'";
-                                            btnIcon = "<i class='fa fa-lg fa-pencil'></i>";
-                                        } else if (gg3.getString("AP_STATUS").equals("Assess")) {
-                                            modalMode = ".evaluation-modal-assess";
-                                            modalClass = "assessModal";
-                                            btnTitle = "title='Assess the Application'";
-                                            btnIcon = "<i class='fa fa-lg fa-check-square-o'></i>";
-                                        } else {
-                                            modalClass = "red";
-                                            modalMode = "";
-
-                                        }
-                                        if (_classif.equals("L")) {
-                                            classif = "Large Scale";
-                                        } else if (_classif.equals("S")) {
-                                            classif = "Small Scale";
-                                        } else {
-                                            classif = "x";
-                                        }
                                 %>
                                 <tr>
-                                    <td><%=gg3.getString("BU_NAME")%>
-                                    </td><!--0-->
-                                    <td><%=gg3.getString("AP_STATUS")%>
-                                    </td>
-                                    <td><%=gg3.getString("AP_DATE")%>
-                                    </td><!--5-->
-                                    <td class="hide"><%=gg3.getString("BU_PRESIDENT")%>
-                                    </td><!--7-->
-                                    <td class="hide"><%=gg3.getString("TAX_PAYERNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_LOCATION")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BU_CONTACT")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AUTH_REPNAME")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AR_HOME_ADDRESS")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("AP_Remarks")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("BN_NAME")%>
-                                    </td>
-                                    <td id="AP_REFERENCE_NO" class="hide"><%=gg3.getString("AP_REFERENCE_NO")%>
-                                    </td>
-                                    <td class="hide"><%=gg3.getString("OT_CODE")%>
-                                    </td>
-                                    <td id="BN_CLASSIFICATION" class="hide"><%=gg3.getString("BN_CLASSIFICATION")%>
-                                    </td>
-                                    <td
-                                            class="hide"
-                                            id="AT_ID"
-                                            name="AT_ID"
-                                    ><%=gg3.getString("AT_ID")%>
-                                    </td>
-                                    <!-- 14 -->
-                                    <td
-                                            class="hide"
-                                            id="AP_ID"
-                                            name="AP_ID"
-                                    ><%=gg3.getString("AP_ID")%>
-                                    </td>
-                                    <td>
-                                        <button
-                                                type="button"
-                                                class="btn btn-success <%=modalClass%> "
-                                                data-toggle="modal"
-                                                data-target="<%=modalMode%>" <%=btnTitle%>
-                                        ><%=btnIcon%>
-                                        </button>
-                                    </td>
 
                                 </tr>
                                 <%

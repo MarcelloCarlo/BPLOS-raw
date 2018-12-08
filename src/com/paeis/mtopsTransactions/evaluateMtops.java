@@ -21,6 +21,7 @@ public class evaluateMtops extends HttpServlet {
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
     private int cnt = 0;
+    private int skip = 0;
 
     public evaluateMtops() {
         super();
@@ -37,16 +38,16 @@ public class evaluateMtops extends HttpServlet {
         String AT_TODA_LTR_CERT = String.valueOf(request.getParameter("AT_TODA_LTR_CERT"));
         String AT_ID_PIC = String.valueOf(request.getParameter("AT_ID_PIC"));
 
-        getCheckboxtatus(AT_COMM_TAX_CERT);
-        getCheckboxtatus(AT_LTO_REG_CERT);
-        getCheckboxtatus(AT_TRICUNIT_PURCH);
-        getCheckboxtatus(AT_BRGY_CLEAR);
-        getCheckboxtatus(AT_TODA_LTR_CERT);
-        getCheckboxtatus(AT_ID_PIC);
+        getCheckboxcount(AT_COMM_TAX_CERT);
+        getCheckboxcount(AT_LTO_REG_CERT);
+        getCheckboxcount(AT_TRICUNIT_PURCH);
+        getCheckboxcount(AT_BRGY_CLEAR);
+        getCheckboxcount(AT_TODA_LTR_CERT);
+        getCheckboxcount(AT_ID_PIC);
 
         response.setContentType("text/html;charset=UTF-8");
         if (cnt == 6){
-            setAssess(AP_REF_NO,response);
+            setInspect(AP_REF_NO,response);
         }else{
             termApl(AP_REF_NO,response);
         }
@@ -65,26 +66,23 @@ public class evaluateMtops extends HttpServlet {
         }
     }
 
-    private int getCheckboxtatus(String chkbox) {
-        int skip = 0;
-        if (chkbox.equals("Pass")) {
-            cnt++;
-        } else if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
-            skip++;
-        }
-        return cnt;
-    }
-
-
-    private void setAssess(String _AP_REFERENCE_NO, HttpServletResponse response) {
+    private void setInspect(String _AP_REFERENCE_NO, HttpServletResponse response) {
         try {
             connection = connect.getConnection();
-            PreparedStatement setAss = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Assessing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
-            setAss.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
-            setAss.executeUpdate();
+            PreparedStatement setInsp = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Inspecting',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            setInsp.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
+            setInsp.executeUpdate();
             response.getWriter().print("Evaluation Success, Please Proceed to Assessment");
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void getCheckboxcount(String chkbox) {
+        if (chkbox.isEmpty() || chkbox.equals("Fail") || chkbox.equalsIgnoreCase("null")) {
+            skip++;
+        } else {
+            cnt++;
         }
     }
 }

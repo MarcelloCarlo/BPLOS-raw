@@ -87,6 +87,11 @@
     <!-- ================== END BASE JS ================== -->
 
 </head>
+<% LGUConnect conX = new LGUConnect();
+    try{
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Inspecting'");%>
 <body>
 <!-- begin #page-loader -->
 <div
@@ -134,27 +139,20 @@
                                     <th>TODA</th>
                                     <th>Status</th>
                                     <th>Date Received</th>
-                                    <th>Representative</th>
                                     <th>Action</th>
+                                    <th class="hide"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <%
+                                    while (gg3.next()) {
+                                %>
                                 <tr>
-                                    <td>
-                                        Tricycle Driver
+                                    <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%>
                                     </td>
-                                    <td>
-                                        Commonwealth
-                                    </td>
-                                    <td>
-                                        Active
-                                    </td>
-                                    <td>
-                                        10/13/2018
-                                    </td>
-                                    <td>
-                                        Jeepney Driver
-                                    </td>
+                                    <td><%=gg3.getString("TODA")%></td>
+                                    <td><%=gg3.getString("APF_STATUS")%></td>
+                                    <td><%=gg3.getString("APF_DATEACCESSED")%></td>
                                     <td>
                                         <button
                                                 type="button"
@@ -164,15 +162,8 @@
                                         ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
                                     </td>
+                                    <td class="hidden"><%=gg3.getString("APF_ID")%></td>
                                 </tr>
-                                <%
-                                    LGUConnect conX = new LGUConnect();
-                                    try{
-                                    Connection conn3 = conX.getConnection();
-                                    Statement ss3 = conn3.createStatement();
-                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
-                                    while (gg3.next()) {
-                                %>
                                 <%
                                     } }catch (Exception e) {out.print(e);}
                                 %>

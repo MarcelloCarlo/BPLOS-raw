@@ -41,7 +41,7 @@ public class downloadAttachmentMtops extends HttpServlet {
             // queries the database
             String sql = "SELECT APF_FILE,APF_FILENAME FROM mtops_t_application_frm WHERE APF_ID = ?" ;
             PreparedStatement statement = (PreparedStatement) conn.prepareStatement(sql);
-            statement.setInt(2, applId);
+            statement.setInt(1, applId);
             ResultSet result = statement.executeQuery();
             if (result.next()) {
                 // gets file name and file blob data

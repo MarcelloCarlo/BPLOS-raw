@@ -3,15 +3,10 @@ $(document).ready(function () {
 	TableManageResponsive.init();
 	
 	$(".mtopsModal").click(function () {
-		/*document.getElementById('nApplName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-		document.getElementById('nTODA').innerHTML = $(this).closest("tbody tr").find("td:eq(9)").html();
-		document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(13)").html();
-		document.getElementById('nBussNature').innerHTML = $(this).closest("tbody tr").find("td:eq(39)").html();
-		document.getElementById('_AT_ID').value = $(this).closest("tbody tr").find("td:eq(14)").html().trim();
-		document.getElementById('_AP_ID').value = $(this).closest("tbody tr").find("td:eq(15)").html().trim();
-		document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(40)").html().trim();
-		document.getElementById('_BN_CLASSIFICATION').value = $(this).closest("tbody tr").find("td:eq(42)").html().trim();*/
-		
+		document.getElementById('nApplName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
+		document.getElementById('nTODA').innerHTML = $(this).closest("tbody tr").find("td:eq(1)").html();
+		document.getElementById('AT_UNIFIED_FILE_NAME').innerHTML = $(this).closest("tbody tr").find("td:eq(5)").html();
+		document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(6)").html().trim();
 	});
 	
 	$("#fileDownload").click(function () {
@@ -45,7 +40,7 @@ $(document).ready(function () {
 		}).then(function (result) {
 			if (result.value
 			) {
-				var mtopsApplFormm = new FormData($('#mtopsApplForm')[0]); //working method
+				var mtopsApplForm = new FormData($('#mtopsApplForm')[0]); //working method
 				$.ajax({
 					type: "POST",
 					url: "evaluateMtops",
@@ -68,7 +63,7 @@ $(document).ready(function () {
                         ;
                     },
                     error: function () {
-                        swal("error", "Evaluation encountered and error", "error");
+	                    swal("error", "Evaluation encountered an error", "error");
                     }
 				});
 			}

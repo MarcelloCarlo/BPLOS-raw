@@ -4,12 +4,8 @@ $(document).ready(function () {
 	TableManageResponsive.init();
 	$(".mtopsModal").click(function () {
 		document.getElementById('nApplName').innerHTML = $(this).closest("tbody tr").find("td:eq(0)").html();
-		document.getElementById('nTODA').innerHTML = $(this).closest("tbody tr").find("td:eq(8)").html();
-		document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(13)").html().trim();
-		
-		if ($(this).closest("tbody tr").find("td:eq(6)").text() === "null") {
-			document.getElementById('nBussOwner').value = 'None';
-		}
+		document.getElementById('nTODA').innerHTML = $(this).closest("tbody tr").find("td:eq(1)").html();
+		document.getElementById('_AP_REFERENCE_NO').value = $(this).closest("tbody tr").find("td:eq(5)").html().trim();
 		
 	});
 	
@@ -21,7 +17,7 @@ $(document).ready(function () {
 		$("input:checkbox").prop("checked", false);
 	});
 	
-	$("#btnInsMtopsAppl").click(function () {
+	$('#btnInsMtopsAppl').click(function () {
 		swal({
 			title: "Are you sure?",
 			text: "You will save your current changes",
@@ -31,8 +27,7 @@ $(document).ready(function () {
 			showCancelButton: true,
 			cancelButtonText: 'Cancel'
 		}).then(function(result) {
-			if(result.value
-	)
+			if(result.value)
 		{
 			var mtopsInsApplForm = new FormData($('#mtopsInsApplForm')[0]); //working method
 			$.ajax({
@@ -57,11 +52,19 @@ $(document).ready(function () {
 					;
 				},
 				error: function () {
-					swal("error", "The process encountered and error", "error");
+					swal("error", "The process encountered an error", "error");
 				}
 			});
 		}
+			else  {
+				swalWithBootstrapButtons(
+					'Cancelled',
+					'Operation Halted',
+					'error'
+				)
+				
+			}
 	})
 		;
 	})
-})
+});
