@@ -14,10 +14,11 @@ $(document).ready(function () {
 	});
 	
 	$('#closeNewPanelWindow').click(function () {
-		$("input:checkbox").prop("checked", false);
+		//$("input:checkbox").prop("checked", false);
+		$("input:checkbox").removeAttr('checked');
 	});
 	
-	$('#btnInsMtopsAppl').click(function () {
+	$('#btnAssMtopsAppl').click(function () {
 		swal({
 			title: "Are you sure?",
 			text: "You will save your current changes",
@@ -28,34 +29,34 @@ $(document).ready(function () {
 			cancelButtonText: 'Cancel'
 		}).then(function(result) {
 			if(result.value)
-		{
-			var mtopsInsApplForm = new FormData($('#mtopsInsApplForm')[0]); //working method
-			$.ajax({
-				type: "POST",
-				url: "inspectMtops",
-				data: mtopsInsApplForm,
-				processData: false,
-				contentType: false,
-				success: function (response) {
-					swal({
-						type: 'success',
-						title: 'DONE!.',
-                        html: 'Result: <b>' + JSON.stringify(response),
-						confirmButtonText: 'OK'
-					}).then(function(result) {
-						if(result.value
-				)
-					{
-						location.reload(true);
+			{
+				var assessMtopsApplForm = new FormData($('#assessMtopsApplForm')[0]); //working method
+				$.ajax({
+					type: "POST",
+					url: "assessMtops",
+					data: assessMtopsApplForm,
+					processData: false,
+					contentType: false,
+					success: function (response) {
+						swal({
+							type: 'success',
+							title: 'DONE!.',
+							html: 'Result: <b>' + JSON.stringify(response),
+							confirmButtonText: 'OK'
+						}).then(function(result) {
+							if(result.value
+							)
+							{
+								location.reload(true);
+							}
+						})
+						;
+					},
+					error: function () {
+						swal("error", "The process encountered an error", "error");
 					}
-				})
-					;
-				},
-				error: function () {
-					swal("error", "The process encountered an error", "error");
-				}
-			});
-		}
+				});
+			}
 			else  {
 				swalWithBootstrapButtons(
 					'Cancelled',
@@ -64,7 +65,7 @@ $(document).ready(function () {
 				)
 				
 			}
-	})
+		})
 		;
 	})
 });

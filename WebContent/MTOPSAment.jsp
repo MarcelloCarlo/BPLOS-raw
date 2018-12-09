@@ -148,7 +148,21 @@
                                     while (gg3.next()) {
                                 %>
                                 <tr>
-
+                                    <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%>
+                                    </td>
+                                    <td><%=gg3.getString("TODA")%></td>
+                                    <td><%=gg3.getString("APF_STATUS")%></td>
+                                    <td><%=gg3.getString("APF_DATEACCESSED")%></td>
+                                    <td>
+                                        <button
+                                                type="button"
+                                                class="btn btn-success mtopsModal"
+                                                data-toggle="modal"
+                                                data-target=".assess-modal-mtops" title="Comply the Inspected Business"
+                                        ><i class="fa fa-lg fa-list-ul"></i>
+                                        </button>
+                                    </td>
+                                    <td class="hidden"><%=gg3.getString("APF_ID")%></td>
                                 </tr>
                                 <%
                                     }
@@ -186,14 +200,14 @@
 
     <!-- Assess Modal -->
     <div
-            class="modal fade evaluation-modal-assess"
+            class="modal fade assess-modal-mtops"
             aria-hidden="true"
     >
         <div class="modal-dialog">
             <form
-                    id="assessNewApplForm"
+                    id="assessMtopsApplForm"
                     class="form-horizontal"
-                    name="assessNewApplForm"
+                    name="assessMtopsApplForm"
                     enctype="multipart/form-data"
             >
                 <div class="modal-content">
@@ -293,29 +307,12 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="col-md-12 panel-body hide">
-                                        <ul class="to_do">
-                                            <p>
-                                                <label>Assessed By</label>
-                                                <select class="selectpicker form-control" data-style="btn-white"
-                                                        id="aId" name="aId" tabindex="-1" value='<%out.print(session.getAttribute("empid"));%>' required>
-
-                                                    <%while (rs3.next()) {%>
-                                                    <option data-subtext="<%=rs3.getString("EP_JOB_DESC")%>"
-                                                            title="<%=rs3.getString("EP_JOB_DESC")%>"
-                                                            value="<%=rs3.getInt("EP_ID")%>">
-                                                            <%out.print(rs3.getString("EP_FNAME") + " " + rs3.getString("EP_MNAME")+ " " + rs3.getString("EP_LNAME"));%>
-                                                            <%} rs3.close();ss2.close();%>
-                                                </select>
-                                            </p>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button
+                                    id="closeNewPanelWindow"
                                     type="button"
                                     class="btn btn-default"
                                     data-dismiss="modal"
@@ -323,7 +320,7 @@
                             </button>
                             <button
                                     type="button"
-                                    id="btnAssNewAppl"
+                                    id="btnAssMtopsAppl"
                                     class="btn btn-success"
                             >Assess
                             </button>
@@ -363,7 +360,7 @@
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/divEvaluation.js"></script>
+<script src="assets/js/divMtopsAssessment.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 </body>
