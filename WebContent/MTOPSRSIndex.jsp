@@ -21,10 +21,7 @@
     LGUConnect conX = new LGUConnect();
     try {
         Connection conn = conX.getConnection();
-        PreparedStatement getReltbl = (PreparedStatement) conn.prepareStatement("SELECT * FROM view_applicationformsrel");
-        ResultSet rsRel = getReltbl.executeQuery();
-        PreparedStatement getEmp = (PreparedStatement) conn.prepareStatement("SELECT * FROM bpls_t_employee_profile");
-        ResultSet rsEmp = getEmp.executeQuery();
+
 %>
 <head>
     <meta charset="utf-8"/>

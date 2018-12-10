@@ -248,7 +248,7 @@
                                                            id="MFF"
                                                            name="MFF"
                                                            class="flat"
-                                                           value="1"> MTOP Filing Fee
+                                                           value="1" required> MTOP Filing Fee
                                                 </p>
                                                 <p>
                                                     <input
@@ -256,7 +256,7 @@
                                                             id="IF"
                                                             name="IF"
                                                             class="flat"
-                                                            value="2"
+                                                            value="2" required
                                                     > Inspection Fee
                                                 </p>
                                                 <p>
@@ -265,7 +265,7 @@
                                                             id="PF"
                                                             name="PF"
                                                             class="flat"
-                                                            value="3"
+                                                            value="3" required
                                                     > Permit Fee
                                                 </p>
                                                 <p>

@@ -1,5 +1,13 @@
 $(document).ready(function () {
-	
+	$('#btnAssMtopsAppl').prop('disabled',true);
+	$('#MFF').click(function () {
+		//check if checkbox is checked
+		if ($(this).is(':checked')) {
+			
+			$('#btnAssMtopsAppl').prop('disabled',false); //enable input
+			
+		}else {$('#btnAssMtopsAppl').prop('disabled',true);}
+	});
 	App.init();
 	TableManageResponsive.init();
 	$(".mtopsModal").click(function () {
@@ -15,7 +23,7 @@ $(document).ready(function () {
 	
 	$('#closeNewPanelWindow').click(function () {
 		//$("input:checkbox").prop("checked", false);
-		$("input:checkbox").removeAttr('checked');
+		$("input:checkbox").prop('checked',false);
 	});
 	
 	$('#btnAssMtopsAppl').click(function () {

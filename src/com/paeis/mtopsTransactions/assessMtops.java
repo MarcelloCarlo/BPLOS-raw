@@ -19,6 +19,17 @@ public class assessMtops extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
+
+    {
+        try {
+            connection = connect.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     private int TB_ID = 0;
 
     public assessMtops() {
@@ -27,9 +38,9 @@ public class assessMtops extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-
+        response.setContentType("text/html;charset=UTF-8");
         String _AP_REFERENCE_NO = String.valueOf(request.getParameter("_AP_REFERENCE_NO"));
-        String aId = String.valueOf(request.getParameter("aId"));
+       // String aId = String.valueOf(request.getParameter("aId"));
         int MFF = Integer.parseInt(request.getParameter("MFF") != null ? request.getParameter("MFF") : "0");
         int IF = Integer.parseInt(request.getParameter("IF") != null ? request.getParameter("IF") : "0");
         int PF = Integer.parseInt(request.getParameter("PF") != null ? request.getParameter("PF") : "0");
@@ -41,8 +52,8 @@ public class assessMtops extends HttpServlet {
 
         try{
 
-            PreparedStatement taxBill = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_assessment (TB_BILL_NO,TB_DATE_BILLED, ASSESSED_BY) VALUES (CONCAT('0',,REPLACE(CURRENT_TIMESTAMP(),'-','')),CURRENT_TIMESTAMP(),?)");
-            taxBill.setInt(1,Integer.parseInt(aId));
+            PreparedStatement taxBill = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_assessment (TB_BILL_NO,TB_DATE_BILLED) VALUES (CONCAT('0',REPLACE(CURRENT_TIMESTAMP(),'-','')),CURRENT_TIMESTAMP())");
+            //taxBill.setInt(1,Integer.parseInt(aId));
             taxBill.executeUpdate();
             PreparedStatement getTBID = (PreparedStatement) connection.prepareStatement("SELECT MAX(TB_ID) AS TB_ID FROM mtops_t_assessment");
             ResultSet rsTbId = getTBID.executeQuery();
@@ -62,7 +73,7 @@ public class assessMtops extends HttpServlet {
             setTre.setInt(1,TB_ID);
             setTre.setInt(2,Integer.parseInt(_AP_REFERENCE_NO));
             setTre.executeUpdate();
-
+            response.getWriter().print("Assessment Success!");
         }catch (Exception ex){
             ex.printStackTrace();
         }
