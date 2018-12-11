@@ -24,17 +24,18 @@
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown navbar-user">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="hidden-xs">Sample User</span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu animated fadeInLeft">
-                    <li class="arrow"></li>
-                    <li><a href="PAEISPortal.jsp">Log Out</a></li>
-                </ul>
-            </li>
-        </ul>
+        <div class="nav navbar-nav navbar-right">
+            <label style="margin-top: 20px;margin-right: 5px">
+                <span class="hidden-xs">
+                    <%
+                        if (null != session.getAttribute("empname")) {
+                            out.println(session.getAttribute("empname"));
+                        }
+                    %>
+                </span>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out" style="color: black">Log Out</a>
+            </label>
+        </div>
         <!-- end header navigation right -->
     </div>
     <!-- end container-fluid -->

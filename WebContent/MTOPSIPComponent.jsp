@@ -32,7 +32,7 @@
                         }
                     %>
                 </span>
-                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out"></a>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out" style="color: black">Log Out</a>
             </label>
         </div>
         <!-- end header navigation right -->
