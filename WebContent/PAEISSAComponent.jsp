@@ -6,23 +6,28 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <img src="extras/logo1.png" style="width:30px;height:30px;"> PAEIS</a>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                 PAEIS
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown navbar-user">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="assets/img/user-13.jpg" alt=""/>
-                    <span class="hidden-xs">Sample User</span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu animated fadeInLeft">
-                    <li class="arrow"></li>
-                    <li><a href="javascript:;">Log Out</a></li>
-                </ul>
-            </li>
-        </ul>
+        <div class="nav navbar-nav navbar-right">
+            <label style="margin-top: 20px;margin-right: 5px">
+                <span class="hidden-xs">
+                    <%
+                        if (null != session.getAttribute("empname")) {
+                            out.println(session.getAttribute("empname"));
+                        }
+                    %>
+                </span>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out"></a>
+            </label>
+        </div>
         <!-- end header navigation right -->
     </div>
     <!-- end container-fluid -->

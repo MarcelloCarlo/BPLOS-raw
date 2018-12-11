@@ -13,35 +13,28 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> BPLS</a>
-            <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                BPLS
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
-        <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown navbar-user">
-                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="hidden-xs"><%
-                        if(null!=session.getAttribute("empname"))
-                        {
+        <div class="nav navbar-nav navbar-right">
+            <label style="margin-top: 20px;margin-right: 5px">
+                <span class="hidden-xs">
+                    <%
+                        if (null != session.getAttribute("empname")) {
                             out.println(session.getAttribute("empname"));
                         }
-                    %></span> <b class="caret"></b>
-                </a>
-                <form action="LogoutServlet" method="post">
-                <ul class="dropdown-menu animated fadeInLeft">
-                    <li class="arrow"></li>
-                    <input type="text" class="hidden" name="sessionId" hidden value='<%=session.getAttribute("empid")%>'>
-                    <li><a type="submit">Log Out</a></li>
-                </ul>
-                </form>
-            </li>
-        </ul>
+                    %>
+                </span>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out"></a>
+            </label>
+        </div>
         <!-- end header navigation right -->
     </div>
     <!-- end container-fluid -->

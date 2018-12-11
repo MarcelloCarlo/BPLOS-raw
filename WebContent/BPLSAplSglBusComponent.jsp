@@ -6,7 +6,12 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS/BPLS</a>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                PAEIS/BPLS
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 

@@ -13,12 +13,12 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> PAEIS/BPLS</a>
-            <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                PAEIS/BPLS
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 

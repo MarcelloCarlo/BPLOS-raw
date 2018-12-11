@@ -30,6 +30,7 @@
 %>
 <html>
 <head>
+    <link rel="icon" href="extras/logo1.png">
     <title>BPLS | Treasury</title>
 
     <meta

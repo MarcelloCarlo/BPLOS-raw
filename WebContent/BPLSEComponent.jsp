@@ -6,25 +6,27 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span> BPLS</a>
-            <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                BPLS
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
         <div class="nav navbar-nav navbar-right">
-                <label>
-                    <span class="hidden-xs"><%
+            <label style="margin-top: 20px;margin-right: 5px">
+                <span class="hidden-xs">
+                    <%
                         if (null != session.getAttribute("empname")) {
                             out.println(session.getAttribute("empname"));
                         }
-                    %></span>
-                    <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out"></a>
-                </label>
+                    %>
+                </span>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out"></a>
+            </label>
         </div>
         <!-- end header navigation right -->
     </div>

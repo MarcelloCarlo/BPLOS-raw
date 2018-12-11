@@ -27,6 +27,7 @@
             content="width=device-width, initial-scale=1"
     >
     <meta charset="ISO-8859-1">
+    <link rel="icon" href="extras/logo1.png">
     <title>BPLS | Evaluated Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>

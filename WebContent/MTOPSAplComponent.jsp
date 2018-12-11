@@ -13,7 +13,12 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"> PAEIS/MTOPS</a>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                MTOPS
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 

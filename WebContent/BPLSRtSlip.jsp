@@ -38,6 +38,7 @@ String BPno = "";
 %>
 <html>
 <head>
+    <link rel="icon" href="extras/logo1.png">
     <title>BPLS | Route Slip</title>
 
     <meta
