@@ -128,7 +128,7 @@
     <!-- end #content -->
 
     <!-- #modal-processpayment -->
-    <div class="modal fade" id="modal-processpayment">
+    <div class="modal fade evaluation-modal-new" id="modal-processpayment">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
