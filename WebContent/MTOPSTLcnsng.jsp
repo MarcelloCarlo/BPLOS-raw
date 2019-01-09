@@ -50,7 +50,7 @@
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM view_applicationformstre");%>
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Treasury'");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -88,37 +88,25 @@
                         >
                             <thead>
                             <tr>
-                                <th>Reference No.</th>
                                 <th>Applicant's Name</th>
                                 <th>TODA</th>
-                                <th>Applicant's Address</th>
-                                <th>Date Billed</th>
-                                <th class="hide">TB_ID</th>
-                                <th class="hide">EMP</th>
+                                <th>Status</th>
+                                <th>Date Received</th>
                                 <th>Action</th>
+                                <th class="hidden">Action</th>
+                                <th class="hidden">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <%
                                 while (gg3.next()) {
-                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("AP_REFERENCE_NO") + "&tbId=" + gg3.getString("TB_ID") + "'";
-
+                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("APF_ID") + "&tbId=" + gg3.getString("TB_ID") + "'";
                             %>
                             <tr>
-                                <td><%=gg3.getString("AP_REFERENCE_NO")%>
-                                </td>
-                                <td><%=gg3.getString("BU_NAME")%>
-                                </td>
-                                <td><%=gg3.getString("BN_NAME")%>
-                                </td>
-                                <td><%=gg3.getString("TP_HOME_ADDRESS")%>
-                                </td>
-                                <td><%=gg3.getString("TB_DATE_BILLED")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("TB_ID")%>
-                                </td>
-                                <td class="hide"><%=gg3.getString("EMP_NAME")%>
-                                </td>
+                                <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%></td>
+                                <td><%=gg3.getString("TODA")%></td>
+                                <td><%=gg3.getString("APF_STATUS")%></td>
+                                <td><%=gg3.getString("APF_DATEACCESSED")%></td>
                                 <td>
                                     <button
                                             type="button"
