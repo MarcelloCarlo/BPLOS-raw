@@ -100,7 +100,7 @@
                             <tbody>
                             <%
                                 while (gg3.next()) {
-                                    String lastPart = "location.href='BPLSFinalRec.jsp?refNo=" + gg3.getString("APF_ID") + "&tbId=" + gg3.getString("TB_ID") + "'";
+                                    String lastPart = "location.href='MTOPSFinalReceipt.jsp?idNo=" + gg3.getString("APF_ID") + "&tbId=" + gg3.getString("TB_ID") + "&treId=" +session.getAttribute("empid")+"'";
                             %>
                             <tr>
                                 <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%></td>
