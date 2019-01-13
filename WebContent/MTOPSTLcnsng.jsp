@@ -50,7 +50,7 @@
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm WHERE APF_STATUS = 'Treasury'");%>
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm APL JOIN mtops_r_toda TODA ON APL.TODA = TODA.TODA_ID WHERE APF_STATUS = 'Treasury'");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -104,7 +104,7 @@
                             %>
                             <tr>
                                 <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%></td>
-                                <td><%=gg3.getString("TODA")%></td>
+                                <td><%=gg3.getString("TODA_NAME")%></td>
                                 <td><%=gg3.getString("APF_STATUS")%></td>
                                 <td><%=gg3.getString("APF_DATEACCESSED")%></td>
                                 <td>

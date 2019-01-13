@@ -23,6 +23,16 @@ public class treasuryMtops extends HttpServlet{
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
 
+    {
+        try {
+            connection = connect.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
         int tbId = Integer.parseInt(request.getParameter("tbId"));

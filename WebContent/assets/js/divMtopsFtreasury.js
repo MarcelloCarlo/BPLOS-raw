@@ -41,7 +41,7 @@ $("#btnTresNewAppl").click(function () {
 		{
 			$.ajax({
 				type: "POST",
-				url: "setOfficialReceipt",
+				url: "treasuryMtops",
 				data: treaNewApplForm,
 				enctype: "multipart/form-data",
 				processData: false,
