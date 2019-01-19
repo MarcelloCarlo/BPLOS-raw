@@ -50,7 +50,7 @@ public class treasuryMtops extends HttpServlet{
             genOR.setDouble(5,total);
             genOR.executeUpdate();
 
-            PreparedStatement setRel = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Terminated',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            PreparedStatement setRel = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Releasing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
             setRel.setInt(1, Integer.parseInt(ap_ref_no));
             setRel.executeUpdate();
 

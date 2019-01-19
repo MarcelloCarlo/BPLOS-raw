@@ -10,6 +10,7 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -20,7 +21,9 @@
 <%
     LGUConnect conX = new LGUConnect();
     try {
-        Connection conn = conX.getConnection();
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_t_application_frm APL JOIN mtops_r_toda TODA ON APL.TODA = TODA.TODA_ID WHERE APF_STATUS = 'Releasing'");
 
 %>
 <head>
@@ -84,31 +87,34 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th>Reference Number</th>
                                 <th>Applicant's Name</th>
                                 <th>TODA</th>
-                                <th>Date Billed</th>
-                                <th class="hide">TB_ID</th>
+                                <th>Status</th>
+                                <th>Date Received</th>
                                 <th>Action</th>
+                                <th class="hidden">Action</th>
+                                <th class="hidden">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%while (rsRel.next()) {%>
+                            <%
+                                while (gg3.next()) {
+                                    String lastPart = "location.href='MTOPSFinalReceipt.jsp?idNo=" + gg3.getString("APF_ID") + "&tbId=" + gg3.getString("TB_ID") + "&treId=" +session.getAttribute("empid")+"'";
+                            %>
                             <tr>
+                                <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%></td>
+                                <td><%=gg3.getString("TODA_NAME")%></td>
+                                <td><%=gg3.getString("APF_STATUS")%></td>
+                                <td><%=gg3.getString("APF_DATEACCESSED")%></td>
                                 <td>
-                                    123-4567
-                                </td>
-                                <td>
-                                    Tricycle Driver
-                                </td>
-                                <td>
-                                    Commonwealth
-                                </td>
-                                <td>
-                                    10/13/2018
-                                </td>
-                                <td>
-                                    Action
+                                    <button
+                                            type="button"
+                                            class="btn btn-success"
+                                    <%--  data-toggle="modal"
+                                      data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
+                                            title="Payment for Permit"
+                                    ><i class="fa fa-lg fa-money"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <%}%>
@@ -123,62 +129,62 @@
     <!-- end #content -->
 
     <!-- #modal-processpayment -->
-    <div class="modal fade evaluation-modal-new" id="modal-processpayment">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Paid Permit</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="relApplForm" name="relApplForm">
-                        <input type="text" id="AP_REF" name="AP_REF" class="hide">
-                        <input type="text" name="tbId" id="tbId" class="hide">
-                        <div class="panel-body col-md-12">
-                            <h5>Reference Number: <label class="control-label" id="rRefno"></label></h5>
+    <%--<div class="modal fade evaluation-modal-new" id="modal-processpayment">--%>
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--%>
+                    <%--<h4 class="modal-title">Paid Permit</h4>--%>
+                <%--</div>--%>
+                <%--<div class="modal-body">--%>
+                    <%--<form class="form-horizontal" id="relApplForm" name="relApplForm">--%>
+                        <%--<input type="text" id="AP_REF" name="AP_REF" class="hide">--%>
+                        <%--<input type="text" name="tbId" id="tbId" class="hide">--%>
+                        <%--<div class="panel-body col-md-12">--%>
+                            <%--<h5>Reference Number: <label class="control-label" id="rRefno"></label></h5>--%>
 
-                            <h5>Applicant's Name: <label class=" control-label" id="rTPN"></label></h5>
+                            <%--<h5>Applicant's Name: <label class=" control-label" id="rTPN"></label></h5>--%>
 
-                            <h5>TODA: <label class=" control-label" id="rBuNa"></label></h5>
+                            <%--<h5>TODA: <label class=" control-label" id="rBuNa"></label></h5>--%>
 
-                            <h5>Date Billed: <label class="control-label" id="rDB"></label></h5>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Treasurer: </label>
-                                <div class="col-md-5">
-                                    <select name="optTreasurer" class="form-control" data-style="btn-white"
-                                            tabindex="-1">
-                                        <%while (rsEmp.next()) {%>
-                                        <option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"
-                                                title="<%=rsEmp.getString("EP_JOB_DESC")%>"
-                                                value="<%=rsEmp.getInt("EP_ID")%>">
-                                                <%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME")+ " " + rsEmp.getString("EP_LNAME"));%>
-                                                <%} rsEmp.close();%>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-md-12">
-											<textarea
-                                                    class="form-control"
-                                                    placeholder="Remarks"
-                                                    id="txtMISC_REMARKS"
-                                                    name="AP_REMARKS"
-                                                    rows="2"
-                                            ></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                            <button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+                            <%--<h5>Date Billed: <label class="control-label" id="rDB"></label></h5>--%>
+                        <%--</div>--%>
+                        <%--<div class="panel-body">--%>
+                            <%--<div class="form-group">--%>
+                                <%--<label class="col-md-4 control-label">Treasurer: </label>--%>
+                                <%--<div class="col-md-5">--%>
+                                    <%--<select name="optTreasurer" class="form-control" data-style="btn-white"--%>
+                                            <%--tabindex="-1">--%>
+                                        <%--<%while (rsEmp.next()) {%>--%>
+                                        <%--<option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"--%>
+                                                <%--title="<%=rsEmp.getString("EP_JOB_DESC")%>"--%>
+                                                <%--value="<%=rsEmp.getInt("EP_ID")%>">--%>
+                                                <%--<%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME")+ " " + rsEmp.getString("EP_LNAME"));%>--%>
+                                                <%--<%} rsEmp.close();%>--%>
+                                    <%--</select>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="panel-body">--%>
+                            <%--<div class="col-md-12">--%>
+											<%--<textarea--%>
+                                                    <%--class="form-control"--%>
+                                                    <%--placeholder="Remarks"--%>
+                                                    <%--id="txtMISC_REMARKS"--%>
+                                                    <%--name="AP_REMARKS"--%>
+                                                    <%--rows="2"--%>
+                                            <%--></textarea>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="modal-footer">--%>
+                            <%--<button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>--%>
+                            <%--<button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>--%>
+                        <%--</div>--%>
+                    <%--</form>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
 
     <!-- begin scroll to top btn -->
