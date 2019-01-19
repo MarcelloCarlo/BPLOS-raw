@@ -1,0 +1,10 @@
+
+classes/
+\.idea/
+out/
+production/
+artifacts/
+\.settings/
+/bin/
+
+\.classpath
