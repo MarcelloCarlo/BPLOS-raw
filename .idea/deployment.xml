@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" exclude="*.gif;*.hprof;*.json;*.less;*.map;*.md;*.pyc;*.pyo;*.rbc;*.scss;*.svg;*.txt;*.yarb;*.yml;*~;.DS_Store;.git;.gitignore;.hg;.jscsrc;.jshintrc;.svn;CVS;LICENSE;__pycache__;_svn;vssver.scc;vssver2.scc;" />
+</project>
