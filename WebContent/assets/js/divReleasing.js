@@ -21,8 +21,8 @@ $(document).ready(function () {
 		    confirmButtonColor: "#DD6B55",
 		    confirmButtonText: "Confirm!",
 		    showCancelButton: true,
-		    cancelButtonText: 'Cancel',
-	    }).then((result) => {
+		    cancelButtonText: 'Cancel'
+	    }).then(function (result) {
 		    if(result.value){
 		    var relApplForm = new FormData($('#relApplForm')[0]);
 		    $.ajax({
@@ -38,7 +38,7 @@ $(document).ready(function () {
 					    title: 'DONE!.',
 					    text: 'Succesfully Processed',
 					    confirmButtonText: 'OK'
-				    }).then((result) => {
+				    }).then(function (result) {
 					    if(result.value){
 					    	console.log(response);
 					    var oRX = "?bpNo=" + response;

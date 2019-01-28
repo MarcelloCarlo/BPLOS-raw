@@ -100,6 +100,22 @@ public class LoginServlet extends HttpServlet {
 
                     RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSAIndex.jsp");
                     dispatcher.forward(request, response);
+                } else if (divcode.equals("DIV-MEV")) {
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("MTOPSEIndex.jsp");
+                    dispatcher.forward(request, response);
+                } else if (divcode.equals("DIV-MRE")) {
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("MTOPSRSIndex.jsp");
+                    dispatcher.forward(request, response);
+                } else if (divcode.equals("DIV-MFA")) {
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("MTOPSAment.jsp");
+                    dispatcher.forward(request, response);
+                }else if (divcode.equals("DIV-MIP")) {
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("MTOPSIPIndex.jsp");
+                    dispatcher.forward(request, response);
                 }
             } else {
                 session.invalidate();

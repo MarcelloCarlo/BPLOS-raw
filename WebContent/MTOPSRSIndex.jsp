@@ -11,7 +11,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -113,7 +113,7 @@
                                     <%--  data-toggle="modal"
                                       data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
                                             title="Payment for Permit"
-                                    ><i class="fa fa-lg fa-money"></i>
+                                    ><i class="fa fa-lg fa-paper-plane-o"></i>
                                     </button>
                                 </td>
                             </tr>
