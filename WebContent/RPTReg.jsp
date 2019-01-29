@@ -335,7 +335,6 @@
 <script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
-<script src="assets/js/divUsrMgmt.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
