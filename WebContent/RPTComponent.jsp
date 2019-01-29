@@ -47,7 +47,7 @@
     <ul class="nav">
         <li><a href="RPTReg.jsp"><i class="fa fa-file-text-o"></i> <span>Registration</span></a></li>
         <li><a href="RPTAment.jsp"><i class="fa fa-check-square-o"></i> <span>Assessment</span></a></li>
-        <li><a href="RPTTaxBill.jsp.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
+        <li><a href="RPTTaxBill.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>
