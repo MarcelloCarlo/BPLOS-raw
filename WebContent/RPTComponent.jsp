@@ -45,7 +45,22 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <li><a href="RPTReg.jsp"><i class="fa fa-file-text-o"></i> <span>Registration</span></a></li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-gears"></i>
+                <span>Setup</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="RPTSetupPprtyType.jsp">Property Type</a></li>
+                <li><a href="RPTSetupPprtyClass.jsp">Property Class</a></li>
+                <li><a href="RPTSetupAmentLvls.jsp">Assessment Levels</a></li>
+                <li><a href="RPTSetupActUse.jsp">Actual Use</a></li>
+                <li><a href="RPTSetupMrktValLnd.jsp">Market Value (Land)</a></li>
+                <li><a href="RPTSetupMrktValBldng.jsp">Market Value (Building)</a></li>
+                <li><a href="RPTSetupMrktValAgrl.jsp">Market Value (Agricultural)</a></li>
+            </ul>
+        </li>
         <li><a href="RPTAment.jsp"><i class="fa fa-check-square-o"></i> <span>Assessment</span></a></li>
         <li><a href="RPTTaxBill.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
     </ul>
