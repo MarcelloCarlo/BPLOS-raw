@@ -85,6 +85,7 @@
                             <tr>
                                 <th>Property Type</th>
                                 <th>Property Class</th>
+                                <th>Assessment Level</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -93,6 +94,8 @@
                             <%--while (res.next()) {--%>
                             <%--%>--%>
                             <tr>
+                                <td>
+                                </td>
                                 <td>
                                 </td>
                                 <td>
@@ -131,7 +134,7 @@
                                         <legend class="pull-left width-full">Assessment Levels</legend>
                                         <!-- begin row -->
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Property Type</label>
                                                     <div class="controls">
@@ -142,11 +145,22 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Propery Class</label>
                                                     <div class="controls">
                                                         <select name="addamentpclass" class="form-control">
+                                                            <option value="  "> </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Assessment Level</label>
+                                                    <div class="controls">
+                                                        <select name="addamentlvl" class="form-control">
                                                             <option value="  "> </option>
                                                         </select>
                                                     </div>
@@ -188,7 +202,7 @@
                                         <legend class="pull-left width-full">Assessment Levels</legend>
                                         <!-- begin row -->
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Property Type</label>
                                                     <div class="controls">
@@ -199,11 +213,22 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Property Class</label>
                                                     <div class="controls">
                                                         <select name="editamentpclass" class="form-control">
+                                                            <option value="  "> </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Assessment Level</label>
+                                                    <div class="controls">
+                                                        <select name="editamentlvl" class="form-control">
                                                             <option value="  "> </option>
                                                         </select>
                                                     </div>

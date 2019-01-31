@@ -88,6 +88,7 @@
                                 <th>Description</th>
                                 <th>Category</th>
                                 <th>Sub Category</th>
+                                <th>Value</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -96,6 +97,8 @@
                             <%--while (res.next()) {--%>
                             <%--%>--%>
                             <tr>
+                                <td>
+                                </td>
                                 <td>
                                 </td>
                                 <td>
@@ -173,7 +176,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Category</label>
                                                     <div class="controls">
@@ -184,12 +187,23 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Sub Category</label>
                                                     <div class="controls">
                                                         <input type="text" name="addagrisubcat"
                                                                placeholder="Sub Category"
+                                                               class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Value</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="addagrival"
+                                                               placeholder="Value"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
@@ -263,7 +277,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Category</label>
                                                     <div class="controls">
@@ -274,12 +288,23 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Sub Category</label>
                                                     <div class="controls">
                                                         <input type="text" name="editagrisubcat"
                                                                placeholder="Sub Category"
+                                                               class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Value</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="editagrival"
+                                                               placeholder="Value"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
