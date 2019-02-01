@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="icon" href="extras/logo1.png">
-    <title>PAEIS | Sample</title>
+    <title>PAEIS | MTOPS Permit</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
@@ -54,7 +54,7 @@
     <div id="content" class="content">
         <!-- begin page-header -->
         <div>
-            <h1 class="page-header hidden-print">Tax Bill</h1>
+            <h1 class="page-header hidden-print">MTOPS Permit</h1>
             <span class="hidden-print">
                 <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
                         class="fa fa-print m-r-5"></i> Print</a>
