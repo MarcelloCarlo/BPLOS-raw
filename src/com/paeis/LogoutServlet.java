@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         if(session != null)
             session.invalidate();
-        request.getRequestDispatcher("/PAEISLogin.jsp").forward(request,response);
+        request.getRequestDispatcher("/PAEISPortal.jsp").forward(request,response);
     }
 
 }
