@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 2/1/2019
@@ -7,6 +11,16 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+<% LGUConnect conX = new LGUConnect();
+    try {
+        Connection connection = conX.getConnection();
+        String perIdNo = request.getParameter("perIdNo");
+        PreparedStatement getPermit = connection.prepareStatement("SELECT * FROM mtops_t_permit PER JOIN mtops_t_application_frm APF ON PER.APF_ID = APF.APF_ID JOIN mtops_t_official_receipt OFR ON APF.APF_ID = OFR.APF_ID JOIN mtops_r_toda TD ON APF.TODA = TD.TODA_ID WHERE PER.PERMIT_ID = ?");
+        getPermit.setInt(1, Integer.parseInt(perIdNo));
+        ResultSet permRs = getPermit.executeQuery();
+        while (permRs.next()) {
+
+%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -56,7 +70,7 @@
         <div>
             <h1 class="page-header hidden-print">MTOPS Permit</h1>
             <span class="hidden-print">
-                <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
+                <a href="javascript:" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
                         class="fa fa-print m-r-5"></i> Print</a>
             </span>
         </div>
@@ -109,12 +123,12 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
-                                        as per Ord. No.:
+                                        as per Ord. No.: <label><%out.print(permRs.getString("OR_TW_CH_MO_NO"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
-                                        Date:
+                                        Date: <label><%out.print(permRs.getString("PERMIT_DATE"));%></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -175,42 +189,42 @@
                                 <tbody>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("PERMIT_NO"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("APF_BRGY") +" " +permRs.getString("APF_CITY"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("MOTOR_NUMBER"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("CHASSIS_NUMBER"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("BIKE_NAME"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("PLATE_NUMBER"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("PERMIT_NO"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        :
+                                        : <label><%out.print(permRs.getString("TODA_NAME"));%></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -223,7 +237,7 @@
                 </table>
                 <hr width="50%" align="left">
                 <tr>
-                    <p>INSERT NOTES HERE KASI HINDI KO MABASA, HAHA</p>
+                    <p>OTHER NOTES</p>
                 </tr>
             </div>
             <!-- end invoice -->
@@ -231,7 +245,8 @@
         <!-- end #content -->
 
         <!-- begin scroll to top btn -->
-        <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+        <a href="javascript:" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
+           data-click="scroll-top"><i
                 class="fa fa-angle-up"></i></a>
         <!-- end scroll to top btn -->
     </div>
@@ -267,27 +282,34 @@
 
 
 <script>
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-    });
+	$(document).ready(function () {
+		App.init();
+		TableManageResponsive.init();
+	});
 </script>
 <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+	(function (i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
+	ga('create', 'UA-53034621-1', 'auto');
+	ga('send', 'pageview');
 
 </script>
 </body>
 </html>
+<%
+        }
+        permRs.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>

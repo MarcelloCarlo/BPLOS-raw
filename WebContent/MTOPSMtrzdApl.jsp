@@ -119,7 +119,9 @@
                                     <fieldset>
                                         <legend class="pull-left width-full">Applicant's Information</legend>
                                         <!-- begin row -->
-
+                                        <div class="form-group">
+                                            <p>By proceeding in this step. You agreed to the <a href="mailto:#">Terms & Conditions and Privacy Policy</a> of the system.</p>
+                                        </div>
                                         <%--Name--%>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -463,7 +465,7 @@
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+    <a href="javascript:" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>

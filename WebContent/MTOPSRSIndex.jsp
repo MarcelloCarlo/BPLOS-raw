@@ -68,7 +68,7 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Releasing</a></li>
+            <li><a href="javascript:">Releasing</a></li>
             <li class="active">Permit Processing</li>
         </ol>
         <!-- end breadcrumb -->
@@ -93,13 +93,10 @@
                                 <th>Date Received</th>
                                 <th>Action</th>
                                 <th class="hidden">Action</th>
-                                <th class="hidden">Action</th>
-                            </tr>
                             </thead>
                             <tbody>
                             <%
                                 while (gg3.next()) {
-                                    String lastPart = "location.href='MTOPSFinalReceipt.jsp?idNo=" + gg3.getString("APF_ID") + "&tbId=" + gg3.getString("TB_ID") + "&treId=" +session.getAttribute("empid")+"'";
                             %>
                             <tr>
                                 <td><%=gg3.getString("APF_FNAME") +' '+gg3.getString("APF_MNAME") +' '+gg3.getString("APF_LNAME")%></td>
@@ -109,13 +106,14 @@
                                 <td>
                                     <button
                                             type="button"
-                                            class="btn btn-success"
-                                    <%--  data-toggle="modal"
-                                      data-target="#modal-processpayment"--%> onclick="<%=lastPart%>"
+                                            class="btn btn-success modalRel"
+                                    data-toggle="modal"
+                                      data-target="#modal-processpayment"
                                             title="Payment for Permit"
                                     ><i class="fa fa-lg fa-paper-plane-o"></i>
                                     </button>
                                 </td>
+                                <td class="hidden"><%=gg3.getString("APF_ID")%></td>
                             </tr>
                             <%}%>
                             </tbody>
@@ -129,66 +127,70 @@
     <!-- end #content -->
 
     <!-- #modal-processpayment -->
-    <%--<div class="modal fade evaluation-modal-new" id="modal-processpayment">--%>
-        <%--<div class="modal-dialog">--%>
-            <%--<div class="modal-content">--%>
-                <%--<div class="modal-header">--%>
-                    <%--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--%>
-                    <%--<h4 class="modal-title">Paid Permit</h4>--%>
-                <%--</div>--%>
-                <%--<div class="modal-body">--%>
-                    <%--<form class="form-horizontal" id="relApplForm" name="relApplForm">--%>
-                        <%--<input type="text" id="AP_REF" name="AP_REF" class="hide">--%>
-                        <%--<input type="text" name="tbId" id="tbId" class="hide">--%>
-                        <%--<div class="panel-body col-md-12">--%>
-                            <%--<h5>Reference Number: <label class="control-label" id="rRefno"></label></h5>--%>
-
-                            <%--<h5>Applicant's Name: <label class=" control-label" id="rTPN"></label></h5>--%>
-
-                            <%--<h5>TODA: <label class=" control-label" id="rBuNa"></label></h5>--%>
-
-                            <%--<h5>Date Billed: <label class="control-label" id="rDB"></label></h5>--%>
-                        <%--</div>--%>
-                        <%--<div class="panel-body">--%>
-                            <%--<div class="form-group">--%>
-                                <%--<label class="col-md-4 control-label">Treasurer: </label>--%>
-                                <%--<div class="col-md-5">--%>
-                                    <%--<select name="optTreasurer" class="form-control" data-style="btn-white"--%>
-                                            <%--tabindex="-1">--%>
-                                        <%--<%while (rsEmp.next()) {%>--%>
-                                        <%--<option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"--%>
-                                                <%--title="<%=rsEmp.getString("EP_JOB_DESC")%>"--%>
-                                                <%--value="<%=rsEmp.getInt("EP_ID")%>">--%>
-                                                <%--<%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME")+ " " + rsEmp.getString("EP_LNAME"));%>--%>
-                                                <%--<%} rsEmp.close();%>--%>
-                                    <%--</select>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="panel-body">--%>
-                            <%--<div class="col-md-12">--%>
-											<%--<textarea--%>
-                                                    <%--class="form-control"--%>
-                                                    <%--placeholder="Remarks"--%>
-                                                    <%--id="txtMISC_REMARKS"--%>
-                                                    <%--name="AP_REMARKS"--%>
-                                                    <%--rows="2"--%>
-                                            <%--></textarea>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="modal-footer">--%>
-                            <%--<button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>--%>
-                            <%--<button type="submit" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>--%>
-                        <%--</div>--%>
-                    <%--</form>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+    <div class="modal fade releasing-modal-new" id="modal-processpayment">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Last Requirements</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="relApplForm" name="relApplForm">
+                        <input type="text"
+                               class="hide"
+                               id="_AP_REFERENCE_NO"
+                               name="_AP_REFERENCE_NO"
+                        />
+                        <div class="panel-body col-md-12">
+                            <div class="form-group">
+                                <label>Motor Number*</label>
+                                <input type="text"
+                                       name="txtMotorNum"
+                                       class="form-control" required
+                                       />
+                            </div>   <div class="form-group">
+                            <label>Chassis Number*</label>
+                            <input type="text"
+                                   name="txtChaNum"
+                                   class="form-control" required
+                                  />
+                        </div>   <div class="form-group">
+                            <label>Bike Name*</label>
+                            <input type="text"
+                                   name="txtBikeLName"
+                                   class="form-control" required
+                                   />
+                        </div>   <div class="form-group">
+                            <label>Plate Number*</label>
+                            <input type="text"
+                                   name="txtPlateNum"
+                                   class="form-control" required
+                                  />
+                        </div>
+                        </div>
+                        <div class="panel-body hidden">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Treasurer: </label>
+                                <div class="col-md-5">
+                                    <select name="optTreasurer" class="form-control" data-style="btn-white"
+                                            tabindex="-1" value='<%out.print(session.getAttribute("empid").toString());%>'>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                            <button type="button" id="btnRelNewAppl" class="btn btn-sm btn-success">Process</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+    <a href="javascript:" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
@@ -217,7 +219,8 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/divReleasing.js"></script>
+<script src="assets/js/divMtopsReleasing.js">
+</script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
 <%

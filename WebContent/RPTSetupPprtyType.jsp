@@ -57,7 +57,7 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Setup</a></li>
+            <li><a href="javascript:">Setup</a></li>
             <li class="active">Property Type</li>
         </ol>
         <!-- end breadcrumb -->
@@ -71,7 +71,7 @@
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
                         <div class="panel-heading-btn">
-                            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
+                            <a href="javascript:" class="btn btn-xs btn-icon btn-circle btn-success"
                                data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         </div>
                         <h4 class="panel-title">Property Type Tables</h4>
@@ -180,7 +180,7 @@
                             <h4 class="panel-title">Property Type</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data">
+                            <form enctype="multipart/form-data" action="/ungServletNameMo">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
@@ -227,7 +227,7 @@
     </div>
 
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+    <a href="javascript:" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
