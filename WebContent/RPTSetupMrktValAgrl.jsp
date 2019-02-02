@@ -77,7 +77,7 @@
                         <h4 class="panel-title">Marketing Value (Agricultural) Tables</h4>
                     </div>
                     <div class="panel-body">
-                        <a href="#modal-addcont" id="addContbtn" class="btn btn-sm btn-primary" data-toggle="modal">Add</a>
+                        <a href="#modal-addcont" id="addContbtn" class="btn btn-sm btn-primary" data-toggle="modal">Add Marketing Value (Agricultural)</a>
                     </div>
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
