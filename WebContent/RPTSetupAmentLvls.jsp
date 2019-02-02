@@ -5,6 +5,11 @@
   Time: 11:32 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -90,23 +95,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%--<%--%>
-                            <%--while (res.next()) {--%>
-                            <%--%>--%>
+                            <%
+                                LGUConnect cons = new LGUConnect();
+                                Connection con9 = cons.getConnection();
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_assessment_lvl order by AL_ID desc");
+                                ResultSet res = getPropType.executeQuery();
+                                while (res.next()) {
+                            %>
                             <tr>
-                                <td>
+                                <td><%=res.getString("AL_ID")%>
                                 </td>
-                                <td>
+                                <td><%=res.getString("PT_CODE")%>
                                 </td>
-                                <td>
+                                <td><%=res.getString("PT_DESC")%>
+                                </td>
+                                <td><%=res.getString("AL_VAL")%>
                                 </td>
                                 <td>
                                     <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary" data-toggle="modal">Edit</a>
                                 </td>
                             </tr>
-                            <%--<%--%>
-                            <%--}--%>
-                            <%--%>--%>
+                            <%
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -127,7 +138,7 @@
                             <h4 class="panel-title">Assessment Levels</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data">
+                            <form enctype="multipart/form-data" action="/insertAssessmentLvl" method="POST">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
@@ -139,7 +150,20 @@
                                                     <label>Property Type</label>
                                                     <div class="controls">
                                                         <select name="addamentptype" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <%
+
+                                                                LGUConnect con = new LGUConnect();
+                                                                Connection con1 = con.getConnection();
+                                                                Statement aa = con1.createStatement();
+                                                                ResultSet ss = aa.executeQuery("SELECT * FROM `rpt_r_property_type`");
+                                                                while (ss.next()){
+                                                            %>
+                                                            <option value="<%out.print(ss.getInt("PT_ID"));%>">
+                                                                <%out.print(ss.getString("PT_DESC"));%>
+                                                            </option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -149,8 +173,21 @@
                                                 <div class="form-group">
                                                     <label>Propery Class</label>
                                                     <div class="controls">
-                                                        <select name="addamentpclass" class="form-control">
-                                                            <option value="  "> </option>
+                                                        <select name="addamentpclass" class="form-control" id="pclass">
+                                                            <%
+
+                                                                LGUConnect cona = new LGUConnect();
+                                                                Connection conk = cona.getConnection();
+                                                                Statement bb = conk.createStatement();
+                                                                ResultSet tt = bb.executeQuery("SELECT * FROM `rpt_r_property_class`");
+                                                                while (tt.next()){
+                                                            %>
+                                                            <option value="<%out.print(tt.getInt("PC_ID"));%>">
+                                                                <%out.print(tt.getString("PC_DESC"));%>
+                                                            </option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -160,9 +197,8 @@
                                                 <div class="form-group">
                                                     <label>Assessment Level</label>
                                                     <div class="controls">
-                                                        <select name="addamentlvl" class="form-control">
-                                                            <option value="  "> </option>
-                                                        </select>
+                                                        <input type="text" name="addamentlvl" placeholder="Assessment Level"
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,7 +208,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            <button type="submit" class="btn btn-sm btn-success" onclick="btnAdd()">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -228,9 +264,8 @@
                                                 <div class="form-group">
                                                     <label>Assessment Level</label>
                                                     <div class="controls">
-                                                        <select name="editamentlvl" class="form-control">
-                                                            <option value="  "> </option>
-                                                        </select>
+                                                        <input type="text" name="editamentlvl" placeholder="Assessment Level"
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -298,11 +333,36 @@
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+<script>
+    function btnAdd() {
+        var pclass = document.getElementById("pclass").value;
+        alert(pclass);
 
+        $.ajax({
+            type:"POST",
+            url: "rptTransactions/insertAssessmentLvl",
+            data: {
+                _pclass: pclass,
+            },
+            sucess: function (data) {
+                alert(data);
+                setTimeout(function () {
+                    window.location= window.location;
+                },1000)
+            }
+
+
+        })
+    }
+</script>
 <script>
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
+
+        $('.editProp').click(function () {
+            document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+        });
     });
 </script>
 <script>

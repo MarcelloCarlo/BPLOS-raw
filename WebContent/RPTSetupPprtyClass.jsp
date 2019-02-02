@@ -5,6 +5,11 @@
   Time: 11:31 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -83,27 +88,33 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
+                                <th class="hide"></th>
                                 <th>Code</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%--<%--%>
-                            <%--while (res.next()) {--%>
-                            <%--%>--%>
+                            <%
+                                LGUConnect cons = new LGUConnect();
+                                Connection con9 = cons.getConnection();
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_class order by PC_ID desc");
+                                ResultSet res = getPropType.executeQuery();
+                                while (res.next()) {
+                            %>
                             <tr>
-                                <td>
+                                <td class="hide"><%=res.getString("PC_ID")%></td>
+                                <td><%=res.getString("PC_CODE")%>
+                                </td>
+                                <td><%=res.getString("PC_DESC")%>
                                 </td>
                                 <td>
-                                </td>
-                                <td>
-                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary" data-toggle="modal">Edit</a>
+                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editProp" data-toggle="modal">Edit</a>
                                 </td>
                             </tr>
-                            <%--<%--%>
-                            <%--}--%>
-                            <%--%>--%>
+                            <%
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -124,7 +135,7 @@
                             <h4 class="panel-title">Property Class</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data">
+                            <form enctype="multipart/form-data" action="/insertPropertyClass" method="POST">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
@@ -180,8 +191,9 @@
                             <h4 class="panel-title">Property Class</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data">
+                            <form enctype="multipart/form-data" name="editPropClassForm" id="editPropClassForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
+                                    <input type="text" id="pc_id" name="pc_id" class="hide">
                                 <div>
                                     <fieldset>
                                         <legend class="pull-left width-full">Property Class</legend>
@@ -213,7 +225,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Edit</button>
+                                            <button type="button" id="btnEditPropClass" class="btn btn-sm btn-success">Edit</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -276,6 +288,54 @@
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
+
+        $('.editProp').click(function () {
+            document.getElementById('pc_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+        });
+
+        $("#btnEditPropClass").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var editPropClassForm = new FormData($('#editPropClassForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "editPropertyClass",
+                        data: editPropClassForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+        });
     });
 </script>
 <script>

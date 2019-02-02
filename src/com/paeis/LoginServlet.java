@@ -116,6 +116,14 @@ public class LoginServlet extends HttpServlet {
 
                     RequestDispatcher dispatcher = request.getRequestDispatcher("MTOPSIPIndex.jsp");
                     dispatcher.forward(request, response);
+                }else if (divcode.equals("DIV-RVNU")) {
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("REVDashboard.jsp");
+                    dispatcher.forward(request, response);
+                }else if (divcode.equals("DIV-RPT")) {
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("RPTTaxDec.jsp");
+                    dispatcher.forward(request, response);
                 }
             } else {
                 session.invalidate();

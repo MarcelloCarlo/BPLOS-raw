@@ -5,6 +5,11 @@
   Time: 11:30 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -83,27 +88,33 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
+                                <th class="hide"></th>
                                 <th>Code</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%--<%--%>
-                            <%--while (res.next()) {--%>
-                            <%--%>--%>
+                            <%
+                                LGUConnect cons = new LGUConnect();
+                                Connection con9 = cons.getConnection();
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_type order by PT_ID desc");
+                                ResultSet res = getPropType.executeQuery();
+                                while (res.next()) {
+                            %>
                             <tr>
-                                <td>
+                                <td class="hide"><%=res.getString("PT_ID")%></td>
+                                <td><%=res.getString("PT_CODE")%>
+                                </td>
+                                <td><%=res.getString("PT_DESC")%>
                                 </td>
                                 <td>
-                                </td>
-                                <td>
-                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary" data-toggle="modal">Edit</a>
+                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editProp" data-toggle="modal">Edit</a>
                                 </td>
                             </tr>
-                            <%--<%--%>
-                            <%--}--%>
-                            <%--%>--%>
+                            <%
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -124,8 +135,9 @@
                             <h4 class="panel-title">Property Type</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data">
+                            <form  enctype="multipart/form-data" action="/insertPropertyType" method="POST">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
+
                                 <div>
                                     <fieldset>
                                         <legend class="pull-left width-full">Property Type</legend>
@@ -156,7 +168,9 @@
                                         <br>
 
                                         <div class="modal-footer">
+
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+
                                             <button type="submit" class="btn btn-sm btn-success">Add</button>
                                         </div>
                                         <!-- end row -->
@@ -180,8 +194,9 @@
                             <h4 class="panel-title">Property Type</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data" action="/ungServletNameMo">
+                            <form enctype="multipart/form-data" name="editPropTypeForm" id="editPropTypeForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
+                                    <input type="text" id="pt_id" name="pt_id" class="hide">
                                 <div>
                                     <fieldset>
                                         <legend class="pull-left width-full">Property Type</legend>
@@ -213,7 +228,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Edit</button>
+                                            <button type="button" id="btnEditPropType" class="btn btn-sm btn-success">Edit</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -276,6 +291,54 @@
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
+
+        $('.editProp').click(function () {
+            document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+        });
+
+        $("#btnEditPropType").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var editPropTypeForm = new FormData($('#editPropTypeForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "editPropertyType",
+                        data: editPropTypeForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+        });
     });
 </script>
 <script>

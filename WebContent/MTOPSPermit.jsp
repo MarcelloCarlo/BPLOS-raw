@@ -83,11 +83,11 @@
 
 
             <div class="invoice-content">
-                <table style="font-family: Arial; font-size: 10px;" width="50%">
+                <table style="font-family: Arial; font-size: 10px;" width="40%">
                     <thead>
                     <tr>
 
-                        <center style="font-size: 12px; padding: 0px 0px 0px 0px; width: 50%">
+                        <center style="font-size: 12px; padding: 0px 0px 0px 0px; width: 40%">
                             <p style="color: black;margin: 0"> Republic of the Philippines </p>
                             <p style="color: black;margin: 0"> Region # </p>
                             <p style="color: black;margin: 0"> Province of - </p>
@@ -99,7 +99,7 @@
                     </tr>
                     </thead>
 
-                    <hr width="50%" align="left">
+                    <hr width="40%" align="left">
 
                     <tbody>
                     <tr>
@@ -118,17 +118,27 @@
                                 <tbody>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
-                                        <strong>MOTORIZED TRICYCLE OPERATOR'S PERMIT</strong>
+                                        <strong>MOTORIZED TRICYCLE</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
+                                        <strong>OPERATOR'S PERMIT</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
+                                        <strong>(MTOP) - 20xx-20xx</strong>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
-                                        as per Ord. No.: <label><%out.print(permRs.getString("OR_TW_CH_MO_NO"));%></label>
+                                        as per Ord. No.: <label style="margin: 0"><%out.print(permRs.getString("OR_TW_CH_MO_NO"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
-                                        Date: <label><%out.print(permRs.getString("PERMIT_DATE"));%></label>
+                                        Date: <label  style="margin: 0"><%out.print(permRs.getString("PERMIT_DATE"));%></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -189,42 +199,42 @@
                                 <tbody>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("PERMIT_NO"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("PERMIT_NO"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("APF_BRGY") +" " +permRs.getString("APF_CITY"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("APF_BRGY") +" " +permRs.getString("APF_CITY"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("MOTOR_NUMBER"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("MOTOR_NUMBER"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("CHASSIS_NUMBER"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("CHASSIS_NUMBER"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("BIKE_NAME"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("BIKE_NAME"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("PLATE_NUMBER"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("PLATE_NUMBER"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("PERMIT_NO"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("PERMIT_NO"));%></label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label><%out.print(permRs.getString("TODA_NAME"));%></label>
+                                        : <label style="margin: 0"><%out.print(permRs.getString("TODA_NAME"));%></label>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -235,7 +245,7 @@
                     </tbody>
 
                 </table>
-                <hr width="50%" align="left">
+                <hr width="40%" align="left">
                 <tr>
                     <p>OTHER NOTES</p>
                 </tr>
