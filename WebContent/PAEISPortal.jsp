@@ -41,7 +41,7 @@
 
 <div class="login-cover">
     <div class="login-cover-image">
-        <img src="extras/logo1.png" data-id="login-cover-image" alt="" />
+        <img src="extras/logo1.png" data-id="login-cover-image" alt=""/>
     </div>
     <div class="login-cover-bg"></div>
 </div>
@@ -64,9 +64,11 @@
         <div class="tab-content">
             <div class="tab-pane fade active in" id="default-tab-1">
                 <h3 class="m-t-10"> News/Announcements:</h3>
-                <p>
-                    Preview Notes here
-                </p>
+                <div class="timeline-Widget" data-iframe-title="Twitter Timeline" data-twitter-event-id="1" lang="en"
+                     style=" height: 60vh; /* percent relative to viewport height */ overflow: scroll;">
+                    <a class="twitter-timeline" data-link-color="#9266CC"
+                       href="https://twitter.com/QCPublicAffairs?ref_src=twsrc%5Etfw">Tweets by QCPublicAffairs</a>
+                </div>
             </div>
 
             <div class="tab-pane fade" id="default-tab-2">
@@ -75,7 +77,7 @@
                     <select id="newForm" class="form-control">
                         <option value="nSing">Business Application Form (Single)</option>
                         <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
-                        <option value="Mtops">MTOPS Application Form </option>
+                        <option value="Mtops">MTOPS Application Form</option>
                     </select>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>
@@ -84,8 +86,9 @@
             </div>
 
             <div class="tab-pane fade" id="default-tab-3">
-                <form name="loginEmpForm" id="loginEmpForm" action="/LoginServlet" method="post" novalidate="" data-parsley-validate="">
-                <h4>Users Login</h4>
+                <form name="loginEmpForm" id="loginEmpForm" action="/LoginServlet" method="post" novalidate=""
+                      data-parsley-validate="">
+                    <h4>Users Login</h4>
 
                     <div class="row">
 
@@ -113,7 +116,7 @@
                     <div class="modal-footer">
                         <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Log In</button>
                     </div>
-        </form>
+                </form>
 
             </div>
 
@@ -144,6 +147,7 @@
 <script src="assets/js/login-v2.demo.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/portal.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
 </html>

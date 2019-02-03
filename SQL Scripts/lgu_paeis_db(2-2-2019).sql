@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `lgu_paeis_db`
 --
+CREATE DATABASE IF NOT EXISTS `lgu_paeis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `lgu_paeis_db`;
 
 -- --------------------------------------------------------
 
