@@ -70,7 +70,7 @@ public class insertOcfrmSs extends HttpServlet {
 
         try {
             Connection conn = databases.getConnection();
-            PreparedStatement aidetails = (PreparedStatement) conn.prepareStatement("INSERT INTO `lgu_oc_application_frm` (`OAF_FNAME`, `OAF_MNAME`, `OAF_LNAME`, `OAF_ADDRESS`, `OAF_BIRTHDATE`, `OAF_SEX`, `OAF_CIVIL_STATUS`, `OAF_COMPANY`, `OAF_PLC_ASSIGNED`, `OAF_CEDULA_NO`, `OAF_NBI_POLICE_CLR`, `OAF_HEALTH_RCPT_NO`, `OAF_CONTACT_NO`, `OAF_DATE`, `JD_ID) VALUES ('" + S_fname + "','" + S_mname + "','" + S_lname + "','" + S_addre + "','" + S_bdate + "','" + S_sex + "','" + S_cstat + "','" + S_comp + "','" + S_work + "','" + S_cedula + "','" + S_nbi + "','" + S_health + "','" + S_cnum + "','" + S_mname + "','" + S_lname + "')", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement aidetails = (PreparedStatement) conn.prepareStatement("INSERT INTO `lgu_oc_application_frm` (`OAF_FNAME`, `OAF_MNAME`, `OAF_LNAME`, `OAF_ADDRESS`, `OAF_BIRTHDATE`, `OAF_SEX`, `OAF_CIVIL_STATUS`, `OAF_COMPANY`, `OAF_PLC_ASSIGNED`, `OAF_CEDULA_NO`, `OAF_NBI_POLICE_CLR`, `OAF_HEALTH_RCPT_NO`, `OAF_CONTACT_NO`, `OAF_DATE`, `JD_ID`) VALUES ('" + S_fname + "','" + S_mname + "','" + S_lname + "','" + S_addre + "','" + S_bdate + "','" + S_sex + "','" + S_cstat + "','" + S_comp + "','" + S_work + "','" + S_cedula + "','" + S_nbi + "','" + S_health + "','" + S_cnum + "','" + S_mname + "','" + S_lname + "')", Statement.RETURN_GENERATED_KEYS);
             aidetails.executeUpdate();
 
 
