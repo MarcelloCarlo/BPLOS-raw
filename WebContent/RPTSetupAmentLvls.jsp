@@ -165,6 +165,28 @@
                                                                 }
                                                             %>
                                                         </select>
+                                                        <select class="selectpicker form-control" data-style="btn-white"
+                                                                id="txtApplicantTODA" name="txtApplicantTODA" tabindex="-1"
+                                                                data-parsley-group="wizard-st-7" required>
+                                                            <%
+                                                                String natureSt = "";
+                                                                LGUConnect conX = new LGUConnect();
+                                                                try {
+                                                                    Connection conn3 = conX.getConnection();
+                                                                    Statement ss3 = conn3.createStatement();
+                                                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_r_toda");
+                                                                    while (gg3.next()) {
+                                                            %>
+                                                            <option value="<%out.print(gg3.getInt("TODA_ID"));%>">
+                                                                <%out.print(gg3.getString("TODA_NAME"));%>
+                                                            </option>
+                                                            <%
+                                                                    }
+                                                                } catch (SQLException | ClassNotFoundException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            %>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
