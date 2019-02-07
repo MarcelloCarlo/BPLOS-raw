@@ -75,18 +75,17 @@ public class inspectMtops extends HttpServlet {
         getCheckboxCount(hwCStand);
         getCheckboxCount(hwSStand);
 
-        if (cnt == 22) {
-            setAssess(_AP_REFERENCE_NO, response);
+        if (cnt == 22) { setEvaluate(_AP_REFERENCE_NO, response);
         } else {
             termApl(_AP_REFERENCE_NO, response);
         }
 
     }
 
-    private void setAssess(String _AP_REFERENCE_NO, HttpServletResponse response) {
+    private void setEvaluate(String _AP_REFERENCE_NO, HttpServletResponse response) {
         try {
             connection = connect.getConnection();
-            PreparedStatement setAssess = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Assessing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            PreparedStatement setAssess = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Pending',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
             setAssess.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
             setAssess.executeUpdate();
             response.getWriter().print("Inspection Success, Please Proceed to Assessment");

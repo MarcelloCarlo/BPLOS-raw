@@ -48,7 +48,7 @@
 <!-- begin #page-container -->
 <div id="page-container" class="fade">
     <!-- begin login -->
-    <div class="login login-v2" data-pageload-addclass="animated fadeIn">
+    <div class="login login-v2" data-pageload-addclass="animated fadeIn" style="margin-top: 9rem !important;">
         <!-- begin brand -->
         <div class="login-header">
             <div class="brand text-center">
@@ -65,7 +65,7 @@
             <div class="tab-pane fade active in" id="default-tab-1">
                 <h3 class="m-t-10"> News/Announcements:</h3>
                 <div class="timeline-Widget" data-iframe-title="Twitter Timeline" data-twitter-event-id="1" lang="en"
-                     style=" height: 60vh; /* percent relative to viewport height */ overflow: scroll;">
+                     style=" height: 60vh; /* percent relative to viewport height */ overflow-y: auto;">
                     <a class="twitter-timeline" data-link-color="#9266CC"
                        href="https://twitter.com/QCPublicAffairs?ref_src=twsrc%5Etfw">Tweets by QCPublicAffairs</a>
                 </div>
