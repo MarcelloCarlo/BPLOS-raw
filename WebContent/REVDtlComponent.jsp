@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Li Ven
-  Date: 10/10/2018
-  Time: 2:16 PM
+  Date: 2/7/2019
+  Time: 11:21 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -47,7 +47,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="REVDashboard.jsp"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li><a href="REVDashboard.jsp"><i class="fa fa-dashboard"></i> <span>Go Back</span></a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

@@ -17,7 +17,7 @@
                 <span>
                     <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
                 </span>
-                BPLS
+                RPT
             </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
