@@ -65,9 +65,7 @@
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Dashboard
-            <small>header small text goes here...</small>
-        </h1>
+        <h1 class="page-header">Dashboard</h1>
         <!-- end page-header -->
 
         <!-- begin row -->
@@ -125,7 +123,7 @@
                         </div>
                     </div>
                     <div class="stats-link">
-                        <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href="REVBplsDtl.jsp">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -185,7 +183,67 @@
                         </div>
                     </div>
                     <div class="stats-link">
-                        <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href="REVMtopsDtl.jsp">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- end col-3 -->
+            <!-- begin col-3 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="widget widget-stats bg-blue">
+                    <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                    <div class="stats-info">
+                        <div>
+                            <p>RPT</p>
+                        </div>
+                        <div>
+                            <h4>Pending:
+                                <%--<%--%>
+
+                                    <%--LGUConnect conl = new LGUConnect();--%>
+                                    <%--Connection con4 = conl.getConnection();--%>
+                                    <%--Statement dd = con4.createStatement();--%>
+                                    <%--ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");--%>
+                                    <%--while (vv.next())--%>
+                                    <%--{--%>
+                                        <%--out.print(vv.getString("D"));--%>
+                                    <%--}--%>
+                                <%--%>--%>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Released:
+                                <%--<%--%>
+
+                                    <%--LGUConnect cono = new LGUConnect();--%>
+                                    <%--Connection con5 = cono.getConnection();--%>
+                                    <%--Statement ee = con5.createStatement();--%>
+                                    <%--ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");--%>
+                                    <%--while (ww.next())--%>
+                                    <%--{--%>
+                                        <%--out.print(ww.getString("E"));--%>
+                                    <%--}--%>
+                                <%--%>--%>
+                            </h4>
+                        </div>
+                        <div>
+                            <h4>Terminated:
+                                <%--<%--%>
+
+                                    <%--LGUConnect conp = new LGUConnect();--%>
+                                    <%--Connection con6 = conp.getConnection();--%>
+                                    <%--Statement ff = con6.createStatement();--%>
+                                    <%--ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");--%>
+                                    <%--while (xx.next())--%>
+                                    <%--{--%>
+                                        <%--out.print(xx.getString("F"));--%>
+                                    <%--}--%>
+                                <%--%>--%>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="stats-link">
+                        <a href="REVRptDtl.jsp">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -242,20 +300,6 @@
 
                             </h4>
                         </div>
-                    </div>
-                    <div class="stats-link">
-                        <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <!-- end col-3 -->
-            <!-- begin col-3 -->
-            <div class="col-md-3 col-sm-6">
-                <div class="widget widget-stats bg-red">
-                    <div class="stats-icon"><i class="fa fa-clock-o"></i></div>
-                    <div class="stats-info">
-                        <h4>AVG TIME ON SITE</h4>
-                        <p>00:12:23</p>
                     </div>
                     <div class="stats-link">
                         <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
@@ -342,14 +386,14 @@
                 "colorByPoint": false,
                 "data": [
                     {
-                        "name": "2017",
+                        "name": "2018",
                         "y": 62.74,
-                        "drilldown": "2017"
+                        "drilldown": "2018"
                     },
                     {
-                        "name": "2018",
+                        "name": "2019",
                         "y": 10.57,
-                        "drilldown": "2018"
+                        "drilldown": "2019"
                     }
                 ]
             },
@@ -358,14 +402,14 @@
                 "colorByPoint": false,
                 "data": [
                     {
-                        "name": "2017",
+                        "name": "2018",
                         "y": 42.74,
-                        "drilldown": "2017"
+                        "drilldown": "2018"
                     },
                     {
-                        "name": "2018",
+                        "name": "2019",
                         "y": 78.57,
-                        "drilldown": "2018"
+                        "drilldown": "2019"
                     }
                 ]
             },
@@ -374,14 +418,14 @@
                 "colorByPoint": false,
                 "data": [
                     {
-                        "name": "2017",
+                        "name": "2018",
                         "y": 50.74,
-                        "drilldown": "2017"
+                        "drilldown": "2018"
                     },
                     {
-                        "name": "2018",
+                        "name": "2019",
                         "y": 60.57,
-                        "drilldown": "2018"
+                        "drilldown": "2019"
                     }
                 ]
             }
@@ -390,8 +434,8 @@
         "drilldown": {
             "series": [
                 {
-                    "name": "2017, Business Permits",
-                    "id": "2017",
+                    "name": "2018, Business Permits",
+                    "id": "2018",
                     "data": [
                         [
                             "January",
@@ -445,8 +489,8 @@
                     ]
                 },
                 {
-                    "name": "2018, Business Permits",
-                    "id": "2018",
+                    "name": "2019, Business Permits",
+                    "id": "2019",
                     "data": [
                         [
                             "January",

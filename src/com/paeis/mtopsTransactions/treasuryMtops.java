@@ -42,12 +42,13 @@ public class treasuryMtops extends HttpServlet{
         Double total = Double.parseDouble(request.getParameter("totalAmt"));
 
         try {
-            PreparedStatement genOR = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_official_receipt (OR_DATE, OR_PYMT_TYPE, OR_TW_CH_MO_NO,OR_TW_CH_MO_DATE, OIC_CITY_TREASURER, TB_ID,OR_TOTAL_AMOUNT) VALUES (NOW(),?,CONCAT(?,'-',REPLACE(CURRENT_DATE,'-','')),NOW(),?,?,?)");
+            PreparedStatement genOR = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_official_receipt (OR_DATE, OR_PYMT_TYPE, OR_TW_CH_MO_NO,OR_TW_CH_MO_DATE, OIC_CITY_TREASURER, TB_ID,OR_TOTAL_AMOUNT,APF_ID) VALUES (NOW(),?,CONCAT(?,'-',REPLACE(CURRENT_DATE,'-','')),NOW(),?,?,?,?)");
             genOR.setString(1,getPayMethod(paymentType));
             genOR.setString(2,paymentType);
             genOR.setInt(3,optTreasurer);
             genOR.setInt(4,tbId);
             genOR.setDouble(5,total);
+            genOR.setInt(6,Integer.parseInt(ap_ref_no));
             genOR.executeUpdate();
 
             PreparedStatement setRel = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Releasing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");

@@ -47,7 +47,7 @@ public class evaluateMtops extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         if (cnt == 6){
-            setInspect(AP_REF_NO,response);
+            setAssess(AP_REF_NO,response);
         }else{
             termApl(AP_REF_NO,response);
         }
@@ -66,10 +66,10 @@ public class evaluateMtops extends HttpServlet {
         }
     }
 
-    private void setInspect(String _AP_REFERENCE_NO, HttpServletResponse response) {
+    private void setAssess(String _AP_REFERENCE_NO, HttpServletResponse response) {
         try {
             connection = connect.getConnection();
-            PreparedStatement setInsp = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Inspecting',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
+            PreparedStatement setInsp = (PreparedStatement) connection.prepareStatement("UPDATE mtops_t_application_frm SET APF_STATUS = 'Assessing',APF_DATEACCESSED = CURRENT_TIMESTAMP() WHERE APF_ID = ? ");
             setInsp.setInt(1, Integer.parseInt(_AP_REFERENCE_NO));
             setInsp.executeUpdate();
             response.getWriter().print("Evaluation Success, Please Proceed to Assessment");

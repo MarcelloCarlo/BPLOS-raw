@@ -1,4 +1,4 @@
-# LGU-QCPAEIS
+# LGU-PAEIS
 ### Requirements (Things you need to know):
 **Same as the orginal but without any drama**
 * IDE (Eclipse 'Photon' is recommended but you can use VS Code or IntelliJ if you have the BDE.)

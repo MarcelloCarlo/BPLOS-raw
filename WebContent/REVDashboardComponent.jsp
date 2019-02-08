@@ -13,13 +13,12 @@
     <div class="container-fluid">
         <!-- begin mobile sidebar expand / collapse button -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand"><span class="navbar-logo"></span>PAEIS/Revenue</a>
-
-            <button type="button" class="navbar-toggle" data-click="top-menu-toggled">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+            <a class="navbar-brand">
+                <span>
+                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                </span>
+                Revenue
+            </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
 
@@ -33,7 +32,8 @@
                         }
                     %>
                 </span>
-                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>' class="fa fa-sign-out" style="color: black">Log Out</a>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;" class="fa fa-sign-out"></a>
+                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;">Log Out</a>
             </label>
         </div>
         <!-- end header navigation right -->

@@ -45,7 +45,7 @@
         <!-- begin brand -->
         <div class="login-header">
             <div class="brand text-center">
-                <img src="extras/logo1.png" style="width:50px;height:50px;"> PAEIS
+                <img src="extras/logo1.png" style="width:50px;height:50px;"> PAEIS | Login
             </div>
             <div class="icon">
                 <i class="fa fa-sign-in"></i>

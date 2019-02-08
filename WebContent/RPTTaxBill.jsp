@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Li Ven
-  Date: 10/10/2018
-  Time: 3:42 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -42,10 +35,10 @@
     <!-- ================== END BASE JS ================== -->
 </head>
 <body>
+
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
-
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-without-sidebar ">
@@ -53,13 +46,13 @@
     <!-- begin #content -->
     <div id="content" class="content">
         <!-- begin page-header -->
-        <!-- <div>
+        <div>
              <h1 class="page-header hidden-print">Tax Bill</h1>
-            <span class="hidden-print ">
+            <span class="hidden-print">
                 <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
                     class="fa fa-print m-r-5"></i> Print</a>
             </span>
-        </div> -->
+        </div>
 
         <!-- begin invoice -->
         <div class="invoice">
@@ -372,6 +365,7 @@
                 class="fa fa-angle-up"></i></a>
         <!-- end scroll to top btn -->
     </div>
+</div>
     <!-- end page container -->
 
 

@@ -71,36 +71,20 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("emppositionDB", emppositionDB);
                 session.setAttribute("empDiv", divcode);
                 session.setMaxInactiveInterval(30 * 60);
-                recSession(divcode, empId);
-                if (divcode.equals("DIV-SYSAD")) {
 
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("PAEISSAUsrMgmt.jsp");
-                    dispatcher.forward(request, response);
-                } else if (divcode.equals("DIV-EV")) {
+                String selectedPage = pageSelect(divcode);
 
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSEIndex.jsp");
+                if(!selectedPage.equalsIgnoreCase("none")) {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(selectedPage);
                     dispatcher.forward(request, response);
-                } else if (divcode.equals("DIV-INS")) {
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSIPIndex.jsp");
-                    dispatcher.forward(request, response);
-                } else if (divcode.equals("DIV-INV")) {
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSIVIndex.jsp");
-                    dispatcher.forward(request, response);
-                } else if (divcode.equals("DIV-TRE")) {
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSTIndex.jsp");
-                    dispatcher.forward(request, response);
-                } else if (divcode.equals("DIV-REL")) {
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSRSIndex.jsp");
-                    dispatcher.forward(request, response);
-                } else if (divcode.equals("DIV-AS")) {
-
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("BPLSAIndex.jsp");
-                    dispatcher.forward(request, response);
+                    recSession(divcode, empId);
+                } else {
+                    session.invalidate();
+                    request.setAttribute("errMsg", "<font color=red>Login Error. Please ensure that the Username/Password is correct.</font>");
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISLogin.jsp");
+                    requestDispatcher.forward(request, response);
                 }
+
             } else {
                 session.invalidate();
                 request.setAttribute("errMsg", "<font color=red>Login Error. Please ensure that the Username/Password is correct.</font>");
@@ -110,6 +94,54 @@ public class LoginServlet extends HttpServlet {
         } catch (Exception e) {
             response.getWriter().print(e);
         }
+    }
+
+    private String pageSelect(String divcode) {
+        String selectedPage = "";
+        switch (divcode){
+            case "DIV-SYSAD":
+                selectedPage = "PAEISSAUsrMgmt.jsp";
+                break;
+            case "DIV-EV":
+                selectedPage = "BPLSEIndex.jsp";
+                break;
+            case "DIV-INS":
+                selectedPage = "BPLSIPIndex.jsp";
+                break;
+            case "DIV-INV":
+                selectedPage = "BPLSIVIndex.jsp";
+                break;
+            case "DIV-TRE":
+                selectedPage = "BPLSTIndex.jsp";
+                break;
+            case "DIV-REL":
+                selectedPage = "BPLSRSIndex.jsp";
+                break;
+            case "DIV-AS":
+                selectedPage = "BPLSAIndex.jsp";
+                break;
+            case "DIV-MEV":
+                selectedPage = "MTOPSEIndex.jsp";
+                break;
+            case "DIV-MRE":
+                selectedPage = "MTOPSRSIndex.jsp";
+                break;
+            case "DIV-MFA":
+                selectedPage = "MTOPSAment.jsp";
+                break;
+            case "DIV-MIP":
+                selectedPage = "MTOPSIPIndex.jsp";
+                break;
+            case "DIV-RVNU":
+                selectedPage = "REVDashboard.jsp";
+                break;
+            case "DIV-RPT":
+                selectedPage = "RPTTaxDec.jsp";
+                break;
+            default: selectedPage = "none"; break;
+        }
+
+        return selectedPage;
     }
 
     private void recSession(String divcode, String empId) {

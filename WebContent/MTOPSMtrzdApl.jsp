@@ -1,4 +1,8 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/7/2018
@@ -119,7 +123,9 @@
                                     <fieldset>
                                         <legend class="pull-left width-full">Applicant's Information</legend>
                                         <!-- begin row -->
-
+                                        <div class="form-group">
+                                            <p>By proceeding in this step. You agreed to the <a href="mailto:#">Terms & Conditions and Privacy Policy</a> of the system.</p>
+                                        </div>
                                         <%--Name--%>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -279,10 +285,28 @@
                                                 <div class="form-group">
                                                     <label>TODA</label>
                                                     <div class="controls">
-                                                        <input type="text" id="txtApplicantTODA"
-                                                               name="txtApplicantTODA" placeholder="TODA"
-                                                               class="form-control" data-parsley-group="wizard-st-2"
-                                                               required/>
+                                                        <select class="selectpicker form-control" data-style="btn-white"
+                                                                id="txtApplicantTODA" name="txtApplicantTODA" tabindex="-1"
+                                                                data-parsley-group="wizard-st-7" required>
+                                                            <%
+                                                                String natureSt = "";
+                                                                LGUConnect conX = new LGUConnect();
+                                                                try {
+                                                                    Connection conn3 = conX.getConnection();
+                                                                    Statement ss3 = conn3.createStatement();
+                                                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_r_toda");
+                                                                    while (gg3.next()) {
+                                                            %>
+                                                            <option value="<%out.print(gg3.getInt("TODA_ID"));%>">
+                                                                <%out.print(gg3.getString("TODA_NAME"));%>
+                                                            </option>
+                                                            <%
+                                                                    }
+                                                                } catch (SQLException | ClassNotFoundException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                            %>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -463,7 +487,7 @@
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
-    <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+    <a href="javascript:" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
