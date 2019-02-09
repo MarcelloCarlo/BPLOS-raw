@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="stats-link">
-                        <a href="REVBplsDtl.jsp">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href="REVBplsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                         </div>
                     </div>
                     <div class="stats-link">
-                        <a href="REVMtopsDtl.jsp">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href="REVMtopsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -241,7 +241,7 @@
                         </div>
                     </div>
                     <div class="stats-link">
-                        <a href="REVRptDtl.jsp">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href="REVRptDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -297,7 +297,7 @@
                         </div>
                     </div>
                     <div class="stats-link">
-                        <a href="javascript:;">View Detail <i class="fa fa-arrow-circle-o-right"></i></a>
+                        <a href="javascript:;">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
                     </div>
                 </div>
             </div>

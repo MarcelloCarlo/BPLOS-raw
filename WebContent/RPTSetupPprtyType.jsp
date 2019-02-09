@@ -98,7 +98,7 @@
                             <%
                                 LGUConnect cons = new LGUConnect();
                                 Connection con9 = cons.getConnection();
-                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_type order by PT_ID desc");
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_type order by PT_ID asc");
                                 ResultSet res = getPropType.executeQuery();
                                 while (res.next()) {
                             %>
@@ -170,8 +170,7 @@
                                         <div class="modal-footer">
 
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-
-                                            <button type="submit" id="btnAddPropType" class="btn btn-sm btn-success ">Add</button>
+                                            <button type="button" id="btnAddPropType" class="btn btn-sm btn-success ">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -293,90 +292,58 @@
         TableManageResponsive.init();
 
         $("#btnAddPropType").click(function () {
-
-        swal(
-            {
-                title: "Warning!",
-                text: "This transaction can't be undone. Are you sure you want to proceed?",
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
                 type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
                 showCancelButton: true,
-                confirmButtonColor: '#43A047',
-                confirmButtonText: 'YES',
-                cancelButtonText: "NO",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-
-            function(isConfirm)
-            {
-                if (isConfirm)
-                {
-                    $.ajax(
-                        {
-                            type: "POST",
-                            url: "addPropertyType",
-                            data: addPropTypeForm,
-                            enctype: "multipart/form-data",
-                            processData: false,
-                            contentType: false,
-
-                            success: function(data)
-                            {
-                                swal(
-                                    {
-                                        title: 'Successful!',
-                                        text: 'The asset is inserted successfully.',
-                                        type: 'success',
-                                        confirmButtonColor: '#43A047',
-                                        confirmButtonText: 'OK',
-                                        closeOnConfirm: false
-                                    },
-
-                                    function(isConfirm)
-                                    {
-                                        if (isConfirm)
-                                        {
-                                            window.location=window.location;
-
-                                        }
-                                    }
-                                );
-                                setTimeout(function()
-                                    {
-                                        window.location = window.location;
-                                    },
-                                    5000
-                                );
-                            },
-
-                            error: function(response)
-                            {
-                                swal("Error", "May mali bry eh!", "error");
-                            }
-                        });
-                }//endif(isConfirm)
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var addPropTypeForm = new FormData($('#addPropTypeForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "insertPropertyType",
+                        data: addPropTypeForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
                 else
-                {
-                    swal(
-                        {
-                            title: 'Cancelled!',
-                            text: 'You have cancelled the transaction.',
-                            type: 'error',
-                            confirmButtonColor: '#43A047',
-                            confirmButtonText: 'OK',
-                            closeOnConfirm: true
-                        });
-                }//end else{}
-            }//end func(isConfirm)
-        );//endswal()
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
 
+                }
+            });
+        });
+
+        $('.editProp').click(function () {
+            document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
         });
 
 
         $("#btnEditPropType").click(function () {
             swal({
                 title: "Are you sure?",
-                text: "You will save your current changes",
+                text: "Current changes will be saved.",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Confirm!",

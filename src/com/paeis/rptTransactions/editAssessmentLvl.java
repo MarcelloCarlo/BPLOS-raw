@@ -1,6 +1,5 @@
 package com.paeis.rptTransactions;
 
-
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
 
@@ -20,12 +19,12 @@ import java.time.format.DateTimeFormatter;
  */
 
 
-@WebServlet("/insertAssessmentLvl")
+@WebServlet("/editAssessmentLvl")
 @MultipartConfig
-public class insertAssessmentLvl extends HttpServlet{
+public class editAssessmentLvl extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public insertAssessmentLvl() {
+    public editAssessmentLvl() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,17 +33,19 @@ public class insertAssessmentLvl extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         LGUConnect conn = new LGUConnect();
-        String ptid = request.getParameter("addamentptype");
-        String pcid = request.getParameter("addamentpclass");
-        String alvl = request.getParameter("addamentlvl");
+        String alid = request.getParameter("al_id");
+        String eptid = request.getParameter("editamentptype");
+        String epcid = request.getParameter("editamentpclass");
+        String ealvl = request.getParameter("editamentlvl");
 
         try {
             Connection connection = conn.getConnection();
-            PreparedStatement insert = (PreparedStatement) connection.prepareStatement("INSERT INTO `rpt_r_assessment_lvl` (`PT_ID`, `PC_ID`, `AL_VAL`) VALUES (?,?,?)");
-            insert.setString(1, ptid);
-            insert.setString(2, pcid);
-            insert.setString(3, alvl);
-            insert.executeUpdate();
+            PreparedStatement edit = (PreparedStatement) connection.prepareStatement("UPDATE rpt_r_assessment_lvl SET PT_ID=?,PC_ID= ?,AL_VAL= ? WHERE AL_ID = ?");
+            edit.setString(1, eptid);
+            edit.setString(2, epcid);
+            edit.setString(3, ealvl);
+            edit.setInt(4, Integer.parseInt(alid));
+            edit.executeUpdate();
             request.getRequestDispatcher("/RPTSetupAmentLvls.jsp").forward(request,response);
 
         } catch (Exception e) {
@@ -52,5 +53,4 @@ public class insertAssessmentLvl extends HttpServlet{
 
         }
     }
-
 }

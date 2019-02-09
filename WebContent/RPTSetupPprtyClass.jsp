@@ -98,7 +98,7 @@
                             <%
                                 LGUConnect cons = new LGUConnect();
                                 Connection con9 = cons.getConnection();
-                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_class order by PC_ID desc");
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_class order by PC_ID asc");
                                 ResultSet res = getPropType.executeQuery();
                                 while (res.next()) {
                             %>
@@ -135,7 +135,7 @@
                             <h4 class="panel-title">Property Class</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data" action="/insertPropertyClass" method="POST">
+                            <form enctype="multipart/form-data"  name="addPropClassForm" id="addPropClassForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
@@ -168,7 +168,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnAddPropClass" class="btn btn-sm btn-success">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -289,6 +289,51 @@
         App.init();
         TableManageResponsive.init();
 
+        $("#btnAddPropClass").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var addPropClassForm = new FormData($('#addPropClassForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "insertPropertyClass",
+                        data: addPropClassForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+        });
+
+
         $('.editProp').click(function () {
             document.getElementById('pc_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
         });
@@ -296,7 +341,7 @@
         $("#btnEditPropClass").click(function () {
             swal({
                 title: "Are you sure?",
-                text: "You will save your current changes",
+                text: "Current changes will be saved.",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Confirm!",
