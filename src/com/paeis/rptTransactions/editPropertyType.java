@@ -21,7 +21,6 @@ import java.time.format.DateTimeFormatter;
 @WebServlet("/editPropertyType")
 @MultipartConfig
 public class editPropertyType extends HttpServlet {
-
     private static final long serialVersionUID = 1L;
 
     public editPropertyType()  {

@@ -87,19 +87,28 @@
                             <thead>
                             <tr>
                                 <th class="hide"></th>
-                                <th>Pending</th>
-                                <th>Released</th>
-                                <th>Terminated</th>
+                                <th>Date</th>
+                                <th>Payment Mode</th>
+                                <th>Amount</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                LGUConnect cons = new LGUConnect();
+                                Connection con9 = cons.getConnection();
+                                PreparedStatement getRptOr = (PreparedStatement) con9.prepareStatement("SELECT `OR_ID`, `OR_DATE`, `OR_PYMT_TYPE`,`OR_TOTAL_AMOUNT` FROM `rpt_t_official_receipt`");
+                                ResultSet res = getPropType.executeQuery();
+                                while (res.next()) {
+                            %>
                             <tr>
-                                <td></td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
+                                <td class="hide"><%=res.getString("OR_ID")%></td>>
+                                <td><%=res.getString("OR_DATE")%></td>
+                                <td><%=res.getString("OR_PYMT_TYPE")%></td>
+                                <td><%=res.getString("OR_TOTAL_AMOUNT")%></td>
                             </tr>
+                            <%
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -163,54 +172,6 @@
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
-
-        $('.editActUse').click(function () {
-            document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
-        });
-
-        $("#btnEditActualUse").click(function () {
-            swal({
-                title: "Are you sure?",
-                text: "You will save your current changes",
-                type: "warning",
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Confirm!",
-                showCancelButton: true,
-                cancelButtonText: 'Cancel'
-            }).then(function (result) {
-                if(result.value){
-                    var editActualUseForm = new FormData($('#editActualUseForm')[0]);
-                    $.ajax({
-                        type: "POST",
-                        url: "editActualUse",
-                        data: editActualUseForm,
-                        enctype: "multipart/form-data",
-                        processData: false,
-                        contentType: false,
-                        success: function (response) {
-                            swal({
-                                type: 'success',
-                                title: 'DONE!.',
-                                text: 'Succesfully Processed',
-                                confirmButtonText: 'OK'
-                            }).then(function (result) {
-                                if(result.value){
-                                    location.reload(true);
-                                }
-                            });}
-                    });
-                }
-                else
-                if (result.dismiss === swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons(
-                        'Cancelled',
-                        'Operation Halted',
-                        'error'
-                    )
-
-                }
-            });
-        });
     });
 </script>
 <script>

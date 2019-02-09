@@ -18,7 +18,6 @@ import java.time.format.DateTimeFormatter;
  * Servlet implementation class LoginServlet
  */
 
-
 @WebServlet("/insertPropertyType")
 @MultipartConfig
 public class insertPropertyType extends HttpServlet{
@@ -49,7 +48,4 @@ public class insertPropertyType extends HttpServlet{
 
         }
     }
-
-
-
 }

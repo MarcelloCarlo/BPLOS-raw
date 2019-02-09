@@ -158,7 +158,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="addpclassdesc"
                                                                placeholder="Description"
-                                                               class="form-control" />
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,7 +215,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="editpclassdesc"
                                                                placeholder="Description"
-                                                               class="form-control" />
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>

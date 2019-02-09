@@ -135,7 +135,7 @@
                             <h4 class="panel-title">Property Type</h4>
                         </div>
                         <div class="panel-body">
-                            <form  enctype="multipart/form-data" action="/insertPropertyType" method="POST">
+                            <form  enctype="multipart/form-data" name="addPropTypeForm" id="addPropTypeForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
 
                                 <div>
@@ -159,7 +159,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="addptypedesc"
                                                                placeholder="Description"
-                                                               class="form-control" />
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -171,7 +171,7 @@
 
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
 
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            <button type="submit" id="btnAddPropType" class="btn btn-sm btn-success ">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -218,7 +218,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="editptypedesc"
                                                                placeholder="Description"
-                                                               class="form-control" />
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,9 +292,86 @@
         App.init();
         TableManageResponsive.init();
 
-        $('.editProp').click(function () {
-            document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+        $("#btnAddPropType").click(function () {
+
+        swal(
+            {
+                title: "Warning!",
+                text: "This transaction can't be undone. Are you sure you want to proceed?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#43A047',
+                confirmButtonText: 'YES',
+                cancelButtonText: "NO",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+
+            function(isConfirm)
+            {
+                if (isConfirm)
+                {
+                    $.ajax(
+                        {
+                            type: "POST",
+                            url: "addPropertyType",
+                            data: addPropTypeForm,
+                            enctype: "multipart/form-data",
+                            processData: false,
+                            contentType: false,
+
+                            success: function(data)
+                            {
+                                swal(
+                                    {
+                                        title: 'Successful!',
+                                        text: 'The asset is inserted successfully.',
+                                        type: 'success',
+                                        confirmButtonColor: '#43A047',
+                                        confirmButtonText: 'OK',
+                                        closeOnConfirm: false
+                                    },
+
+                                    function(isConfirm)
+                                    {
+                                        if (isConfirm)
+                                        {
+                                            window.location=window.location;
+
+                                        }
+                                    }
+                                );
+                                setTimeout(function()
+                                    {
+                                        window.location = window.location;
+                                    },
+                                    5000
+                                );
+                            },
+
+                            error: function(response)
+                            {
+                                swal("Error", "May mali bry eh!", "error");
+                            }
+                        });
+                }//endif(isConfirm)
+                else
+                {
+                    swal(
+                        {
+                            title: 'Cancelled!',
+                            text: 'You have cancelled the transaction.',
+                            type: 'error',
+                            confirmButtonColor: '#43A047',
+                            confirmButtonText: 'OK',
+                            closeOnConfirm: true
+                        });
+                }//end else{}
+            }//end func(isConfirm)
+        );//endswal()
+
         });
+
 
         $("#btnEditPropType").click(function () {
             swal({

@@ -158,7 +158,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="addactusedesc"
                                                                placeholder="Description"
-                                                               class="form-control"/>
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,7 +215,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="editactusedesc"
                                                                placeholder="Description"
-                                                               class="form-control"/>
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
