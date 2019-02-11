@@ -4,7 +4,8 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="jdk.nashorn.api.scripting.JSObject" %>
-<%@ page import="org.json.simple.JSONArray" %><%--
+<%@ page import="org.json.simple.JSONArray" %>
+<%@ page import="org.json.simple.JSONObject" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -78,7 +79,7 @@
                 <div class="widget widget-stats bg-green">
                     <div class="stats-icon"><i class="fa fa-desktop"></i></div>
                     <div class="stats-info">
-                        <div> <p>Business Permit</p></div>
+                        <div><p>Business Permit</p></div>
                         <div>
                             <h4>Pending:
                                 <%
@@ -87,9 +88,8 @@
                                     Connection con1 = con.getConnection();
                                     Statement aa = con1.createStatement();
                                     ResultSet ss = aa.executeQuery("SELECT COUNT(*) AS C FROM `bpls_t_bp_application` WHERE NOT (AP_STATUS = 'Success' OR AP_STATUS = 'Terminated')");
-                                    while (ss.next())
-                                    {
-                                    out.print(ss.getString("C"));
+                                    while (ss.next()) {
+                                        out.print(ss.getString("C"));
                                     }
                                 %>
                             </h4>
@@ -102,8 +102,7 @@
                                     Connection con2 = conn.getConnection();
                                     Statement bb = con2.createStatement();
                                     ResultSet tt = bb.executeQuery("SELECT COUNT(*) AS A FROM `bpls_t_bp_application` WHERE AP_STATUS = 'Success' ");
-                                    while(tt.next())
-                                    {
+                                    while (tt.next()) {
                                         out.print(tt.getString("A"));
                                     }
                                 %>
@@ -117,8 +116,7 @@
                                     Connection con3 = conm.getConnection();
                                     Statement cc = con3.createStatement();
                                     ResultSet uu = cc.executeQuery("SELECT COUNT(*) AS B FROM `bpls_t_bp_application` WHERE AP_STATUS = 'Terminated' ");
-                                    while (uu.next())
-                                    {
+                                    while (uu.next()) {
                                         out.print(uu.getString("B"));
                                     }
                                 %>
@@ -147,8 +145,7 @@
                                     Connection con4 = conl.getConnection();
                                     Statement dd = con4.createStatement();
                                     ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE NOT (APF_STATUS = 'Done' OR APF_STATUS = 'Terminated') ");
-                                    while (vv.next())
-                                    {
+                                    while (vv.next()) {
                                         out.print(vv.getString("D"));
                                     }
                                 %>
@@ -162,8 +159,7 @@
                                     Connection con5 = cono.getConnection();
                                     Statement ee = con5.createStatement();
                                     ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Done'");
-                                    while (ww.next())
-                                    {
+                                    while (ww.next()) {
                                         out.print(ww.getString("E"));
                                     }
                                 %>
@@ -177,8 +173,7 @@
                                     Connection con6 = conp.getConnection();
                                     Statement ff = con6.createStatement();
                                     ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");
-                                    while (xx.next())
-                                    {
+                                    while (xx.next()) {
                                         out.print(xx.getString("F"));
                                     }
                                 %>
@@ -203,14 +198,14 @@
                             <h4>Pending:
                                 <%--<%--%>
 
-                                    <%--LGUConnect conl = new LGUConnect();--%>
-                                    <%--Connection con4 = conl.getConnection();--%>
-                                    <%--Statement dd = con4.createStatement();--%>
-                                    <%--ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");--%>
-                                    <%--while (vv.next())--%>
-                                    <%--{--%>
-                                        <%--out.print(vv.getString("D"));--%>
-                                    <%--}--%>
+                                <%--LGUConnect conl = new LGUConnect();--%>
+                                <%--Connection con4 = conl.getConnection();--%>
+                                <%--Statement dd = con4.createStatement();--%>
+                                <%--ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");--%>
+                                <%--while (vv.next())--%>
+                                <%--{--%>
+                                <%--out.print(vv.getString("D"));--%>
+                                <%--}--%>
                                 <%--%>--%>
                             </h4>
                         </div>
@@ -218,14 +213,14 @@
                             <h4>Released:
                                 <%--<%--%>
 
-                                    <%--LGUConnect cono = new LGUConnect();--%>
-                                    <%--Connection con5 = cono.getConnection();--%>
-                                    <%--Statement ee = con5.createStatement();--%>
-                                    <%--ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");--%>
-                                    <%--while (ww.next())--%>
-                                    <%--{--%>
-                                        <%--out.print(ww.getString("E"));--%>
-                                    <%--}--%>
+                                <%--LGUConnect cono = new LGUConnect();--%>
+                                <%--Connection con5 = cono.getConnection();--%>
+                                <%--Statement ee = con5.createStatement();--%>
+                                <%--ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");--%>
+                                <%--while (ww.next())--%>
+                                <%--{--%>
+                                <%--out.print(ww.getString("E"));--%>
+                                <%--}--%>
                                 <%--%>--%>
                             </h4>
                         </div>
@@ -233,14 +228,14 @@
                             <h4>Terminated:
                                 <%--<%--%>
 
-                                    <%--LGUConnect conp = new LGUConnect();--%>
-                                    <%--Connection con6 = conp.getConnection();--%>
-                                    <%--Statement ff = con6.createStatement();--%>
-                                    <%--ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");--%>
-                                    <%--while (xx.next())--%>
-                                    <%--{--%>
-                                        <%--out.print(xx.getString("F"));--%>
-                                    <%--}--%>
+                                <%--LGUConnect conp = new LGUConnect();--%>
+                                <%--Connection con6 = conp.getConnection();--%>
+                                <%--Statement ff = con6.createStatement();--%>
+                                <%--ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");--%>
+                                <%--while (xx.next())--%>
+                                <%--{--%>
+                                <%--out.print(xx.getString("F"));--%>
+                                <%--}--%>
                                 <%--%>--%>
                             </h4>
                         </div>
@@ -256,7 +251,7 @@
                 <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-users"></i></div>
                     <div class="stats-info">
-                        <div> <p>Revenue</p></div>
+                        <div><p>Revenue</p></div>
                         <div>
                             <h4>BPLS:
                                 <%
@@ -265,8 +260,7 @@
                                     Connection con7 = conq.getConnection();
                                     Statement gg = con7.createStatement();
                                     ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
-                                    while (yy.next())
-                                    {
+                                    while (yy.next()) {
                                         out.print(yy.getString("G"));
                                     }
                                 %>
@@ -280,8 +274,7 @@
                                     Connection con8 = conr.getConnection();
                                     Statement hh = con8.createStatement();
                                     ResultSet zz = hh.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS H FROM `mtops_t_official_receipt`");
-                                    while (zz.next())
-                                    {
+                                    while (zz.next()) {
                                         out.print(zz.getString("H"));
                                     }
                                 %>
@@ -295,8 +288,7 @@
                                     Connection con9 = cons.getConnection();
                                     Statement ii = con9.createStatement();
                                     ResultSet jj = ii.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS I FROM `mtops_t_official_receipt`");
-                                    while (jj.next())
-                                    {
+                                    while (jj.next()) {
                                         out.print(jj.getString("I"));
                                     }
                                 %>
@@ -321,20 +313,7 @@
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
-<% try{
-    LGUConnect chartDb = new LGUConnect();
-    Connection chartConn = chartDb.getConnection();
-    Statement chartStmt = chartConn.createStatement();
-    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from bpls_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
-    PrintWriter out = response.getWriter();
-    while(chartResult.next()){
 
-
-    }
-
-}catch(Exception e){
-    out.print(e);
-}%>
 <!-- end page container -->
 <script src="extras/highcharts/code/highcharts.js"></script>
 <script src="extras/highcharts/code/modules/data.js"></script>
@@ -350,14 +329,14 @@
     // Create the chart
     var chart = Highcharts.chart('lgu_rev', {
         chart: {
-            type: 'line',
+            type: 'bar',
             events: {
-                drilldown: function(e) {
+                drilldown: function (e) {
                     chart.setTitle({
                         text: drilldownTitle + e.point.name
                     });
                 },
-                drillup: function(e) {
+                drillup: function (e) {
                     chart.setTitle({
                         text: defaultTitle
                     });
@@ -386,7 +365,7 @@
             series: {
                 borderWidth: 0,
                 dataLabels: {
-                    enabled: true   ,
+                    enabled: true,
                     format: 'PHP {point.y:.1f}'
                 }
             }
@@ -401,18 +380,22 @@
             {
                 "name": "Business Permits",
                 "colorByPoint": false,
-                "data": [
-                    {
-                        "name": "2018",
-                        "y": 14000,
-                        "drilldown": "2018"
-                    },
-                    {
-                        "name": "2019",
-                        "y": 21000,
-                        "drilldown": "2019"
-                    }
-                ]
+                "data": [<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from bpls_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
+    PrintWriter outx = response.getWriter();
+    while(chartResult.next()){%>{
+                    "name": "<%out.print(chartResult.getString("YEARS"));%>",
+                    "y": <%out.print(chartResult.getDouble("TOTAL_REVENUE"));%>,
+                    "drilldown": "<%out.print(chartResult.getString("YEARS"));%>"
+                }, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>]
             },
             {
                 "name": "Real Property Tax",
@@ -420,12 +403,12 @@
                 "data": [
                     {
                         "name": "2018",
-                        "y": 42.74,
+                        "y": 34633.12,
                         "drilldown": "2018"
                     },
                     {
                         "name": "2019",
-                        "y": 78.57,
+                        "y": 18633.12,
                         "drilldown": "2019"
                     }
                 ]
@@ -433,18 +416,22 @@
             {
                 "name": "MTOPS",
                 "colorByPoint": false,
-                "data": [
-                    {
-                        "name": "2018",
-                        "y": 50.74,
-                        "drilldown": "2018"
-                    },
-                    {
-                        "name": "2019",
-                        "y": 60.57,
-                        "drilldown": "2019"
-                    }
-                ]
+                "data": [<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from mtops_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
+    PrintWriter outx = response.getWriter();
+    while(chartResult.next()){%>{
+                    "name": "<%out.print(chartResult.getString("YEARS"));%>",
+                    "y": <%out.print(chartResult.getDouble("TOTAL_REVENUE"));%>,
+                    "drilldown": "<%out.print(chartResult.getString("YEARS"));%>"
+                }, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>]
             }
 
         ],
