@@ -82,7 +82,7 @@
         rel="stylesheet"> -->
 </head>
 <body>
-<jsp:include page="BPLSIPComponent.jsp"/>
+<jsp:include page="REVDashboardComponent.jsp"/>
 <div
         id="page-container"
         class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu"

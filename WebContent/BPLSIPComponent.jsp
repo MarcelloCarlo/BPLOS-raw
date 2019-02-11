@@ -40,7 +40,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <li><a href="BPLSIPIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Inspection</span></a></li>
-        <li><a href="BPLSIPReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+
     </ul>
     <!-- end top-menu nav -->
 </div>

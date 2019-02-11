@@ -40,7 +40,6 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <li><a href="BPLSTIndex.jsp"><i class="fa fa-money"></i> <span>Payment Processing</span></a></li>
-        <li><a href="BPLSTReports.jsp"><i class="fa fa-money"></i> <span>Treasury Reports</span></a></li>
         <li><a href="MTOPSTLcnsng.jsp"><i class="fa fa-money"></i> <span>License Division</span></a></li>
     </ul>
     <!-- end top-menu nav -->

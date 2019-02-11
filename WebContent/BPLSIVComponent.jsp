@@ -40,7 +40,7 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <li><a href="BPLSIVIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Investigation</span></a></li>
-        <li><a href="BPLSIVReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>
+
     </ul>
     <!-- end top-menu nav -->
 </div>

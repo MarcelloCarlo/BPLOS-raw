@@ -46,8 +46,36 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
-        <li><a href="REVDashboard.jsp"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li>
+            <a href="REVDashboard.jsp"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-text"></i>
+                <span>BPLS Reports</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluation Termination Reports</span></a></li>
+                <li><a href="BPLSEEndReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluated Reports</span></a></li>
+                <li><a href="BPLSESSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Small Scale Reports</span></a></li>
+                <li><a href="BPLSELSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Large Scale Reports</span></a></li>
+                <li><a href="BPLSIPReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Inspection Termination Reports</span></a></li>
+                <li><a href="BPLSIVReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Investigation Termination Reports</span></a></li>
+                <li><a href="BPLSRSAcmplReports.jsp"><i class="fa fa-text"></i> <span>Accomplishment Reports</span></a></li>
+                <li><a href="BPLSTReports.jsp"><i class="fa fa-money"></i> <span>Treasury Reports</span></a></li>
+            </ul>
+        </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-text"></i>
+                <span>MTOPS Reports</span>
+            </a>
+            <ul class="sub-menu">
+
+            </ul>
+        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>
