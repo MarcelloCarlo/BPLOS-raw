@@ -1,7 +1,10 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="jdk.nashorn.api.scripting.JSObject" %>
+<%@ page import="org.json.simple.JSONArray" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -83,7 +86,7 @@
                                     LGUConnect con = new LGUConnect();
                                     Connection con1 = con.getConnection();
                                     Statement aa = con1.createStatement();
-                                    ResultSet ss = aa.executeQuery("SELECT COUNT(*) AS C FROM `bpls_t_bp_application` WHERE AP_STATUS = 'Pending' ");
+                                    ResultSet ss = aa.executeQuery("SELECT COUNT(*) AS C FROM `bpls_t_bp_application` WHERE NOT (AP_STATUS = 'Success' OR AP_STATUS = 'Terminated')");
                                     while (ss.next())
                                     {
                                     out.print(ss.getString("C"));
@@ -98,8 +101,8 @@
                                     LGUConnect conn = new LGUConnect();
                                     Connection con2 = conn.getConnection();
                                     Statement bb = con2.createStatement();
-                                    ResultSet tt = bb.executeQuery("SELECT COUNT(*) AS A FROM `bpls_t_bp_application`");
-                                    while (tt.next())
+                                    ResultSet tt = bb.executeQuery("SELECT COUNT(*) AS A FROM `bpls_t_bp_application` WHERE AP_STATUS = 'Success' ");
+                                    while(tt.next())
                                     {
                                         out.print(tt.getString("A"));
                                     }
@@ -143,7 +146,7 @@
                                     LGUConnect conl = new LGUConnect();
                                     Connection con4 = conl.getConnection();
                                     Statement dd = con4.createStatement();
-                                    ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");
+                                    ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE NOT (APF_STATUS = 'Done' OR APF_STATUS = 'Terminated') ");
                                     while (vv.next())
                                     {
                                         out.print(vv.getString("D"));
@@ -158,7 +161,7 @@
                                     LGUConnect cono = new LGUConnect();
                                     Connection con5 = cono.getConnection();
                                     Statement ee = con5.createStatement();
-                                    ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");
+                                    ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Done'");
                                     while (ww.next())
                                     {
                                         out.print(ww.getString("E"));
@@ -318,6 +321,20 @@
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
+<% try{
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from bpls_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
+    PrintWriter out = response.getWriter();
+    while(chartResult.next()){
+
+
+    }
+
+}catch(Exception e){
+    out.print(e);
+}%>
 <!-- end page container -->
 <script src="extras/highcharts/code/highcharts.js"></script>
 <script src="extras/highcharts/code/modules/data.js"></script>
@@ -358,7 +375,7 @@
         },
         yAxis: {
             title: {
-                text: 'Total yearly revenue'
+                text: 'Total yearly revenue (PHP)'
             }
 
         },
@@ -370,14 +387,14 @@
                 borderWidth: 0,
                 dataLabels: {
                     enabled: true   ,
-                    format: '{point.y:.1f}%'
+                    format: 'PHP {point.y:.1f}'
                 }
             }
         },
 
         tooltip: {
             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>PHP {point.y:.2f}</b> of total<br/>'
         },
 
         "series": [
@@ -387,12 +404,12 @@
                 "data": [
                     {
                         "name": "2018",
-                        "y": 62.74,
+                        "y": 14000,
                         "drilldown": "2018"
                     },
                     {
                         "name": "2019",
-                        "y": 10.57,
+                        "y": 21000,
                         "drilldown": "2019"
                     }
                 ]
@@ -590,23 +607,6 @@
         TableManageResponsive.init();
         Dashboard.init();
     });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
 </script>
 </body>
 </html>
