@@ -1,7 +1,10 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %><%--
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="jdk.nashorn.api.scripting.JSObject" %>
+<%@ page import="org.json.simple.JSONArray" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -318,6 +321,20 @@
             class="fa fa-angle-up"></i></a>
     <!-- end scroll to top btn -->
 </div>
+<% try{
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from bpls_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
+    PrintWriter out = response.getWriter();
+    while(chartResult.next()){
+
+
+    }
+
+}catch(Exception e){
+    out.print(e);
+}%>
 <!-- end page container -->
 <script src="extras/highcharts/code/highcharts.js"></script>
 <script src="extras/highcharts/code/modules/data.js"></script>
