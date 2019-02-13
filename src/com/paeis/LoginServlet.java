@@ -85,6 +85,10 @@ public class LoginServlet extends HttpServlet {
                     requestDispatcher.forward(request, response);
                 }
 
+                connection.close();
+                login.close();
+
+
             } else {
                 session.invalidate();
                 request.setAttribute("errMsg", "<font color=red>Login Error. Please ensure that the Username/Password is correct.</font>");
@@ -152,6 +156,9 @@ public class LoginServlet extends HttpServlet {
             recAudt.setInt(1, Integer.parseInt(empId));
             recAudt.setString(2, divcode);
             recAudt.executeUpdate();
+
+            connection.close();
+            recAudt.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();

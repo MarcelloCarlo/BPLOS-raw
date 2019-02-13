@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Li Ven
-  Date: 2/7/2019
-  Time: 11:19 AM
+  Date: 2/12/2019
+  Time: 11:14 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="com.mysql.jdbc.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -20,10 +20,11 @@
 <head>
     <meta charset="utf-8"/>
     <link rel="icon" href="extras/logo1.png">
-    <title>Revenue | RPT</title>
+    <title>RPTC | Tax Bill</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
     <meta content="" name="description"/>
     <meta content="" name="author"/>
+    <link rel="icon" href="extras/logo1.png">
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
@@ -49,12 +50,20 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<% LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn3 = conX.getConnection();
+        Statement ss3 = conn3.createStatement();
+        Statement aaa = conn3.createStatement();
+        Statement aa = conn3.createStatement();
+        ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
+        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_t_employee_profile EMP ON U.EP_ID = EMP.EP_ID JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG DESC");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
 
-<jsp:include page="REVDtlComponent.jsp"></jsp:include>
+<jsp:include page="RPTCComponent.jsp"></jsp:include>
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-container fade page-without-sidebar page-header-fixed page-with-top-menu">
@@ -63,12 +72,12 @@
     <div id="content" class="content">
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li><a href="javascript:;">Revenue</a></li>
-            <li class="active">RPT Details</li>
+            <li><a href="javascript:;">RPTC</a></li>
+            <li class="active">Tax Bill</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">RPT Details</h1>
+        <h1 class="page-header">Tax Bill</h1>
         <!-- end page-header -->
 
         <div class="row">
@@ -80,35 +89,34 @@
                             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
                                data-click="panel-reload"><i class="fa fa-repeat"></i></a>
                         </div>
-                        <h4 class="panel-title">RPT Details</h4>
+                        <h4 class="panel-title">Tax Bill</h4>
                     </div>
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th class="hide"></th>
-                                <th>Date</th>
-                                <th>Payment Mode</th>
-                                <th>Amount</th>
+                                <th>Name</th>
+                                <th>User Status</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <%
-                                LGUConnect cons = new LGUConnect();
-                                Connection con9 = cons.getConnection();
-                                PreparedStatement getRptOr = (PreparedStatement) con9.prepareStatement("SELECT `OR_ID`, `OR_DATE`, `OR_PYMT_TYPE`,`OR_TOTAL_AMOUNT` FROM `rpt_t_official_receipt`");
-                                ResultSet res = getPropType.executeQuery();
-                                while (res.next()) {
-                            %>
+                            <%--<tbody>--%>
+                            <%--<%--%>
+                                <%--while (res.next()) {--%>
+                            <%--%>--%>
                             <tr>
-                                <td class="hide"><%=res.getString("OR_ID")%></td>>
-                                <td><%=res.getString("OR_DATE")%></td>
-                                <td><%=res.getString("OR_PYMT_TYPE")%></td>
-                                <td><%=res.getString("OR_TOTAL_AMOUNT")%></td>
+                                <td>
+                                </td>
+                                </td>
+                                <td>
+                                </td>
+                                <td>
+                                    <a href="PAEISSAUsrUpdate.jsp?u=<%=res.getString("U_ID")%>" class="btn btn-success">Edit</a>
+                                </td>
                             </tr>
-                            <%
-                                }
-                            %>
+                            <%--<%--%>
+                                <%--}--%>
+                            <%--%>--%>
                             </tbody>
                         </table>
                     </div>
@@ -120,7 +128,6 @@
     <!-- end #content -->
 
 
-
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
             class="fa fa-angle-up"></i></a>
@@ -128,7 +135,7 @@
 </div>
 <!-- end page container -->
 
-<jsp:include page="REVDtlFooter.jsp"></jsp:include>
+<jsp:include page="RPTCFooter.jsp"></jsp:include>
 
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -165,31 +172,13 @@
 <script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="assets/js/divUsrMgmt.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
-
-<script>
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
+<%
+    } catch (Exception e) {
+        out.print(e);
+    }
+%>
 </html>

@@ -35,7 +35,7 @@ public class insertAssessmentLvl extends HttpServlet{
 
         LGUConnect conn = new LGUConnect();
         String ptid = request.getParameter("addamentptype");
-        String pcid = request.getParameter("_pclass");
+        String pcid = request.getParameter("addamentpclass");
         String alvl = request.getParameter("addamentlvl");
 
         try {

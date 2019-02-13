@@ -40,23 +40,6 @@
     <!-- begin top-menu nav -->
     <ul class="nav">
         <li><a href="BPLSEIndex.jsp"><i class="fa fa-file-text"></i> <span>Application Processing</span></a></li>
-        <li class="has-sub">
-            <a href="javascript:;">
-                <b class="caret pull-right"></b>
-                <i class="fa fa-gears"></i>
-                <span>Reports</span>
-            </a>
-            <ul class="sub-menu">
-                <li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i>
-                    <span>Termination Reports</span></a></li>
-                <li><a href="BPLSEEndReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluated Reports</span></a>
-                </li>
-                <li><a href="BPLSESSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Small Scale Reports</span></a>
-                </li>
-                <li><a href="BPLSELSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Large Scale Reports</span></a>
-                </li>
-            </ul>
-        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>

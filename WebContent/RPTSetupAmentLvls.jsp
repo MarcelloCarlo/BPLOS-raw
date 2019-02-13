@@ -88,6 +88,7 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
+                                <th class="hide"></th>
                                 <th>Property Type</th>
                                 <th>Property Class</th>
                                 <th>Assessment Level</th>
@@ -98,21 +99,21 @@
                             <%
                                 LGUConnect cons = new LGUConnect();
                                 Connection con9 = cons.getConnection();
-                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_assessment_lvl order by AL_ID desc");
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("SELECT  a.`al_id`,  t.`pt_desc`,  c.`pc_desc`,  a.`al_val` FROM  `rpt_r_assessment_lvl` AS a INNER JOIN `rpt_r_property_type` AS t ON a.`pt_id` = t.`pt_id` INNER JOIN `rpt_r_property_class` AS c ON a.`pc_id` = c.`pc_id` GROUP BY  `al_id`");
                                 ResultSet res = getPropType.executeQuery();
                                 while (res.next()) {
                             %>
                             <tr>
-                                <td><%=res.getString("AL_ID")%>
+                                <td class="hide"><%=res.getString("a.AL_ID")%>
                                 </td>
-                                <td><%=res.getString("PT_CODE")%>
+                                <td><%=res.getString("t.PT_DESC")%>
                                 </td>
-                                <td><%=res.getString("PT_DESC")%>
+                                <td><%=res.getString("c.PC_DESC")%>
                                 </td>
-                                <td><%=res.getString("AL_VAL")%>
+                                <td><%=res.getString("a.AL_VAL")%>
                                 </td>
                                 <td>
-                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary" data-toggle="modal">Edit</a>
+                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editProp" data-toggle="modal">Edit</a>
                                 </td>
                             </tr>
                             <%
@@ -138,7 +139,7 @@
                             <h4 class="panel-title">Assessment Levels</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data" action="/insertAssessmentLvl" method="POST">
+                            <form enctype="multipart/form-data"  name="addAmentLvlsForm" id="addAmentLvlsForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
@@ -165,28 +166,6 @@
                                                                 }
                                                             %>
                                                         </select>
-                                                        <select class="selectpicker form-control" data-style="btn-white"
-                                                                id="txtApplicantTODA" name="txtApplicantTODA" tabindex="-1"
-                                                                data-parsley-group="wizard-st-7" required>
-                                                            <%
-                                                                String natureSt = "";
-                                                                LGUConnect conX = new LGUConnect();
-                                                                try {
-                                                                    Connection conn3 = conX.getConnection();
-                                                                    Statement ss3 = conn3.createStatement();
-                                                                    ResultSet gg3 = ss3.executeQuery("SELECT * FROM mtops_r_toda");
-                                                                    while (gg3.next()) {
-                                                            %>
-                                                            <option value="<%out.print(gg3.getInt("TODA_ID"));%>">
-                                                                <%out.print(gg3.getString("TODA_NAME"));%>
-                                                            </option>
-                                                            <%
-                                                                    }
-                                                                } catch (SQLException | ClassNotFoundException e) {
-                                                                    e.printStackTrace();
-                                                                }
-                                                            %>
-                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -195,7 +174,7 @@
                                                 <div class="form-group">
                                                     <label>Propery Class</label>
                                                     <div class="controls">
-                                                        <select name="addamentpclass" class="form-control" id="pclass">
+                                                        <select name="addamentpclass" class="form-control">
                                                             <%
 
                                                                 LGUConnect cona = new LGUConnect();
@@ -230,7 +209,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success" onclick="btnAdd()">Add</button>
+                                            <button type="button" id="btnAddAmentLvls" class="btn btn-sm btn-success" onclick="btnAdd()">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -253,8 +232,9 @@
                             <h4 class="panel-title">Assessment Levels</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data">
+                            <form enctype="multipart/form-data"  name="editAmentLvlsForm" id="editAmentLvlsForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
+                                    <input type="text" id="al_id" name="al_id" class="hide">
                                 <div>
                                     <fieldset>
                                         <legend class="pull-left width-full">Assessment Levels</legend>
@@ -265,7 +245,20 @@
                                                     <label>Property Type</label>
                                                     <div class="controls">
                                                         <select name="editamentptype" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <%
+
+                                                                LGUConnect cond = new LGUConnect();
+                                                                Connection conj = cond.getConnection();
+                                                                Statement rr = conj.createStatement();
+                                                                ResultSet qq = rr.executeQuery("SELECT * FROM `rpt_r_property_type`");
+                                                                while (qq.next()){
+                                                            %>
+                                                            <option value="<%out.print(qq.getInt("PT_ID"));%>">
+                                                                <%out.print(qq.getString("PT_DESC"));%>
+                                                            </option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -275,8 +268,21 @@
                                                 <div class="form-group">
                                                     <label>Property Class</label>
                                                     <div class="controls">
-                                                        <select name="editamentpclass" class="form-control">
-                                                            <option value="  "> </option>
+                                                        <select name="editamentpclass" class="form-control" >
+                                                            <%
+
+                                                                LGUConnect conb = new LGUConnect();
+                                                                Connection conl = conb.getConnection();
+                                                                Statement cc = conl.createStatement();
+                                                                ResultSet uu = cc.executeQuery("SELECT * FROM `rpt_r_property_class`");
+                                                                while (uu.next()){
+                                                            %>
+                                                            <option value="<%out.print(uu.getInt("PC_ID"));%>">
+                                                                <%out.print(uu.getString("PC_DESC"));%>
+                                                            </option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -297,7 +303,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Edit</button>
+                                            <button type="button" id="btnEditAmentLvls" class="btn btn-sm btn-success">Edit</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -355,35 +361,103 @@
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-<script>
-    function btnAdd() {
-        var pclass = document.getElementById("pclass").value;
-        alert(pclass);
 
-        $.ajax({
-            type:"POST",
-            url: "rptTransactions/insertAssessmentLvl",
-            data: {
-                _pclass: pclass,
-            },
-            sucess: function (data) {
-                alert(data);
-                setTimeout(function () {
-                    window.location= window.location;
-                },1000)
-            }
-
-
-        })
-    }
-</script>
 <script>
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
 
+        $("#btnAddAmentLvls").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var addAmentLvlsForm = new FormData($('#addAmentLvlsForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "insertAssessmentLvl",
+                        data: addAmentLvlsForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+        });
+
         $('.editProp').click(function () {
-            document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+            document.getElementById('al_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+        });
+
+
+        $("#btnEditAmentLvls").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "Current changes will be saved.",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var editAmentLvlsForm = new FormData($('#editAmentLvlsForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "editAssessmentLvl",
+                        data: editAmentLvlsForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
         });
     });
 </script>

@@ -98,7 +98,7 @@
                             <%
                                 LGUConnect cons = new LGUConnect();
                                 Connection con9 = cons.getConnection();
-                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_type order by PT_ID desc");
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_property_type order by PT_ID asc");
                                 ResultSet res = getPropType.executeQuery();
                                 while (res.next()) {
                             %>
@@ -135,7 +135,7 @@
                             <h4 class="panel-title">Property Type</h4>
                         </div>
                         <div class="panel-body">
-                            <form  enctype="multipart/form-data" action="/insertPropertyType" method="POST">
+                            <form  enctype="multipart/form-data" name="addPropTypeForm" id="addPropTypeForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
 
                                 <div>
@@ -159,7 +159,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="addptypedesc"
                                                                placeholder="Description"
-                                                               class="form-control" />
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,8 +170,7 @@
                                         <div class="modal-footer">
 
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnAddPropType" class="btn btn-sm btn-success ">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -218,7 +217,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="editptypedesc"
                                                                placeholder="Description"
-                                                               class="form-control" />
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -292,14 +291,59 @@
         App.init();
         TableManageResponsive.init();
 
+        $("#btnAddPropType").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var addPropTypeForm = new FormData($('#addPropTypeForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "insertPropertyType",
+                        data: addPropTypeForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+        });
+
         $('.editProp').click(function () {
             document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
         });
 
+
         $("#btnEditPropType").click(function () {
             swal({
                 title: "Are you sure?",
-                text: "You will save your current changes",
+                text: "Current changes will be saved.",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Confirm!",

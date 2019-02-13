@@ -98,7 +98,7 @@
                             <%
                                 LGUConnect cons = new LGUConnect();
                                 Connection con9 = cons.getConnection();
-                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_actual_use order by AU_ID desc");
+                                PreparedStatement getPropType = (PreparedStatement) con9.prepareStatement("select * from rpt_r_actual_use order by AU_ID asc");
                                 ResultSet res = getPropType.executeQuery();
                                 while (res.next()) {
                             %>
@@ -135,7 +135,7 @@
                             <h4 class="panel-title">Actual Use</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data" action="/insertActualUse" method="POST">
+                            <form enctype="multipart/form-data"name="addActualUseForm" id="addActualUseForm">
                             <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
@@ -158,7 +158,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="addactusedesc"
                                                                placeholder="Description"
-                                                               class="form-control"/>
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,7 +168,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnAddActualUse" class="btn btn-sm btn-success">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -215,7 +215,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="editactusedesc"
                                                                placeholder="Description"
-                                                               class="form-control"/>
+                                                               class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -291,6 +291,50 @@
         App.init();
         TableManageResponsive.init();
 
+        $("#btnAddActualUse").click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if(result.value){
+                    var addActualUseForm = new FormData($('#addActualUseForm')[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: "insertActualUse",
+                        data: addActualUseForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if(result.value){
+                                    location.reload(true);
+                                }
+                            });}
+                    });
+                }
+                else
+                if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
+
+                }
+            });
+        });
+
         $('.editActUse').click(function () {
             document.getElementById('pt_id').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
         });
@@ -298,7 +342,7 @@
         $("#btnEditActualUse").click(function () {
             swal({
                 title: "Are you sure?",
-                text: "You will save your current changes",
+                text: "Current changes will be saved.",
                 type: "warning",
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Confirm!",

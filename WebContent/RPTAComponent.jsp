@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Li Ven
+  Date: 2/12/2019
+  Time: 11:06 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!-- begin #header -->
@@ -10,7 +17,7 @@
                 <span>
                     <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
                 </span>
-                BPLS
+                RPT
             </a>
         </div>
         <!-- end mobile sidebar expand / collapse button -->
@@ -39,11 +46,10 @@
 <div id="top-menu" class="top-menu">
     <!-- begin top-menu nav -->
     <ul class="nav">
-        <li><a href="BPLSRSIndex.jsp"><i class="fa fa-print"></i> <span>Permit Releasing</span></a></li>
-
+        <li><a href="RPTReg.jsp"><i class="fa fa-file-text-o"></i> <span>Registration</span></a></li>
+        <li><a href="RPTAment.jsp"><i class="fa fa-check-square-o"></i> <span>Assessment</span></a></li>
+        <li><a href="RPTAprofAment.jsp"><i class="fa fa-check-square"></i> <span>Approval of Assessment</span></a></li>
     </ul>
-
     <!-- end top-menu nav -->
 </div>
 <!-- end #top-menu -->
-
