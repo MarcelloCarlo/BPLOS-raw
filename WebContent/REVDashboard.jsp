@@ -77,7 +77,7 @@
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-green">
-                    <div class="stats-icon"><i class="fa fa-desktop"></i></div>
+                    <div class="stats-icon"><i class="fa fa-file"></i></div>
                     <div class="stats-info">
                         <div><p>Business Permit</p></div>
                         <div>
@@ -123,16 +123,16 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                   <%-- <div class="stats-link">
                         <a href="REVBplsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-blue">
-                    <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                    <div class="stats-icon"><i class="fa fa-motorcycle"></i></div>
                     <div class="stats-info">
                         <div>
                             <p>MTOPS</p>
@@ -180,16 +180,16 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                  <%--  <div class="stats-link">
                         <a href="REVMtopsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-blue">
-                    <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                    <div class="stats-icon"><i class="fa fa-home"></i></div>
                     <div class="stats-info">
                         <div>
                             <p>RPT</p>
@@ -240,16 +240,16 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                   <%-- <div class="stats-link">
                         <a href="REVRptDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-purple">
-                    <div class="stats-icon"><i class="fa fa-users"></i></div>
+                    <div class="stats-icon"><i class="fa fa-money"></i></div>
                     <div class="stats-info">
                         <div><p>Revenue</p></div>
                         <div>
@@ -296,9 +296,9 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                   <%-- <div class="stats-link">
                         <a href="javascript:;">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
@@ -318,10 +318,9 @@
 <script src="extras/highcharts/code/highcharts.js"></script>
 <script src="extras/highcharts/code/modules/data.js"></script>
 <script src="extras/highcharts/code/modules/drilldown.js"></script>
-
-<div id="lgu_rev" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-
+<div class="panel-body">
+    <div id="lgu_rev" class="col-md-12"></div>
+</div>
 <script type="text/javascript">
     var defaultTitle = "Yearly Revenue";
     var drilldownTitle = "Monthly Revenue as of ";
@@ -366,7 +365,7 @@
                 borderWidth: 0,
                 dataLabels: {
                     enabled: true,
-                    format: 'PHP {point.y:.1f}'
+                    format: 'PHP {point.y:.2f}'
                 }
             }
         },
@@ -378,25 +377,25 @@
 
         "series": [
             {
-                "name": "Business Permits",
+                "name": "Current Total Revenue",
                 "colorByPoint": false,
                 "data": [<% try {
     LGUConnect chartDb = new LGUConnect();
     Connection chartConn = chartDb.getConnection();
     Statement chartStmt = chartConn.createStatement();
-    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from bpls_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
+    ResultSet chartResult = chartStmt.executeQuery("(SELECT YEAR(BP.OR_DATE) AS CURRYEAR,SUM(OR_TOTAL_AMOUNT) AS AMT FROM bpls_t_official_receipt BP) UNION ALL (SELECT YEAR(MT.OR_DATE) AS CURRYEAR, SUM(OR_TOTAL_AMOUNT) AS AMT FROM mtops_t_official_receipt MT)");
     PrintWriter outx = response.getWriter();
     while(chartResult.next()){%>{
-                    "name": "<%out.print(chartResult.getString("YEARS"));%>",
-                    "y": <%out.print(chartResult.getDouble("TOTAL_REVENUE"));%>,
-                    "drilldown": "<%out.print(chartResult.getString("YEARS"));%>"
+                    "name": "<%out.print(chartResult.getString("CURRYEAR"));%>",
+                    "y": <%out.print(chartResult.getDouble("AMT"));%>,
+                    "drilldown": "<%out.print(chartResult.getString("CURRYEAR"));%>"
                 }, <%
                 }
 
             } catch (Exception e) {
                 out.print(e);
             }%>]
-            },
+            }/*,
             {
                 "name": "Real Property Tax",
                 "colorByPoint": false,
@@ -416,11 +415,11 @@
             {
                 "name": "MTOPS",
                 "colorByPoint": false,
-                "data": [<% try {
+                "data": [ <%--<% try {
     LGUConnect chartDb = new LGUConnect();
     Connection chartConn = chartDb.getConnection();
     Statement chartStmt = chartConn.createStatement();
-    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from mtops_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
+    ResultSet chartResult = chartStmt.executeQuery('SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from mtops_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC');
     PrintWriter outx = response.getWriter();
     while(chartResult.next()){%>{
                     "name": "<%out.print(chartResult.getString("YEARS"));%>",
@@ -431,11 +430,11 @@
 
             } catch (Exception e) {
                 out.print(e);
-            }%>]
-            }
+            }%>--%> ]
+            }*/
 
-        ],
-        /*"drilldown": {
+        ]
+            /*, "drilldown": {
             "series": [
                 {
                     "name": "2018, Business Permits",
