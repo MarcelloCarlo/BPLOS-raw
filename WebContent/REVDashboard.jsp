@@ -435,7 +435,7 @@
             }
 
         ],
-        "drilldown": {
+        /*"drilldown": {
             "series": [
                 {
                     "name": "2018, Business Permits",
@@ -547,7 +547,7 @@
                     ]
                 }
             ]
-        }
+        }*/
     });
 </script>
 
