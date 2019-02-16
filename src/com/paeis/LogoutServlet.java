@@ -38,7 +38,8 @@ public class LogoutServlet extends HttpServlet {
         if(session != null)
             session.invalidate();
         recSession(empId);
-        request.getRequestDispatcher("/PAEISPortal.jsp").forward(request,response);
+        //request.getRequestDispatcher("/PAEISPortal.jsp").forward(request,response);
+        response.sendRedirect("PAEISPortal.jsp");
     }
 
     private void recSession( String empId) {

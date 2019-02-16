@@ -54,7 +54,7 @@
         <!-- end brand -->
         <div class="login-content">
             <form  name="loginEmpForm" id="loginEmpForm" action="LoginServlet" method="post" novalidate="" data-parsley-validate="" class="margin-bottom-0">
-                <p style="color: red"><%
+                <p style="color: red">Login/Session Error. Please try again.<%
                     if(null!=request.getAttribute("errMsg"))
                     {
                         out.println(request.getAttribute("errMsg"));
