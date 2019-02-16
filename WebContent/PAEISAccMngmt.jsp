@@ -79,7 +79,7 @@
                             <%--DriverManager.registerDriver(new com.mysql.jdbc.Driver());--%>
                             <%--conn = DriverManager.getConnection(host, "root", "");--%>
                         <%--%>--%>
-                        <form class="form-horizontal" action=" " method="POST">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST">
                             <%--<%--%>
                                 <%--String u = request.getParameter("u");--%>
                                 <%--int num = Integer.parseInt(u);--%>
@@ -90,25 +90,28 @@
                             <%--%>--%>
                             <input type="hidden" name="id" value=''/>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Username</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="accusrname" class="form-control"
-                                           value=''/>
+                                <label class="col-md-4 control-label">Current Password</label>
+                                <div class="col-md-5">
+                                    <input type="password" name="currpass" class="form-control"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Password</label>
-                                <div class="col-md-8">
-                                    <input type="text" name="accpswrd" class="form-control"
-                                           value=''/>
+                                <label class="col-md-4 control-label">New Password</label>
+                                <div class="col-md-5">
+                                    <input type="password" name="newpswrd" class="form-control"/>
                                 </div>
                             </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Re-enter Password</label>
+                                    <div class="col-md-5">
+                                        <input type="password" name="verpswrd" class="form-control"/>
+                                    </div>
+                                </div>
 
                             <%--<%--%>
                                 <%--}--%>
                             <%--%>--%>
                             <div class="modal-footer">
-                                <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-sm btn-success">Update</button>
                             </div>
                         </form>
