@@ -76,6 +76,7 @@
 
             </ul>
         </li>
+        <li class="pull-right"><a href='PAEISAccMngmt.jsp?Id=<%=session.getAttribute("empid")%>'>Account Settings</a></li>
     </ul>
     <!-- end top-menu nav -->
 </div>

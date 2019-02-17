@@ -49,7 +49,6 @@ public class assessMtops extends HttpServlet {
         int RF = Integer.parseInt(request.getParameter("RF") != null ? request.getParameter("RF") : "0");
         int PPF = Integer.parseInt(request.getParameter("PPF") != null ? request.getParameter("PPF") : "0");
 
-
         try{
 
             PreparedStatement taxBill = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_assessment (TB_BILL_NO,TB_DATE_BILLED) VALUES (CONCAT('0',REPLACE(CURRENT_TIMESTAMP(),'-','')),CURRENT_TIMESTAMP())");

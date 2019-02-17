@@ -44,10 +44,6 @@
 
 <!-- begin #top-menu -->
 <div id="top-menu" class="top-menu">
-    <!-- begin top-menu nav -->
-    <%--<ul class="nav">--%>
-        <%--<li><a href="RPTReg.jsp"><i class="fa fa-file-text-o"></i> <span>Registration</span></a></li>--%>
-    <%--</ul>--%>
-    <!-- end top-menu nav -->
+
 </div>
 <!-- end #top-menu -->

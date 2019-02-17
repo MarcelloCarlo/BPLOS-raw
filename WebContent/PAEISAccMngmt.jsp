@@ -41,6 +41,14 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+    if(request.getParameter("Id")==null && session.getAttribute("empid") == null && session.getAttribute("empname") == null){
+        response.sendRedirect("PAEISLogin.jsp");
+    }
+    String empID = request.getParameter("Id");
+
+
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -70,49 +78,39 @@
                         <h4 class="panel-title">Account Management</h4>
                     </div>
                     <div class="panel-body">
-                        <%--<%--%>
-                            <%--String host = "jdbc:mysql://localhost:3306/lgu_paeis_db";--%>
-                            <%--Connection conn = null;--%>
-                            <%--Statement stat = null;--%>
-                            <%--ResultSet res = null;--%>
-                            <%--PreparedStatement stmt = null;--%>
-                            <%--DriverManager.registerDriver(new com.mysql.jdbc.Driver());--%>
-                            <%--conn = DriverManager.getConnection(host, "root", "");--%>
-                        <%--%>--%>
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST">
-                            <%--<%--%>
-                                <%--String u = request.getParameter("u");--%>
-                                <%--int num = Integer.parseInt(u);--%>
-                                <%--PreparedStatement getInfo = conn.prepareStatement("select * from bpls_r_req_type where RT_ID= ? ");--%>
-                                <%--getInfo.setInt(1, num);--%>
-                                <%--res = getInfo.executeQuery();--%>
-                                <%--while (res.next()) {--%>
-                            <%--%>--%>
-                            <input type="hidden" name="id" value=''/>
+                        <form class="form-horizontal" enctype="multipart/form-data" name="changePassFrm" id="changePassFrm">
+
+                            <input type="number" hidden name="id" value="<%=session.getAttribute("empid")%>" required/>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Current Password</label>
+                                <span id="lblCurrPass"></span>
+                                <label class="col-md-4 control-label">Current Password *</label>
                                 <div class="col-md-5">
-                                    <input type="password" name="currpass" class="form-control"/>
+                                    <input type="password" name="currPass" class="form-control" required/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">New Password</label>
+                                <label class="col-md-4 control-label">New Password *</label>
                                 <div class="col-md-5">
-                                    <input type="password" name="newpswrd" class="form-control"/>
+                                    <input type="password" name="newPass" id="newPass" class="form-control" required/>
                                 </div>
+                                <span >Minimum of 8 Characters Required</span>
                             </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label">Re-enter Password</label>
+                                    <label class="col-md-4 control-label">Re-enter Password *</label>
                                     <div class="col-md-5">
-                                        <input type="password" name="verpswrd" class="form-control"/>
+                                        <input type="password" name="verPass" id="verPass" class="form-control" required/>
                                     </div>
+                                    <span style="color:red;" id="alertLbl"></span>
                                 </div>
 
                             <%--<%--%>
                                 <%--}--%>
                             <%--%>--%>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-sm btn-success">Update</button>
+                            <div class="panel-footer">
+                                <div class="left">
+                                    <button id="backBtn" type="button" class="btn btn-sm btn-white">Back</button>
+                                    <button type="button" id="submitBtn" class="btn btn-sm btn-success">Update</button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -151,18 +149,12 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/js/apps.min.js"></script>
+<script src="assets/js/acctMgmt.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
-
-<script>
-    $(document).ready(function () {
-        App.init();
-        TableManageResponsive.init();
-    });
-</script>
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
