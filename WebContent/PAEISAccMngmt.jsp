@@ -82,7 +82,7 @@
 
                             <input type="number" hidden name="id" value="<%=session.getAttribute("empid")%>" required/>
                             <div class="form-group">
-                                <span id="lblCurrPass"></span>
+                                <span id="lblCurrPass" style="color:red;"></span>
                                 <label class="col-md-4 control-label">Current Password *</label>
                                 <div class="col-md-5">
                                     <input type="password" name="currPass" class="form-control" required/>
