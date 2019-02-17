@@ -2,8 +2,15 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+<%
+    if(session.getAttribute("empname") == null || session.getAttribute("empid") == null){
+        response.sendRedirect("PAEISLogin.jsp");
+    }
+%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -39,6 +46,14 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+    LGUConnect conX = new LGUConnect();
+    try {
+        Connection conn3 = conX.getConnection();
+        PreparedStatement getAudtTr = (PreparedStatement) conn3.prepareStatement("SELECT CONCAT(EP_FNAME,' ',EP_MNAME, ' ',EP_LNAME) AS EPNAME, DATE_FORMAT(AUDT_LOG_IN,'%W %M %d, %Y %h:%i:%s %p') AS LOGIN, COALESCE(DATE_FORMAT(AUDT_LOG_OUT,'%W %M %d, %Y %h:%i:%s %p'),'Currently Active') AS LOGOUT, DIV_NAME FROM bpls_t_audit_trail AT JOIN bpls_t_employee_profile EP ON AT.AUDT_EP_ID = EP.EP_ID JOIN bpls_r_division DV ON AT.AUDT_DIV_CODE = DV.DIV_CODE ORDER BY AUDT_LOG_OUT DESC");
+        ResultSet resultSet = getAudtTr.executeQuery();
+
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -71,25 +86,27 @@
                     <div class="panel-body">
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
-                            <tr>-3
+                            <tr>
+                                <th>Empoyee</th>
                                 <th>Log In</th>
                                 <th>Log Out</th>
-                                <th>Division Accessed</th>
+                                <th>Accessed</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
+                            <%
+                                while (resultSet.next()) {
 
-                                </td>
-                                <td>
-                                    
-                                </td>
+                            %>
+                            <tr>
+                                <td><%=resultSet.getString("EPNAME")%></td>
+                                <td><%=resultSet.getString("LOGIN")%></td>
+                                <td><%=resultSet.getString("LOGOUT")%></td>
+                                <td><%=resultSet.getString("DIV_NAME")%></td>
                             </tr>
+                            <%
+                                }
+                            %>
                             </tbody>
                         </table>
                     </div>
@@ -164,4 +181,9 @@
 
 </script>
 </body>
+<%
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
 </html>

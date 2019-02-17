@@ -59,6 +59,7 @@
     <script src="extras/highcharts/code/modules/drilldown.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
