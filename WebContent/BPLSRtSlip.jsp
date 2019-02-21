@@ -16,6 +16,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if(request.getParameter("refNo") == null || request.getParameter("refNo").isEmpty()){
+        response.sendRedirect("PAEISPortal.jsp");
+    }
+%>
 <% LGUConnect conX = new LGUConnect();
 String BPno = "";
     try {
@@ -148,8 +153,8 @@ String BPno = "";
                                 natureSt = "(Unidentified)";
                             }%>
                         <div class="form-group">
-                            <input class="hidden" id="_refNo" value="<%=refNo%>">
-<input class="hidden" name="hidAPID" id="hidAPID" value="<%out.print(rs.getString("AP_ID"));%>"/>
+                            <input class="" id="_refNo" value="<%=refNo%>" hidden>
+<input class="hidden" name="hidAPID" id="hidAPID" value="<%out.print(rs.getString("AP_ID"));%>" hidden/>
                             <h5>Business Name/Corporate Name: <label><%out.print(rs.getString("BU_NAME"));%></label>
                             </h5>
                         </div>
@@ -196,9 +201,9 @@ String BPno = "";
                                 tldate = new SimpleDateFormat("MMMM dd, yyyy").format(_tldate);
                                 tltime =  new SimpleDateFormat("hh:mm aaa").format(_tldate);
                                 if(divCode.equals("DIV-EV")){
-                                    divGuide = "Great! Evaluating you Application.";
+                                    divGuide = "Great! We're evaluating your Application.";
                                 } else if (divCode.equals("DIV-INS")){
-                                    divGuide = "Inspectioning your business.";
+                                    divGuide = "Inspecting your business. Please be prepared.";
                                 } else if (divCode.equals("DIV-INV")){
                                     divGuide = "It seems you have violations. Starting investigation.";
                                 } else if (divCode.equals("DIV-AS")){

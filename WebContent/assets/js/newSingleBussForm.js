@@ -20,7 +20,7 @@ $(document).ready(function () {
         }).queue([{
             title: 'Terms & Conditions',
             text: 'Do you agree on the terms and conditions?'
-        },
+        },-
             'Confirm?',
         ]).then((result) => {
             if(result.value
