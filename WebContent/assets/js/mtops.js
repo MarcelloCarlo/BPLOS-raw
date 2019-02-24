@@ -11,8 +11,17 @@ $(document).ready(function () {
     $('#dateNSingBussEstRentStart').datetimepicker({
         format: "DD-MM-YYYY"
     });
-
-    $('#submitMtopsBtn').click(function () {
+	
+	$('#applicationFormMtops').on('keyup keypress', function(e) {
+		var keyCode = e.keyCode || e.which;
+		if (keyCode === 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
+	
+	
+	$('#submitMtopsBtn').click(function () {
         swal.mixin({
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,
