@@ -156,7 +156,7 @@
                                                     <label>President*</label>
                                                     <input type="text" name="txtNCorpPresidentName"
                                                            id="txtNCorpPresidentName"
-                                                           placeholder="Business Name/Trade Name" class="form-control"
+                                                           placeholder="Name" class="form-control"
                                                            required data-parsley-group="wizard-st-1"/>
                                                 </div>
                                             </div>
@@ -908,7 +908,6 @@ Data Protection Regulation</span></font><font color="#000000">. </font></font></
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/newSingleFormApplValidation.js"></script>
 <script src="assets/js/form-plugins.demo.min.js"></script>
 <script src="assets/js/form-multiple-upload.demo.min.js"></script>
 <script src="assets/js/newCorpBussForm.js"></script>

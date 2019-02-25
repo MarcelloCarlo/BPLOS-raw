@@ -47,4 +47,4 @@ var FormWizardValidation = function () {
             handleBootstrapWizardsValidation()
         }
     }
-}()
+}();
