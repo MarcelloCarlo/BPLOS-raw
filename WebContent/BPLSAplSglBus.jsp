@@ -903,6 +903,8 @@ Data Protection Regulation</span></font><font color="#000000">. </font></font></
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
 <script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->

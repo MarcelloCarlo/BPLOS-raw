@@ -11,6 +11,15 @@ $(document).ready(function () {
     $('#dateNSingBussEstRentStart').datetimepicker({
         format: "DD-MM-YYYY"
     });
+    
+    $('#txtNSingBussTelNo').mask('000-0000');
+    
+    $('#txtNSingBussFaxNo').mask('000-0000');
+    
+    $('#txtNSingTaxPayTINNo').mask('000-000-000-000');
+    
+    
+    
     $('#applicationFormSingle').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) {
