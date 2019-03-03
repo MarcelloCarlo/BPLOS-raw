@@ -106,11 +106,9 @@
                             <%--<%--%>
                                 <%--}--%>
                             <%--%>--%>
-                            <div class="panel-footer">
-                                <div class="left">
+                            <div class="modal-footer">
                                     <button id="backBtn" type="button" class="btn btn-sm btn-white">Back</button>
                                     <button type="button" id="submitBtn" class="btn btn-sm btn-success">Update</button>
-                                </div>
                             </div>
                         </form>
                     </div>

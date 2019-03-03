@@ -16,19 +16,23 @@
         <!-- end mobile sidebar expand / collapse button -->
 
         <!-- begin header navigation right -->
-        <div class="nav navbar-nav navbar-right">
-            <label style="margin-top: 20px;margin-right: 5px">
-                <span class="hidden-xs">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown navbar-user">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-xs">
                     <%
                         if (null != session.getAttribute("empname")) {
                             out.println(session.getAttribute("empname"));
                         }
                     %>
                 </span>
-                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;" class="fa fa-sign-out"></a>
-                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;">Log Out</a>
-            </label>
-        </div>
+            </li>
+            <%--<label style="margin-top: 20px;margin-right: 5px">--%>
+                <%----%>
+                <%--<a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;" class="fa fa-sign-out"></a>--%>
+                <%--<a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;">Log Out</a>--%>
+            <%--</label>--%>
+        </ul>
         <!-- end header navigation right -->
     </div>
     <!-- end container-fluid -->
@@ -41,6 +45,17 @@
     <ul class="nav">
         <li><a href="BPLSTIndex.jsp"><i class="fa fa-money"></i> <span>Payment Processing</span></a></li>
         <li><a href="MTOPSTLcnsng.jsp"><i class="fa fa-money"></i> <span>License Division</span></a></li>
+        <li class="has-sub pull-right">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-text"></i>
+                <span>Account Settings</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href='PAEISAccMngmt.jsp?Id=<%=session.getAttribute("empid")%>'><span>Change Password</span></a></li>
+                <li><a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'><span>Log Out</span></a></li>
+            </ul>
+        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>
