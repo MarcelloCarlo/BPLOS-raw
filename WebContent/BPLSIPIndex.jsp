@@ -95,7 +95,7 @@
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
+        ResultSet gg3 = ss3.executeQuery("select `ap`.`AP_REFERENCE_NO` AS `AP_REFERENCE_NO`,`bus`.`BU_NAME` AS `BU_NAME`,`bus`.`BU_PRESIDENT` AS `BU_PRESIDENT`,concat(`tp`.`TP_FNAME`,' ',coalesce(`tp`.`TP_MNAME`,' '),' ',coalesce(`tp`.`TP_LNAME`,' ')) AS `TAX_PAYERNAME`,`bus`.`BU_LOCATION` AS `BU_LOCATION`,`bus`.`BU_CONTACT` AS `BU_CONTACT`,concat(`ar`.`AR_FNAME`,' ',coalesce(`ar`.`AR_MNAME`,' '),' ',coalesce(`ar`.`AR_LNAME`,' ')) AS `AUTH_REPNAME`,`ar`.`AR_HOME_ADDRESS` AS `AR_HOME_ADDRESS`,`bn`.`BN_NAME` AS `BN_NAME`,`bn`.`BN_CLASSIFICATION` AS `BN_CLASSIFICATION`,`ot`.`OT_NAME` AS `OT_NAME`,`ot`.`OT_CODE` AS `OT_CODE`,`ap`.`AP_TYPE` AS `AP_TYPE`,`ap`.`AP_DATE` AS `AP_DATE`,`ap`.`AP_ID` AS `AP_ID`,`ap`.`AP_STATUS` AS `AP_STATUS`,`ap`.`AP_DIV_CODE_TO` AS `AP_DIV_CODE_TO`,`ap`.`AP_DIV_CODE_FROM` AS `AP_DIV_CODE_FROM` from (((((((`bpls_t_business` `bus` join `bpls_r_business_nature` `bn` on((`bn`.`BN_ID` = `bus`.`BN_ID`))) join `bpls_r_ownership_type` `ot` on((`ot`.`OT_CODE` = `bus`.`OT_CODE`))) join `bpls_t_bp_application` `ap` on((`ap`.`BU_ID` = `bus`.`BU_ID`))) join `bpls_t_taxpayer` `tp` on((`tp`.`TP_ID` = `bus`.`TP_ID`))) join `bpls_r_bu_ar` `buxar` on((`buxar`.`BU_ID` = `bus`.`BU_ID`))) join `bpls_t_authorize_rep` `ar` on((`ar`.`AR_ID` = `buxar`.`AR_ID`))) join `bpls_r_division` `divs` on((`divs`.`DIV_CODE` = `ap`.`AP_DIV_CODE_TO`))) where ( ((`ap`.`AP_DIV_CODE_TO` = 'DIV-INS') OR (`ap`.`AP_DIV_CODE_TO` = 'DIV-EV')) and (`ap`.`AP_STATUS` <> 'Terminated'))");
         Statement ss4 = conn3.createStatement();
         ResultSet gg4 = ss4.executeQuery("SELECT * FROM bpls_t_employee_profile");
         Statement ss5 = conn3.createStatement();
@@ -103,7 +103,7 @@
         Statement ss6 = conn3.createStatement();
         ResultSet gg6 = ss6.executeQuery("SELECT * FROM bpls_t_employee_profile");
         Statement ss7 = conn3.createStatement();
-        ResultSet gg7 = ss7.executeQuery("SELECT * FROM bpls_t_bp_application BP JOIN bpls_t_business business on BP.BU_ID = business.BU_ID WHERE AP_DIV_CODE_TO = 'DIV-INS'");
+        ResultSet gg7 = ss7.executeQuery("SELECT * FROM bpls_t_bp_application BP JOIN bpls_t_business business on BP.BU_ID = business.BU_ID WHERE (AP_DIV_CODE_TO = 'DIV-INS' OR AP_DIV_CODE_TO = 'DIV-EV') AND AP_STATUS <> 'Terminated'");
 
 %>
 <body>
