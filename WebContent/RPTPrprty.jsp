@@ -107,7 +107,7 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Action</a>
+                                    <a href="#modal-adduser" class="btn btn-sm btn-primary" data-toggle="modal">Assess</a>
                                 </td>
                             </tr>
                             </tbody>
