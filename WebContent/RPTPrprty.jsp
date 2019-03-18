@@ -88,14 +88,20 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th>Property Name</th>
-                                <th>Amount</th>
-                                <th>Action</th>
+                                <th>Property Type</th>
+                                <th>Property Class</th>
+                                <th>Property Area</th>
+                                <th>Owner</th>
+                                <th>Assess Property</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
                                 <td>
                                 </td>
                                 <td>
@@ -128,13 +134,13 @@
                                 <div id="wizard">
                                     <ol>
                                         <li>
-                                            Information
+                                            Owner's Information
                                         </li>
                                         <li>
                                             Property Information
                                         </li>
                                         <li>
-                                            Other Information
+                                            Property Assessment
                                         </li>
                                     </ol>
                                     <!-- begin wizard step-1 -->
@@ -366,40 +372,9 @@
                                     <div>
                                         <fieldset>
                                             <!-- begin row -->
+
+                                            <h4 class="pull-left width-full">Kind of Property Assessed</h4>
                                             <div class="row">
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>ID Number:</label>
-                                                        <input type="text" name="idnum" placeholder="ID Number"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>PIN:</label>
-                                                        <input type="text" name="taxdecpin" placeholder="PIN"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Owner:</label>
-                                                        <input type="text" name="taxdecowner" placeholder="Owner"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Effectivity Date:</label>
-                                                        <input type="text" name="effdate" placeholder="Effectivity Date"
-                                                               class="form-control"/>
-                                                    </div>
-                                                </div>
-
                                                 <div class="form-group">
                                                     <div class="col-md-9">
                                                         <label class="radio-inline">
@@ -416,11 +391,7 @@
                                                         </label>
                                                     </div>
                                                 </div>
-
                                             </div>
-
-                                            <h4 class="pull-left width-full">Kind of Property Assessed</h4>
-
                                             <div class="row">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
