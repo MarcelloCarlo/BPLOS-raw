@@ -11,6 +11,9 @@
 <html lang="en">
 <!--<![endif]-->
 <%
+    if (session.getAttribute("empid") == null || session.getAttribute("empname") == null) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
     LGUConnect conX = new LGUConnect();
     String treId = String.valueOf(session.getAttribute("empid"));
     try {

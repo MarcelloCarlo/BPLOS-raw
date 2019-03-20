@@ -55,7 +55,7 @@
                 <li><a href="PAEISSAToda.jsp">TODA</a></li>
             </ul>
         </li>
-        <li class="has-sub">
+        <%--<li class="has-sub">
             <a href="javascript:;">
                 <b class="caret pull-right"></b>
                 <i class="fa fa-text"></i>
@@ -66,7 +66,7 @@
                 <li><a href="PAEISSAAccomRep.jsp">Accomplishment Reports</a></li>
                 <li><a href="PAEISSAAdtLgs.jsp">Audit Logs</a></li>
             </ul>
-        </li>
+        </li>--%>
         <li class="has-sub pull-right">
             <a href="javascript:;">
                 <b class="caret pull-right"></b>

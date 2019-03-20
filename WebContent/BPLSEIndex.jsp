@@ -80,7 +80,11 @@
     <!-- <link href="assets/plugins/smore-inc-clippy.js/build/clippy.css"
         rel="stylesheet"> -->
 </head>
-<% LGUConnect conX = new LGUConnect();
+<%
+    if (session.getAttribute("empid") == null || session.getAttribute("empname") == null) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
+    LGUConnect conX = new LGUConnect();
     String treId = String.valueOf(session.getAttribute("empid"));
     try {
         Connection conn3 = conX.getConnection();
