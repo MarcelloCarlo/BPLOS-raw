@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.Objects;
 
 @MultipartConfig
-@WebServlet("/updateNewAppInspectionForm")
-public class updateNewAppInspectionForm extends HttpServlet {
+@WebServlet("/inspectApplForm")
+public class inspectApplForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
@@ -30,7 +30,7 @@ public class updateNewAppInspectionForm extends HttpServlet {
         }
     }
 
-    public updateNewAppInspectionForm() {
+    public inspectApplForm() {
         super();
     }
 
@@ -94,10 +94,10 @@ public class updateNewAppInspectionForm extends HttpServlet {
             passIns.setString(8, MISC_REMARKS);
             passIns.executeUpdate();
 
-            PreparedStatement assessIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS ='Assess', AP_DIV_CODE_TO = 'DIV-AS', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
-            assessIns.setString(1, MISC_REMARKS);
-            assessIns.setString(2, AP_REFERENCE_NO);
-            assessIns.executeUpdate();
+            PreparedStatement evalIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            evalIns.setString(1, MISC_REMARKS);
+            evalIns.setString(2, AP_REFERENCE_NO);
+            evalIns.executeUpdate();
 
             //Record
 

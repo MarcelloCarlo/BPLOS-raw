@@ -32,7 +32,7 @@ $("#btnTresNewAppl").click(function () {
 		title: "Are you sure?",
 		text: "You will save your current changes",
 		type: "warning",
-		confirmButtonColor: "#DD6B55",
+		confirmButtonColor: "#62a3cb",
 		confirmButtonText: "Confirm!",
 		showCancelButton: true,
 		cancelButtonText: 'Cancel',

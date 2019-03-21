@@ -11,8 +11,8 @@ import java.util.Objects;
 import com.mysql.jdbc.PreparedStatement;
 
 @MultipartConfig
-@WebServlet("/updateNewAppInvestigationForm")
-public class updateNewAppInvestigationForm extends HttpServlet {
+@WebServlet("/investigateApplForm")
+public class investigateApplForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
@@ -26,7 +26,7 @@ public class updateNewAppInvestigationForm extends HttpServlet {
         }
     }
 
-    public updateNewAppInvestigationForm() {
+    public investigateApplForm() {
         super();
     }
 

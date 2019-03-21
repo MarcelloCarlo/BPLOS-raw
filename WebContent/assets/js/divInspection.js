@@ -51,18 +51,18 @@ $(document).ready(function () {
             title: "Are you sure?",
             text: "You will save your current changes",
             type: "warning",
-            confirmButtonColor: "#DD6B55",
+            confirmButtonColor: "#62a3cb",
             confirmButtonText: "Confirm!",
             showCancelButton: true,
             cancelButtonText: 'Cancel'
-        }).then((result) => {
+        }).then(function(result) {
             if(result.value
     )
         {
             var datanewInsApplForm = new FormData($('#newInsApplForm')[0]); //working method
             $.ajax({
                 type: "POST",
-                url: "updateNewAppInspectionForm",
+                url: "inspectApplForm",
                 data: datanewInsApplForm,
                 processData: false,
                 contentType: false,
@@ -72,7 +72,7 @@ $(document).ready(function () {
                         title: 'DONE!.',
                         text: 'Succesfully Evaluated',
                         confirmButtonText: 'OK'
-                    }).then((result) => {
+                    }).then(function(result) {
                         if(result.value
                 )
                     {

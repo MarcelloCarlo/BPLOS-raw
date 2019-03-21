@@ -179,7 +179,7 @@ public class uploadCorpAppForm extends HttpServlet {
             taxPayerInfo.setString(2, txtNCorpTaxPayTINNo);
             taxPayerInfo.setString(3, txtNCorpEmpSSSNo);
             taxPayerInfo.executeUpdate();
-            PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_ID`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),2)");
+            PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_CODE`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),2)");
             businessInfo.setString(1, txtNCorpBussName);
             businessInfo.setString(2, txtNCorpPresidentName);
             businessInfo.setString(3, bu_loc);

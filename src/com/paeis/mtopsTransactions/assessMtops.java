@@ -72,7 +72,7 @@ public class assessMtops extends HttpServlet {
             setTre.setInt(1,TB_ID);
             setTre.setInt(2,Integer.parseInt(_AP_REFERENCE_NO));
             setTre.executeUpdate();
-            response.getWriter().print("Assessment Success!");
+            response.getWriter().print("Assessment Success! Proceed to Treasury for payment");
         }catch (Exception ex){
             ex.printStackTrace();
         }

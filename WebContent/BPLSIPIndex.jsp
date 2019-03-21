@@ -515,12 +515,13 @@
                                             Expiry Date:
                                             <input name="moExpD" type="date" class="form-control date" required/>
                                         </h5>
-                                        <h5>
+                                        <h5 hidden>
                                             Authority to Inspect:
-                                            <select class="selectpicker form-control" data-style="btn-white"
-                                                    name="authIns" tabindex="-1"
+                                            <input class="hidden" data-style="btn-white"
+                                                    name="authIns" tabindex="-1" value='<%=session.getAttribute("empid")
+                                                    %>'
                                             >
-                                                <%
+                                               <%-- <%
                                                     while (gg4.next()) {
                                                         String empName = gg4.getString("EP_FNAME") + " " + gg4.getString("EP_MNAME") + " " + gg4.getString("EP_LNAME");
                                                 %>
@@ -529,8 +530,8 @@
                                                 <%
                                                     }
                                                     gg4.close();
-                                                %>
-                                            </select>
+                                                %>--%>
+                                            </input>
                                         </h5>
                                         <h5>
                                             Head Inspection Division:
@@ -566,7 +567,7 @@
                                             Licence Ispector / Officer:
                                             <input id="insOfficer" name="insOfficer" type="text" class="form-control"/>
                                         </h5>
-                                        <h5>
+                                        <h5 hidden>
                                             Licence Ispector / Officer:
                                             <input
                                                     id="insOfficer1" name="insOfficer1" type="text" class="form-control"/>

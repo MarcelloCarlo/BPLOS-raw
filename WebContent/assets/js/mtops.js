@@ -11,6 +11,11 @@ $(document).ready(function () {
     $('#dateNSingBussEstRentStart').datetimepicker({
         format: "DD-MM-YYYY"
     });
+
+    $('#txtApplicantTelNo').mask('000-0000');
+    $('#ApplicantRepPhoneNo').mask('0000 000 0000');
+
+    $('#txtApplicantTINNo').mask('000000000000');
 	
 	$('#applicationFormMtops').on('keyup keypress', function(e) {
 		var keyCode = e.keyCode || e.which;

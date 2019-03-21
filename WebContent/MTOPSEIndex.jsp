@@ -167,7 +167,7 @@
                                                 class="btn btn-success mtopsModal"
                                                 data-toggle="modal"
                                                 data-target=".evaluation-modal-mtops"
-                                        > Evaluate
+                                        > <i class="fa fa-lg fa-pencil"></i>
                                         </button>
                                     </td>
                                     <td class="hidden"><%=gg3.getString("APF_FILENAME")%></td>

@@ -117,97 +117,99 @@
         <!-- end page-header -->
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
                         <h4 class="panel-title">Treasury Processing</h4>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
-                            <h5>Name: <label><%out.print(rs.getString("APF_FNAME")+" " + rs.getString("APF_MNAME") +" "+rs.getString("APF_LNAME"));%></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Location/Address: <label><%out.print(rs.getString("APF_HOUSE_NO") +" "+rs.getString("APF_STREET")+" "+rs.getString("APF_BRGY"));%></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>TODA: <label><%out.print(rs.getString("TODA_NAME"));%></label></h5>
-                        </div>
-                        <div class="form-group">
-                            <h5>Date Billed: <label><%out.print(rs.getString("TB_DATE_BILLED"));%></label></h5>
-                        </div>
-                    </div>
-                    <%}%>
-                    <div class="panel-body">
-                        <table class="table" id="feeListtbl">
-                            <thead>
-                            <tr>
-                                <th>Kind of Fee/Tax</th>
-                                <th>Total (PHP)</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <% while (rs1.next()) {%>
-                            <tr>
-
-                                <td><%out.print(rs1.getString("FL_NAME"));%></td>
-                                <% out.print("<td class='amt'>" + rs1.getString("AMOUNT") + "</td>");%>
-                            </tr>
-                            <%}%>
-                            </tbody>
-                        </table>
-                        <h2>Total (PHP): <label id="lblTotal"></label></h2>
-                    </div>
-                    <div class="panel-body">
-                        <form name="treaNewApplForm" id="treaNewApplForm">
-                            <div class="form-group hidden"><label class="col-md-4 control-label">Treasurer: </label>
-                                <div class="col-md-5">
-                                    <select name="optTreasurer" class="form-control" data-style="btn-white"
-                                            tabindex="-1" value='<%=treId%>'>
-                                        <%while (rs2.next()) {%>
-                                        <option data-subtext="<%=rs2.getString("EP_JOB_DESC")%>"
-                                                title="<%=rs2.getString("EP_JOB_DESC")%>"
-                                                value="<%=rs2.getInt("EP_ID")%>">
-                                                <%out.print(rs2.getString("EP_FNAME") + " " + rs2.getString("EP_MNAME")+ " " + rs2.getString("EP_LNAME"));%>
-                                                <%} rs2.close();%>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group"><label class="col-md-4 control-label">Payment Mode: </label>
-                                <div class="col-md-5">
-                                    <select name="optPaymentType" class="form-control" data-style="btn-white"
-                                            tabindex="-1">
-                                        <option value="CH">Cash</option>
-                                        <option value="TW">Treasury Warrant</option>
-                                        <option value="CK">Check</option>
-                                        <option value="MO">Money Order</option>
-                                    </select>
-                                </div>
-                            </div>
-
+                        <div class="col-12">
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Amount: </label>
-                                <div class="col-md-5">
-                                    <input type="text" name="txtAmt" id="txtAmt" class="form-control"
-                                           placeholder="PHP"/>
-                                </div>
+                                <h6>Name: <label><%out.print(rs.getString("APF_FNAME")+" " + rs.getString("APF_MNAME") +" "+rs.getString("APF_LNAME"));%></label></h6>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Change: </label>
-                                <div class="col-md-5">
-                                    <input type="text" name="txtChng" id="txtChng" class="form-control"
-                                           placeholder="PHP"/>
-                                </div>
+                                <h6>Location/Address: <label><%out.print(rs.getString("APF_HOUSE_NO") +" "+rs.getString("APF_STREET")+" "+rs.getString("APF_BRGY"));%></label></h6>
                             </div>
-                            <input class="hidden" type="text" id="totalAmt" name="totalAmt">
-                            <div class="panel-body">
-                                    <%=magicBtn%>
-                                    <%=apRefBtn%>
-                                <button class="btn btn-sm btn-white" onclick="goBack()">Close</button>
-                                <button type="button" id="btnTresNewAppl" class="btn btn-sm btn-success">Process
-                                </button>
-                        </form>
+                            <div class="form-group">
+                                <h6>TODA: <label><%out.print(rs.getString("TODA_NAME"));%></label></h6>
+                            </div>
+                            <div class="form-group">
+                                <h6>Date Billed: <label><%out.print(rs.getString("TB_DATE_BILLED"));%></label></h6>
+                            </div>
+                        </div>
+                        <%}%>
+                        <div class="col-12 table-responsive">
+                            <table class="table table-condensed" id="feeListtbl">
+                                <thead>
+                                <tr>
+                                    <th>Kind of Fee/Tax</th>
+                                    <th>Total (PHP)</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <% while (rs1.next()) {%>
+                                <tr>
+
+                                    <td><%out.print(rs1.getString("FL_NAME"));%></td>
+                                    <% out.print("<td class='amt'>" + rs1.getString("AMOUNT") + "</td>");%>
+                                </tr>
+                                <%}%>
+                                </tbody>
+                            </table>
+                            <h4>Total (PHP): <label id="lblTotal"></label></h4>
+                        </div>
+                        <div class="col-12">
+                            <form name="treaNewApplForm" id="treaNewApplForm">
+                                <div class="form-group hidden"><label class="col-md-4 control-label">Treasurer: </label>
+                                    <div class="col-md-5">
+                                        <select name="optTreasurer" class="form-control" data-style="btn-white"
+                                                tabindex="-1" value='<%=treId%>'>
+                                            <%while (rs2.next()) {%>
+                                            <option data-subtext="<%=rs2.getString("EP_JOB_DESC")%>"
+                                                    title="<%=rs2.getString("EP_JOB_DESC")%>"
+                                                    value="<%=rs2.getInt("EP_ID")%>">
+                                                    <%out.print(rs2.getString("EP_FNAME") + " " + rs2.getString("EP_MNAME")+ " " + rs2.getString("EP_LNAME"));%>
+                                                    <%} rs2.close();%>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group"><label class="col-md-4 control-label">Payment Mode: </label>
+                                    <div class="col-md-5">
+                                        <select name="optPaymentType" class="form-control" data-style="btn-white"
+                                                tabindex="-1">
+                                            <option value="CH">Cash</option>
+                                            <option value="TW">Treasury Warrant</option>
+                                            <option value="CK">Check</option>
+                                            <option value="MO">Money Order</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Amount: </label>
+                                    <div class="col-md-5">
+                                        <input type="text" name="txtAmt" id="txtAmt" class="form-control"
+                                               placeholder="PHP"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Change: </label>
+                                    <div class="col-md-5">
+                                        <input type="text" name="txtChng" id="txtChng" class="form-control"
+                                               placeholder="PHP"/>
+                                    </div>
+                                </div>
+                                <input class="hidden" type="text" id="totalAmt" name="totalAmt">
+                                <div class="panel-body">
+                                        <%=magicBtn%>
+                                        <%=apRefBtn%>
+                                    <button class="btn btn-sm btn-white" onclick="goBack()">Close</button>
+                                    <button type="button" id="btnTresNewAppl" class="btn btn-sm btn-success">Process
+                                    </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,8 +13,8 @@ import java.sql.ResultSet;
 import java.util.Objects;
 
 @MultipartConfig
-@WebServlet("/updateNewAppEvaluationForm")
-public class updateNewAppEvaluationForm extends HttpServlet {
+@WebServlet("/evaluateForm")
+public class evaluateForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private String currBN = "UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INS', AP_DIV_CODE_FROM = 'DIV-EV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
     private String divCode = "", divName = "", AP_REFERENCE_NO, AP_Remarks;
@@ -30,7 +30,7 @@ public class updateNewAppEvaluationForm extends HttpServlet {
         }
     }
 
-    public updateNewAppEvaluationForm() {
+    public evaluateForm() {
         super();
     }
 

@@ -266,7 +266,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
+                                           <%-- <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Plate Number*</label>
                                                     <div class="controls">
@@ -276,7 +276,7 @@
                                                                required/>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--%>
                                         </div>
 
                                         <%--Second Part--%>
@@ -429,7 +429,8 @@
                                                     <label>Phone Number</label>
                                                     <input type="text" name="ApplicantRepPhoneNo" placeholder="Phone Number"
                                                            class="form-control" data-parsley-group="wizard-st-3"
-                                                           required/>
+                                                           required id="ApplicantRepPhoneNo"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -759,6 +760,7 @@ Data Protection Regulation</span></font><font color="#000000">. </font></font></
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
 <script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->

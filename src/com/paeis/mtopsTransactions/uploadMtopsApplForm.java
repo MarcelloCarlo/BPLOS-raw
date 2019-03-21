@@ -106,7 +106,7 @@ public class uploadMtopsApplForm extends HttpServlet {
             insrtRepr.setString(8, ApplicantRepPhoneNo);
             insrtRepr.executeUpdate();
 
-            PreparedStatement insrtAppl = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_application_frm(APF_FNAME, APF_MNAME, APF_LNAME, APF_BDATE, APF_SEX, APF_HOUSE_NO, APF_STREET, APF_BRGY, APF_CITY, APF_CONTACT_NO, APF_MAILING_ADR, APF_EMAIL, APF_PLATE_NO, APF_TIN_NO, APF_DRIVERS_LICENSE_NO, TODA, APF_FILE, APF_FILENAME, APF_DATEACCESSED,REPRE_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,(SELECT MAX(mtops_t_representative.REPRE_ID) FROM mtops_t_representative))");
+            PreparedStatement insrtAppl = (PreparedStatement) connection.prepareStatement("INSERT INTO mtops_t_application_frm(APF_FNAME, APF_MNAME, APF_LNAME, APF_BDATE, APF_SEX, APF_HOUSE_NO, APF_STREET, APF_BRGY, APF_CITY, APF_CONTACT_NO, APF_MAILING_ADR, APF_EMAIL, APF_PLATE_NO, APF_TIN_NO, APF_DRIVERS_LICENSE_NO, TODA, APF_FILE, APF_FILENAME, APF_DATEACCESSED,REPRE_ID,APF_STATUS) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,(SELECT MAX(mtops_t_representative.REPRE_ID,'Inspecting') FROM mtops_t_representative))");
             insrtAppl.setString(1, txtApplicantFName);
             insrtAppl.setString(2, txtApplicantMName);
             insrtAppl.setString(3, txtApplicantLName);

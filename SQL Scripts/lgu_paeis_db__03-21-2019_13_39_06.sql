@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `lgu_paeis_db`
 --
-CREATE DATABASE IF NOT EXISTS `lgu_paeis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+DROP DATABASE IF EXISTS `lgu_paeis_db`;
+CREATE DATABASE `lgu_paeis_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `lgu_paeis_db`;
 
 -- --------------------------------------------------------
@@ -1317,7 +1318,7 @@ CREATE TABLE `mtops_t_application_frm` (
   `APF_CONTACT_NO` varchar(20) NOT NULL,
   `APF_MAILING_ADR` varchar(200) NOT NULL,
   `APF_EMAIL` varchar(50) NOT NULL,
-  `APF_PLATE_NO` varchar(50) NOT NULL,
+  `APF_PLATE_NO` varchar(50),
   `APF_TIN_NO` varchar(50) NOT NULL,
   `APF_DRIVERS_LICENSE_NO` varchar(50) NOT NULL,
   `TODA` int(11) DEFAULT NULL,
@@ -1325,7 +1326,7 @@ CREATE TABLE `mtops_t_application_frm` (
   `APF_FILENAME` text,
   `APF_DATEACCESSED` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `REPRE_ID` int(11) DEFAULT NULL,
-  `APF_STATUS` enum('Pending','Inspecting','Assessing','Treasury','Releasing','Done','Terminated') NOT NULL DEFAULT 'Pending',
+  `APF_STATUS` enum('Pending','Inspecting','Assessing','Treasury','Releasing','Done','Terminated') NOT NULL DEFAULT 'Inspecting',
   `TB_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

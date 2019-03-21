@@ -139,9 +139,9 @@ public class uploadSingleAppForm extends HttpServlet {
 
         String applType = "";
 
-        if(!chkRenewal.equalsIgnoreCase("1")){
+        if (!chkRenewal.equalsIgnoreCase("1")) {
             applType = "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV')";
-        } else if (chkRenewal.equalsIgnoreCase("1")){
+        } else if (chkRenewal.equalsIgnoreCase("1")) {
             applType = "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'Renew',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV')";
         } else {
             applType = "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,`AP_DIV_CODE_TO`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),'DIV-EV')";
@@ -157,7 +157,7 @@ public class uploadSingleAppForm extends HttpServlet {
 
         String divCode = "";
         String divName = "";
-        String refNo = "",refId="";
+        String refNo = "", refId = "";
         try {
             connection = conX.getConnection();
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -224,14 +224,14 @@ public class uploadSingleAppForm extends HttpServlet {
 //Record
             PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_ID) AS REF_ID FROM bpls_t_bp_application");
             ResultSet rsAPNO = getAPno.executeQuery();
-            while (rsAPNO.next()){
+            while (rsAPNO.next()) {
                 refId = rsAPNO.getString("REF_ID");
             }
 
             PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_ID = ?");
             getAPinfo.setInt(1, Integer.parseInt(refId));
             ResultSet rsAP = getAPinfo.executeQuery();
-            while (rsAP.next()){
+            while (rsAP.next()) {
                 divCode = rsAP.getString("AP_DIV_CODE_TO");
                 refNo = rsAP.getString("AP_REFERENCE_NO");
             }

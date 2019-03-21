@@ -85,7 +85,7 @@ $(document).ready(function () {
                 title: "Continue Assessment?",
                 text: "You will save your current changes",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#62a3cb",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -101,7 +101,7 @@ $(document).ready(function () {
                 var datanewAsInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
                 $.ajax({
                     type: "POST",
-                    url: "updateNewAppInvestigationForm",
+                    url: "investigateApplForm",
                     enctype: "multipart/form-data",
                     data: datanewAsInvApplForm,
                     processData: false,
@@ -142,7 +142,7 @@ $(document).ready(function () {
                 title: "Request Rectification?",
                 text: "You will save your current changes",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#62a3cb",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -153,7 +153,7 @@ $(document).ready(function () {
                 var datanewRcInvApplForm = new FormData($('#newInvApplForm')[0]); //working method
                 $.ajax({
                     type: "POST",
-                    url: "updateNewAppInvestigationForm",
+                    url: "investigateApplForm",
                     data: datanewRcInvApplForm,
                     enctype: "multipart/form-data",
                     processData: false,
