@@ -157,19 +157,9 @@
                                 <div class="panel-body hidden">
                                     <label class="col-md-4 control-label">Treasurer: </label>
                                     <div class="col-md-5">
-                                        <select name="currId" class="form-control hidden" data-style="btn-white"
+                                        <input name="currId" type="text" class="form-control hidden" data-style="btn-white"
                                                 tabindex="-1"
-                                                value='<%out.print(session.getAttribute("empid").toString());%>'>
-                                            <%while (rsEmp.next()) {%>
-                                            <option data-subtext="<%=rsEmp.getString("EP_JOB_DESC")%>"
-                                                    title="<%=rsEmp.getString("EP_JOB_DESC")%>"
-                                                    value="<%=rsEmp.getInt("EP_ID")%>">
-                                                <%out.print(rsEmp.getString("EP_FNAME") + " " + rsEmp.getString("EP_MNAME") + " " + rsEmp.getString("EP_LNAME"));%></option>
-                                            <%
-                                                }
-                                                rsEmp.close();
-                                            %>
-                                        </select>
+                                                value='<%=session.getAttribute("empid")%>'>
                                     </div>
                                 </div>
                                 <div class="panel-body">

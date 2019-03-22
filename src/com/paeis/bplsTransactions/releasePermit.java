@@ -46,7 +46,7 @@ public class releasePermit extends HttpServlet {
             genBuPerm.setInt(4, ap_id);
             genBuPerm.executeUpdate();
 
-            PreparedStatement updBP = (PreparedStatement) connect.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS = 'Success', AP_DIV_CODE_TO = 'END', AP_DIV_CODE_FROM = 'DIV-REL', AP_DATE_ACCESSED = CURRENT_TIMESTAMP, AP_REMARKS = ?, U_ID = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement updBP = (PreparedStatement) connect.prepareStatement("UPDATE bpls_t_bp_application SET AP_STATUS = 'Success', AP_DIV_CODE_TO = 'END', AP_DIV_CODE_FROM = 'DIV-REL', AP_DATE_ACCESSED = CURRENT_TIMESTAMP, AP_REMARKS = ?, U_REL_ID = ? WHERE AP_REFERENCE_NO = ?");
             updBP.setString(1,ap_remarks);
             updBP.setInt(2,empId);
             updBP.setString(3,ap_ref_no);

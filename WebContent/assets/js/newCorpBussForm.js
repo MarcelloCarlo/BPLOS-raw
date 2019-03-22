@@ -11,10 +11,12 @@ $(document).ready(function () {
 		}
 	});
     $('#dateNCorpBussSECReg').datetimepicker({
+        viewMode: 'years',
         format: "DD-MM-YYYY"
 
     });
     $('#dateNCorpBussEstRentStart').datetimepicker({
+        viewMode: 'years',
         format: "DD-MM-YYYY"
     });
     

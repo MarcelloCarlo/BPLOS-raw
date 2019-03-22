@@ -5,9 +5,11 @@ $(document).ready(function () {
     FormPlugins.init();
 
     $('#dateNSingBussDTIReg').datetimepicker({
-
+        viewMode: 'years',
+        format: "DD-MM-YYYY"
     });
     $('#dateNSingBussEstRentStart').datetimepicker({
+        viewMode: 'years',
         format: "DD-MM-YYYY"
     });
     
