@@ -76,182 +76,174 @@
         </div>
 
         <!-- begin invoice -->
-        <div class="invoice">
-            <div class="invoice-company">
+       <div class="col-md-4 col-md-offset-4">
+           <div class="invoice">
+               <div class="invoice-company">
 
-            </div>
+               </div>
 
 
-            <div class="invoice-content">
-                <table style="font-family: Arial; font-size: 10px;" width="40%">
-                    <thead>
-                    <tr>
+               <div class="invoice-content">
+                   <table class="col-sm-12" style="font-family: Arial; font-size: 10px;">
+                       <thead>
+                       <tr>
 
-                        <center style="font-size: 12px; padding: 0px 0px 0px 0px; width: 40%">
-                            <p style="color: black;margin: 0"> Republic of the Philippines </p>
-                            <p style="color: black;margin: 0"> Region # </p>
-                            <p style="color: black;margin: 0"> Province of - </p>
-                            <strong style="color: black;margin: 0"> City of - </strong>
-                            <h3 style="color: black;margin: 0">OFFICE OF THE -</h3>
-                            <h3 style="color: black;margin: 0">CITY TRICYCLE FRANCHISING & REGULATORY BOARD</h3>
-                        </center>
+                           <center style="font-size: 12px; padding: 0px 0px 0px 0px;">
+                               <p style="color: black;margin: 0"> Republic of the Philippines </p>
+                               <p style="color: black;margin: 0"> National Capital Region  </p>
+                               <strong style="color: black;margin: 0"> City of - Quezon City</strong>
+                               <h3 style="color: black;margin: 0">OFFICE OF THE MAYOR</h3>
+                               <h3 style="color: black;margin: 0">CITY TRICYCLE FRANCHISING & REGULATORY BOARD</h3>
+                           </center>
 
-                    </tr>
-                    </thead>
+                       </tr>
+                       </thead>
 
-                    <hr width="40%" align="left">
+                       <hr width="100%" >
 
-                    <tbody>
-                    <tr>
-                        <td style="width: 50%;">
-                            <table style="margin: -1px 0px -1px -1px;" width="100%">
-                                <tbody>
-                                <tr>
+                       <tbody class="container">
+                       <tr>
+                           <td class="col-sm-12">
+                               <table class="col-sm-12">
+                                   <tbody class="col-sm-12">
+                                   <tr>
+                                       <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
+                                           <strong>MOTORIZED TRICYCLE</strong>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                       <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
+                                           <strong>OPERATOR'S PERMIT</strong>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                       <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
+                                           <strong>(MTOP) - 20xx-20xx</strong>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                       <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
+                                           as per Ord. No.: <label style="margin: 0"><%out.print(permRs.getString("OR_TW_CH_MO_NO"));%></label>
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                       <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
+                                           Date: <label  style="margin: 0"><%out.print(permRs.getString("PERMIT_DATE"));%></label>
+                                       </td>
+                                   </tr>
+                                   </tbody>
+                               </table>
+                           </td>
+                           <td class="col-sm-12" style="height: 50px; width: 50px; border: 1px; border-color: #0D3349; border-style: solid">
+                           </td>
+                       </tr>
+                       <tr class="">
+                              <td class="col-sm-6">
+                                  <table style="margin: -1px 0px -1px -1px;" width="100%">
+                                      <tbody>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              NAME OF OPERATOR
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              ADDRESS
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              MOTOR NUMBER
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              CHASSIS NUMBER
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              MAKE
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              PLATE NUMBER
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              MTOP NO.
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              PLACE OF OPERATION
+                                          </td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </td>
+                              <td class="col-sm-6">
+                                  <table class="width-100">
+                                      <tbody>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("PERMIT_NO"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("APF_BRGY") +" " +permRs.getString("APF_CITY"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("MOTOR_NUMBER"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("CHASSIS_NUMBER"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("BIKE_NAME"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("PLATE_NUMBER"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("PERMIT_NO"));%></label>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
+                                              : <label style="margin: 0"><%out.print(permRs.getString("TODA_NAME"));%></label>
+                                          </td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </td>
+                       </tr>
 
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
+                       </tbody>
 
-                        <td style="width: 50%;">
-                            <table style="margin: -1px 0px -1px -1px;" width="100%">
-                                <tbody>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
-                                        <strong>MOTORIZED TRICYCLE</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
-                                        <strong>OPERATOR'S PERMIT</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: center; color: black;">
-                                        <strong>(MTOP) - 20xx-20xx</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
-                                        as per Ord. No.: <label style="margin: 0"><%out.print(permRs.getString("OR_TW_CH_MO_NO"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: right; color: black;">
-                                        Date: <label  style="margin: 0"><%out.print(permRs.getString("PERMIT_DATE"));%></label>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="width: 50%;">
-                            <table style="margin: -1px 0px -1px -1px;" width="100%">
-                                <tbody>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        NAME OF OPERATOR
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        ADDRESS
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        MOTOR NUMBER
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        CHASSIS NUMBER
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        MAKE
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        PLATE NUMBER
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        MTOP NO.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        PLACE OF OPERATION
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-
-                        <td style="width: 50%;">
-                            <table style="margin: -1px 0px -1px -1px;" width="100%">
-                                <tbody>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("PERMIT_NO"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("APF_BRGY") +" " +permRs.getString("APF_CITY"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("MOTOR_NUMBER"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("CHASSIS_NUMBER"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("BIKE_NAME"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("PLATE_NUMBER"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("PERMIT_NO"));%></label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 100%; padding: 5px 0px 5px 15px; text-align: left; color: black;">
-                                        : <label style="margin: 0"><%out.print(permRs.getString("TODA_NAME"));%></label>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-
-                    </tbody>
-
-                </table>
-                <hr width="40%" align="left">
-                <tr>
-                    <p>OTHER NOTES</p>
-                </tr>
-            </div>
-            <!-- end invoice -->
-        </div>
+                   </table>
+                   <hr width="40%" align="left">
+                   <hr>
+                   <tr>
+                       <p>OTHER NOTES</p>
+                   </tr>
+               </div>
+               <!-- end invoice -->
+           </div>
+       </div>
         <!-- end #content -->
 
         <!-- begin scroll to top btn -->

@@ -88,7 +88,7 @@
     try {
         conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        gg3 = ss3.executeQuery("SELECT * FROM bpls_t_bp_application JOIN bpls_t_business business on bpls_t_bp_application.BU_ID = business.BU_ID JOIN bpls_r_business_nature nature on business.BN_ID = nature.BN_ID WHERE AP_DIV_CODE_TO = 'DIV-EV' AND BN_CLASSIFICATION = 'L' ");%>
+        gg3 = ss3.executeQuery("SELECT * FROM bpls_t_bp_application JOIN bpls_t_business business on bpls_t_bp_application.BU_ID = business.BU_ID JOIN bpls_r_business_nature nature on business.BN_ID = nature.BN_ID WHERE BU_CLASSIFICATION = 'L' ");%>
 <body>
 <jsp:include page="REVDashboardComponent.jsp"/>
 <div

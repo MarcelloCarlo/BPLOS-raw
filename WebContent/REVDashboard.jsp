@@ -88,7 +88,7 @@
                 <div id="lgu_rev" class="col-md-12"></div>
             </div></div>
             <!-- begin col-3 -->
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-4 col-sm-6">
                 <div class="widget widget-stats bg-green">
                     <div class="stats-icon"><i class="fa fa-file"></i></div>
                     <div class="stats-info">
@@ -143,7 +143,7 @@
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-4 col-sm-6">
                 <div class="widget widget-stats bg-blue">
                     <div class="stats-icon"><i class="fa fa-motorcycle"></i></div>
                     <div class="stats-info">
@@ -200,7 +200,7 @@
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
-            <div class="col-md-3 col-sm-6">
+  <%--          <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-blue">
                     <div class="stats-icon"><i class="fa fa-building"></i></div>
                     <div class="stats-info">
@@ -209,58 +209,58 @@
                         </div>
                         <div>
                             <h4>Pending:
-                                <%--<%--%>
+                                &lt;%&ndash;&lt;%&ndash;dash;%&gt;
 
-                                <%--LGUConnect conl = new LGUConnect();--%>
-                                <%--Connection con4 = conl.getConnection();--%>
-                                <%--Statement dd = con4.createStatement();--%>
-                                <%--ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");--%>
-                                <%--while (vv.next())--%>
-                                <%--{--%>
-                                <%--out.print(vv.getString("D"));--%>
-                                <%--}--%>
-                                <%--%>--%>
+                                &lt;%&ndash;LGUConnect conl = new LGUConnect();&ndash;%&gt;
+                                &lt;%&ndash;Connection con4 = conl.getConnection();&ndash;%&gt;
+                                &lt;%&ndash;Statement dd = con4.createStatement();&ndash;%&gt;
+                                &lt;%&ndash;ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");&ndash;%&gt;
+                                &lt;%&ndash;while (vv.next())&ndash;%&gt;
+                                &lt;%&ndash;{&ndash;%&gt;
+                                &lt;%&ndash;out.print(vv.getString("D"));&ndash;%&gt;
+                                &lt;%&ndash;}&ndash;%&gt;
+                                &lt;%&ndash;dash;%&gt;&ndash;%&gt;
                             </h4>
                         </div>
                         <div>
                             <h4>Released:
-                                <%--<%--%>
+                                &lt;%&ndash;&lt;%&ndash;dash;%&gt;
 
-                                <%--LGUConnect cono = new LGUConnect();--%>
-                                <%--Connection con5 = cono.getConnection();--%>
-                                <%--Statement ee = con5.createStatement();--%>
-                                <%--ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");--%>
-                                <%--while (ww.next())--%>
-                                <%--{--%>
-                                <%--out.print(ww.getString("E"));--%>
-                                <%--}--%>
-                                <%--%>--%>
+                                &lt;%&ndash;LGUConnect cono = new LGUConnect();&ndash;%&gt;
+                                &lt;%&ndash;Connection con5 = cono.getConnection();&ndash;%&gt;
+                                &lt;%&ndash;Statement ee = con5.createStatement();&ndash;%&gt;
+                                &lt;%&ndash;ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");&ndash;%&gt;
+                                &lt;%&ndash;while (ww.next())&ndash;%&gt;
+                                &lt;%&ndash;{&ndash;%&gt;
+                                &lt;%&ndash;out.print(ww.getString("E"));&ndash;%&gt;
+                                &lt;%&ndash;}&ndash;%&gt;
+                                &lt;%&ndash;dash;%&gt;&ndash;%&gt;
                             </h4>
                         </div>
                         <div>
                             <h4>Terminated:
-                                <%--<%--%>
+                                &lt;%&ndash;&lt;%&ndash;dash;%&gt;
 
-                                <%--LGUConnect conp = new LGUConnect();--%>
-                                <%--Connection con6 = conp.getConnection();--%>
-                                <%--Statement ff = con6.createStatement();--%>
-                                <%--ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");--%>
-                                <%--while (xx.next())--%>
-                                <%--{--%>
-                                <%--out.print(xx.getString("F"));--%>
-                                <%--}--%>
-                                <%--%>--%>
+                                &lt;%&ndash;LGUConnect conp = new LGUConnect();&ndash;%&gt;
+                                &lt;%&ndash;Connection con6 = conp.getConnection();&ndash;%&gt;
+                                &lt;%&ndash;Statement ff = con6.createStatement();&ndash;%&gt;
+                                &lt;%&ndash;ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");&ndash;%&gt;
+                                &lt;%&ndash;while (xx.next())&ndash;%&gt;
+                                &lt;%&ndash;{&ndash;%&gt;
+                                &lt;%&ndash;out.print(xx.getString("F"));&ndash;%&gt;
+                                &lt;%&ndash;}&ndash;%&gt;
+                                &lt;%&ndash;dash;%&gt;&ndash;%&gt;
                             </h4>
                         </div>
                     </div>
-                   <%-- <div class="stats-link">
+                   &lt;%&ndash; <div class="stats-link">
                         <a href="REVRptDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>--%>
+                    </div>&ndash;%&gt;
                 </div>
-            </div>
+            </div>--%>
             <!-- end col-3 -->
             <!-- begin col-3 -->
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-4 col-sm-6">
                 <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-money"></i></div>
                     <div class="stats-info">

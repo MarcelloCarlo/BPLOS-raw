@@ -72,7 +72,8 @@
                 <span>MTOPS Reports</span>
             </a>
             <ul class="sub-menu">
-
+                <li><a href="MTOPSTREReports.jsp"><span>Treasury Reports</span></a></li>
+                <li><a href="MTOPSAcomReports.jsp"><span>Accomplishment Reports</span></a></li>
             </ul>
         </li>
         <li class="has-sub pull-right">

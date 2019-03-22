@@ -14,10 +14,10 @@ $(document).ready(function () {
         console.log($(this).text());
         $("#tdPerm").text($(this).text());
     });
-    $("#lblTotal").text(sum);
-$("#totalAmt").val(sum);
+    $("#lblTotal").text(parseFloat(sum).toFixed(2));
+    $("#totalAmt").val(parseFloat(sum).toFixed(2));
     $("#txtAmt").on('input', function () {
-        $("#txtChng").val(parseFloat($(this).val()) - sum);
+        $("#txtChng").val(parseFloat(parseFloat($(this).val()).toFixed(2) - parseFloat(sum).toFixed(2)).toFixed(2));
     });
 
 });
@@ -32,7 +32,7 @@ $("#btnTresNewAppl").click(function () {
         title: "Are you sure?",
         text: "You will save your current changes",
         type: "warning",
-        confirmButtonColor: "#DD6B55",
+        confirmButtonColor: "#62a3cb",
         confirmButtonText: "Confirm!",
         showCancelButton: true,
         cancelButtonText: 'Cancel',

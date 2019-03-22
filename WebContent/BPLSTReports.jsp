@@ -43,7 +43,7 @@
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM bpls_t_official_receipt");%>
+        ResultSet gg3 = ss3.executeQuery("SELECT * FROM bpls_t_official_receipt OFR JOIN bpls_t_employee_profile EP ON EP.EP_ID = OFR.OIC_CITY_TREASURER ");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -71,7 +71,7 @@
                 <!-- begin panel -->
                 <div class="panel panel-inverse panel-danger">
                     <div class="panel-heading">
-                        <h4 class="panel-title"Reports Table</h4>
+                        <h4 class="panel-title">Reports Table</h4>
                     </div>
                     <div class="panel-body">
                         <table
@@ -81,6 +81,7 @@
                         >
                             <thead>
                             <tr>
+                                <th>Processed By</th>
                                 <th>Date</th>
                                 <th>Payment Type</th>
                                 <th>Total Amount</th>
@@ -92,9 +93,11 @@
                                 while (gg3.next()) {
                             %>
                             <tr>
+                                <td><%=gg3.getString("EP_FNAME") +" "+ gg3.getString("EP_LNAME")%>
+                                </td>
                                 <td><%=gg3.getDate("OR_DATE")%>
                                 </td><!--0-->
-                                <td><%=gg3.getString("OR_PYMNT_TYPE")%>
+                                <td><%=gg3.getString("OR_PYMT_TYPE")%>
                                 </td><!--1-->
                                 <td><%=gg3.getBigDecimal("OR_TOTAL_AMOUNT")%>
                                 </td><!--1-->
@@ -140,11 +143,24 @@
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
+<script src="assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-<script src="assets/js/table-manage-responsive.demo.min.js"></script>
+<script src="assets/js/table-manage-buttons.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/divTreasury.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
+<script>
+    $(document).ready(function(){
+        App.init();
+        TableManageButtons.init();
+    })
+</script>
 </body>
 <%
     } catch (SQLException | ClassNotFoundException e) {

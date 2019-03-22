@@ -95,11 +95,11 @@
                             <%--while (res.next()) {--%>
                             <%--%>--%>
                             <tr>
-                                <td>
+                                <td>Agricultural
                                 </td>
-                                <td>
+                                <td>Rice Land
                                 </td>
-                                <td>
+                                <td>Not Applicable
                                 </td>
                                 <td>
                                 </td>
@@ -142,7 +142,7 @@
                                                     <label>Property Class</label>
                                                     <div class="controls">
                                                         <select name="addlandpclass" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <option value="  ">-Select-</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -153,7 +153,7 @@
                                                     <label>Actual Use</label>
                                                     <div class="controls">
                                                         <select name="addactuse" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <option value="  ">-Select-</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -164,7 +164,7 @@
                                                     <label>Class</label>
                                                     <div class="controls">
                                                         <select name="addlandclass" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <option value="  ">-Select-</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -221,7 +221,7 @@
                                                     <label>Property Class</label>
                                                     <div class="controls">
                                                         <select name="editlandpclass" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <option value="  ">-Select-</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -232,7 +232,7 @@
                                                     <label>Actual Use</label>
                                                     <div class="controls">
                                                         <select name="editactuse" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <option value="  ">-Select-</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -243,7 +243,7 @@
                                                     <label>Class</label>
                                                     <div class="controls">
                                                         <select name="editlandclass" class="form-control">
-                                                            <option value="  "> </option>
+                                                            <option value="  ">-Select-</option>
                                                         </select>
                                                     </div>
                                                 </div>
