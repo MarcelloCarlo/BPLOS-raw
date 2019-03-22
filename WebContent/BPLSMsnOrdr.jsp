@@ -1,7 +1,7 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
@@ -58,7 +58,14 @@ String bu_pres,tp_name="",bu_loc="",bu_name ="",bn_name="";
 LGUConnect connect = new LGUConnect();
 try{
 Connection concc = connect.getConnection();
-    PreparedStatement getBuinf = concc.prepareStatement("SELECT * FROM bpls_t_business JOIN bpls_t_taxpayer taxpayer on bpls_t_business.TP_ID = taxpayer.TP_ID JOIN bpls_r_business_nature nature on bpls_t_business.BN_ID = nature.BN_ID WHERE  BU_ID = ?");
+PreparedStatement getEmpInf = (PreparedStatement) concc.prepareStatement("SELECT * FROM bpls_t_employee_profile WHERE EP_ID = ?");
+getEmpInf.setInt(1,Integer.parseInt(authIns));
+ResultSet s1 = getEmpInf.executeQuery();
+while (s1.next()){
+    authIns = s1.getString("EP_FNAME") + " "+ s1.getString("EP_LNAME");
+}
+
+    PreparedStatement getBuinf = (PreparedStatement) concc.prepareStatement("SELECT * FROM bpls_t_business JOIN bpls_t_taxpayer taxpayer on bpls_t_business.TP_ID = taxpayer.TP_ID JOIN bpls_r_business_nature nature on bpls_t_business.BN_ID = nature.BN_ID WHERE  BU_ID = ?");
     getBuinf.setInt(1,Integer.parseInt(buId));
     ResultSet rsBu= getBuinf.executeQuery();
     while(rsBu.next()){
@@ -98,7 +105,7 @@ Connection concc = connect.getConnection();
             <div class="invoice-content">
                 <div class="panel-body">
                     <p class="pull-left">
-                        Authority to Inspect: <%=authIns%><br/>
+                        Authority to Inspect:  <%=authIns%><br/>
                         Date: <%=moDate%><br/>
                         Expiry Date: <%=moExpD%><br/>
                     </p>
@@ -133,10 +140,10 @@ Connection concc = connect.getConnection();
                         <%=insOfficer%><br/>
                         Licence Inspector/Officer
                     </p>
-                    <p class="pull-right">
+                   <%-- <p class="pull-right">
                         <%=insOfficer1%><br/>
                         Licence Inspector/Officer
-                    </p>
+                    </p>--%>
                     <br>
                     <br>
                     <br>

@@ -32,8 +32,6 @@
                         }
                     %>
                 </span>
-                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;" class="fa fa-sign-out"></a>
-                <a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'  style="color: black;">Log Out</a>
             </label>
         </div>
         <!-- end header navigation right -->
@@ -48,19 +46,18 @@
     <ul class="nav">
         <%--<li><a href="PAEISSAIndex.jsp"><i class="fa fa-calendar"></i> <span>Records</span></a></li>--%>
         <li><a href="MTOPSAment.jsp"><i class="fa fa-file-text"></i> <span>Franchise Assessment Processing</span></a></li>
-        <%--<li class="has-sub">--%>
-            <%--<a href="javascript:;">--%>
-                <%--<b class="caret pull-right"></b>--%>
-                <%--<i class="fa fa-gears"></i>--%>
-                <%--<span>Reports</span>--%>
-            <%--</a>--%>
-            <%--<ul class="sub-menu">--%>
-                <%--<li><a href="BPLSETerReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Termination Reports</span></a></li>--%>
-                <%--<li><a href="BPLSEEndReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Evaluated Reports</span></a></li>--%>
-                <%--<li><a href="BPLSESSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Small Scale Reports</span></a></li>--%>
-                <%--<li><a href="BPLSELSReports.jsp"><i class="fa fa-file-excel-o"></i> <span>Large Scale Reports</span></a></li>--%>
-            <%--</ul>--%>
-        <%--</li>--%>
+        <li class="has-sub pull-right">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-text"></i>
+                <span>Account Settings</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href='PAEISAccMngmt.jsp?Id=<%=session.getAttribute("empid")%>'><span>Change Password</span></a>
+                </li>
+                <li><a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'><span>Log Out</span></a></li>
+            </ul>
+        </li>
     </ul>
     <!-- end top-menu nav -->
 </div>

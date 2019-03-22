@@ -90,12 +90,15 @@
         rel="stylesheet"> -->
 </head>
 <%
+    if (session.getAttribute("empid") == null || session.getAttribute("empname") == null) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
     LGUConnect conX = new LGUConnect();
     String treId = String.valueOf(session.getAttribute("empid"));
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
-        ResultSet gg3 = ss3.executeQuery("SELECT * FROM `view_applicationformsip`");
+        ResultSet gg3 = ss3.executeQuery("select `ap`.`AP_REFERENCE_NO` AS `AP_REFERENCE_NO`,`bus`.`BU_NAME` AS `BU_NAME`,`bus`.`BU_PRESIDENT` AS `BU_PRESIDENT`,concat(`tp`.`TP_FNAME`,' ',coalesce(`tp`.`TP_MNAME`,' '),' ',coalesce(`tp`.`TP_LNAME`,' ')) AS `TAX_PAYERNAME`,`bus`.`BU_LOCATION` AS `BU_LOCATION`,`bus`.`BU_CONTACT` AS `BU_CONTACT`,concat(`ar`.`AR_FNAME`,' ',coalesce(`ar`.`AR_MNAME`,' '),' ',coalesce(`ar`.`AR_LNAME`,' ')) AS `AUTH_REPNAME`,`ar`.`AR_HOME_ADDRESS` AS `AR_HOME_ADDRESS`,`bn`.`BN_NAME` AS `BN_NAME`,`bn`.`BN_CLASSIFICATION` AS `BN_CLASSIFICATION`,`ot`.`OT_NAME` AS `OT_NAME`,`ot`.`OT_CODE` AS `OT_CODE`,`ap`.`AP_TYPE` AS `AP_TYPE`,`ap`.`AP_DATE` AS `AP_DATE`,`ap`.`AP_ID` AS `AP_ID`,`ap`.`AP_STATUS` AS `AP_STATUS`,`ap`.`AP_DIV_CODE_TO` AS `AP_DIV_CODE_TO`,`ap`.`AP_DIV_CODE_FROM` AS `AP_DIV_CODE_FROM` from (((((((`bpls_t_business` `bus` join `bpls_r_business_nature` `bn` on((`bn`.`BN_ID` = `bus`.`BN_ID`))) join `bpls_r_ownership_type` `ot` on((`ot`.`OT_CODE` = `bus`.`OT_CODE`))) join `bpls_t_bp_application` `ap` on((`ap`.`BU_ID` = `bus`.`BU_ID`))) join `bpls_t_taxpayer` `tp` on((`tp`.`TP_ID` = `bus`.`TP_ID`))) join `bpls_r_bu_ar` `buxar` on((`buxar`.`BU_ID` = `bus`.`BU_ID`))) join `bpls_t_authorize_rep` `ar` on((`ar`.`AR_ID` = `buxar`.`AR_ID`))) join `bpls_r_division` `divs` on((`divs`.`DIV_CODE` = `ap`.`AP_DIV_CODE_TO`))) where ( ((`ap`.`AP_DIV_CODE_TO` = 'DIV-INS')) and (`ap`.`AP_STATUS` <> 'Terminated'))");
         Statement ss4 = conn3.createStatement();
         ResultSet gg4 = ss4.executeQuery("SELECT * FROM bpls_t_employee_profile");
         Statement ss5 = conn3.createStatement();
@@ -103,7 +106,7 @@
         Statement ss6 = conn3.createStatement();
         ResultSet gg6 = ss6.executeQuery("SELECT * FROM bpls_t_employee_profile");
         Statement ss7 = conn3.createStatement();
-        ResultSet gg7 = ss7.executeQuery("SELECT * FROM bpls_t_bp_application BP JOIN bpls_t_business business on BP.BU_ID = business.BU_ID WHERE AP_DIV_CODE_TO = 'DIV-INS'");
+        ResultSet gg7 = ss7.executeQuery("SELECT * FROM bpls_t_bp_application BP JOIN bpls_t_business business on BP.BU_ID = business.BU_ID WHERE (AP_DIV_CODE_TO = 'DIV-INS') AND AP_STATUS <> 'Terminated'");
 
 %>
 <body>
@@ -491,7 +494,7 @@
                                         <h5>
                                             Select An Application:
                                             <select class="selectpicker form-control" data-style="btn-white"
-                                                    name="bussIns" tabindex="-1"
+                                                    name="bussIns" tabindex="-1" required
                                             >
                                                 <%
                                                     while (gg7.next()) {
@@ -512,12 +515,13 @@
                                             Expiry Date:
                                             <input name="moExpD" type="date" class="form-control date" required/>
                                         </h5>
-                                        <h5>
+                                        <h5 hidden>
                                             Authority to Inspect:
-                                            <select class="selectpicker form-control" data-style="btn-white"
-                                                    name="authIns" tabindex="-1"
+                                            <input class="hidden" data-style="btn-white"
+                                                    name="authIns" tabindex="-1" value='<%=session.getAttribute("empid")
+                                                    %>'
                                             >
-                                                <%
+                                               <%-- <%
                                                     while (gg4.next()) {
                                                         String empName = gg4.getString("EP_FNAME") + " " + gg4.getString("EP_MNAME") + " " + gg4.getString("EP_LNAME");
                                                 %>
@@ -526,8 +530,8 @@
                                                 <%
                                                     }
                                                     gg4.close();
-                                                %>
-                                            </select>
+                                                %>--%>
+                                            </input>
                                         </h5>
                                         <h5>
                                             Head Inspection Division:
@@ -563,7 +567,7 @@
                                             Licence Ispector / Officer:
                                             <input id="insOfficer" name="insOfficer" type="text" class="form-control"/>
                                         </h5>
-                                        <h5>
+                                        <h5 hidden>
                                             Licence Ispector / Officer:
                                             <input
                                                     id="insOfficer1" name="insOfficer1" type="text" class="form-control"/>

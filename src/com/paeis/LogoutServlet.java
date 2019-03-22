@@ -17,16 +17,14 @@ import java.sql.SQLException;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
-    LGUConnect connect = new LGUConnect();
-    Connection connection;
+    private LGUConnect connect = new LGUConnect();
+    private Connection connection;
     private String divcode = "",auditId="";
 
     {
         try {
             connection = connect.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -38,7 +36,8 @@ public class LogoutServlet extends HttpServlet {
         if(session != null)
             session.invalidate();
         recSession(empId);
-        request.getRequestDispatcher("/PAEISPortal.jsp").forward(request,response);
+        //request.getRequestDispatcher("/PAEISPortal.jsp").forward(request,response);
+        response.sendRedirect("PAEISPortal.jsp");
     }
 
     private void recSession( String empId) {

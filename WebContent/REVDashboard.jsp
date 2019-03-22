@@ -1,11 +1,7 @@
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.Statement" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="jdk.nashorn.api.scripting.JSObject" %>
-<%@ page import="org.json.simple.JSONArray" %>
-<%@ page import="org.json.simple.JSONObject" %><%--
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -14,13 +10,23 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+<%
+    if(session.getAttribute("empname") == null || session.getAttribute("empid") == null){
+        response.sendRedirect("PAEISLogin.jsp");
+    }
+%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+
 <!--[if !IE]><!-->
+
 <html lang="en">
 <!--<![endif]-->
 <head>
     <meta charset="utf-8"/>
+    <meta HTTP-EQUIV="Pragma" content="no-cache"/>
+    <meta HTTP-EQUIV="Expires" content="-1"/>
+    <meta http-equiv="Cache-Control" content="no-cache" />
     <link rel="icon" href="extras/logo1.png">
     <title>Revenue | Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
@@ -48,8 +54,12 @@
 
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
+    <script src="extras/highcharts/code/highcharts.js"></script>
+    <script src="extras/highcharts/code/modules/data.js"></script>
+    <script src="extras/highcharts/code/modules/drilldown.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -74,10 +84,13 @@
 
         <!-- begin row -->
         <div class="row">
+            <div class="col-md-12">  <div class="panel-body">
+                <div id="lgu_rev" class="col-md-12"></div>
+            </div></div>
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-green">
-                    <div class="stats-icon"><i class="fa fa-desktop"></i></div>
+                    <div class="stats-icon"><i class="fa fa-file"></i></div>
                     <div class="stats-info">
                         <div><p>Business Permit</p></div>
                         <div>
@@ -123,16 +136,16 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                   <%-- <div class="stats-link">
                         <a href="REVBplsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-blue">
-                    <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                    <div class="stats-icon"><i class="fa fa-motorcycle"></i></div>
                     <div class="stats-info">
                         <div>
                             <p>MTOPS</p>
@@ -180,16 +193,16 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                  <%--  <div class="stats-link">
                         <a href="REVMtopsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-blue">
-                    <div class="stats-icon"><i class="fa fa-chain-broken"></i></div>
+                    <div class="stats-icon"><i class="fa fa-building"></i></div>
                     <div class="stats-info">
                         <div>
                             <p>RPT</p>
@@ -240,16 +253,16 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                   <%-- <div class="stats-link">
                         <a href="REVRptDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
             <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-purple">
-                    <div class="stats-icon"><i class="fa fa-users"></i></div>
+                    <div class="stats-icon"><i class="fa fa-money"></i></div>
                     <div class="stats-info">
                         <div><p>Revenue</p></div>
                         <div>
@@ -296,9 +309,9 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="stats-link">
+                   <%-- <div class="stats-link">
                         <a href="javascript:;">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
             <!-- end col-3 -->
@@ -315,241 +328,7 @@
 </div>
 
 <!-- end page container -->
-<script src="extras/highcharts/code/highcharts.js"></script>
-<script src="extras/highcharts/code/modules/data.js"></script>
-<script src="extras/highcharts/code/modules/drilldown.js"></script>
 
-<div id="lgu_rev" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-
-<script type="text/javascript">
-    var defaultTitle = "Yearly Revenue";
-    var drilldownTitle = "Monthly Revenue as of ";
-
-    // Create the chart
-    var chart = Highcharts.chart('lgu_rev', {
-        chart: {
-            type: 'bar',
-            events: {
-                drilldown: function (e) {
-                    chart.setTitle({
-                        text: drilldownTitle + e.point.name
-                    });
-                },
-                drillup: function (e) {
-                    chart.setTitle({
-                        text: defaultTitle
-                    });
-                }
-            }
-        },
-        title: {
-            text: defaultTitle
-        },
-        subtitle: {
-            text: 'Click the point to show the monthly revenue of the selected year.'
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
-            title: {
-                text: 'Total yearly revenue (PHP)'
-            }
-
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: 'PHP {point.y:.1f}'
-                }
-            }
-        },
-
-        tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>PHP {point.y:.2f}</b> of total<br/>'
-        },
-
-        "series": [
-            {
-                "name": "Business Permits",
-                "colorByPoint": false,
-                "data": [<% try {
-    LGUConnect chartDb = new LGUConnect();
-    Connection chartConn = chartDb.getConnection();
-    Statement chartStmt = chartConn.createStatement();
-    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from bpls_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
-    PrintWriter outx = response.getWriter();
-    while(chartResult.next()){%>{
-                    "name": "<%out.print(chartResult.getString("YEARS"));%>",
-                    "y": <%out.print(chartResult.getDouble("TOTAL_REVENUE"));%>,
-                    "drilldown": "<%out.print(chartResult.getString("YEARS"));%>"
-                }, <%
-                }
-
-            } catch (Exception e) {
-                out.print(e);
-            }%>]
-            },
-            {
-                "name": "Real Property Tax",
-                "colorByPoint": false,
-                "data": [
-                    {
-                        "name": "2018",
-                        "y": 34633.12,
-                        "drilldown": "2018"
-                    },
-                    {
-                        "name": "2019",
-                        "y": 18633.12,
-                        "drilldown": "2019"
-                    }
-                ]
-            },
-            {
-                "name": "MTOPS",
-                "colorByPoint": false,
-                "data": [<% try {
-    LGUConnect chartDb = new LGUConnect();
-    Connection chartConn = chartDb.getConnection();
-    Statement chartStmt = chartConn.createStatement();
-    ResultSet chartResult = chartStmt.executeQuery("SELECT YEAR(OR_DATE) AS YEARS, SUM(OR_TOTAL_AMOUNT) AS TOTAL_REVENUE from mtops_t_official_receipt GROUP BY YEAR(OR_DATE) ORDER BY SUM(OR_TOTAL_AMOUNT) DESC");
-    PrintWriter outx = response.getWriter();
-    while(chartResult.next()){%>{
-                    "name": "<%out.print(chartResult.getString("YEARS"));%>",
-                    "y": <%out.print(chartResult.getDouble("TOTAL_REVENUE"));%>,
-                    "drilldown": "<%out.print(chartResult.getString("YEARS"));%>"
-                }, <%
-                }
-
-            } catch (Exception e) {
-                out.print(e);
-            }%>]
-            }
-
-        ],
-        "drilldown": {
-            "series": [
-                {
-                    "name": "2018, Business Permits",
-                    "id": "2018",
-                    "data": [
-                        [
-                            "January",
-                            70.0
-                        ],
-                        [
-                            "February",
-                            40.0
-                        ],
-                        [
-                            "March",
-                            80.0
-                        ],
-
-                        [
-                            "April",
-                            60.0
-                        ],
-                        [
-                            "May",
-                            30.0
-                        ],
-                        [
-                            "June",
-                            40.0
-                        ],
-                        [
-                            "July",
-                            70.0
-                        ],
-                        [
-                            "August",
-                            75.0
-                        ],
-                        [
-                            "September",
-                            87.0
-                        ],
-                        [
-                            "October",
-                            93.0
-                        ],
-                        [
-                            "November",
-                            90.0
-                        ],
-                        [
-                            "December",
-                            94.0
-                        ]
-                    ]
-                },
-                {
-                    "name": "2019, Business Permits",
-                    "id": "2019",
-                    "data": [
-                        [
-                            "January",
-                            39.0
-                        ],
-                        [
-                            "February",
-                            40.0
-                        ],
-                        [
-                            "March",
-                            80.0
-                        ],
-                        [
-                            "April",
-                            60.0
-                        ],
-                        [
-                            "May",
-                            30.0
-                        ],
-                        [
-                            "June",
-                            40.0
-                        ],
-                        [
-                            "July",
-                            70.0
-                        ],
-                        [
-                            "August",
-                            63.0
-                        ],
-                        [
-                            "September",
-                            87.0
-                        ],
-                        [
-                            "October",
-                            93.0
-                        ],
-                        [
-                            "November",
-                            90.0
-                        ],
-                        [
-                            "December",
-                            85.0
-                        ]
-                    ]
-                }
-            ]
-        }
-    });
-</script>
 
 <jsp:include page="REVDashboardFooter.jsp"></jsp:include>
 
@@ -594,6 +373,95 @@
         TableManageResponsive.init();
         Dashboard.init();
     });
+</script>
+<script type="text/javascript">
+	var defaultTitle = "Annual Revenue";
+	var drilldownTitle = "Monthly Revenue as of ";
+
+	// Create the chart
+	var chart = Highcharts.chart('lgu_rev', {
+		chart: {
+			type: 'column',
+			events: {
+				drilldown: function (e) {
+					chart.setTitle({
+						text: drilldownTitle + e.point.name
+					});
+				},
+				drillup: function (e) {
+					chart.setTitle({
+						text: defaultTitle
+					});
+				}
+			}
+		},
+		title: {
+			text: defaultTitle
+		},
+		subtitle: {
+			text: 'Click the point to show the monthly revenue of the selected year.'
+		},
+		xAxis: {
+			type: 'category'
+		},
+		yAxis: {
+			title: {
+				text: 'Total Revenue (PHP)'
+			}
+
+		},
+		legend: {
+			enabled: false
+		},
+		plotOptions: {
+			series: {
+				borderWidth: 0,
+				dataLabels: {
+					enabled: true,
+					format: 'PHP {point.y:.2f}'
+				}
+			}
+		},
+
+		tooltip: {
+			headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+			pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>PHP {point.y:.2f}</b> of total<br/>'
+		},
+
+		"series": [
+			{
+				"name": "Current Total Revenue",
+				"colorByPoint": false,
+				"data": [<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YR,SUM(AMT), CONCAT('{name:''',YR, ''',y:', SUM(AMT),',drilldown:''', YR,'''}') AS YRREV FROM ((SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM bpls_t_official_receipt BP UNION ALL SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM mtops_t_official_receipt MT) AS CX) GROUP BY YR");
+    while(chartResult.next()){%><%out.print(chartResult.getString("YRREV"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>]
+			}
+
+		]
+		, "drilldown": {
+			"series": [
+				<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("(SELECT CONCAT('{name:''',YEARS, ''',id:', '''', YEARS, ''',data:[', GROUP_CONCAT(PERMONTH), ']}') AS YRDRILLDN FROM (SELECT concat('[''', MONTHS, ''',', SUM(TOTAL), ']') AS PERMONTH,YEARS,Module FROM(SELECT YEAR(BP.OR_DATE) AS YEARS,MONTHNAME(BP.OR_DATE) AS MONTHS,SUM(BP.OR_TOTAL_AMOUNT) AS TOTAL,'BPLS' AS Module FROM bpls_t_official_receipt BP GROUP BY MONTH(OR_DATE) UNION ALL SELECT YEAR(MT.OR_DATE) AS YEARS,MONTHNAME(MT.OR_DATE) AS MONTHS,SUM(MT.OR_TOTAL_AMOUNT) AS TOTAL,'MTOPS' AS Module FROM mtops_t_official_receipt MT GROUP BY MONTH(OR_DATE)) AS X GROUP BY MONTHS ORDER BY MONTHS) AS V GROUP BY YEARS ORDER BY YEARS)");
+    while(chartResult.next()){%> <%out.print(chartResult.getString("YRDRILLDN"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>
+			]
+		}
+	});
 </script>
 </body>
 </html>

@@ -43,14 +43,19 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
-<% LGUConnect conX = new LGUConnect();
+<%
+    if (session.getAttribute("empid") == null || session.getAttribute("empname") == null) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
+
+    LGUConnect conX = new LGUConnect();
     try {
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();
         Statement aaa = conn3.createStatement();
         Statement aa = conn3.createStatement();
         ResultSet sss = aaa.executeQuery("SELECT * FROM bpls_r_division");
-        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_t_employee_profile EMP ON U.EP_ID = EMP.EP_ID JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG DESC");%>
+        ResultSet res = ss3.executeQuery("SELECT * FROM bpls_t_user U JOIN bpls_t_employee_profile EMP ON U.EP_ID = EMP.EP_ID JOIN bpls_r_division DV ON U.U_ROLE = DV.DIV_CODE ORDER BY U_DATE_REG");%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>

@@ -12,7 +12,21 @@ $(document).ready(function () {
         format: "DD-MM-YYYY"
     });
 
-    $('#submitMtopsBtn').click(function () {
+    $('#txtApplicantTelNo').mask('000-0000');
+    $('#ApplicantRepPhoneNo').mask('0000 000 0000');
+
+    $('#txtApplicantTINNo').mask('000000000000');
+	
+	$('#applicationFormMtops').on('keyup keypress', function(e) {
+		var keyCode = e.keyCode || e.which;
+		if (keyCode === 13) {
+			e.preventDefault();
+			return false;
+		}
+	});
+	
+	
+	$('#submitMtopsBtn').click(function () {
         swal.mixin({
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,

@@ -88,6 +88,10 @@
         rel="stylesheet"> -->
 </head>
 <%
+
+    if (session.getAttribute("empid") == null || session.getAttribute("empname") == null) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
     LGUConnect conX = new LGUConnect();
     try {
         Connection conn3 = conX.getConnection();
@@ -163,7 +167,7 @@
                                                 class="btn btn-success mtopsModal"
                                                 data-toggle="modal"
                                                 data-target=".evaluation-modal-mtops"
-                                        > Evaluate
+                                        > <i class="fa fa-lg fa-pencil"></i>
                                         </button>
                                     </td>
                                     <td class="hidden"><%=gg3.getString("APF_FILENAME")%></td>

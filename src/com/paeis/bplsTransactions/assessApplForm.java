@@ -11,13 +11,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-@WebServlet("/assessNewApplForm")
+@WebServlet("/assessApplForm")
 @MultipartConfig
-public class assessApplication extends HttpServlet {
+public class assessApplForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private String divCode = "", divName ="";
 
-    public assessApplication() {
+    public assessApplForm() {
         super();
     }
 

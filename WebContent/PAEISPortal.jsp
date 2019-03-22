@@ -46,7 +46,7 @@
     <div class="login-cover-bg"></div>
 </div>
 <!-- begin #page-container -->
-<div id="page-container" class="fade">
+<div id="page-container" class="fade container-fluid">
     <!-- begin login -->
     <div class="login login-v2" data-pageload-addclass="animated fadeIn" style="margin-top: 9rem !important;">
         <!-- begin brand -->
@@ -57,9 +57,10 @@
         </div>
         <!-- end brand -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#default-tab-1" data-toggle="tab">News/Announcements</a></li>
+            <li class="active"><a href="#default-tab-1" data-toggle="tab">Latest News</a></li>
             <li class=""><a href="#default-tab-2" data-toggle="tab">Application Forms</a></li>
-            <li class=""><a href="#default-tab-3" data-toggle="tab">Users Login</a></li>
+            <li class=""><a href="#default-tab-3" data-toggle="tab">Login</a></li>
+            <li class=""><a href="#default-tab-4" data-toggle="tab">Application Status</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane fade active in" id="default-tab-1">
@@ -88,7 +89,7 @@
             <div class="tab-pane fade" id="default-tab-3">
                 <form name="loginEmpForm" id="loginEmpForm" action="/LoginServlet" method="post" novalidate=""
                       data-parsley-validate="">
-                    <h4>Users Login</h4>
+                    <h4>Employee Login</h4>
 
                     <div class="row">
 
@@ -115,6 +116,30 @@
 
                     <div class="modal-footer">
                         <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Log In</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="tab-pane fade" id="default-tab-4">
+                <form name="checkApplFrm" id="checkApplFrm" action="BPLSRtSlip.jsp" method="get" novalidate=""
+                      data-parsley-validate="">
+                    <h4>Application Tracking</h4>
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Reference Number</label>
+                                <div class="controls">
+                                    <input type="text" name="refNo" placeholder="Reference Number" class="form-control"
+                                           required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Continue</button>
                     </div>
                 </form>
 

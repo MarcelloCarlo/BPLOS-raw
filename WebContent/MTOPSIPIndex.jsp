@@ -87,7 +87,11 @@
     <!-- ================== END BASE JS ================== -->
 
 </head>
-<% LGUConnect conX = new LGUConnect();
+<%
+    if (session.getAttribute("empid") == null || session.getAttribute("empname") == null) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
+    LGUConnect conX = new LGUConnect();
     try{
         Connection conn3 = conX.getConnection();
         Statement ss3 = conn3.createStatement();

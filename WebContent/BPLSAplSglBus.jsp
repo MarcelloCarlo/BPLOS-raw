@@ -5,6 +5,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -127,7 +128,7 @@
                                         <legend class="pull-left width-full">Applicant's Information</legend>
                                         <!-- begin row -->
                                         <div class="form-group">
-                                            <p>By proceeding in this step. You agreed to the <a href="mailto:#">Terms & Conditions and Privacy Policy</a> of the system.</p>
+                                            <p>By proceeding in this step. You agreed to the <a data-toggle="modal" data-target="#modal_tc">Terms & Conditions and Privacy Policy</a> of the system.</p>
                                         </div>
                                             <div class="form-group">
                                                 <label> <input type="checkbox" class="form-group"
@@ -627,6 +628,217 @@
             <!-- end col-12 -->
         </div>
     </div>
+    <div class="modal fade evaluation-modal-new" id="modal_tc">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="panel panel-danger">
+                        <h4 class="modal-title">Terms & Conditions</h4>
+                    </div>
+                </div>
+                <div class="modal-body col-md-12">
+                    <div style="overflow-y: auto;">
+                        <p style="margin-left: 0cm; text-indent: 0cm; margin-bottom: 0cm; line-height: 150%"><a name="__DdeLink__157_3723383930"></a>
+                            <font face="Calibri Light">Boundaries and Accessibility</font></p>
+                        <p style="margin-left: 2.54cm; margin-bottom: 0cm; line-height: 150%">
+                            <font face="Calibri Light">1.	The Local Government Unit
+                                administration shall enforce boundaries when it comes to information
+                                access. Information inside the LGU shall be accessed and processed by
+                                an employee for business transactions only.</font></p>
+                        <ol start="2">
+                            <li><p style="margin-bottom: 0cm; line-height: 150%"><font face="Calibri Light">Accessing
+                                confidential information for personal interest and breaking into an
+                                individual?s privacy without prior purpose is strictly prohibited.</font></p>
+                            <li><p style="margin-bottom: 0cm; line-height: 150%"><font face="Calibri Light">Accountability
+                                shall be implemented. Employees shall not acquire information of an
+                                individual if it is not related to his/her job.</font></p>
+                            <li><p style="margin-bottom: 0cm; line-height: 150%"><font face="Calibri Light">The
+                                organization and employees shall comprehend intimately on what their
+                                roles are and how far they shall and shall not access.</font></p>
+                            <li><p style="margin-bottom: 0cm; line-height: 150%"><a name="_GoBack"></a>
+                                <font face="Calibri Light">Information System Providers shall not
+                                    amend any of the information inside the LGU-PAEIS unless they are
+                                    told by the LGU administration.</font></p>
+                        </ol>
+                        <h3 class="western"><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">Data
+                            protection principles</font></font></font></h3>
+                        <p lang="uz-Cyrl-UZ" align="left" style="margin-left: 0cm; text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                            <font color="#43475b"><font face="Calibri Light"><font color="#000000">LGU
+                                is committed to processing data in accordance with its
+                                responsibilities under the G</font><font color="#000000"><span lang="en-US">eneral
+Data Protection Regulation</span></font><font color="#000000">. </font></font></font>
+                        </p>
+                        <p lang="uz-Cyrl-UZ" align="left" style="margin-left: 0cm; text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                            <font color="#43475b"><font face="Calibri Light"><font color="#000000">Article
+                                5 of the GDPR requires that personal data shall be:</font></font></font></p>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">processed
+                                    lawfully, fairly and in a transparent manner in relation to
+                                    individuals;</font></font></font></p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">collected
+                                    for specified, explicit and legitimate purposes and not further
+                                    processed in a manner that is incompatible with those purposes;
+                                    further processing for archiving purposes in the public interest,
+                                    scientific or historical research purposes or statistical purposes
+                                    shall not be considered to be incompatible with the initial
+                                    purposes;</font></font></font></p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">adequate,
+                                    relevant and limited to what is necessary in relation to the
+                                    purposes for which they are processed;</font></font></font></p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">accurate
+                                    and, where necessary, kept up to date; every reasonable step must be
+                                    taken to ensure that personal data that are inaccurate, having
+                                    regard to the purposes for which they are processed, are erased or
+                                    rectified without delay;</font></font></font></p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">kept
+                                    in a form which permits identification of data subjects for no
+                                    longer than is necessary for the purposes for which the personal
+                                    data are processed; personal data may be stored for longer periods
+                                    insofar as the personal data will be processed solely for archiving
+                                    purposes in the public interest, scientific or historical research
+                                    purposes or statistical purposes subject to implementation of the
+                                    appropriate technical and organisational measures required by the
+                                    G</font><font color="#000000"><span lang="en-US">eneral Data
+	Protection Regulation</span></font><font color="#000000"> </font><font color="#000000"><span lang="en-US">
+	</span></font><font color="#000000">in order to safeguard the rights
+                                    and freedoms of individuals; and</font></font></font></p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">processed
+                                    in a manner that ensures appropriate security of the personal data,
+                                    including protection against unauthorised or unlawful processing and
+                                    against accidental loss, destruction or damage, using appropriate
+                                    technical or organisational measures.?</font></font></font></p>
+                        </ol>
+                        <h3 class="western"><a name="_fc5gzqehz3ij"></a><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">2.
+                            General provisions</font></font></font></h3>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">This
+                                    policy applies to all personal data processed by the </font><font color="#000000"><span lang="en-US">LGU</span></font><font color="#000000">.
+                                </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">The
+                                    Responsible Person shall take responsibility for the </font><font color="#000000"><span lang="en-US">LGU?</span></font><font color="#000000">s
+                                    ongoing compliance with this policy. </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">This
+                                    policy shall be reviewed at least annually. </font></font></font>
+                            </p>
+                        </ol>
+                        <h3 class="western"><a name="_oz341whevwr0"></a><a name="_v7qymv8hp0gg"></a>
+                            <font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt"><span lang="en-US">3</span></font></font><font color="#000000"><font size="2" style="font-size: 11pt">.
+                                Lawful purposes</font></font></font></h3>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">All
+                                    data processed by </font><font color="#000000"><span lang="en-US">LGU</span></font><font color="#000000">
+                                    must be done on one of the following lawful bases: consent,
+                                    contract, legal obligation, vital interests, public task or
+                                    legitimate interests </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000"><span lang="en-US">LGU
+	</span></font><font color="#000000"> shall note the appropriate
+                                    lawful basis in the Register of Systems.</font></font></font></p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">Where
+                                    consent is relied upon as a lawful basis for processing data,
+                                    evidence of opt-in  consent shall be kept with the personal data. </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">Where
+                                    communications are sent to individuals based on their consent, the
+                                    option for the individual to revoke their consent should be clearly
+                                    available and systems should be in place to ensure such revocation
+                                    is reflected accurately in LGU?s systems.  </font></font></font>
+                            </p>
+                        </ol>
+                        <h3 class="western"><a name="_1iq7rjqlje2v"></a><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">5.
+                            Data minimisation</font></font></font></h3>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000"><span lang="en-US">LGU</span></font><font color="#000000">
+                                    shall ensure that personal data are adequate, relevant and limited
+                                    to what is necessary in relation to the purposes for which they are
+                                    processed. </font></font></font>
+                            </p>
+                        </ol>
+                        <h3 class="western"><a name="_bkwsqo6gr3nc"></a><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">6.
+                            Accuracy</font></font></font></h3>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000"><span lang="en-US">LGU</span></font><font color="#000000">
+                                    shall take reasonable steps to ensure personal data is accurate. </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">Where
+                                    necessary for the lawful basis on which data is processed, steps
+                                    shall be put in place to ensure that personal data is kept up to
+                                    date. </font></font></font>
+                            </p>
+                        </ol>
+                        <h3 class="western"><a name="_893ssflhrxil"></a><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">7.
+                            Archiving / removal</font></font></font></h3>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">To
+                                    ensure that personal data is kept for no longer than necessary, LGU
+                                    shall put in place an archiving policy for each area in which
+                                    personal data is processed and review this process annually. </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">The
+                                    archiving policy shall consider what data should/must be retained,
+                                    for how long, and why. </font></font></font>
+                            </p>
+                        </ol>
+                        <h3 class="western"><a name="_vqi3sa1963hz"></a><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">8.
+                            Security</font></font></font></h3>
+                        <ol type="a">
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">LGU
+                                    shall ensure that personal data is stored securely using modern
+                                    software that is kept-up-to-date.  </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">Access
+                                    to personal data shall be limited to personnel who need access and
+                                    appropriate security should be in place to avoid unauthorised
+                                    sharing of information. </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">When
+                                    personal data is deleted this should be done safely such that the
+                                    data is irrecoverable. </font></font></font>
+                            </p>
+                            <li><p lang="uz-Cyrl-UZ" align="left" style="text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                                <font color="#43475b"><font face="Calibri Light"><font color="#000000">Appropriate
+                                    back-up and disaster recovery solutions shall be in place. </font></font></font>
+                            </p>
+                        </ol>
+                        <h3 class="western"><a name="_mblk3j3c3czg"></a><font face="Calibri Light"><font color="#000000"><font size="2" style="font-size: 11pt">9.
+                            Breach</font></font></font></h3>
+                        <p lang="uz-Cyrl-UZ" align="left" style="margin-left: 0cm; text-indent: 0cm; margin-bottom: 0.35cm; border: none; padding: 0cm; line-height: 100%">
+                            <font color="#43475b"><font face="Calibri Light"><font color="#000000">In
+                                the event of a breach of security leading to the accidental or
+                                unlawful destruction, loss, alteration, unauthorised disclosure of,
+                                or access to, personal data, LGU shall promptly assess the risk to
+                                people?s rights and freedoms and if appropriate report this breach
+                                to </font><font color="#000000"><span lang="en-US">LGU Legal Office.</span></font></font></font></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary" data-dismiss="modal">I Agree</button>
+                </div>
+            </div>
+        </div></div>
     <!-- end #content -->
 
     <!-- begin scroll to top btn -->
@@ -691,6 +903,8 @@
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
 <script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->

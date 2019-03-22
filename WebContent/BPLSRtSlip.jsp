@@ -16,8 +16,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    if (request.getParameter("refNo") == null || request.getParameter("refNo").isEmpty()) {
+        response.sendRedirect("PAEISPortal.jsp");
+    }
+%>
 <% LGUConnect conX = new LGUConnect();
-String BPno = "";
+    String BPno = "";
+    boolean chkSt = true;
     try {
         String natureSt = "";
         Connection connection = conX.getConnection();
@@ -26,13 +32,14 @@ String BPno = "";
         getAssess.setString(1, refNo);
         ResultSet rs = getAssess.executeQuery();
         PreparedStatement getHist = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_ap_history WHERE TL_AP_NO = ?");
-        getHist.setString(1,refNo);
+        getHist.setString(1, refNo);
         ResultSet rs1 = getHist.executeQuery();
         PreparedStatement getBP = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_business_permit JOIN bpls_t_bp_application a on bpls_t_business_permit.AP_ID = a.AP_ID WHERE bpls_t_business_permit.AP_ID = ? ");
-        getBP.setString(1,refNo);
+        getBP.setString(1, refNo);
         ResultSet rsx = getBP.executeQuery();
 
-        while (rsx.next()){
+
+        while (rsx.next()) {
             BPno = String.valueOf(rsx.getString("BP_NUMBER"));
         }
 %>
@@ -133,28 +140,40 @@ String BPno = "";
                         <h4 class="panel-title">Application Tracker</h4>
                     </div>
                     <div class="panel-body">
-                        <%while (rs.next()) {
-                            String _pres = String.valueOf(rs.getString("BU_PRESIDENT"));
-                            String pres="";
-                            if (_pres.equalsIgnoreCase("null")){
-                                pres = "None";
-                            }
-                            String classification = String.valueOf(rs.getString("BN_CLASSIFICATION"));
-                            if (classification.equalsIgnoreCase("S")) {
-                                natureSt = "(Small Scale)";
-                            } else if (classification.equalsIgnoreCase("L")) {
-                                natureSt = "(Large Scale)";
-                            } else {
-                                natureSt = "(Unidentified)";
-                            }%>
+                        <%
+                            /* if(!rs.next()){
+                                 response.sendRedirect("PAEISPortal.jsp");
+                             }*/
+
+                            while (rs.next()) {
+                                chkSt = false;
+                                String ap_id = rs.getString("AP_ID");
+                                if (ap_id.isEmpty() || ap_id.equalsIgnoreCase(null)) {
+                                    response.sendRedirect("PAEISPortal.jsp");
+                                }
+                                String _pres = String.valueOf(rs.getString("BU_PRESIDENT"));
+                                String pres = "";
+
+                                if (_pres.equalsIgnoreCase("null")) {
+                                    pres = "None";
+                                }
+                                String classification = String.valueOf(rs.getString("BN_CLASSIFICATION"));
+                                if (classification.equalsIgnoreCase("S")) {
+                                    natureSt = "(Small Scale)";
+                                } else if (classification.equalsIgnoreCase("L")) {
+                                    natureSt = "(Large Scale)";
+                                } else {
+                                    natureSt = "(Unidentified)";
+                                }%>
                         <div class="form-group">
-                            <input class="hidden" id="_refNo" value="<%=refNo%>">
-<input class="hidden" name="hidAPID" id="hidAPID" value="<%out.print(rs.getString("AP_ID"));%>"/>
+                            <input class="hidden" id="_refNo" value="<%=refNo%>" hidden>
+                            <input class="hidden" name="hidAPID" id="hidAPID" value="<%=ap_id%>" hidden/>
                             <h5>Business Name/Corporate Name: <label><%out.print(rs.getString("BU_NAME"));%></label>
                             </h5>
                         </div>
                         <div class="form-group">
-                            <h5>Name of Sole Proprietor/Partnership/President: <label><%=pres%></label></h5>
+                            <h5>Name of Sole Proprietor/Partnership/President: <label><%=pres%>
+                            </label></h5>
                         </div>
                         <div class="form-group">
                             <h5>Business Address: <label><%out.print(rs.getString("BU_LOCATION"));%></label></h5>
@@ -171,7 +190,9 @@ String BPno = "";
                         <div class="form-group">
                             <h5>Business Nature: <label><%out.print(rs.getString("BN_NAME"));%></label></h5>
                         </div>
-                        <%  }rs.close();%>
+                        <% } if(chkSt){
+                            response.sendRedirect("PAEISPortal.jsp");
+                        }%>
                     </div>
 
                     <hr>
@@ -180,42 +201,45 @@ String BPno = "";
                         <ul class="timeline">
                             <%
 
-                                int total = 0; while (rs1.next()) {
-                                String stRemarks = "";
-                                String divGuide = "";
-                                String remarks = String.valueOf(rs1.getString("TL_REMARKS"));
-                                String divCode = String.valueOf(rs1.getString("TL_DIV_CODE"));
-                                Date _tldate = rs1.getTimestamp("TL_DATE");
-                                String tldate = null;
-                               String tltime = null;
-                               String reuploadBtn = "";
-                               String printPermbtn = "";
-                            if (remarks.equalsIgnoreCase("null")||remarks.isEmpty()){
-                                stRemarks = "No Comments."; }
-                                else { stRemarks = remarks;}
-                                tldate = new SimpleDateFormat("MMMM dd, yyyy").format(_tldate);
-                                tltime =  new SimpleDateFormat("hh:mm aaa").format(_tldate);
-                                if(divCode.equals("DIV-EV")){
-                                    divGuide = "Great! Evaluating you Application.";
-                                } else if (divCode.equals("DIV-INS")){
-                                    divGuide = "Inspectioning your business.";
-                                } else if (divCode.equals("DIV-INV")){
-                                    divGuide = "It seems you have violations. Starting investigation.";
-                                } else if (divCode.equals("DIV-AS")){
-                                    divGuide = "Assessing your payment for your business.";
-                                } else if (divCode.equals("DIV-TRE")){
-                                    divGuide = "Assessed! Please claim your billing statement and prepare for the payment";
-                                } else if (divCode.equals("DIV-REL")){
-                                    divGuide = "Releasing! Please claim your business permit.";
-                                } else if (divCode.equals("END")){
-                                    divGuide = "Done! Thank you for your contribution!";
-                                    printPermbtn = "<a class='btn btn-success'  href='BPLSBsnsPermit.jsp?bpNo="+BPno+"'>Print</a>";
-                                } else if (divCode.equals("DIV-RINS")){
-                                    divGuide = "Giving you an another re-inspection. Please comply to procede.";
-                                } else if (divCode.equals("DIV-REV")){
-                                    divGuide = "There's a problem on your documents. Please re-upload your file with required documents";
-                                    reuploadBtn = "<p><form  name='reuploadFileForm' id='reuploadFileForm' enctype='multipart/form-data' action='reuploadFile' method='POST'> <input type='text' class='hidden' id='refNo' name='refNo'> <input type='number' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required> <hr><button type='submit' class='btn btn-success '>Reupload</button></form><p>";
-                                }
+                                int total = 0;
+                                while (rs1.next()) {
+                                    String stRemarks = "";
+                                    String divGuide = "";
+                                    String remarks = String.valueOf(rs1.getString("TL_REMARKS"));
+                                    String divCode = String.valueOf(rs1.getString("TL_DIV_CODE"));
+                                    Date _tldate = rs1.getTimestamp("TL_DATE");
+                                    String tldate = null;
+                                    String tltime = null;
+                                    String reuploadBtn = "";
+                                    String printPermbtn = "";
+                                    if (remarks.equalsIgnoreCase("null") || remarks.isEmpty()) {
+                                        stRemarks = "No Comments.";
+                                    } else {
+                                        stRemarks = remarks;
+                                    }
+                                    tldate = new SimpleDateFormat("MMMM dd, yyyy").format(_tldate);
+                                    tltime = new SimpleDateFormat("hh:mm aaa").format(_tldate);
+                                    if (divCode.equals("DIV-EV")) {
+                                        divGuide = "Great! We're evaluating your Application.";
+                                    } else if (divCode.equals("DIV-INS")) {
+                                        divGuide = "Inspecting your business. Please be prepared.";
+                                    } else if (divCode.equals("DIV-INV")) {
+                                        divGuide = "It seems you have violations. Starting investigation.";
+                                    } else if (divCode.equals("DIV-AS")) {
+                                        divGuide = "Assessing your payment for your business.";
+                                    } else if (divCode.equals("DIV-TRE")) {
+                                        divGuide = "Assessed! Please claim your billing statement and prepare for the payment";
+                                    } else if (divCode.equals("DIV-REL")) {
+                                        divGuide = "Releasing! Please claim your business permit.";
+                                    } else if (divCode.equals("END")) {
+                                        divGuide = "Done! Thank you for your contribution!";
+                                        printPermbtn = "<a class='btn btn-success'  href='BPLSBsnsPermit.jsp?bpNo=" + BPno + "'>Print</a>";
+                                    } else if (divCode.equals("DIV-RINS")) {
+                                        divGuide = "Giving you an another re-inspection. Please comply to procede.";
+                                    } else if (divCode.equals("DIV-REV")) {
+                                        divGuide = "There's a problem on your documents. Please re-upload your file with required documents";
+                                        reuploadBtn = "<p><form  name='reuploadFileForm' id='reuploadFileForm' enctype='multipart/form-data' action='reuploadFile' method='POST'> <input type='text' class='hidden' id='refNo' name='refNo'> <input type='number' class='hidden' id='apID' name='apID'><input type='file' name='fileUnifiedRequirements' id='fileUnifiedRequirements' accept='.doc,.docx,.pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf' required> <hr><button type='submit' class='btn btn-success '>Reupload</button></form><p>";
+                                    }
                             %>
                             <li>
                                 <!-- begin timeline-time -->
@@ -226,13 +250,15 @@ String BPno = "";
                                 <!-- end timeline-time -->
                                 <!-- begin timeline-icon -->
                                 <div class="timeline-icon">
-                                    <a href="javascript:;"><%=total+=1%></a>
+                                    <a href="javascript:;"><%=total += 1%>
+                                    </a>
                                 </div>
                                 <!-- end timeline-icon -->
                                 <!-- begin timeline-body -->
                                 <div class="timeline-body">
                                     <div class="timeline-header">
-                                        <span class="username"><a href="javascript:;">Status: <%=rs1.getString("TL_DIV_NAME")%></a> <small></small></span>
+                                        <span class="username"><a
+                                                href="javascript:;">Status: <%=rs1.getString("TL_DIV_NAME")%></a> <small></small></span>
                                     </div>
                                     <div class="timeline-content">
                                         <p>
@@ -240,12 +266,13 @@ String BPno = "";
                                         </p><%=reuploadBtn%> <%=printPermbtn%>
                                     </div>
                                     <div class="timeline-footer">
-                                        <p><%=divGuide%></p>
+                                        <p><%=divGuide%>
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- end timeline-body -->
                             </li>
-                            <%}rs1.close();%>
+                            <%}%>
                         </ul>
                     </div>
                 </div>
@@ -260,11 +287,7 @@ String BPno = "";
     <!-- end scroll to top btn -->
 </div>
 
-<%
-    } catch (Exception e) {
-        out.print(e);
-    }
-%>
+
 <!-- ================== BEGIN BASE JS ================== -->
 <script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
@@ -295,3 +318,8 @@ String BPno = "";
 <!-- ================== END PAGE LEVEL JS ================== -->
 </body>
 </html>
+<%
+    } catch (Exception e) {
+        out.print(e);
+    }
+%>

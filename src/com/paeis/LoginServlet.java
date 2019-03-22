@@ -75,25 +75,29 @@ public class LoginServlet extends HttpServlet {
                 String selectedPage = pageSelect(divcode);
 
                 if(!selectedPage.equalsIgnoreCase("none")) {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher(selectedPage);
-                    dispatcher.forward(request, response);
+                  //RequestDispatcher dispatcher = request.getRequestDispatcher(selectedPage);
+                  //dispatcher.forward(request, response);
+                    response.sendRedirect(selectedPage);
                     recSession(divcode, empId);
                 } else {
                     session.invalidate();
-                    request.setAttribute("errMsg", "<font color=red>Login Error. Please ensure that the Username/Password is correct.</font>");
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISLogin.jsp");
-                    requestDispatcher.forward(request, response);
+                    request.setAttribute("errMsg", "<font color=red>Login Error. Username/Password is incorrect.</font>");
+                    //RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISLogin.jsp");
+                    //requestDispatcher.forward(request, response);
+                    response.sendRedirect("PAEISLogin.jsp");
                 }
 
                 connection.close();
                 login.close();
 
 
+
             } else {
                 session.invalidate();
                 request.setAttribute("errMsg", "<font color=red>Login Error. Please ensure that the Username/Password is correct.</font>");
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISLogin.jsp");
-                requestDispatcher.forward(request, response);
+               //RequestDispatcher requestDispatcher = request.getRequestDispatcher("PAEISLogin.jsp");
+               //requestDispatcher.forward(request, response);
+                response.sendRedirect("PAEISLogin.jsp");
             }
         } catch (Exception e) {
             response.getWriter().print(e);
