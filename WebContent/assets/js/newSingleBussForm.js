@@ -5,7 +5,6 @@ $(document).ready(function () {
     FormPlugins.init();
 
     $('#dateNSingBussDTIReg').datetimepicker({
-        format: "DD-MM-YYYY"
 
     });
     $('#dateNSingBussEstRentStart').datetimepicker({

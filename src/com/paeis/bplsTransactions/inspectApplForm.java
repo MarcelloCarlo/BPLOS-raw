@@ -45,12 +45,12 @@ public class inspectApplForm extends HttpServlet {
         String MISC_INS = getCheckboxtatus(String.valueOf(request.getParameter("MISC_INS")));
         String MISC_REMARKS = String.valueOf(request.getParameter("MISC_REMARKS"));
         String busType = String.valueOf(request.getParameter("busType"));
+        String empID = String.valueOf(request.getParameter("empID"));
 
         if (Objects.equals(ZONING_INS, "Pass") && Objects.equals(FIRE_INS, "Pass") && Objects.equals(HS_INS, "Pass") && Objects.equals(BLDG_INS, "Pass") && Objects.equals(LABOR_INS, "Pass") && Objects.equals(MISC_INS, "Pass") && !AP_REFERENCE_NO.isEmpty() && !busType.isEmpty()) {
-            passedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType);
+            passedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID);
         } else {
-
-            failedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType);
+            failedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID);
         }
 
     }
@@ -66,7 +66,7 @@ public class inspectApplForm extends HttpServlet {
         return null;
     }
 
-    private void passedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType) {
+    private void passedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType, String empID) {
         if (!busType.equals("L") && !busType.equals("S")) {
             busType = "S";
         }
@@ -94,9 +94,10 @@ public class inspectApplForm extends HttpServlet {
             passIns.setString(8, MISC_REMARKS);
             passIns.executeUpdate();
 
-            PreparedStatement evalIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+            PreparedStatement evalIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ?, U_INS_ID = ? WHERE AP_REFERENCE_NO = ?");
             evalIns.setString(1, MISC_REMARKS);
-            evalIns.setString(2, AP_REFERENCE_NO);
+            evalIns.setInt(2, Integer.parseInt(empID));
+            evalIns.setString(3, AP_REFERENCE_NO);
             evalIns.executeUpdate();
 
             //Record
@@ -126,7 +127,7 @@ public class inspectApplForm extends HttpServlet {
         }
     }
 
-    private void failedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType) {
+    private void failedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType, String empID) {
         LGUConnect connect = new LGUConnect();
         if (!busType.equals("L") && !busType.equals("S")) {
             busType = "S";
@@ -155,9 +156,10 @@ public class inspectApplForm extends HttpServlet {
                 failIns.setString(7, MISC_INS);
                 failIns.setString(8, MISC_REMARKS);
                 failIns.executeUpdate();
-                PreparedStatement updateIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ? WHERE AP_REFERENCE_NO = ?");
+                PreparedStatement updateIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ?, U_INS_ID = ? WHERE AP_REFERENCE_NO = ?");
                 updateIns.setString(1, MISC_REMARKS);
-                updateIns.setString(2, AP_REFERENCE_NO);
+                updateIns.setInt(2,Integer.parseInt(empID));
+                updateIns.setString(3, AP_REFERENCE_NO);
                 updateIns.executeUpdate();
 
                 //Record

@@ -3,6 +3,7 @@ package com.paeis.bplsTransactions;
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +14,10 @@ import java.sql.ResultSet;
 import java.util.Objects;
 
 @MultipartConfig
-@WebServlet("/evaluateForm")
-public class evaluateForm extends HttpServlet {
+@WebServlet("/evaluateApplForm")
+public class evaluateApplForm extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private String currBN = "UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INS', AP_DIV_CODE_FROM = 'DIV-EV', AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
+    private String currBN = "UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-AS', AP_DIV_CODE_FROM = 'DIV-EV', AP_STATUS= 'Assess', U_EVAL_ID = ?, AP_DATE_ACCESSED = CURRENT_TIMESTAMP() WHERE AP_REFERENCE_NO = ?";
     private String divCode = "", divName = "", AP_REFERENCE_NO, AP_Remarks;
     private int _AT_ID, _AP_ID;
     private LGUConnect connect = new LGUConnect();
@@ -30,7 +31,7 @@ public class evaluateForm extends HttpServlet {
         }
     }
 
-    public evaluateForm() {
+    public evaluateApplForm() {
         super();
     }
 
@@ -40,6 +41,7 @@ public class evaluateForm extends HttpServlet {
         _AT_ID = Integer.parseInt(request.getParameter("_AT_ID"));
         _AP_ID = Integer.parseInt(request.getParameter("_AP_ID"));
         boolean isRenew = String.valueOf(request.getParameter("isRenew")).equals("T");
+        String empID = String.valueOf(request.getParameter("empID"));
         //New
         String AT_BRGY_CLEARANCE = String.valueOf(request.getParameter("AT_BRGY_CLEARANCE"));
         String AT_DTI_REGISTRATION = String.valueOf(request.getParameter("AT_DTI_REGISTRATION"));
@@ -64,9 +66,9 @@ public class evaluateForm extends HttpServlet {
         String AT_PCAB_LICENSE = String.valueOf(request.getParameter("AT_PCAB_LICENSE"));
 
         if (isRenew) {
-            evalRenew(AT_PREV_BP, AT_TAX_BILL, AT_BRGY_CLR, AT_LOC_CLR, AT_FSIC, AT_SH_CERT, AT_CTAO_CERT, AT_E_INSP, AT_LESSORS_BP, AT_PCAB_LICENSE);
+            evalRenew(AT_PREV_BP, AT_TAX_BILL, AT_BRGY_CLR, AT_LOC_CLR, AT_FSIC, AT_SH_CERT, AT_CTAO_CERT, AT_E_INSP, AT_LESSORS_BP, AT_PCAB_LICENSE,empID);
         } else {
-            evalNew(AT_BRGY_CLEARANCE, AT_DTI_REGISTRATION, AT_SEC_REGISTRATION, AT_TITLE_TO_PROPERTY, AT_CONTRACT_OF_LEASE, AT_AUTHORIZATION, AT_MISC_DOCUMENTS);
+            evalNew(AT_BRGY_CLEARANCE, AT_DTI_REGISTRATION, AT_SEC_REGISTRATION, AT_TITLE_TO_PROPERTY, AT_CONTRACT_OF_LEASE, AT_AUTHORIZATION, AT_MISC_DOCUMENTS,empID);
         }
 
     }
@@ -86,7 +88,7 @@ public class evaluateForm extends HttpServlet {
         return null;
     }
 
-    private void evalNew(String AT_BRGY_CLEARANCE, String AT_DTI_REGISTRATION, String AT_SEC_REGISTRATION, String AT_TITLE_TO_PROPERTY, String AT_CONTRACT_OF_LEASE, String AT_AUTHORIZATION, String AT_MISC_DOCUMENTS) {
+    private void evalNew(String AT_BRGY_CLEARANCE, String AT_DTI_REGISTRATION, String AT_SEC_REGISTRATION, String AT_TITLE_TO_PROPERTY, String AT_CONTRACT_OF_LEASE, String AT_AUTHORIZATION, String AT_MISC_DOCUMENTS, String empID) {
         try {
             PreparedStatement updateRequirements = (PreparedStatement) connection.prepareStatement(
                     "UPDATE bpls_t_attachments SET AT_BRGY_CLEARANCE = ?, AT_DTI_REGISTRATION = ?, AT_SEC_REGISTRATION = ?,AT_TITLE_TO_PROPERTY = ?, AT_CONTRACT_OF_LEASE = ?, AT_AUTHORIZATION = ?, AT_MISC_DOCUMENTS = ?, AP_Remarks = ? WHERE AT_ID = ? AND AP_ID = ?; ");
@@ -103,7 +105,8 @@ public class evaluateForm extends HttpServlet {
             updateRequirements.executeUpdate();
 
             PreparedStatement changeDiv = (PreparedStatement) connection.prepareStatement(currBN);
-            changeDiv.setString(1, AP_REFERENCE_NO);
+            changeDiv.setInt(1,Integer.parseInt(empID));
+            changeDiv.setString(2, AP_REFERENCE_NO);
             changeDiv.executeUpdate();
 
             //Record
@@ -134,7 +137,7 @@ public class evaluateForm extends HttpServlet {
 
     }
 
-    private void evalRenew(String AT_PREV_BP, String AT_TAX_BILL, String AT_BRGY_CLR, String AT_LOC_CLR, String AT_FSIC, String AT_SH_CERT, String AT_CTAO_CERT, String AT_E_INSP, String AT_LESSORS_BP, String AT_PCAB_LICENSE) {
+    private void evalRenew(String AT_PREV_BP, String AT_TAX_BILL, String AT_BRGY_CLR, String AT_LOC_CLR, String AT_FSIC, String AT_SH_CERT, String AT_CTAO_CERT, String AT_E_INSP, String AT_LESSORS_BP, String AT_PCAB_LICENSE,String empID) {
         try {
             PreparedStatement updateRequirements = (PreparedStatement) connection.prepareStatement(
                     "UPDATE bpls_t_attachments SET AT_PREV_BP = ?, AT_TAX_BILL = ?, AT_BRGY_CLEARANCE = ?, AT_LOCATIONAL_CLR = ?, AT_FSIC = ?, AT_SANITARY_HEALTH_CERT = ?, AT_CTAO_CLEARANCE_CERT = ?, AT_ELECTRICAL_INSP = ?, AT_LESSORS_BP = ?, AT_PCAB_LICENSE = ? WHERE AT_ID = ? AND AP_ID = ?; ");
@@ -153,7 +156,8 @@ public class evaluateForm extends HttpServlet {
             updateRequirements.executeUpdate();
 
             PreparedStatement changeDiv = (PreparedStatement) connection.prepareStatement(currBN);
-            changeDiv.setString(1, AP_REFERENCE_NO);
+            changeDiv.setInt(1,Integer.parseInt(empID));
+            changeDiv.setString(2, AP_REFERENCE_NO);
             changeDiv.executeUpdate();
 
             //Record

@@ -142,7 +142,7 @@ $(document).ready(function () {
                 datanewApplForm.append("isRenew","F");
                 $.ajax({
                     type: "POST",
-                    url: "evaluateForm",
+                    url: "evaluateApplForm",
                     data: datanewApplForm,
                     processData: false,
                     contentType: false,

@@ -70,7 +70,7 @@ $(document).ready(function () {
                     swal({
                         type: 'success',
                         title: 'DONE!.',
-                        text: 'Succesfully Evaluated',
+                        text: 'Succesfully Inspected',
                         confirmButtonText: 'OK'
                     }).then(function(result) {
                         if(result.value
