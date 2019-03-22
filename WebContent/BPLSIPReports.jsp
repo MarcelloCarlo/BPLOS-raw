@@ -28,7 +28,7 @@
     >
     <meta charset="ISO-8859-1">
     <link rel="icon" href="extras/logo1.png">
-    <title>BPLS | Termination Reports</title>
+    <title>BPLS | Inspection Termination Reports</title>
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
     <%--<link--%>
     <%--href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"--%>
@@ -99,7 +99,7 @@
                 <li class="active">Termination Reports</li>
             </ol>
             <!-- begin page-header -->
-            <h1 class="page-header">Termination Reports</h1>
+            <h1 class="page-header">Inspection Termination Reports</h1>
             <!-- end page-header -->
             <div class="row">
                 <div class="col-md-12">
