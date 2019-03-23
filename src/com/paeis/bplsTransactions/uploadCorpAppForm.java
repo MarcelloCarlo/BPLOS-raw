@@ -58,7 +58,7 @@ public class uploadCorpAppForm extends HttpServlet {
         String dateNCorpBussEstRentStart = reqX.getParameter("dateNCorpBussEstRentStart");
         String numNCorpBussEstRentMonth = reqX.getParameter("numNCorpBussEstRentMonth");
         String txtNCorpBussEstRentName = reqX.getParameter("txtNCorpBussEstRentName");
-        String numNCorpBussEstSignbrdArea = reqX.getParameter("numNCorpBussEstSignbrdArea");
+        String numNCorpBussEstSignbrdArea = (reqX.getParameter("numNCorpBussEstSignbrdArea").isEmpty() || reqX.getParameter("numNCorpBussEstSignbrdArea").equalsIgnoreCase("null") ? "0.00" : reqX.getParameter("numNCorpBussEstSignbrdArea"));
 
         String txtNCorpExBuss = reqX.getParameter("txtNCorpExBuss");
         String txtNCorpExBussNo = reqX.getParameter("txtNCorpExBussNo");
@@ -151,8 +151,9 @@ public class uploadCorpAppForm extends HttpServlet {
 
 
         String refNo = "";
-        String divCode = "";
+        String divCode = "DIV-INS";
         String divName = "";
+        String refId = "";
 
 
         // Do the insert here if you can
@@ -174,12 +175,14 @@ public class uploadCorpAppForm extends HttpServlet {
             rentInfo.setFloat(2, Float.parseFloat(numNCorpBussEstRentMonth));
             rentInfo.setString(3, txtNCorpBussEstRentName);
             rentInfo.executeUpdate();
+
             PreparedStatement taxPayerInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_taxpayer`(`TP_FNAME`,  `TP_TIN`,`TP_SSS_NO`) VALUES(?,?,?)");
             taxPayerInfo.setString(1, txtNCorpTaxPayName);
             taxPayerInfo.setString(2, txtNCorpTaxPayTINNo);
             taxPayerInfo.setString(3, txtNCorpEmpSSSNo);
             taxPayerInfo.executeUpdate();
-            PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_CODE`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),2)");
+
+            PreparedStatement businessInfo = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_business`(`BU_NAME`, `BU_PRESIDENT`, `BU_LOCATION`, `BU_PROPERTY_INDEX_NO`, `BU_LOT_BLOCK_NO`, `BU_FAX_NO`, `BU_CONTACT`, `SB_AREA`, `SEC_REG_NO`, `SEC_DATE`, `BU_EMP_NO`, `BU_UNIT_NO`, `BU_AREA`, `BU_CAPITALIZATION`, `BN_ID`, `TP_ID`, `OT_CODE`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,(SELECT MAX(`TP_ID`) FROM `bpls_t_taxpayer`),'OT-PRT')");
             businessInfo.setString(1, txtNCorpBussName);
             businessInfo.setString(2, txtNCorpPresidentName);
             businessInfo.setString(3, bu_loc);
@@ -187,7 +190,7 @@ public class uploadCorpAppForm extends HttpServlet {
             businessInfo.setString(5, txtNCorpLotBlckNo);
             businessInfo.setString(6, txtNCorpFaxNo);
             businessInfo.setString(7, txtNCorpTelNo);
-            businessInfo.setFloat(8, Float.parseFloat(numNCorpBussEstSignbrdArea));
+            businessInfo.setString(8, numNCorpBussEstSignbrdArea);
             businessInfo.setString(9, txtNCorpBussSECRegNo);
             businessInfo.setDate(10, _dateNCorpBussSECReg);
             businessInfo.setInt(11, Integer.parseInt(numNCorpEmpQTY));
@@ -196,6 +199,7 @@ public class uploadCorpAppForm extends HttpServlet {
             businessInfo.setFloat(14, Float.parseFloat(numNCorpBussCapitalization));
             businessInfo.setInt(15, Integer.parseInt(txtNCBussAct));
             businessInfo.executeUpdate();
+
             PreparedStatement authRep2Bus = (PreparedStatement) connection
                     .prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
                             + "VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
@@ -209,14 +213,19 @@ public class uploadCorpAppForm extends HttpServlet {
             fileUpload.executeUpdate();
 
             //Record
-            PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_REFERENCE_NO) AS REF_NO FROM bpls_t_bp_application");
+            PreparedStatement getAPno = (PreparedStatement) connection.prepareStatement("SELECT MAX(AP_ID) AS REF_ID FROM bpls_t_bp_application");
             ResultSet rsAPNO = getAPno.executeQuery();
-            refNo = rsAPNO.getString("REF_NO");
+            while (rsAPNO.next()) {
+                refId = rsAPNO.getString("REF_ID");
+            }
 
-            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_REFERENCE_NO = ?");
-            getAPinfo.setString(1, refNo);
+            PreparedStatement getAPinfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application WHERE AP_ID = ?");
+            getAPinfo.setInt(1, Integer.parseInt(refId));
             ResultSet rsAP = getAPinfo.executeQuery();
-            divCode = rsAP.getString("AP_DIV_CODE_TO");
+            while (rsAP.next()) {
+                refNo = rsAP.getString("AP_REFERENCE_NO");
+            }
+
 
             PreparedStatement getDivName = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_r_division WHERE DIV_CODE = ?");
             getDivName.setString(1, divCode);

@@ -17,10 +17,18 @@ $(document).ready(function () {
     
     $('#txtNSingBussFaxNo').mask('000-0000');
     
-    $('#txtNSingTaxPayTINNo').mask('000-000-000-000');
+    $('#txtNSingTaxPayTINNo').mask('000000000000');
     
-    
-    
+    $('#txtNSingPropIdxNo').mask('00000000000000');
+
+    $('#txtNSingBussDTIRegNo').mask('00000000');
+
+    $('#txtNSingEmpSSSNo').mask('000000000');
+
+    $('#numNSingBussAreaSqmts').mask('###999.99');
+
+    $('#numNSingBussUnitNo').mask('###999.99');
+
     $('#applicationFormSingle').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) {
@@ -35,8 +43,8 @@ $(document).ready(function () {
             showCancelButton: true,
             progressSteps: ['1', '2']
         }).queue([{
-            title: 'Terms & Conditions',
-            text: 'Do you agree on the terms and conditions?'
+            title: 'Verify Inputs?',
+            text: 'Ensure that the fields are correct'
         },
             'Confirm?',
         ]).then(function (result) {

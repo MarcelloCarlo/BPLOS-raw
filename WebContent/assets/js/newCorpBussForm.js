@@ -19,7 +19,24 @@ $(document).ready(function () {
         viewMode: 'years',
         format: "DD-MM-YYYY"
     });
-    
+
+    $('#txtNCorpTelNo').mask('000-0000');
+
+    $('#txtNCorpFaxNo').mask('000-0000');
+
+    $('#txtNCorpTaxPayTINNo').mask('000000000000');
+
+    $('#txtNCorpPropIdxNo').mask('00000000000000');
+
+    $('#txtNCorpBussSECRegNo').mask('00000000');
+
+    $('#txtNCorpEmpSSSNo').mask('000000000');
+
+    $('#numNCorpBussAreaSqmts').mask('###999.99');
+
+    $('#numNCorpBussUnitNo').mask('###999.99');
+
+
     $('#applicationFormCorp').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;
         if (keyCode === 13) {
@@ -27,14 +44,15 @@ $(document).ready(function () {
             return false;
         }
     });
+
     $('#submitBtn').click(function () {
         swal.mixin({
             confirmButtonText: 'Next &rarr;',
             showCancelButton: true,
             progressSteps: ['1', '2']
         }).queue([{
-            title: 'Terms & Conditions',
-            text: 'Do you agree on the terms and conditions?'
+            title: 'Verify Inputs',
+            text: 'Ensure that the fields are correct'
         },
             'Confirm?'
         ]).then(function (result){

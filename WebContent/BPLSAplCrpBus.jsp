@@ -208,7 +208,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Property Index No.*</label>
-                                                    <input type="text" name="txtNCorpPropIdxNo"
+                                                    <input type="text" name="txtNCorpPropIdxNo" id="txtNCorpPropIdxNo"
                                                            placeholder="Property Index No."
                                                            class="form-control" required
                                                            data-parsley-group="wizard-st-1"/>
@@ -239,8 +239,8 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Taxpayer's Name*</label>
-                                                    <input type="text" id="txtNSingTaxPayLName"
-                                                           name="txtNSingTaxPayLName" placeholder="Taxpayer's Name"
+                                                    <input type="text" id="txtNCorpTaxPayName"
+                                                           name="txtNCorpTaxPayName" placeholder="Taxpayer's Name"
                                                            class="form-control" required
                                                            data-parsley-group="wizard-st-2"/>
                                                 </div>
@@ -268,7 +268,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Taxpayer's Identification Number (TIN)*</label>
-                                                    <input type="text" name="txtNCorpTaxPayTINNo" placeholder="TIN"
+                                                    <input type="text" name="txtNCorpTaxPayTINNo" id="txtNCorpTaxPayTINNo" placeholder="TIN"
                                                            class="form-control" required
                                                            data-parsley-group="wizard-st-2"/>
                                                 </div>
@@ -290,7 +290,7 @@
                                                     <label>Name of Authorized Representative*</label>
                                                     <div class="controls">
                                                         <input type="text" name="txtNCorpAuthRepName"
-                                                               placeholder="Last Name"
+                                                               placeholder="Full Name"
                                                                class="form-control" data-parsley-group="wizard-st-3"
                                                                required/>
                                                     </div>
@@ -382,8 +382,7 @@
                                                 <div class="form-group">
                                                     <label>SEC Registration Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpBussSECRegNo" placeholder="SEC
-                                                        Registration Number" class="form-control"
+                                                        <input type="text" name="txtNCorpBussSECRegNo" id="txtNCorpBussSECRegNo" placeholder="SEC Registration Number" class="form-control"
                                                                data-parsley-group="wizard-st-4" required/>
                                                     </div>
                                                 </div>
@@ -400,9 +399,9 @@
                                                 <div class="form-group">
                                                     <label>Telephone Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpTelNo"
+                                                        <input type="text" name="txtNCorpTelNo" id="txtNCorpTelNo"
                                                                placeholder="Telephone Number"
-                                                               class="form-control" data-inputmask="'mask': '999-9999'"
+                                                               class="form-control"
                                                                required data-parsley-group="wizard-st-4"/>
                                                     </div>
                                                 </div>
@@ -411,8 +410,8 @@
                                                 <div class="form-group">
                                                     <label>Fax Number*</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpFaxNo" placeholder="Fax Number"
-                                                               class="form-control" data-inputmask="'mask': '999-9999'"
+                                                        <input type="text" name="txtNCorpFaxNo" id="txtNCorpFaxNo" placeholder="Fax Number"
+                                                               class="form-control"
                                                                required data-parsley-group="wizard-st-4"/>
                                                     </div>
                                                 </div>
@@ -425,7 +424,7 @@
                                                 <div class="form-group">
                                                     <label>If Employer, Employer's Social Security Number (SSS)</label>
                                                     <div class="controls">
-                                                        <input type="text" name="txtNCorpEmpSSSNo"
+                                                        <input type="text" name="txtNCorpEmpSSSNo" id="txtNCorpEmpSSSNo"
                                                                placeholder="SSS Number"
                                                                class="form-control"/>
                                                     </div>
@@ -469,8 +468,8 @@
                                                 <div class="form-group">
                                                     <label>&nbsp</label>
                                                     <div class="controls">
-                                                        <input type="text" name="numNCorpBussEstRentMonth"
-                                                               placeholder="Monthly Rental" class="form-control"/>
+                                                        <input type="text" name="numNCorpBussEstRentMonth" id="numNCorpBussEstRentMonth"
+                                                               placeholder="Monthly Rental (PHP)" class="form-control"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -497,7 +496,7 @@
                                                     </label> <input type="text" name="numNCorpBussEstSignbrdArea"
                                                                     id="numNCorpBussEstSignbrdArea"
                                                                     class="form-control col-md-3"
-                                                                    placeholder="Area of Signboard"
+                                                                    placeholder="Area of Signboard (inches)"
                                                                     disabled>
                                                 </div>
                                             </div>
@@ -537,7 +536,7 @@
                                                                         natureSt = "Unidentified";
                                                                     }
                                                             %>
-                                                            <option data-subtext="<%=natureSt%>"
+                                                            <option
                                                                     value="<%out.print(gg3.getInt("BN_ID"));%>">
                                                                 <%out.print(gg3.getString("BN_NAME"));%>
                                                             </option>
@@ -902,6 +901,9 @@ Data Protection Regulation</span></font><font color="#000000">. </font></font></
 <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
 <script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
 <script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="assets/plugins/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script src="assets/plugins/plentz-jquery-maskmoney/dist/jquery.maskMoney.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->

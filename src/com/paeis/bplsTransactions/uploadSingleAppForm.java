@@ -76,7 +76,7 @@ public class uploadSingleAppForm extends HttpServlet {
         String txtNSBussAct = request.getParameter("txtNSBussAct");
         String numNSingBussUnitNo = request.getParameter("numNSingBussUnitNo");
         String numNSingBussAreaSqmts = request.getParameter("numNSingBussAreaSqmts");
-        String numNSingBussCapitalization = request.getParameter("numNSingBussCapitalization");
+        String numNSingBussCapitalization = (request.getParameter("numNSingBussCapitalization").isEmpty() || request.getParameter("numNSingBussCapitalization").equalsIgnoreCase("null")  ? "0.00": request.getParameter("numNSingBussCapitalization"));
         // May not need at all
         String txtNSBussAct1 = request.getParameter("txtNSBussAct1");
         String numNSingBussUnitNo1 = request.getParameter("numNSingBussUnitNo1");
@@ -199,7 +199,7 @@ public class uploadSingleAppForm extends HttpServlet {
             businessInfo.setString(4, txtNSingLotBlckNo);
             businessInfo.setString(5, txtNSingBussFaxNo);
             businessInfo.setString(6, txtNSingBussTelNo);
-            businessInfo.setFloat(7, Float.parseFloat(numNSingBussEstSignbrdArea));
+            businessInfo.setString(7, numNSingBussEstSignbrdArea);
             businessInfo.setString(8, txtNSingBussDTIRegNo);
             businessInfo.setDate(9, _dateNSingBussDTIReg);
             businessInfo.setInt(10, Integer.parseInt(numNSingBussEmpQTY));
