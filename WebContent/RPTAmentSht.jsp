@@ -72,13 +72,18 @@
                 <table border="1" style="font-family: Arial; font-size: 10px;" width="100%">
                     <thead>
                     <tr>
-
                         <center style="font-size: 12px; padding: 10px 0px 10px 0px;">
                             <p style="color: black;margin: 0"> REAL PROPERTY FIELD APPRAISAL & ASSESSMENT SHEET </p>
                             <p style="color: black;margin: 0"> LAND / OTHER IMPROVEMENTS </p>
                         </center>
-
+                        <p style="text-align: right; padding-right: 100px">
+                            TRANSACTION CODE
+                        </p>
+                        <p>
+                            ______________
+                        </p>
                     </tr>
+
                     </thead>
 
                     <tbody>
