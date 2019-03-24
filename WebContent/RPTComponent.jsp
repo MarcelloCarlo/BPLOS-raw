@@ -60,7 +60,7 @@
                 <li><a href="RPTSetupMrktValAgrl.jsp">Market Value (Agricultural)</a></li>
             </ul>
         </li>
-        <li><a href="RPTTaxDec.jsp"><i class="fa fa-check-square-o"></i> <span>Tax Declaration</span></a></li>
+        <li><a href="RPTPrprty.jsp"><i class="fa fa-check-square-o"></i> <span>Properties</span></a></li>
         <li><a href="RPTTaxBill.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
         <li class="has-sub pull-right">
             <a href="javascript:;">
