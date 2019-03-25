@@ -144,7 +144,7 @@ public class LoginServlet extends HttpServlet {
                 selectedPage = "REVDashboard.jsp";
                 break;
             case "DIV-RPT":
-                selectedPage = "RPTTaxDec.jsp";
+                selectedPage = "RPTPrprty.jsp";
                 break;
             default: selectedPage = "none"; break;
         }
