@@ -64,6 +64,218 @@
                     <div class="panel-body">
                         <fieldset>
                             <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>ARP No.:</label>
+                                        <input type="text" name="arpno" placeholder="ARP No."
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>PIN:</label>
+                                        <input type="text" name="pin" placeholder="PIN"
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>OCT/TCT/CLOA No.</label>
+                                        <input type="text" name="oct" placeholder="OCT/TCT/CLOA No."
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Dated:</label>
+                                        <input type="text" class="form-control date" name="dated" id="birthdate" required placeholder="DD-MM-YYYY"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Survey No.:</label>
+                                        <input type="text" name="survey" placeholder="Survey No."
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Lot No.:</label>
+                                        <input type="text" name="lot" placeholder="Lot No."
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Blk:</label>
+                                        <input type="text" name="blk" placeholder="Blk"
+                                               class="form-control" required/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Owner:</label>
+                                        <input type="text" name="owner" placeholder="Owner"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tel No:</label>
+                                        <input type="text" name="ownertel"
+                                               placeholder="Tel No:"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>TIN:</label>
+                                        <input type="text" name="ownertin"
+                                               placeholder="TIN"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" name="owneradd" placeholder="Address"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Administrative/Beneficial User:</label>
+                                        <input type="text" name="admben" placeholder="Administrative/Beneficial User"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Tel No:</label>
+                                        <input type="text" name="admbentel"
+                                               placeholder="Tel No."
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>TIN:</label>
+                                        <input type="text" name="admbentin"
+                                               placeholder="Tin"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <input type="text" name="admbenadd" placeholder="Address"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <h4 class="pull-left width-full">Property Location</h4>
+                            <!-- begin row -->
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>No./Street:</label>
+                                        <input type="text" name="nostreet" placeholder="No./Street"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Brgy/District:</label>
+                                        <input type="text" name="brgydis"
+                                               placeholder="Brgy/District"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Municipality:</label>
+                                        <input type="text" name="munic"
+                                               placeholder="Municipality"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Province/City:</label>
+                                        <input type="text" name="procit" placeholder="Province/City"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <h4 class="pull-left width-full">Property Boundaries</h4>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>North:</label>
+                                        <input type="text" name="north" placeholder="North"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>East:</label>
+                                        <input type="text" name="east" placeholder="East"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>South:</label>
+                                        <input type="text" name="south" placeholder="South"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>West:</label>
+                                        <input type="text" name="west" placeholder="West"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>ID Number</label>
@@ -73,24 +285,24 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>PIN</label>
-                                        <div class="controls">
-                                            <input type="text" name="pin" placeholder="PIN"
-                                                   class="form-control" required/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Owner</label>
-                                        <div class="controls">
-                                            <input type="text" name="owner" placeholder="Owner"
-                                                   class="form-control" required/>
-                                        </div>
-                                    </div>
-                                </div>
+                                <%--<div class="col-md-6">--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>PIN</label>--%>
+                                        <%--<div class="controls">--%>
+                                            <%--<input type="text" name="pin" placeholder="PIN"--%>
+                                                   <%--class="form-control" required/>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                                <%--<div class="col-md-6">--%>
+                                    <%--<div class="form-group">--%>
+                                        <%--<label>Owner</label>--%>
+                                        <%--<div class="controls">--%>
+                                            <%--<input type="text" name="owner" placeholder="Owner"--%>
+                                                   <%--class="form-control" required/>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Effectivity Date</label>
@@ -100,6 +312,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <h4 class="pull-left width-full">Kind of Property Assessed</h4>
 
                             <div class="row">
                                 <div class="form-group">
@@ -118,58 +332,73 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-3">
-                                        <a href="#modal-assess" id="assessbtn" class="btn btn-primary" data-toggle="modal">Enter Assessed Value</a>
-                                    </div>
-                                </div>
                             </div>
 
-                            <br>
-
-                            <legend class="pull-left width-full">Kind of Property Assessed</legend>
+                            <hr>
 
                             <div class="row">
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" value="Land" checked />
-                                                Land
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" value="Machinery" />
-                                                Machinery
-                                            </label>
-                                                <input type="text" name="bridesc" placeholder="Brief Description"
-                                                       class="form-control" required/>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" value="option2" />
-                                                Others
-                                            </label>
-                                            <input type="text" name="others" placeholder="Specify"
-                                                   class="form-control" required/>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" value="option1" checked />
-                                                Building
-                                            </label>
-                                            <br>
-                                            No. of Stories
-                                            <input type="text" name="nostori"
-                                                   class="form-control" required/>
-                                            Brief Description
-                                            <input type="text" name="bldgdescbri" placeholder="Brief Description"
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Property Class</label>
+                                        <div class="controls">
+                                            <input type="text" name="pprtyclss" placeholder="Property Class"
                                                    class="form-control" required/>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Actual Use</label>
+                                        <div class="controls">
+                                            <input type="text" name="actluse"
+                                                   placeholder="Actual Use"
+                                                   class="form-control" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Market Value</label>
+                                        <div class="controls">
+                                            <input type="text" name="mrktval" placeholder="Market Value"
+                                                   class="form-control" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Assessment Level</label>
+                                        <div class="controls">
+                                            <input type="text" name="assesslvl"
+                                                   placeholder="Assessment Level"
+                                                   class="form-control" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Assessed Value</label>
+                                        <div class="controls">
+                                            <input type="text" name="assessval"
+                                                   class="form-control" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control date" name="lstdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
+                            <br>
 
                         </fieldset>
                     </div>
@@ -180,71 +409,6 @@
     </div>
     <!-- end #content -->
     <!-- #modal-assess -->
-    <div class="modal fade" id="modal-assess">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="panel panel-inverse panel-danger">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Enter Assessed Value</h4>
-                        </div>
-                        <div class="panel-body">
-                            <form enctype="multipart/form-data">
-                                <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
-                                <div>
-                                    <fieldset>
-                                        <legend class="pull-left width-full">Enter Assessed Value</legend>
-                                        <!-- begin row -->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Market Value</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="mrktval" placeholder="Market Value"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Assessment Level</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="assesslvl"
-                                                               placeholder="Assessment Level"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Assessed Value</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="assessval"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-sm btn-success">Add</button>
-                                        </div>
-                                        <!-- end row -->
-                                    </fieldset>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- begin scroll to top btn -->
     <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
