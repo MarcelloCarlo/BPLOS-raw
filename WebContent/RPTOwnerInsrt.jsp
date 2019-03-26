@@ -48,6 +48,13 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+LGUConnect connect = new LGUConnect();
+try{
+    Connection connection = connect.getConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_owner");
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -88,23 +95,23 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th class="hide"></th>
-                                <th>Owner</th>
-                                <th>Description</th>
+                                <th class="hidden">ID</th>
+                                <th>Name</th>
+                                <th>Address</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <%while(resultSet.next()){%>
                             <tr>
-                                <td class="hide"></td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
+                                <td class="hidden"><%=resultSet.getInt("RPO_ID")%></td>
+                                <td><%=resultSet.getString("RPO_FNAME") +" "+ resultSet.getString("RPO_SNAME")%></td>
+                                <td><%=resultSet.getString("RPO_ADDR")%></td>
                                 <td>
                                     <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editActUse" data-toggle="modal">Edit</a>
                                 </td>
                             </tr>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
@@ -125,22 +132,12 @@
                             <h4 class="panel-title">Owner</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data"name="addActualUseForm" id="addActualUseForm">
+                            <form enctype="multipart/form-data" name="addOwnerForm" id="addOwnerForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
-                                        <legend class="pull-left width-full">Actual Use</legend>
                                         <!-- begin row -->
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>ARP No.:</label>
-                                                    <input type="text" name="arpno" placeholder="ARP No."
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-
+                                       <%-- <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>PIN:</label>
@@ -149,43 +146,43 @@
                                                 </div>
                                             </div>
                                         </div>
-
+--%>
                                         <div class="row">
-                                            <div class="col-md-3">
+                                          <%--  <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>OCT/TCT/CLOA No.</label>
                                                     <input type="text" name="oct" placeholder="OCT/TCT/CLOA No."
                                                            class="form-control" required/>
                                                 </div>
-                                            </div>
+                                            </div>--%>
 
-                                            <div class="col-md-3">
+                                          <%--  <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Dated:</label>
                                                     <input type="text" class="form-control date" name="dated" id=" " required placeholder="DD-MM-YYYY"/>
                                                 </div>
-                                            </div>
+                                            </div>--%>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Survey No.:</label>
-                                                    <input type="text" name="survey" placeholder="Survey No."
+                                                    <label>First Name</label>
+                                                    <input type="text" name="addOwnFname" placeholder=""
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Lot No.:</label>
-                                                    <input type="text" name="lot" placeholder="Lot No."
+                                                    <label>Middle Name</label>
+                                                    <input type="text" name="addOwnMname" placeholder=""
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Blk:</label>
-                                                    <input type="text" name="blk" placeholder="Blk"
+                                                    <label>Last Name</label>
+                                                    <input type="text" name="addOwnSname" placeholder=""
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
@@ -194,8 +191,8 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Owner:</label>
-                                                    <input type="text" name="owner" placeholder="Owner"
+                                                    <label>Email</label>
+                                                    <input type="text" name="addOwnEmail" placeholder="name@example.com"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -203,7 +200,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Tel No:</label>
-                                                    <input type="text" name="ownertel"
+                                                    <input type="text" name="addOwnTel"
                                                            placeholder="Tel No:"
                                                            class="form-control"/>
                                                 </div>
@@ -212,7 +209,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>TIN:</label>
-                                                    <input type="text" name="ownertin"
+                                                    <input type="text" name="addOwnTin"
                                                            placeholder="TIN"
                                                            class="form-control"/>
                                                 </div>
@@ -221,13 +218,13 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="owneradd" placeholder="Address"
+                                                    <input type="text" name="addOwnAddr" placeholder="Address"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        <div class="row">
+                                        <%--<div class="row">
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
@@ -263,13 +260,13 @@
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div>--%>
 
                                         <br>
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="button" id="btnAddActualUse" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnAddOwner" class="btn btn-sm btn-success">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -289,71 +286,38 @@
                 <div class="modal-header">
                     <div class="panel panel-inverse panel-danger">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Owner</h4>
+                            <h4 class="panel-title">Edit Owner</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data" name="editActualUseForm" id="editActualUseForm">
+                            <form enctype="multipart/form-data" name="editOwnerForm" id="editOwnerForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
-                                <input type="text" id="au_id" name="au_id" class="hide">
+                                <input type="text" id="editRPO_id" name="editRPO_id" class="hide">
                                 <div>
                                     <fieldset>
-                                        <legend class="pull-left width-full">Owner</legend>
                                         <!-- begin row -->
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>ARP No.:</label>
-                                                    <input type="text" name="arpno" placeholder="ARP No."
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>PIN:</label>
-                                                    <input type="text" name="pin" placeholder="PIN"
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                         <div class="row">
-                                            <div class="col-md-3">
+
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>OCT/TCT/CLOA No.</label>
-                                                    <input type="text" name="oct" placeholder="OCT/TCT/CLOA No."
+                                                    <label>First Name</label>
+                                                    <input type="text" name="editOwnFname" placeholder=""
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Dated:</label>
-                                                    <input type="text" class="form-control date" name="dated" id="birthdate" required placeholder="DD-MM-YYYY"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Survey No.:</label>
-                                                    <input type="text" name="survey" placeholder="Survey No."
+                                                    <label>Middle Name/Initial</label>
+                                                    <input type="text" name="editOwnMname" placeholder=""
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Lot No.:</label>
-                                                    <input type="text" name="lot" placeholder="Lot No."
-                                                           class="form-control" required/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <label>Blk:</label>
-                                                    <input type="text" name="blk" placeholder="Blk"
+                                                    <label>Last Name</label>
+                                                    <input type="text" name="editOwnSname" placeholder=""
                                                            class="form-control" required/>
                                                 </div>
                                             </div>
@@ -362,8 +326,8 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Owner:</label>
-                                                    <input type="text" name="owner" placeholder="Owner"
+                                                    <label>Email</label>
+                                                    <input type="text" name="editOwnEmail" placeholder="Owner"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -371,7 +335,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Tel No:</label>
-                                                    <input type="text" name="ownertel"
+                                                    <input type="text" name="editOwnTel"
                                                            placeholder="Tel No:"
                                                            class="form-control"/>
                                                 </div>
@@ -380,7 +344,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>TIN:</label>
-                                                    <input type="text" name="ownertin"
+                                                    <input type="text" name="editOwnTin"
                                                            placeholder="TIN"
                                                            class="form-control"/>
                                                 </div>
@@ -389,51 +353,12 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Address</label>
-                                                    <input type="text" name="owneradd" placeholder="Address"
+                                                    <input type="text" name="editOwnAddr" placeholder="Address"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
 
                                         </div>
-                                        <div class="row">
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Administrative/Beneficial User:</label>
-                                                    <input type="text" name="admben" placeholder="Administrative/Beneficial User"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>Tel No:</label>
-                                                    <input type="text" name="admbentel"
-                                                           placeholder="Tel No."
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <div class="form-group">
-                                                    <label>TIN:</label>
-                                                    <input type="text" name="admbentin"
-                                                           placeholder="Tin"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <input type="text" name="admbenadd" placeholder="Address"
-                                                           class="form-control"/>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <br>
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
@@ -501,22 +426,22 @@
         App.init();
         TableManageResponsive.init();
 
-        $("#btnAddActualUse").click(function () {
+        $("#btnAddOwner").click(function () {
             swal({
                 title: "Are you sure?",
                 text: "You will save your current changes",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#4fcfff",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
             }).then(function (result) {
                 if(result.value){
-                    var addActualUseForm = new FormData($('#addActualUseForm')[0]);
+                    var addOwnerForm = new FormData($('#addOwnerForm')[0]);
                     $.ajax({
                         type: "POST",
-                        url: "insertActualUse",
-                        data: addActualUseForm,
+                        url: "insertOwnerProperty",
+                        data: addOwnerForm,
                         enctype: "multipart/form-data",
                         processData: false,
                         contentType: false,
@@ -554,7 +479,7 @@
                 title: "Are you sure?",
                 text: "Current changes will be saved.",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#4fcfff",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -613,4 +538,7 @@
 
 </script>
 </body>
+<%} catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>

@@ -48,7 +48,23 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
-<%try{%>
+<%try{
+LGUConnect connect = new LGUConnect();
+Connection connection = connect.getConnection();
+Statement statement = connection.createStatement();
+ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID");
+Statement statement1 = connection.createStatement();
+ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM rpt_t_rp_owner");
+Statement statement2 = connection.createStatement();
+ResultSet resultSet2 = statement2.executeQuery("SELECT * FROM rpt_r_actual_use");
+Statement statement3 = connection.createStatement();
+ResultSet resultSet3 = statement3.executeQuery("SELECT * FROM rpt_r_property_class");
+Statement statement4 = connection.createStatement();
+ResultSet resultSet4 = statement4.executeQuery("SELECT * FROM rpt_r_property_type");
+
+
+
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -89,21 +105,22 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
-                                <th>Property</th>
-                                <th>Description</th>
+                                <th>Owner</th>
+                                <th>Address</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
+                            <%while(resultSet.next()){%>
                             <tr>
-                                <td>
-                                </td>
+                                <td></td>
                                 <td>
                                 </td>
                                 <td>
                                     <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editActUse" data-toggle="modal">Edit</a>
                                 </td>
                             </tr>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
@@ -124,10 +141,49 @@
                             <h4 class="panel-title">Property</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data"name="addActualUseForm" id="addActualUseForm">
+                            <form enctype="multipart/form-data"name="addPropertyForm" id="addPropertyForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                 <div>
                                     <fieldset>
+                                        <h4 class="pull-left width-full">Property Information</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Owner</label>
+                                                    <select name="addPropOwner"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Property Class</label>
+                                                    <select name="addPropClass"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Property Type</label>
+                                                    <select name="addPropType"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Actual Use</label>
+                                                    <select name="addPropActualUse"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <h4 class="pull-left width-full">Property Location</h4>
                                         <!-- begin row -->
                                         <div class="row">
@@ -135,7 +191,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No./Street:</label>
-                                                    <input type="text" name="nostreet" placeholder="No./Street"
+                                                    <input type="text" name="addPropStreet" placeholder="No./Street"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -143,7 +199,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Brgy/District:</label>
-                                                    <input type="text" name="brgydis"
+                                                    <input type="text" name="addPropBrgy"
                                                            placeholder="Brgy/District"
                                                            class="form-control"/>
                                                 </div>
@@ -152,7 +208,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Municipality:</label>
-                                                    <input type="text" name="munic"
+                                                    <input type="text" name="addPropMunic"
                                                            placeholder="Municipality"
                                                            class="form-control"/>
                                                 </div>
@@ -161,7 +217,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Province/City:</label>
-                                                    <input type="text" name="procit" placeholder="Province/City"
+                                                    <input type="text" name="addPropProv" placeholder="Province/City"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -175,7 +231,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>North:</label>
-                                                    <input type="text" name="north" placeholder="North"
+                                                    <input type="text" name="addPropNorth" placeholder="North"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -183,7 +239,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>East:</label>
-                                                    <input type="text" name="east" placeholder="East"
+                                                    <input type="text" name="addPropEast" placeholder="East"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -191,7 +247,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>South:</label>
-                                                    <input type="text" name="south" placeholder="South"
+                                                    <input type="text" name="addPropSouth" placeholder="South"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -199,50 +255,50 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>West:</label>
-                                                    <input type="text" name="west" placeholder="West"
+                                                    <input type="text" name="addPropWest" placeholder="West"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
 
                                         </div>
 
-                                        <div class="row">
+                                       <%-- <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>ID Number</label>
                                                     <div class="controls">
-                                                        <input type="text" name="idnumber" placeholder="ID Number"
+                                                        <input type="text" name="addPropID" placeholder="ID Number"
                                                                class="form-control" required/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <%--<div class="col-md-6">--%>
-                                            <%--<div class="form-group">--%>
-                                            <%--<label>PIN</label>--%>
-                                            <%--<div class="controls">--%>
-                                            <%--<input type="text" name="pin" placeholder="PIN"--%>
-                                            <%--class="form-control" required/>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--<div class="col-md-6">--%>
-                                            <%--<div class="form-group">--%>
-                                            <%--<label>Owner</label>--%>
-                                            <%--<div class="controls">--%>
-                                            <%--<input type="text" name="owner" placeholder="Owner"--%>
-                                            <%--class="form-control" required/>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
+                                            &lt;%&ndash;<div class="col-md-6">&ndash;%&gt;
+                                            &lt;%&ndash;<div class="form-group">&ndash;%&gt;
+                                            &lt;%&ndash;<label>PIN</label>&ndash;%&gt;
+                                            &lt;%&ndash;<div class="controls">&ndash;%&gt;
+                                            &lt;%&ndash;<input type="text" name="pin" placeholder="PIN"&ndash;%&gt;
+                                            &lt;%&ndash;class="form-control" required/>&ndash;%&gt;
+                                            &lt;%&ndash;</div>&ndash;%&gt;
+                                            &lt;%&ndash;</div>&ndash;%&gt;
+                                            &lt;%&ndash;</div>&ndash;%&gt;
+                                            &lt;%&ndash;<div class="col-md-6">&ndash;%&gt;
+                                            &lt;%&ndash;<div class="form-group">&ndash;%&gt;
+                                            &lt;%&ndash;<label>Owner</label>&ndash;%&gt;
+                                            &lt;%&ndash;<div class="controls">&ndash;%&gt;
+                                            &lt;%&ndash;<input type="text" name="owner" placeholder="Owner"&ndash;%&gt;
+                                            &lt;%&ndash;class="form-control" required/>&ndash;%&gt;
+                                            &lt;%&ndash;</div>&ndash;%&gt;
+                                            &lt;%&ndash;</div>&ndash;%&gt;
+                                            &lt;%&ndash;</div>&ndash;%&gt;
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Effectivity Date</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control date" name="effectdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                                        <input type="date" class="form-control date" name="effectdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>--%>
 
                                         <%--<h4 class="pull-left width-full">Kind of Property Assessed</h4>
 
@@ -332,7 +388,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="button" id="btnAddActualUse" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnAddProperty" class="btn btn-sm btn-success">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -355,11 +411,40 @@
                             <h4 class="panel-title">Actual Use</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data" name="editActualUseForm" id="editActualUseForm">
+                            <form enctype="multipart/form-data"name="editPropertyForm" id="editPropertyForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
-                                <input type="text" id="au_id" name="au_id" class="hide">
                                 <div>
                                     <fieldset>
+                                        <h4 class="pull-left width-full">Property Information</h4>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Property Class</label>
+                                                    <select name="editPropClass"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Property Type</label>
+                                                    <select name="editPropType"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Actual Use</label>
+                                                    <select name="editPropActualUse"
+                                                            class="form-control">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <h4 class="pull-left width-full">Property Location</h4>
                                         <!-- begin row -->
                                         <div class="row">
@@ -367,7 +452,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>No./Street:</label>
-                                                    <input type="text" name="nostreet" placeholder="No./Street"
+                                                    <input type="text" name="editPropStreet" placeholder="No./Street"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -375,7 +460,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Brgy/District:</label>
-                                                    <input type="text" name="brgydis"
+                                                    <input type="text" name="editPropBrgy"
                                                            placeholder="Brgy/District"
                                                            class="form-control"/>
                                                 </div>
@@ -384,7 +469,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Municipality:</label>
-                                                    <input type="text" name="munic"
+                                                    <input type="text" name="editPropMunic"
                                                            placeholder="Municipality"
                                                            class="form-control"/>
                                                 </div>
@@ -393,7 +478,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Province/City:</label>
-                                                    <input type="text" name="procit" placeholder="Province/City"
+                                                    <input type="text" name="editPropProv" placeholder="Province/City"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -407,7 +492,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>North:</label>
-                                                    <input type="text" name="north" placeholder="North"
+                                                    <input type="text" name="editPropNorth" placeholder="North"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -415,7 +500,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>East:</label>
-                                                    <input type="text" name="east" placeholder="East"
+                                                    <input type="text" name="editPropEast" placeholder="East"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -423,7 +508,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>South:</label>
-                                                    <input type="text" name="south" placeholder="South"
+                                                    <input type="text" name="editPropSouth" placeholder="South"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
@@ -431,52 +516,52 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>West:</label>
-                                                    <input type="text" name="west" placeholder="West"
+                                                    <input type="text" name="editPropWest" placeholder="West"
                                                            class="form-control"/>
                                                 </div>
                                             </div>
 
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>ID Number</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="idnumber" placeholder="ID Number"
-                                                               class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <%--<div class="col-md-6">--%>
-                                            <%--<div class="form-group">--%>
-                                            <%--<label>PIN</label>--%>
-                                            <%--<div class="controls">--%>
-                                            <%--<input type="text" name="pin" placeholder="PIN"--%>
-                                            <%--class="form-control" required/>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--<div class="col-md-6">--%>
-                                            <%--<div class="form-group">--%>
-                                            <%--<label>Owner</label>--%>
-                                            <%--<div class="controls">--%>
-                                            <%--<input type="text" name="owner" placeholder="Owner"--%>
-                                            <%--class="form-control" required/>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <%--</div>--%>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Effectivity Date</label>
-                                                    <div class="controls">
-                                                        <input type="text" class="form-control date" name="effectdate" id="effectdateE" required placeholder="DD-MM-YYYY"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <%-- <div class="row">
+                                             <div class="col-md-6">
+                                                 <div class="form-group">
+                                                     <label>ID Number</label>
+                                                     <div class="controls">
+                                                         <input type="text" name="addPropID" placeholder="ID Number"
+                                                                class="form-control" required/>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                             &lt;%&ndash;<div class="col-md-6">&ndash;%&gt;
+                                             &lt;%&ndash;<div class="form-group">&ndash;%&gt;
+                                             &lt;%&ndash;<label>PIN</label>&ndash;%&gt;
+                                             &lt;%&ndash;<div class="controls">&ndash;%&gt;
+                                             &lt;%&ndash;<input type="text" name="pin" placeholder="PIN"&ndash;%&gt;
+                                             &lt;%&ndash;class="form-control" required/>&ndash;%&gt;
+                                             &lt;%&ndash;</div>&ndash;%&gt;
+                                             &lt;%&ndash;</div>&ndash;%&gt;
+                                             &lt;%&ndash;</div>&ndash;%&gt;
+                                             &lt;%&ndash;<div class="col-md-6">&ndash;%&gt;
+                                             &lt;%&ndash;<div class="form-group">&ndash;%&gt;
+                                             &lt;%&ndash;<label>Owner</label>&ndash;%&gt;
+                                             &lt;%&ndash;<div class="controls">&ndash;%&gt;
+                                             &lt;%&ndash;<input type="text" name="owner" placeholder="Owner"&ndash;%&gt;
+                                             &lt;%&ndash;class="form-control" required/>&ndash;%&gt;
+                                             &lt;%&ndash;</div>&ndash;%&gt;
+                                             &lt;%&ndash;</div>&ndash;%&gt;
+                                             &lt;%&ndash;</div>&ndash;%&gt;
+                                             <div class="col-md-6">
+                                                 <div class="form-group">
+                                                     <label>Effectivity Date</label>
+                                                     <div class="controls">
+                                                         <input type="date" class="form-control date" name="effectdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>--%>
 
-                                     <%--   <h4 class="pull-left width-full">Kind of Property Assessed</h4>
+                                        <%--<h4 class="pull-left width-full">Kind of Property Assessed</h4>
 
                                         <div class="row">
                                             <div class="form-group">
@@ -554,21 +639,21 @@
                                                 <div class="form-group">
                                                     <label>Date</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control date" name="lstdate" id="assessedDateE" required placeholder="DD-MM-YYYY"/>
+                                                        <input type="text" class="form-control date" name="lstdate" id="assessedDate" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <br>--%>
 
+                                        <div class="modal-footer">
+                                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                            <button type="button" id="btnEditProperty" class="btn btn-sm btn-success">Add</button>
+                                        </div>
                                         <!-- end row -->
                                     </fieldset>
                                 </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                        <button type="button" id="btnEditActualUse" class="btn btn-sm btn-success">Edit</button>
-
-                                    </div>
                             </form>
                         </div>
                     </div>
@@ -628,7 +713,7 @@
         App.init();
         TableManageResponsive.init();
 
-        $("#btnAddActualUse").click(function () {
+        $("#btnAddProperty").click(function () {
             swal({
                 title: "Are you sure?",
                 text: "You will save your current changes",
@@ -639,11 +724,11 @@
                 cancelButtonText: 'Cancel'
             }).then(function (result) {
                 if(result.value){
-                    var addActualUseForm = new FormData($('#addActualUseForm')[0]);
+                    var addPropertyForm = new FormData($('#addPropertyForm')[0]);
                     $.ajax({
                         type: "POST",
-                        url: "insertActualUse",
-                        data: addActualUseForm,
+                        url: "insertProperty",
+                        data: addPropertyForm,
                         enctype: "multipart/form-data",
                         processData: false,
                         contentType: false,
