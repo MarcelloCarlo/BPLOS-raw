@@ -19,12 +19,16 @@ SET time_zone = "+00:00";
 --
 -- Database: `lgu_paeis_db`
 --
-
+USE lgu_paeis_db;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `rpt_r_actual_use`
 --
+DROP TABLE  rpt_r_actual_use;
+DROP TABLE  rpt_r_assessment_lvl;
+DROP TABLE rpt_r_property_class;
+DROP TABLE rpt_r_property_type;
 
 CREATE TABLE `rpt_r_actual_use` (
   `AU_ID` int(7) NOT NULL,

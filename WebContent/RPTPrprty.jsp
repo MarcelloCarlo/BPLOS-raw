@@ -107,7 +107,7 @@
                                 <td>
                                 </td>
                                 <td>
-                                    <a href="RPTTaxDec.jsp" class="btn btn-sm btn-primary" data-toggle="modal">Assess</a>
+                                    <a href="RPTTaxDec.jsp" class="btn btn-sm btn-primary" data-toggle="">Assess</a>
                                 </td>
                             </tr>
                             </tbody>

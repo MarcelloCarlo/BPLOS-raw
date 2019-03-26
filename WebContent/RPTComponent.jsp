@@ -60,6 +60,17 @@
                 <li><a href="RPTSetupMrktValAgrl.jsp">Market Value (Agricultural)</a></li>
             </ul>
         </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-gears"></i>
+                <span>Property Owner</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="RPTOwnerInsrt.jsp">Owner Setup</a></li>
+                <li><a href="RPTPprtyInsert.jsp">Property Setup</a></li>
+            </ul>
+        </li>
         <li><a href="RPTPrprty.jsp"><i class="fa fa-check-square-o"></i> <span>Properties</span></a></li>
         <li><a href="RPTTaxBill.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
         <li class="has-sub pull-right">

@@ -48,6 +48,7 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%try{%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -243,7 +244,7 @@
                                             </div>
                                         </div>
 
-                                        <h4 class="pull-left width-full">Kind of Property Assessed</h4>
+                                        <%--<h4 class="pull-left width-full">Kind of Property Assessed</h4>
 
                                         <div class="row">
                                             <div class="form-group">
@@ -321,13 +322,13 @@
                                                 <div class="form-group">
                                                     <label>Date</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control date" name="lstdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                                        <input type="text" class="form-control date" name="lstdate" id="assessedDate" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <br>
+                                        <br>--%>
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
@@ -469,13 +470,13 @@
                                                 <div class="form-group">
                                                     <label>Effectivity Date</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control date" name="effectdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                                        <input type="text" class="form-control date" name="effectdate" id="effectdateE" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <h4 class="pull-left width-full">Kind of Property Assessed</h4>
+                                     <%--   <h4 class="pull-left width-full">Kind of Property Assessed</h4>
 
                                         <div class="row">
                                             <div class="form-group">
@@ -553,21 +554,21 @@
                                                 <div class="form-group">
                                                     <label>Date</label>
                                                     <div class="controls">
-                                                        <input type="text" class="form-control date" name="lstdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                                        <input type="text" class="form-control date" name="lstdate" id="assessedDateE" required placeholder="DD-MM-YYYY"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <br>
+                                        <br>--%>
 
-                                        <div class="modal-footer">
-                                            <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="button" id="btnEditActualUse" class="btn btn-sm btn-success">Edit</button>
-
-                                        </div>
                                         <!-- end row -->
                                     </fieldset>
                                 </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
+                                        <button type="button" id="btnEditActualUse" class="btn btn-sm btn-success">Edit</button>
+
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -632,7 +633,7 @@
                 title: "Are you sure?",
                 text: "You will save your current changes",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#4fcfff",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -680,7 +681,7 @@
                 title: "Are you sure?",
                 text: "Current changes will be saved.",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#4fcfff",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -739,4 +740,8 @@
 
 </script>
 </body>
+<%} catch (Exception e){
+    e.printStackTrace();
+}
+%>
 </html>

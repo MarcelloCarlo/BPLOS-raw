@@ -1,4 +1,7 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 1/30/2019
@@ -43,6 +46,16 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+    LGUConnect conX = new LGUConnect();
+try{
+    Connection connection = conX.getConnection();
+    Statement statement = connection.createStatement();
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_r_property_class");
+    Statement statement1 = connection.createStatement();
+    ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM rpt_r_actual_use");
+
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -142,7 +155,13 @@
                                                     <label>Property Class</label>
                                                     <div class="controls">
                                                         <select name="addlandpclass" class="form-control">
-                                                            <option value="  ">-Select-</option>
+                                                            <%
+                                                            while (resultSet.next()){
+                                                                %>
+                                                            <option value='<%=resultSet.getString("PC_CODE")%>'><%=resultSet.getString("PC_DESC")%></option>
+                                                            <%
+                                                            }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -153,7 +172,13 @@
                                                     <label>Actual Use</label>
                                                     <div class="controls">
                                                         <select name="addactuse" class="form-control">
-                                                            <option value="  ">-Select-</option>
+                                                            <%
+                                                                while (resultSet1.next()){
+                                                            %>
+                                                            <option value='<%=resultSet1.getString("AU_CODE")%>'><%=resultSet1.getString("AU_DESC")%></option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -221,7 +246,13 @@
                                                     <label>Property Class</label>
                                                     <div class="controls">
                                                         <select name="editlandpclass" class="form-control">
-                                                            <option value="  ">-Select-</option>
+                                                            <%
+                                                                while (resultSet.next()){
+                                                            %>
+                                                            <option value='<%=resultSet.getString("PC_CODE")%>'><%=resultSet.getString("PC_DESC")%></option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -232,7 +263,13 @@
                                                     <label>Actual Use</label>
                                                     <div class="controls">
                                                         <select name="editactuse" class="form-control">
-                                                            <option value="  ">-Select-</option>
+                                                            <%
+                                                                while (resultSet1.next()){
+                                                            %>
+                                                            <option value='<%=resultSet1.getString("AU_CODE")%>'><%=resultSet1.getString("AU_DESC")%></option>
+                                                            <%
+                                                                }
+                                                            %>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -348,4 +385,7 @@
 
 </script>
 </body>
+<%} catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>

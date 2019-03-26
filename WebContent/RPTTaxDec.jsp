@@ -391,7 +391,7 @@
                                     <div class="form-group">
                                         <label>Date</label>
                                         <div class="controls">
-                                            <input type="text" class="form-control date" name="lstdate" id="effectdate" required placeholder="DD-MM-YYYY"/>
+                                            <input type="text" class="form-control date" name="lstdate" id="dateassessed" required placeholder="DD-MM-YYYY"/>
                                         </div>
                                     </div>
                                 </div>
