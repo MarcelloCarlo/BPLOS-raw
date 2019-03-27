@@ -296,7 +296,7 @@
                 title: "Are you sure?",
                 text: "You will save your current changes",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#1a8ecb",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -344,7 +344,7 @@
                 title: "Are you sure?",
                 text: "Current changes will be saved.",
                 type: "warning",
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#1a8ecb",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'

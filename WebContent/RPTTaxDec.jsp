@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="com.mysql.jdbc.PreparedStatement" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 1/31/2019
@@ -39,6 +41,13 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+    String rplId = request.getParameter("rplId");
+    try{
+    LGUConnect connect = new LGUConnect();
+    Connection connection = connect.getConnection();
+    PreparedStatement getLandInfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_rp_land RPL JOIN rpt_t_rp_owner rtro on RPL.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on RPL.AU_ID = rrau.AU_ID JOIN rpt_r_property_type rrpt on RPL.PT_ID = rrpt.PT_ID JOIN rpt_r_property_class rrpc on RPL.PC_ID = rrpc.PC_ID");
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -469,4 +478,7 @@
 
 </script>
 </body>
+<%}catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>

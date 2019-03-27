@@ -9,6 +9,7 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -45,13 +46,20 @@
     <link href="assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css" rel="stylesheet"/>
     <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
     <link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet"/>
-    <link href="assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+    <link href="assets/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css"/>
     <!-- ================== END PAGE LEVEL STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%
+    try {
+        LGUConnect connect = new LGUConnect();
+        Connection connection = connect.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID");
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -90,26 +98,27 @@
                             <tr>
                                 <th>Property Type</th>
                                 <th>Property Class</th>
+                                <th>Actual Use</th>
                                 <th>Property Area</th>
                                 <th>Owner</th>
                                 <th>Assess Property</th>
                             </tr>
                             </thead>
                             <tbody>
-
+<%while (resultSet.next()){
+String assessLink = "location.href='RPTTaxDec.jsp?rplId=" + resultSet.getString("RPL_ID")+"'";
+%>
                             <tr>
+                                <td><%=resultSet.getString("PT_DESC")%></td>
+                                <td><%=resultSet.getString("PC_DESC")%></td>
+                                <td><%=resultSet.getString("AU_DESC")%></td>
+                                <td><%=resultSet.getString("RPL_AREA")%></td>
+                                <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
                                 <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                </td>
-                                <td>
-                                    <a href="RPTTaxDec.jsp" class="btn btn-sm btn-primary" data-toggle="">Assess</a>
+                                    <button  type="button" onclick="<%=assessLink%>" class="btn btn-sm btn-primary">Assess</button>
                                 </td>
                             </tr>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
@@ -189,4 +198,8 @@
 
 </script>
 </body>
+<%} catch (Exception e){
+        e.printStackTrace();
+}
+%>
 </html>

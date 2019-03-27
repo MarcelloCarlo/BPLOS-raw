@@ -431,7 +431,7 @@ try{
                 title: "Are you sure?",
                 text: "You will save your current changes",
                 type: "warning",
-                confirmButtonColor: "#4fcfff",
+                confirmButtonColor: "#1a8ecb",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
@@ -479,7 +479,7 @@ try{
                 title: "Are you sure?",
                 text: "Current changes will be saved.",
                 type: "warning",
-                confirmButtonColor: "#4fcfff",
+                confirmButtonColor: "#1a8ecb",
                 confirmButtonText: "Confirm!",
                 showCancelButton: true,
                 cancelButtonText: 'Cancel'
