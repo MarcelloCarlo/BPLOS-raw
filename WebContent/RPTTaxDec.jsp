@@ -305,7 +305,7 @@
                                             <div class="controls">
                                                 <input type="text" name="assessLvlPerc" id="assessLvlPerc"
                                                        placeholder="Assessment Level"
-                                                       class="form-control" disabled value='<%=getAssVal%>'/>
+                                                       class="form-control" disabled value='<%=Float.parseFloat(getAssVal) * 100%>'/>
                                             </div>
                                         </div>
                                     </div>
@@ -381,21 +381,27 @@
 
         $("#assessVal").attr('disabled', true);
         var sum = parseFloat(<%=getAssVal%>);
+        var blank = 0.00;
 //iterate through each td based on class and add the values
         $(".amt").each(function () {
 
             //add only if the value is number
             if (!isNaN($(this).text()) /*&& $(this).value.length!=0*/) {
                 sum += parseFloat($(this).text());
-            }
+            } else {sum = 0.00;}
             console.log($(this).text());
             $("#tdPerm").text($(this).text());
         });
         $("#lblTotal").text(parseFloat(sum).toFixed(2));
         $("#totalAmt").val(parseFloat(sum).toFixed(2));
-        $("#marketVal").on('input', function () {
-            $("#assessVal").val(parseFloat(parseFloat($(this).val()).toFixed(2) * parseFloat(sum).toFixed(2)).toFixed(2));
-            $("#assessValX").val(parseFloat(parseFloat($(this).val()).toFixed(2) * parseFloat(sum).toFixed(2)).toFixed(2));
+        $("#marketVal").keyup( function () {
+	        if (isNaN($(this).val()) ||  $(this).val().length === 0){
+		        $("#assessVal").val(0.00);
+		        $("#assessValX").val(0.00);
+	        } else {
+		        $("#assessVal").val(parseFloat(parseFloat($(this).val()).toFixed(2) * parseFloat(sum).toFixed(2)).toFixed(2));
+		        $("#assessValX").val(parseFloat(parseFloat($(this).val()).toFixed(2) * parseFloat(sum).toFixed(2)).toFixed(2));
+            }
         });
 
 

@@ -63,7 +63,7 @@
         <li class="has-sub">
             <a href="javascript:;">
                 <b class="caret pull-right"></b>
-                <i class="fa fa-gears"></i>
+                <i class="fa fa-user"></i>
                 <span>Property Owner</span>
             </a>
             <ul class="sub-menu">
@@ -71,7 +71,17 @@
                 <li><a href="RPTPprtyInsert.jsp">Property Setup</a></li>
             </ul>
         </li>
-        <li><a href="RPTPrprty.jsp"><i class="fa fa-check-square-o"></i> <span>Properties</span></a></li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-building"></i>
+                <span>Property</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="RPTPrprty.jsp">Property Assessment</a></li>
+                <li><a href="RPTTax.jsp">Property Taxing</a></li>
+            </ul>
+        </li>
         <li><a href="RPTTaxBill.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
         <li class="has-sub pull-right">
             <a href="javascript:;">

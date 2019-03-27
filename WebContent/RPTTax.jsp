@@ -58,7 +58,9 @@
         LGUConnect connect = new LGUConnect();
         Connection connection = connect.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID JOIN rpt_t_assessment rta on LN.RPL_ID = rta.RPL_ID  WHERE RPL_STAT = 'TAXING'");
+        Statement statement1 = connection.createStatement();
+        ResultSet resultSet1 = statement1.executeQuery("SELECT * FROM rpt_r_rate");
 %>
 <body>
 <!-- begin #page-loader -->
@@ -93,9 +95,11 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
+                                <th class="hidden">ID</th>
+                                <th class="hidden">ID</th>
                                 <th>Owner</th>
-                                <th>Assessed Value</th>
-                                <th>APR Number</th>
+                                <th>Assessed Value (PHP)</th>
+                                <th>ARP Number</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -103,12 +107,13 @@
                             <%while (resultSet.next()){
                                 String assessLink = "location.href='RPTTaxDec.jsp?rplId=" + resultSet.getString("RPL_ID")+"'";
                             %>
-                            <tr>
-                                <td><%=resultSet.getString("PT_DESC")%></td>
-                                <td><%=resultSet.getString("PC_DESC")%></td>
-                                <td><%=resultSet.getString("AU_DESC")%></td>
+                            <tr><td class="hidden"><%=resultSet.getString("RPTA_ID")%></td>
+                                <td class="hidden"><%=resultSet.getString("RPL_ID")%></td>
+                                <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
+                                <td><%=Float.parseFloat(resultSet.getString("ASSESSED_VAL"))%></td>
+                                <td><%=resultSet.getString("ARP_NO")%></td>
                                 <td>
-                                    <a href="#modal-assess" class="btn btn-sm btn-primary" data-toggle="modal">Action</a>
+                                    <a href="#modal-taxing" class="btn btn-sm btn-primary modalTax" data-toggle="modal">Action</a>
                                 </td>
                             </tr>
                             <%}%>
@@ -123,7 +128,7 @@
     <!-- end #content -->
 
     <!-- #modal-add -->
-    <div class="modal fade" id="modal-assess">
+    <div class="modal fade" id="modal-taxing">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,19 +137,41 @@
                             <h4 class="panel-title">Tax</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data"name="addActualUseForm" id="addActualUseForm">
+                            <form enctype="multipart/form-data"name="addRPTPropTaxForm" id="addRPTPropTaxForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
+                                    <input class="hidden" type="hidden" name="EP_ID" value='<%=session.getAttribute("empid")%>'>
+                                    <input class="hidden" type="hidden" name="RPL_ID" id="RPL_ID">
+                                    <input class="hidden" type="hidden" name="RPTA_ID" id="RPTA_ID">
                                 <div>
                                     <fieldset>
                                         <legend class="pull-left width-full">Tax</legend>
                                         <!-- begin row -->
                                         <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Installment Type</label>
+                                                    <div class="controls">
+                                                        <select name="optInstallment" class="form-control">
+                                                            <option value='FULL' selected>Full</option>
+                                                            <option value='SEMI ANNUAL' selected>Semi Annual</option>
+                                                            <option value='QUARTERLY' selected>Quarterly</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Select</label>
+                                                    <label>Property Rate</label>
                                                     <div class="controls">
-                                                        <select name="gender" class="form-control">
-                                                            <option value="select">Select</option>
+                                                        <select name="taxRateId" class="form-control">
+                                                            <option value='' selected>-Select One-</option>
+                                                            <%while (resultSet1.next()){
+                                                                String flAmt = resultSet1.getString("RPTR_RATE");
+                                                            String functionX = "$('#percentageStr').val(parseFloat("+Float.parseFloat(flAmt) * 100 +")); $('#percentageStrHide').val(parseFloat("+resultSet1.getString("RPTR_RATE")+")); $('#totAmt').val(parseFloat("+Float.parseFloat(resultSet1.getString("RPTR_RATE")) +" * parseFloat($('#assessedVal').val()) ));";
+                                                            %>
+                                                            <option value='<%=resultSet1.getString("RPTR_ID")%>' onclick="<%=functionX%>"><%=resultSet1.getString("RPTR_LOC")%></option>
+                                                            <%}%>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -152,31 +179,34 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Input 1</label>
+                                                    <label>Percentage (%)</label>
                                                     <div class="controls">
-                                                        <input type="text" name="input1"
+                                                        <input type="text" name="percentageStr" id="percentageStr"
+                                                               placeholder=""
+                                                               class="form-control" disabled/>
+                                                        <input type="hidden" name="percentageStrHide" id="percentageStrHide"
                                                                placeholder="Input 1"
-                                                               class="form-control" required/>
+                                                               class="form-control hidden"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Input 2</label>
+                                                    <label>Assessed Value (PHP)</label>
                                                     <div class="controls">
-                                                        <input type="text" name="input2"
+                                                        <input type="text" name="assessedVal" id="assessedVal"
                                                                placeholder="Input 2"
-                                                               class="form-control" required/>
+                                                               class="form-control" disabled/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Input 3</label>
+                                                    <label>Amount (PHP)</label>
                                                     <div class="controls">
-                                                        <input type="text" name="input3"
-                                                               placeholder="Input 3"
-                                                               class="form-control" required/>
+                                                        <input type="text" name="totAmt" id="totAmt"
+                                                               placeholder=""
+                                                               class="form-control" disabled/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -186,7 +216,7 @@
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="button" id="btnAddActualUse" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnTaxRPT" class="btn btn-sm btn-success">Add</button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -248,6 +278,72 @@
         App.init();
         TableManageResponsive.init();
         FormWizard.init();
+
+        $(".modalTax").click(function () {
+            $("#assessedVal").val(parseFloat($(this).closest("tbody tr").find("td:eq(3)").html()));
+	        document.getElementById('RPL_ID').value = $(this).closest("tbody tr").find("td:eq(1)").html().trim();
+	        document.getElementById('RPTA_ID').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+
+        });
+
+	    $("#modal-taxing").on('hidden.bs.modal', function () {
+		    $("#assessedVal").val(0.00);
+		    $("#totAmt").val(0.00);
+		    $("#percentageStr").val(0.00);
+		    $("#percentageStrHide").val(0.00);
+
+	    });
+
+	    $("#btnTaxRPT").click(function () {
+		    var addRPTPropTaxForm = new FormData($('#addRPTPropTaxForm')[0]);
+		    swal({
+			    title: "Are you sure?",
+			    text: "You will save your current changes",
+			    type: "warning",
+			    confirmButtonColor: "#62a3cb",
+			    confirmButtonText: "Confirm!",
+			    showCancelButton: true,
+			    cancelButtonText: 'Cancel'
+		    }).then(function(result) {
+			    if(result.value)
+			    {
+				    $.ajax({
+					    type: "POST",
+					    url: "insertRPTTax",
+					    data: addRPTPropTaxForm,
+					    enctype: "multipart/form-data",
+					    processData: false,
+					    contentType: false,
+					    success: function (response) {
+						    swal({
+							    type: 'success',
+							    title: 'DONE!.',
+							    text: 'Succesfully Processed',
+							    confirmButtonText: 'OK'
+						    }).then(function(result) {
+							    if(result.value)
+							    {
+								    window.location.replace("RPTPrprty.jsp");
+								    //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
+								    //window.location.replace("BPLSORf.jsp"+oRX);
+							    }
+						    })
+						    ;
+
+					    }
+				    });
+			    }
+			    else
+			    if (result.dismiss === swal.DismissReason.cancel) {
+				    swalWithBootstrapButtons(
+					    'Cancelled',
+					    'Operation Halted',
+					    'error'
+				    )
+
+			    }
+		    });
+	    });
     });
 </script>
 <script>

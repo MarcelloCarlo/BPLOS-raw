@@ -51,6 +51,10 @@ public class insertAssessRPT extends HttpServlet {
             assessRPT.setString(12,opt);
             assessRPT.executeUpdate();
 
+            PreparedStatement setRPLStat = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_rp_land SET RPL_STAT = 'TAXING' WHERE RPL_ID = ?");
+            setRPLStat.setInt(1,Integer.parseInt(RPL_ID));
+            setRPLStat.executeUpdate();
+
         } catch (Exception e){
             e.printStackTrace();
         }
