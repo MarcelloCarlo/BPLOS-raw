@@ -3,7 +3,6 @@ package com.paeis.rptTransactions;
 import com.mysql.jdbc.PreparedStatement;
 import com.paeis.dbConnection.LGUConnect;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.text.DecimalFormat;
 
 @WebServlet("/insertProperty")
 @MultipartConfig
