@@ -76,6 +76,17 @@
                 <li><a href="MTOPSAcomReports.jsp"><span>Accomplishment Reports</span></a></li>
             </ul>
         </li>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <b class="caret pull-right"></b>
+                <i class="fa fa-text"></i>
+                <span>RPT Reports</span>
+            </a>
+            <ul class="sub-menu">
+                <li><a href="MTOPSTREReports.jsp"><span>Treasury Reports</span></a></li>
+                <li><a href="MTOPSAcomReports.jsp"><span>Accomplishment Reports</span></a></li>
+            </ul>
+        </li>
         <li class="has-sub pull-right">
             <a href="javascript:;">
                 <b class="caret pull-right"></b>

@@ -84,12 +84,9 @@
 
         <!-- begin row -->
         <div class="row">
-            <div class="col-md-12">  <div class="panel-body">
-                <div id="lgu_rev" class="col-md-12"></div>
-            </div></div>
             <!-- begin col-3 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="widget widget-stats bg-green">
+            <div class="col-md-3 col-sm-6">
+                <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-file"></i></div>
                     <div class="stats-info">
                         <div><p>Business Permit</p></div>
@@ -122,6 +119,20 @@
                             </h4>
                         </div>
                         <div>
+                            <h4>Renewed Permit:
+                                <%
+
+                                    LGUConnect cont = new LGUConnect();
+                                    Connection con12 = cont.getConnection();
+                                    Statement ml = con12.createStatement();
+                                    ResultSet kk = ml.executeQuery("SELECT COUNT(*) AS A FROM `bpls_t_bp_application` WHERE AP_TYPE = 'Renew' ");
+                                    while (kk.next()) {
+                                        out.print(kk.getString("A"));
+                                    }
+                                %>
+                            </h4>
+                        </div>
+                        <div>
                             <h4>Terminated:
                                 <%
 
@@ -136,15 +147,15 @@
                             </h4>
                         </div>
                     </div>
-                   <%-- <div class="stats-link">
+                   <div class="stats-link">
                         <a href="REVBplsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>--%>
+                    </div>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
-            <div class="col-md-4 col-sm-6">
-                <div class="widget widget-stats bg-blue">
+            <div class="col-md-3 col-sm-6">
+                <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-motorcycle"></i></div>
                     <div class="stats-info">
                         <div>
@@ -193,74 +204,71 @@
                             </h4>
                         </div>
                     </div>
-                  <%--  <div class="stats-link">
+                  <div class="stats-link">
                         <a href="REVMtopsDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>--%>
+                    </div>
                 </div>
             </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
-  <%--          <div class="col-md-3 col-sm-6">
-                <div class="widget widget-stats bg-blue">
+        <div class="col-md-3 col-sm-6">
+                <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-building"></i></div>
                     <div class="stats-info">
                         <div>
-                            <p>RPT</p>
+                            <p>RPTS</p>
                         </div>
                         <div>
                             <h4>Pending:
-                                &lt;%&ndash;&lt;%&ndash;dash;%&gt;
+                                <%
 
-                                &lt;%&ndash;LGUConnect conl = new LGUConnect();&ndash;%&gt;
-                                &lt;%&ndash;Connection con4 = conl.getConnection();&ndash;%&gt;
-                                &lt;%&ndash;Statement dd = con4.createStatement();&ndash;%&gt;
-                                &lt;%&ndash;ResultSet vv = dd.executeQuery("SELECT COUNT(*) AS D FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Pending' ");&ndash;%&gt;
-                                &lt;%&ndash;while (vv.next())&ndash;%&gt;
-                                &lt;%&ndash;{&ndash;%&gt;
-                                &lt;%&ndash;out.print(vv.getString("D"));&ndash;%&gt;
-                                &lt;%&ndash;}&ndash;%&gt;
-                                &lt;%&ndash;dash;%&gt;&ndash;%&gt;
+                                    LGUConnect conq = new LGUConnect();
+                                    Connection con7 = conq.getConnection();
+                                    Statement gg = con7.createStatement();
+                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (yy.next()) {
+                                        out.print(yy.getString("G"));
+                                    }
+                                %>
                             </h4>
                         </div>
                         <div>
                             <h4>Released:
-                                &lt;%&ndash;&lt;%&ndash;dash;%&gt;
+                                <%
 
-                                &lt;%&ndash;LGUConnect cono = new LGUConnect();&ndash;%&gt;
-                                &lt;%&ndash;Connection con5 = cono.getConnection();&ndash;%&gt;
-                                &lt;%&ndash;Statement ee = con5.createStatement();&ndash;%&gt;
-                                &lt;%&ndash;ResultSet ww = ee.executeQuery("SELECT COUNT(*) AS E FROM `mtops_t_permit`");&ndash;%&gt;
-                                &lt;%&ndash;while (ww.next())&ndash;%&gt;
-                                &lt;%&ndash;{&ndash;%&gt;
-                                &lt;%&ndash;out.print(ww.getString("E"));&ndash;%&gt;
-                                &lt;%&ndash;}&ndash;%&gt;
-                                &lt;%&ndash;dash;%&gt;&ndash;%&gt;
+                                    LGUConnect conq = new LGUConnect();
+                                    Connection con7 = conq.getConnection();
+                                    Statement gg = con7.createStatement();
+                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (yy.next()) {
+                                        out.print(yy.getString("G"));
+                                    }
+                                %>
                             </h4>
                         </div>
                         <div>
                             <h4>Terminated:
-                                &lt;%&ndash;&lt;%&ndash;dash;%&gt;
+                                <%
 
-                                &lt;%&ndash;LGUConnect conp = new LGUConnect();&ndash;%&gt;
-                                &lt;%&ndash;Connection con6 = conp.getConnection();&ndash;%&gt;
-                                &lt;%&ndash;Statement ff = con6.createStatement();&ndash;%&gt;
-                                &lt;%&ndash;ResultSet xx = ff.executeQuery("SELECT COUNT(*) AS F FROM `mtops_t_application_frm` WHERE APF_STATUS = 'Terminated' ");&ndash;%&gt;
-                                &lt;%&ndash;while (xx.next())&ndash;%&gt;
-                                &lt;%&ndash;{&ndash;%&gt;
-                                &lt;%&ndash;out.print(xx.getString("F"));&ndash;%&gt;
-                                &lt;%&ndash;}&ndash;%&gt;
-                                &lt;%&ndash;dash;%&gt;&ndash;%&gt;
+                                    LGUConnect conq = new LGUConnect();
+                                    Connection con7 = conq.getConnection();
+                                    Statement gg = con7.createStatement();
+                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (yy.next()) {
+                                        out.print(yy.getString("G"));
+                                    }
+                                %>
                             </h4>
                         </div>
                     </div>
-                   &lt;%&ndash; <div class="stats-link">
+                   <div class="stats-link">
                         <a href="REVRptDtl.jsp">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>&ndash;%&gt;
+                   </div>
                 </div>
-            </div>--%>
+            </div>
             <!-- end col-3 -->
             <!-- begin col-3 -->
-            <div class="col-md-4 col-sm-6">
+            <div class="col-md-3 col-sm-6">
                 <div class="widget widget-stats bg-purple">
                     <div class="stats-icon"><i class="fa fa-money"></i></div>
                     <div class="stats-info">
@@ -294,7 +302,7 @@
                             </h4>
                         </div>
                         <div>
-                            <h4>RPT:
+                            <h4>RPTS:
                                 <%
 
                                     LGUConnect cons = new LGUConnect();
@@ -309,12 +317,24 @@
                             </h4>
                         </div>
                     </div>
-                   <%-- <div class="stats-link">
+                   <div class="stats-link">
                         <a href="javascript:;">View Revenue Details <i class="fa fa-arrow-circle-o-right"></i></a>
-                    </div>--%>
+                   </div>
                 </div>
             </div>
             <!-- end col-3 -->
+            <div class="col-md-12">  <div class="panel-body">
+                <div id="lgu_rev" class="col-md-12"></div>
+            </div></div>
+            <div class="col-md-12">  <div class="panel-body">
+                <div id="bpls" class="col-md-12"></div>
+            </div></div>
+            <div class="col-md-12">  <div class="panel-body">
+                <div id="mtops" class="col-md-12"></div>
+            </div></div>
+            <div class="col-md-12">  <div class="panel-body">
+                <div id="rpt" class="col-md-12"></div>
+            </div></div>
         </div>
         <!-- end row -->
 
@@ -462,6 +482,273 @@
 			]
 		}
 	});
+</script>
+<script type="text/javascript">
+    var defaultTitle = "BPLS";
+    var drilldownTitle = "Business Permits";
+
+    // Create the chart
+    var chart = Highcharts.chart('bpls', {
+        chart: {
+            type: 'pie',
+            events: {
+                drilldown: function (e) {
+                    chart.setTitle({
+                        text: drilldownTitle + e.point.name
+                    });
+                },
+                drillup: function (e) {
+                    chart.setTitle({
+                        text: defaultTitle
+                    });
+                }
+            }
+        },
+        title: {
+            text: defaultTitle
+        },
+        subtitle: {
+            text: 'Click the point to show the monthly revenue of the selected year.'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total Revenue (PHP)'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: 'PHP {point.y:.2f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>PHP {point.y:.2f}</b> of total<br/>'
+        },
+
+        "series": [
+            {
+                "name": "Current Total Revenue",
+                "colorByPoint": false,
+                "data": [<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YR,SUM(AMT), CONCAT('{name:''',YR, ''',y:', SUM(AMT),',drilldown:''', YR,'''}') AS YRREV FROM ((SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM bpls_t_official_receipt BP UNION ALL SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM mtops_t_official_receipt MT) AS CX) GROUP BY YR");
+    while(chartResult.next()){%><%out.print(chartResult.getString("YRREV"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>]
+            }
+
+        ]
+        , "drilldown": {
+            "series": [
+                <% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("(SELECT CONCAT('{name:''',YEARS, ''',id:', '''', YEARS, ''',data:[', GROUP_CONCAT(PERMONTH), ']}') AS YRDRILLDN FROM (SELECT concat('[''', MONTHS, ''',', SUM(TOTAL), ']') AS PERMONTH,YEARS,Module FROM(SELECT YEAR(BP.OR_DATE) AS YEARS,MONTHNAME(BP.OR_DATE) AS MONTHS,SUM(BP.OR_TOTAL_AMOUNT) AS TOTAL,'BPLS' AS Module FROM bpls_t_official_receipt BP GROUP BY MONTH(OR_DATE) UNION ALL SELECT YEAR(MT.OR_DATE) AS YEARS,MONTHNAME(MT.OR_DATE) AS MONTHS,SUM(MT.OR_TOTAL_AMOUNT) AS TOTAL,'MTOPS' AS Module FROM mtops_t_official_receipt MT GROUP BY MONTH(OR_DATE)) AS X GROUP BY MONTHS ORDER BY MONTHS) AS V GROUP BY YEARS ORDER BY YEARS)");
+    while(chartResult.next()){%> <%out.print(chartResult.getString("YRDRILLDN"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>
+            ]
+        }
+    });
+</script>
+<script type="text/javascript">
+    var defaultTitle = "Annual Revenue";
+    var drilldownTitle = "Monthly Revenue as of ";
+
+    // Create the chart
+    var chart = Highcharts.chart('mtops', {
+        chart: {
+            type: 'pie',
+            events: {
+                drilldown: function (e) {
+                    chart.setTitle({
+                        text: drilldownTitle + e.point.name
+                    });
+                },
+                drillup: function (e) {
+                    chart.setTitle({
+                        text: defaultTitle
+                    });
+                }
+            }
+        },
+        title: {
+            text: defaultTitle
+        },
+        subtitle: {
+            text: 'Click the point to show the monthly revenue of the selected year.'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total Revenue (PHP)'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: 'PHP {point.y:.2f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>PHP {point.y:.2f}</b> of total<br/>'
+        },
+
+        "series": [
+            {
+                "name": "Current Total Revenue",
+                "colorByPoint": false,
+                "data": [<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YR,SUM(AMT), CONCAT('{name:''',YR, ''',y:', SUM(AMT),',drilldown:''', YR,'''}') AS YRREV FROM ((SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM bpls_t_official_receipt BP UNION ALL SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM mtops_t_official_receipt MT) AS CX) GROUP BY YR");
+    while(chartResult.next()){%><%out.print(chartResult.getString("YRREV"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>]
+            }
+
+        ]
+        , "drilldown": {
+            "series": [
+                <% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("(SELECT CONCAT('{name:''',YEARS, ''',id:', '''', YEARS, ''',data:[', GROUP_CONCAT(PERMONTH), ']}') AS YRDRILLDN FROM (SELECT concat('[''', MONTHS, ''',', SUM(TOTAL), ']') AS PERMONTH,YEARS,Module FROM(SELECT YEAR(BP.OR_DATE) AS YEARS,MONTHNAME(BP.OR_DATE) AS MONTHS,SUM(BP.OR_TOTAL_AMOUNT) AS TOTAL,'BPLS' AS Module FROM bpls_t_official_receipt BP GROUP BY MONTH(OR_DATE) UNION ALL SELECT YEAR(MT.OR_DATE) AS YEARS,MONTHNAME(MT.OR_DATE) AS MONTHS,SUM(MT.OR_TOTAL_AMOUNT) AS TOTAL,'MTOPS' AS Module FROM mtops_t_official_receipt MT GROUP BY MONTH(OR_DATE)) AS X GROUP BY MONTHS ORDER BY MONTHS) AS V GROUP BY YEARS ORDER BY YEARS)");
+    while(chartResult.next()){%> <%out.print(chartResult.getString("YRDRILLDN"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>
+            ]
+        }
+    });
+</script>
+<script type="text/javascript">
+    var defaultTitle = "Annual Revenue";
+    var drilldownTitle = "Monthly Revenue as of ";
+
+    // Create the chart
+    var chart = Highcharts.chart('rpt', {
+        chart: {
+            type: 'pie',
+            events: {
+                drilldown: function (e) {
+                    chart.setTitle({
+                        text: drilldownTitle + e.point.name
+                    });
+                },
+                drillup: function (e) {
+                    chart.setTitle({
+                        text: defaultTitle
+                    });
+                }
+            }
+        },
+        title: {
+            text: defaultTitle
+        },
+        subtitle: {
+            text: 'Click the point to show the monthly revenue of the selected year.'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Total Revenue (PHP)'
+            }
+
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true,
+                    format: 'PHP {point.y:.2f}'
+                }
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>PHP {point.y:.2f}</b> of total<br/>'
+        },
+
+        "series": [
+            {
+                "name": "Current Total Revenue",
+                "colorByPoint": false,
+                "data": [<% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("SELECT YR,SUM(AMT), CONCAT('{name:''',YR, ''',y:', SUM(AMT),',drilldown:''', YR,'''}') AS YRREV FROM ((SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM bpls_t_official_receipt BP UNION ALL SELECT YEAR(OR_DATE) AS YR,OR_TOTAL_AMOUNT AS AMT FROM mtops_t_official_receipt MT) AS CX) GROUP BY YR");
+    while(chartResult.next()){%><%out.print(chartResult.getString("YRREV"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>]
+            }
+
+        ]
+        , "drilldown": {
+            "series": [
+                <% try {
+    LGUConnect chartDb = new LGUConnect();
+    Connection chartConn = chartDb.getConnection();
+    Statement chartStmt = chartConn.createStatement();
+    ResultSet chartResult = chartStmt.executeQuery("(SELECT CONCAT('{name:''',YEARS, ''',id:', '''', YEARS, ''',data:[', GROUP_CONCAT(PERMONTH), ']}') AS YRDRILLDN FROM (SELECT concat('[''', MONTHS, ''',', SUM(TOTAL), ']') AS PERMONTH,YEARS,Module FROM(SELECT YEAR(BP.OR_DATE) AS YEARS,MONTHNAME(BP.OR_DATE) AS MONTHS,SUM(BP.OR_TOTAL_AMOUNT) AS TOTAL,'BPLS' AS Module FROM bpls_t_official_receipt BP GROUP BY MONTH(OR_DATE) UNION ALL SELECT YEAR(MT.OR_DATE) AS YEARS,MONTHNAME(MT.OR_DATE) AS MONTHS,SUM(MT.OR_TOTAL_AMOUNT) AS TOTAL,'MTOPS' AS Module FROM mtops_t_official_receipt MT GROUP BY MONTH(OR_DATE)) AS X GROUP BY MONTHS ORDER BY MONTHS) AS V GROUP BY YEARS ORDER BY YEARS)");
+    while(chartResult.next()){%> <%out.print(chartResult.getString("YRDRILLDN"));%>, <%
+                }
+
+            } catch (Exception e) {
+                out.print(e);
+            }%>
+            ]
+        }
+    });
 </script>
 </body>
 </html>
