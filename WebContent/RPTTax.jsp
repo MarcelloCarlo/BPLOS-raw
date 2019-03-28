@@ -144,10 +144,10 @@
                                     <input class="hidden" type="hidden" name="RPTA_ID" id="RPTA_ID">
                                 <div>
                                     <fieldset>
-                                        <legend class="pull-left width-full">Tax</legend>
+                                        <legend class="pull-left width-full">Tax & Payment</legend>
                                         <!-- begin row -->
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Installment Type</label>
                                                     <div class="controls">
@@ -162,13 +162,26 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label>Payment Method</label>
+                                                    <div class="controls">
+                                                        <select name="optPayMethod" class="form-control">
+                                                            <option value="Cash" selected>Cash</option>
+                                                            <option value="Check" selected>Check</option>
+                                                            <option value="Money Order" selected>Money Order</option>
+                                                            <option value="Treasury Warrant" selected>Treasury Warrant</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label>Property Rate</label>
                                                     <div class="controls">
                                                         <select name="taxRateId" class="form-control">
                                                             <option value='' selected>-Select One-</option>
                                                             <%while (resultSet1.next()){
                                                                 String flAmt = resultSet1.getString("RPTR_RATE");
-                                                            String functionX = "$('#percentageStr').val(parseFloat("+Float.parseFloat(flAmt) * 100 +")); $('#percentageStrHide').val(parseFloat("+resultSet1.getString("RPTR_RATE")+")); $('#totAmt').val(parseFloat("+Float.parseFloat(resultSet1.getString("RPTR_RATE")) +" * parseFloat($('#assessedVal').val()) ));";
+                                                            String functionX = "$('#percentageStr').val(parseFloat("+Float.parseFloat(flAmt) * 100 +")); $('#percentageStrHide').val(parseFloat("+resultSet1.getString("RPTR_RATE")+")); $('#totAmt').val(parseFloat("+Float.parseFloat(resultSet1.getString("RPTR_RATE")) +" * parseFloat($('#assessedVal').val()) )); $('#totAmtHide').val(parseFloat("+Float.parseFloat(resultSet1.getString("RPTR_RATE")) +" * parseFloat($('#assessedVal').val()) ));";
                                                             %>
                                                             <option value='<%=resultSet1.getString("RPTR_ID")%>' onclick="<%=functionX%>"><%=resultSet1.getString("RPTR_LOC")%></option>
                                                             <%}%>
@@ -207,6 +220,9 @@
                                                         <input type="text" name="totAmt" id="totAmt"
                                                                placeholder=""
                                                                class="form-control" disabled/>
+                                                        <input type="hidden" name="totAmtHide" id="totAmtHide"
+                                                               placeholder=""
+                                                               class="hidden" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -265,19 +281,13 @@
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="assets/js/table-manage-responsive.demo.min.js"></script>
 <script src="assets/js/apps.min.js"></script>
-<!-- ================== END PAGE LEVEL JS ================== -->
-
-<!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/plugins/bootstrap-wizard/js/bwizard.js"></script>
-<script src="assets/js/form-wizards.demo.min.js"></script>
-<script src="assets/js/apps.min.js"></script>
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
 <script>
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
-        FormWizard.init();
 
         $(".modalTax").click(function () {
             $("#assessedVal").val(parseFloat($(this).closest("tbody tr").find("td:eq(3)").html()));

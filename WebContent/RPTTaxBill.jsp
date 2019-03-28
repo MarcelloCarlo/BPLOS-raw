@@ -1,3 +1,8 @@
+<%@ page import="com.sun.jdi.event.ExceptionEvent" %>
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
@@ -34,6 +39,15 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%try{
+    String tb_Id = request.getParameter("tb_Id"), taxBillNo = request.getParameter("taxBillNo");
+    LGUConnect connect = new LGUConnect();
+    Connection connection = connect.getConnection();
+    PreparedStatement getTaxBill = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_taxbill TXB JOIN rpt_t_rp_owner rtro on TXB.RPO_ID = rtro.RPO_ID JOIN rpt_t_rp_land rtrl on TXB.RPL_ID = rtrl.RPL_ID JOIN rpt_t_rptax rtr on TXB.RPTAX_ID = rtr.RPTAX_ID JOIN rpt_t_assessment rta on TXB.RPTA_ID = rta.RPTA_ID JOIN bpls_t_employee_profile btep on rta.APPROVED_BY = btep.EP_ID JOIN rpt_r_property_class rrpc on rtrl.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on rtrl.PT_ID = rrpt.PT_ID WHERE RPTTB_ID = ? AND RPTTB_BILL_NO = ?");
+    getTaxBill.setInt(1,Integer.parseInt(tb_Id));
+    getTaxBill.setString(2,taxBillNo);
+    ResultSet getTaxBillRs = getTaxBill.executeQuery();
+%>
 <body>
 
 <!-- begin #page-loader -->
@@ -69,14 +83,14 @@
                         <center style="font-size: 12px; padding: 10px 0px 10px 0px;">
                             <p style="color: blue;"> OFFICE OF THE CITY TREASURER - QUEZON CITY, METRO MANILA </p>
                             <h3 style="color: blue;">REAL PROPERTY TAX BILL</h3>
-                            <p style="color: red;">THIS IS NOT VALID AS OFFICIAL RECEIPT </p>
+                            <%--<p style="color: red;">THIS IS NOT VALID AS OFFICIAL RECEIPT </p>--%>
                         </center>
 
                     </tr>
                     </thead>
 
                     <tbody>
-
+<%while (getTaxBillRs.next()){%>
                     <tr>
                         <td style="width: 50%;">
                             <table border="1" style="margin: -1px 0px -1px -1px;" width="100%">
@@ -92,11 +106,11 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 50%; padding: 5px 0px 5px 15px;">
-                                        D-009-40860
+                                        <%=getTaxBillRs.getString("TAX_DEC_NO")%>
                                     </td>
 
                                     <td style="width: 50%; padding: 5px 0px 5px 15px;">
-                                        13-009-021-003-2-001-2012
+                                        <%=getTaxBillRs.getString("RPL_PIN")%>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -110,8 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px;">
-                                        EEI CORPORATION
-                                        12 MANGGAHAN ST BAGUMBAYAN QUEZON CITY
+                                        <%=getTaxBillRs.getString("RPO_FNAME") +" "+getTaxBillRs.getString("RPO_SNAME") +" "+getTaxBillRs.getString("RPO_ADDR")%>
                                     </td>
                                 </tr>
                                 <tr>
@@ -121,8 +134,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px;">
-                                        1 & 2
-                                        1-PCS-04-000121
+                                        <%=getTaxBillRs.getString("RPL_L_STREET") +" "+getTaxBillRs.getString("RPL_L_BRGY") +" "+getTaxBillRs.getString("RPL_L_DIST_MUNI")+" "+getTaxBillRs.getString("RPL_L_CITY_PROV")%>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -142,14 +154,14 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 20%; padding: 5px 0px 5px 15px;">
-                                        2
+                                        <%=getTaxBillRs.getString("PC_CODE") +"-"+getTaxBillRs.getString("PC_DESC")%>
                                     </td>
                                     <td style="width: 40%; padding: 5px 0px 5px 15px;">
-                                        Machinery <br>
-                                        165590
+                                        <%=getTaxBillRs.getString("PT_DESC")%> <br>
+                                       PHP <%=getTaxBillRs.getString("ASSESSED_VAL")%>
                                     </td>
                                     <td style="width: 40%; padding: 5px 0px 5px 15px;">
-                                        JENNIFER SANCHEZ
+                                        <%=getTaxBillRs.getString("EP_FNAME") +" "+ getTaxBillRs.getString("EP_LNAME")%>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -169,7 +181,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px; color: blue;">
-                                        Bill Number: <span style= "color: black;"> R-2018-09-17-011600051-000295</span>
+                                        Bill Number: <span style= "color: black;"><%=getTaxBillRs.getString("RPTTB_BILL_NO")%></span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +199,7 @@
                         </td>
 
                         <td style="width: 50%;">
-                            <table border="1" style="margin: -1px 0px -1px -1px;"  width="100%">
+                            <table border="1" style="margin: -10px 0px -1px -1px;"  width="100%">
                                 <tbody>
                                 <tr style="vertical-align: top;">
                                     <td style="width: 20%;  text-align: center; color: blue;">
@@ -208,11 +220,11 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 20%; padding: 5px 0px 5px 15px; ">
-                                        2012
+                                        <%=getTaxBillRs.getString("TAX_YEAR")%>
                                     </td>
 
                                     <td style="width: 20%; padding: 5px 0px 5px 15px;  ">
-                                        FULL
+                                        <%=getTaxBillRs.getString("INSTALLMENT")%>
                                     </td>
 
                                     <td style="width: 30%; padding: 5px 0px 5px 15px; border-color: white;">
@@ -227,15 +239,21 @@
                             </table>
                             <table border="1" style="margin: -1px 0px -1px -1px; font-size: 9px;"  width="100%">
                                 <tbody>
+                                <%
+                                    PreparedStatement getFeeList = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_r_fee_list FL JOIN rpt_t_fl_tb rtft on FL.RPTFL_ID = rtft.RPTFL_ID WHERE RPTTB_ID = ?");
+                                    getFeeList.setInt(1,Integer.parseInt(getTaxBillRs.getString("RPTTB_ID")));
+                                    ResultSet getFeeListRs = getFeeList.executeQuery();
+
+                                    while (getFeeListRs.next()){%>
                                 <tr style="vertical-align: top;">
                                     <td style="width: 70%; padding: 5px 0px 5px 15px; ">
-                                        TAX
+                                        <%=getFeeListRs.getString("RPTFL_NAME")%>
                                     </td>
                                     <td style="width: 30%; padding: 5px 0px 5px 15px; ">
-                                        TAX
+                                        <%=getFeeListRs.getString("RPTFL_AMOUNT")%>
                                     </td>
                                 </tr>
-                                <tr style="vertical-align: top;">
+                                <%--<tr style="vertical-align: top;">
                                     <td style="width: 70%; padding: 5px 0px 5px 15px; ">
                                         City Share
                                     </td>
@@ -330,13 +348,54 @@
                                     <td style="width: 30%; padding: 5px 0px 5px 15px; ">
                                         TAX
                                     </td>
+                                </tr>--%>
+                                <%}%>
+                                <tr style="vertical-align: top;">
+                                    <td style="width: 70%; padding: 15px 0px 5px 15px; ">
+
+                                    </td>
+                                    <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top;">
+                                    <td style="width: 70%; padding: 15px 0px 5px 15px; ">
+
+                                    </td>
+                                    <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top;">
+                                    <td style="width: 70%; padding: 15px 0px 5px 15px; ">
+
+                                    </td>
+                                    <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top;">
+                                    <td style="width: 70%; padding: 15px 0px 5px 15px; ">
+
+                                    </td>
+                                    <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align: top;">
+                                    <td style="width: 70%; padding: 15px 0px 5px 15px; ">
+
+                                    </td>
+                                    <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+
+                                    </td>
                                 </tr>
                                 <tr style="vertical-align: top;">
                                     <td style="width: 70%; padding: 5px 0px 5px 15px; ">
                                         AMOUNT DUE
                                     </td>
                                     <td style="width: 30%; padding: 5px 0px 5px 15px; ">
-
+                                        <%=getTaxBillRs.getString("AMOUNT_DUE")%>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -352,7 +411,7 @@
                             </table>
                         </td>
                     </tr>
-
+<%}%>
                     </tbody>
                 </table>
             </div>
@@ -420,4 +479,7 @@
 
     </script>
 </body>
+<%}catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>

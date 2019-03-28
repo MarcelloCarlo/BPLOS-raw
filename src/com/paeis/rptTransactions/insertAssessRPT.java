@@ -36,7 +36,7 @@ public class insertAssessRPT extends HttpServlet {
         LGUConnect connect = new LGUConnect();
         try {
             Connection connection = connect.getConnection();
-            PreparedStatement assessRPT = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_assessment (RPL_ID, PC_ID, MRKT_VAL, AU_ID, AL_ID, ASSESSED_VAL, ASSESSED_BY, APPROVED_BY, ARP_NO,FLAG) VALUES (?,?,?,?,?,?,?,?,CONCAT('RPT',?,?,?,REPLACE(CURRENT_DATE,'-','')),?)");
+            PreparedStatement assessRPT = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_assessment (RPL_ID, PC_ID, MRKT_VAL, AU_ID, AL_ID, ASSESSED_VAL, ASSESSED_BY, APPROVED_BY, ARP_NO,FLAG,TAX_DEC_NO) VALUES (?,?,?,?,?,?,?,?,CONCAT('RPT',?,?,?,REPLACE(CURRENT_DATE,'-','')),?,CONCAT('RPT','-','TD',?,?,?,'-',REPLACE(CURRENT_DATE,'-','')))");
             assessRPT.setInt(1, Integer.parseInt(RPL_ID));
             assessRPT.setInt(2,Integer.parseInt(PC_ID));
             assessRPT.setFloat(3,Float.parseFloat(marketVal));
@@ -49,6 +49,9 @@ public class insertAssessRPT extends HttpServlet {
             assessRPT.setString(10,PC_ID);
             assessRPT.setString(11,AU_ID);
             assessRPT.setString(12,opt);
+            assessRPT.setString(13,PT_ID);
+            assessRPT.setString(14,PC_ID);
+            assessRPT.setString(15,AU_ID);
             assessRPT.executeUpdate();
 
             PreparedStatement setRPLStat = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_rp_land SET RPL_STAT = 'TAXING' WHERE RPL_ID = ?");

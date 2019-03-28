@@ -11,14 +11,27 @@
 <link href="assets/bootstrap-4/css/bootstrap.css" rel="stylesheet">
   </head>
   <body class="text-center">
-    <form class="form-signin">
-  <img class="mb-4" src="extras/logo1.png" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Please Enter Your Reference Number</h1>
-  <label for="inputEmail" class="sr-only col-12">Referrence Number</label>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Continue</button>
-  <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
-</form>
+  <h1 class="text-center">LGU GO</h1>
+  <div class="container pt-3">
+      <div class="row justify-content-sm-center">
+          <div class="col-sm-6 col-md-4">
+
+              <div class="card border-info text-center">
+                  <div class="card-header">
+                      Please Enter Your Reference Number
+                  </div>
+                  <div class="card-body">
+                      <img src="extras/icon.png">
+<hr>
+                      <form class="form-signin" action="BPLSRtSlip.jsp" method="get">
+                          <input type="text" name="refNo" class="form-control mb-2" placeholder="Reference Number" required autofocus>
+                          <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">Continue</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
     <script src="assets/bootstrap-4/js/bootstrap.js"></script>
 </body></html>

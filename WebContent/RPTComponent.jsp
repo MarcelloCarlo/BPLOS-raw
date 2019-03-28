@@ -82,7 +82,7 @@
                 <li><a href="RPTTax.jsp">Property Taxing</a></li>
             </ul>
         </li>
-        <li><a href="RPTTaxBill.jsp"><i class="fa fa-money"></i> <span>Tax Bill</span></a></li>
+        <li><a href="RPTTaxBillList.jsp"><i class="fa fa-money"></i> <span>Tax Bills</span></a></li>
         <li class="has-sub pull-right">
             <a href="javascript:;">
                 <b class="caret pull-right"></b>

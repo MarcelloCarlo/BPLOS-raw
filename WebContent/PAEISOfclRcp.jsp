@@ -1,4 +1,9 @@
-<%--
+<%@ page import="com.paeis.dbConnection.LGUConnect" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: Li Ven
   Date: 10/10/2018
@@ -42,6 +47,14 @@
     <script src="assets/plugins/pace/pace.min.js"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
+<%try{
+    String tb_Id = request.getParameter("tb_Id");
+    LGUConnect connect = new LGUConnect();
+    Connection connection = connect.getConnection();
+    PreparedStatement getOR = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_taxbill TXB JOIN rpt_t_rp_owner rtro on TXB.RPO_ID = rtro.RPO_ID JOIN rpt_t_rp_land rtrl on TXB.RPL_ID = rtrl.RPL_ID JOIN rpt_t_rptax rtr on TXB.RPTAX_ID = rtr.RPTAX_ID JOIN rpt_t_assessment rta on TXB.RPTA_ID = rta.RPTA_ID JOIN bpls_t_employee_profile btep on rta.APPROVED_BY = btep.EP_ID JOIN rpt_r_property_class rrpc on rtrl.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on rtrl.PT_ID = rrpt.PT_ID JOIN rpt_t_official_receipt OFR ON TXB.RPTTB_ID = OFR.RPTTB_ID  WHERE TXB.RPTTB_ID = ?");
+    getOR.setInt(1,Integer.parseInt(tb_Id));
+    ResultSet getORRs = getOR.executeQuery();
+%>
 <body>
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
@@ -58,6 +71,7 @@
         <!-- end page-header -->
 
         <!-- begin invoice -->
+        <%while (getORRs.next()){%>
         <div class="invoice">
             <div class="invoice-company">
                     <span class="pull-right hidden-print">
@@ -69,22 +83,26 @@
             <div class="invoice-header">
                 <div class="invoice-from">
                     <address class="m-t-5 m-b-5">
-                        Machine Validation No.<br/>
-                        Bill Number<br/>
-                        Payor
+                        Machine Validation No:<br/>
+                        Bill Number:<br/>
+                        Payor:
                     </address>
                 </div>
                 <div class="invoice-to">
                     <address class="m-t-5 m-b-5">
-                        Insert Machine Validation No. here<br/>
-                        Insert Bill Number here<br/>
-                        Insert Payor here
+                        <%=getORRs.getString("RPTOR_NUMBER")%><br/>
+                        <%=getORRs.getString("RPTTB_BILL_NO")%><br/>
+                        <%=getORRs.getString("RPO_FNAME") +" "+getORRs.getString("RPO_SNAME")%>
                     </address>
                 </div>
                 <div class="invoice-date">
-                    <div class="date m-t-5">Insert Date here</div>
+                    <div class="date m-t-5"><%
+                        SimpleDateFormat format = new SimpleDateFormat("dd-MM-YYYY");
+
+                        String dateString = format.format( new Date()   );
+                        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse( getORRs.getString("RPTOR_DATE") );%><%=date%></div>
                     <div class="invoice-detail">
-                        Insert No. here
+                        Treasurer:  <%=getORRs.getString("EP_FNAME") +" "+ getORRs.getString("EP_LNAME")%>
                     </div>
                 </div>
             </div>
@@ -94,121 +112,124 @@
                         <thead>
                         <tr>
                             <th>NATURE OF COLLECTION</th>
-                            <th>FUND AND ACCOUNT CODE</th>
                             <th>AMOUNT</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>MAYORS PERMIT</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+
+                        <%
+                            PreparedStatement getFeeList = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_r_fee_list FL JOIN rpt_t_fl_tb rtft on FL.RPTFL_ID = rtft.RPTFL_ID WHERE RPTTB_ID = ?");
+                            getFeeList.setInt(1,Integer.parseInt(getORRs.getString("TXB.RPTTB_ID")));
+                            ResultSet getFeeListRs = getFeeList.executeQuery();
+
+                            while (getFeeListRs.next()){%>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                <%=getFeeListRs.getString("RPTFL_NAME")%>
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                <%=getFeeListRs.getString("RPTFL_AMOUNT")%>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>CITY TAX</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <%--<tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                City Share
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>GARBAGE FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                Barangay Share
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>SANITARY FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                Special Education Fund
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+
+                            </td>
                         </tr>
-                        <tr>
-                            <td>BUILDING INSP. FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                Idle Land Tax
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>ELECTRICAL INSPECTION FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                SHT
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>PLUMBING INSPECTION FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                Garbage Fee (TRO 020514)
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>SIGNBOARD</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>FIRE INSPECTION FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                DISCOUNT
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>NEW REGISTRATION PLATE / STICK</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                NET TAX
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>ZONING FEE</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                CR (NB)
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>PENALTY / INTEREST</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                BALANCE
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
                         </tr>
-                        <tr>
-                            <td>TOURISM</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>TOURISM</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>QCBRD</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>ADJUSTMENT</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>DISCOUNT</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>PENALTY FOR DELINQUENCY</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>ADJUSTMENT FOR TOURISM</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>SPECIAL PERMIT</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>ADDITIONAL FEES</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
-                        <tr>
-                            <td>CTC</td>
-                            <td>-</td>
-                            <td>Insert Price here</td>
-                        </tr>
+                        <tr style="vertical-align: top;">
+                            <td style="width: 70%; padding: 5px 0px 5px 15px; ">
+                                PENALTY 36.00% Sec 222 RA 7160
+                            </td>
+                            <td style="width: 30%; padding: 5px 0px 5px 15px; ">
+                                TAX
+                            </td>
+                        </tr>--%>
+                        <%}%>
+
+
                         </tbody>
                     </table>
                 </div>
@@ -217,7 +238,7 @@
                     </div>
                     <div class="invoice-price-right">
                         <small>TOTAL</small>
-                        Insert Total Here
+                        PHP <%=getORRs.getString("AMOUNT_DUE")%>
                     </div>
                 </div>
             </div>
@@ -226,6 +247,7 @@
                 received
             </div>
         </div>
+        <%}%>
         <!-- end invoice -->
     </div>
     <!-- end #content -->
@@ -289,4 +311,7 @@
 
 </script>
 </body>
+<%}catch (Exception e){
+    e.printStackTrace();
+}%>
 </html>
