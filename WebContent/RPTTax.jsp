@@ -27,7 +27,6 @@
     <link rel="icon" href="extras/logo1.png">
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -55,6 +54,7 @@
 </head>
 <%
     try {
+        Float flRate = Float.valueOf(0);
         LGUConnect connect = new LGUConnect();
         Connection connection = connect.getConnection();
         Statement statement = connection.createStatement();
@@ -137,7 +137,7 @@
                             <h4 class="panel-title">Tax</h4>
                         </div>
                         <div class="panel-body">
-                            <form enctype="multipart/form-data"name="addRPTPropTaxForm" id="addRPTPropTaxForm">
+                            <form enctype="multipart/form-data" name="addRPTPropTaxForm" id="addRPTPropTaxForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
                                     <input class="hidden" type="hidden" name="EP_ID" value='<%=session.getAttribute("empid")%>'>
                                     <input class="hidden" type="hidden" name="RPL_ID" id="RPL_ID">
@@ -177,13 +177,19 @@
                                                 <div class="form-group">
                                                     <label>Property Rate</label>
                                                     <div class="controls">
-                                                        <select name="taxRateId" class="form-control">
+
+
+                                                        <select id="test" name="taxRateId" class="form-control">
+
+
                                                             <option value='' selected>-Select One-</option>
                                                             <%while (resultSet1.next()){
-                                                                String flAmt = resultSet1.getString("RPTR_RATE");
-                                                            String functionX = "$('#percentageStr').val(parseFloat("+Float.parseFloat(flAmt) * 100 +")); $('#percentageStrHide').val(parseFloat("+resultSet1.getString("RPTR_RATE")+")); $('#totAmt').val(parseFloat("+Float.parseFloat(resultSet1.getString("RPTR_RATE")) +" * parseFloat($('#assessedVal').val()) )); $('#totAmtHide').val(parseFloat("+Float.parseFloat(resultSet1.getString("RPTR_RATE")) +" * parseFloat($('#assessedVal').val()) ));";
+                                                                flRate = Float.parseFloat(resultSet1.getString("RPTR_RATE"));
+
+                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; $('#percentageStr').val(perC); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal); ('#totAmtHide').val(assVal); alert(assVal);";
                                                             %>
-                                                            <option value='<%=resultSet1.getString("RPTR_ID")%>' onclick="<%=functionX%>"><%=resultSet1.getString("RPTR_LOC")%></option>
+                                                            <option onclick="<%=functionX%>" value='<%=resultSet1.getString("RPTR_ID")%>' ><%=resultSet1.getString("RPTR_LOC")%>
+                                                            </option>
                                                             <%}%>
                                                         </select>
                                                     </div>
@@ -196,7 +202,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="percentageStr" id="percentageStr"
                                                                placeholder=""
-                                                               class="form-control" disabled/>
+                                                               class="form-control"/>
                                                         <input type="hidden" name="percentageStrHide" id="percentageStrHide"
                                                                placeholder="Input 1"
                                                                class="form-control hidden"/>
@@ -209,7 +215,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="assessedVal" id="assessedVal"
                                                                placeholder="Input 2"
-                                                               class="form-control" disabled/>
+                                                               class="form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,7 +225,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="totAmt" id="totAmt"
                                                                placeholder=""
-                                                               class="form-control" disabled/>
+                                                               class="form-control" />
                                                         <input type="hidden" name="totAmtHide" id="totAmtHide"
                                                                placeholder=""
                                                                class="hidden" />
@@ -269,13 +275,9 @@
 <!-- ================== END BASE JS ================== -->
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
-<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
-<script src="assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/plugins/bootstrap-daterangepicker/moment.js"></script>
 <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
-<script src="assets/plugins/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
@@ -290,10 +292,11 @@
         TableManageResponsive.init();
 
         $(".modalTax").click(function () {
-            $("#assessedVal").val(parseFloat($(this).closest("tbody tr").find("td:eq(3)").html()));
+            // $("#assessedVal").val(parseFloat($(this).closest("tbody tr").find("td:eq(3)").html()));
 	        document.getElementById('RPL_ID').value = $(this).closest("tbody tr").find("td:eq(1)").html().trim();
+            document.getElementById('assessedVal').value = $(this).closest("tbody tr").find("td:eq(3)").html();
 	        document.getElementById('RPTA_ID').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
-
+            alert($("#totAmt").val());
         });
 
 	    $("#modal-taxing").on('hidden.bs.modal', function () {
@@ -303,6 +306,15 @@
 		    $("#percentageStrHide").val(0.00);
 
 	    });
+
+        function calcInput(){
+            var assVal = <%=flRate%> * parseFloat($('#assessedVal').val());
+            var perC = <%=flRate%> * 100;
+            $('#percentageStr').val(perC);
+            $('#percentageStrHide').val(<%=flRate%>);
+            $('#totAmt').val(assVal);
+            $('#totAmtHide').val(assVal);
+        }
 
 	    $("#btnTaxRPT").click(function () {
 		    var addRPTPropTaxForm = new FormData($('#addRPTPropTaxForm')[0]);
@@ -355,23 +367,6 @@
 		    });
 	    });
     });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
 </script>
 </body>
 <%} catch (Exception e){

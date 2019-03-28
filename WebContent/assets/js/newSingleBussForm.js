@@ -38,16 +38,15 @@ $(document).ready(function () {
     });
     
     $('#submitBtn').click(function () {
-        swal.mixin({
-            confirmButtonText: 'Next &rarr;',
+        swal({
+            title: "Are you sure?",
+            text: "You will save your current changes",
+            type: "warning",
+            confirmButtonColor: "#62a3cb",
+            confirmButtonText: "Confirm!",
             showCancelButton: true,
-            progressSteps: ['1', '2']
-        }).queue([{
-            title: 'Verify Inputs?',
-            text: 'Ensure that the fields are correct'
-        },
-            'Confirm?',
-        ]).then(function (result) {
+            cancelButtonText: 'Cancel'
+        }).then(function (result) {
             if(result.value)
         {
             var formApplicationFormSingle = $('#applicationFormSingle')[0];
