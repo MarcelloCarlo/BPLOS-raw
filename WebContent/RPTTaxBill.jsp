@@ -56,7 +56,7 @@
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-without-sidebar ">
-
+    <%while (getTaxBillRs.next()){%>
     <!-- begin #content -->
     <div id="content" class="content">
         <!-- begin page-header -->
@@ -65,6 +65,15 @@
             <span class="hidden-print">
                 <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i
                     class="fa fa-print m-r-5"></i> Print</a>
+            </span>
+        </div>
+        <div>
+            <span class="hidden-print">
+                <form enctype="multipart/form-data" id="confirmORForm" name="confirmORForm">
+                    <input class="hidden" type="hidden" name="txbId" hidden value='<%=getTaxBillRs.getString("TXB.RPL_ID")%>'>
+                <button  type="button" id="btnConfirmOR" class="btn btn-sm btn-primary"><i
+                        class="fa fa-money m-r-5"></i> Generate Payment</button>
+            </form>
             </span>
         </div>
 
@@ -90,7 +99,6 @@
                     </thead>
 
                     <tbody>
-<%while (getTaxBillRs.next()){%>
                     <tr>
                         <td style="width: 50%;">
                             <table border="1" style="margin: -1px 0px -1px -1px;" width="100%">
@@ -411,14 +419,14 @@
                             </table>
                         </td>
                     </tr>
-<%}%>
+
                     </tbody>
                 </table>
             </div>
             <!-- end invoice -->
         </div>
         <!-- end #content -->
-
+        <%}%>
         <!-- begin scroll to top btn -->
         <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
                 class="fa fa-angle-up"></i></a>
@@ -443,6 +451,7 @@
     <!-- ================== END BASE JS ================== -->
 
     <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+<script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
     <script src="assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
     <script src="assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
@@ -450,33 +459,65 @@
     <script src="assets/js/apps.min.js"></script>
     <!-- ================== END PAGE LEVEL JS ================== -->
 
-    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
-    <script src="assets/js/apps.min.js"></script>
-    <!-- ================== END PAGE LEVEL JS ================== -->
 
 
     <script>
         $(document).ready(function () {
             App.init();
             TableManageResponsive.init();
+
+            $("#btnConfirmOR").click(function () {
+                var confirmORForm = new FormData($('#confirmORForm')[0]);
+                swal({
+                    title: "Are you sure?",
+                    text: "You will save your current changes",
+                    type: "warning",
+                    confirmButtonColor: "#62a3cb",
+                    confirmButtonText: "Confirm!",
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel'
+                }).then(function(result) {
+                    if(result.value)
+                    {
+                        $.ajax({
+                            type: "POST",
+                            url: "editOfficialReceipt",
+                            data: confirmORForm,
+                            enctype: "multipart/form-data",
+                            processData: false,
+                            contentType: false,
+                            success: function (response) {
+                                swal({
+                                    type: 'success',
+                                    title: 'DONE!.',
+                                    text: 'Succesfully Processed',
+                                    confirmButtonText: 'OK'
+                                }).then(function(result) {
+                                    if(result.value)
+                                    {
+                                        window.location.replace("RPTPrprty.jsp");
+                                        //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
+                                        //window.location.replace("BPLSORf.jsp"+oRX);
+                                    }
+                                })
+                                ;
+
+                            }
+                        });
+                    }
+                    else
+                    if (result.dismiss === swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons(
+                            'Cancelled',
+                            'Operation Halted',
+                            'error'
+                        )
+
+                    }
+                });
+            });
+
         });
-    </script>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-53034621-1', 'auto');
-        ga('send', 'pageview');
-
     </script>
 </body>
 <%}catch (Exception e){

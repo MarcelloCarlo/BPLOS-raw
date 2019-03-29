@@ -58,7 +58,7 @@
         LGUConnect connect = new LGUConnect();
         Connection connection = connect.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID JOIN rpt_t_assessment rta on LN.RPL_ID = rta.RPL_ID JOIN rpt_t_taxbill rtt on LN.RPL_ID = rtt.RPL_ID WHERE RPL_STAT = 'TAXBILL' ");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID JOIN rpt_t_assessment rta on LN.RPL_ID = rta.RPL_ID JOIN rpt_t_taxbill rtt on LN.RPL_ID = rtt.RPL_ID WHERE RPL_STAT = 'TAXBILL' OR RPL_STAT = 'RECEIPT' ");
 %>
 <body>
 <!-- begin #page-loader -->
@@ -108,6 +108,13 @@
                             <%while (resultSet.next()){
                                 String taxBill = "location.href='RPTTaxBill.jsp?tb_Id=" + resultSet.getString("RPTTB_ID")+ "&taxBillNo="+resultSet.getString("RPTTB_BILL_NO")+"'";
                                 String receipt = "location.href='PAEISOfclRcp.jsp?tb_Id=" + resultSet.getString("RPTTB_ID")+"'";
+                                String actif = "";
+                                String passif = "disabled";
+                                if(!resultSet.getString("RPL_STAT").equalsIgnoreCase("RECEIPT")){
+                                    actif = "disabled";
+                                    passif = "";
+
+                                }
                             %>
                             <tr>
                                 <td><%=resultSet.getString("PT_DESC")%></td>
@@ -116,8 +123,8 @@
                                 <td><%=resultSet.getString("RPL_AREA")%></td>
                                 <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
                                 <td>
-                                    <button  type="button" onclick="<%=taxBill%>" class="btn btn-sm btn-primary">Tax Bill</button>
-                                    <button  type="button" onclick="<%=receipt%>" class="btn btn-sm btn-primary">Receipt</button>
+                                    <button  type="button" onclick="<%=taxBill%>" class="btn btn-sm btn-primary" <%=passif%>>Tax Bill</button>
+                                    <button  type="button" onclick="<%=receipt%>" class="btn btn-sm btn-primary" <%=actif%>>Receipt</button>
                                 </td>
                             </tr>
                             <%}%>

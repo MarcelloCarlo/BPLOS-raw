@@ -89,4 +89,48 @@ $(document).ready(function () {
     })
         ;
     })
+
+    $("#btnInspectMigrate").click(function () {
+        swal({
+            title: "Are you sure?",
+            text: "You will save your current changes",
+            type: "warning",
+            confirmButtonColor: "#62a3cb",
+            confirmButtonText: "Confirm!",
+            showCancelButton: true,
+            cancelButtonText: 'Cancel'
+        }).then(function(result) {
+            if(result.value
+            )
+            {
+                var inspectMigrateForm = new FormData($('#inspectMigrateForm')[0]); //working method
+                $.ajax({
+                    type: "POST",
+                    url: "inspectApplFrmExcel",
+                    data: inspectMigrateForm,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        swal({
+                            type: 'success',
+                            title: 'DONE!.',
+                            text: 'Succesfully Inspected',
+                            confirmButtonText: 'OK'
+                        }).then(function(result) {
+                            if(result.value
+                            )
+                            {
+                                location.reload(true);
+                            }
+                        })
+                        ;
+                    },
+                    error: function () {
+                        swal("error", "The process encountered and error", "error");
+                    }
+                });
+            }
+        })
+        ;
+    })
 })

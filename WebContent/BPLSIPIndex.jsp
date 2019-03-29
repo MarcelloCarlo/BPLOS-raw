@@ -7,8 +7,8 @@
 --%>
 <%@ page
         language="java"
-        contentType="text/html; charset=ISO-8859-1"
-        pageEncoding="ISO-8859-1"
+        contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"
 %>
 <%@ page import="com.paeis.dbConnection.LGUConnect" %>
 <%@ page import="java.sql.Connection" %>
@@ -151,6 +151,29 @@
                                 title="Release a Mission Order"
                         ><i class="fa fa-lg fa-rocket"></i>
                         </button></div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="form-group" enctype="multipart/form-data" name="inspectMigrateForm" id="inspectMigrateForm">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="controls fileupload-buttonbar">
+                                                       <span class="btn btn-success fileinput-button">
+                                    <i class="fa fa-plus"></i>
+                                   <label class="control-label" for="fileUnifiedRequirements">Upload Inspection File Instead
+                                       (.xls,.xlsx, and must be maximum of 1MB)<span class="required">*</span>
+                                    </label>
+                                    <input type="file" name="fileUnifiedRequirements"
+                                           id="fileUnifiedRequirements"
+                                           accept=".application/vnd.sealed-xls,.xlsx" required>
+                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3"><button class="btn btn-sm btn-primary" type="button" id="btnInspectMigrate">Inspect</button></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="panel-body">
                             <table
                                     id="data-table"
@@ -258,13 +281,7 @@
             aria-hidden="true"
     >
         <div class="modal-dialog">
-            <form
-                    id="newInsApplForm"
-                    class="form-horizontal"
-                    name="newInsApplForm"
-                    enctype="multipart/form-data"
-            >
-                <div class="modal-content">
+         <div class="modal-content">
                     <div class="modal-header">
                         <div class="panel panel-inverse panel-danger">
                             <div class="panel-heading">
@@ -274,6 +291,13 @@
                                 >Inspection for New Application</h4>
                             </div>
                         </div>
+
+                        <form
+                                id="newInsApplForm"
+                                class="form-horizontal"
+                                name="newInsApplForm"
+                                enctype="multipart/form-data"
+                        >
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -444,6 +468,7 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                         <div class="modal-footer">
                             <button
                                     type="button"
@@ -461,7 +486,6 @@
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
     <!-- MissionOrder Modal -->

@@ -47,7 +47,7 @@ public class inspectApplForm extends HttpServlet {
         String busType = String.valueOf(request.getParameter("busType"));
         String empID = String.valueOf(request.getParameter("empID"));
 
-        if (Objects.equals(ZONING_INS, "Pass") && Objects.equals(FIRE_INS, "Pass") && Objects.equals(HS_INS, "Pass") && Objects.equals(BLDG_INS, "Pass") && Objects.equals(LABOR_INS, "Pass") && Objects.equals(MISC_INS, "Pass") && !AP_REFERENCE_NO.isEmpty() && !busType.isEmpty()) {
+        if (ZONING_INS.equalsIgnoreCase("Pass") && FIRE_INS.equalsIgnoreCase("Pass") && HS_INS.equalsIgnoreCase("Pass") && BLDG_INS.equalsIgnoreCase("Pass") && LABOR_INS.equalsIgnoreCase("Pass") && MISC_INS.equalsIgnoreCase("Pass") && !AP_REFERENCE_NO.isEmpty() && !busType.isEmpty()) {
             passedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID);
         } else {
             failedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID);

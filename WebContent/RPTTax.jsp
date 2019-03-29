@@ -186,7 +186,7 @@
                                                             <%while (resultSet1.next()){
                                                                 flRate = Float.parseFloat(resultSet1.getString("RPTR_RATE"));
 
-                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; $('#percentageStr').val(perC); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal); ('#totAmtHide').val(assVal); alert(assVal);";
+                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; $('#percentageStr').val(perC); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal); ('#totAmtHide').val(assVal);";
                                                             %>
                                                             <option onclick="<%=functionX%>" value='<%=resultSet1.getString("RPTR_ID")%>' ><%=resultSet1.getString("RPTR_LOC")%>
                                                             </option>
@@ -202,7 +202,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="percentageStr" id="percentageStr"
                                                                placeholder=""
-                                                               class="form-control"/>
+                                                               class="form-control" disabled/>
                                                         <input type="hidden" name="percentageStrHide" id="percentageStrHide"
                                                                placeholder="Input 1"
                                                                class="form-control hidden"/>
@@ -215,7 +215,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="assessedVal" id="assessedVal"
                                                                placeholder="Input 2"
-                                                               class="form-control" />
+                                                               class="form-control" disabled/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,7 +225,7 @@
                                                     <div class="controls">
                                                         <input type="text" name="totAmt" id="totAmt"
                                                                placeholder=""
-                                                               class="form-control" />
+                                                               class="form-control" disabled/>
                                                         <input type="hidden" name="totAmtHide" id="totAmtHide"
                                                                placeholder=""
                                                                class="hidden" />
@@ -296,7 +296,6 @@
 	        document.getElementById('RPL_ID').value = $(this).closest("tbody tr").find("td:eq(1)").html().trim();
             document.getElementById('assessedVal').value = $(this).closest("tbody tr").find("td:eq(3)").html();
 	        document.getElementById('RPTA_ID').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
-            alert($("#totAmt").val());
         });
 
 	    $("#modal-taxing").on('hidden.bs.modal', function () {
