@@ -1,74 +1,102 @@
 package com.paeis.bplsTransactions;
 
 import com.paeis.dbConnection.LGUConnect;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 
+
+@WebServlet("/inspectApplFrmExcel")
+@MultipartConfig
 public class inspectApplFrmExcel extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
+    private String AP_REFERENCE_NO = "", ZONING_INS = "", FIRE_INS = "", HS_INS = "", BLDG_INS = "", LABOR_INS = "", MISC_INS = "", MISC_REMARKS = "", busType = "", empID = "";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        InputStream is = null;
+        String fileName = null;
+        // Part list (multi files).
+        for (Part part : request.getParts()) {
+            fileName = extractFileName(part);
+            if (fileName != null && fileName.length() > 0) {
+                // File data
+
+                is = part.getInputStream();
+                // Write to file
+                // this.writeToDB(conn, fileName, is, description);
+            }
+        }
+
+        LGUConnect connect = new LGUConnect();
         try {
-            /*// Read excel file and store email ids in mailIdsArray
-            InputStream input = new BufferedInputStream(new FileInputStream(filename));
-            POIFSFileSystem fs = new POIFSFileSystem(input);
-            HSSFWorkbook wb = new HSSFWorkbook(fs);
-            HSSFSheet sheet = wb.getSheetAt(0);
+            HSSFWorkbook workbook = new HSSFWorkbook(is);
+            HSSFSheet worksheet = workbook.getSheet("INSPECTION SHEET");
+            /*HSSFRow row1 = worksheet.getRow(2);
+            HSSFCell cellA1 = row1.getCell((short) 0);
+            String a1Val = cellA1.getStringCellValue();
+            HSSFCell cellB1 = row1.getCell((short) 1);
+            String b1Val = cellB1.getStringCellValue();
+            HSSFCell cellC1 = row1.getCell((short) 2);
+            boolean c1Val = cellC1.getBooleanCellValue();
+            HSSFCell cellD1 = row1.getCell((short) 3);
+            Date d1Val = cellD1.getDateCellValue();*/
+            HSSFRow row = worksheet.getRow(1);
+            HSSFCell cell = row.getCell((short) 1);
+            AP_REFERENCE_NO = cell.getStringCellValue();
+            HSSFRow row1 = worksheet.getRow(2);
+            HSSFCell cell1 = row1.getCell((short) 1);
+            empID = cell1.getStringCellValue();
+            HSSFRow row2 = worksheet.getRow(2);
+            HSSFCell cell2 = row2.getCell((short) 1);
 
-            Iterator rows = sheet.rowIterator();
-            while (rows.hasNext()) {
-                RegistrationUser user= new RegistrationUser();
-                HSSFRow row = (HSSFRow) rows.next();
-
-
-
-                if(row.getCell(0) != null && !row.getCell(0).equals("First Name")){
-                    user.setFirstName(row.getCell(0).toString());
-                    user.setLastName(row.getCell(1).toString());
-                    user.setAddress(row.getCell(2).toString());
-                    user.setDateOfBirth(row.getCell(3).toString());
-                    user.setPhoneNumber(row.getCell(4).hashCode());
-                    user.setEmailId(row.getCell(5).toString());
-                    user.setGender(row.getCell(6).toString());
-                    user.setMaritalStatus(row.getCell(7).toString());
-                    user.setHighestDegree(row.getCell(8).toString());
-                    user.setAggregate(row.getCell(9).hashCode());
-                    user.setYearOfPassing(row.getCell(10).hashCode());
-                    user.setCollegeName(row.getCell(11).toString());
-                    user.setUniversityName(row.getCell(12).toString());
-                    user.setTotalExperiences(row.getCell(13).hashCode());
-                    user.setCurrentCompany(row.getCell(14).toString());
-                    user.setDesignation(row.getCell(15).toString());
-                    user.setReferredBy(row.getCell(16).toString());
-
-                }
-
-
-                usersList.add(user);
-            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private String extractFileName(Part part) {
+        // form-data; name="file"; filename="C:\file1.zip"
+        // form-data; name="file"; filename="C:\Note\file2.zip"
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                // C:\file1.zip
+                // C:\Note\file2.zip
+                String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+                clientFileName = clientFileName.replace("\\", "/");
+                int i = clientFileName.lastIndexOf('/');
+                // file1.zip
+                // file2.zip
+                return clientFileName.substring(i + 1);
+            }
+        }
+        return null;
     }
 
 }
