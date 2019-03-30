@@ -18,7 +18,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     if (request.getParameter("refNo") == null || request.getParameter("refNo").isEmpty()) {
-        response.sendRedirect("PAEISPortal.jsp");
+        response.sendRedirect("lguTrackerForm.html");
     }
 %>
 <% LGUConnect conX = new LGUConnect();
