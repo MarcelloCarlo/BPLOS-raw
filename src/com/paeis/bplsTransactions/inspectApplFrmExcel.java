@@ -24,9 +24,19 @@ public class inspectApplFrmExcel extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private LGUConnect connect = new LGUConnect();
     private Connection connection;
+
+    {
+        try {
+            connection = connect.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private String divCode = "", divName = "";
     private int BU_ID;
-    private String AP_REFERENCE_NO = "", ZONING_INS = "", FIRE_INS = "", HS_INS = "", BLDG_INS = "", LABOR_INS = "", MISC_INS = "", MISC_REMARKS = "", busType = "", empID = "";
+    private String AP_REFERENCE_NO = "", ZONING_INS = "", FIRE_INS = "", HS_INS = "", BLDG_INS = "", LABOR_INS = "", MISC_INS = "", MISC_REMARKS = "", busType = "";
+private Double empID = 0.00;
 
     public inspectApplFrmExcel(){
         super();
@@ -50,46 +60,56 @@ public class inspectApplFrmExcel extends HttpServlet {
             }
         }
 
-        LGUConnect connect = new LGUConnect();
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(is);
             XSSFSheet worksheet = workbook.getSheet("INSPECTION SHEET");
+
             XSSFRow row = worksheet.getRow(1);
             XSSFCell cell = row.getCell((short) 1);
             AP_REFERENCE_NO = cell.getStringCellValue();
+
             XSSFRow row1 = worksheet.getRow(2);
             XSSFCell cell1 = row1.getCell((short) 1);
-            empID = cell1.getStringCellValue();
+            empID = cell1.getNumericCellValue();
+
             XSSFRow row2 = worksheet.getRow(4);
             XSSFCell cell2 = row2.getCell((short) 1);
             ZONING_INS = getCheckboxtatus(cell2.getStringCellValue());
+
             XSSFRow row3 = worksheet.getRow(5);
             XSSFCell cell3 = row3.getCell((short) 1);
             FIRE_INS = getCheckboxtatus(cell3.getStringCellValue());
+
             XSSFRow row4 = worksheet.getRow(6);
             XSSFCell cell4 = row4.getCell((short) 1);
             HS_INS = getCheckboxtatus(cell4.getStringCellValue());
+
             XSSFRow row5 = worksheet.getRow(7);
             XSSFCell cell5 = row5.getCell((short) 1);
             BLDG_INS = getCheckboxtatus(cell5.getStringCellValue());
+
             XSSFRow row6 = worksheet.getRow(8);
             XSSFCell cell6 = row6.getCell((short) 1);
             LABOR_INS = getCheckboxtatus(cell6.getStringCellValue());
+
             XSSFRow row7 = worksheet.getRow(9);
             XSSFCell cell7 = row7.getCell((short) 1);
             MISC_INS = getCheckboxtatus(cell7.getStringCellValue());
+
             XSSFRow row8 = worksheet.getRow(11);
             XSSFCell cell8 = row8.getCell((short) 1);
-            busType = getCheckboxtatus(cell8.getStringCellValue());
+            busType = cell8.getStringCellValue();
+
             XSSFRow row9 = worksheet.getRow(12);
             XSSFCell cell9 = row9.getCell((short) 1);
-            MISC_REMARKS = getCheckboxtatus(cell9.getStringCellValue());
+            MISC_REMARKS = cell9.getStringCellValue();
 
             if (ZONING_INS.equalsIgnoreCase("Pass") && FIRE_INS.equalsIgnoreCase("Pass") && HS_INS.equalsIgnoreCase("Pass") && BLDG_INS.equalsIgnoreCase("Pass") && LABOR_INS.equalsIgnoreCase("Pass") && MISC_INS.equalsIgnoreCase("Pass") && !AP_REFERENCE_NO.isEmpty() && !busType.isEmpty()) {
-                passedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID);
+                passedInspection(AP_REFERENCE_NO.trim(), ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType, empID,response);
             } else {
-                failedInspection(AP_REFERENCE_NO, ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID);
+                failedInspection(AP_REFERENCE_NO.trim(), ZONING_INS, FIRE_INS, HS_INS, BLDG_INS, LABOR_INS, MISC_INS, MISC_REMARKS, busType,empID,response);
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,7 +148,7 @@ public class inspectApplFrmExcel extends HttpServlet {
     }
 
 
-    private void passedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType, String empID) {
+    private void passedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType, Double empID, HttpServletResponse response) {
         if (!busType.equals("L") && !busType.equals("S")) {
             busType = "S";
         }
@@ -158,7 +178,7 @@ public class inspectApplFrmExcel extends HttpServlet {
 
             PreparedStatement evalIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-EV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ?, U_INS_ID = ? WHERE AP_REFERENCE_NO = ?");
             evalIns.setString(1, MISC_REMARKS);
-            evalIns.setInt(2, Integer.parseInt(empID));
+            evalIns.setInt(2,empID.intValue());
             evalIns.setString(3, AP_REFERENCE_NO);
             evalIns.executeUpdate();
 
@@ -184,12 +204,26 @@ public class inspectApplFrmExcel extends HttpServlet {
             recHist.setString(3, divName);
             recHist.setString(4, MISC_REMARKS);
             recHist.executeUpdate();
-        } catch (SQLException e) {
+
+            String apNo = "", bussName = "", divName = "";
+            PreparedStatement getAPInfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application AP JOIN bpls_r_division brd on AP.AP_DIV_CODE_TO = brd.DIV_CODE JOIN bpls_t_business btb on AP.BU_ID = btb.BU_ID WHERE AP_REFERENCE_NO = ?");
+            getAPInfo.setString(1,AP_REFERENCE_NO);
+            ResultSet getAPInforRs = getAPInfo.executeQuery();
+            while (getAPInforRs.next()){
+                apNo = getAPInforRs.getString("AP_REFERENCE_NO");
+                bussName = getAPInforRs.getString("BU_NAME");
+                divName = getAPInforRs.getString("DIV_NAME");
+            }
+
+            response.getWriter().print("The "+bussName+" with the reference number: "+apNo+" has been inspected. Please proceed to "+divName);
+
+
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void failedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType, String empID) {
+    private void failedInspection(String AP_REFERENCE_NO, String ZONING_INS, String FIRE_INS, String HS_INS, String BLDG_INS, String LABOR_INS, String MISC_INS, String MISC_REMARKS, String busType, Double empID, HttpServletResponse response) {
         LGUConnect connect = new LGUConnect();
         if (!busType.equals("L") && !busType.equals("S")) {
             busType = "S";
@@ -220,7 +254,7 @@ public class inspectApplFrmExcel extends HttpServlet {
                 failIns.executeUpdate();
                 PreparedStatement updateIns = (PreparedStatement) connection.prepareStatement("UPDATE bpls_t_bp_application SET AP_DIV_CODE_TO = 'DIV-INV', AP_DIV_CODE_FROM = 'DIV-INS', AP_DATE_ACCESSED = CURRENT_TIMESTAMP(), AP_REMARKS = ?, U_INS_ID = ? WHERE AP_REFERENCE_NO = ?");
                 updateIns.setString(1, MISC_REMARKS);
-                updateIns.setInt(2, Integer.parseInt(empID));
+                updateIns.setInt(2, empID.intValue());
                 updateIns.setString(3, AP_REFERENCE_NO);
                 updateIns.executeUpdate();
 
@@ -247,7 +281,19 @@ public class inspectApplFrmExcel extends HttpServlet {
                 recHist.setString(4, MISC_REMARKS);
                 recHist.executeUpdate();
 
-            } catch (SQLException | ClassNotFoundException e) {
+                String apNo = "", bussName = "", divName = "";
+                PreparedStatement getAPInfo = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_bp_application AP JOIN bpls_r_division brd on AP.AP_DIV_CODE_TO = brd.DIV_CODE JOIN bpls_t_business btb on AP.BU_ID = btb.BU_ID WHERE AP_REFERENCE_NO = ?");
+                getAPInfo.setString(1,AP_REFERENCE_NO);
+                ResultSet getAPInforRs = getAPInfo.executeQuery();
+                while (getAPInforRs.next()){
+                    apNo = getAPInforRs.getString("AP_REFERENCE_NO");
+                    bussName = getAPInforRs.getString("BU_NAME");
+                    divName = getAPInforRs.getString("DIV_NAME");
+                }
+
+                response.getWriter().print("The "+bussName+" with the reference number: "+apNo+" has been inspected. Please proceed to "+divName);
+
+            } catch (SQLException | ClassNotFoundException | IOException e) {
                 e.printStackTrace();
             }
         }

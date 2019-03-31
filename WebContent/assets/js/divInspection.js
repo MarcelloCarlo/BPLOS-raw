@@ -110,20 +110,20 @@ $(document).ready(function () {
                     data: inspectMigrateForm,
                     processData: false,
                     contentType: false,
-                    success: function () {
+                    success: function (response) {
                         swal({
                             type: 'success',
-                            title: 'DONE!.',
-                            text: 'Succesfully Inspected',
-                            confirmButtonText: 'OK'
-                        }).then(function(result) {
-                            if(result.value
-                            )
+                            title: 'All Done!',
+                            html: JSON.stringify(response),
+                            confirmButtonText: 'Proceed'
+                        }).then(function (result){
+                            if(result.value)
                             {
-                                location.reload(true);
+                                var refx = "?refNo=" + response;
+                                //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
+                                window.location.replace("BPLSRtSlip.jsp" + refx);
                             }
-                        })
-                        ;
+                        });
                     },
                     error: function () {
                         swal("error", "The process encountered and error", "error");

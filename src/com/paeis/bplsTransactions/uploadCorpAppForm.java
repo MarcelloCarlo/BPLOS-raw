@@ -204,9 +204,12 @@ public class uploadCorpAppForm extends HttpServlet {
                     .prepareStatement("INSERT INTO `bpls_r_bu_ar`(`AR_ID`, `BU_ID`)\n"
                             + "VALUES((SELECT MAX(`AR_ID`) FROM `bpls_t_authorize_rep`), (SELECT MAX(`BU_ID`) FROM `bpls_t_business`)) ");
             authRep2Bus.executeLargeUpdate();
+
             PreparedStatement refNoInfo = (PreparedStatement) connection.prepareStatement(
-                    "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business)) ");
+                    "INSERT INTO `bpls_t_bp_application`(`AP_REFERENCE_NO`, `AP_DATE`, `AP_TYPE`, `BU_ID`,AP_DIV_CODE_TO) VALUES ((SELECT CONCAT((SELECT MAX(BU_ID)FROM bpls_t_business),(SELECT MAX(AR_ID) FROM bpls_t_authorize_rep),(SELECT MAX(TP_ID) FROM bpls_t_taxpayer),'-',(SELECT DATE_FORMAT(CURRENT_TIMESTAMP,'%y%m%d')))),CURRENT_TIMESTAMP(),'New',(SELECT MAX(BU_ID)FROM bpls_t_business),?) ");
+            refNoInfo.setString(1,divCode);
             refNoInfo.executeUpdate();
+
             PreparedStatement fileUpload = (PreparedStatement) connection.prepareStatement("INSERT INTO `bpls_t_attachments`(`AT_UNIFIED_FILE`,`AT_UNIFIED_FILE_NAME`,`AP_ID`) VALUES(?,?,(SELECT MAX(`AP_ID`) FROM `bpls_t_bp_application`))");
             fileUpload.setBlob(1, is);
             fileUpload.setString(2, fileName);
