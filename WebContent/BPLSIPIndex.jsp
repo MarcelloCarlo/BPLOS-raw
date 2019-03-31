@@ -144,35 +144,32 @@
                         <div class="panel-heading">
                             <h4 class="panel-title">Inspection Table</h4>
                         </div>
-                        <div class="panel-body"><button
-                                type="button"
-                                class="btn btn-success .missionOrder"
-                                data-toggle="modal" data-target=".inspection-modal-missionOr"
-                                title="Release a Mission Order"
-                        ><i class="fa fa-lg fa-rocket"></i>
-                        </button></div>
+                        <div class="panel-body">
+                            <button
+                                    type="button"
+                                    class="btn btn-success .missionOrder"
+                                    data-toggle="modal" data-target=".inspection-modal-missionOr"
+                                    title="Release a Mission Order">
+                                <i class="fa fa-lg fa-rocket"></i>
+                            </button>
+                            <button class="btn btn-success btn-primary pull-right" type="button" id="btnInspectMigrate">
+                                Inspect
+                            </button>
+                        </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <form class="form-group" enctype="multipart/form-data" name="inspectMigrateForm" id="inspectMigrateForm">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="controls fileupload-buttonbar">
-                                                       <span class="btn btn-success fileinput-button">
-                                    <i class="fa fa-plus"></i>
-                                   <label class="control-label" for="fileUnifiedRequirements">Upload Inspection File Instead
-                                       (.xls,.xlsx, and must be maximum of 1MB)<span class="required">*</span>
-                                    </label>
-                                    <input type="file" name="fileUnifiedRequirements"
-                                           id="fileUnifiedRequirements"
-                                           accept=".application/vnd.sealed-xls,.xlsx" required>
-                                </span>
-                                            </div>
+                        <div class="col-md-12">
+                            <form class="form-group" enctype="multipart/form-data" name="inspectMigrateForm"
+                                  id="inspectMigrateForm">
+                                <div class="alert alert-info m-b-0">
+                                        <div class="controls fileupload-buttonbar">
+                                                <label class="control-label" for="fileUnifiedRequirements">
+                                                    Upload Inspection File Instead(.xls,.xlsx, and must be maximum of 1MB)
+                                                    <span class="required">*</span>
+                                                </label>
+                                                <input type="file" name="fileUnifiedRequirements" id="fileUnifiedRequirements" accept=".application/vnd.sealed-xls,.xlsx" required>
                                         </div>
-                                        <div class="col-md-3"><button class="btn btn-sm btn-primary" type="button" id="btnInspectMigrate">Inspect</button></div>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="panel-body">
                             <table
@@ -256,7 +253,8 @@
                                                 type="button"
                                                 class="btn btn-success newModal"
                                                 data-toggle="modal"
-                                                data-target=".inspection-modal-new" title="Comply the Inspected Business"
+                                                data-target=".inspection-modal-new"
+                                                title="Comply the Inspected Business"
                                         ><i class="fa fa-lg fa-list-ul"></i>
                                         </button>
                                     </td>
@@ -281,23 +279,23 @@
             aria-hidden="true"
     >
         <div class="modal-dialog">
-         <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="panel panel-inverse panel-danger">
-                            <div class="panel-heading">
-                                <h4
-                                        class="panel-title"
-                                        id="myModalLabel"
-                                >Inspection for New Application</h4>
-                            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="panel panel-inverse panel-danger">
+                        <div class="panel-heading">
+                            <h4
+                                    class="panel-title"
+                                    id="myModalLabel"
+                            >Inspection for New Application</h4>
                         </div>
+                    </div>
 
-                        <form
-                                id="newInsApplForm"
-                                class="form-horizontal"
-                                name="newInsApplForm"
-                                enctype="multipart/form-data"
-                        >
+                    <form
+                            id="newInsApplForm"
+                            class="form-horizontal"
+                            name="newInsApplForm"
+                            enctype="multipart/form-data"
+                    >
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -412,17 +410,19 @@
                                                 </p>
                                             </ul>
                                         </div>
-                                    </div><div class="panel-body">
-                                    <hr>
-                                    <div class="col-md-12">
-                                        <label for="busType">Business Type</label>
-											<select id="busType" class="selectpicker form-control" data-style="btn-white" tabindex="-1" name="busType">
+                                    </div>
+                                    <div class="panel-body">
+                                        <hr>
+                                        <div class="col-md-12">
+                                            <label for="busType">Business Type</label>
+                                            <select id="busType" class="selectpicker form-control"
+                                                    data-style="btn-white" tabindex="-1" name="busType">
                                                 <option selected>Select Business Type...</option>
                                                 <option value="L">Large Scale</option>
                                                 <option value="S">Small Scale</option>
                                             </select>
+                                        </div>
                                     </div>
-                                </div>
                                     <div class="panel-body">
                                         <hr>
                                         <div class="col-md-12">
@@ -468,24 +468,24 @@
                                 </div>
                             </div>
                         </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button
-                                    type="button"
-                                    class="btn btn-default"
-                                    data-dismiss="modal"
-                                    id="btnCloseNewApplModal"
-                            >Close
-                            </button>
-                            <button
-                                    type="button"
-                                    id="btnInsNewAppl"
-                                    class="btn btn-success"
-                            >Save
-                            </button>
-                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button
+                                type="button"
+                                class="btn btn-default"
+                                data-dismiss="modal"
+                                id="btnCloseNewApplModal"
+                        >Close
+                        </button>
+                        <button
+                                type="button"
+                                id="btnInsNewAppl"
+                                class="btn btn-success"
+                        >Save
+                        </button>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
     <!-- MissionOrder Modal -->
@@ -542,19 +542,19 @@
                                         <h5 hidden>
                                             Authority to Inspect:
                                             <input class="hidden" data-style="btn-white"
-                                                    name="authIns" tabindex="-1" value='<%=session.getAttribute("empid")
+                                                   name="authIns" tabindex="-1" value='<%=session.getAttribute("empid")
                                                     %>'
                                             >
-                                               <%-- <%
-                                                    while (gg4.next()) {
-                                                        String empName = gg4.getString("EP_FNAME") + " " + gg4.getString("EP_MNAME") + " " + gg4.getString("EP_LNAME");
-                                                %>
-                                                <option value='<%=empName%>'><%=empName%>
-                                                </option>
-                                                <%
-                                                    }
-                                                    gg4.close();
-                                                %>--%>
+                                                <%-- <%
+                                                     while (gg4.next()) {
+                                                         String empName = gg4.getString("EP_FNAME") + " " + gg4.getString("EP_MNAME") + " " + gg4.getString("EP_LNAME");
+                                                 %>
+                                                 <option value='<%=empName%>'><%=empName%>
+                                                 </option>
+                                                 <%
+                                                     }
+                                                     gg4.close();
+                                                 %>--%>
                                             </input>
                                         </h5>
                                         <h5>
@@ -594,7 +594,8 @@
                                         <h5 hidden>
                                             Licence Ispector / Officer:
                                             <input
-                                                    id="insOfficer1" name="insOfficer1" type="text" class="form-control"/>
+                                                    id="insOfficer1" name="insOfficer1" type="text"
+                                                    class="form-control"/>
                                         </h5>
                                     </div>
                                 </div>
