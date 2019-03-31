@@ -161,13 +161,15 @@
                             <form class="form-group" enctype="multipart/form-data" name="inspectMigrateForm"
                                   id="inspectMigrateForm">
                                 <div class="alert alert-info m-b-0">
-                                        <div class="controls fileupload-buttonbar">
-                                                <label class="control-label" for="fileUnifiedRequirements">
-                                                    Upload Inspection File Instead(.xls,.xlsx, and must be maximum of 1MB)
-                                                    <span class="required">*</span>
-                                                </label>
-                                                <input type="file" name="fileUnifiedRequirements" id="fileUnifiedRequirements" accept=".application/vnd.sealed-xls,.xlsx" required>
-                                        </div>
+                                    <div class="controls fileupload-buttonbar">
+                                        <label class="control-label" for="fileUnifiedRequirements">
+                                            Upload Inspection File Instead(.xls,.xlsx, and must be maximum of 1MB)
+                                            <span class="required">*</span>
+                                        </label>
+                                        <input class="pull-right" type="file" name="fileUnifiedRequirements"
+                                               id="fileUnifiedRequirements" accept=".application/vnd.sealed-xls,.xlsx"
+                                               required>
+                                    </div>
                                 </div>
                             </form>
                         </div>
