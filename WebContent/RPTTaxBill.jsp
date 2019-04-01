@@ -495,7 +495,7 @@
                                 }).then(function(result) {
                                     if(result.value)
                                     {
-                                        window.location.replace("RPTPrprty.jsp");
+                                        window.location.replace("RPTTaxBillList.jsp");
                                         //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
                                         //window.location.replace("BPLSORf.jsp"+oRX);
                                     }

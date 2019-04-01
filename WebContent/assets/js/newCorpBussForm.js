@@ -32,10 +32,6 @@ $(document).ready(function () {
 
     $('#txtNCorpEmpSSSNo').mask('000000000');
 
-    $('#numNCorpBussAreaSqmts').mask('###999.99');
-
-    $('#numNCorpBussUnitNo').mask('###999.99');
-
 
     $('#applicationFormCorp').on('keyup keypress', function(e) {
         var keyCode = e.keyCode || e.which;

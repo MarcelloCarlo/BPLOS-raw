@@ -236,12 +236,12 @@
                             <h4>Released:
                                 <%
 
-                                    LGUConnect conq = new LGUConnect();
-                                    Connection con7 = conq.getConnection();
-                                    Statement gg = con7.createStatement();
-                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
-                                    while (yy.next()) {
-                                        out.print(yy.getString("G"));
+                                    LGUConnect conx = new LGUConnect();
+                                    Connection conV = conx.getConnection();
+                                    Statement str = conV.createStatement();
+                                    ResultSet strrs = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (strrs.next()) {
+                                        out.print(strrs.getString("G"));
                                     }
                                 %>
                             </h4>
@@ -250,12 +250,12 @@
                             <h4>Terminated:
                                 <%
 
-                                    LGUConnect conq = new LGUConnect();
-                                    Connection con7 = conq.getConnection();
-                                    Statement gg = con7.createStatement();
-                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
-                                    while (yy.next()) {
-                                        out.print(yy.getString("G"));
+                                    LGUConnect conz = new LGUConnect();
+                                    Connection conP = conz.getConnection();
+                                    Statement lt = conP.createStatement();
+                                    ResultSet lte = lt.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (lte.next()) {
+                                        out.print(lte.getString("G"));
                                     }
                                 %>
                             </h4>
@@ -277,12 +277,12 @@
                             <h4>BPLS:
                                 <%
 
-                                    LGUConnect conq = new LGUConnect();
-                                    Connection con7 = conq.getConnection();
-                                    Statement gg = con7.createStatement();
-                                    ResultSet yy = gg.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
-                                    while (yy.next()) {
-                                        out.print(yy.getString("G"));
+                                    LGUConnect cona = new LGUConnect();
+                                    Connection conA = cona.getConnection();
+                                    Statement gx = conA.createStatement();
+                                    ResultSet gy = gx.executeQuery("SELECT SUM(OR_TOTAL_AMOUNT) AS G FROM `bpls_t_official_receipt`");
+                                    while (gy.next()) {
+                                        out.print(gy.getString("G"));
                                     }
                                 %>
                             </h4>

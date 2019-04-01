@@ -55,9 +55,9 @@
                 <li><a href="RPTSetupPprtyClass.jsp">Property Class</a></li>
                 <li><a href="RPTSetupAmentLvls.jsp">Assessment Levels</a></li>
                 <li><a href="RPTSetupActUse.jsp">Actual Use</a></li>
-                <li><a href="RPTSetupMrktValLnd.jsp">Market Value (Land)</a></li>
+               <%-- <li><a href="RPTSetupMrktValLnd.jsp">Market Value (Land)</a></li>
                 <li><a href="RPTSetupMrktValBldng.jsp">Market Value (Building)</a></li>
-                <li><a href="RPTSetupMrktValAgrl.jsp">Market Value (Agricultural)</a></li>
+                <li><a href="RPTSetupMrktValAgrl.jsp">Market Value (Agricultural)</a></li>--%>
             </ul>
         </li>
         <li class="has-sub">

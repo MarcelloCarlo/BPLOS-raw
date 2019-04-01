@@ -186,7 +186,7 @@
                                                             <%while (resultSet1.next()){
                                                                 flRate = Float.parseFloat(resultSet1.getString("RPTR_RATE"));
 
-                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; $('#percentageStr').val(perC); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal); ('#totAmtHide').val(assVal);";
+                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; $('#percentageStr').val(perC); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal); $('#totAmtHide').val(assVal);";
                                                             %>
                                                             <option onclick="<%=functionX%>" value='<%=resultSet1.getString("RPTR_ID")%>' ><%=resultSet1.getString("RPTR_LOC")%>
                                                             </option>
@@ -228,7 +228,7 @@
                                                                class="form-control" disabled/>
                                                         <input type="hidden" name="totAmtHide" id="totAmtHide"
                                                                placeholder=""
-                                                               class="hidden" />
+                                                               class="form-control hidden" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -305,15 +305,6 @@
 		    $("#percentageStrHide").val(0.00);
 
 	    });
-
-        function calcInput(){
-            var assVal = <%=flRate%> * parseFloat($('#assessedVal').val());
-            var perC = <%=flRate%> * 100;
-            $('#percentageStr').val(perC);
-            $('#percentageStrHide').val(<%=flRate%>);
-            $('#totAmt').val(assVal);
-            $('#totAmtHide').val(assVal);
-        }
 
 	    $("#btnTaxRPT").click(function () {
 		    var addRPTPropTaxForm = new FormData($('#addRPTPropTaxForm')[0]);

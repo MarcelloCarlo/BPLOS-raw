@@ -27,7 +27,6 @@
     <link rel="icon" href="extras/logo1.png">
 
     <!-- ================== BEGIN BASE CSS STYLE ================== -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -58,7 +57,7 @@
         LGUConnect connect = new LGUConnect();
         Connection connection = connect.getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID WHERE RPL_STAT = 'ASSESSING'");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM rpt_t_rp_land LN JOIN rpt_t_rp_owner rtro on LN.RPO_ID = rtro.RPO_ID JOIN rpt_r_actual_use rrau on LN.AU_ID = rrau.AU_ID JOIN rpt_r_property_class rrpc on LN.PC_ID = rrpc.PC_ID JOIN rpt_r_property_type rrpt on LN.PT_ID = rrpt.PT_ID WHERE RPL_STAT = 'ASSESSING' ORDER BY RPO_DATE DESC");
 %>
 <body>
 <!-- begin #page-loader -->
@@ -96,6 +95,7 @@
                         <table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
                             <thead>
                             <tr>
+                                <th>Date</th>
                                 <th>Property Type</th>
                                 <th>Property Class</th>
                                 <th>Actual Use</th>
@@ -109,6 +109,7 @@
 String assessLink = "location.href='RPTTaxDec.jsp?rplId=" + resultSet.getString("RPL_ID")+"'";
 %>
                             <tr>
+                                <td><%=resultSet.getString("RPO_DATE")%></td>
                                 <td><%=resultSet.getString("PT_DESC")%></td>
                                 <td><%=resultSet.getString("PC_DESC")%></td>
                                 <td><%=resultSet.getString("AU_DESC")%></td>
@@ -179,23 +180,6 @@ String assessLink = "location.href='RPTTaxDec.jsp?rplId=" + resultSet.getString(
         TableManageResponsive.init();
         FormWizard.init();
     });
-</script>
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
 </script>
 </body>
 <%} catch (Exception e){

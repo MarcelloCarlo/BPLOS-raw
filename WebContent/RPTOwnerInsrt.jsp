@@ -98,7 +98,8 @@ try{
                                 <th class="hidden">ID</th>
                                 <th>Name</th>
                                 <th>Address</th>
-                                <th>Action</th>
+                                <th>TIN</th>
+                                <%--<th>Action</th>--%>
                             </tr>
                             </thead>
                             <tbody>
@@ -107,9 +108,11 @@ try{
                                 <td class="hidden"><%=resultSet.getInt("RPO_ID")%></td>
                                 <td><%=resultSet.getString("RPO_FNAME") +" "+ resultSet.getString("RPO_SNAME")%></td>
                                 <td><%=resultSet.getString("RPO_ADDR")%></td>
-                                <td>
-                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editActUse" data-toggle="modal">Edit</a>
-                                </td>
+                                <td><%=resultSet.getString("RPO_TIN")%></td>
+                               <%-- <td>
+                                    <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editActUse"
+                                       data-toggle="modal">Edit</a>
+                                </td>--%>
                             </tr>
                             <%}%>
                             </tbody>
@@ -200,7 +203,7 @@ try{
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Tel No:</label>
-                                                    <input type="text" name="addOwnTel"
+                                                    <input type="text" name="addOwnTel" id="addOwnTel"
                                                            placeholder="Tel No:"
                                                            class="form-control"/>
                                                 </div>
@@ -420,11 +423,15 @@ try{
 <script src="assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
 <script src="assets/plugins/select2/dist/js/select2.min.js"></script>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="assets/plugins/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>
+<script src="assets/plugins/plentz-jquery-maskmoney/dist/jquery.maskMoney.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 <script>
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
+
+        $('#addOwnTel').mask('000-0000');
 
         $("#btnAddOwner").click(function () {
             swal({
@@ -520,23 +527,6 @@ try{
     });
 </script>
 
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-53034621-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
 </body>
 <%} catch (Exception e){
     e.printStackTrace();

@@ -109,7 +109,8 @@
                                 <th>Owner</th>
                                 <th>TIN</th>
                                 <th>Area</th>
-                                <th>Action</th>
+                                <th>PIN</th>
+                               <%-- <th>Action</th>--%>
                             </tr>
                             </thead>
                             <tbody>
@@ -119,10 +120,11 @@
                                 <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
                                 <td><%=resultSet.getString("RPO_TIN")%></td>
                                 <td><%=resultSet.getString("RPL_AREA")%></td>
-                                <td>
+                                <td><%=resultSet.getString("RPL_PIN")%></td>
+                               <%-- <td>
                                     <a href="#modal-editcont" id="editContbtn" class="btn btn-sm btn-primary editActUse"
                                        data-toggle="modal">Edit</a>
-                                </td>
+                                </td>--%>
                             </tr>
                             <%}%>
                             </tbody>
