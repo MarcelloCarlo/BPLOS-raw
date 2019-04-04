@@ -110,7 +110,7 @@
                             <tr><td class="hidden"><%=resultSet.getString("RPTA_ID")%></td>
                                 <td class="hidden"><%=resultSet.getString("RPL_ID")%></td>
                                 <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
-                                <td><%=Float.parseFloat(resultSet.getString("ASSESSED_VAL"))%></td>
+                                <td><%=resultSet.getString("ASSESSED_VAL")%></td>
                                 <td><%=resultSet.getString("ARP_NO")%></td>
                                 <td>
                                     <a href="#modal-taxing" class="btn btn-sm btn-primary modalTax" data-toggle="modal">Action</a>
@@ -186,7 +186,7 @@
                                                             <%while (resultSet1.next()){
                                                                 flRate = Float.parseFloat(resultSet1.getString("RPTR_RATE"));
 
-                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; $('#percentageStr').val(perC); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal); $('#totAmtHide').val(assVal);";
+                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; perC = perC.toFixed(2); $('#percentageStr').val(perC.toFixed(2)); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal.toFixed(2)); $('#totAmtHide').val(assVal.toFixed(2));";
                                                             %>
                                                             <option onclick="<%=functionX%>" value='<%=resultSet1.getString("RPTR_ID")%>' ><%=resultSet1.getString("RPTR_LOC")%>
                                                             </option>

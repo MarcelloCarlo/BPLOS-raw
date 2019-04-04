@@ -97,76 +97,67 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Property Index Number</label>
-                                            <input type="text" name="pin" placeholder="PIN"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPL_PIN")%>'/>
+                                            <h4><%=resultSet.getString("RPL_PIN")%></h4>
                                         </div>
                                     </div>
                                 </div>
-
+<hr>
                                 <div class="row">
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>First Name</label>
-                                            <input type="text" name="survey" placeholder=""
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_FNAME")%>'/>
+                                            <h4><%=resultSet.getString("RPO_FNAME")%></h4>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Middle Name</label>
-                                            <input type="text" name="lot" placeholder=""
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_MNAME")%>'/>
+                                            <h4><%=resultSet.getString("RPO_MNAME")%></h4>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Last Name</label>
-                                            <input type="text" name="blk" placeholder=""
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_SNAME")%>'/>
+                                            <h4><%=resultSet.getString("RPO_SNAME")%></h4>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="row">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" name="owner" placeholder="Owner"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_EMAIL")%>'/>
+                                            <h4><%=resultSet.getString("RPO_EMAIL")%></h4>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Tel No</label>
-                                            <input type="text" name="ownertel"
-                                                   placeholder="Tel No:"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_CONT")%>'/>
+                                            <h4><%=resultSet.getString("RPO_CONT")%></h4>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>TIN</label>
-                                            <input type="text" name="ownertin"
-                                                   placeholder="TIN"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_TIN")%>'/>
+                                            <h4><%=resultSet.getString("RPO_TIN")%></h4>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Address</label>
-                                            <input type="text" name="owneradd" placeholder="Address"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPO_ADDR")%>'/>
+                                           <h4><%=resultSet.getString("RPO_ADDR")%></h4>
                                         </div>
                                     </div>
 
                                 </div>
-
+<hr>
                                 <h4 class="pull-left width-full">Property Location</h4>
                                 <!-- begin row -->
                                 <div class="row">
@@ -174,44 +165,38 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>No./Street</label>
-                                            <input type="text" name="nostreet" placeholder="No./Street"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPL_L_STREET")%>'/>
+                                            <h4><%=resultSet.getString("RPL_L_STREET")%></h4>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Brgy/District</label>
-                                            <input type="text" name="brgydis"
-                                                   placeholder="Brgy/District"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPL_L_BRGY")%>'/>
+                                            <h4><%=resultSet.getString("RPL_L_BRGY")%></h4>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Municipality</label>
-                                            <input type="text" name="munic"
-                                                   placeholder="Municipality"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPL_L_DIST_MUNI")%>'/>
+                                            <h4><%=resultSet.getString("RPL_L_DIST_MUNI")%></h4>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Province/City</label>
-                                            <input type="text" name="procit" placeholder="Province/City"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPL_L_CITY_PROV")%>'/>
+                                           <h4><%=resultSet.getString("RPL_L_CITY_PROV")%></h4>
                                         </div>
                                     </div>
 
                                 </div>
-
+<hr>
                                 <h4 class="pull-left width-full">Property Boundaries</h4>
 
                                 <div class="row">
 
-                                    <div class="col-md-6">
+                                  <%--  <div class="col-md-6">
                                         <div class="form-group">
                                             <label>North</label>
                                             <input type="text" name="north" placeholder="North"
@@ -241,17 +226,17 @@
                                             <input type="text" name="west" placeholder="West"
                                                    class="form-control" disabled value='<%=resultSet.getString("RPL_B_WEST")%>'/>
                                         </div>
-                                    </div>
+                                    </div>--%>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Area</label>
-                                            <input type="text" name="west" placeholder="West"
-                                                   class="form-control" disabled value='<%=resultSet.getString("RPL_AREA")%>'/>
+                                            <h4><%=resultSet.getString("RPL_AREA")%> sq.m</h4>
                                         </div>
                                     </div>
 
                                 </div>
-
+<hr>
                                 <h4 class="pull-left width-full">Kind of Property Assessed</h4>
 
                                 <div class="row">
@@ -274,8 +259,7 @@
                                         <div class="form-group">
                                             <label>Property Class</label>
                                             <div class="controls">
-                                                <input type="text" name="pprtyclss" placeholder="Property Class"
-                                                       class="form-control" disabled value='<%=resultSet.getString("PC_DESC")%>'/>
+                                                <h4><%=resultSet.getString("PC_DESC")%></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -284,9 +268,7 @@
                                         <div class="form-group">
                                             <label>Actual Use</label>
                                             <div class="controls">
-                                                <input type="text" name="actluse"
-                                                       placeholder="Actual Use"
-                                                       class="form-control" disabled value='<%=resultSet.getString("AU_DESC")%>' />
+                                                <h4><%=resultSet.getString("AU_DESC")%></h4>
                                             </div>
                                         </div>
                                     </div>
@@ -301,11 +283,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Assessment Level (%)</label>
+                                            <label>Assessment Level</label>
                                             <div class="controls">
-                                                <input type="text" name="assessLvlPerc" id="assessLvlPerc"
-                                                       placeholder="Assessment Level"
-                                                       class="form-control" disabled value='<%=Float.parseFloat(getAssVal) * 100%>'/>
+                                                <h4><%=Float.parseFloat(getAssVal) * 100%> %</h4>
                                             </div>
                                         </div>
                                     </div>
@@ -325,7 +305,7 @@
                                 </div>
 
 
-                                <br>
+                                <hr>
 
                             </fieldset>
                             <button class="btn btn-sm btn-white" onclick="goBack()">Close</button>
