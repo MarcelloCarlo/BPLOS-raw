@@ -104,14 +104,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <%while (resultSet.next()){
-                                String assessLink = "location.href='RPTTaxDec.jsp?rplId=" + resultSet.getString("RPL_ID")+"'";
+                            <%
+                                while (resultSet.next()) {
+                                    String assessLink = "location.href='RPTTaxDec.jsp?rplId=" + resultSet.getString("RPL_ID") + "'";
                             %>
-                            <tr><td class="hidden"><%=resultSet.getString("RPTA_ID")%></td>
-                                <td class="hidden"><%=resultSet.getString("RPL_ID")%></td>
-                                <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
-                                <td><%=resultSet.getString("ASSESSED_VAL")%></td>
-                                <td><%=resultSet.getString("ARP_NO")%></td>
+                            <tr>
+                                <td class="hidden"><%=resultSet.getString("RPTA_ID")%>
+                                </td>
+                                <td class="hidden"><%=resultSet.getString("RPL_ID")%>
+                                </td>
+                                <td><%=resultSet.getString("RPO_FNAME") + " " + resultSet.getString("RPO_SNAME")%>
+                                </td>
+                                <td><%=resultSet.getString("ASSESSED_VAL")%>
+                                </td>
+                                <td><%=resultSet.getString("ARP_NO")%>
+                                </td>
                                 <td>
                                     <a href="#modal-taxing" class="btn btn-sm btn-primary modalTax" data-toggle="modal">Action</a>
                                 </td>
@@ -139,9 +146,10 @@
                         <div class="panel-body">
                             <form enctype="multipart/form-data" name="addRPTPropTaxForm" id="addRPTPropTaxForm">
                                 <%--<form enctype="multipart/form-data" name="insertUsrForm" id="insertUsrForm">--%>
-                                    <input class="hidden" type="hidden" name="EP_ID" value='<%=session.getAttribute("empid")%>'>
-                                    <input class="hidden" type="hidden" name="RPL_ID" id="RPL_ID">
-                                    <input class="hidden" type="hidden" name="RPTA_ID" id="RPTA_ID">
+                                <input class="hidden" type="hidden" name="EP_ID"
+                                       value='<%=session.getAttribute("empid")%>'>
+                                <input class="hidden" type="hidden" name="RPL_ID" id="RPL_ID">
+                                <input class="hidden" type="hidden" name="RPTA_ID" id="RPTA_ID">
                                 <div>
                                     <fieldset>
                                         <legend class="pull-left width-full">Tax & Payment</legend>
@@ -168,7 +176,8 @@
                                                             <option value="Cash" selected>Cash</option>
                                                             <option value="Check" selected>Check</option>
                                                             <option value="Money Order" selected>Money Order</option>
-                                                            <option value="Treasury Warrant" selected>Treasury Warrant</option>
+                                                            <option value="Treasury Warrant" selected>Treasury Warrant
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -183,12 +192,14 @@
 
 
                                                             <option value='' selected>-Select One-</option>
-                                                            <%while (resultSet1.next()){
-                                                                flRate = Float.parseFloat(resultSet1.getString("RPTR_RATE"));
+                                                            <%
+                                                                while (resultSet1.next()) {
+                                                                    flRate = Float.parseFloat(resultSet1.getString("RPTR_RATE"));
 
-                                                                String functionX = "var assVal = "+flRate+" * $('#assessedVal').val(); var perC = "+flRate+" * 100; perC = perC.toFixed(2); $('#percentageStr').val(perC.toFixed(2)); $('#percentageStrHide').val("+flRate+"); $('#totAmt').val(assVal.toFixed(2)); $('#totAmtHide').val(assVal.toFixed(2));";
+                                                                    String functionX = "var assVal = " + flRate + " * $('#assessedVal').val(); var perC = " + flRate + " * 100; $('#percentageStr').val(perC.toFixed(2)); $('#percentageStrHide').val(" + flRate + "); $('#totAmt').val(assVal.toFixed(2)); $('#totAmtHide').val(assVal.toFixed(2));";
                                                             %>
-                                                            <option onclick="<%=functionX%>" value='<%=resultSet1.getString("RPTR_ID")%>' ><%=resultSet1.getString("RPTR_LOC")%>
+                                                            <option onclick="<%=functionX%>"
+                                                                    value='<%=resultSet1.getString("RPTR_ID")%>'><%=resultSet1.getString("RPTR_LOC")%>
                                                             </option>
                                                             <%}%>
                                                         </select>
@@ -203,7 +214,8 @@
                                                         <input type="text" name="percentageStr" id="percentageStr"
                                                                placeholder=""
                                                                class="form-control" disabled/>
-                                                        <input type="hidden" name="percentageStrHide" id="percentageStrHide"
+                                                        <input type="hidden" name="percentageStrHide"
+                                                               id="percentageStrHide"
                                                                placeholder="Input 1"
                                                                class="form-control hidden"/>
                                                     </div>
@@ -228,17 +240,28 @@
                                                                class="form-control" disabled/>
                                                         <input type="hidden" name="totAmtHide" id="totAmtHide"
                                                                placeholder=""
-                                                               class="form-control hidden" />
+                                                               class="form-control hidden"/>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-12">
+                                                        <input
+                                                                type="checkbox"
+                                                                id="chkIdleStat"
+                                                                name="chkIdleStat"
+                                                                class="flat"
+                                                                value="Pass"
+                                                        > The Property Is Idle
+                                            </div>
+
                                         </div>
 
                                         <br>
 
                                         <div class="modal-footer">
                                             <button class="btn btn-sm btn-white" data-dismiss="modal">Close</button>
-                                            <button type="button" id="btnTaxRPT" class="btn btn-sm btn-success">Add</button>
+                                            <button type="button" id="btnTaxRPT" class="btn btn-sm btn-success">Add
+                                            </button>
                                         </div>
                                         <!-- end row -->
                                     </fieldset>
@@ -293,74 +316,71 @@
 
         $(".modalTax").click(function () {
             // $("#assessedVal").val(parseFloat($(this).closest("tbody tr").find("td:eq(3)").html()));
-	        document.getElementById('RPL_ID').value = $(this).closest("tbody tr").find("td:eq(1)").html().trim();
+            document.getElementById('RPL_ID').value = $(this).closest("tbody tr").find("td:eq(1)").html().trim();
             document.getElementById('assessedVal').value = $(this).closest("tbody tr").find("td:eq(3)").html();
-	        document.getElementById('RPTA_ID').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
+            document.getElementById('RPTA_ID').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
         });
 
-	    $("#modal-taxing").on('hidden.bs.modal', function () {
-		    $("#assessedVal").val(0.00);
-		    $("#totAmt").val(0.00);
-		    $("#percentageStr").val(0.00);
-		    $("#percentageStrHide").val(0.00);
+        $("#modal-taxing").on('hidden.bs.modal', function () {
+            $("#assessedVal").val(0.00);
+            $("#totAmt").val(0.00);
+            $("#percentageStr").val(0.00);
+            $("#percentageStrHide").val(0.00);
 
-	    });
+        });
 
-	    $("#btnTaxRPT").click(function () {
-		    var addRPTPropTaxForm = new FormData($('#addRPTPropTaxForm')[0]);
-		    swal({
-			    title: "Are you sure?",
-			    text: "You will save your current changes",
-			    type: "warning",
-			    confirmButtonColor: "#62a3cb",
-			    confirmButtonText: "Confirm!",
-			    showCancelButton: true,
-			    cancelButtonText: 'Cancel'
-		    }).then(function(result) {
-			    if(result.value)
-			    {
-				    $.ajax({
-					    type: "POST",
-					    url: "insertRPTTax",
-					    data: addRPTPropTaxForm,
-					    enctype: "multipart/form-data",
-					    processData: false,
-					    contentType: false,
-					    success: function (response) {
-						    swal({
-							    type: 'success',
-							    title: 'DONE!.',
-							    text: 'Succesfully Processed',
-							    confirmButtonText: 'OK'
-						    }).then(function(result) {
-							    if(result.value)
-							    {
-								    window.location.replace("RPTPrprty.jsp");
-								    //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
-								    //window.location.replace("BPLSORf.jsp"+oRX);
-							    }
-						    })
-						    ;
+        $("#btnTaxRPT").click(function () {
+            var addRPTPropTaxForm = new FormData($('#addRPTPropTaxForm')[0]);
+            swal({
+                title: "Are you sure?",
+                text: "You will save your current changes",
+                type: "warning",
+                confirmButtonColor: "#62a3cb",
+                confirmButtonText: "Confirm!",
+                showCancelButton: true,
+                cancelButtonText: 'Cancel'
+            }).then(function (result) {
+                if (result.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: "insertRPTTax",
+                        data: addRPTPropTaxForm,
+                        enctype: "multipart/form-data",
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            swal({
+                                type: 'success',
+                                title: 'DONE!.',
+                                text: 'Succesfully Processed',
+                                confirmButtonText: 'OK'
+                            }).then(function (result) {
+                                if (result.value) {
+                                    window.location.replace("RPTPrprty.jsp");
+                                    //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
+                                    //window.location.replace("BPLSORf.jsp"+oRX);
+                                }
+                            })
+                            ;
 
-					    }
-				    });
-			    }
-			    else
-			    if (result.dismiss === swal.DismissReason.cancel) {
-				    swalWithBootstrapButtons(
-					    'Cancelled',
-					    'Operation Halted',
-					    'error'
-				    )
+                        }
+                    });
+                } else if (result.dismiss === swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons(
+                        'Cancelled',
+                        'Operation Halted',
+                        'error'
+                    )
 
-			    }
-		    });
-	    });
+                }
+            });
+        });
     });
 </script>
 </body>
-<%} catch (Exception e){
-    e.printStackTrace();
-}
+<%
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
 </html>

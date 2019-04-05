@@ -34,7 +34,7 @@ public class insertRPTTax extends HttpServlet {
             Connection connection = connect.getConnection();
             PreparedStatement rptTax = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_rptax(RPTA_ID, RPTR_ID, RPT_AMOUNT) VALUES (?,?,?)");
             rptTax.setInt(1,Integer.parseInt(RPTA_ID));
-            rptTax.setInt(2,Integer.parseInt(taxRateId));
+            rptTax.setInt   (2,Integer.parseInt(taxRateId));
             rptTax.setFloat(3,Float.parseFloat(totAmt));
             rptTax.executeUpdate();
 
