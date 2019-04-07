@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 @MultipartConfig
 public class insertRPTTax extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private   int RPTAX_ID =0, RPO_ID=0, RPTTB_ID = 0;
+    private float taxedAmount = 0, feeListAmt =0;
 
     public insertRPTTax(){
         super();
@@ -24,61 +26,12 @@ public class insertRPTTax extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String EP_ID = request.getParameter("EP_ID"), RPL_ID = request.getParameter("RPL_ID"),RPTA_ID = request.getParameter("RPTA_ID"), taxRateId = request.getParameter("taxRateId"), totAmt = request.getParameter("totAmtHide"),optInstallment = request.getParameter("optInstallment"), optPayMethod = request.getParameter("optPayMethod");
+        String EP_ID = request.getParameter("EP_ID"), RPL_ID = request.getParameter("RPL_ID"),RPTA_ID = request.getParameter("RPTA_ID"), taxRateId = request.getParameter("taxRateId"), totAmt = request.getParameter("totAmtHide"),optInstallment = request.getParameter("optInstallment"), optPayMethod = request.getParameter("optPayMethod"), chkIdleStat = request.getParameter("chkIdleStat");
 
-        int RPTAX_ID =0, RPO_ID=0, RPTTB_ID = 0;
-        float taxedAmount = 0, feeListAmt =0;
         LGUConnect connect = new LGUConnect();
 
         try {
             Connection connection = connect.getConnection();
-            PreparedStatement rptTax = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_rptax(RPTA_ID, RPTR_ID, RPT_AMOUNT) VALUES (?,?,?)");
-            rptTax.setInt(1,Integer.parseInt(RPTA_ID));
-            rptTax.setInt   (2,Integer.parseInt(taxRateId));
-            rptTax.setFloat(3,Float.parseFloat(totAmt));
-            rptTax.executeUpdate();
-
-            PreparedStatement getRPOId = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_rp_land WHERE RPL_ID = ?");
-            getRPOId.setInt(1,Integer.parseInt(RPL_ID));
-            ResultSet getRPOIdRs = getRPOId.executeQuery();
-            while (getRPOIdRs.next()){
-                RPO_ID = getRPOIdRs.getInt("RPO_ID");
-            }
-
-            PreparedStatement getRPTAXId = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_rptax WHERE RPTA_ID = ? AND RPTR_ID = ?");
-            getRPTAXId.setInt(1,Integer.parseInt(RPTA_ID));
-            getRPTAXId.setInt(2,Integer.parseInt(taxRateId));
-            ResultSet getRPTAXIdRs = getRPTAXId.executeQuery();
-            while (getRPTAXIdRs.next()){
-                RPTAX_ID = getRPTAXIdRs.getInt("RPTAX_ID");
-            }
-
-            PreparedStatement computeFeeList = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_r_fee_list");
-            ResultSet feeListRs = computeFeeList.executeQuery();
-            while (feeListRs.next()){
-                feeListAmt += feeListRs.getFloat("RPTFL_AMOUNT");
-            }
-
-            taxedAmount = Float.parseFloat(totAmt) + feeListAmt;
-
-            PreparedStatement setTaxBill = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_taxbill( RPTTB_BILL_NO, RPTTB_DATE_BILLED, RPTAX_ID, RPL_ID, RPO_ID, RPTA_ID, TAX_YEAR, AMOUNT_DUE,INSTALLMENT) VALUES (CONCAT('RPTB',REPLACE(CURRENT_DATE,'-','')),CURRENT_DATE,?,?,?,?,CURRENT_DATE,?,?)");
-            setTaxBill.setInt(1,RPTAX_ID);
-            setTaxBill.setInt(2,Integer.parseInt(RPL_ID));
-            setTaxBill.setInt(3,RPO_ID);
-            setTaxBill.setInt(4,Integer.parseInt(RPTA_ID));
-            setTaxBill.setFloat(5,taxedAmount);
-            setTaxBill.setString(6,optInstallment);
-            setTaxBill.executeUpdate();
-
-            PreparedStatement getTB_ID = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_taxbill WHERE RPTAX_ID = ? AND RPL_ID = ? AND RPO_ID = ? AND RPTA_ID = ?");
-            getTB_ID.setInt(1,RPTAX_ID);
-            getTB_ID.setInt(2,Integer.parseInt(RPL_ID));
-            getTB_ID.setInt(3,RPO_ID);
-            getTB_ID.setInt(4,Integer.parseInt(RPTA_ID));
-            ResultSet getTB_IDRs = getTB_ID.executeQuery();
-            while (getTB_IDRs.next()){
-                RPTTB_ID = getTB_IDRs.getInt("RPTTB_ID");
-            }
 
             PreparedStatement getF1 = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_r_fee_list");
             ResultSet frs1 = getF1.executeQuery();
@@ -105,6 +58,77 @@ public class insertRPTTax extends HttpServlet {
             setRPLStat.executeUpdate();
 
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //-------------------------- All Methods---------------------------//
+    void setRptTax(Connection connection, String RPTA_ID, String taxRateId, String totAmt){
+        try{
+            PreparedStatement rptTax = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_rptax(RPTA_ID, RPTR_ID, RPT_AMOUNT) VALUES (?,?,?)");
+            rptTax.setInt(1,Integer.parseInt(RPTA_ID));
+            rptTax.setInt   (2,Integer.parseInt(taxRateId));
+            rptTax.setFloat(3,Float.parseFloat(totAmt));
+            rptTax.executeUpdate();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+    void getRPOId(Connection connection, String RPL_ID){
+        try{
+            PreparedStatement getRPOId = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_rp_land WHERE RPL_ID = ?");
+            getRPOId.setInt(1,Integer.parseInt(RPL_ID));
+            ResultSet getRPOIdRs = getRPOId.executeQuery();
+            while (getRPOIdRs.next()){
+                RPO_ID = getRPOIdRs.getInt("RPO_ID");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void getRPTAXId(Connection connection, String RPTA_ID, String taxRateId){
+        try{
+            PreparedStatement getRPTAXId = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_rptax WHERE RPTA_ID = ? AND RPTR_ID = ?");
+            getRPTAXId.setInt(1,Integer.parseInt(RPTA_ID));
+            getRPTAXId.setInt(2,Integer.parseInt(taxRateId));
+            ResultSet getRPTAXIdRs = getRPTAXId.executeQuery();
+            while (getRPTAXIdRs.next()){
+                RPTAX_ID = getRPTAXIdRs.getInt("RPTAX_ID");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void computeFeeList(Connection connection, String totAmt){
+        try{
+            PreparedStatement computeFeeList = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_r_fee_list");
+            ResultSet feeListRs = computeFeeList.executeQuery();
+            while (feeListRs.next()){
+                feeListAmt += feeListRs.getFloat("RPTFL_AMOUNT");
+            }
+
+            taxedAmount = Float.parseFloat(totAmt) + feeListAmt;
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void setTaxBill(Connection connection, String RPL_ID, String RPTA_ID, String optInstallment){
+        try{
+            PreparedStatement setTaxBill = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_taxbill( RPTTB_BILL_NO, RPTTB_DATE_BILLED, RPTAX_ID, RPL_ID, RPO_ID, RPTA_ID, TAX_YEAR, AMOUNT_DUE,INSTALLMENT) VALUES (CONCAT('RPTB',REPLACE(CURRENT_DATE,'-','')),CURRENT_DATE,?,?,?,?,CURRENT_DATE,?,?)");
+            setTaxBill.setInt(1,RPTAX_ID);
+            setTaxBill.setInt(2,Integer.parseInt(RPL_ID));
+            setTaxBill.setInt(3,RPO_ID);
+            setTaxBill.setInt(4,Integer.parseInt(RPTA_ID));
+            setTaxBill.setFloat(5,taxedAmount);
+            setTaxBill.setString(6,optInstallment);
+            setTaxBill.executeUpdate();
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
