@@ -3,8 +3,10 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -228,7 +230,15 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 20%; padding: 5px 0px 5px 15px; ">
-                                        <%=getTaxBillRs.getString("TAX_YEAR")%>
+                                        <%
+
+                                            String year = getTaxBillRs.getString("TAX_YEAR");
+                                            String [] sameParts = year.split("-");
+                                            String taxYear = sameParts[0];
+
+                                            pageContext.setAttribute("taxYear", taxYear);
+                                            %>
+                                        <c:out value="${taxYear}"/>
                                     </td>
 
                                     <td style="width: 20%; padding: 5px 0px 5px 15px;  ">
@@ -258,7 +268,7 @@
                                         <%=getFeeListRs.getString("RPTFL_NAME")%>
                                     </td>
                                     <td style="width: 30%; padding: 5px 0px 5px 15px; ">
-                                        <%=getFeeListRs.getString("RPTFL_AMOUNT")%>
+                                        <%=getFeeListRs.getString("AMOUNT")%>
                                     </td>
                                 </tr>
                                 <%--<tr style="vertical-align: top;">

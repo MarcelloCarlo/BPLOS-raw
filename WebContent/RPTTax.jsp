@@ -228,12 +228,15 @@
                                                         <input type="text" name="assessedVal" id="assessedVal"
                                                                placeholder="Input 2"
                                                                class="form-control" disabled/>
+                                                        <input type="hidden" name="assessedValHide" id="assessedValHide"
+                                                               placeholder=""
+                                                               class="form-control hidden"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Amount (PHP)</label>
+                                                    <label>Tax Amount (PHP)</label>
                                                     <div class="controls">
                                                         <input type="text" name="totAmt" id="totAmt"
                                                                placeholder=""
@@ -245,13 +248,15 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                        <input
-                                                                type="checkbox"
-                                                                id="chkIdleStat"
-                                                                name="chkIdleStat"
-                                                                class="flat"
-                                                                value="Pass"
-                                                        > The Property Is Idle
+                                                <div class="form-group">
+                                                    <input
+                                                            type="checkbox"
+                                                            id="chkIdleStat"
+                                                            name="chkIdleStat"
+                                                            class="flat"
+                                                            value="Pass"
+                                                    > The Property Is Idle
+                                                </div>
                                             </div>
 
                                         </div>
@@ -318,6 +323,7 @@
             // $("#assessedVal").val(parseFloat($(this).closest("tbody tr").find("td:eq(3)").html()));
             document.getElementById('RPL_ID').value = $(this).closest("tbody tr").find("td:eq(1)").html().trim();
             document.getElementById('assessedVal').value = $(this).closest("tbody tr").find("td:eq(3)").html();
+            document.getElementById('assessedValHide').value = $(this).closest("tbody tr").find("td:eq(3)").html();
             document.getElementById('RPTA_ID').value = $(this).closest("tbody tr").find("td:eq(0)").html().trim();
         });
 

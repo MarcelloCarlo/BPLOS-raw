@@ -128,7 +128,7 @@
                                 <%=getFeeListRs.getString("RPTFL_NAME")%>
                             </td>
                             <td style="width: 30%; padding: 5px 0px 5px 15px; ">
-                                <%=getFeeListRs.getString("RPTFL_AMOUNT")%>
+                                <%=getFeeListRs.getString("AMOUNT")%>
                             </td>
                         </tr>
                         <%--<tr style="vertical-align: top;">
