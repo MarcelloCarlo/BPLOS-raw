@@ -12,6 +12,7 @@
 <%@ page import="com.mysql.jdbc.PreparedStatement" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -110,20 +111,22 @@
                                 <th>TIN</th>
                                 <th>Area</th>
                                 <th>PIN</th>
-                                <th>View</th>
+                                <th>Tax Bill History</th>
                                <%-- <th>Action</th>--%>
                             </tr>
                             </thead>
                             <tbody>
-                            <%while (resultSet.next()) {%>
+                            <%while (resultSet.next()) {
+                                String link = "location.href='RPTTaxBillHist.jsp?rplId="+resultSet.getInt("RPL_ID")+"'";
+                            pageContext.setAttribute("link", link);
+                            %>
                             <tr>
                                 <td class="hidden"><%=resultSet.getInt("RPL_ID")%></td>
                                 <td><%=resultSet.getString("RPO_FNAME")+" "+resultSet.getString("RPO_SNAME")%></td>
                                 <td><%=resultSet.getString("RPO_TIN")%></td>
                                 <td><%=resultSet.getString("RPL_AREA")%></td>
                                 <td><%=resultSet.getString("RPL_PIN")%></td><td>
-                                    <a href="<%%>" id="editContbtn" class="btn btn-sm btn-primary"
-                                       >View</a>
+                                    <a onclick='<c:out value="${link}"/>' id="editContbtn" class="btn btn-sm btn-primary">View</a>
                                 </td>
                             </tr>
                             <%}%>

@@ -58,7 +58,34 @@
 
 <!-- begin #page-container -->
 <div id="page-container" class="page-without-sidebar ">
-    <%while (getTaxBillRs.next()){%>
+    <%while (getTaxBillRs.next()){
+        String lastYear = getTaxBillRs.getString("TAX_YEAR");
+        String [] finalYear = lastYear.split("-");
+        String verYear = finalYear[0];
+
+        pageContext.setAttribute("verYear", verYear);
+
+        String landID = getTaxBillRs.getString("RPL_ID");
+        PreparedStatement getRPLStat = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_rp_land WHERE RPL_ID =? ");
+        getRPLStat.setInt(1,Integer.parseInt(landID));
+        ResultSet getRPLStatRs = getRPLStat.executeQuery();
+        String genORElem = "";
+        while (getRPLStatRs.next()){
+            if(getRPLStatRs.getString("RPL_STAT").equalsIgnoreCase("TAXBILL")){
+                genORElem = " <div>\n" +
+                        "            <span class=\"hidden-print\">\n" +
+                        "                <form enctype=\"multipart/form-data\" id=\"confirmORForm\" name=\"confirmORForm\">\n" +
+                        "                    <input class=\"hidden\" type=\"hidden\" name=\"txbId\" hidden value="+getTaxBillRs.getString("TXB.RPL_ID")+">\n" +
+                        "                <button  type=\"button\" id=\"btnConfirmOR\" class=\"btn btn-sm btn-primary\"><i\n" +
+                        "                        class=\"fa fa-money m-r-5\"></i> Generate Payment</button>\n" +
+                        "            </form>\n" +
+                        "            </span>\n" +
+                        "        </div>";
+            }
+
+            pageContext.setAttribute("genORElem", genORElem);
+        }
+    %>
     <!-- begin #content -->
     <div id="content" class="content">
         <!-- begin page-header -->
@@ -69,7 +96,8 @@
                     class="fa fa-print m-r-5"></i> Print</a>
             </span>
         </div>
-        <div>
+
+      <%--  <div>
             <span class="hidden-print">
                 <form enctype="multipart/form-data" id="confirmORForm" name="confirmORForm">
                     <input class="hidden" type="hidden" name="txbId" hidden value='<%=getTaxBillRs.getString("TXB.RPL_ID")%>'>
@@ -77,7 +105,11 @@
                         class="fa fa-money m-r-5"></i> Generate Payment</button>
             </form>
             </span>
-        </div>
+        </div>--%>
+
+        <c:out value="${genORElem}" escapeXml="false"/>
+
+
 
         <!-- begin invoice -->
         <div class="invoice">
@@ -185,8 +217,8 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 100%; padding: 5px 0px 5px 15px;">
-                                        EEF 2011 NEW <br>
-                                        2011-2011
+                                        EEF  <c:out value="${verYear}"/> NEW <br>
+                                        <c:out value="${verYear}"/>
                                     </td>
                                 </tr>
                                 <tr>
