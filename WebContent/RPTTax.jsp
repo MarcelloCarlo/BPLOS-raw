@@ -161,7 +161,6 @@
                                                     <div class="controls">
                                                         <select name="optInstallment" class="form-control">
                                                             <option value='FULL' selected>Full</option>
-                                                            <option value='SEMI ANNUAL' selected>Semi Annual</option>
                                                             <option value='QUARTERLY' selected>Quarterly</option>
 
                                                         </select>

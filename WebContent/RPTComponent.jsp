@@ -7,6 +7,12 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
+
+<%
+    if(session.getAttribute("empname") == null || session.getAttribute("empid") == null){
+        response.sendRedirect("PAEISLogin.jsp");
+    }
+%>
 <!-- begin #header -->
 <div id="header" class="header navbar navbar-default navbar-fixed-top">
     <!-- begin container-fluid -->

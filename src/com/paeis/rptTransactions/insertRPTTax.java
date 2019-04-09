@@ -15,6 +15,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 @WebServlet("/insertRPTTax")
 @MultipartConfig
@@ -68,7 +69,7 @@ public class insertRPTTax extends HttpServlet {
             computeFeeList(connection, totTaxAmt, assessedVal, flFeeCode, "AV", false);
             flFeeCode = "GF";
             computeFeeList(connection, totTaxAmt, assessedVal, flFeeCode, "AV", false);
-            setAmountDue(connection);
+            setAmountDue(connection,optInstallment);
             setOfficialRec(connection, RPL_ID, RPTA_ID, optPayMethod, EP_ID);
             setNewTaxBill(connection, RPL_ID);
             setRPLStatus(connection, RPL_ID);
@@ -120,6 +121,7 @@ public class insertRPTTax extends HttpServlet {
     }
 
     void setTaxBill(Connection connection, String RPL_ID, String RPTA_ID, String optInstallment) {
+        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
         try {
             PreparedStatement setTaxBill = (PreparedStatement) connection.prepareStatement("INSERT rpt_t_taxbill( RPTTB_BILL_NO, RPTTB_DATE_BILLED, RPTAX_ID, RPL_ID, RPO_ID, RPTA_ID, INSTALLMENT,TAX_YEAR) VALUES (CONCAT('RPTB',REPLACE(CURRENT_DATE,'-','')),CURRENT_DATE,?,?,?,?,?,YEAR(CURRENT_DATE))");
             setTaxBill.setInt(1, RPTAX_ID);
@@ -197,7 +199,18 @@ public class insertRPTTax extends HttpServlet {
         }
     }
 
-    void setAmountDue(Connection connection) {
+    void setAmountDue(Connection connection, String optInstallment) {
+
+        java.util.Date currDate = new java.util.Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currDate);
+
+        if(optInstallment.equalsIgnoreCase("FULL")){
+
+        }else if(optInstallment.equalsIgnoreCase("QUARTERLY")){
+
+        }
+
         try {
             PreparedStatement setF1 = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_taxbill SET AMOUNT_DUE = ? WHERE RPTTB_ID = ?");
             setF1.setFloat(1, amountDue);
@@ -225,7 +238,6 @@ public class insertRPTTax extends HttpServlet {
     }
 
     void setNewTaxBill(Connection connection, String RPL_ID) {
-
         try {
             PreparedStatement setNewTB = (PreparedStatement) connection.prepareStatement("INSERT INTO rpt_rpland_taxbill(RPL_ID, RPTTB_ID, TAX_YEAR) VALUES (?,?,YEAR(CURRENT_DATE))");
             setNewTB.setInt(1, Integer.parseInt(RPL_ID));
