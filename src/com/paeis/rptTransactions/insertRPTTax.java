@@ -205,6 +205,10 @@ public class insertRPTTax extends HttpServlet {
         Calendar cal = Calendar.getInstance();
         cal.setTime(currDate);
 
+        //TODO
+        //Set Expiration that which depends on the installment mode
+        //
+
         if(optInstallment.equalsIgnoreCase("FULL")){
 
         }else if(optInstallment.equalsIgnoreCase("QUARTERLY")){
