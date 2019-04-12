@@ -127,6 +127,12 @@
                                 <td><%=resultSet.getString("RPL_AREA")%></td>
                                 <td><%=resultSet.getString("RPL_PIN")%></td><td>
                                     <a onclick='<c:out value="${link}"/>' id="editContbtn" class="btn btn-sm btn-primary">View</a>
+<br>
+                <form enctype="multipart/form-data" id="regenTXBForm" name="regenTXBForm">
+                    <input class="hidden" type="hidden" name="RPL_ID" hidden value='<%=resultSet.getInt("RPL_ID")%>'>
+                <button  type="button" id="btnConfirmRegen" class="btn btn-sm btn-primary">Generate</button>
+            </form>
+
                                 </td>
                             </tr>
                             <%}%>
@@ -758,6 +764,59 @@
     $(document).ready(function () {
         App.init();
         TableManageResponsive.init();
+
+
+	    $("#btnConfirmRegen").click(function () {
+		    var regenTXBForm = new FormData($('#regenTXBForm')[0]);
+		    swal({
+			    title: "Are you sure?",
+			    text: "You will save your current changes",
+			    type: "warning",
+			    confirmButtonColor: "#62a3cb",
+			    confirmButtonText: "Confirm!",
+			    showCancelButton: true,
+			    cancelButtonText: 'Cancel'
+		    }).then(function(result) {
+			    if(result.value)
+			    {
+				    $.ajax({
+					    type: "POST",
+					    url: "editRPTStatus",
+					    data: regenTXBForm,
+					    enctype: "multipart/form-data",
+					    processData: false,
+					    contentType: false,
+					    success: function (response) {
+						    swal({
+							    type: 'success',
+							    title: 'DONE!.',
+							    text: 'Succesfully Processed',
+							    confirmButtonText: 'OK'
+						    }).then(function(result) {
+							    if(result.value)
+							    {
+								    window.location.replace("RPTTax.jsp");
+								    //$.get("BPLSRtSlip.jsp", { refNo:JSON.stringify(response)});
+								    //window.location.replace("BPLSORf.jsp"+oRX);
+							    }
+						    })
+						    ;
+
+					    }
+				    });
+			    }
+			    else
+			    if (result.dismiss === swal.DismissReason.cancel) {
+				    swalWithBootstrapButtons(
+					    'Cancelled',
+					    'Operation Halted',
+					    'error'
+				    )
+
+			    }
+		    });
+	    });
+
 
         $("#btnAddProperty").click(function () {
             swal({
