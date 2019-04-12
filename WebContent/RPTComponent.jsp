@@ -73,8 +73,8 @@
                 <span>Property Owner</span>
             </a>
             <ul class="sub-menu">
-                <li><a href="RPTOwnerInsrt.jsp">Owner Setup</a></li>
-                <li><a href="RPTPprtyInsert.jsp">Property Setup</a></li>
+                <li><a href="RPTOwnerInsrt.jsp">Owners List</a></li>
+                <li><a href="RPTPprtyInsert.jsp">Property List</a></li>
             </ul>
         </li>
         <li class="has-sub">

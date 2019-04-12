@@ -201,25 +201,35 @@ public class insertRPTTax extends HttpServlet {
 
     void setAmountDue(Connection connection, String optInstallment) {
 
-        java.util.Date currDate = new java.util.Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(currDate);
-
         //TODO
         //Set Expiration that which depends on the installment mode
         //
-
-        if(optInstallment.equalsIgnoreCase("FULL")){
-
-        }else if(optInstallment.equalsIgnoreCase("QUARTERLY")){
-
-        }
+        String currentDate = "";
 
         try {
-            PreparedStatement setF1 = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_taxbill SET AMOUNT_DUE = ? WHERE RPTTB_ID = ?");
+            PreparedStatement setF1 = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_taxbill SET RPTTB_DATE_BILLED = CURRENT_DATE, AMOUNT_DUE = ? WHERE RPTTB_ID = ?");
             setF1.setFloat(1, amountDue);
             setF1.setInt(2, RPTTB_ID);
             setF1.executeUpdate();
+
+            PreparedStatement getDateBilled = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_taxbill WHERE RPTTB_ID = ?");
+            getDateBilled.setInt(1,RPTTB_ID);
+            ResultSet getDateBilledRs = getDateBilled.executeQuery();
+            while (getDateBilledRs.next()){
+                currentDate = getDateBilledRs.getString("RPTTB_DATE_BILLED");
+            }
+
+            String [] sameParts = currentDate.split("-");
+            String taxYear = sameParts[0];
+            String taxMonth = sameParts[1];
+            String taxDate = sameParts[2];
+
+            if(optInstallment.equalsIgnoreCase("FULL")){
+
+            }else if(optInstallment.equalsIgnoreCase("QUARTERLY")) {
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

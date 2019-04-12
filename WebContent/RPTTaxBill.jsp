@@ -75,7 +75,7 @@
                 genORElem = " <div>\n" +
                         "            <span class=\"hidden-print\">\n" +
                         "                <form enctype=\"multipart/form-data\" id=\"confirmORForm\" name=\"confirmORForm\">\n" +
-                        "                    <input class=\"hidden\" type=\"hidden\" name=\"txbId\" hidden value="+getTaxBillRs.getString("TXB.RPL_ID")+">\n" +
+                        "                    <input class=\"hidden\" type=\"hidden\" name=\"txbId\" hidden value="+getTaxBillRs.getString("TXB.RPL_ID")+">\n" + "   <input class=\"hidden\" type=\"hidden\" name=\"rpttbID\" hidden value="+getTaxBillRs.getString("RPTTB_ID")+">\n"+
                         "                <button  type=\"button\" id=\"btnConfirmOR\" class=\"btn btn-sm btn-primary\"><i\n" +
                         "                        class=\"fa fa-money m-r-5\"></i> Generate Payment</button>\n" +
                         "            </form>\n" +

@@ -24,7 +24,7 @@ public class editRPTStatus extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String RPL_ID = request.getParameter("RPL_ID");
+        String RPL_ID = request.getParameter("RPL_ID"), RPTTB_ID = request.getParameter("rpttbID");
 
 
         LGUConnect connect = new LGUConnect();
@@ -34,6 +34,10 @@ public class editRPTStatus extends HttpServlet {
             PreparedStatement setRPLStat = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_rp_land SET RPL_STAT = 'TAXING' WHERE RPL_ID = ?");
             setRPLStat.setInt(1,Integer.parseInt(RPL_ID));
             setRPLStat.executeUpdate();
+
+            PreparedStatement setTaxBillStat = (PreparedStatement) connection.prepareStatement("UPDATE rpt_t_taxbill SET RPTTB_STAT = 'PAID' WHERE RPTTB_ID = ?");
+            setTaxBillStat.setInt(1,Integer.parseInt(RPTTB_ID));
+            setTaxBillStat.executeUpdate();
 
         } catch (Exception e){
             e.printStackTrace();

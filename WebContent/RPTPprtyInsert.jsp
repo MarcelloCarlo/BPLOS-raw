@@ -133,6 +133,11 @@
                 <button  type="button" id="btnConfirmRegen" class="btn btn-sm btn-primary">Generate</button>
             </form>
 
+                                <%
+                                PreparedStatement getAssesmentLvl = (PreparedStatement) connection.prepareStatement("SELECT * FROM rpt_t_assessment ");
+
+                                %>
+
                                 </td>
                             </tr>
                             <%}%>
