@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="lgu-paeis" default="all">
+
+
+    <property file="lgu-paeis.properties"/>
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+    <property name="skip.tests" value="true"/>
+     -->
+
+    <!-- Compiler options -->
+
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="700m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/*.gif/**"/>
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/*.json/**"/>
+        <exclude name="**/*.less/**"/>
+        <exclude name="**/*.map/**"/>
+        <exclude name="**/*.md/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/*.rbc/**"/>
+        <exclude name="**/*.scss/**"/>
+        <exclude name="**/*.svg/**"/>
+        <exclude name="**/*.txt/**"/>
+        <exclude name="**/*.yarb/**"/>
+        <exclude name="**/*.yml/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/.gitignore/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/.jscsrc/**"/>
+        <exclude name="**/.jshintrc/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/LICENSE/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/vssver.scc/**"/>
+        <exclude name="**/vssver2.scc/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.egg"/>
+        <include name="*.jar"/>
+        <include name="*.ear"/>
+        <include name="*.klib"/>
+        <include name="*.apk"/>
+        <include name="*.swc"/>
+        <include name="*.war"/>
+        <include name="*.zip"/>
+        <include name="*.ane"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <exclude name="**/?*.aj"/>
+    </patternset>
+
+    <!-- JDK definitions -->
+
+    <property name="jdk.bin.10" value="${jdk.home.10}/bin"/>
+    <path id="jdk.classpath.10">
+        <fileset dir="${jdk.home.10}">
+            <include name="../java-10-oracle!/java.activation"/>
+            <include name="../java-10-oracle!/java.base"/>
+            <include name="../java-10-oracle!/java.compiler"/>
+            <include name="../java-10-oracle!/java.corba"/>
+            <include name="../java-10-oracle!/java.datatransfer"/>
+            <include name="../java-10-oracle!/java.desktop"/>
+            <include name="../java-10-oracle!/java.instrument"/>
+            <include name="../java-10-oracle!/java.jnlp"/>
+            <include name="../java-10-oracle!/java.logging"/>
+            <include name="../java-10-oracle!/java.management"/>
+            <include name="../java-10-oracle!/java.management.rmi"/>
+            <include name="../java-10-oracle!/java.naming"/>
+            <include name="../java-10-oracle!/java.prefs"/>
+            <include name="../java-10-oracle!/java.rmi"/>
+            <include name="../java-10-oracle!/java.scripting"/>
+            <include name="../java-10-oracle!/java.se"/>
+            <include name="../java-10-oracle!/java.se.ee"/>
+            <include name="../java-10-oracle!/java.security.jgss"/>
+            <include name="../java-10-oracle!/java.security.sasl"/>
+            <include name="../java-10-oracle!/java.smartcardio"/>
+            <include name="../java-10-oracle!/java.sql"/>
+            <include name="../java-10-oracle!/java.sql.rowset"/>
+            <include name="../java-10-oracle!/java.transaction"/>
+            <include name="../java-10-oracle!/java.xml"/>
+            <include name="../java-10-oracle!/java.xml.bind"/>
+            <include name="../java-10-oracle!/java.xml.crypto"/>
+            <include name="../java-10-oracle!/java.xml.ws"/>
+            <include name="../java-10-oracle!/java.xml.ws.annotation"/>
+            <include name="../java-10-oracle!/javafx.base"/>
+            <include name="../java-10-oracle!/javafx.controls"/>
+            <include name="../java-10-oracle!/javafx.deploy"/>
+            <include name="../java-10-oracle!/javafx.fxml"/>
+            <include name="../java-10-oracle!/javafx.graphics"/>
+            <include name="../java-10-oracle!/javafx.media"/>
+            <include name="../java-10-oracle!/javafx.swing"/>
+            <include name="../java-10-oracle!/javafx.web"/>
+            <include name="../java-10-oracle!/jdk.accessibility"/>
+            <include name="../java-10-oracle!/jdk.aot"/>
+            <include name="../java-10-oracle!/jdk.attach"/>
+            <include name="../java-10-oracle!/jdk.charsets"/>
+            <include name="../java-10-oracle!/jdk.compiler"/>
+            <include name="../java-10-oracle!/jdk.crypto.cryptoki"/>
+            <include name="../java-10-oracle!/jdk.crypto.ec"/>
+            <include name="../java-10-oracle!/jdk.deploy"/>
+            <include name="../java-10-oracle!/jdk.deploy.controlpanel"/>
+            <include name="../java-10-oracle!/jdk.dynalink"/>
+            <include name="../java-10-oracle!/jdk.editpad"/>
+            <include name="../java-10-oracle!/jdk.hotspot.agent"/>
+            <include name="../java-10-oracle!/jdk.httpserver"/>
+            <include name="../java-10-oracle!/jdk.incubator.httpclient"/>
+            <include name="../java-10-oracle!/jdk.internal.ed"/>
+            <include name="../java-10-oracle!/jdk.internal.jvmstat"/>
+            <include name="../java-10-oracle!/jdk.internal.le"/>
+            <include name="../java-10-oracle!/jdk.internal.opt"/>
+            <include name="../java-10-oracle!/jdk.internal.vm.ci"/>
+            <include name="../java-10-oracle!/jdk.internal.vm.compiler"/>
+            <include name="../java-10-oracle!/jdk.internal.vm.compiler.management"/>
+            <include name="../java-10-oracle!/jdk.jartool"/>
+            <include name="../java-10-oracle!/jdk.javadoc"/>
+            <include name="../java-10-oracle!/jdk.javaws"/>
+            <include name="../java-10-oracle!/jdk.jcmd"/>
+            <include name="../java-10-oracle!/jdk.jconsole"/>
+            <include name="../java-10-oracle!/jdk.jdeps"/>
+            <include name="../java-10-oracle!/jdk.jdi"/>
+            <include name="../java-10-oracle!/jdk.jdwp.agent"/>
+            <include name="../java-10-oracle!/jdk.jfr"/>
+            <include name="../java-10-oracle!/jdk.jlink"/>
+            <include name="../java-10-oracle!/jdk.jshell"/>
+            <include name="../java-10-oracle!/jdk.jsobject"/>
+            <include name="../java-10-oracle!/jdk.jstatd"/>
+            <include name="../java-10-oracle!/jdk.localedata"/>
+            <include name="../java-10-oracle!/jdk.management"/>
+            <include name="../java-10-oracle!/jdk.management.agent"/>
+            <include name="../java-10-oracle!/jdk.management.cmm"/>
+            <include name="../java-10-oracle!/jdk.management.jfr"/>
+            <include name="../java-10-oracle!/jdk.management.resource"/>
+            <include name="../java-10-oracle!/jdk.naming.dns"/>
+            <include name="../java-10-oracle!/jdk.naming.rmi"/>
+            <include name="../java-10-oracle!/jdk.net"/>
+            <include name="../java-10-oracle!/jdk.pack"/>
+            <include name="../java-10-oracle!/jdk.packager"/>
+            <include name="../java-10-oracle!/jdk.packager.services"/>
+            <include name="../java-10-oracle!/jdk.plugin"/>
+            <include name="../java-10-oracle!/jdk.plugin.server"/>
+            <include name="../java-10-oracle!/jdk.rmic"/>
+            <include name="../java-10-oracle!/jdk.scripting.nashorn"/>
+            <include name="../java-10-oracle!/jdk.scripting.nashorn.shell"/>
+            <include name="../java-10-oracle!/jdk.sctp"/>
+            <include name="../java-10-oracle!/jdk.security.auth"/>
+            <include name="../java-10-oracle!/jdk.security.jgss"/>
+            <include name="../java-10-oracle!/jdk.snmp"/>
+            <include name="../java-10-oracle!/jdk.unsupported"/>
+            <include name="../java-10-oracle!/jdk.xml.bind"/>
+            <include name="../java-10-oracle!/jdk.xml.dom"/>
+            <include name="../java-10-oracle!/jdk.xml.ws"/>
+            <include name="../java-10-oracle!/jdk.zipfs"/>
+            <include name="../java-10-oracle!/oracle.desktop"/>
+            <include name="../java-10-oracle!/oracle.net"/>
+        </fileset>
+    </path>
+
+    <property name="project.jdk.home" value="${jdk.home.10}"/>
+    <property name="project.jdk.bin" value="${jdk.bin.10}"/>
+    <property name="project.jdk.classpath" value="jdk.classpath.10"/>
+
+
+    <!-- Project Libraries -->
+
+    <path id="library.lib.classpath">
+        <fileset dir="${basedir}/WebContent/WEB-INF/lib">
+            <patternset refid="library.patterns"/>
+        </fileset>
+    </path>
+
+
+    <!-- Application Server Libraries -->
+    <!-- Register Custom Compiler Taskdefs -->
+    <property name="javac2.home" value="${idea.home}/lib"/>
+    <path id="javac2.classpath">
+        <fileset dir="${javac2.home}">
+            <include name="javac2.jar"/>
+            <include name="jdom.jar"/>
+            <include name="asm-all*.jar"/>
+            <include name="forms-*.jar"/>
+        </fileset>
+    </path>
+    <target name="register.custom.compilers">
+        <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+        <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions"
+                 classpathref="javac2.classpath"/>
+    </target>
+
+    <!-- Modules -->
+
+
+    <!-- Module LGU-PAEIS -->
+
+    <dirname property="module.lgu-paeis.basedir" file="${ant.file}"/>
+
+
+    <property name="module.jdk.home.lgu-paeis" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.lgu-paeis" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.lgu-paeis" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.lgu-paeis" value="-encoding UTF-8 -source 10 -target 10 ${compiler.args}"/>
+
+    <property name="lgu-paeis.output.dir" value="${module.lgu-paeis.basedir}/../../../out/production/LGU-PAEIS"/>
+    <property name="lgu-paeis.testoutput.dir" value="${module.lgu-paeis.basedir}/../../../out/test/LGU-PAEIS"/>
+
+    <path id="lgu-paeis.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="lgu-paeis.module.production.classpath">
+        <path refid="${module.jdk.classpath.lgu-paeis}"/>
+        <path refid="library.lib.classpath"/>
+    </path>
+
+    <path id="lgu-paeis.runtime.production.module.classpath">
+        <pathelement location="${lgu-paeis.output.dir}"/>
+        <path refid="library.lib.classpath"/>
+    </path>
+
+    <path id="lgu-paeis.module.classpath">
+        <path refid="${module.jdk.classpath.lgu-paeis}"/>
+        <pathelement location="${lgu-paeis.output.dir}"/>
+        <path refid="library.lib.classpath"/>
+    </path>
+
+    <path id="lgu-paeis.runtime.module.classpath">
+        <pathelement location="${lgu-paeis.testoutput.dir}"/>
+        <pathelement location="${lgu-paeis.output.dir}"/>
+        <path refid="library.lib.classpath"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.lgu-paeis">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.lgu-paeis">
+        <patternset refid="excluded.from.module.lgu-paeis"/>
+    </patternset>
+
+    <path id="lgu-paeis.module.sourcepath">
+        <dirset dir="${module.lgu-paeis.basedir}">
+            <include name="src"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.lgu-paeis" depends="compile.module.lgu-paeis.production,compile.module.lgu-paeis.tests"
+            description="Compile module LGU-PAEIS"/>
+
+    <target name="compile.module.lgu-paeis.production" depends="register.custom.compilers"
+            description="Compile module LGU-PAEIS; production classes">
+        <mkdir dir="${lgu-paeis.output.dir}"/>
+        <javac2 destdir="${lgu-paeis.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+                memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lgu-paeis}/javac">
+            <compilerarg line="${compiler.args.lgu-paeis}"/>
+            <bootclasspath refid="lgu-paeis.module.bootclasspath"/>
+            <classpath refid="lgu-paeis.module.production.classpath"/>
+            <src refid="lgu-paeis.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.lgu-paeis"/>
+        </javac2>
+
+        <copy todir="${lgu-paeis.output.dir}">
+            <fileset dir="${module.lgu-paeis.basedir}/src">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.lgu-paeis.tests"
+            depends="register.custom.compilers,compile.module.lgu-paeis.production"
+            description="compile module LGU-PAEIS; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.lgu-paeis" description="cleanup module">
+        <delete dir="${lgu-paeis.output.dir}"/>
+        <delete dir="${lgu-paeis.testoutput.dir}"/>
+    </target>
+
+    <target name="init" description="Build initialization">
+        <!-- Perform any build initialization in this target -->
+    </target>
+
+    <target name="clean" depends="clean.module.lgu-paeis, clean.artifact.lgu-paeis:war_exploded"
+            description="cleanup all"/>
+
+    <target name="build.modules" depends="init, clean, compile.module.lgu-paeis" description="build all modules"/>
+
+    <target name="init.artifacts">
+        <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+        <property name="artifact.output.lgu-paeis:war_exploded"
+                  value="${basedir}/../../../out/artifacts/LGU_PAEIS_war_exploded"/>
+        <mkdir dir="${artifacts.temp.dir}"/>
+    </target>
+
+    <target name="clean.artifact.lgu-paeis:war_exploded" description="clean LGU-PAEIS:war exploded artifact output">
+        <delete dir="${artifact.output.lgu-paeis:war_exploded}"/>
+    </target>
+
+    <target name="artifact.lgu-paeis:war_exploded" depends="init.artifacts, compile.module.lgu-paeis"
+            description="Build &#39;LGU-PAEIS:war exploded&#39; artifact">
+        <mkdir dir="${artifact.output.lgu-paeis:war_exploded}"/>
+        <copy todir="${artifact.output.lgu-paeis:war_exploded}">
+            <fileset dir="${basedir}/WebContent"/>
+        </copy>
+        <mkdir dir="${artifact.output.lgu-paeis:war_exploded}/WEB-INF"/>
+        <copy file="${basedir}/WebContent/WEB-INF/web.xml"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/web.xml"/>
+        <mkdir dir="${artifact.output.lgu-paeis:war_exploded}/WEB-INF"/>
+        <mkdir dir="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/classes"/>
+        <copy todir="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/classes">
+            <fileset dir="${lgu-paeis.output.dir}"/>
+        </copy>
+        <mkdir dir="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/jstl-1.2.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/jstl-1.2.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.ejb.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.ejb.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.jms.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.jms.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.servlet.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.servlet.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.resource.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.resource.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.annotation.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.annotation.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.persistence.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.persistence.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.servlet.jsp.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.servlet.jsp.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.transaction.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.transaction.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/javax.servlet.jsp.jstl.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/javax.servlet.jsp.jstl.jar"/>
+        <copy file="${basedir}/WebContent/WEB-INF/lib/mysql-connector-java-5.1.46.jar"
+              tofile="${artifact.output.lgu-paeis:war_exploded}/WEB-INF/lib/mysql-connector-java-5.1.46.jar"/>
+    </target>
+
+    <target name="build.all.artifacts" depends="artifact.lgu-paeis:war_exploded" description="Build all artifacts">
+
+        <!-- Delete temporary files -->
+        <delete dir="${artifacts.temp.dir}"/>
+    </target>
+
+    <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
