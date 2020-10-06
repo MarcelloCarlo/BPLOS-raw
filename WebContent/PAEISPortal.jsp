@@ -26,7 +26,7 @@
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
     <link href="assets/css/style.min.css" rel="stylesheet"/>
     <link href="assets/css/style-responsive.min.css" rel="stylesheet"/>
-    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>
+<%--    <link href="assets/css/theme/default.css" rel="stylesheet" id="theme"/>--%>
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
@@ -56,20 +56,20 @@
         </div>
         <!-- end brand -->
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#default-tab-1" data-toggle="tab">Latest News</a></li>
-            <li class=""><a href="#default-tab-2" data-toggle="tab">Application Forms</a></li>
-            <li class=""><a href="#default-tab-3" data-toggle="tab">Login</a></li>
+<%--            <li class="active"><a href="#default-tab-1" data-toggle="tab">Latest News</a></li>--%>
+            <li class=""><a href="#default-tab-2" data-toggle="tab">Application Registration Forms</a></li>
+            <li class="active"><a href="#default-tab-3" data-toggle="tab">Login</a></li>
             <li class=""><a href="#default-tab-4" data-toggle="tab">Application Status</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade active in" id="default-tab-1">
+           <%-- <div class="tab-pane fade active in" id="default-tab-1">
                 <h3 class="m-t-10"> News/Announcements:</h3>
                 <div class="timeline-Widget" data-iframe-title="Twitter Timeline" data-twitter-event-id="1" lang="en"
                      style=" height: 60vh; /* percent relative to viewport height */ overflow-y: auto;">
                     <a class="twitter-timeline" data-link-color="#9266CC"
                        href="https://twitter.com/QCPublicAffairs?ref_src=twsrc%5Etfw">Tweets by QCPublicAffairs</a>
                 </div>
-            </div>
+            </div>--%>
 
             <div class="tab-pane fade" id="default-tab-2">
                 <h3 class="m-t-10"> Select an Application Form:</h3>
@@ -85,8 +85,9 @@
                 </div>
             </div>
 
-            <div class="tab-pane fade" id="default-tab-3">
-                <form name="loginEmpForm" id="loginEmpForm" action="/LoginServlet" method="post" novalidate=""
+            <div class="tab-pane fade active in" id="default-tab-3">
+                <form name="loginEmpForm" id="loginEmpForm" action="${pageContext.request.contextPath}/LoginServlet"
+                      method="post" novalidate=""
                       data-parsley-validate="">
                     <h4>Employee Login</h4>
 
@@ -120,7 +121,8 @@
 
             </div>
             <div class="tab-pane fade" id="default-tab-4">
-                <form name="checkApplFrm" id="checkApplFrm" action="BPLSRtSlip.jsp" method="get" novalidate=""
+                <form name="checkApplFrm" id="checkApplFrm"
+                      action="${pageContext.request.contextPath}/BPLS/BPLSRtSlip.jsp" method="get" novalidate=""
                       data-parsley-validate="">
                     <h4>Application Tracking</h4>
 

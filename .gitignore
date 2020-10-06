@@ -6,5 +6,6 @@ artifacts/
 \.settings/
 /bin/
 \.idea/
+\.vscode/
 
 

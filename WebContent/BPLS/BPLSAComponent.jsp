@@ -15,7 +15,7 @@
         <div class="navbar-header">
             <a class="navbar-brand">
                 <span>
-                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                    <img src="../extras/icon.png" alt="" style="margin-top: -5px"/>
                 </span>
                 BPLS
             </a>
@@ -52,7 +52,7 @@
                 <span>Account Settings</span>
             </a>
             <ul class="sub-menu">
-                <li><a href='PAEISAccMngmt.jsp?Id=<%=session.getAttribute("empid")%>'><span>Change Password</span></a></li>
+                <li><a href='../PAEISAccMngmt.jsp?Id=<%=session.getAttribute("empid")%>'><span>Change Password</span></a></li>
                 <li><a href='LogoutServlet?id=<%=session.getAttribute("empid")%>'><span>Log Out</span></a></li>
             </ul>
         </li>

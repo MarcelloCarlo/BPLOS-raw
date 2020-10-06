@@ -15,7 +15,7 @@
         <div class="navbar-header">
             <a class="navbar-brand">
                 <span>
-                    <img src="extras/icon.png" alt="" style="margin-top: -5px"/>
+                    <img src="../extras/icon.png" alt="" style="margin-top: -5px"/>
                 </span>
                 RPT
             </a>

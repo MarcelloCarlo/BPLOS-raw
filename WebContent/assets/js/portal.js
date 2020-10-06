@@ -4,11 +4,11 @@ $(document).ready(function () {
     $("#bplsBtn").click(function () {
         var formX = $("#newForm").val();
         if (formX === "nSing") {
-            window.open("BPLSAplSglBus.jsp");
+            window.open("/BPLS/BPLSAplSglBus.jsp");
         } else if (formX === "nCorp") {
-            window.open("BPLSAplCrpBus.jsp");
+            window.open("/BPLS/BPLSAplCrpBus.jsp");
         } else if (formX === "Mtops") {
-            window.open("MTOPSMtrzdApl.jsp")
+            window.open("/MTOPS/MTOPSMtrzdApl.jsp")
         } else if (formX === "rCorp") {
 
         }

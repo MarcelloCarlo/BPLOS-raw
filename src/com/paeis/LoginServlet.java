@@ -105,49 +105,22 @@ public class LoginServlet extends HttpServlet {
     }
 
     private String pageSelect(String divcode) {
-        String selectedPage = "";
-        switch (divcode){
-            case "DIV-SYSAD":
-                selectedPage = "PAEISSAUsrMgmt.jsp";
-                break;
-            case "DIV-EV":
-                selectedPage = "BPLSEIndex.jsp";
-                break;
-            case "DIV-INS":
-                selectedPage = "BPLSIPIndex.jsp";
-                break;
-            case "DIV-INV":
-                selectedPage = "BPLSIVIndex.jsp";
-                break;
-            case "DIV-TRE":
-                selectedPage = "BPLSTIndex.jsp";
-                break;
-            case "DIV-REL":
-                selectedPage = "BPLSRSIndex.jsp";
-                break;
-            case "DIV-AS":
-                selectedPage = "BPLSAIndex.jsp";
-                break;
-            case "DIV-MEV":
-                selectedPage = "MTOPSEIndex.jsp";
-                break;
-            case "DIV-MRE":
-                selectedPage = "MTOPSRSIndex.jsp";
-                break;
-            case "DIV-MFA":
-                selectedPage = "MTOPSAment.jsp";
-                break;
-            case "DIV-MIP":
-                selectedPage = "MTOPSIPIndex.jsp";
-                break;
-            case "DIV-RVNU":
-                selectedPage = "REVDashboard.jsp";
-                break;
-            case "DIV-RPT":
-                selectedPage = "RPTPrprty.jsp";
-                break;
-            default: selectedPage = "none"; break;
-        }
+        String selectedPage = switch (divcode) {
+            case "DIV-SYSAD" -> "/PAEIS/PAEISSAUsrMgmt.jsp";
+            case "DIV-EV" -> "/BPLS/BPLSEIndex.jsp";
+            case "DIV-INS" -> "/BPLS/BPLSIPIndex.jsp";
+            case "DIV-INV" -> "/BPLS/BPLSIVIndex.jsp";
+            case "DIV-TRE" -> "/BPLS/BPLSTIndex.jsp";
+            case "DIV-REL" -> "/BPLS/BPLSRSIndex.jsp";
+            case "DIV-AS" -> "/BPLS/BPLSAIndex.jsp";
+            case "DIV-MEV" -> "/MTOPS/MTOPSEIndex.jsp";
+            case "DIV-MRE" -> "/MTOPS/MTOPSRSIndex.jsp";
+            case "DIV-MFA" -> "/MTOPS/MTOPSAment.jsp";
+            case "DIV-MIP" -> "/MTOPS/MTOPSIPIndex.jsp";
+            case "DIV-RVNU" -> "/Revenue/REVDashboard.jsp";
+            case "DIV-RPT" -> "/RPT/RPTPrprty.jsp";
+            default -> "none";
+        };
 
         return selectedPage;
     }
