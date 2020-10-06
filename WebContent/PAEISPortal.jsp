@@ -30,10 +30,10 @@
     <!-- ================== END BASE CSS STYLE ================== -->
 
     <!-- ================== BEGIN BASE JS ================== -->
-    <script src="assets/plugins/pace/pace.min.js"></script>
+<%--    <script src="assets/plugins/pace/pace.min.js"></script>--%>
     <!-- ================== END BASE JS ================== -->
 </head>
-<body class="pace-top">
+<body class="container">
 <!-- begin #page-loader -->
 <div id="page-loader" class="fade in"><span class="spinner"></span></div>
 <!-- end #page-loader -->
@@ -47,27 +47,28 @@
 <!-- begin #page-container -->
 <div id="page-container" class="fade container-fluid">
     <!-- begin login -->
-    <div class="login login-v2" data-pageload-addclass="animated fadeIn" style="margin-top: 9rem !important;">
+    <div class="login login-v2" data-pageload-addclass="animated fadeIn">
+<%--        <div class="login login-v2" data-pageload-addclass="animated fadeIn" style="margin-top: 9rem !important;">--%>
         <!-- begin brand -->
         <div class="login-header">
             <div class="brand text-center">
-                <img src="extras/logo1.png" style="width:50px;height:50px;"> PAEIS
+                <img src="extras/logo1.png" class="image" style="max-width: 20%;"> PAEIS
             </div>
         </div>
         <!-- end brand -->
         <ul class="nav nav-tabs">
 <%--            <li class="active"><a href="#default-tab-1" data-toggle="tab">Latest News</a></li>--%>
-            <li class=""><a href="#default-tab-2" data-toggle="tab">Application Registration Forms</a></li>
-            <li class="active"><a href="#default-tab-3" data-toggle="tab">Login</a></li>
+            <li class="active"><a href="#default-tab-2" data-toggle="tab">Application Registration Forms</a></li>
+            <li class=""><a href="#default-tab-3" data-toggle="tab">Login</a></li>
             <li class=""><a href="#default-tab-4" data-toggle="tab">Application Status</a></li>
         </ul>
         <div class="tab-content">
-           <%-- <div class="tab-pane fade active in" id="default-tab-1">
+            <%--<div class="tab-pane fade active in" id="default-tab-1">
                 <h3 class="m-t-10"> News/Announcements:</h3>
                 <div class="timeline-Widget" data-iframe-title="Twitter Timeline" data-twitter-event-id="1" lang="en"
                      style=" height: 60vh; /* percent relative to viewport height */ overflow-y: auto;">
                     <a class="twitter-timeline" data-link-color="#9266CC"
-                       href="https://twitter.com/QCPublicAffairs?ref_src=twsrc%5Etfw">Tweets by QCPublicAffairs</a>
+                       href="https://twitter.com/QCGov?ref_src=twsrc%5Etfw">Quezon City LGU</a>
                 </div>
             </div>--%>
 
