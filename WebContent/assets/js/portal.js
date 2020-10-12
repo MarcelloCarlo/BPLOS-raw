@@ -1,6 +1,6 @@
 $(document).ready(function () {
     App.init();
-    LoginV2.init();
+    // LoginV2.init();
     $("#bplsBtn").click(function () {
         var formX = $("#newForm").val();
         if (formX === "nSing") {

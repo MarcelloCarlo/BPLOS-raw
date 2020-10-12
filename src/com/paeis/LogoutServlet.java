@@ -18,7 +18,7 @@ import java.sql.SQLException;
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private LGUConnect connect = new LGUConnect();
+    private final LGUConnect connect = new LGUConnect();
     private Connection connection;
     private String divcode = "",auditId="";
 
@@ -44,12 +44,16 @@ public class LogoutServlet extends HttpServlet {
     private void recSession( String empId) {
         try {
             Connection connection = connect.getConnection();
+
+            //Find the role of the employee
             PreparedStatement findEmp = (PreparedStatement) connection.prepareStatement("SELECT * FROM bpls_t_employee_profile EP JOIN bpls_t_user U ON EP.EP_ID = U.EP_ID WHERE  EP.EP_ID = ? AND U.U_STATUS = 'Active'");
             findEmp.setInt(1,Integer.parseInt(empId));
             ResultSet resultSet = findEmp.executeQuery();
             if (resultSet.next()) {
                 divcode = resultSet.getString("U.U_ROLE");
             }
+
+            //find its recent check in
             PreparedStatement findLastLogin = (PreparedStatement) connection.prepareStatement("SELECT AUDT_ID FROM `bpls_t_audit_trail` WHERE AUDT_EP_ID = ? AND AUDT_LOG_OUT IS NULL ORDER BY `AUDT_LOG_IN` DESC");
             findLastLogin.setInt(1,Integer.parseInt(empId));
             ResultSet resultSet1 = findLastLogin.executeQuery();
@@ -57,6 +61,7 @@ public class LogoutServlet extends HttpServlet {
                auditId = resultSet1.getString("AUDT_ID");
             }
 
+            //Record it
             PreparedStatement recAudt = (PreparedStatement) connection.prepareStatement("UPDATE `bpls_t_audit_trail` SET AUDT_LOG_OUT=NOW() WHERE  AUDT_EP_ID = ? AND AUDT_ID = ? ");
             recAudt.setInt(1, Integer.parseInt(empId));
             recAudt.setString(2, auditId);

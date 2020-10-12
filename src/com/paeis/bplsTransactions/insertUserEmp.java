@@ -8,19 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.lang.ref.PhantomReference;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 @MultipartConfig
 @WebServlet("/insertUserEmp")
 public class insertUserEmp  extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private LGUConnect connect = new LGUConnect();
-    private Connection connection;
+    private final LGUConnect connect = new LGUConnect();
     private int u_id=0;
 
     public insertUserEmp() {
@@ -49,7 +46,7 @@ public class insertUserEmp  extends HttpServlet {
         int epId = 0;
         if (firstname != null && middle != null && lastname != null && gender != null && bdate != null && jobdesc != null && contact != null && email != null && home != null) {
             try {
-                connection = connect.getConnection();
+                Connection connection = connect.getConnection();
                 java.util.Date Bdate = new SimpleDateFormat("dd-MM-yyyy").parse(bdate);
                 Date bbDate = new java.sql.Date(Bdate.getTime());
                 String data = "insert into bpls_t_employee_profile(EP_FNAME,EP_MNAME,EP_LNAME,EP_GENDER,EP_BIRTHDATE,EP_JOB_DESC,EP_CONTACT_NO,EP_EMAIL,EP_ADDRESS) values (?,?,?,?,?,?,?,?,?)";

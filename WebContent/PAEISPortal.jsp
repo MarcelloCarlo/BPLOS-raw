@@ -22,6 +22,7 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet"/>
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+<%--    <link href="assets/bootstrap-4/css/bootstrap.css" rel="stylesheet"/>--%>
     <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="assets/css/animate.min.css" rel="stylesheet"/>
     <link href="assets/css/style.min.css" rel="stylesheet"/>
@@ -45,108 +46,110 @@
     <div class="login-cover-bg"></div>
 </div>
 <!-- begin #page-container -->
-<div id="page-container" class="fade container-fluid">
+<div id="page-container" class="fade">
     <!-- begin login -->
-    <div class="login login-v2" data-pageload-addclass="animated fadeIn">
+    <div class="m-35 p-35 container" data-pageload-addclass="animated fadeIn">
 <%--        <div class="login login-v2" data-pageload-addclass="animated fadeIn" style="margin-top: 9rem !important;">--%>
         <!-- begin brand -->
-        <div class="login-header">
-            <div class="brand text-center">
-                <img src="extras/logo1.png" class="image" style="max-width: 20%;"> PAEIS
-            </div>
-        </div>
-        <!-- end brand -->
-        <ul class="nav nav-tabs">
-<%--            <li class="active"><a href="#default-tab-1" data-toggle="tab">Latest News</a></li>--%>
-            <li class="active"><a href="#default-tab-2" data-toggle="tab">Application Registration Forms</a></li>
-            <li class=""><a href="#default-tab-3" data-toggle="tab">Login</a></li>
-            <li class=""><a href="#default-tab-4" data-toggle="tab">Application Status</a></li>
-        </ul>
-        <div class="tab-content">
-            <%--<div class="tab-pane fade active in" id="default-tab-1">
-                <h3 class="m-t-10"> News/Announcements:</h3>
-                <div class="timeline-Widget" data-iframe-title="Twitter Timeline" data-twitter-event-id="1" lang="en"
-                     style=" height: 60vh; /* percent relative to viewport height */ overflow-y: auto;">
-                    <a class="twitter-timeline" data-link-color="#9266CC"
-                       href="https://twitter.com/QCGov?ref_src=twsrc%5Etfw">Quezon City LGU</a>
-                </div>
-            </div>--%>
-
-            <div class="tab-pane fade" id="default-tab-2">
-                <h3 class="m-t-10"> Select an Application Form:</h3>
-                <div class="controls">
-                    <select id="newForm" class="form-control">
-                        <option value="nSing">Business Application Form (Single)</option>
-                        <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
-                        <option value="Mtops">MTOPS Application Form</option>
-                    </select>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>
-                    </div>
+        <div class="row">
+            <div class="login-header">
+                <div class="brand text-center">
+                    <img src="extras/logo1.png" class="image" style="max-width: 20%;" alt="LGU logo"> PAEIS
                 </div>
             </div>
+            <!-- end brand -->
+            <ul id="tab-head" class="nav nav-tabs nav-justified nav-justified-mobile">
+                <%--            <li class="active"><a href="#default-tab-1" data-toggle="tab">Latest News</a></li>--%>
+                <li class="active nav-item"><a class="navbar-link" href="#default-tab-2" data-toggle="tab">Application Registration Forms</a></li>
+                <li class="nav-item"><a class="navbar-link" href="#default-tab-3" data-toggle="tab">Login</a></li>
+                <li class="nav-item"><a class="navbar-link" href="#default-tab-4" data-toggle="tab">Application Status</a></li>
+            </ul>
+            <div class="tab-content">
+                <%--<div class="tab-pane fade active in" id="default-tab-1">
+                    <h3 class="m-t-10"> News/Announcements:</h3>
+                    <div class="timeline-Widget" data-iframe-title="Twitter Timeline" data-twitter-event-id="1" lang="en"
+                         style=" height: 60vh; /* percent relative to viewport height */ overflow-y: auto;">
+                        <a class="twitter-timeline" data-link-color="#9266CC"
+                           href="https://twitter.com/QCGov?ref_src=twsrc%5Etfw">Quezon City LGU</a>
+                    </div>
+                </div>--%>
 
-            <div class="tab-pane fade active in" id="default-tab-3">
-                <form name="loginEmpForm" id="loginEmpForm" action="${pageContext.request.contextPath}/LoginServlet"
-                      method="post" novalidate=""
-                      data-parsley-validate="">
-                    <h4>Employee Login</h4>
+                <div class="tab-pane fade active in" id="default-tab-2">
+                    <h3 class="m-t-10"> Select an Application Form:</h3>
+                    <div class="controls">
+                        <select id="newForm" class="form-control">
+                            <option value="nSing">Business Application Form (Single)</option>
+                            <option value="nCorp">Business Application Form (Partnership/Corporation)</option>
+                            <option value="Mtops">MTOPS Application Form</option>
+                        </select>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm btn-primary" id="bplsBtn">Proceed</button>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="row">
+                <div class="tab-pane fade in" id="default-tab-3">
+                    <form name="loginEmpForm" id="loginEmpForm" action="${pageContext.request.contextPath}/LoginServlet"
+                          method="post" novalidate=""
+                          data-parsley-validate="">
+                        <h4>Employee Login</h4>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <div class="controls">
-                                    <input type="text" name="username" placeholder="Your username" class="form-control"
-                                           required/>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <div class="controls">
+                                        <input type="text" name="username" placeholder="Your username" class="form-control"
+                                               required/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <div class="controls">
+                                        <input type="password" name="password" placeholder="Your password"
+                                               class="form-control" required/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Password</label>
-                                <div class="controls">
-                                    <input type="password" name="password" placeholder="Your password"
-                                           class="form-control" required/>
+                        <div class="modal-footer">
+                            <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Log In</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="tab-pane fade" id="default-tab-4">
+                    <form name="checkApplFrm" id="checkApplFrm"
+                          action="${pageContext.request.contextPath}/BPLS/BPLSRtSlip.jsp" method="get" novalidate=""
+                          data-parsley-validate="">
+                        <h4>Application Tracking</h4>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Reference Number</label>
+                                    <div class="controls">
+                                        <input type="text" name="refNo" placeholder="Reference Number" class="form-control"
+                                               required/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Log In</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Continue</button>
+                        </div>
+                    </form>
+
+                </div>
 
             </div>
-            <div class="tab-pane fade" id="default-tab-4">
-                <form name="checkApplFrm" id="checkApplFrm"
-                      action="${pageContext.request.contextPath}/BPLS/BPLSRtSlip.jsp" method="get" novalidate=""
-                      data-parsley-validate="">
-                    <h4>Application Tracking</h4>
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Reference Number</label>
-                                <div class="controls">
-                                    <input type="text" name="refNo" placeholder="Reference Number" class="form-control"
-                                           required/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" <%--id="loginBtn"--%> class="btn btn-sm btn-primary">Continue</button>
-                    </div>
-                </form>
-
-            </div>
-
         </div>
     </div>
     <!-- end login -->
@@ -159,6 +162,7 @@
 <script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<%--<script src="assets/bootstrap-4/js/bootstrap.js"></script>--%>
 <script src="assets/plugins/parsleyjs/dist/parsley.min.js"></script>
 <!--[if lt IE 9]>
 <script src="assets/crossbrowserjs/html5shiv.js"></script>
@@ -171,7 +175,7 @@
 
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="assets/js/apps.min.js"></script>
-<script src="assets/js/login-v2.demo.min.js"></script>
+<%--<script src="assets/js/login-v2.demo.min.js"></script>--%>
 <script src="assets/plugins/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="assets/js/portal.js"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
